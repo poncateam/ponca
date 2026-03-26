@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
+   &#160;<span id="projectnumber">cfae91c4e985f62659abecaccc35a41888257251</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -141,7 +141,7 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keywordflow">if</span> (Base::plane().isValid())</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        Base::setPlane(Base::m_solver.eigenvectors().col(0), Base::barycenterLocal());</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        Base::setPlane(Base::m_solver.<a class="code hl_class" href="classPonca_1_1Basket.html">eigenvectors</a>().<a class="code hl_class" href="classPonca_1_1Basket.html">col</a>(0), Base::barycenterLocal());</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    }</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
@@ -151,20 +151,20 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">CovariancePlaneFitImpl&lt;DataPoint, _NFilter, T&gt;::VectorType</a> <a class="code hl_class" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt;</div>
 <div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classPonca_1_1CovariancePlaneFitImpl.html#a429f5387d3e7ba2fa8f1fd729d3175b4">   25</a></span>    DataPoint, _NFilter, T&gt;::worldToTangentPlane(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a>&amp; _q, <span class="keywordtype">bool</span> _isPositionVector)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classPonca_1_1CovariancePlaneFitImpl.html#a429f5387d3e7ba2fa8f1fd729d3175b4">   25</a></span>    DataPoint, <a class="code hl_class" href="classPonca_1_1Basket.html">_NFilter</a>, T&gt;::worldToTangentPlane(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">_q</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classPonca_1_1Basket.html">_isPositionVector</a>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword"></span>{</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">return</span> Base::m_solver.eigenvectors().transpose() *</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>           Base::getNeighborFilter().convertToLocalBasis(_q, _isPositionVector);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>           Base::getNeighborFilter().convertToLocalBasis(<a class="code hl_class" href="classPonca_1_1Basket.html">_q</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">_isPositionVector</a>);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
 </div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">CovariancePlaneFitImpl&lt;DataPoint, _NFilter, T&gt;::VectorType</a> <a class="code hl_class" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt;</div>
 <div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classPonca_1_1CovariancePlaneFitImpl.html#a05b6cafc10cfdd2313abe32ab4db6ef0">   33</a></span>    DataPoint, _NFilter, T&gt;::tangentPlaneToWorld(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a>&amp; _lq, <span class="keywordtype">bool</span> _isPositionVector)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classPonca_1_1CovariancePlaneFitImpl.html#a05b6cafc10cfdd2313abe32ab4db6ef0">   33</a></span>    DataPoint, <a class="code hl_class" href="classPonca_1_1Basket.html">_NFilter</a>, T&gt;::tangentPlaneToWorld(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">_lq</a>, <span class="keywordtype">bool</span> <a class="code hl_class" href="classPonca_1_1Basket.html">_isPositionVector</a>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> Base::getNeighborFilter().convertToGlobalBasis(Base::m_solver.eigenvectors().transpose().inverse() * _lq,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                                                          _isPositionVector);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span> Base::getNeighborFilter().convertToGlobalBasis(Base::m_solver.<a class="code hl_class" href="classPonca_1_1Basket.html">eigenvectors</a>().<a class="code hl_class" href="classPonca_1_1Basket.html">transpose</a>().<a class="code hl_class" href="classPonca_1_1Basket.html">inverse</a>() * <a class="code hl_class" href="classPonca_1_1Basket.html">_lq</a>,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                                                          <a class="code hl_class" href="classPonca_1_1Basket.html">_isPositionVector</a>);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
 </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
@@ -172,27 +172,27 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classPonca_1_1CovariancePlaneDerImpl.html#a1e38de1b017aa2834a6ffab388d27b5d">   40</a></span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1CovariancePlaneDerImpl.html">CovariancePlaneDerImpl&lt;DataPoint, _NFilter, DiffType, T&gt;::finalize</a>()</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    PONCA_MULTIARCH_CU_STD_FUNC(numeric_limits);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    PONCA_MULTIARCH_CU_STD_FUNC(<a class="code hl_class" href="classPonca_1_1Basket.html">numeric_limits</a>);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    Base::finalize();</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// Test if base finalize end on a viable case (stable / unstable)</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#ad8ba3aa6cb0eceecd5224ace67d4849f">VectorType</a> <a class="code hl_function" href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee">barycenter</a>   = Base::barycenterLocal();</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#a8268113c4cc92e7ad77103a57cdcf628">VectorArray</a> dBarycenter = Base::barycenterDerivatives();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#a8268113c4cc92e7ad77103a57cdcf628">VectorArray</a> <a class="code hl_class" href="classPonca_1_1Basket.html">dBarycenter</a> = Base::barycenterDerivatives();</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="comment">// pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#afce98013f3c594c36277d0e4ee5426a3">Scalar</a> epsilon          = <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#afce98013f3c594c36277d0e4ee5426a3">Scalar</a>(2) * Eigen::NumTraits&lt;Scalar&gt;::epsilon();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#afce98013f3c594c36277d0e4ee5426a3">Scalar</a> consider_as_zero = <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#afce98013f3c594c36277d0e4ee5426a3">Scalar</a>(2) * numeric_limits&lt;Scalar&gt;::denorm_min();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#afce98013f3c594c36277d0e4ee5426a3">Scalar</a> <a class="code hl_class" href="classPonca_1_1Basket.html">consider_as_zero</a> = <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#afce98013f3c594c36277d0e4ee5426a3">Scalar</a>(2) * <a class="code hl_class" href="classPonca_1_1Basket.html">numeric_limits&lt;Scalar&gt;::denorm_min</a>();</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="comment">// This is where the limitation to 3d comes from.</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="comment">// \fixme Replace shift in 2d subspace by any subspace with co-dimension 1</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        Eigen::Matrix&lt;Scalar, 2, 1&gt; shifted_eivals =</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            Base::m_solver.eigenvalues().template tail&lt;2&gt;().array() - Base::m_solver.eigenvalues()(0);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">if</span> (shifted_eivals(0) &lt; consider_as_zero || shifted_eivals(0) &lt; epsilon * shifted_eivals(1))</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            shifted_eivals(0) = 0;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> (shifted_eivals(1) &lt; consider_as_zero)</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            shifted_eivals(1) = 0;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        Eigen::Matrix&lt;Scalar, 2, 1&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a> =</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            Base::m_solver.eigenvalues().template <a class="code hl_class" href="classPonca_1_1Basket.html">tail&lt;2&gt;</a>().array() - Base::m_solver.eigenvalues()(0);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(0) &lt; <a class="code hl_class" href="classPonca_1_1Basket.html">consider_as_zero</a> || <a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(0) &lt; epsilon * <a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(1))</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(0) = 0;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(1) &lt; <a class="code hl_class" href="classPonca_1_1Basket.html">consider_as_zero</a>)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(1) = 0;</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; Base::NbDerivatives; ++k)</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        {</div>
@@ -205,24 +205,25 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="comment">// we can directly apply the pseudo inverse by observing that:</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="comment">//    (C - lambda_0 I) = V (L - lambda_0 I) V^T</span></div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="comment">// where V is the eigenvector matrix, and L the eigenvalue diagonal matrix.</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            Eigen::Matrix&lt;Scalar, 2, 1&gt; z =</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                -Base::m_solver.eigenvectors().template rightCols&lt;2&gt;().transpose() * (Base::m_dCov[k] * normal);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">if</span> (shifted_eivals(0) &gt; 0)</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                z(0) /= shifted_eivals(0);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="keywordflow">if</span> (shifted_eivals(1) &gt; 0)</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                z(1) /= shifted_eivals(1);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            m_dNormal.col(k) = Base::m_solver.eigenvectors().template rightCols&lt;2&gt;() * z;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            Eigen::Matrix&lt;Scalar, 2, 1&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">z</a> =</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                -Base::m_solver.eigenvectors().template <a class="code hl_class" href="classPonca_1_1Basket.html">rightCols&lt;2&gt;</a>().transpose() * (Base::m_dCov[k] * normal);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">if</span> (<a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(0) &gt; 0)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                <a class="code hl_class" href="classPonca_1_1Basket.html">z</a>(0) /= <a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(0);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="keywordflow">if</span> (<a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(1) &gt; 0)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <a class="code hl_class" href="classPonca_1_1Basket.html">z</a>(1) /= <a class="code hl_class" href="classPonca_1_1Basket.html">shifted_eivals</a>(1);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            m_dNormal.col(k) = Base::m_solver.eigenvectors().template <a class="code hl_class" href="classPonca_1_1Basket.html">rightCols&lt;2&gt;</a>() * <a class="code hl_class" href="classPonca_1_1Basket.html">z</a>;</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#ad8ba3aa6cb0eceecd5224ace67d4849f">VectorType</a> dDiff = dBarycenter.col(k);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneDerImpl.html#ad8ba3aa6cb0eceecd5224ace67d4849f">VectorType</a> <a class="code hl_class" href="classPonca_1_1Basket.html">dDiff</a> = <a class="code hl_class" href="classPonca_1_1Basket.html">dBarycenter</a>.col(k);</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="keywordflow">if</span> (k &gt; 0 || !Base::isScaleDer())</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                dDiff(Base::isScaleDer() ? k - 1 : k) += 1;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            m_dDist(k) = m_dNormal.col(k).dot(<a class="code hl_function" href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee">barycenter</a>) + normal.dot(dDiff);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                <a class="code hl_class" href="classPonca_1_1Basket.html">dDiff</a>(Base::isScaleDer() ? k - 1 : k) += 1;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            m_dDist(k) = m_dNormal.col(k).dot(<a class="code hl_function" href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee">barycenter</a>) + normal.dot(<a class="code hl_class" href="classPonca_1_1Basket.html">dDiff</a>);</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}</div>
 </div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00316">basket.h:318</a></div></div>
 <div class="ttc" id="aclassPonca_1_1CovariancePlaneDerImpl_html"><div class="ttname"><a href="classPonca_1_1CovariancePlaneDerImpl.html">Ponca::CovariancePlaneDerImpl</a></div><div class="ttdoc">[CovariancePlaneFit Definition]</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00101">covariancePlaneFit.h:102</a></div></div>
 <div class="ttc" id="aclassPonca_1_1CovariancePlaneDerImpl_html_a8268113c4cc92e7ad77103a57cdcf628"><div class="ttname"><a href="classPonca_1_1CovariancePlaneDerImpl.html#a8268113c4cc92e7ad77103a57cdcf628">Ponca::CovariancePlaneDerImpl::VectorArray</a></div><div class="ttdeci">typename Base::VectorArray VectorArray</div><div class="ttdoc">Alias to vector derivatives array.</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00105">covariancePlaneFit.h:105</a></div></div>
 <div class="ttc" id="aclassPonca_1_1CovariancePlaneDerImpl_html_ad8ba3aa6cb0eceecd5224ace67d4849f"><div class="ttname"><a href="classPonca_1_1CovariancePlaneDerImpl.html#ad8ba3aa6cb0eceecd5224ace67d4849f">Ponca::CovariancePlaneDerImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00103">covariancePlaneFit.h:103</a></div></div>
@@ -239,7 +240,7 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>covariancePlaneFit.hpp</b></li>
-    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 26 2026 17:31:09 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

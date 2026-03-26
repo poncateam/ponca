@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
+   &#160;<span id="projectnumber">cfae91c4e985f62659abecaccc35a41888257251</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -120,31 +120,31 @@ $(document).ready(function(){initNavTree('fitting.html',''); initResizable(); })
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#fitting_intro">Introduction</a><ul><li class="level2"><a href="#fitting_design">Design choices and programing techniques</a></li>
-<li class="level2"><a href="#fitting_primitiveOverview">Fitting primitives and compute neighborhood properties</a></li>
-<li class="level2"><a href="#fitting_availableFunctionalities">Fitting techniques overview</a></li>
-<li class="level2"><a href="#fitting_doc_structure">Structure of the documentation</a></li>
-</ul>
-</li>
+<ul><li class="level1"><a href="#fitting_intro">Introduction</a></li>
 <li class="level1"><a href="#fitting_firstSteps">First Steps</a><ul><li class="level2"><a href="#fitting_codeStructure">Include directives</a></li>
-<li class="level2"><a href="#fitting_datas">Data Samples</a></li>
 <li class="level2"><a href="#fitting_Define">Definition of the Fitting object</a></li>
 <li class="level2"><a href="#fitting_Fitting">Fitting Process</a></li>
 <li class="level2"><a href="#fitting_Checkstatus">Check fitting status</a></li>
 <li class="level2"><a href="#fitting_outputs">Basic Outputs</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#fitting_advanced">Advanced usage</a><ul><li class="level2"><a href="#fitting_derivatives">Computing derivatives</a></li>
-<li class="level2"><a href="#fitting_extensions_deps">Computational objets, basket and CRTP</a></li>
-<li class="level2"><a href="#fitting_capabilities">Computational objets capabilities and requirements</a></li>
-<li class="level2"><a href="#fitting_curvature">Computing Curvatures</a></li>
-<li class="level2"><a href="#fitting_multiprimitive">Sharing computations between fits</a></li>
-<li class="level2"><a href="#fitting_cuda">Cuda</a></li>
+<li class="level1"><a href="#fitting_derivatives">Computing derivatives</a></li>
+<li class="level1"><a href="#fitting_custom">Changing fitting process</a></li>
+<li class="level1"><a href="#fitting_newfilter">Defining a new neighbor filter</a><ul><li class="level2"><a href="#fitting_newkernel">Defining a new distance kernel</a></li>
+<li class="level2"><a href="#fitting_newfilterapi">Filter API</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#fitting_newestimator">Defining a new Estimator</a><ul><li class="level2"><a href="#crtpestimator">Understanding CRTP in Ponca</a></li>
+<li class="level2"><a href="#fitting_newestim">Estimator API</a><ul><li class="level3"><a href="#fitting_newestimbase">Minimal requirements</a></li>
+<li class="level3"><a href="#fitting_newcapabilities">Computational objets capabilities and requirements</a></li>
+<li class="level3"><a href="#fitting_cast">Providing cast operations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="textblock"><center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> <center>[<a class="el" href="fitting_concepts.html">Go to concept page</a>]</center><h1><a class="anchor" id="fitting_intro"></a>
+<div class="textblock"><center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> <center>[Go to concept page]</center><h1><a class="anchor" id="fitting_intro"></a>
 Introduction</h1>
 <p>The fitting module is dedicated to the smooth fitting of point clouds and extraction of useful geometric properties. <a class="el" href="fitting.html#figure1">Figure 1(a)</a> shows a typical example in 2D: we reconstruct a potential function (shown in fake colors) from a few 2D points equipped with normals; then the 0-isoline of this potential gives us an implicit curve (in orange) from which we can readily extract further properties like curvature. A great benefit of this implicit technique <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[6]</a> is that it works in arbitrary dimensions: Figures 1(b-c) show how we reconstruct an implicit 3D surface with the same approach, starting from a 3D point cloud. Working with meshes then simply consists of only considering their vertices.</p>
 <p><a class="anchor" id="figure1"></a></p><div class="image">
@@ -152,138 +152,36 @@ Introduction</h1>
 <div class="caption">
 Figure 1: (a) An implicit 2D curve fit to a 2D point cloud. (b) A 3D point cloud shown with splats. (c) An implicit 3D surface reconstructed from (b).</div></div>
 <p>This is just the tip of the iceberg though, as we also provide methods for dealing with points equipped with non-oriented normals <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[4]</a>, techniques to analyze points clouds in scale-space to discover salient structures <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[10]</a>, methods to compute multi-scale principal curvatures <a class="el" href="citelist.html#CITEREF_Mellado:2013:SSC">[11]</a> and methods to compute surface variation using a plane instead of a sphere for the fitting <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[12]</a>.</p>
-<h2><a class="anchor" id="fitting_design"></a>
-Design choices and programing techniques</h2>
-<p>The goal of this module is to provide lightweight, fast and generic algorithms for 3d point cloud processing. We mostly focus on local regression techniques, which are core components of surface reconstruction techniques <a class="el" href="citelist.html#CITEREF_Alexa:2001:Pss">[2]</a> <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[6]</a>, geometric descriptors <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[10]</a> <a class="el" href="citelist.html#CITEREF_Lejemble:2021:stable">[9]</a> or shape analysis techniques <a class="el" href="citelist.html#CITEREF_lejemble:2020:persistence">[8]</a>. Most of these techniques share similar computation, and can be combined in several ways. For instance, <a class="el" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html">NormalDerivativeWeingartenEstimator</a> estimates curvature values by analyzing the spatial derivatives of a normal field, and can be combined with any normal estimation technique providing spatial derivatives.</p>
-<p>In order to ease the association of multiple computational components, the library is based on the Curiously Recurring Template Pattern (CRTP). In contrast with polymorphism, this method allows to combine multiple short computations without adding runtime overhead (both in terms of memory footprint and execution time). Instead, the combination of the computational components is performed and optimized when compiling the program, and thus require more memory and time for this stage.</p>
-<p>In addition, and in order to maxime compatibility with existing frameworks, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> does not provide a built-in type to represent 3d points. Instead, we rely on user-defined wrappers that describe how to access points coordinates or attributes (see Section <a class="el" href="fitting.html#fitting_datas">Data Samples</a>). From a technical point of view, we still rely on <code>Eigen</code>'s interface, but it allows to map to most usual memory layouts.</p>
-<p>Because of some properties of the C++ language, our classes does not inherit from a <code>Base</code> interface defining the API, but rather follows concepts, as described in <a class="el" href="fitting_concepts.html">Fitting module: Concepts</a>.</p>
-<h2><a class="anchor" id="fitting_primitiveOverview"></a>
-Fitting primitives and compute neighborhood properties</h2>
-<p>The fitting module provides a unified API to perform computations (e.g. fit a <a class="el" href="classPonca_1_1PrimitiveBase.html">Primitive</a>, compute geometrical properties such as <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">Curvatures</a>) over the neighborhood of a given point. The type of computation is controlled by a type (called <code>Fit</code> in the example below) defined by the user by combining computational components offered in this module. Given an object of type <code>Fit</code>, the client code can look as follow (alternative way of doing the fit computation can be seen in <a class="el" href="fitting.html#fitting_Fitting">Fitting Process</a>): </p><div class="fragment"><div class="line"><span class="comment">// Create the user-defined fitting procedure</span></div>
-<div class="line">Fit fit;</div>
-<div class="line"><span class="comment">// Set a function to filter neighbors from a reference position p and a radius t</span></div>
-<div class="line">fit.setNeighborFilter({p, t});</div>
-<div class="line"><span class="comment">// Optimize according to the points in vectorPoints</span></div>
-<div class="line">fit.compute(vectorPoints);</div>
-</div><!-- fragment --><p>Once computations are done, the <code>Fit</code> object provides both getters to the neighborhood properties (e.g. estimated curvature), and procedures (e.g. projection operator onto the fitted primitive): </p><div class="fragment"><div class="line">cout &lt;&lt; <span class="stringliteral">&quot;Estimated mean curvature: &quot;</span> &lt;&lt; fit.kMean()        &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line">     &lt;&lt; <span class="stringliteral">&quot;The initial point &quot;</span> &lt;&lt; p.transpose()              &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line">     &lt;&lt; <span class="stringliteral">&quot;Is projected at   &quot;</span> &lt;&lt; fit.project(p).transpose() &lt;&lt; endl;</div>
-</div><!-- fragment --><p>The <a class="el" href="spatialpartitioning.html">Spatial Partitioning</a> module provides data-structures to speed-up neighborhood collection in point clouds.</p>
-<h2><a class="anchor" id="fitting_availableFunctionalities"></a>
-Fitting techniques overview</h2>
-<p>We provide various approaches to approximate, analyze or characterize the geometric properties of local neighborhoods. In most situations, all these tools are based on the estimation of a geometric <a class="el" href="classPonca_1_1PrimitiveBase.html">Primitive</a> approximating the neighborhood, on top of which we provide more advanced computations. The table below summarizes the <a class="el" href="classPonca_1_1PrimitiveBase.html">Primitives</a> available in the library, as well as the associated fitting techniques:</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Computed primitive   </th><th class="markdownTableHeadNone">Required Input   </th><th class="markdownTableHeadNone">Fitting techniques    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a>   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFitImpl</a> (nD)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a>   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> (nD)    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a>   </td><td class="markdownTableBodyNone">Oriented points   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a> (nD, co-dimension 1)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1MongePatch.html" title="Monge Patch primitive, defined as , with  defined by a Base class.">MongePatch</a>   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1MongePatchQuadraticFitImpl.html" title="Extension to compute the best fit quadric on 3d points expressed as .">MongePatchQuadraticFitImpl</a> and <a class="el" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html" title="Extension to compute the best fit restricted quadric on 3d points expressed as .">MongePatchRestrictedQuadraticFitImpl</a> (both 3D)    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a>   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals.">SphereFitImpl</a> (nD) <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[6]</a>    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a>   </td><td class="markdownTableBodyNone">Oriented points   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a> (nD) <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[6]</a>    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a>   </td><td class="markdownTableBodyNone">Non-oriented points   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a> (nD) <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[4]</a>   </td></tr>
-</table>
-<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> also provide methods to compute objects that are not geometric primitives, but provide other informations such as curvatures:</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Computed object   </th><th class="markdownTableHeadNone">Required Input   </th><th class="markdownTableHeadNone">Fitting techniques    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Barycenter   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> (nD)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Normal Vector   </td><td class="markdownTableBodyNone">Oriented points   </td><td class="markdownTableBodyNone"><a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> (nD, co-dimension 1)    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Covariance Matrix   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> (nD)    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Weingarten Map   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1FundamentalFormWeingartenEstimator.html" title="Compute a Weingarten map from fundamental forms.">FundamentalFormWeingartenEstimator</a> (3D) via <a class="el" href="classPonca_1_1MongePatch.html" title="Monge Patch primitive, defined as , with  defined by a Base class.">MongePatch</a>    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Weingarten Map   </td><td class="markdownTableBodyNone">Oriented points   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html" title="Compute a Weingarten map from the spatial derivatives of the normal field .">NormalDerivativeWeingartenEstimator</a> (3D)   </td></tr>
-</table>
-<h2><a class="anchor" id="fitting_doc_structure"></a>
-Structure of the documentation</h2>
 <p>In the following, we focus on a basic use of the module, and detail how to:</p><ul>
-<li>set up data samples that interface with an external code (see Section <a class="el" href="fitting.html#fitting_datas">Data Samples</a>),</li>
-<li>assemble the computational objects to define a fitting object (see Section <a class="el" href="fitting.html#fitting_Define">Definition of the Fitting object</a>)</li>
-<li>run the fitting process in itself (see Section <a class="el" href="fitting.html#fitting_Fitting">Fitting Process</a>),</li>
-<li>and finally collect outputs (see Section <a class="el" href="fitting.html#fitting_outputs">Basic Outputs</a>).</li>
+<li>create and use a fitting method</li>
+<li>obtain the derivatives of fitting result</li>
+<li>extend every part of the computationnal pipeline</li>
+<li>run the code on a CUDA environment</li>
 </ul>
-<p>We also detail all the available tools for geometrical property estimation (see Section <a class="el" href="fitting.html#fitting_extensions_deps">Computational objets, basket and CRTP</a>), with a specific focus on curvature (see Section <a class="el" href="fitting.html#fitting_curvature">Computing Curvatures</a>). The last section details how to use this module on CUDA kernels (see Section <a class="el" href="fitting.html#fitting_cuda">Cuda</a>).</p>
+<p>As a prerequisite, please read <a class="el" href="ponca_points.html">Defining Points in Ponca</a> in order to define the points on which the computation will be performed. For an exhaustive list of available methods, pleas read: <a class="el" href="fittingreference.html">Fitting Module: Reference Manual</a>.</p>
 <h1><a class="anchor" id="fitting_firstSteps"></a>
 First Steps</h1>
 <h2><a class="anchor" id="fitting_codeStructure"></a>
 Include directives</h2>
 <p>The Fitting module defines operators that rely on no data structure and work both with CUDA and C++. These core operators implement atomic scientific contributions that are agnostic of the host application. If you want to use the Fitting module, just include its header: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;Ponca/Fitting&quot;</span></div>
-</div><!-- fragment --><h2><a class="anchor" id="fitting_datas"></a>
-Data Samples</h2>
-<p>The first step needed to use <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is to define how samples are represented inside the module. A strength of <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is to define all these structures at compile time to generate optimized code for fast evaluation at runtime.</p>
-<p>The class <a class="el" href="ponca_concepts.html">PointConcept</a> defines the interface that has to be implemented to represent a sample. To simplify use, we provide several implementation of this concept (see <a class="el" href="common.html">Common module: User Manual</a> module).</p>
-<p>As an example, let's fit a <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> onto points equipped with normals using <a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a>. To this end, we must define a structure (denoted <code><a class="el" href="classPonca_1_1PointPositionNormal.html" title="Point data type containing the position and normal vectors.">PointPositionNormal</a></code> in the example below) containing a normal vector and its associated accessors. Depending on the fitting procedure we will use, we may need to define a <code>MatrixType</code> type. This is for instance required for <a class="el" href="fitting.html#fitting_curvature">Computing Curvatures</a>. This leads to the following class: </p><div class="fragment"><div class="line"> </div>
-<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Scalar, <span class="keywordtype">int</span> _Dim&gt;</div>
-<div class="line">    <span class="keyword">class </span>PointPositionNormal</div>
-<div class="line">    {</div>
-<div class="line">    <span class="keyword">public</span>:</div>
-<div class="line">        <span class="keyword">enum</span></div>
-<div class="line">        {</div>
-<div class="line">            Dim = _Dim</div>
-<div class="line">        };</div>
-<div class="line">        <span class="keyword">using </span>Scalar     = _Scalar;</div>
-<div class="line">        <span class="keyword">using </span>VectorType = Eigen::Matrix&lt;Scalar, Dim, 1&gt;;</div>
-<div class="line">        <span class="keyword">using </span>MatrixType = Eigen::Matrix&lt;Scalar, Dim, Dim&gt;;</div>
-<div class="line"> </div>
-<div class="line">        PONCA_MULTIARCH <span class="keyword">inline</span> PointPositionNormal(<span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>    = VectorType::Zero(),</div>
-<div class="line">                                                   <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a> = VectorType::Zero())</div>
-<div class="line">            : m_pos(<a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>), m_normal(<a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a>)</div>
-<div class="line">        {</div>
-<div class="line">        }</div>
-<div class="line"> </div>
-<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">pos</a>() { <span class="keywordflow">return</span> m_pos; }</div>
-<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> VectorType&amp; <a class="code hl_function" href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">normal</a>() { <span class="keywordflow">return</span> m_normal; }</div>
-<div class="line"> </div>
-<div class="line">    <span class="keyword">private</span>:</div>
-<div class="line">        VectorType m_pos, m_normal;</div>
-<div class="line">    };</div>
-<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html_a8e81f7ffa931efcc480c9f5e8cd27cc6"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html#a8e81f7ffa931efcc480c9f5e8cd27cc6">Ponca::PointPositionNormal::pos</a></div><div class="ttdeci">const VectorType &amp; pos() const</div><div class="ttdoc">Get the point position.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00040">pointTypes.h:40</a></div></div>
-<div class="ttc" id="aclassPonca_1_1PointPositionNormal_html_ac08ababe88dce063932069921b63f0db"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db">Ponca::PointPositionNormal::normal</a></div><div class="ttdeci">const VectorType &amp; normal() const</div><div class="ttdoc">Get the point normal.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00042">pointTypes.h:42</a></div></div>
-</div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd>The macro <code>PONCA_MULTIARCH</code> is optional and required only for <a class="el" href="fitting.html#fitting_cuda">Cuda</a> support.</dd></dl>
-<p><code><a class="el" href="classPonca_1_1PointPositionNormal.html" title="Point data type containing the position and normal vectors.">PointPositionNormal</a></code> might be specialized with any scalar type or dimension (you may also use a non-template class directly): </p><div class="fragment"><div class="line">    <span class="keyword">using </span>Point = PointPositionNormal&lt;Scalar, Dim&gt;;</div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>This interface allows to define wrappers that do not convert or duplicate the data: all you need to do is to indicate how to access existing data (see the classe <a class="el" href="classPonca_1_1PointPositionNormalBinding.html" title="Variant of the PointPositionNormal data type that uses external raw data.">PointPositionNormalBinding</a> and the example <a class="el" href="example_cxx_binding_page.html">Ponca data-structure binding</a>).</dd></dl>
-<h2><a class="anchor" id="fitting_Define"></a>
+</div><!-- fragment --><h2><a class="anchor" id="fitting_Define"></a>
 Definition of the Fitting object</h2>
-<p>Two template classes must be specialized to configure computations.</p>
+<p>The Fitting Object is what Two template classes must be specialized to configure computations.</p>
 <ol type="1">
-<li>The first step consists in specifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in <a class="el" href="fitting.html#figure2">Figure 2(a)</a> in 2D. In this example, we choose a weight based on the Euclidean distance using <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the euclidean distance between a query and a reference position.">Ponca::DistWeightFunc</a>, remapped through a bisquare kernel defined in <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Compact smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;S...">Ponca::SmoothWeightKernel</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>NeighborFilter = DistWeightFunc&lt;Point, SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
+<li>The first step consists in specifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in <a class="el" href="fitting.html#figure2">Figure 2(a)</a> in 2D. In this example, we choose a weight based on the Euclidean distance using <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">Ponca::DistWeightFunc</a>, remapped through a bisquare kernel defined in <a class="el" href="classPonca_1_1SmoothWeightKernel.html" title="Compact smooth WeightKernel of 2nd degree, defined in  Special case of PolynomialSmoothWeightKernel&lt;S...">Ponca::SmoothWeightKernel</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>NeighborFilter = DistWeightFunc&lt;Point, SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
 </div><!-- fragment --></li>
 <li>The second step identifies a complete fitting procedure through the specialization of a <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Ponca::Basket</a>. In our example, we want to apply an <a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a> to input data points, which outputs an <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">Ponca::AlgebraicSphere</a> by default. This leads to the following specialization: <div class="fragment"><div class="line">    <span class="keyword">using </span>Sphere = Basket&lt;Point, NeighborFilter, OrientedSphereFit&gt;;</div>
 </div><!-- fragment --></li>
 </ol>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="fittingreference.html#fittingreference_primitiveoverview">Fitting techniques Overview</a> </dd>
+<dd>
+<a class="el" href="fittingreference.html#fitting_kernel">Available Weighting kernel</a></dd></dl>
 <h2><a class="anchor" id="fitting_Fitting"></a>
 Fitting Process</h2>
 <p>At this point, most of the hard job has already been performed. All we have to do now is to provide an instance of the weight function, where \(t\) refers to the neighborhood size, and initiate the fit at an arbitrary position \(\mathbf{p}\). In this example we traverse a simple array, and samples outside of the neighborhood are automatically ignored by the weighting function. Once all neighbors have been incorporated, the fit is performed and results stored in the specialized <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> object. </p><div class="fragment"><div class="line">        Fit fit1;</div>
 <div class="line">        fit1.setNeighborFilter({fitInitPos, analysisScale});</div>
 <div class="line">        fit1.compute(vectorPoints);</div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Internally, <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Ponca::Basket</a> process the neighbors sequentially, and the <code>compute</code> function is overall equivalent to <div class="fragment"><div class="line">        Fit fit;</div>
-<div class="line">        fit.setNeighborFilter({fitInitPos, analysisScale});</div>
-<div class="line">        fit.init();</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = vectorPoints.begin(); it != vectorPoints.end(); ++it)</div>
-<div class="line">            fit.addNeighbor(*it);</div>
-<div class="line">        fit.finalize();</div>
-</div><!-- fragment --></dd></dl>
-<p>Spatial structures can be used to accelerate spatial queries. Consider for instance using the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> class with range queries: </p><div class="fragment"><div class="line">        Fit fit3;</div>
-<div class="line">        fit3.setNeighborFilter({vectorPoints[i].pos(), analysisScale});</div>
-<div class="line">        <span class="keyword">auto</span> neighborhoodRange = tree.rangeNeighbors(vectorPoints[i].pos(), analysisScale);</div>
-<div class="line">        fit3.computeWithIds(neighborhoodRange, vectorPoints);</div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases.</dd></dl>
-<p>In these examples, <code>fit1</code> and <code>fit2</code> should perform exactly the same computations, as long a the neighborhood remains the same between the calls.</p>
-<h2><a class="anchor" id="fitting_Checkstatus"></a>
+</div><!-- fragment --><h2><a class="anchor" id="fitting_Checkstatus"></a>
 Check fitting status</h2>
 <p>After calling <code>finalize</code> or <code>compute</code>, it is recommended to test the return state of the <code>Fit</code> object before using it:</p>
 <div class="fragment"><div class="line"><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> eResult = fit.compute(vecs.begin(), vecs.end()); <span class="comment">// or eResult = fit.finalize();</span></div>
@@ -291,8 +189,7 @@ Check fitting status</h2>
 <div class="line">      <span class="comment">//do your things...</span></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns)</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
-</div><!-- fragment --><p>Some methods require multiple fitting passes, e.g. <a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a>. This is directly handled by the <code>compute</code> method. If you don't use it, you need to check if <code>eResults == NEED_ANOTHER_PASS</code> and repeat the <code>addNeighbor()</code>/<code>finalize()</code> steps. Don't forget to call <code>startNewPass()</code> at each iteration.</p>
-<dl class="section warning"><dt>Warning</dt><dd>You should avoid data of very low (i.e., 1 should be a significant value) or very high (e.g., georeferenced coordinates) magnitude to get good results; thus global rescaling might be necessary.</dd></dl>
+</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>You should avoid data of very low (i.e., 1 should be a significant value) or very high (e.g., georeferenced coordinates) magnitude to get good results; thus global rescaling might be necessary.</dd></dl>
 <h2><a class="anchor" id="fitting_outputs"></a>
 Basic Outputs</h2>
 <p><a class="anchor" id="figure2"></a></p><div class="image">
@@ -311,39 +208,130 @@ Figure 2. (a) Fitting a 2D point cloud of positions and normals at a point p (in
 </div><!-- fragment --><p> You will obtain: </p><div class="fragment"><div class="line">Center: [-0.000160652 -0.000179197  0.000385884] ;  radius: 1.00232</div>
 <div class="line">The initial point 0 0 0</div>
 <div class="line">Is projected at    0.353911  0.394765 -0.850088</div>
-</div><!-- fragment --><h1><a class="anchor" id="fitting_advanced"></a>
-Advanced usage</h1>
-<h2><a class="anchor" id="fitting_derivatives"></a>
-Computing derivatives</h2>
-<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, a class to extend an existing <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> with differentiation tools. Given a specialized type <code>TestPlane</code> that performs covariance plane fitting (using <a class="el" href="namespacePonca.html#a15eab752943e89b21e9451c1310b009f" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">Ponca::CovariancePlaneFit</a>), and defined as follows: </p><div class="fragment"><div class="line">    <span class="keyword">using </span>TestPlane = Basket&lt;Point, NeighborFilter, CovariancePlaneFit&gt;;</div>
-</div><!-- fragment --><p> <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> allows to extend this type to compute its derivatives in space and/or scale: </p><div class="fragment"><div class="line">    <span class="keyword">using </span>PlaneScaleDiff      = BasketDiff&lt;TestPlane, FitScaleDer, CovariancePlaneDer&gt;;</div>
+</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="fittingreference.html#fittingreference_outputandcapabilities">Capabilities of Fitting tools</a> for information about outputs of Fitting objects.</dd></dl>
+<h1><a class="anchor" id="fitting_derivatives"></a>
+Computing derivatives</h1>
+<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, a class to extend an existing <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> with differentiation tools. Given a specialized type <code>TestPlane</code> that performs covariance plane fitting (using <a class="el" href="namespacePonca.html#a15eab752943e89b21e9451c1310b009f" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">Ponca::CovariancePlaneFit</a>), and defined as follows:</p>
+<div class="fragment"><div class="line">    <span class="keyword">using </span>TestPlane = Basket&lt;Point, NeighborFilter, CovariancePlaneFit&gt;;</div>
+</div><!-- fragment --><p><a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a> allows to extend this type to compute its derivatives in space and/or scale:</p>
+<div class="fragment"><div class="line">    <span class="keyword">using </span>PlaneScaleDiff      = BasketDiff&lt;TestPlane, FitScaleDer, CovariancePlaneDer&gt;;</div>
 <div class="line">    <span class="keyword">using </span>PlaneSpaceDiff      = BasketDiff&lt;TestPlane, FitSpaceDer, CovariancePlaneDer&gt;;</div>
 <div class="line">    <span class="keyword">using </span>PlaneScaleSpaceDiff = BasketDiff&lt;TestPlane, FitScaleSpaceDer, CovariancePlaneDer&gt;;</div>
-</div><!-- fragment --><h2><a class="anchor" id="fitting_extensions_deps"></a>
-Computational objets, basket and CRTP</h2>
-<p>In addition to Primitive fitting, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> allows to compute geometrical properties of the input samples. This is done by aggregating multiple tool classes in the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>, for instance to compute the Growing Least Squares descriptor <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[10]</a> (see <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a>) from different sphere fitting techniques: </p><div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothOriented     = Basket&lt;Point, WeightSmoothFunc, OrientedSphereFit, GLSParam&gt;;</div>
-<div class="line">    <span class="keyword">using </span>FitConstantOriented   = Basket&lt;Point, WeightConstantFunc, OrientedSphereFit, GLSParam&gt;;</div>
-<div class="line">    <span class="keyword">using </span>FitSmoothUnoriented   = Basket&lt;Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam&gt;;</div>
-<div class="line">    <span class="keyword">using </span>FitConstantUnoriented = Basket&lt;Point, WeightConstantFunc, UnorientedSphereFit, GLSParam&gt;;</div>
-</div><!-- fragment --><p> From a technical point of view, the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> class combines its template parameters (here <a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a> and <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a>) following the CRTP rules, ie. to form an object of the type <code><a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a>&lt;<a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a>&lt;DataPoint, _NFilter, T&gt;&gt;</code>, that aggregates the computations provided in each class of the hierarchy.</p>
-<p>In practice, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> uses these mechanisms under the hood in order to combine atomic computations and minimize code duplication. For instance, <a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a> is defined as an assembly of several computations classes: </p><div class="fragment"><div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be">OrientedSphereFit</a> = OrientedSphereFitImpl&lt;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        DataPoint, _NFilter,</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        MeanPosition&lt;DataPoint, _NFilter, MeanNormal&lt;DataPoint, _NFilter, AlgebraicSphere&lt;DataPoint, _NFilter, T&gt;&gt;&gt;&gt;;</div>
-<div class="ttc" id="anamespacePonca_html_a1e45ae190295705c59bea1fc029605be"><div class="ttname"><a href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be">Ponca::OrientedSphereFit</a></div><div class="ttdeci">OrientedSphereFitImpl&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, MeanNormal&lt; DataPoint, _NFilter, AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt; OrientedSphereFit</div><div class="ttdoc">Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00050">orientedSphereFit.h:52</a></div></div>
-</div><!-- fragment --><p> Here, the class <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> computes the mean position of the input points. It is also used in <a class="el" href="namespacePonca.html#a15eab752943e89b21e9451c1310b009f" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">Ponca::CovariancePlaneFit</a>: </p><div class="fragment"><div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacePonca.html#a15eab752943e89b21e9451c1310b009f">CovariancePlaneFit</a> = CovariancePlaneFitImpl&lt;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        DataPoint, _NFilter,</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        CovarianceFitBase&lt;DataPoint, _NFilter, MeanPosition&lt;DataPoint, _NFilter, Plane&lt;DataPoint, _NFilter, T&gt;&gt;&gt;&gt;;</div>
-<div class="ttc" id="anamespacePonca_html_a15eab752943e89b21e9451c1310b009f"><div class="ttname"><a href="namespacePonca.html#a15eab752943e89b21e9451c1310b009f">Ponca::CovariancePlaneFit</a></div><div class="ttdeci">CovariancePlaneFitImpl&lt; DataPoint, _NFilter, CovarianceFitBase&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, Plane&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt; CovariancePlaneFit</div><div class="ttdoc">Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00089">covariancePlaneFit.h:91</a></div></div>
-</div><!-- fragment --><p> and <a class="el" href="namespacePonca.html#a43623c4c9a6c1284b310d2e4832a40a0" title="Helper alias for Plane fitting on points using MeanPlaneFitImpl [MeanPlaneFit Definition].">Ponca::MeanPlaneFit</a>, among others. </p><div class="fragment"><div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacePonca.html#a43623c4c9a6c1284b310d2e4832a40a0">MeanPlaneFit</a> = MeanPlaneFitImpl&lt;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        DataPoint, _NFilter,</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_class" href="classMeanNormal.html">MeanNormal&lt;DataPoint, _NFilter, MeanPosition&lt;DataPoint, _NFilter, Plane&lt;DataPoint, _NFilter, T&gt;</a>&gt;&gt;&gt;;</div>
+</div><!-- fragment --><h1><a class="anchor" id="fitting_custom"></a>
+Changing fitting process</h1>
+<p>Internally, <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Ponca::Basket</a> process the neighbors sequentially, and the <code>compute</code> function is overall equivalent to</p>
+<div class="fragment"><div class="line">        Fit fit;</div>
+<div class="line">        fit.setNeighborFilter({fitInitPos, analysisScale});</div>
+<div class="line">        fit.init();</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = vectorPoints.begin(); it != vectorPoints.end(); ++it)</div>
+<div class="line">            fit.addNeighbor(*it);</div>
+<div class="line">        fit.finalize();</div>
+</div><!-- fragment --><p>More complex computational scheme are included within <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> (e.g <a class="el" href="structPonca_1_1BasketComputeObject.html#a6429a1d963ab299b90a8b5b8b5cb6291" title="Computes the fit using the MLS iteration process.">BasketComputeObject::computeMLS</a> for Moving Least Square). Still this simplicity can be used to change how this function behave and tailor it to your needs.</p>
+<dl class="section note"><dt>Note</dt><dd>Some methods require multiple fitting passes, e.g. <a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a>. This is directly handled by the <code>compute</code> method. If you don't use it, you need to check if <code>eResults == NEED_ANOTHER_PASS</code> and repeat the <code>addNeighbor()</code>/<code>finalize()</code> steps. Don't forget to call <code>startNewPass()</code> at each iteration.</dd></dl>
+<p>This also allows to use custom data structures in order to speedup computation. You may, for example exclude points you know won't be within the prescribed radius. For this reason, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provide spatial structures that can be used to accelerate spatial queries. Consider for instance using the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> class with range queries: </p><div class="fragment"><div class="line">        Fit fit3;</div>
+<div class="line">        fit3.setNeighborFilter({vectorPoints[i].pos(), analysisScale});</div>
+<div class="line">        <span class="keyword">auto</span> neighborhoodRange = tree.rangeNeighbors(vectorPoints[i].pos(), analysisScale);</div>
+<div class="line">        fit3.computeWithIds(neighborhoodRange, vectorPoints);</div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html" title="This modules includes classes and methods for Spatial Partitioning and queries.">Spatial Partitioning module</a></dd></dl>
+<h1><a class="anchor" id="fitting_newfilter"></a>
+Defining a new neighbor filter</h1>
+<p>Neighbor filters are critical components of the library. Their main goal is to provide computation information on how much a point is considered to be a neighbor. This information is given through weights defined by the Filter and the Kernel. In additions, some filters may transform the neighbors, for instance to express relatively to the evaluation point. Perhaps the most common filter is <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFunc</a>, which filters out points that are too far and weight the other according to their distance from the evaluation position, and also translate neighbors in the local frame. Another alternative are the classes <a class="el" href="structPonca_1_1NoWeightFunc.html" title="Weighting function that set uniform weight to all samples, but transform neighbors coordinates to loc...">NoWeightFunc</a> and <a class="el" href="structPonca_1_1NoWeightFuncGlobal.html" title="Weighting function that set uniform weight to all samples and keep neighbors coordinates in global fr...">NoWeightFuncGlobal</a>, which do not filter any neighbor and offer control over the transformation of the neighbors.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="fittingreference.html#fitting_filters">Available filters</a></dd></dl>
+<h2><a class="anchor" id="fitting_newkernel"></a>
+Defining a new distance kernel</h2>
+<p><a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFunc</a> is defined from the euclidean distance field centered at the evaluation position (see DistWeightFunc::init()). Given a distance to this evaluation position, the weight is computed (see DistWeightFunc::w()) by applying a 1d weighting function defined as follows:</p>
+<div class="fragment"></div><!-- fragment --><p><a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFunc</a> also provides computation of the first and second order derivatives of the weight, both in scale (<a class="el" href="classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5">DistWeightFunc::scaledw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d">DistWeightFunc::scaled2w()</a>) and space (<a class="el" href="classPonca_1_1DistWeightFunc.html#a679c75736d7715aada70bbf2e221fb02">DistWeightFunc::spacedw()</a>, <a class="el" href="classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4">DistWeightFunc::spaced2w()</a>), and their cross derivatives (<a class="el" href="classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110">DistWeightFunc::scaleSpaced2w()</a>). Theses methods check if the weight kernels provides the appropriate derivatives.</p>
+<h2><a class="anchor" id="fitting_newfilterapi"></a>
+Filter API</h2>
+<p>It is also possible to define new filter that could take into account any other desired parameter. The general API is:</p>
+<div class="fragment"></div><!-- fragment --><p>The filter should extend either CenteredNeighborhoodFrame or GlobalNeighborhoodFrame. They help to express points in local coordinates, often relative to the evaluation location. CenteredNeighborhoodFrame helps with translation invariant filters. Its conversion function is simply \(x - p\), where \(X\) is the query point and \(p\) the evaluation location. <br  />
+ GlobalNeighborhoodFrame does not affect coordinates and points remains in the global domain. <br  />
+</p>
+<h1><a class="anchor" id="fitting_newestimator"></a>
+Defining a new Estimator</h1>
+<p>The goal of the Fitting module is to provide lightweight, fast and generic algorithms for 3d point cloud processing. We mostly focus on local regression techniques, which are core components of surface reconstruction techniques <a class="el" href="citelist.html#CITEREF_Alexa:2001:Pss">[2]</a> <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[6]</a>, geometric descriptors <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[10]</a> <a class="el" href="citelist.html#CITEREF_Lejemble:2021:stable">[9]</a> or shape analysis techniques <a class="el" href="citelist.html#CITEREF_lejemble:2020:persistence">[8]</a>. Most of these techniques share similar computation, and can be combined in several ways. For instance, <a class="el" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html">NormalDerivativeWeingartenEstimator</a> estimates curvature values by analyzing the spatial derivatives of a normal field, and can be combined with any normal estimation technique providing spatial derivatives.</p>
+<p>In order to ease the association of multiple computational components, the library is based on the Curiously Recurring Template Pattern (CRTP). In contrast with polymorphism, this method allows to combine multiple short computations without adding runtime overhead (both in terms of memory footprint and execution time). Instead, the combination of the computational components is performed and optimized when compiling the program, and thus require more memory and time for this stage.</p>
+<p>Because of some properties of the C++ language, our classes does not inherit from a <code>Base</code> interface defining the API, but rather follows concepts, as described in fitting_concepts.</p>
+<dl class="section note"><dt>Note</dt><dd>Beforing defining a new estimator, please take a look at <a class="el" href="fittingreference.html#fittingreference_primitiveoverview">Fitting techniques Overview</a> and <a class="el" href="fittingreference.html#fittingreference_outputandcapabilities">Capabilities of Fitting tools</a> to learn more about available computation, their requirement and how to access their results.</dd></dl>
+<h2><a class="anchor" id="crtpestimator"></a>
+Understanding CRTP in Ponca</h2>
+<p>The <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> class is the central part of the fitting module as it is the interface for all computation and provide the some utilities. The signature of the class is as follow:</p>
+<div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class </span>P, <span class="keyword">class </span>NF, </div>
+<div class="line">          <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>, <span class="keyword">typename</span>&gt; <span class="keyword">class </span>Ext0,</div>
+<div class="line">          <span class="keyword">template</span> &lt;<span class="keyword">class</span>, <span class="keyword">class</span>, <span class="keyword">typename</span>&gt;... Exts&gt;</div>
+<div class="line"><span class="keyword">class </span>Basket;</div>
+</div><!-- fragment --><p>The first two parameters are the Point type and the Filter used throughout the computation. The last two parameters defines the list of computation for each point cloud. Through multiple type indirection and type list unrolling, Basket will inherit all those Extension type in reverse order.</p>
+<p>Unrolling example <a class="el" href="example_cxx_basic_page.html">Ponca basic CPU</a>, the basket is defined as:</p>
+<div class="fragment"><div class="line"><span class="keyword">using </span>Fit1 = Basket&lt;MyPoint, WeightFunc, OrientedSphereFit, GLSParam&gt;;</div>
+</div><!-- fragment --><p> <br  />
+</p>
+<p>This line, defines the class hierarchy:</p>
+<div class="image">
+<object type="image/svg+xml" data="crtpexamplehierachy.svg" style="pointer-events: none;"></object>
+</div>
+ <dl class="section note"><dt>Note</dt><dd>Some type are aggregates that will inject their dependancies within the class hierarchy. For example, <a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be">OrientedSphereFit</a> depends on <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a>, <a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> and <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> that appears in the class list although they were not explicitly defined by the user.</dd></dl>
+<p>Because <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> inherit every types given as argument, it is easy to access any result or any set any parameter. It suffices to call the function on the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> object as-if it was an object of the computation you want to alter.</p>
+<p>The link between all these class is made through the defined <code>Base</code> type, which points to its parent class in the hierarchy. It becomes possible to access all result, all functions defined in the hierarchy through this prefix, provided there is no overriden name. Hence, in this example, refering to <code>Base::m_uc</code> within <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a> will reference the current value of <code><a class="el" href="classPonca_1_1AlgebraicSphere.html#a854b648c939a82fea16fb20783f5172e" title="Constant parameter of the Algebraic hyper-sphere.">AlgebraicSphere::m_uc</a></code>. However, refering to <code>Base::addLocalNeighbor</code> in <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a> will reference the function <code><a class="el" href="classPonca_1_1OrientedSphereFitImpl.html#a9dbb7a99b387f3b2c525aeb6ceacdc8f" title="Add a neighbor to perform the fit.">OrientedSphereFitImpl::addLocalNeighbor</a></code> as this is overriden by the class.</p>
+<p>In order to target more directly a Fitting method, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides cast operation. For example, the <a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> class provide the <code><a class="el" href="classMeanNormal.html#a94366f068e09d92d2a38129b1fee87f6" title="Explicit conversion to MeanNormal , to access methods potentially hidden by heritage.">MeanNormal::meanNormal</a></code> function that returns a pointer to the implicit instance.</p>
+<div class="fragment"><div class="line"><span class="comment">/* const */</span> <a class="code hl_class" href="classMeanNormal.html">MeanNormal</a>* meanNormal = fit.meanNormal();</div>
+<div class="line"><span class="comment">// Do whatever you want with a &#39;MeanNormal&#39; instance</span></div>
 <div class="ttc" id="aclassMeanNormal_html"><div class="ttname"><a href="classMeanNormal.html">MeanNormal</a></div><div class="ttdoc">Compute the mean normal of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00084">mean.h:85</a></div></div>
-<div class="ttc" id="anamespacePonca_html_a43623c4c9a6c1284b310d2e4832a40a0"><div class="ttname"><a href="namespacePonca.html#a43623c4c9a6c1284b310d2e4832a40a0">Ponca::MeanPlaneFit</a></div><div class="ttdeci">MeanPlaneFitImpl&lt; DataPoint, _NFilter, MeanNormal&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, Plane&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt; MeanPlaneFit</div><div class="ttdoc">Helper alias for Plane fitting on points using MeanPlaneFitImpl [MeanPlaneFit Definition].</div><div class="ttdef"><b>Definition</b> <a href="meanPlaneFit_8h_source.html#l00060">meanPlaneFit.h:62</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="fitting_capabilities"></a>
-Computational objets capabilities and requirements</h2>
+</div><!-- fragment --><h2><a class="anchor" id="fitting_newestim"></a>
+Estimator API</h2>
+<h3><a class="anchor" id="fitting_newestimbase"></a>
+Minimal requirements</h3>
+<p>In order to make an estimator compatible with <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> Fitting API, new estimator should have the following structure:</p>
+<div class="fragment"><div class="line">        <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T = <span class="keywordtype">void</span>&gt;</div>
+<div class="line">        <span class="keyword">class </span>ComputationalObjectConcept</div>
+<div class="line">        {</div>
+<div class="line">            <span class="comment">// Defines common types (Base, Scalar, VectorType, NeighborFilter)</span></div>
+<div class="line">            PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
+<div class="line">        <span class="keyword">protected</span>:</div>
+<div class="line">            <span class="keyword">enum</span></div>
+<div class="line">            {</div>
+<div class="line">                Check = PROVIDES_CAPABILITY_1 &amp;&amp; PROVIDES_CAPABILITY_2    <span class="comment">//&lt; List of required capabilities</span></div>
+<div class="line">                                                     PROVIDES_CAPABILITY, <span class="comment">//&lt; List of provided capabilities</span></div>
+<div class="line">            };</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">public</span>:</div>
+<div class="line">            <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">DataPoint::Scalar</a>;     <span class="comment">//&lt; Inherited scalar type</span></div>
+<div class="line">            <span class="keyword">using </span>VectorType     = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
+<div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                       <span class="comment">//&lt; Filter applied on the neighbors</span></div>
+<div class="line">        <span class="keyword">public</span>:</div>
+<div class="line"><span class="comment">            /**************************************************************************/</span></div>
+<div class="line">            <span class="comment">/* Initialization                                                         */</span></div>
+<div class="line"><span class="comment">            /**************************************************************************/</span></div>
+<div class="line">            <span class="comment">// Init the WeightFunc, without changing the other internal states.</span></div>
+<div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> setNeighborFilter(<span class="keyword">const</span> NeighborFilter&amp; _w);</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// Reset the internal states.</span></div>
+<div class="line">            <span class="comment">// \warning Must be called before any computation</span></div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> init();</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">            /**************************************************************************/</span></div>
+<div class="line">            <span class="comment">/* Computations                                                           */</span></div>
+<div class="line"><span class="comment">            /**************************************************************************/</span></div>
+<div class="line">            <span class="comment">// Add a neighbor to perform the fit</span></div>
+<div class="line">            <span class="comment">// \param w The weight of the point</span></div>
+<div class="line">            <span class="comment">// \param lQ Local coordinates of the point (e.g.: the difference between the point and the eval position)</span></div>
+<div class="line">            <span class="comment">// \param pt The point as defined by the user</span></div>
+<div class="line">            <span class="comment">// \return false if param nei is not a valid neighbour (weight = 0)</span></div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar w, <span class="keyword">const</span> VectorType&amp; lQ, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; pt);</div>
+<div class="line">            <span class="comment">// \return State of fitting</span></div>
+<div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
+<div class="line">        }; <span class="comment">// class ComputationalObjectConcept</span></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_a4e7ea1fd0f8d760217e60c1feaabf7b0"><div class="ttname"><a href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">Ponca::Basket::DataPoint</a></div><div class="ttdeci">P DataPoint</div><div class="ttdoc">Point type used for computation.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00329">basket.h:329</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_ab08e85c1c9d83a892d6dc3beeb593e2d"><div class="ttname"><a href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">Ponca::Basket::Scalar</a></div><div class="ttdeci">typename P::Scalar Scalar</div><div class="ttdoc">Scalar type used for computation, as defined from template parameter P</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00326">basket.h:326</a></div></div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The macro PONCA_FITTING_DECLARE_DEFAULT_TYPES defines the <code>Base</code> type (alias for T) as well as <code>Scalar</code>, <code>VectorType</code> and <code>NeighborFilter</code> for manipulation of related data. This macro is defined within &lt;<a class="el" href="Fitting_2defines_8h_source.html">Fitting/defines.h</a>&gt; </dd>
+<dd>
+If the estimator is expected to be the upmost parent of the hierarchy, do not inherit from T and default it to be void. </dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>The macro PONCA_FITTING_DECLARE_DEFAULT_TYPES opens a public section.</dd></dl>
+<p>In order for each computation to work properly, the functions <code>init</code>, <code>addLocalNeighbor</code> and <code>finalize</code> should call their Base version (<code>Base::init</code>, <code>Base::addLocalNeighbor</code>, <code>Base::finalize</code>). Presumably, this is among the first thing each of these function does.</p>
+<h3><a class="anchor" id="fitting_newcapabilities"></a>
+Computational objets capabilities and requirements</h3>
 <p>Aggregating small computational objects allows to minimize code duplication, but also to easily combine different techniques. For instance, <a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a> can be used independently of the fitting technique, e.g. <a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">Ponca::OrientedSphereFit</a> or <a class="el" href="namespacePonca.html#a73a5d6377d84512434b559591d49c262" title="Helper alias for Oriented Sphere fitting on 3D points using UnorientedSphereFitImpl.">Ponca::UnorientedSphereFit</a>, as long as the fitted <a class="el" href="classPonca_1_1PrimitiveBase.html">Primitive</a> is an <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a>.</p>
 <p>In order to detect if the computational objects are correctly combined, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides a compile-time requirement/capability system: each computational objects check if the other classes of the CRTP provides the required computations. For instance, in the <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a> class, we define the following enum: </p><div class="fragment"><div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keyword">enum</span></div>
@@ -359,80 +347,99 @@ Computational objets capabilities and requirements</h2>
 <div class="line">                ~~~~~~^</div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:16</a></div></div>
 </div><!-- fragment --><p> The capability <code>PROVIDES_GLS_PARAMETRIZATION</code> tells that <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a> provides the GLS parameterization <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[10]</a>, and other components can access the related information.</p>
-<p>In order to ease tools combinations, each class declare a set of <em>required</em> and <em>provided</em> capabilities, which are detailed in the Section <a class="el" href="fitting_concepts.html#concepts_provides">Capabilities of the Fitting tools</a>.</p>
+<p>In order to ease tools combinations, each class declare a set of <em>required</em> and <em>provided</em> capabilities, which are detailed in the Section concepts_provides.</p>
 <dl class="section note"><dt>Note</dt><dd>In its current version, the requirement/capability system offer limited protection over the combination of tools providing the same capabilities. Indeed, it is possible to build ill-formed combinations where two computations attempt to save their results at the same place, e.g. when using two fitting technique for the same primitive: <div class="fragment"><div class="line">    <span class="keyword">using </span>Hybrid1 = Basket&lt;Point, NoWeightFuncGlobal, Plane, <a class="code hl_class" href="classMeanNormal.html">MeanNormal</a>, MeanPosition, MeanPlaneFitImpl,</div>
 <div class="line">                           CovarianceFitBase, CovariancePlaneFitImpl&gt;; <span class="comment">// test conflict detection in one direction</span></div>
 </div><!-- fragment --> This case is not detected at compile time, but rather dynamically when calling finalize(), which returns <code>CONFLICT_ERROR_FOUND</code>. Internally, this is implemented by checking if the primitive is already valid (ie. it has been computed already) when finalizing the computation. This limitation is expected to be resolved in upcoming releases.</dd></dl>
-<h2><a class="anchor" id="fitting_curvature"></a>
-Computing Curvatures</h2>
-<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> offers several ways to compute curvatures, some of which are reviewed and compared by Lejemble et al. in <a class="el" href="citelist.html#CITEREF_Lejemble:2021:stable">[9]</a> and listed in the table below: </p><table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Estimator Name   </th><th class="markdownTableHeadNone">Estimated quantities   </th><th class="markdownTableHeadNone">Usage    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Distance to PCA plane <a class="el" href="citelist.html#CITEREF_Digne:2011:scalespacemeshing">[5]</a>   </td><td class="markdownTableBodyNone">Mean curvature   </td><td class="markdownTableBodyNone">Method <a class="el" href="classPonca_1_1Plane.html#aa15c2d321a4f611f3a4634c01b9215af">potential()</a> <div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothNormalCovariance = Basket&lt;Point, WeightSmoothFunc, CovariancePlaneFit&gt;;</div>
-</div><!-- fragment -->   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Surface Variation <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[12]</a>   </td><td class="markdownTableBodyNone">Mean curvature   </td><td class="markdownTableBodyNone">Method <a class="el" href="classPonca_1_1CovarianceFitBase.html#a51531362ba02d442e2ca815e26436485">surfaceVariation()</a> <div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothNormalCovariance = Basket&lt;Point, WeightSmoothFunc, CovariancePlaneFit&gt;;</div>
-</div><!-- fragment -->   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Growing Least Squares <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[10]</a>   </td><td class="markdownTableBodyNone">Mean curvature   </td><td class="markdownTableBodyNone"><code><a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>&lt;P,W,OrientedSphereFit,<a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a>&gt; // method kappa()</code>    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Point Set Surfaces (PSS) <a class="el" href="citelist.html#CITEREF_Alexa:2001:Pss">[2]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a> : <div class="fragment"><div class="line">    <span class="keyword">using </span>EstimatorSmoothNormalCovariance = BasketDiff&lt;FitSmoothNormalCovariance, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#a6014ce2cef09fce4c39c46ca99069c19">CovariancePlaneDer</a>,</div>
-<div class="line">                                                       CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator&gt;;</div>
-<div class="ttc" id="anamespacePonca_html_a6014ce2cef09fce4c39c46ca99069c19"><div class="ttname"><a href="namespacePonca.html#a6014ce2cef09fce4c39c46ca99069c19">Ponca::CovariancePlaneDer</a></div><div class="ttdeci">CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, CovarianceFitDer&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; &gt; CovariancePlaneDer</div><div class="ttdoc">Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl.</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00141">covariancePlaneFit.h:143</a></div></div>
+<h3><a class="anchor" id="fitting_cast"></a>
+Providing cast operations</h3>
+<p>As explained earlier, the class hierarchy can not reach every function of every through the provided <code>Base</code> type due to overloading. The mecanism <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> implements is a cast operator. Fortunately, this is quite common and a macro helps to define them. Add the following within a public section of your class:</p>
+<div class="fragment"><div class="line">  PONCA_EXPLICIT_CAST_OPERATORS(ClassName, className);</div>
+<div class="line">\encode</div>
+<div class="line"> </div>
+<div class="line">Where the first parameter is the <span class="keyword">class </span>name and the second is the name of the cast function which is, most of the time, the same as the </div>
+<div class="line">class name excpet a first lower case letter. Note that this macro requires the template parameter to be named following ponca conventions. </div>
+<div class="line"> </div>
+<div class="line">\subsubsection fitting_newdiff New primitive differentiation (BasketDiff API)</div>
+<div class="line">  </div>
+<div class="line">The API for defining new estimator that differentiate the primitive follows the same principle from classical estimator. The base class is BasketDiff which follows the </div>
+<div class="line">same CRTP / inheritance principle except that a Basket is required as a first parameter. </div>
+<div class="line"> </div>
+<div class="line">\snippet concepts.hpp ComputationalDerivativesConcept</div>
+<div class="line"> </div>
+<div class="line">\note PrimitiveDer is the default entry point to most classes used in BasketDiff</div>
+<div class="line"> </div>
+<div class="line">A few addition should be notted however. First, the class is now templated on a flag (an integer) representing the variables according to which we want to differentiate. For now, </div>
+<div class="line"><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> defines only two set of variables (&amp;lt;Fitting/enums.h&amp;gt;):</div>
+<div class="line"> </div>
+<div class="line">- <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">FitScaleDer</a>: The derivatives of the primitive parameters w.r.t the scale (the neig radius)</div>
+<div class="line">- <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>: The derivatives of the primitive parameters w.r.t the position of evaluation</div>
+<div class="line">- <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2">FitScaleSpaceDer</a>: Compute derivative for both types. </div>
+<div class="line"> </div>
+<div class="line">The macro `PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES` defines two additionnal types `ScalarArray` and  `VectorArray`. Those types defines storage for derivative result. Note that </div>
+<div class="line">they are fixed-size array whose size is adapted to the total number of derivatives. Their layout is described below depending on the type of differentiation. </div>
+<div class="line"> </div>
+<div class="line">&lt;table&gt;</div>
+<div class="line">    &lt;tr&gt;</div>
+<div class="line">        &lt;th&gt;Fitting derivative value&lt;/th&gt;</div>
+<div class="line">        &lt;th&gt;Number of derivatives&lt;/th&gt;</div>
+<div class="line">        &lt;th&gt; Scalar Array indices &lt;/th&gt;</div>
+<div class="line">    &lt;/tr&gt;</div>
+<div class="line">    &lt;tr&gt;</div>
+<div class="line">        &lt;td&gt;<a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">FitScaleDer</a>&lt;/td&gt;</div>
+<div class="line">        &lt;td&gt; 1 &lt;/td&gt;</div>
+<div class="line">        &lt;td&gt; [0] is the derivative w.r.t scale &lt;/td&gt;</div>
+<div class="line">    &lt;/tr&gt;</div>
+<div class="line">    &lt;tr&gt;</div>
+<div class="line">        &lt;td&gt; <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a> &lt;/td&gt;</div>
+<div class="line">        &lt;td&gt; DataPoint::Dim &lt;/td&gt;</div>
+<div class="line">        &lt;td&gt; [0:DataPoint::Dim] derivatives w.r.t eval position &lt;/td&gt;</div>
+<div class="line">    &lt;/tr&gt;</div>
+<div class="line">    &lt;tr&gt;</div>
+<div class="line">        &lt;td&gt; <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2">FitScaleSpaceDer</a> &lt;/td&gt;</div>
+<div class="line">        &lt;td&gt; 1 + DataPoint::Dim &lt;/td&gt;</div>
+<div class="line">        &lt;td&gt; [0] derivatives w.r.t scale, &lt;br/&gt; [1:DataPoint::Dim+1) derivatives w.r.t eval position &lt;/td&gt;</div>
+<div class="line">    &lt;/tr&gt;</div>
+<div class="line">&lt;/table&gt;</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">\section fitting_advanced Advanced usage</div>
+<div class="line"> </div>
+<div class="line">\subsection fitting_multiprimitive Fitting with multiple primitives</div>
+<div class="line">In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> for fitting, e.g. CovariancePlaneFitImpl, OrientedSphereFitImpl.</div>
+<div class="line">However, <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> also allows to combine multiple primitives, for instance to share intermediate computation results.</div>
+<div class="line">Using this functionality requires to really understand how the different primitives and fitting techniques are working.</div>
+<div class="line">In any case, it is recommended to explicitly define the computational arrangement, e.g.:</div>
+<div class="line">\snippet basket.cpp HybridType</div>
+<div class="line"> </div>
+<div class="line">After fitting, this object provides access to both the plane and the sphere, through the respective cast operators #AlgebraicSphere::algebraicSphere() and #Plane::plane().</div>
+<div class="line"> </div>
+<div class="line">\section fitting_cuda Cuda</div>
+<div class="line"><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> can be used directly on GPU, thanks to several mechanisms:</div>
+<div class="line"> - Eigen Cuda capabilities, see &lt;a href=<span class="stringliteral">&quot;http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html&quot;</span>  target=<span class="stringliteral">&quot;_blank&quot;</span>&gt;Eigen documentation&lt;/a&gt; for more details.</div>
+<div class="line"> You *need* to use a consistent `Eigen::Index` on both CPU and GPU if you plan to transfer memory between the computing units.</div>
+<div class="line"> That<span class="stringliteral">&#39;s why we recommend to set the following preprocessor variable when compiling your project:</span></div>
+<div class="line"><span class="stringliteral"> \code -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int</span></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">Ponca::FitSpaceDer</a></div><div class="ttdeci">@ FitSpaceDer</div><div class="ttdoc">Flag indicating a space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00036">enums.h:36</a></div></div>
-</div><!-- fragment -->   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Monge Patch fitting (comparable to jets fitting<a class="el" href="citelist.html#CITEREF_Cazals:2005:Jets">[3]</a> )   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a> using a <a class="el" href="classPonca_1_1QuadraticHeightField.html" title="Quadratic height field defined as .">QuadraticHeightField</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitMongeSmooth = Basket&lt;Point, WeightSmoothFunc, MongePatchQuadraticFit&gt;;</div>
-</div><!-- fragment -->   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Monge Patch fitting (comparable to jets fitting<a class="el" href="citelist.html#CITEREF_Cazals:2005:Jets">[3]</a> )   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a> using a <a class="el" href="classPonca_1_1RestrictedQuadraticHeightField.html" title="Quadratic height field defined as .">RestrictedQuadraticHeightField</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitMongeRestrictedSmooth = Basket&lt;Point, WeightSmoothFunc, MongePatchRestrictedQuadraticFit&gt;;</div>
-</div><!-- fragment -->   </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Algebraic Point Set Surfaces (APSS) <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[6]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothOrientedSpatial =</div>
-<div class="line">        BasketDiff&lt;FitSmoothOriented, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">OrientedSphereDer</a>, CurvatureEstimatorDer,</div>
-<div class="line">                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer&gt;;</div>
-<div class="ttc" id="anamespacePonca_html_aacb141e87654384b457c2874ac11e19d"><div class="ttname"><a href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">Ponca::OrientedSphereDer</a></div><div class="ttdeci">OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; OrientedSphereDer</div><div class="ttdoc">Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereDerImpl.</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00137">orientedSphereFit.h:138</a></div></div>
-</div><!-- fragment -->   </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Algebraic Shape Operator (ASO) <a class="el" href="citelist.html#CITEREF_Lejemble:2021:stable">[9]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>ASOSmooth =</div>
-<div class="line">        BasketDiff&lt;FitSmoothOriented, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">OrientedSphereDer</a>, MlsSphereFitDer, CurvatureEstimatorDer,</div>
-<div class="line">                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer&gt;;</div>
-</div><!-- fragment -->  </td></tr>
-</table>
-<div class="image">
-<img src="buste.png" alt=""/>
-<div class="caption">
-Figure 3. Example of mean curvature (GLSParam::kappa) computed at a fine (left) and a coarse (right) scale, and rendered with a simple color map (orange for concavities, blue for convexities).</div></div>
-<h2><a class="anchor" id="fitting_multiprimitive"></a>
-Sharing computations between fits</h2>
-<p>In most cases, only one primitive is included in the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>, and it is recommended to use the helper classes provided by <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> for fitting, e.g. #CovariancePlaneFitImpl, #OrientedSphereFitImpl. However, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> also allows to combine multiple primitives, for instance to share intermediate computation results. Using this functionality requires to really understand how the different primitives and fitting techniques are working. In any case, it is recommended to explicitly define the computational arrangement, e.g.: </p><div class="fragment"><div class="line">    <span class="comment">// Create an hybrid structure fitting a plane and a sphere at the same time</span></div>
-<div class="line">    <span class="keyword">using </span>Hybrid = Basket&lt;Point, NeighborFilter, AlgebraicSphere, Plane, <span class="comment">// primitives</span></div>
-<div class="line">                          <a class="code hl_class" href="classMeanNormal.html">MeanNormal</a>, MeanPosition,                      <span class="comment">// shared computation</span></div>
-<div class="line">                          OrientedSphereFitImpl,                         <span class="comment">// sphere fitting</span></div>
-<div class="line">                          CovarianceFitBase, CovariancePlaneFitImpl&gt;;    <span class="comment">// plane fitting</span></div>
-</div><!-- fragment --><p>After fitting, this object provides access to both the plane and the sphere, through the respective cast operators <a class="el" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef" title="Explicit conversion to AlgebraicSphere , to access methods potentially hidden by heritage.">AlgebraicSphere::algebraicSphere()</a> and <a class="el" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb" title="Explicit conversion to Plane , to access methods potentially hidden by heritage.">Plane::plane()</a>.</p>
-<h2><a class="anchor" id="fitting_cuda"></a>
-Cuda</h2>
-<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> can be used directly on GPU, thanks to several mechanisms:</p><ul>
-<li>Eigen Cuda capabilities, see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html" target="_blank">Eigen documentation</a> for more details. You <em>need</em> to use a consistent <code>Eigen::Index</code> on both CPU and GPU if you plan to transfer memory between the computing units. That's why we recommend to set the following preprocessor variable when compiling your project: <div class="fragment"><div class="line">-DEIGEN_DEFAULT_DENSE_INDEX_TYPE=<span class="keywordtype">int</span></div>
-</div><!-- fragment --> You might also need to define the <code>--expt-relaxed-constexpr</code> preprocessor option for <code>NVCC</code>. Example of working cmake file (see <a class="el" href="example_cu_ssc_page.html">Screen Space Curvature using Cuda/C++</a>): <div class="fragment"><div class="line">enable_language(CUDA)</div>
+<div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2">Ponca::FitScaleSpaceDer</a></div><div class="ttdeci">@ FitScaleSpaceDer</div><div class="ttdoc">Flag indicating a scale-space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00038">enums.h:37</a></div></div>
+<div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">Ponca::FitScaleDer</a></div><div class="ttdeci">@ FitScaleDer</div><div class="ttdoc">Flag indicating a scale differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00035">enums.h:35</a></div></div>
+</div><!-- fragment --><p> You might also need to define the <code>--expt-relaxed-constexpr</code> preprocessor option for <code>NVCC</code>. Example of working cmake file (see <a class="el" href="example_cu_ssc_page.html">Screen Space Curvature using Cuda/C++</a>): </p><div class="fragment"><div class="line">enable_language(CUDA)</div>
 <div class="line">add_executable(ponca_ssgls <span class="stringliteral">&quot;ponca_ssgls.cu&quot;</span>)</div>
 <div class="line">target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-<span class="keyword">constexpr</span>)</div>
-</div><!-- fragment --></li>
+</div><!-- fragment --><ul>
 <li>Automatic CPU/GPU compilation qualifiers. We use the macro <div class="fragment"><div class="line">PONCA_MULTIARCH <span class="keywordtype">void</span> function();</div>
 </div><!-- fragment --> to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.</li>
 </ul>
 <p>Check the <a class="el" href="example_cu_ssc_page.html#cu_ssgl_intro_sec">C++/Cuda</a> and <a class="el" href="example_python_ssc_page.html">Python/Cuda</a> (using PyCuda) examples for more details and how-to.</p>
 <hr  />
- <center>[<a class="el" href="fitting_concepts.html">Go to concept page</a>]</center> <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </div></div><!-- contents -->
+ <center>[Go to concept page]</center> <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 26 2026 17:31:09 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

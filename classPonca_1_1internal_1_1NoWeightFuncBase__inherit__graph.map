@@ -1,0 +1,15 @@
+<map id="Ponca::internal::NoWeightFuncBase&lt; DataPoint, _NeighborhoodFrame &gt;" name="Ponca::internal::NoWeightFuncBase&lt; DataPoint, _NeighborhoodFrame &gt;">
+<area shape="rect" id="Node000001" title="Weighting function that set uniform weight to all samples." alt="" coords="119,135,380,369"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1internal_1_1NoWeightFuncBase.html" title=" " alt="" coords="13,447,241,681"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="135,383,131,394,123,420,119,447,114,446,118,419,125,392,130,381"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1internal_1_1NoWeightFuncBase.html" title=" " alt="" coords="265,447,479,681"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="340,381,345,392,361,446,356,447,340,394,335,383"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="173,5,326,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,99,252,135,247,135,247,99"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1NoWeightFunc.html" title="Weighting function that set uniform weight to all samples, but transform neighbors coordinates to loc..." alt="" coords="49,731,204,811"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="129,695,129,730,124,730,124,695"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1NeighborFilterStoreNormal.html" title=" " alt="" coords="5,860,248,995"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="129,824,129,860,124,860,124,824"/>
+<area shape="rect" id="Node000007" href="$structPonca_1_1NoWeightFuncGlobal.html" title="Weighting function that set uniform weight to all samples and keep neighbors coordinates in global fr..." alt="" coords="274,731,470,811"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="375,695,375,730,369,730,369,695"/>
+</map>

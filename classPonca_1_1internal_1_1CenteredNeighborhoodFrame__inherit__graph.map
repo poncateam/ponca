@@ -1,0 +1,5 @@
+<map id="Ponca::internal::CenteredNeighborhoodFrame&lt; DataPoint &gt;" name="Ponca::internal::CenteredNeighborhoodFrame&lt; DataPoint &gt;">
+<area shape="rect" id="Node000001" title="NeighborhoodFrame that express 3d points relatively to a prescribed center." alt="" coords="5,5,245,185"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position." alt="" coords="24,233,227,513"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,199,128,233,123,233,123,199"/>
+</map>

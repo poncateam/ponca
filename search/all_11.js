@@ -7,9 +7,9 @@ var searchData=
   ['rangeneighborsindexquery_4',['rangeneighborsindexquery',['../classPonca_1_1KnnGraphBase.html#a734a78d3a5e1207bba6e8e3bfb2bbf33',1,'Ponca::KnnGraphBase::rangeNeighborsIndexQuery()'],['../classPonca_1_1StaticKdTreeBase.html#a5a7daf3762055ecff9d2b7df66476167',1,'Ponca::StaticKdTreeBase::rangeNeighborsIndexQuery() const']]],
   ['rangeneighborsquery_5',['rangeNeighborsQuery',['../classPonca_1_1StaticKdTreeBase.html#a4fbff75af25d52849091343be8addf52',1,'Ponca::StaticKdTreeBase']]],
   ['rangepointquery_6',['RangePointQuery',['../group__spatialpartitioning.html#structPonca_1_1RangePointQuery',1,'Ponca']]],
-  ['related_20to_20weighting_20functions_7',['Concepts related to weighting functions',['../fitting_concepts.html#concepts_weighting',1,'']]],
+  ['reference_20manual_7',['Fitting Module: Reference Manual',['../fittingreference.html',1,'user_manual_page']]],
   ['releases_20overview_8',['Releases overview',['../ponca_changelog.html',1,'']]],
-  ['requirements_9',['requirements',['../fitting.html#fitting_capabilities',1,'Computational objets capabilities and requirements'],['../ponca_getting_started_page.html#getting_started_requirements_sec',1,'Requirements']]],
+  ['requirements_9',['requirements',['../fitting.html#fitting_newcapabilities',1,'Computational objets capabilities and requirements'],['../fitting.html#fitting_newestimbase',1,'Minimal requirements'],['../ponca_getting_started_page.html#getting_started_requirements_sec',1,'Requirements']]],
   ['reset_10',['reset',['../classPonca_1_1KdTreeQuery.html#a2c02164e69a15dbf89c4b80b625cc0ac',1,'Ponca::KdTreeQuery::reset()'],['../group__spatialpartitioning.html#a6d86ff545f12d50e52b63ce36a843b6d',1,'Ponca::QueryOutputIsRange::reset()'],['../group__spatialpartitioning.html#a92333a653df9e9b440ff7ba465753a66',1,'Ponca::QueryOutputIsNearest::reset()'],['../group__spatialpartitioning.html#a8156b77a6bd1c52ad640488bfede42b5',1,'Ponca::QueryOutputIsKNearest::reset()']]],
   ['restrictedquadraticheightfield_11',['restrictedquadraticheightfield',['../classPonca_1_1RestrictedQuadraticHeightField.html',1,'Ponca::RestrictedQuadraticHeightField&lt; DataPoint, _NFilter, T &gt;'],['../classPonca_1_1RestrictedQuadraticHeightField.html#a531216ccc43b9abe46373436fcc806d1',1,'Ponca::RestrictedQuadraticHeightField::RestrictedQuadraticHeightField()']]]
 ];

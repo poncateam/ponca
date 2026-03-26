@@ -4,12 +4,17 @@ var hierarchy =
       [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
     [ "_NeighborhoodFrame", null, [
-      [ "Ponca::NoWeightFuncBase< DataPoint, _NeighborhoodFrame >", "classPonca_1_1NoWeightFuncBase.html", [
-        [ "Ponca::NeighborFilterStoreNormal< DataPoint, NoWeightFunc< DataPoint > >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
-      ] ]
+      [ "Ponca::internal::NoWeightFuncBase< DataPoint, _NeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", null ]
     ] ],
     [ "Ponca::StaticKdTreeBase< Traits >::Buffers", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html", null ],
-    [ "Ponca::CenteredNeighborhoodFrame< DataPoint >", "classPonca_1_1CenteredNeighborhoodFrame.html", [
+    [ "internal::CenteredNeighborhoodFrame", null, [
+      [ "Ponca::internal::NoWeightFuncBase< DataPoint, internal::CenteredNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", [
+        [ "Ponca::NoWeightFunc< DataPoint >", "structPonca_1_1NoWeightFunc.html", [
+          [ "Ponca::NeighborFilterStoreNormal< DataPoint, NoWeightFunc< DataPoint > >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
+        ] ]
+      ] ]
+    ] ],
+    [ "Ponca::internal::CenteredNeighborhoodFrame< DataPoint >", "classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html", [
       [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ]
     ] ],
     [ "Ponca::internal::CNCEigen< DataPoint >", "structPonca_1_1internal_1_1CNCEigen.html", null ],
@@ -55,7 +60,12 @@ var hierarchy =
       [ "Ponca::SphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1SphereFitImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
-    [ "Ponca::GlobalNeighborhoodFrame< DataPoint >", "classPonca_1_1GlobalNeighborhoodFrame.html", null ],
+    [ "internal::GlobalNeighborhoodFrame", null, [
+      [ "Ponca::internal::NoWeightFuncBase< DataPoint, internal::GlobalNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", [
+        [ "Ponca::NoWeightFuncGlobal< DataPoint >", "structPonca_1_1NoWeightFuncGlobal.html", null ]
+      ] ]
+    ] ],
+    [ "Ponca::internal::GlobalNeighborhoodFrame< DataPoint >", "classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html", null ],
     [ "Ponca::internal::HexagramBase< P >", "structPonca_1_1internal_1_1HexagramBase.html", [
       [ "Ponca::internal::TriangleGenerator< AvgHexagramGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01AvgHexagramGeneration_00_01P_01_4.html", null ],
       [ "Ponca::internal::TriangleGenerator< HexagramGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01HexagramGeneration_00_01P_01_4.html", null ]

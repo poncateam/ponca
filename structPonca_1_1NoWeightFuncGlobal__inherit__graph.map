@@ -1,0 +1,11 @@
+<map id="Ponca::NoWeightFuncGlobal&lt; DataPoint &gt;" name="Ponca::NoWeightFuncGlobal&lt; DataPoint &gt;">
+<area shape="rect" id="Node000001" title="Weighting function that set uniform weight to all samples and keep neighbors coordinates in global fr..." alt="" coords="85,731,281,811"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1NoWeightFuncBase.html" title=" " alt="" coords="76,447,289,681"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,695,185,730,180,730,180,695"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,212,211,292"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,305,157,446,152,447,118,307"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1internal_1_1NoWeightFuncBase.html" title="Weighting function that set uniform weight to all samples." alt="" coords="235,135,496,369"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="292,383,254,448,249,445,287,380"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="289,5,442,85"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="368,99,368,135,363,135,363,99"/>
+</map>

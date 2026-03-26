@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
+   &#160;<span id="projectnumber">cfae91c4e985f62659abecaccc35a41888257251</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -126,15 +126,169 @@ $(document).ready(function(){initNavTree('ponca__module__fitting_8mdoc_source.ht
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span>{</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> }</div>
+ <a class="code hl_class" href="classMeanNormal.html">MeanNormal</a>* meanNormal = fit.meanNormal();<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">// Do whatever you want with a &#39;MeanNormal&#39; instance</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  \endcode</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  \subsection fitting_newestim Estimator API</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  \subsubsection fitting_newestimbase Minimal requirements</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  In order to make an estimator compatible with <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> Fitting API, <span class="keyword">new</span> estimator should have the following structure:</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  \snippet concepts.hpp ComputationalObjectConcept</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  \note The macro PONCA_FITTING_DECLARE_DEFAULT_TYPES defines the `Base` type (alias <span class="keywordflow">for</span> T) as well as `Scalar`, `VectorType` and `NeighborFilter` <span class="keywordflow">for</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  manipulation of related data. This macro is defined within &amp;lt;Fitting/defines.h&amp;gt;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  \note If the estimator is expected to be the upmost parent of the hierarchy, <span class="keywordflow">do</span> not inherit from T and <span class="keywordflow">default</span> it to be <span class="keywordtype">void</span>.</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  \warning The macro PONCA_FITTING_DECLARE_DEFAULT_TYPES opens a <span class="keyword">public</span> section. </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>  In order <span class="keywordflow">for each</span> computation to work properly, the functions `init`, `addLocalNeighbor` and `finalize` should call their Base version (`Base::init`, `Base::addLocalNeighbor`, `Base::finalize`).</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  Presumably, <span class="keyword">this</span> is among the first thing each of these function does.</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  \subsubsection fitting_newcapabilities Computational objets capabilities and requirements</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  Aggregating small computational objects allows to minimize code duplication, but also to easily combine different techniques.</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>  For instance, GLSDer can be used independently of the fitting technique, e.g. <a class="code hl_class" href="classPonca_1_1OrientedSphereFitImpl.html">Ponca::OrientedSphereFit</a> or <a class="code hl_typedef" href="namespacePonca.html#a73a5d6377d84512434b559591d49c262">Ponca::UnorientedSphereFit</a>, as <span class="keywordtype">long</span> as the fitted \ref PrimitiveBase <span class="stringliteral">&quot;Primitive&quot;</span> is an AlgebraicSphere.</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  In order to detect <span class="keywordflow">if</span> the computational objects are correctly combined, <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> provides a compile-time requirement/capability system:</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  each computational objects check <span class="keywordflow">if</span> the other classes of the CRTP provides the required computations.</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>  For instance, in the GLSParam <span class="keyword">class</span>, we define the following <span class="keyword">enum</span>:</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  \snippet{lineno} gls.h Requirements</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  `Base` is a type defined from the CRTP and that represents the inherited classes.</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  If `Base` does not define `PROVIDES_ALGEBRAIC_SPHERE`, <span class="keyword">this</span> line generates an error when compiling the program.</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  For instance, compiling the type</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>  \code</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      <span class="keyword">typedef</span> Basket&lt;Point, WeightSmoothFunc, GLSParam&gt; FitSmoothOriented;</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  \endcode</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>  generates the following error:</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  \code</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  Building CXX <span class="keywordtype">object</span> /xxxxx/wrongType.cpp.o</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  In file included from /xxxxx/wrongType.cpp:19:</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  /xxxxx/ponca/<a class="code hl_namespace" href="namespacePonca.html">Ponca</a>/src/Fitting/gls.h:51:23: error: no member named <span class="stringliteral">&#39;PROVIDES_ALGEBRAIC_SPHERE&#39;</span> in <span class="stringliteral">&#39;Ponca::PrimitiveBase&lt;PointPositionNormal&lt;float, 3&gt;, Ponca::DistWeightFunc&lt;PointPositionNormal&lt;float, 3&gt;, Ponca::SmoothWeightKernel&lt;float&gt; &gt;, void&gt;&#39;</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>          Check = Base::PROVIDES_ALGEBRAIC_SPHERE,</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                  ~~~~~~^</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  \endcode</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>  The capability `PROVIDES_GLS_PARAMETRIZATION` tells that GLSParam provides the GLS parameterization \cite Mellado:2012:GLS, and other components can access the related information.</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  In order to ease tools combinations, each <span class="keyword">class </span>declare a set of *required* and *provided* capabilities, which are detailed in the Section \ref concepts_provides.</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  \note In its current version, the requirement/capability system offer limited protection over the combination of tools providing the same capabilities.</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>  Indeed, it is possible to build ill-formed combinations where two computations attempt to save their results at the same place, e.g. when <span class="keyword">using </span>two fitting technique <span class="keywordflow">for</span> the same primitive:</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  \snippet fit_plane.cpp Conflicting type</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  This <span class="keywordflow">case</span> is not detected at compile time, but rather dynamically when calling finalize(), which returns `<a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>`.</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>  Internally, <span class="keyword">this</span> is implemented by checking <span class="keywordflow">if</span> the primitive is already valid (ie. it has been computed already) when finalizing the computation.</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>  This limitation is expected to be resolved in upcoming releases.</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  \subsubsection fitting_cast Providing cast operations</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  As explained earlier, the <span class="keyword">class </span>hierarchy can not reach every function of every through the provided `Base` type due to overloading. </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>  The mecanism <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> <span class="keyword">implements</span> is a cast operator. Fortunately, this is quite common and a macro helps to define them. Add the following </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  within a <span class="keyword">public</span> section of your class:</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>  \code</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    PONCA_EXPLICIT_CAST_OPERATORS(ClassName, className);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>  \encode</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>  Where the first parameter is the class name and the second is the name of the cast function which is, most of the time, the same as the </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>  class name excpet a first lower case letter. Note that this macro requires the template parameter to be named following ponca conventions. </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  \subsubsection fitting_newdiff New primitive differentiation (BasketDiff API)</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  The API for defining new estimator that differentiate the primitive follows the same principle from classical estimator. The base class is BasketDiff which follows the </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  same CRTP / inheritance principle except that a Basket is required as a first parameter. </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>  \snippet concepts.hpp ComputationalDerivativesConcept</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  \note PrimitiveDer is the default entry point to most classes used in BasketDiff</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>  A few addition should be notted however. First, the class is now templated on a flag (an integer) representing the variables according to which we want to differentiate. For now, </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>  <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> defines only two set of variables (&amp;lt;Fitting/enums.h&amp;gt;):</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>  - <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">FitScaleDer</a>: The derivatives of the primitive parameters w.r.t the scale (the neig radius)</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>  - <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>: The derivatives of the primitive parameters w.r.t the position of evaluation</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>  - <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2">FitScaleSpaceDer</a>: Compute derivative for both types. </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>  The macro `PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES` defines two additionnal types `ScalarArray` and  `VectorArray`. Those types defines storage for derivative result. Note that </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>  they are fixed-size array whose size is adapted to the total number of derivatives. Their layout is described below depending on the type of differentiation. </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>  &lt;table&gt;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>      &lt;tr&gt;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>          &lt;th&gt;Fitting derivative value&lt;/th&gt;</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>          &lt;th&gt;Number of derivatives&lt;/th&gt;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>          &lt;th&gt; Scalar Array indices &lt;/th&gt;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>      &lt;/tr&gt;</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>      &lt;tr&gt;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>          &lt;td&gt;<a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">FitScaleDer</a>&lt;/td&gt;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>          &lt;td&gt; 1 &lt;/td&gt;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>          &lt;td&gt; [0] is the derivative w.r.t scale &lt;/td&gt;</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>      &lt;/tr&gt;</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>      &lt;tr&gt;</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>          &lt;td&gt; <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a> &lt;/td&gt;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>          &lt;td&gt; DataPoint::Dim &lt;/td&gt;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>          &lt;td&gt; [0:DataPoint::Dim] derivatives w.r.t eval position &lt;/td&gt;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>      &lt;/tr&gt;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      &lt;tr&gt;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>          &lt;td&gt; <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2">FitScaleSpaceDer</a> &lt;/td&gt;</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>          &lt;td&gt; 1 + DataPoint::Dim &lt;/td&gt;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>          &lt;td&gt; [0] derivatives w.r.t scale, &lt;br/&gt; [1:DataPoint::Dim+1) derivatives w.r.t eval position &lt;/td&gt;</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      &lt;/tr&gt;</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>  &lt;/table&gt;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>  \section fitting_advanced Advanced usage</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>  \subsection fitting_multiprimitive Fitting with multiple primitives</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>  In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> for fitting, e.g. CovariancePlaneFitImpl, OrientedSphereFitImpl.</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>  However, <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> also allows to combine multiple primitives, for instance to share intermediate computation results.</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  Using this functionality requires to really understand how the different primitives and fitting techniques are working.</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  In any case, it is recommended to explicitly define the computational arrangement, e.g.:</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>  \snippet basket.cpp HybridType</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>  After fitting, this object provides access to both the plane and the sphere, through the respective cast operators #<a class="code hl_function" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef">AlgebraicSphere::algebraicSphere</a>() and #<a class="code hl_function" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb">Plane::plane</a>().</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>  \section fitting_cuda Cuda</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>  <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> can be used directly on GPU, thanks to several mechanisms:</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>   - Eigen Cuda capabilities, see &lt;a href=&quot;http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html&quot;  target=&quot;_blank&quot;&gt;Eigen documentation&lt;/a&gt; for more details.</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>   You *need* to use a consistent `Eigen::Index` on both CPU and GPU if you plan to transfer memory between the computing units.</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>   That&#39;s why we recommend to set the following preprocessor variable when compiling your project:</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>   \code -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endcode</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>   You might also need to define the `--expt-relaxed-constexpr` preprocessor option for `NVCC`.</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>   Example of working cmake file (see \ref example_cu_ssc_page):</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>   \code</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>   enable_language(CUDA)</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>   add_executable(ponca_ssgls &quot;ponca_ssgls.cu&quot;)</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>   target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>   \endcode</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>   - Automatic CPU/GPU compilation qualifiers. We use the macro</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>  \code</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>          PONCA_MULTIARCH void function();</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>  \endcode</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>  Check the \ref cu_ssgl_intro_sec &quot;C++/Cuda&quot; and \ref example_python_ssc_page &quot;Python/Cuda&quot; (using PyCuda) examples for more details and how-to.</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>  &lt;hr&gt;</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>  &lt;center&gt;[\ref fitting_concepts &quot;Go to concept page&quot;]&lt;/center&gt;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>  &lt;center&gt;[\ref user_manual_page &quot;Go back to user manual&quot;]&lt;/center&gt;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> */</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> }</div>
+<div class="ttc" id="aclassMeanNormal_html"><div class="ttname"><a href="classMeanNormal.html">MeanNormal</a></div><div class="ttdoc">Compute the mean normal of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00084">mean.h:85</a></div></div>
+<div class="ttc" id="aclassPonca_1_1AlgebraicSphere_html_ab3557e66217abd4f0a178341bc49f8ef"><div class="ttname"><a href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef">Ponca::AlgebraicSphere::algebraicSphere</a></div><div class="ttdeci">AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; &amp; algebraicSphere()</div><div class="ttdoc">Explicit conversion to AlgebraicSphere , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="algebraicSphere_8h_source.html#l00067">algebraicSphere.h:67</a></div></div>
+<div class="ttc" id="aclassPonca_1_1OrientedSphereFitImpl_html"><div class="ttname"><a href="classPonca_1_1OrientedSphereFitImpl.html">Ponca::OrientedSphereFitImpl</a></div><div class="ttdoc">Algebraic Sphere fitting procedure on oriented point sets.</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00025">orientedSphereFit.h:26</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_aac17b82414f82077fc573daeee10effb"><div class="ttname"><a href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb">Ponca::Plane::plane</a></div><div class="ttdeci">Plane&lt; DataPoint, _NFilter, T &gt; &amp; plane()</div><div class="ttdoc">Explicit conversion to Plane , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="plane_8h_source.html#l00055">plane.h:55</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:16</a></div></div>
+<div class="ttc" id="anamespacePonca_html_a73a5d6377d84512434b559591d49c262"><div class="ttname"><a href="namespacePonca.html#a73a5d6377d84512434b559591d49c262">Ponca::UnorientedSphereFit</a></div><div class="ttdeci">UnorientedSphereFitImpl&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; &gt; &gt; UnorientedSphereFit</div><div class="ttdoc">Helper alias for Oriented Sphere fitting on 3D points using UnorientedSphereFitImpl.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00079">unorientedSphereFit.h:81</a></div></div>
+<div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">Ponca::FitSpaceDer</a></div><div class="ttdeci">@ FitSpaceDer</div><div class="ttdoc">Flag indicating a space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00036">enums.h:36</a></div></div>
+<div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2">Ponca::FitScaleSpaceDer</a></div><div class="ttdeci">@ FitScaleSpaceDer</div><div class="ttdoc">Flag indicating a scale-space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00038">enums.h:37</a></div></div>
+<div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190">Ponca::FitScaleDer</a></div><div class="ttdeci">@ FitScaleDer</div><div class="ttdoc">Flag indicating a scale differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00035">enums.h:35</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00027">enums.h:27</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_659facb5ea1bf65b3deecf95a0be0132.html">doc</a></li><li class="navelem"><a class="el" href="dir_4faad1dcd81a1ed46fbffce7dc36364d.html">src</a></li><li class="navelem"><b>ponca_module_fitting.mdoc</b></li>
-    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 26 2026 17:31:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

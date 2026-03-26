@@ -92,6 +92,7 @@ var NAVTREE =
     [ "Releases overview", "ponca_changelog.html", [
       [ "Complete Changelog", "ponca_changelog.html#ponca_changelog_sec", null ]
     ] ],
+    [ "The ponca ecosystem", "poncaecosysrem.html", null ],
     [ "Getting started", "ponca_getting_started_page.html", [
       [ "Requirements", "ponca_getting_started_page.html#getting_started_requirements_sec", null ],
       [ "Download", "ponca_getting_started_page.html#getting_started_download_sec", null ],
@@ -103,38 +104,40 @@ var NAVTREE =
       [ "First steps", "ponca_getting_started_page.html#getting_started_first_step_sec", null ]
     ] ],
     [ "User Manual", "user_manual_page.html", [
-      [ "Ponca Concepts", "ponca_concepts.html", null ],
+      [ "Defining Points in Ponca", "ponca_points.html", [
+        [ "Points", "ponca_points.html#ponca_points_intro", null ],
+        [ "Utility classes and functions", "ponca_points.html#points_utility", null ]
+      ] ],
       [ "Fitting Module: User Manual", "fitting.html", [
-        [ "Introduction", "fitting.html#fitting_intro", [
-          [ "Design choices and programing techniques", "fitting.html#fitting_design", null ],
-          [ "Fitting primitives and compute neighborhood properties", "fitting.html#fitting_primitiveOverview", null ],
-          [ "Fitting techniques overview", "fitting.html#fitting_availableFunctionalities", null ],
-          [ "Structure of the documentation", "fitting.html#fitting_doc_structure", null ]
-        ] ],
+        [ "Introduction", "fitting.html#fitting_intro", null ],
         [ "First Steps", "fitting.html#fitting_firstSteps", [
           [ "Include directives", "fitting.html#fitting_codeStructure", null ],
-          [ "Data Samples", "fitting.html#fitting_datas", null ],
           [ "Definition of the Fitting object", "fitting.html#fitting_Define", null ],
           [ "Fitting Process", "fitting.html#fitting_Fitting", null ],
           [ "Check fitting status", "fitting.html#fitting_Checkstatus", null ],
           [ "Basic Outputs", "fitting.html#fitting_outputs", null ]
         ] ],
-        [ "Advanced usage", "fitting.html#fitting_advanced", [
-          [ "Computing derivatives", "fitting.html#fitting_derivatives", null ],
-          [ "Computational objets, basket and CRTP", "fitting.html#fitting_extensions_deps", null ],
-          [ "Computational objets capabilities and requirements", "fitting.html#fitting_capabilities", null ],
-          [ "Computing Curvatures", "fitting.html#fitting_curvature", null ],
-          [ "Sharing computations between fits", "fitting.html#fitting_multiprimitive", null ],
-          [ "Cuda", "fitting.html#fitting_cuda", null ]
+        [ "Computing derivatives", "fitting.html#fitting_derivatives", null ],
+        [ "Changing fitting process", "fitting.html#fitting_custom", null ],
+        [ "Defining a new neighbor filter", "fitting.html#fitting_newfilter", [
+          [ "Defining a new distance kernel", "fitting.html#fitting_newkernel", null ],
+          [ "Filter API", "fitting.html#fitting_newfilterapi", null ]
+        ] ],
+        [ "Defining a new Estimator", "fitting.html#fitting_newestimator", [
+          [ "Understanding CRTP in Ponca", "fitting.html#crtpestimator", null ],
+          [ "Estimator API", "fitting.html#fitting_newestim", [
+            [ "Minimal requirements", "fitting.html#fitting_newestimbase", null ],
+            [ "Computational objets capabilities and requirements", "fitting.html#fitting_newcapabilities", null ],
+            [ "Providing cast operations", "fitting.html#fitting_cast", null ]
+          ] ]
         ] ]
       ] ],
-      [ "Fitting module: Concepts", "fitting_concepts.html", [
-        [ "API of Computational Objects", "fitting_concepts.html#concepts_computeObject", [
-          [ "Objects used in Basket", "fitting_concepts.html#concepts_computeObjectBasket", null ],
-          [ "Objects used in BasketDiff", "fitting_concepts.html#concepts_computeObjectBasketDiff", null ]
-        ] ],
-        [ "Capabilities of the Fitting tools", "fitting_concepts.html#concepts_provides", null ],
-        [ "Concepts related to weighting functions", "fitting_concepts.html#concepts_weighting", null ]
+      [ "Fitting Module: Reference Manual", "fittingreference.html", [
+        [ "Fitting techniques Overview", "fittingreference.html#fittingreference_primitiveoverview", null ],
+        [ "Capabilities of Fitting tools", "fittingreference.html#fittingreference_outputandcapabilities", null ],
+        [ "Computing Curvatures", "fittingreference.html#fitting_curvature", null ],
+        [ "Available filters", "fittingreference.html#fitting_filters", null ],
+        [ "Available Weighting kernel", "fittingreference.html#fitting_kernel", null ]
       ] ],
       [ "Spatial Partitioning: User Manual", "spatialpartitioning.html", [
         [ "Introduction", "spatialpartitioning.html#spatialpartitioning_intro", [
@@ -182,10 +185,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1GLSDer.html#a9bfec8ab18a8e60e029ecdd2dd247f49",
-"classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a8a7a0cc9b5f8259f235ad27986b2f9f7",
-"classPonca_1_1StaticKdTreeBase.html#aa3a069bf1a409c65a33c22d2770b6e7b",
-"structPonca_1_1ComputeObject.html#af4490afa97b2845366ee339c56661b5d"
+"classPonca_1_1GLSDer.html#ad8ece9295539bece9d287a06921dccf4",
+"classPonca_1_1NormalDerivativeWeingartenEstimator.html#a456ca1542f1ba92e008d44077ef76509",
+"classPonca_1_1UnorientedSphereFitImpl.html#a2e399e1782b3de7d5b2c259b6b07a252",
+"structPonca_1_1ComputeObject.html#a7bad382d90e0a8af867cd9ba5ccc37b9"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -2,9 +2,12 @@ var annotated_dup =
 [
     [ "Ponca", "namespacePonca.html", [
       [ "internal", "namespacePonca_1_1internal.html", [
+        [ "CenteredNeighborhoodFrame", "classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html", "classPonca_1_1internal_1_1CenteredNeighborhoodFrame" ],
         [ "CNCEigen", "structPonca_1_1internal_1_1CNCEigen.html", "structPonca_1_1internal_1_1CNCEigen" ],
         [ "CurvatureEstimatorBase", "classPonca_1_1internal_1_1CurvatureEstimatorBase.html", "classPonca_1_1internal_1_1CurvatureEstimatorBase" ],
+        [ "GlobalNeighborhoodFrame", "classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html", "classPonca_1_1internal_1_1GlobalNeighborhoodFrame" ],
         [ "HexagramBase", "structPonca_1_1internal_1_1HexagramBase.html", null ],
+        [ "NoWeightFuncBase", "classPonca_1_1internal_1_1NoWeightFuncBase.html", "classPonca_1_1internal_1_1NoWeightFuncBase" ],
         [ "Triangle", "structPonca_1_1internal_1_1Triangle.html", "structPonca_1_1internal_1_1Triangle" ],
         [ "TriangleGenerator", "structPonca_1_1internal_1_1TriangleGenerator.html", null ],
         [ "TriangleGenerator< AvgHexagramGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01AvgHexagramGeneration_00_01P_01_4.html", null ],
@@ -17,7 +20,6 @@ var annotated_dup =
       [ "Basket", "classPonca_1_1Basket.html", "classPonca_1_1Basket" ],
       [ "BasketComputeObject", "structPonca_1_1BasketComputeObject.html", "structPonca_1_1BasketComputeObject" ],
       [ "BasketDiff", "classPonca_1_1BasketDiff.html", "classPonca_1_1BasketDiff" ],
-      [ "CenteredNeighborhoodFrame", "classPonca_1_1CenteredNeighborhoodFrame.html", "classPonca_1_1CenteredNeighborhoodFrame" ],
       [ "CNC", "classPonca_1_1CNC.html", "classPonca_1_1CNC" ],
       [ "CompactExpWeightKernel", "classPonca_1_1CompactExpWeightKernel.html", "classPonca_1_1CompactExpWeightKernel" ],
       [ "ComputeObject", "structPonca_1_1ComputeObject.html", "structPonca_1_1ComputeObject" ],
@@ -33,7 +35,6 @@ var annotated_dup =
       [ "DryFit", "classPonca_1_1DryFit.html", "classPonca_1_1DryFit" ],
       [ "FundamentalFormWeingartenEstimator", "classPonca_1_1FundamentalFormWeingartenEstimator.html", "classPonca_1_1FundamentalFormWeingartenEstimator" ],
       [ "GaussianWeightKernel", "classPonca_1_1GaussianWeightKernel.html", "classPonca_1_1GaussianWeightKernel" ],
-      [ "GlobalNeighborhoodFrame", "classPonca_1_1GlobalNeighborhoodFrame.html", "classPonca_1_1GlobalNeighborhoodFrame" ],
       [ "GLSDer", "classPonca_1_1GLSDer.html", "classPonca_1_1GLSDer" ],
       [ "GLSParam", "classPonca_1_1GLSParam.html", "classPonca_1_1GLSParam" ],
       [ "hasFirstFundamentalForm", "structPonca_1_1hasFirstFundamentalForm.html", null ],
@@ -80,7 +81,8 @@ var annotated_dup =
       [ "NearestPointQuery", "group__spatialpartitioning.html#structPonca_1_1NearestPointQuery", "group__spatialpartitioning_structPonca_1_1NearestPointQuery" ],
       [ "NeighborFilterStoreNormal", "classPonca_1_1NeighborFilterStoreNormal.html", "classPonca_1_1NeighborFilterStoreNormal" ],
       [ "NormalDerivativeWeingartenEstimator", "classPonca_1_1NormalDerivativeWeingartenEstimator.html", "classPonca_1_1NormalDerivativeWeingartenEstimator" ],
-      [ "NoWeightFuncBase", "classPonca_1_1NoWeightFuncBase.html", "classPonca_1_1NoWeightFuncBase" ],
+      [ "NoWeightFunc", "structPonca_1_1NoWeightFunc.html", null ],
+      [ "NoWeightFuncGlobal", "structPonca_1_1NoWeightFuncGlobal.html", null ],
       [ "OrientedSphereDerImpl", "classPonca_1_1OrientedSphereDerImpl.html", "classPonca_1_1OrientedSphereDerImpl" ],
       [ "OrientedSphereFitImpl", "classPonca_1_1OrientedSphereFitImpl.html", "classPonca_1_1OrientedSphereFitImpl" ],
       [ "Plane", "classPonca_1_1Plane.html", "classPonca_1_1Plane" ],

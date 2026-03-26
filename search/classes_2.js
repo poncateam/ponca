@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['centeredneighborhoodframe_0',['CenteredNeighborhoodFrame',['../classPonca_1_1CenteredNeighborhoodFrame.html',1,'Ponca']]],
+  ['centeredneighborhoodframe_0',['CenteredNeighborhoodFrame',['../classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html',1,'Ponca::internal']]],
   ['cnc_1',['CNC',['../classPonca_1_1CNC.html',1,'Ponca']]],
   ['cnceigen_2',['CNCEigen',['../structPonca_1_1internal_1_1CNCEigen.html',1,'Ponca::internal']]],
   ['compactexpweightkernel_3',['CompactExpWeightKernel',['../classPonca_1_1CompactExpWeightKernel.html',1,'Ponca']]],

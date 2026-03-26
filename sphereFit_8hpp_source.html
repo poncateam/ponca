@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
+   &#160;<span id="projectnumber">cfae91c4e985f62659abecaccc35a41888257251</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -141,19 +141,19 @@ $(document).ready(function(){initNavTree('sphereFit_8hpp_source.html',''); initR
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classPonca_1_1SphereFitImpl.html#a991c81c08cd833d63adcd59d0cb15515">   15</a></span><span class="keywordtype">void</span> <a class="code hl_class" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a> w, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1SphereFitImpl.html#a47623b43f9f24af6dd64ac8c7c98c316">VectorType</a>&amp; localQ,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                                             <span class="keyword">const</span> DataPoint&amp; attributes)</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classPonca_1_1SphereFitImpl.html#a991c81c08cd833d63adcd59d0cb15515">   15</a></span><span class="keywordtype">void</span> <a class="code hl_class" href="classPonca_1_1SphereFitImpl.html">SphereFitImpl&lt;DataPoint, _NFilter, T&gt;::addLocalNeighbor</a>(<a class="code hl_typedef" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a> <a class="code hl_class" href="classPonca_1_1Basket.html">w</a>, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1SphereFitImpl.html#a47623b43f9f24af6dd64ac8c7c98c316">VectorType</a>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">localQ</a>,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                                             <span class="keyword">const</span> DataPoint&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">attributes</a>)</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    Base::addLocalNeighbor(w, localQ, attributes);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    VectorA a;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    Base::addLocalNeighbor(<a class="code hl_class" href="classPonca_1_1Basket.html">w</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">localQ</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">attributes</a>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    VectorA <a class="code hl_class" href="classPonca_1_1Basket.html">a</a>;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#ifdef __CUDACC__</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    a(0)                                  = 1;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    a.template segment&lt;DataPoint::Dim&gt;(1) = localQ;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    a(DataPoint::Dim + 1)                 = localQ.squaredNorm();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">a</a>(0)                                  = 1;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">a</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">segment&lt;DataPoint::Dim&gt;</a>(1) = <a class="code hl_class" href="classPonca_1_1Basket.html">localQ</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">a</a>(DataPoint::Dim + 1)                 = <a class="code hl_class" href="classPonca_1_1Basket.html">localQ</a>.squaredNorm();</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    a &lt;&lt; 1, localQ, localQ.squaredNorm();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">a</a> &lt;&lt; 1, <a class="code hl_class" href="classPonca_1_1Basket.html">localQ</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">localQ</a>.squaredNorm();</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    m_matA += w * a * a.transpose();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    m_matA += <a class="code hl_class" href="classPonca_1_1Basket.html">w</a> * <a class="code hl_class" href="classPonca_1_1Basket.html">a</a> * <a class="code hl_class" href="classPonca_1_1Basket.html">a</a>.transpose();</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
 </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
@@ -171,19 +171,19 @@ $(document).ready(function(){initNavTree('sphereFit_8hpp_source.html',''); initR
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        Base::m_eCurrentState = Base::getNumNeighbors() &lt; 2 * DataPoint::Dim ? <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39">UNSTABLE</a> : <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    MatrixA matC;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    matC.setIdentity();</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    matC.template topRightCorner&lt;1, 1&gt;() &lt;&lt; -2;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    matC.template bottomLeftCorner&lt;1, 1&gt;() &lt;&lt; -2;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    matC.template topLeftCorner&lt;1, 1&gt;() &lt;&lt; 0;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    matC.template bottomRightCorner&lt;1, 1&gt;() &lt;&lt; 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    MatrixA <a class="code hl_class" href="classPonca_1_1Basket.html">matC</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">matC</a>.setIdentity();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">matC</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">topRightCorner&lt;1, 1&gt;</a>() &lt;&lt; -2;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">matC</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">bottomLeftCorner&lt;1, 1&gt;</a>() &lt;&lt; -2;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">matC</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">topLeftCorner&lt;1, 1&gt;</a>() &lt;&lt; 0;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">matC</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">bottomRightCorner&lt;1, 1&gt;</a>() &lt;&lt; 0;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    MatrixA invCpratt;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    invCpratt.setIdentity();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    invCpratt.template topRightCorner&lt;1, 1&gt;() &lt;&lt; -0.5;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    invCpratt.template bottomLeftCorner&lt;1, 1&gt;() &lt;&lt; -0.5;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    invCpratt.template topLeftCorner&lt;1, 1&gt;() &lt;&lt; 0;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    invCpratt.template bottomRightCorner&lt;1, 1&gt;() &lt;&lt; 0;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    MatrixA <a class="code hl_class" href="classPonca_1_1Basket.html">invCpratt</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">invCpratt</a>.setIdentity();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">invCpratt</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">topRightCorner&lt;1, 1&gt;</a>() &lt;&lt; -0.5;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">invCpratt</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">bottomLeftCorner&lt;1, 1&gt;</a>() &lt;&lt; -0.5;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">invCpratt</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">topLeftCorner&lt;1, 1&gt;</a>() &lt;&lt; 0;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_class" href="classPonca_1_1Basket.html">invCpratt</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">bottomRightCorner&lt;1, 1&gt;</a>() &lt;&lt; 0;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// Remarks:</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">//   A and C are symmetric so all eigenvalues and eigenvectors are real</span></div>
@@ -192,30 +192,31 @@ $(document).ready(function(){initNavTree('sphereFit_8hpp_source.html',''); initR
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">//   calling Eigen::GeneralizedEigenSolver on (A,C) and Eigen::EigenSolver on C^{-1}A is equivalent</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">//   C is not positive definite so Eigen::GeneralizedSelfAdjointEigenSolver cannot be used</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#ifdef __CUDACC__</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    m_solver.computeDirect(invCpratt * m_matA);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    m_solver.computeDirect(<a class="code hl_class" href="classPonca_1_1Basket.html">invCpratt</a> * m_matA);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    m_solver.compute(invCpratt * m_matA);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    m_solver.<a class="code hl_function" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">compute</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">invCpratt</a> * m_matA);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    VectorA eivals = m_solver.eigenvalues().real();</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">int</span> minId      = -1;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; DataPoint::Dim + 2; ++i)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    VectorA <a class="code hl_class" href="classPonca_1_1Basket.html">eivals</a> = m_solver.eigenvalues().real();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">minId</a>      = -1;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">i</a> = 0; <a class="code hl_class" href="classPonca_1_1Basket.html">i</a> &lt; DataPoint::Dim + 2; ++<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>)</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_typedef" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a> ev = eivals(i);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">if</span> ((ev &gt; 0) &amp;&amp; (minId == -1 || ev &lt; eivals(minId)))</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            minId = i;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_typedef" href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Scalar</a> <a class="code hl_class" href="classPonca_1_1Basket.html">ev</a> = <a class="code hl_class" href="classPonca_1_1Basket.html">eivals</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">if</span> ((<a class="code hl_class" href="classPonca_1_1Basket.html">ev</a> &gt; 0) &amp;&amp; (<a class="code hl_class" href="classPonca_1_1Basket.html">minId</a> == -1 || <a class="code hl_class" href="classPonca_1_1Basket.html">ev</a> &lt; <a class="code hl_class" href="classPonca_1_1Basket.html">eivals</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">minId</a>)))</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <a class="code hl_class" href="classPonca_1_1Basket.html">minId</a> = <a class="code hl_class" href="classPonca_1_1Basket.html">i</a>;</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// mLambda = eivals(minId);</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    VectorA vecU = m_solver.eigenvectors().col(minId).real();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    Base::m_uq   = vecU[1 + DataPoint::Dim];</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    Base::m_ul   = vecU.template segment&lt;DataPoint::Dim&gt;(1);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    Base::m_uc   = vecU[0];</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    VectorA <a class="code hl_class" href="classPonca_1_1Basket.html">vecU</a> = m_solver.eigenvectors().col(<a class="code hl_class" href="classPonca_1_1Basket.html">minId</a>).real();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    Base::m_uq   = <a class="code hl_class" href="classPonca_1_1Basket.html">vecU</a>[1 + DataPoint::Dim];</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    Base::m_ul   = <a class="code hl_class" href="classPonca_1_1Basket.html">vecU</a>.template <a class="code hl_class" href="classPonca_1_1Basket.html">segment&lt;DataPoint::Dim&gt;</a>(1);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    Base::m_uc   = <a class="code hl_class" href="classPonca_1_1Basket.html">vecU</a>[0];</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    Base::m_isNormalized = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
 </div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00316">basket.h:318</a></div></div>
 <div class="ttc" id="aclassPonca_1_1SphereFitImpl_html"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html">Ponca::SphereFitImpl</a></div><div class="ttdoc">Algebraic Sphere fitting procedure on point set without normals.</div><div class="ttdef"><b>Definition</b> <a href="sphereFit_8h_source.html#l00057">sphereFit.h:58</a></div></div>
 <div class="ttc" id="aclassPonca_1_1SphereFitImpl_html_a08414e7b508872852438fcf7ae6057d9"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html#a08414e7b508872852438fcf7ae6057d9">Ponca::SphereFitImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="sphereFit_8h_source.html#l00059">sphereFit.h:59</a></div></div>
 <div class="ttc" id="aclassPonca_1_1SphereFitImpl_html_a47623b43f9f24af6dd64ac8c7c98c316"><div class="ttname"><a href="classPonca_1_1SphereFitImpl.html#a47623b43f9f24af6dd64ac8c7c98c316">Ponca::SphereFitImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="sphereFit_8h_source.html#l00059">sphereFit.h:59</a></div></div>
@@ -224,13 +225,14 @@ $(document).ready(function(){initNavTree('sphereFit_8hpp_source.html',''); initR
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00027">enums.h:27</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39">Ponca::UNSTABLE</a></div><div class="ttdeci">@ UNSTABLE</div><div class="ttdoc">The fitting is ready to use but it is considered as unstable (if the number of neighbors is low for e...</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00020">enums.h:20</a></div></div>
+<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_ab740adc434a6d1ecb4cf4943c1ff2a84"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">Ponca::BasketComputeObject::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00153">basket.h:153</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><b>sphereFit.hpp</b></li>
-    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 26 2026 17:31:09 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

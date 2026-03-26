@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
+   &#160;<span id="projectnumber">cfae91c4e985f62659abecaccc35a41888257251</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -133,7 +133,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">using </span>DataPoint = <a class="code hl_class" href="classPonca_1_1PointPosition.html">Ponca::PointPosition&lt;float, 3&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span>DataPoint = <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::PointPosition&lt;float, 3&gt;</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main()</div>
 <div class="line">{</div>
@@ -143,17 +143,17 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div class="line">    std::vector&lt;DataPoint&gt; points(N);</div>
 <div class="line">    std::generate(points.begin(), points.end(), []() { return DataPoint{100 * DataPoint::VectorType::Random()}; });</div>
 <div class="line">    <span class="comment">// build the k-d tree</span></div>
-<div class="line">    <a class="code hl_struct" href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense&lt;DataPoint&gt;</a> kdtreeDense(points);</div>
+<div class="line">    <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::KdTreeDense&lt;DataPoint&gt;</a> kdtreeDense(points);</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordtype">int</span> seed = 0;</div>
 <div class="line">    std::vector&lt;int&gt; indices(N);</div>
 <div class="line">    std::vector&lt;int&gt; sampling(N / 2);</div>
 <div class="line">    std::iota(indices.begin(), indices.end(), 0);</div>
 <div class="line">    std::sample(indices.begin(), indices.end(), sampling.begin(), N / 2, std::mt19937(seed));</div>
-<div class="line">    <a class="code hl_struct" href="structPonca_1_1KdTreeSparse.html">Ponca::KdTreeSparse&lt;DataPoint&gt;</a> kdtreeSparse(points, sampling);</div>
+<div class="line">    <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::KdTreeSparse&lt;DataPoint&gt;</a> kdtreeSparse(points, sampling);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Abstract pointer type that can receive KdTreeSparse or KdTreeDense objects</span></div>
-<div class="line">    <a class="code hl_struct" href="structPonca_1_1KdTree.html">Ponca::KdTree&lt;DataPoint&gt;</a>* kdtree{<span class="keyword">nullptr</span>};</div>
+<div class="line">    <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::KdTree&lt;DataPoint&gt;</a>* kdtree{<span class="keyword">nullptr</span>};</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Assign sparse</span></div>
 <div class="line">    kdtree = &amp;kdtreeSparse; <span class="comment">// Or kdtree = new Ponca::KdTreeSparse&lt;DataPoint&gt; (points, sampling);</span></div>
@@ -166,7 +166,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div class="line">    <span class="keyword">const</span> DataPoint::VectorType query_pt{-10.0, 0.5, 75.0};</div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> k = 10;</div>
-<div class="line">    <a class="code hl_class" href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraph&lt;DataPoint&gt;</a> knnGraph(kdtreeDense, k);</div>
+<div class="line">    <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::KnnGraph&lt;DataPoint&gt;</a> knnGraph(kdtreeDense, k);</div>
 <div class="line"> </div>
 <div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;The nearest neighbor of the point at index &quot;</span> &lt;&lt; query_idx &lt;&lt; <span class="stringliteral">&quot; is at index &quot;</span></div>
 <div class="line">              &lt;&lt; *kdtree-&gt;nearestNeighbor(query_idx).begin() &lt;&lt; std::endl;</div>
@@ -227,11 +227,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> 1;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassPonca_1_1KnnGraphBase_html"><div class="ttname"><a href="classPonca_1_1KnnGraphBase.html">Ponca::KnnGraphBase</a></div><div class="ttdoc">Customizable base class for KnnGraph datastructure.</div><div class="ttdef"><b>Definition</b> <a href="knnGraph_8h_source.html#l00047">knnGraph.h:48</a></div></div>
-<div class="ttc" id="aclassPonca_1_1PointPosition_html"><div class="ttname"><a href="classPonca_1_1PointPosition.html">Ponca::PointPosition</a></div><div class="ttdoc">Point data type containing only containing the position vector.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00056">pointTypes.h:57</a></div></div>
-<div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">Public interface for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00093">kdTree.h:94</a></div></div>
-<div class="ttc" id="astructPonca_1_1KdTreeSparse_html"><div class="ttname"><a href="structPonca_1_1KdTreeSparse.html">Ponca::KdTreeSparse</a></div><div class="ttdoc">Public interface for sparse KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00113">kdTree.h:114</a></div></div>
-<div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00052">kdTree.h:53</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00316">basket.h:318</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -239,7 +235,7 @@ $(document).ready(function(){initNavTree('example_cxx_neighbor_search.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 26 2026 17:31:09 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

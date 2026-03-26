@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
+   &#160;<span id="projectnumber">cfae91c4e985f62659abecaccc35a41888257251</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -187,23 +187,23 @@ Example source code</h1>
 <div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// This class defines the input data format</span></div>
-<div class="line"><span class="keyword">class </span>MyPoint</div>
+<div class="line"><span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1Basket.html">MyPoint</a></div>
 <div class="line">{</div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    <span class="keyword">enum</span></div>
 <div class="line">    {</div>
 <div class="line">        Dim = 3</div>
 <div class="line">    };</div>
-<div class="line">    <span class="keyword">using </span>Scalar     = double;</div>
+<div class="line">    <span class="keyword">using </span>Scalar     = <a class="code hl_class" href="classPonca_1_1Basket.html">double</a>;</div>
 <div class="line">    <span class="keyword">using </span>VectorType = Eigen::Matrix&lt;Scalar, Dim, 1&gt;;</div>
 <div class="line">    <span class="keyword">using </span>MatrixType = Eigen::Matrix&lt;Scalar, Dim, Dim&gt;;</div>
 <div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH <span class="keyword">inline</span> MyPoint(<span class="keyword">const</span> VectorType&amp; _pos = VectorType::Zero()) : m_pos(_pos) {}</div>
+<div class="line">    PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1Basket.html">MyPoint</a>(<span class="keyword">const</span> VectorType&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">_pos</a> = VectorType::Zero()) : m_pos(<a class="code hl_class" href="classPonca_1_1Basket.html">_pos</a>) {}</div>
 <div class="line">    PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keyword">const</span> VectorType&amp; pos()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> m_pos; }</div>
 <div class="line">    PONCA_MULTIARCH <span class="keyword">inline</span> VectorType&amp; pos() { <span class="keywordflow">return</span> m_pos; }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Generate points on a sphere of radius 1</span></div>
-<div class="line">    <span class="keyword">static</span> <span class="keyword">inline</span> MyPoint Random()</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1Basket.html">MyPoint</a> <a class="code hl_class" href="classPonca_1_1Basket.html">Random</a>()</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">return</span> {VectorType::Random().normalized() * Eigen::internal::random&lt;Scalar&gt;(0.9, 1.1)};</div>
 <div class="line">    }</div>
@@ -215,32 +215,32 @@ Example source code</h1>
 <div class="line"><span class="keyword">using </span>Scalar     = MyPoint::Scalar;</div>
 <div class="line"><span class="keyword">using </span>VectorType = MyPoint::VectorType;</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">using </span>NeighborFilter = <a class="code hl_class" href="classPonca_1_1DistWeightFunc.html">DistWeightFunc&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;</a>&gt;;</div>
-<div class="line"><span class="keyword">using </span>FitType        = <a class="code hl_class" href="classPonca_1_1Basket.html">Basket&lt;MyPoint, NeighborFilter, Ponca::DryFit&gt;</a>; <span class="comment">// build a fitting object that does nothing</span></div>
+<div class="line"><span class="keyword">using </span>NeighborFilter = <a class="code hl_class" href="classPonca_1_1Basket.html">DistWeightFunc&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;</a>&gt;;</div>
+<div class="line"><span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1Basket.html">FitType</a>        = <a class="code hl_class" href="classPonca_1_1Basket.html">Basket&lt;MyPoint, NeighborFilter, Ponca::DryFit&gt;</a>; <span class="comment">// build a fitting object that does nothing</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">struct </span>NFPointCloud</div>
+<div class="line"><span class="keyword">struct </span><a class="code hl_class" href="classPonca_1_1Basket.html">NFPointCloud</a></div>
 <div class="line">{</div>
-<div class="line">    <span class="keyword">using </span>coord_t = <span class="keyword">typename</span> MyPoint::Scalar; </div>
+<div class="line">    <span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1Basket.html">coord_t</a> = <span class="keyword">typename</span> MyPoint::Scalar; </div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; pts;</div>
+<div class="line">    <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">pts</a>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">inline</span> NFPointCloud(<span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; _pts) : pts(_pts) {}</div>
+<div class="line">    <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1Basket.html">NFPointCloud</a>(<span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">_pts</a>) : <a class="code hl_class" href="classPonca_1_1Basket.html">pts</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">_pts</a>) {}</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Must return the number of data points</span></div>
-<div class="line">    [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">size_t</span> kdtree_get_point_count()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> pts.size(); }</div>
+<div class="line">    [[<a class="code hl_class" href="classPonca_1_1Basket.html">nodiscard</a>]] <span class="keyword">inline</span> <span class="keywordtype">size_t</span> <a class="code hl_class" href="classPonca_1_1Basket.html">kdtree_get_point_count</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_class" href="classPonca_1_1Basket.html">pts</a>.size(); }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Returns the dim&#39;th component of the idx&#39;th point in the class:</span></div>
 <div class="line">    <span class="comment">// Since this is inlined and the &quot;dim&quot; argument is typically an immediate</span></div>
 <div class="line">    <span class="comment">// value, the</span></div>
 <div class="line">    <span class="comment">//  &quot;if/else&#39;s&quot; are actually solved at compile time.</span></div>
-<div class="line">    [[nodiscard]] <span class="keyword">inline</span> coord_t kdtree_get_pt(<span class="keyword">const</span> <span class="keywordtype">size_t</span> idx, <span class="keyword">const</span> <span class="keywordtype">size_t</span> dim)<span class="keyword"> const</span></div>
+<div class="line">    [[<a class="code hl_class" href="classPonca_1_1Basket.html">nodiscard</a>]] <span class="keyword">inline</span> <a class="code hl_class" href="classPonca_1_1Basket.html">coord_t</a> <a class="code hl_class" href="classPonca_1_1Basket.html">kdtree_get_pt</a>(<span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_class" href="classPonca_1_1Basket.html">idx</a>, <span class="keyword">const</span> <span class="keywordtype">size_t</span> <a class="code hl_class" href="classPonca_1_1Basket.html">dim</a>)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">    </span>{</div>
-<div class="line">        <span class="keywordflow">if</span> (dim == 0)</div>
-<div class="line">            <span class="keywordflow">return</span> pts[idx].pos()[0];</div>
-<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (dim == 1)</div>
-<div class="line">            <span class="keywordflow">return</span> pts[idx].pos()[1];</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_class" href="classPonca_1_1Basket.html">dim</a> == 0)</div>
+<div class="line">            <span class="keywordflow">return</span> <a class="code hl_class" href="classPonca_1_1Basket.html">pts</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">idx</a>].pos()[0];</div>
+<div class="line">        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_class" href="classPonca_1_1Basket.html">dim</a> == 1)</div>
+<div class="line">            <span class="keywordflow">return</span> <a class="code hl_class" href="classPonca_1_1Basket.html">pts</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">idx</a>].pos()[1];</div>
 <div class="line">        <span class="keywordflow">else</span></div>
-<div class="line">            <span class="keywordflow">return</span> pts[idx].pos()[2];</div>
+<div class="line">            <span class="keywordflow">return</span> <a class="code hl_class" href="classPonca_1_1Basket.html">pts</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">idx</a>].pos()[2];</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Optional bounding-box computation: return false to default to a standard</span></div>
@@ -249,123 +249,122 @@ Example source code</h1>
 <div class="line">    <span class="comment">//   in &quot;bb&quot; so it can be avoided to redo it again. Look at bb.size() to</span></div>
 <div class="line">    <span class="comment">//   find out the expected dimensionality (e.g. 2 or 3 for point clouds)</span></div>
 <div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class</span> BBOX&gt;</div>
-<div class="line">    <span class="keywordtype">bool</span> kdtree_get_bbox(BBOX&amp; <span class="comment">/* bb */</span>)<span class="keyword"> const</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code hl_class" href="classPonca_1_1Basket.html">kdtree_get_bbox</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">BBOX</a>&amp; <span class="comment">/* bb */</span>)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">    </span>{</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line">    }</div>
 <div class="line">};</div>
-<div class="line"><span class="keyword">using </span>my_kd_tree_t =</div>
-<div class="line">    nanoflann::KDTreeSingleIndexAdaptor&lt;nanoflann::L2_Simple_Adaptor&lt;Scalar, NFPointCloud&gt;, NFPointCloud, 3&gt;;</div>
+<div class="line"><span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1Basket.html">my_kd_tree_t</a> =</div>
+<div class="line">    nanoflann::KDTreeSingleIndexAdaptor&lt;nanoflann::L2_Simple_Adaptor&lt;Scalar, NFPointCloud&gt;, <a class="code hl_class" href="classPonca_1_1Basket.html">NFPointCloud</a>, 3&gt;;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> test_raw(FitType&amp; f, <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; _vecs)</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">test_raw</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">FitType</a>&amp; f, <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">_vecs</a>)</div>
 <div class="line">{</div>
-<div class="line">    <span class="keywordflow">if</span> (!(f.compute(_vecs) == STABLE))</div>
+<div class="line">    <span class="keywordflow">if</span> (!(f.<a class="code hl_function" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">compute</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">_vecs</a>) == STABLE))</div>
 <div class="line">        std::cerr &lt;&lt; <span class="stringliteral">&quot;[raw] Something weird happened&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">    <span class="keywordflow">return</span> f.getNumNeighbors();</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> test_ponca_kdtree(FitType&amp; f, <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; _vecs, VectorType _p, <span class="keyword">const</span> <a class="code hl_struct" href="structPonca_1_1KdTree.html">KdTree&lt;MyPoint&gt;</a>&amp; tree,</div>
-<div class="line">                      Scalar tmax)</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">test_ponca_kdtree</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">FitType</a>&amp; f, <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">_vecs</a>, VectorType <a class="code hl_class" href="classPonca_1_1Basket.html">_p</a>, <span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1Basket.html">KdTree&lt;MyPoint&gt;</a>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">tree</a>,</div>
+<div class="line">                      Scalar <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">if</span> (!(</div>
-<div class="line">            f.computeWithIds(tree.<a class="code hl_function" href="classPonca_1_1StaticKdTreeBase.html#a7806ac439e7c61ff21d51111dbd81610">rangeNeighbors</a>(_p, tmax), _vecs)</div>
+<div class="line">            f.<a class="code hl_function" href="structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa">computeWithIds</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">tree</a>.rangeNeighbors(<a class="code hl_class" href="classPonca_1_1Basket.html">_p</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>), <a class="code hl_class" href="classPonca_1_1Basket.html">_vecs</a>)</div>
 <div class="line">            == STABLE))</div>
 <div class="line">        std::cerr &lt;&lt; <span class="stringliteral">&quot;[ponca_kdtree] Something weird happened&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">    <span class="keywordflow">return</span> f.getNumNeighbors();</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> test_nanflann_kdtree(FitType&amp; f, <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; _vecs, VectorType _p, <span class="keyword">const</span> my_kd_tree_t&amp; tree,</div>
-<div class="line">                         Scalar tmax)</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">test_nanflann_kdtree</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">FitType</a>&amp; f, <span class="keyword">const</span> std::vector&lt;MyPoint&gt;&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">_vecs</a>, VectorType <a class="code hl_class" href="classPonca_1_1Basket.html">_p</a>, <span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1Basket.html">my_kd_tree_t</a>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">tree</a>,</div>
+<div class="line">                         Scalar <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>)</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// radius search:</span></div>
-<div class="line">    std::vector&lt;nanoflann::ResultItem&lt;size_t, Scalar&gt;&gt; indices_dists;</div>
-<div class="line">    nanoflann::RadiusResultSet&lt;Scalar, size_t&gt; resultSet(tmax * tmax, indices_dists);</div>
+<div class="line">    std::vector&lt;nanoflann::ResultItem&lt;size_t, Scalar&gt;&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">indices_dists</a>;</div>
+<div class="line">    nanoflann::RadiusResultSet&lt;Scalar, size_t&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">resultSet</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a> * <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">indices_dists</a>);</div>
 <div class="line"> </div>
-<div class="line">    tree.findNeighbors(resultSet, _p.data());</div>
+<div class="line">    <a class="code hl_class" href="classPonca_1_1Basket.html">tree</a>.findNeighbors(<a class="code hl_class" href="classPonca_1_1Basket.html">resultSet</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">_p</a>.data());</div>
 <div class="line"> </div>
 <div class="line">    f.init();</div>
 <div class="line">    <span class="comment">// Compute</span></div>
-<div class="line">    <span class="keyword">auto</span> res = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a>;</div>
+<div class="line">    <span class="keyword">auto</span> <a class="code hl_class" href="classPonca_1_1Basket.html">res</a> = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a>;</div>
 <div class="line">    <span class="keywordflow">do</span></div>
 <div class="line">    {</div>
 <div class="line">        f.startNewPass();</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; r : resultSet.m_indices_dists)</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">r</a> : <a class="code hl_class" href="classPonca_1_1Basket.html">resultSet</a>.<a class="code hl_class" href="classPonca_1_1Basket.html">m_indices_dists</a>)</div>
 <div class="line">        {</div>
-<div class="line">            f.addNeighbor(_vecs[r.first]);</div>
+<div class="line">            f.<a class="code hl_function" href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">addNeighbor</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">_vecs</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">r</a>.first]);</div>
 <div class="line">        }</div>
-<div class="line">        res = f.finalize();</div>
-<div class="line">    } <span class="keywordflow">while</span> (res == NEED_OTHER_PASS);</div>
+<div class="line">        <a class="code hl_class" href="classPonca_1_1Basket.html">res</a> = f.finalize();</div>
+<div class="line">    } <span class="keywordflow">while</span> (<a class="code hl_class" href="classPonca_1_1Basket.html">res</a> == NEED_OTHER_PASS);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (res != STABLE)</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_class" href="classPonca_1_1Basket.html">res</a> != STABLE)</div>
 <div class="line">        std::cerr &lt;&lt; <span class="stringliteral">&quot;[nanoflann_kdtree] Something weird happened&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">    <span class="keywordflow">return</span> f.getNumNeighbors();</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main()</div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">main</a>()</div>
 <div class="line">{</div>
 <div class="line">    <span class="keyword">using </span>Scalar = <span class="keyword">typename</span> MyPoint::Scalar;</div>
 <div class="line">    <span class="comment">// init random point cloud</span></div>
 <div class="line">    <span class="keyword">constexpr</span> <span class="keywordtype">int</span> n = 100000;</div>
-<div class="line">    std::vector&lt;MyPoint&gt; vecs(n);</div>
-<div class="line">    std::generate(vecs.begin(), vecs.end(), []() { return MyPoint::Random(); });</div>
+<div class="line">    std::vector&lt;MyPoint&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">vecs</a>(n);</div>
+<div class="line">    std::generate(<a class="code hl_class" href="classPonca_1_1Basket.html">vecs</a>.begin(), <a class="code hl_class" href="classPonca_1_1Basket.html">vecs</a>.end(), []() { return MyPoint::Random(); });</div>
 <div class="line"> </div>
-<div class="line">    <a class="code hl_struct" href="structPonca_1_1KdTreeDense.html">KdTreeDense&lt;MyPoint&gt;</a> ponca_tree(vecs);</div>
+<div class="line">    <a class="code hl_class" href="classPonca_1_1Basket.html">KdTreeDense&lt;MyPoint&gt;</a> <a class="code hl_class" href="classPonca_1_1Basket.html">ponca_tree</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">vecs</a>);</div>
 <div class="line"> </div>
-<div class="line">    NFPointCloud nfcloud(vecs);</div>
-<div class="line">    <span class="keyword">const</span> my_kd_tree_t mat_index(3, nfcloud);</div>
+<div class="line">    <a class="code hl_class" href="classPonca_1_1Basket.html">NFPointCloud</a> <a class="code hl_class" href="classPonca_1_1Basket.html">nfcloud</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">vecs</a>);</div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1Basket.html">my_kd_tree_t</a> <a class="code hl_class" href="classPonca_1_1Basket.html">mat_index</a>(3, <a class="code hl_class" href="classPonca_1_1Basket.html">nfcloud</a>);</div>
 <div class="line"> </div>
-<div class="line">    Scalar tmax = 0.2;</div>
+<div class="line">    Scalar <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a> = 0.2;</div>
 <div class="line"> </div>
-<div class="line">    FitType fit;</div>
+<div class="line">    <a class="code hl_class" href="classPonca_1_1Basket.html">FitType</a> <a class="code hl_class" href="classPonca_1_1Basket.html">fit</a>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keyword">constexpr</span> <span class="keywordtype">int</span> nbrun = 1000;</div>
-<div class="line">    std::vector&lt;typename MyPoint::VectorType&gt; queries(nbrun);</div>
-<div class="line">    std::generate(queries.begin(), queries.end(), []() { return MyPoint::Random().pos(); });</div>
+<div class="line">    <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">nbrun</a> = 1000;</div>
+<div class="line">    std::vector&lt;typename MyPoint::VectorType&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">queries</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">nbrun</a>);</div>
+<div class="line">    std::generate(<a class="code hl_class" href="classPonca_1_1Basket.html">queries</a>.begin(), <a class="code hl_class" href="classPonca_1_1Basket.html">queries</a>.end(), []() { return MyPoint::Random().pos(); });</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordtype">int</span> neiRaw{0}, neiPonca{0}, neiFlann{0};</div>
+<div class="line">    <span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">neiRaw</a>{0}, <a class="code hl_class" href="classPonca_1_1Basket.html">neiPonca</a>{0}, <a class="code hl_class" href="classPonca_1_1Basket.html">neiFlann</a>{0};</div>
 <div class="line">    <span class="keyword">auto</span> start = std::chrono::system_clock::now();</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != nbrun; ++i)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">i</a> = 0; <a class="code hl_class" href="classPonca_1_1Basket.html">i</a> != <a class="code hl_class" href="classPonca_1_1Basket.html">nbrun</a>; ++<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>)</div>
 <div class="line">    {</div>
-<div class="line">        fit.setNeighborFilter({queries[i], tmax});</div>
-<div class="line">        neiRaw += test_raw(fit, vecs);</div>
+<div class="line">        <a class="code hl_class" href="classPonca_1_1Basket.html">fit</a>.setNeighborFilter({<a class="code hl_class" href="classPonca_1_1Basket.html">queries</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>], <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>});</div>
+<div class="line">        <a class="code hl_class" href="classPonca_1_1Basket.html">neiRaw</a> += <a class="code hl_class" href="classPonca_1_1Basket.html">test_raw</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">fit</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">vecs</a>);</div>
 <div class="line">    }</div>
 <div class="line">    <span class="keyword">auto</span> end                              = std::chrono::system_clock::now();</div>
-<div class="line">    std::chrono::duration&lt;double&gt; rawDiff = (end - start);</div>
+<div class="line">    std::chrono::duration&lt;double&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">rawDiff</a> = (end - start);</div>
 <div class="line"> </div>
 <div class="line">    start = std::chrono::system_clock::now();</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != nbrun; ++i)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">i</a> = 0; <a class="code hl_class" href="classPonca_1_1Basket.html">i</a> != <a class="code hl_class" href="classPonca_1_1Basket.html">nbrun</a>; ++<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>)</div>
 <div class="line">    {</div>
-<div class="line">        fit.setNeighborFilter({queries[i], tmax});</div>
-<div class="line">        neiPonca += test_ponca_kdtree(fit, vecs, queries[i], ponca_tree, tmax);</div>
+<div class="line">        <a class="code hl_class" href="classPonca_1_1Basket.html">fit</a>.setNeighborFilter({<a class="code hl_class" href="classPonca_1_1Basket.html">queries</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>], <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>});</div>
+<div class="line">        <a class="code hl_class" href="classPonca_1_1Basket.html">neiPonca</a> += <a class="code hl_class" href="classPonca_1_1Basket.html">test_ponca_kdtree</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">fit</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">vecs</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">queries</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>], <a class="code hl_class" href="classPonca_1_1Basket.html">ponca_tree</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>);</div>
 <div class="line">    }</div>
 <div class="line">    end                                           = std::chrono::system_clock::now();</div>
-<div class="line">    <span class="keyword">const</span> std::chrono::duration&lt;double&gt; poncaDiff = (end - start);</div>
+<div class="line">    <span class="keyword">const</span> std::chrono::duration&lt;double&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">poncaDiff</a> = (end - start);</div>
 <div class="line"> </div>
 <div class="line">    start = std::chrono::system_clock::now();</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != nbrun; ++i)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">i</a> = 0; <a class="code hl_class" href="classPonca_1_1Basket.html">i</a> != <a class="code hl_class" href="classPonca_1_1Basket.html">nbrun</a>; ++<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>)</div>
 <div class="line">    {</div>
-<div class="line">        fit.setNeighborFilter({queries[i], tmax});</div>
-<div class="line">        neiFlann += test_nanflann_kdtree(fit, vecs, queries[i], mat_index, tmax);</div>
+<div class="line">        <a class="code hl_class" href="classPonca_1_1Basket.html">fit</a>.setNeighborFilter({<a class="code hl_class" href="classPonca_1_1Basket.html">queries</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>], <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>});</div>
+<div class="line">        <a class="code hl_class" href="classPonca_1_1Basket.html">neiFlann</a> += <a class="code hl_class" href="classPonca_1_1Basket.html">test_nanflann_kdtree</a>(<a class="code hl_class" href="classPonca_1_1Basket.html">fit</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">vecs</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">queries</a>[<a class="code hl_class" href="classPonca_1_1Basket.html">i</a>], <a class="code hl_class" href="classPonca_1_1Basket.html">mat_index</a>, <a class="code hl_class" href="classPonca_1_1Basket.html">tmax</a>);</div>
 <div class="line">    }</div>
 <div class="line">    end                                               = std::chrono::system_clock::now();</div>
-<div class="line">    <span class="keyword">const</span> std::chrono::duration&lt;double&gt; nanoflannDiff = (end - start);</div>
+<div class="line">    <span class="keyword">const</span> std::chrono::duration&lt;double&gt; <a class="code hl_class" href="classPonca_1_1Basket.html">nanoflannDiff</a> = (end - start);</div>
 <div class="line"> </div>
 <div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Timings: &quot;</span></div>
 <div class="line">              &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Raw :       &quot;</span> &lt;&lt; rawDiff.count() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Ponca :     &quot;</span> &lt;&lt; poncaDiff.count() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Nanoflann : &quot;</span> &lt;&lt; nanoflannDiff.count() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Raw :       &quot;</span> &lt;&lt; <a class="code hl_class" href="classPonca_1_1Basket.html">rawDiff</a>.count() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Ponca :     &quot;</span> &lt;&lt; <a class="code hl_class" href="classPonca_1_1Basket.html">poncaDiff</a>.count() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Nanoflann : &quot;</span> &lt;&lt; <a class="code hl_class" href="classPonca_1_1Basket.html">nanoflannDiff</a>.count() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Number of neighbors: &quot;</span></div>
 <div class="line">              &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Raw :       &quot;</span> &lt;&lt; neiRaw &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Ponca :     &quot;</span> &lt;&lt; neiPonca &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Nanoflann : &quot;</span> &lt;&lt; neiFlann &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Raw :       &quot;</span> &lt;&lt; <a class="code hl_class" href="classPonca_1_1Basket.html">neiRaw</a> &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Ponca :     &quot;</span> &lt;&lt; <a class="code hl_class" href="classPonca_1_1Basket.html">neiPonca</a> &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line">              &lt;&lt; <span class="stringliteral">&quot;Nanoflann : &quot;</span> &lt;&lt; <a class="code hl_class" href="classPonca_1_1Basket.html">neiFlann</a> &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00316">basket.h:318</a></div></div>
-<div class="ttc" id="aclassPonca_1_1DistWeightFunc_html"><div class="ttname"><a href="classPonca_1_1DistWeightFunc.html">Ponca::DistWeightFunc</a></div><div class="ttdoc">Weight neighbors according to the euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFunc_8h_source.html#l00161">weightFunc.h:162</a></div></div>
-<div class="ttc" id="aclassPonca_1_1StaticKdTreeBase_html_a7806ac439e7c61ff21d51111dbd81610"><div class="ttname"><a href="classPonca_1_1StaticKdTreeBase.html#a7806ac439e7c61ff21d51111dbd81610">Ponca::StaticKdTreeBase::rangeNeighbors</a></div><div class="ttdeci">KdTreeRangePointQuery&lt; Traits &gt; rangeNeighbors(const VectorType &amp;point, Scalar r) const</div><div class="ttdoc">Computes a Query object to iterate over the neighbors that are inside a given radius....</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00384">kdTree.h:384</a></div></div>
-<div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">Public interface for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00093">kdTree.h:94</a></div></div>
-<div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00052">kdTree.h:53</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_ad5132ec839c56fdd21e875825d21465a"><div class="ttname"><a href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00341">basket.h:341</a></div></div>
+<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_a5124e70f1b87118dea332a16228cbefa"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa">Ponca::BasketComputeObject::computeWithIds</a></div><div class="ttdeci">FIT_RESULT computeWithIds(IndexRange ids, const PointContainer &amp;points)</div><div class="ttdoc">Convenience function to iterate over a subset of samples in a PointContainer Add neighbors stored in ...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00179">basket.h:179</a></div></div>
+<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_ab740adc434a6d1ecb4cf4943c1ff2a84"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">Ponca::BasketComputeObject::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00153">basket.h:153</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -373,7 +372,7 @@ Example source code</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 26 2026 17:31:09 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

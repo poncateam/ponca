@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
+   &#160;<span id="projectnumber">cfae91c4e985f62659abecaccc35a41888257251</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -154,7 +154,7 @@ $(document).ready(function(){initNavTree('stack_8h_source.html',''); initResizab
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d">   41</a></span>        PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d">size</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classPonca_1_1Stack.html#a57bbd15ba634a2b8c5906d3a83e890e6">   45</a></span>        PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Stack.html#a57bbd15ba634a2b8c5906d3a83e890e6">push</a>(<span class="keyword">const</span> T&amp; value);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classPonca_1_1Stack.html#a57bbd15ba634a2b8c5906d3a83e890e6">   45</a></span>        PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Stack.html#a57bbd15ba634a2b8c5906d3a83e890e6">push</a>(<span class="keyword">const</span> T&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">value</a>);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classPonca_1_1Stack.html#a6166b198d8c0ad83b5c4606e85474e29">   48</a></span>        PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Stack.html#a6166b198d8c0ad83b5c4606e85474e29">push</a>();</div>
@@ -208,9 +208,9 @@ $(document).ready(function(){initNavTree('stack_8h_source.html',''); initResizab
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keywordtype">int</span> N&gt;</div>
 <div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classPonca_1_1Stack.html#a57bbd15ba634a2b8c5906d3a83e890e6">   98</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Stack.html#a6166b198d8c0ad83b5c4606e85474e29">Stack&lt;T, N&gt;::push</a>(<span class="keyword">const</span> T&amp; value)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classPonca_1_1Stack.html#a57bbd15ba634a2b8c5906d3a83e890e6">   98</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Stack.html#a6166b198d8c0ad83b5c4606e85474e29">Stack&lt;T, N&gt;::push</a>(<span class="keyword">const</span> T&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">value</a>)</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    {</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        STD_SAFE_AT(m_data, m_size) = value;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        STD_SAFE_AT(m_data, m_size) = <a class="code hl_class" href="classPonca_1_1Basket.html">value</a>;</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        ++m_size;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
 </div>
@@ -250,6 +250,7 @@ $(document).ready(function(){initNavTree('stack_8h_source.html',''); initResizab
 </div>
 </div>
 </div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00316">basket.h:318</a></div></div>
 <div class="ttc" id="aclassPonca_1_1Stack_html"><div class="ttname"><a href="classPonca_1_1Stack.html">Ponca::Stack</a></div><div class="ttdoc">Stack with fixed-size storage.</div><div class="ttdef"><b>Definition</b> <a href="stack_8h_source.html#l00025">stack.h:26</a></div></div>
 <div class="ttc" id="aclassPonca_1_1Stack_html_a00f925370381e2f455d52141e1f13b22"><div class="ttname"><a href="classPonca_1_1Stack.html#a00f925370381e2f455d52141e1f13b22">Ponca::Stack::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Clear the stack content.</div><div class="ttdef"><b>Definition</b> <a href="stack_8h_source.html#l00117">stack.h:117</a></div></div>
 <div class="ttc" id="aclassPonca_1_1Stack_html_a0ee872a3583d109776080cfcae645ad0"><div class="ttname"><a href="classPonca_1_1Stack.html#a0ee872a3583d109776080cfcae645ad0">Ponca::Stack::m_data</a></div><div class="ttdeci">std::array&lt; T, N &gt; m_data</div><div class="ttdoc">Fixed-size data buffer.</div><div class="ttdef"><b>Definition</b> <a href="stack_8h_source.html#l00061">stack.h:61</a></div></div>
@@ -269,7 +270,7 @@ $(document).ready(function(){initNavTree('stack_8h_source.html',''); initResizab
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_c4018c4157a9bf1e0ca20e9cb22f3b7c.html">Common</a></li><li class="navelem"><a class="el" href="dir_a0c2bd8a89d5f8f9b7ea9ff292edbc60.html">Containers</a></li><li class="navelem"><b>stack.h</b></li>
-    <li class="footer">Generated on Wed Mar 25 2026 17:52:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 26 2026 17:31:08 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

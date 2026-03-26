@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">1ffd926693113b7db54c52b90e144fa17574978f</span>
+   &#160;<span id="projectnumber">cfae91c4e985f62659abecaccc35a41888257251</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -128,13 +128,22 @@ $(document).ready(function(){initNavTree('namespacePonca_1_1internal.html',''); 
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html">CenteredNeighborhoodFrame</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">NeighborhoodFrame that express 3d points relatively to a prescribed center.  <a href="classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1CNCEigen.html">CNCEigen</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class contains some stand-alone CorrectedNormalCurrent formulas for triangles, using eigen as linear algebra backend.  <a href="structPonca_1_1internal_1_1CNCEigen.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for any 3d curvature estimator: holds \(k_{\min}\), \(k_{\max}\) and associated vectors, such that \( k_{\min} &lt;= k_{\max} \).  <a href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html">GlobalNeighborhoodFrame</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">NeighborhoodFrame that keep points in the global frame without applying any transformation This class is useful to compute direct fits in the embedding space, without paying the cost to express neighbors relatively to an evaluation point.  <a href="classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1HexagramBase.html">HexagramBase</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1NoWeightFuncBase.html">NoWeightFuncBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weighting function that set uniform weight to all samples.  <a href="classPonca_1_1internal_1_1NoWeightFuncBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1Triangle.html">Triangle</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the three points and normals of the triangles and provides access to Corrected Normal Current formula.  <a href="structPonca_1_1internal_1_1Triangle.html#details">More...</a><br /></td></tr>
@@ -155,23 +164,23 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9c727a12b8b2ee91d4506c6a66165490" id="r_a9c727a12b8b2ee91d4506c6a66165490"><td class="memTemplParams" colspan="2">template&lt;typename Scalar &gt; </td></tr>
-<tr class="memitem:a9c727a12b8b2ee91d4506c6a66165490"><td class="memTemplItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a9c727a12b8b2ee91d4506c6a66165490">getParaboloidZ</a> (const Scalar _x, const Scalar _y, const Scalar _a, const Scalar _b)</td></tr>
+<tr class="memitem:a9c727a12b8b2ee91d4506c6a66165490" id="r_a9c727a12b8b2ee91d4506c6a66165490"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &gt; </td></tr>
+<tr class="memitem:a9c727a12b8b2ee91d4506c6a66165490"><td class="memTemplItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a9c727a12b8b2ee91d4506c6a66165490">getParaboloidZ</a> (<a class="el" href="classPonca_1_1Basket.html">const</a> Scalar <a class="el" href="classPonca_1_1Basket.html">_x</a>, <a class="el" href="classPonca_1_1Basket.html">const</a> Scalar <a class="el" href="classPonca_1_1Basket.html">_y</a>, <a class="el" href="classPonca_1_1Basket.html">const</a> Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, <a class="el" href="classPonca_1_1Basket.html">const</a> Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>)</td></tr>
 <tr class="memdesc:a9c727a12b8b2ee91d4506c6a66165490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate z value using the equation z = ax^2 + by^2.  <br /></td></tr>
 <tr class="separator:a9c727a12b8b2ee91d4506c6a66165490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0734d92c119ee9ee66ec43f59f3e0ae4" id="r_a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="memTemplParams" colspan="2">template&lt;typename Scalar &gt; </td></tr>
-<tr class="memitem:a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="memTemplItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a0734d92c119ee9ee66ec43f59f3e0ae4">getParaboloidZ</a> (Scalar _x, Scalar _y, Scalar _a, Scalar _b, Scalar _c, Scalar _d, Scalar _e, Scalar _f)</td></tr>
+<tr class="memitem:a0734d92c119ee9ee66ec43f59f3e0ae4" id="r_a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &gt; </td></tr>
+<tr class="memitem:a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="memTemplItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a0734d92c119ee9ee66ec43f59f3e0ae4">getParaboloidZ</a> (Scalar <a class="el" href="classPonca_1_1Basket.html">_x</a>, Scalar <a class="el" href="classPonca_1_1Basket.html">_y</a>, Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>, Scalar <a class="el" href="classPonca_1_1Basket.html">_c</a>, Scalar <a class="el" href="classPonca_1_1Basket.html">_d</a>, Scalar <a class="el" href="classPonca_1_1Basket.html">_e</a>, Scalar <a class="el" href="classPonca_1_1Basket.html">_f</a>)</td></tr>
 <tr class="memdesc:a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate z value using the equation z = ax^2 + by^2 + cxy + dx + ey + f.  <br /></td></tr>
 <tr class="separator:a0734d92c119ee9ee66ec43f59f3e0ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a4eb90ed7b9be1c6d97a51afc2c7552" id="r_a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memTemplParams" colspan="2">template&lt;typename VectorType &gt; </td></tr>
-<tr class="memitem:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memTemplItemLeft" align="right" valign="top">VectorType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a1a4eb90ed7b9be1c6d97a51afc2c7552">getParaboloidNormal</a> (const VectorType &amp;in, const typename VectorType::Scalar _a, const typename VectorType::Scalar _b)</td></tr>
+<tr class="memitem:a1a4eb90ed7b9be1c6d97a51afc2c7552" id="r_a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> VectorType &gt; </td></tr>
+<tr class="memitem:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memTemplItemLeft" align="right" valign="top">VectorType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a1a4eb90ed7b9be1c6d97a51afc2c7552">getParaboloidNormal</a> (<a class="el" href="classPonca_1_1Basket.html">const</a> VectorType &amp;<a class="el" href="classPonca_1_1Basket.html">in</a>, <a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="classPonca_1_1Basket.html">typename</a> VectorType::Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, <a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="classPonca_1_1Basket.html">typename</a> VectorType::Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>)</td></tr>
 <tr class="memdesc:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate z value using the equation z = ax^2 + by^2.  <br /></td></tr>
 <tr class="separator:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf83851db4531c564d9dc305dd4818e1" id="r_adf83851db4531c564d9dc305dd4818e1"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
-<tr class="memitem:adf83851db4531c564d9dc305dd4818e1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#adf83851db4531c564d9dc305dd4818e1">getParaboloidNormal</a> (DataPoint &amp;in, typename DataPoint::Scalar _a, typename DataPoint::Scalar _b, typename DataPoint::Scalar _c, typename DataPoint::Scalar _d, typename DataPoint::Scalar _e, typename DataPoint::Scalar _f)</td></tr>
+<tr class="memitem:adf83851db4531c564d9dc305dd4818e1" id="r_adf83851db4531c564d9dc305dd4818e1"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </td></tr>
+<tr class="memitem:adf83851db4531c564d9dc305dd4818e1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, <a class="el" href="classPonca_1_1Basket.html">void</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#adf83851db4531c564d9dc305dd4818e1">getParaboloidNormal</a> (DataPoint &amp;<a class="el" href="classPonca_1_1Basket.html">in</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_c</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_d</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_e</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_f</a>)</td></tr>
 <tr class="separator:adf83851db4531c564d9dc305dd4818e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa300959ee3fce898d4bac03a27b3bb88" id="r_aa300959ee3fce898d4bac03a27b3bb88"><td class="memTemplParams" colspan="2">template&lt;typename DataPoint &gt; </td></tr>
-<tr class="memitem:aa300959ee3fce898d4bac03a27b3bb88"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#aa300959ee3fce898d4bac03a27b3bb88">getParaboloidNormal</a> (DataPoint &amp;in, typename DataPoint::Scalar _a, typename DataPoint::Scalar _b, typename DataPoint::Scalar _c, typename DataPoint::Scalar _d, typename DataPoint::Scalar _e, typename DataPoint::Scalar _f)</td></tr>
+<tr class="memitem:aa300959ee3fce898d4bac03a27b3bb88" id="r_aa300959ee3fce898d4bac03a27b3bb88"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </td></tr>
+<tr class="memitem:aa300959ee3fce898d4bac03a27b3bb88"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, <a class="el" href="classPonca_1_1Basket.html">void</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#aa300959ee3fce898d4bac03a27b3bb88">getParaboloidNormal</a> (DataPoint &amp;<a class="el" href="classPonca_1_1Basket.html">in</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_c</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_d</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_e</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_f</a>)</td></tr>
 <tr class="separator:aa300959ee3fce898d4bac03a27b3bb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -184,7 +193,7 @@ Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename VectorType &gt; </div>
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> VectorType &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -192,19 +201,19 @@ template&lt;typename VectorType &gt; </div>
         <tr>
           <td class="memname">VectorType Ponca::internal::getParaboloidNormal </td>
           <td>(</td>
-          <td class="paramtype">const VectorType &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> VectorType &amp;&#160;</td>
           <td class="paramname"><em>in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const typename VectorType::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="classPonca_1_1Basket.html">typename</a> VectorType::Scalar&#160;</td>
           <td class="paramname"><em>_a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const typename VectorType::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="classPonca_1_1Basket.html">typename</a> VectorType::Scalar&#160;</td>
           <td class="paramname"><em>_b</em>&#160;</td>
         </tr>
         <tr>
@@ -232,13 +241,13 @@ template&lt;typename VectorType &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename DataPoint &gt; </div>
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt; <a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, void &gt;::type Ponca::internal::getParaboloidNormal </td>
+          <td class="memname">std::enable_if&lt; <a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, <a class="el" href="classPonca_1_1Basket.html">void</a> &gt;::type Ponca::internal::getParaboloidNormal </td>
           <td>(</td>
           <td class="paramtype">DataPoint &amp;&#160;</td>
           <td class="paramname"><em>in</em>, </td>
@@ -246,37 +255,37 @@ template&lt;typename DataPoint &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_c</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_d</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_e</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_f</em>&#160;</td>
         </tr>
         <tr>
@@ -302,13 +311,13 @@ template&lt;typename DataPoint &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename DataPoint &gt; </div>
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;!<a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, void &gt;::type Ponca::internal::getParaboloidNormal </td>
+          <td class="memname">std::enable_if&lt;!<a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, <a class="el" href="classPonca_1_1Basket.html">void</a> &gt;::type Ponca::internal::getParaboloidNormal </td>
           <td>(</td>
           <td class="paramtype">DataPoint &amp;&#160;</td>
           <td class="paramname"><em>in</em>, </td>
@@ -316,37 +325,37 @@ template&lt;typename DataPoint &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_c</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_d</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_e</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">typename DataPoint::Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
           <td class="paramname"><em>_f</em>&#160;</td>
         </tr>
         <tr>
@@ -372,7 +381,7 @@ template&lt;typename DataPoint &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Scalar &gt; </div>
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -380,25 +389,25 @@ template&lt;typename Scalar &gt; </div>
         <tr>
           <td class="memname">Scalar Ponca::internal::getParaboloidZ </td>
           <td>(</td>
-          <td class="paramtype">const Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> Scalar&#160;</td>
           <td class="paramname"><em>_x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> Scalar&#160;</td>
           <td class="paramname"><em>_y</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> Scalar&#160;</td>
           <td class="paramname"><em>_a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Scalar&#160;</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> Scalar&#160;</td>
           <td class="paramname"><em>_b</em>&#160;</td>
         </tr>
         <tr>
@@ -426,7 +435,7 @@ template&lt;typename Scalar &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Scalar &gt; </div>
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -504,7 +513,7 @@ template&lt;typename Scalar &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="namespacePonca_1_1internal.html">internal</a></li>
-    <li class="footer">Generated on Wed Mar 25 2026 17:52:42 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Mar 26 2026 17:31:09 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

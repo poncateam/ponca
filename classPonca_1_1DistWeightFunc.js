@@ -1,7 +1,7 @@
 var classPonca_1_1DistWeightFunc =
 [
     [ "MatrixType", "classPonca_1_1DistWeightFunc.html#a38d697c8aa86a39be3dca740f8cf3232", null ],
-    [ "NeighborhoodFrame", "classPonca_1_1DistWeightFunc.html#a06ef1527c4c697f4e70322e4d0b215c2", null ],
+    [ "NeighborhoodFrame", "classPonca_1_1DistWeightFunc.html#aa4259239a53d2a1b7f3bc38ac47cd8a7", null ],
     [ "Scalar", "classPonca_1_1DistWeightFunc.html#aa78e3ea4b72c62d9a0dc117fb7babab5", null ],
     [ "VectorType", "classPonca_1_1DistWeightFunc.html#ae7a2237f5c6983f49cfe6b73146666f2", null ],
     [ "WeightReturnType", "classPonca_1_1DistWeightFunc.html#a9f637587b83b4a0e7db3a5499f939010", null ],
