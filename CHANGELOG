@@ -2,9 +2,13 @@ Ponca changelog
 
 
 --------------------------------------------------------------------------------
-Current head (v.2.0.alpha2 RC)
-This release introduces a major rework of the curvature estimation framework, improve Cuda support for KdTrees, and
-introduces several bug fixes and minors improvements.
+Current head (v.2.0.alpha3 RC)
+This release will introduce a refactoring of the requirement library using cpp20::concepts.
+
+--------------------------------------------------------------------------------
+v.2.0.alpha2
+This release introduces a major rework of the curvature estimation framework, bump CXX standard to cpp20, 
+improves Cuda support, an introduces several bug fixes and minors improvements.
 
 - API
     - [fitting] Refactor curvature estimation API (#201) : remove deadcode, add weingarten map and fundamental forms.
