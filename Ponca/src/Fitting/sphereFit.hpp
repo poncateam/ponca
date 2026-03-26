@@ -5,6 +5,7 @@
 */
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesAlgebraicSphere<T>
 void SphereFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -12,6 +13,7 @@ void SphereFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesAlgebraicSphere<T>
 void SphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                              const DataPoint& attributes)
 {
@@ -28,6 +30,7 @@ void SphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const Vec
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesAlgebraicSphere<T>
 FIT_RESULT SphereFitImpl<DataPoint, _NFilter, T>::finalize()
 {
     // Compute status

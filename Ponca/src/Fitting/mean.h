@@ -28,7 +28,7 @@ namespace Ponca
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-       VectorType m_sumP{VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
+        VectorType m_sumP{VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition, meanPosition)
