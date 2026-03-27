@@ -23,17 +23,12 @@ namespace Ponca
         \see AlgebraicSphere
     */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T>
+        requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
     class OrientedSphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_MEAN_NORMAL
-        };
-
         // computation data
         Scalar m_sumDotPN{0}, /*!< \brief Sum of the dot product between relative positions and normals */
             m_sumDotPP{0},    /*!< \brief Sum of the squared relative positions */

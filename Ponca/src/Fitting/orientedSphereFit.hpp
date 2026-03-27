@@ -5,7 +5,7 @@
 */
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T>
+    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
 void OrientedSphereFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -18,7 +18,7 @@ void OrientedSphereFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T>
+    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
 void OrientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                      const DataPoint& attributes)
 {
@@ -28,7 +28,7 @@ void OrientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, c
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T>
+    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
 FIT_RESULT OrientedSphereFitImpl<DataPoint, _NFilter, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
