@@ -29,8 +29,7 @@ namespace Ponca
         CovariancePlaneFitImpl::worldToTangentPlane() wraps up coordinates in this order (height, u and v).
 
         This primitive provides:
-        \verbatim PROVIDES_MONGE_PATCH, PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS,
-       PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS \endverbatim
+        \verbatim PROVIDES_MONGE_PATCH, ProvidesFirstFondamentalFormComponents, ProvidesSecondFondamentalFormComponents\endverbatim
 
         This primitive requires:
         \verbatim ProvidesPlane, ProvidesTangentPlaneBasis, PROVIDES_HEIGHTFIELD \endverbatim
@@ -47,8 +46,6 @@ namespace Ponca
         {
             Check = Base::PROVIDES_HEIGHTFIELD,         /*!< \brief Requires a heightfield function */
             PROVIDES_MONGE_PATCH,                       /*!< \brief Provides MongePatch API */
-            PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS, /*!< \brief Provides first fundamental form */
-            PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS /*!< \brief Provides second fundamental form */
         };
 
     public:
@@ -56,6 +53,8 @@ namespace Ponca
         PONCA_MULTIARCH inline MongePatch() : Base() { Base::init(); }
 
         PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, mongePatchPrimitive)
+        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, firstFondamentalFormComponent)
+        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, secondFondamentalFormComponent)
 
         //! \brief Value of the scalar field at the evaluation point
         //! \see method `#isSigned` of the fit to check if the sign is reliable

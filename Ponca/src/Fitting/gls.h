@@ -35,8 +35,8 @@ namespace Ponca
 
         Requirements:
         \verbatim ProvidesAlgebraicSphere \endverbatim
-        Provides:
-        \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
+        Respects:
+        \verbatim ProvidesGLSParam \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
         requires ProvidesAlgebraicSphere<T>
@@ -115,13 +115,6 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-
-    protected:
-        enum
-        {
-            PROVIDES_GLS_GEOM_VAR
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, glsDer)
         PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, geomVar)
