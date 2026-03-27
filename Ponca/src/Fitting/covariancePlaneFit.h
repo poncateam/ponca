@@ -31,6 +31,7 @@ namespace Ponca
         \see Plane
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesPlane<T>
     class CovariancePlaneFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -39,7 +40,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_PLANE && Base::PROVIDES_POSITION_COVARIANCE,
+            Check = Base::PROVIDES_POSITION_COVARIANCE,
             /*!
              * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
              * in ambient 3D space to the tangent plane.
@@ -98,6 +99,7 @@ namespace Ponca
         \warning Defined in 3D only
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires ProvidesPlane<T>
     class CovariancePlaneDerImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -108,7 +110,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_PLANE && Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
+            Check = Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
             PROVIDES_COVARIANCE_PLANE_DERIVATIVE, /*!< \brief Provides derivatives for hyper-planes */
             PROVIDES_NORMAL_DERIVATIVE
         };

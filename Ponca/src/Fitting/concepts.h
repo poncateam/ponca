@@ -69,6 +69,7 @@ namespace Ponca
         { ct.meanPosition().barycenter() } -> std::convertible_to<typename T::VectorType>;
         { ct.meanPosition().barycenterDistance() } -> std::same_as<typename T::Scalar>;
         // This is only for subclasses
+        // TODO: Make this function public / private ?
         // { ct.meanPosition().barycenterLocal() } -> std::convertible_to<typename T::VectorType>;
     };
 
@@ -122,5 +123,30 @@ namespace Ponca
         { ct.glsDer().eta_normalized() } -> std::same_as<typename T::VectorTypeArray>;
         { ct.glsDer().kappa_normalized() } -> std::same_as<typename T::ScalarArray>;
     };
+
+    template <typename T>
+    concept ProvidesGeomVar = requires(const T ct, typename T::Scalar s) {
+        ct.geomVar();
+
+        { ct.geomVar().geomVar(s, s, s) } -> std::same_as<typename T::Scalar>;
+    };
+
+    template <typename T>
+    concept ProvidesPlane = requires(T t, const T ct, typename T::Scalar s, typename T::VectorType v) {
+        t.plane();
+        ct.plane();
+
+        t.plane().setPlane(v, v);
+        { ct.plane().potential() } -> std::same_as<typename T::Scalar>;
+        { ct.plane().potential(v) } -> std::same_as<typename T::Scalar>;
+
+        // TODO: Add this function to plane for coherence with Algebraic sphere ?
+        // { ct.plane().project() } -> std::convertible_to<typename T::VectorType>;
+        { ct.plane().project(v) } -> std::same_as<typename T::VectorType>;
+
+        { ct.plane().primitiveGradient() } -> std::same_as<typename T::VectorType>; 
+        { ct.plane().primitiveGradient(v) } -> std::same_as<typename T::VectorType>; 
+    };
+
 
 } // namespace Ponca

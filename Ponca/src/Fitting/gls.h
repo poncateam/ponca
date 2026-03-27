@@ -124,6 +124,7 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, glsDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, geomVar)
 
         PONCA_MULTIARCH inline ScalarArray dtau() const;   /*!< \brief Compute and return \f$ \tau \f$ derivatives */
         PONCA_MULTIARCH inline VectorArray deta() const;   /*!< \brief Compute and return \f$ \eta \f$ derivatives */
