@@ -43,15 +43,6 @@ namespace Ponca
     class GLSParam : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-        //! [Requirements]
-    protected:
-        enum
-        {
-            PROVIDES_GLS_PARAMETRIZATION
-        };
-        //! [Requirements]
-
     protected:
         Scalar m_fitness{0}; /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
@@ -119,7 +110,7 @@ namespace Ponca
         Method published in \cite Mellado:2012:GLS
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T> && ProvidesGLSParam<T>
     class GLSDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -128,8 +119,6 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_GLS_PARAMETRIZATION,
-            PROVIDES_GLS_DERIVATIVE,
             PROVIDES_GLS_GEOM_VAR
         };
 
