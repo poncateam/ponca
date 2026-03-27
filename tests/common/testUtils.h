@@ -5,8 +5,8 @@
 */
 
 /*!
-  \file test/common/testUtils.h
-  \brief Useful functions for tests
+ * \file tests/common/testUtils.h
+ * \brief Useful functions for tests
 */
 
 #pragma once
@@ -14,9 +14,8 @@
 #include <precompiled/Common/commonPCH.h>
 #include <precompiled/Fitting/fittingPCH.h>
 #include <precompiled/SpatialPartitioning/spatialPartitioningPCH.h>
-#include "Eigen/Eigen"
-#include "Ponca/src/Common/defines.h"
-#include "Ponca/src/Common/pointTypes.h"
+#include <Eigen/Eigen>
+#include <Ponca/src/Common/defines.h>
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
 #include <vector>

@@ -9,3 +9,7 @@
 template class Ponca::KdTreeBase<Ponca::KdTreeDefaultTraits<Point<float>>>;
 template class Ponca::KdTreeBase<Ponca::KdTreeDefaultTraits<Point<double>>>;
 template class Ponca::KdTreeBase<Ponca::KdTreeDefaultTraits<Point<long double>>>;
+
+template class Ponca::KnnGraphBase<Ponca::KnnGraphDefaultTraits<Point<float>>>;
+template class Ponca::KnnGraphBase<Ponca::KnnGraphDefaultTraits<Point<double>>>;
+template class Ponca::KnnGraphBase<Ponca::KnnGraphDefaultTraits<Point<long double>>>;
