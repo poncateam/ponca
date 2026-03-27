@@ -40,7 +40,6 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_POSITION_COVARIANCE,
             /*!
              * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
              * in ambient 3D space to the tangent plane.
@@ -110,7 +109,6 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
             PROVIDES_COVARIANCE_PLANE_DERIVATIVE, /*!< \brief Provides derivatives for hyper-planes */
             PROVIDES_NORMAL_DERIVATIVE
         };

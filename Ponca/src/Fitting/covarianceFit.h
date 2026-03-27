@@ -61,13 +61,6 @@ namespace Ponca
     class CovarianceFitBase : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-    protected:
-        enum
-        {
-            PROVIDES_POSITION_COVARIANCE
-        };
-
     public:
         using MatrixType = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/
         /*! \brief Solver used to analyse the covariance matrix*/
@@ -141,20 +134,12 @@ namespace Ponca
         \inherit Concept::FittingExtensionConcept
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T> && ProvidesPositionCovariance<T>
     class CovarianceFitDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_POSITION_COVARIANCE,
-            PROVIDES_POSITION_COVARIANCE_DERIVATIVE
-        };
-
     protected:
         /// Computation data: derivatives of the covariance matrix
         MatrixType m_dCov[Base::NbDerivatives];

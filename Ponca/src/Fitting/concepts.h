@@ -148,5 +148,17 @@ namespace Ponca
         { ct.plane().primitiveGradient(v) } -> std::same_as<typename T::VectorType>; 
     };
 
+    template<typename T>
+    concept ProvidesPositionCovariance = requires(const T ct) {
+        ct.covarianceFit();
+
+        { ct.covarianceFit().solver() } -> std::convertible_to<typename T::Solver>;
+    };
+
+    template<typename T>
+    concept ProvidesPositionCovarianceDer = requires(const T ct) {
+        ct.covarianceFitDer();
+    };
+
 
 } // namespace Ponca
