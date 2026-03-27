@@ -121,7 +121,7 @@ typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<Da
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T> && ProvidesPositionCovariance<T>
 void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
@@ -131,7 +131,7 @@ void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T> && ProvidesPositionCovariance<T>
 void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                           const DataPoint& attributes, ScalarArray& dw)
 {
@@ -141,7 +141,7 @@ void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T> && ProvidesPositionCovariance<T>
 FIT_RESULT CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);

@@ -13,6 +13,7 @@
 #include "./covarianceFit.h" // used to define CovarianceLineFit
 
 #include <Eigen/Dense>
+#include "concepts.h"
 
 namespace Ponca
 {
@@ -31,6 +32,7 @@ namespace Ponca
      */
 
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesPositionCovariance<T>
     class CovarianceLineFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -39,7 +41,7 @@ namespace Ponca
     protected:
         enum
         {
-            check = Base::PROVIDES_LINE && Base::PROVIDES_POSITION_COVARIANCE,
+            check = Base::PROVIDES_LINE,
         };
 
     public:
