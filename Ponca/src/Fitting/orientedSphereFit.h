@@ -86,10 +86,11 @@ namespace Ponca
         VectorArray m_dUl{VectorArray::Zero()}; /*!< \brief Derivatives of the hyper-sphere linear term    */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, orientedSphereDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, orientedSphereDer)        
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, algebraicSphereDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
-
+ 
         /*! \brief Returns the derivatives of the scalar field at the evaluation point */
         PONCA_MULTIARCH [[nodiscard]] inline ScalarArray dPotential() const;
 
