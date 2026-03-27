@@ -27,25 +27,20 @@ namespace Ponca
         \verbatim PROVIDES_WEINGARTEN_MAP \endverbatim
 
         This primitive requires:
-        \verbatim PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS, PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS \endverbatim
+        \verbatim ProvidesFirstFondamentalFormComponents, ProvidesSecondFondamentalFormComponents \endverbatim
         */
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesFirstFondamentalFormComponents<T> && ProvidesSecondFondamentalFormComponents<T>
     class FundamentalFormWeingartenEstimator : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
         static_assert(DataPoint::Dim == 3, "FundamentalFormWeingartenEstimator is only valid in 3D");
 
-    protected:
-        enum
-        {
-            Check =
-                Base::PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS && Base::PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS,
-            PROVIDES_WEINGARTEN_MAP
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormWeingartenEstimator, fundamentalFormWeingartenEstimator)
+        PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormWeingartenEstimator, firstFondamentalFormComponent)
+        PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormWeingartenEstimator, secondFondamentalFormComponent)
 
         /// \brief Assembles and returns the first fundamental form from the base class
         ///
@@ -113,13 +108,6 @@ namespace Ponca
         using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
         static_assert(DataPoint::Dim == 3, "NormalDerivativeWeingartenEstimator is only valid in 3D");
         static_assert(Base::isSpaceDer(), "NormalDerivativeWeingartenEstimator requires spatial derivation");
-
-    protected:
-        enum
-        {
-            PROVIDES_WEINGARTEN_MAP,
-        };
-
     private:
         MatrixType m_tangentBasis{MatrixType::Zero()};
 
@@ -165,23 +153,15 @@ namespace Ponca
            (height, u and v).
 
             This primitive requires:
-            \verbatim PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_WEINGARTEN_MAP, PROVIDES_PRINCIPAL_CURVATURES \endverbatim
+            \verbatim ProvidesTangentPlaneBasis, PROVIDES_WEINGARTEN_MAP, ProvidesPrincipalCurvatures \endverbatim
             */
         template <class DataPoint, class _NFilter, typename T>
-            requires ProvidesTangentPlaneBasis<T>
+            requires ProvidesTangentPlaneBasis<T> && ProvidesPrincipalCurvatures<T> && ProvidesWeingartenMap<T>
         class WeingartenCurvatureEstimatorBase : public T
         {
             PONCA_FITTING_DECLARE_DEFAULT_TYPES
             using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
             static_assert(DataPoint::Dim == 3, "WeingartenCurvatureEstimator is only valid in 3D");
-
-        protected:
-            enum
-            {
-                Check = Base::PROVIDES_PRINCIPAL_CURVATURES && // required curvature storage
-                        Base::PROVIDES_WEINGARTEN_MAP
-            };
-
         public:
             PONCA_FITTING_DECLARE_FINALIZE
         };

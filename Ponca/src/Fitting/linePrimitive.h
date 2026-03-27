@@ -27,8 +27,8 @@ namespace Ponca
         This primitive requires the definition of n-d vectors
         (VectorType) in Concept::PointConcept.
 
-        This primitive provides:
-        \verbatim PROVIDES_LINE \endverbatim
+        This primitive respects:
+        \verbatim ProvidesLines \endverbatim
     */
 
     template <class DataPoint, class _NFilter, typename T>
@@ -40,13 +40,6 @@ namespace Ponca
     public:
         /// \brief Specialization of Eigen::ParametrizedLine inherited by Ponca::Line
         using EigenBase = Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim>;
-
-    protected:
-        enum
-        {
-            PROVIDES_LINE /*!< \brief Provides  Line */
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(Line, line)
 

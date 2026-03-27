@@ -22,13 +22,6 @@ namespace Ponca
         {
             PONCA_FITTING_DECLARE_DEFAULT_TYPES
             PONCA_FITTING_DECLARE_MATRIX_TYPE
-
-        protected:
-            enum
-            {
-                PROVIDES_PRINCIPAL_CURVATURES
-            };
-
         private:
             /// \brief Minimal principal curvature
             Scalar m_kmin{0},

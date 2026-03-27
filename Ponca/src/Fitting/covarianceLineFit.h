@@ -32,18 +32,11 @@ namespace Ponca
      */
 
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesPositionCovariance<T>
+        requires ProvidesPositionCovariance<T> && ProvidesLine<T>
     class CovarianceLineFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
-
-    protected:
-        enum
-        {
-            check = Base::PROVIDES_LINE,
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl, covarianceLineFit)
 
