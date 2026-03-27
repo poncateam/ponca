@@ -99,7 +99,7 @@ namespace Ponca
        the fitted primitive.
 
         This primitive provides:
-        \verbatim PROVIDES_WEINGARTEN_MAP, PROVIDES_TANGENT_PLANE_BASIS\endverbatim
+        \verbatim PROVIDES_WEINGARTEN_MAP, ProvidesTangentPlaneBasis\endverbatim
 
         This primitive requires:
         \verbatim ProvidesNormalDerivative \endverbatim
@@ -118,7 +118,6 @@ namespace Ponca
         enum
         {
             PROVIDES_WEINGARTEN_MAP,
-            PROVIDES_TANGENT_PLANE_BASIS
         };
 
     private:
@@ -126,6 +125,7 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, normalDerivativeWeingartenEstimator)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, tangentPlaneBasis)
         PONCA_FITTING_DECLARE_FINALIZE
 
         //! \brief Returns the Weingarten Map
@@ -168,6 +168,7 @@ namespace Ponca
             \verbatim PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_WEINGARTEN_MAP, PROVIDES_PRINCIPAL_CURVATURES \endverbatim
             */
         template <class DataPoint, class _NFilter, typename T>
+            requires ProvidesTangentPlaneBasis<T>
         class WeingartenCurvatureEstimatorBase : public T
         {
             PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -177,8 +178,7 @@ namespace Ponca
         protected:
             enum
             {
-                Check = Base::PROVIDES_TANGENT_PLANE_BASIS &&  // required for tangentPlaneToWorld
-                        Base::PROVIDES_PRINCIPAL_CURVATURES && // required curvature storage
+                Check = Base::PROVIDES_PRINCIPAL_CURVATURES && // required curvature storage
                         Base::PROVIDES_WEINGARTEN_MAP
             };
 

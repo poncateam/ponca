@@ -174,4 +174,12 @@ namespace Ponca
         { ct.covariancePlaneDer().dNormal() } -> std::convertible_to<typename T::VectorArray>;
     };
 
+    template<typename T>
+    concept ProvidesTangentPlaneBasis = requires(const T ct, typename T::VectorType v) {
+        ct.tangentPlaneBasis();
+
+        { ct.tangentPlaneBasis().worldToTangentPlane(v, true) } -> std::same_as<typename T::VectorType>;
+        { ct.tangentPlaneBasis().tangentPlaneToWorld(v, true) } -> std::same_as<typename T::VectorType>;
+    };
+
 } // namespace Ponca
