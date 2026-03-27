@@ -41,7 +41,10 @@ jobs:
           git checkout 3.4.0
         if: ${{ matrix.config.installEigen == 'COMPILE'}}
       - name: Configure Eigen
-        run: mkdir eigen_build && cd eigen_build && cmake ../eigen_src -DCMAKE_INSTALL_PREFIX=../eigen_installed
+        run: | # Prepare Eigen Cmake without build https://gitlab.com/libeigen/eigen/-/blob/3.4/CMakeLists.txt?ref_type=heads#L90
+          mkdir eigen_build
+          cd eigen_build
+          cmake ../eigen_src -DCMAKE_INSTALL_PREFIX=../eigen_installed -DCMAKE_Fortran_COMPILER=""  -DEIGEN_BUILD_TESTING=OFF -DEIGEN_BUILD_BLAS=OFF -DEIGEN_BUILD_LAPACK=OFF -DEIGEN_BUILT_BTL=OFF -DEIGEN_BUILD_BTL=OFF -DIGEN_BUILD_SPBENCH=OFF -DEIGEN_BUILD_DOC=OFF -DEIGEN_BUILD_DEMOS=OFF
         if: ${{ matrix.config.installEigen == 'COMPILE'}}
       - name: Install Eigen
         run:  cd eigen_build && cmake --build . --target install

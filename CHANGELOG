@@ -5,6 +5,10 @@ Ponca changelog
 Current head (v.2.0.alpha3 RC)
 This release will introduce a refactoring of the requirement library using cpp20::concepts.
 
+-CI/Actions
+    - [ci] Fix Issue with Eigen build in buildAsSubmodule (#299)
+
+
 --------------------------------------------------------------------------------
 v.2.0.alpha2
 This release introduces a major rework of the curvature estimation framework, bump CXX standard to cpp20, 
