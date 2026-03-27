@@ -148,6 +148,20 @@ namespace Ponca
         { ct.plane().primitiveGradient(v) } -> std::same_as<typename T::VectorType>; 
     };
 
+    template <typename T>
+    concept ProvidesLine = requires(T t, const T ct, typename T::Scalar s, typename T::VectorType v) {
+        t.line();
+        ct.line();
+
+        t.line().setLine(v, v);
+        { ct.line().potential() } -> std::same_as<typename T::Scalar>;
+        { ct.line().potential(v) } -> std::same_as<typename T::Scalar>;
+
+        // TODO: Add this function to plane for coherence with Algebraic sphere ?
+        // { ct.line().project() } -> std::convertible_to<typename T::VectorType>;
+        { ct.line().project(v) } -> std::same_as<typename T::VectorType>;
+    };
+
     template<typename T>
     concept ProvidesPositionCovariance = requires(const T ct) {
         ct.covarianceFit();
@@ -180,6 +194,36 @@ namespace Ponca
 
         { ct.tangentPlaneBasis().worldToTangentPlane(v, true) } -> std::same_as<typename T::VectorType>;
         { ct.tangentPlaneBasis().tangentPlaneToWorld(v, true) } -> std::same_as<typename T::VectorType>;
+    };
+
+    template<typename T>
+    concept ProvidesPrincipalCurvatures = requires(const T ct) {
+        { ct.kmin() } -> std::same_as<typename T::Scalar>;
+        { ct.kmax() } -> std::same_as<typename T::Scalar>;
+        { ct.kMean() } -> std::same_as<typename T::Scalar>;
+        { ct.GaussianCurvature() } -> std::same_as<typename T::Scalar>;
+
+        { ct.kminDirection() } -> std::convertible_to<typename T::VectorType>;
+        { ct.kmaxDirection() } -> std::convertible_to<typename T::VectorType>;
+    };
+
+    template<typename T>
+    concept ProvidesFirstFondamentalFormComponents = requires(const T ct, typename T::Scalar s) {
+        ct.firstFondamentalFormComponent();
+        ct.firstFondamentalFormComponent().firstFundamentalFormComponents(s, s, s);
+    };
+
+    template<typename T>
+    concept ProvidesSecondFondamentalFormComponents = requires(const T ct, typename T::Scalar s) {
+        ct.secondFondamentalFormComponent();
+        ct.secondFondamentalFormComponent().secondFundamentalFormComponents(s, s, s);
+    };
+
+    template<typename T>
+    concept ProvidesWeingartenMap = requires(const T ct, typename T::Matrix2 m) {
+
+        { ct.weingartenMap() } -> std::convertible_to<typename T::Matrix2>;
+        ct.weingartenMap(m);
     };
 
 } // namespace Ponca
