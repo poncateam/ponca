@@ -1,0 +1,3 @@
+add_subdirectory(Common)
+add_subdirectory(Fitting)
+add_subdirectory(SpatialPartitioning)
