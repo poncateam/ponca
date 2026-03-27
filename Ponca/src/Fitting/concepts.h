@@ -57,7 +57,9 @@ namespace Ponca
 
     template <typename T>
     concept ProvidesAlgebraicSphereDerivative = requires(const T ct) {
-        { ct.dPotential() } -> std::convertible_to<typename T::ScalarArray>;
+        ct.algebraicSphereDer();
+        
+        { ct.algebraicSphereDer().dPotential() } -> std::convertible_to<typename T::ScalarArray>;
     };
 
     template <typename T>
