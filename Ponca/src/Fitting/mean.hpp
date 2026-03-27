@@ -55,7 +55,7 @@ void MeanPositionDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar 
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanNormal<T>
 void MeanNormalDer<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
@@ -63,7 +63,7 @@ void MeanNormalDer<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T>
+    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanNormal<T>
 void MeanNormalDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                        const DataPoint& attributes, ScalarArray& dw)
 {

@@ -58,7 +58,7 @@ namespace Ponca
     template <typename T>
     concept ProvidesAlgebraicSphereDerivative = requires(const T ct) {
         ct.algebraicSphereDer();
-        
+
         { ct.algebraicSphereDer().dPotential() } -> std::convertible_to<typename T::ScalarArray>;
     };
 
@@ -77,5 +77,20 @@ namespace Ponca
         ct.meanPositionDer();
         
         { ct.meanPositionDer().barycenterDerivatives() } -> std::convertible_to<typename T::VectorArray>;
+    };
+
+    template <typename T>
+    concept ProvidesMeanNormal = requires(const T ct) {
+        ct.meanNormal();
+
+        { ct.meanNormal().meanNormalVector() } -> std::convertible_to<typename T::VectorType>;
+    };
+
+
+    template <typename T>
+    concept ProvidesMeanNormalDer = requires(const T ct) {
+        ct.meanNormalDer();
+
+        { ct.meanNormal().dMeanNormal() } -> std::convertible_to<typename T::VectorArray>;
     };
 } // namespace Ponca
