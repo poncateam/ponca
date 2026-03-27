@@ -105,20 +105,13 @@ namespace Ponca
         PONCA_FITTING_DECLARE_MATRIX_TYPE
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
         static_assert(DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
-
-    protected:
-        enum
-        {
-            PROVIDES_COVARIANCE_PLANE_DERIVATIVE, /*!< \brief Provides derivatives for hyper-planes */
-            PROVIDES_NORMAL_DERIVATIVE
-        };
-
     private:
         VectorArray m_dNormal{VectorArray::Zero()}; /*!< \brief Derivatives of the hyper-plane normal */
         ScalarArray m_dDist{ScalarArray::Zero()};   /*!< \brief Derivatives of the MLS scalar field */
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, covariancePlaneDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, normalDer)
 
         /*! \see Concept::FittingProcedureConcept::finalize() */
         PONCA_MULTIARCH FIT_RESULT finalize();

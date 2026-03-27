@@ -122,8 +122,8 @@ typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoi
 template <typename Fit1, typename Fit2>
 void isSamePlane(const Fit1& fit1, const Fit2& fit2)
 {
-    const auto& plane1 = fit1.compactPlane();
-    const auto& plane2 = fit2.compactPlane();
+    const auto& plane1 = fit1.plane();
+    const auto& plane2 = fit2.plane();
 
     // Test we fit the same plane
     VERIFY(plane1.isApprox(plane2));

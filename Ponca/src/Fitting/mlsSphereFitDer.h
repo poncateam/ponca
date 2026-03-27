@@ -25,13 +25,7 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-
     protected:
-        enum
-        {
-            PROVIDES_NORMAL_DERIVATIVE
-        };
-
         enum
         {
             Dim    = DataPoint::Dim,     //!< Dimension of the ambient space
@@ -91,6 +85,7 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, mlsSphereFitDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, normalDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
