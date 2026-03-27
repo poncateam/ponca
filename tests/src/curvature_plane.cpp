@@ -18,16 +18,6 @@
 
 #include <vector>
 
-#include "Ponca/src/Fitting/defines.h"
-#include "Ponca/src/Fitting/basket.h"
-#include "Ponca/src/Fitting/covariancePlaneFit.h"
-#include "Ponca/src/Fitting/curvature.h"
-#include "Ponca/src/Fitting/mongePatch.h"
-#include "Ponca/src/Fitting/weightFunc.h"
-#include "Ponca/src/Fitting/weightKernel.h"
-
-#include <Ponca/SpatialPartitioning>
-
 using namespace std;
 using namespace Ponca;
 
