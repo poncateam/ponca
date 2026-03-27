@@ -93,4 +93,34 @@ namespace Ponca
 
         { ct.meanNormal().dMeanNormal() } -> std::convertible_to<typename T::VectorArray>;
     };
+
+    template <typename T>
+    concept ProvidesGLSParam = requires(const T ct) {
+        ct.glsParam();
+
+        { ct.glsParam().tau() } -> std::same_as<typename T::Scalar>;
+        { ct.glsParam().eta() } -> std::same_as<typename T::VectorType>;
+        { ct.glsParam().kappa() } -> std::same_as<typename T::Scalar>;
+
+        { ct.glsParam().tau_normalized() } -> std::same_as<typename T::Scalar>;
+        { ct.glsParam().eta_normalized() } -> std::same_as<typename T::VectorType>;
+        { ct.glsParam().kappa_normalized() } -> std::same_as<typename T::Scalar>;
+
+        { ct.glsParam().fitness() } -> std::same_as<typename T::Scalar>;
+        { ct.glsParam().compareTo(ct, true) } -> std::same_as<typename T::Scalar>; 
+    };
+
+    template <typename T>
+    concept ProvidesGLSDer = requires(const T ct) {
+        ct.glsDer();
+
+        { ct.glsDer().tau() } -> std::same_as<typename T::ScalarArray>;
+        { ct.glsDer().eta() } -> std::same_as<typename T::VectorTypeArray>;
+        { ct.glsDer().kappa() } -> std::same_as<typename T::ScalarArray>;
+
+        { ct.glsDer().tau_normalized() } -> std::same_as<typename T::ScalarArray>;
+        { ct.glsDer().eta_normalized() } -> std::same_as<typename T::VectorTypeArray>;
+        { ct.glsDer().kappa_normalized() } -> std::same_as<typename T::ScalarArray>;
+    };
+
 } // namespace Ponca
