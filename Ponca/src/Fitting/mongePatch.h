@@ -33,9 +33,10 @@ namespace Ponca
        PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS \endverbatim
 
         This primitive requires:
-        \verbatim ProvidesPlane, PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_HEIGHTFIELD \endverbatim
+        \verbatim ProvidesPlane, ProvidesTangentPlaneBasis, PROVIDES_HEIGHTFIELD \endverbatim
         */
     template <class DataPoint, class _NFilter, typename T>
+        requires ProvidesTangentPlaneBasis<T>
     class MongePatch : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -44,8 +45,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_TANGENT_PLANE_BASIS &&
-                    Base::PROVIDES_HEIGHTFIELD,         /*!< \brief Requires a heightfield function */
+            Check = Base::PROVIDES_HEIGHTFIELD,         /*!< \brief Requires a heightfield function */
             PROVIDES_MONGE_PATCH,                       /*!< \brief Provides MongePatch API */
             PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS, /*!< \brief Provides first fundamental form */
             PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS /*!< \brief Provides second fundamental form */
