@@ -60,11 +60,6 @@ namespace Ponca
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
-        enum
-        {
-            PROVIDES_NORMAL_DERIVATIVE
-        };
-
         // computation data
         VectorArray m_dSumN{VectorArray::Zero()};     /*!< \brief Sum of the normal vectors with weight derivatives */
         ScalarArray m_dSumDotPN{ScalarArray::Zero()}, /*!< \brief Sum of the dot product between relative positions and
@@ -83,6 +78,7 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, orientedSphereDer)        
         PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, algebraicSphereDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, normalDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
  

@@ -32,13 +32,6 @@ template <class DataPoint, class _NFilter, typename T>
 class CovarianceFitTwoPassesBase : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-protected:
-    enum
-    {
-        PROVIDES_POSITION_COVARIANCE
-    };
-
 public:
     using MatrixType = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/
     /*! \brief Solver used to analyse the covariance matrix*/
