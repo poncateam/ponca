@@ -160,5 +160,18 @@ namespace Ponca
         ct.covarianceFitDer();
     };
 
+    template<typename T>
+    concept ProvidesCovariancePlaneDer = requires(const T ct) {
+        ct.covariancePlaneDer();
+
+        { ct.covariancePlaneDer().dPotential() } -> std::convertible_to<typename T::ScalarArray>;
+    };
+
+    template<typename T>
+    concept ProvidesNormalDer = requires(const T ct) {
+        ct.covariancePlaneDer();
+
+        { ct.covariancePlaneDer().dNormal() } -> std::convertible_to<typename T::VectorArray>;
+    };
 
 } // namespace Ponca

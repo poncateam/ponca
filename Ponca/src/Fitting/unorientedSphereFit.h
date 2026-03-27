@@ -87,13 +87,6 @@ namespace Ponca
 
         using VectorB  = typename Base::VectorB;
         using MatrixBB = typename Base::MatrixBB;
-
-    protected:
-        enum
-        {
-            PROVIDES_NORMAL_DERIVATIVE
-        };
-
     protected:
         // computation data
         MatrixBB m_dmatA[Base::NbDerivatives];
@@ -108,6 +101,7 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, unorientedSphereDer)
         PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, algebraicSphereDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, normalDer)
 
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE

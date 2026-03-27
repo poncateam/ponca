@@ -102,7 +102,7 @@ namespace Ponca
         \verbatim PROVIDES_WEINGARTEN_MAP, PROVIDES_TANGENT_PLANE_BASIS\endverbatim
 
         This primitive requires:
-        \verbatim PROVIDES_NORMAL_DERIVATIVE \endverbatim
+        \verbatim ProvidesNormalDerivative \endverbatim
         */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
     class NormalDerivativeWeingartenEstimator : public T
@@ -117,7 +117,6 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_NORMAL_DERIVATIVE,
             PROVIDES_WEINGARTEN_MAP,
             PROVIDES_TANGENT_PLANE_BASIS
         };
