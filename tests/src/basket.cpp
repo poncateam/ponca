@@ -11,7 +11,6 @@
 
 #include "../common/testing.h"
 #include "../common/testUtils.h"
-
 #include "../split_test_helper.h"
 
 #include <vector>
