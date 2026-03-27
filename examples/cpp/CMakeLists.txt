@@ -50,5 +50,15 @@ target_include_directories(ponca_customize_kdtree PRIVATE ${PONCA_src_ROOT})
 add_dependencies(ponca-examples ponca_customize_kdtree)
 ponca_handle_eigen_dependency(ponca_customize_kdtree)
 
+add_executable(ponca_precompiled_fit ${ponca_customize_kdtree_SRCS})
+target_include_directories(ponca_precompiled_fit PRIVATE ${PONCA_src_ROOT})
+add_dependencies(ponca-examples ponca_precompiled_fit)
+ponca_handle_eigen_dependency(ponca_precompiled_fit)
+
+target_link_libraries(ponca_precompiled_fit PRIVATE Ponca::CommonPrecompiled Ponca::FittingPrecompiled)
+set(ponca_precompiled_fit_SRCS
+        ponca_precompiled_fit.cpp
+)
+
 add_subdirectory(pcl)
 add_subdirectory(nanoflann)

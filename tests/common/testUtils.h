@@ -11,8 +11,8 @@
 
 #pragma once
 
-#include <Ponca/precompiled/Common/commonPCH.h>
-#include <Ponca/precompiled/Fitting/fittingPCH.h>
+#include <precompiled/Common/commonPCH.h>
+#include <precompiled/Fitting/fittingPCH.h>
 #include "Eigen/Eigen"
 #include "Ponca/src/Common/defines.h"
 #include "Ponca/src/Common/pointTypes.h"

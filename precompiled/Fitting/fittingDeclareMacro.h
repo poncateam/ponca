@@ -69,4 +69,6 @@ using NoWeightFuncL = Ponca::NoWeightFunc<Point<Scalar>>;
     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::OrientedSphereFit, Ponca::GLSParam) \
     /* UnorientedSphere fits */                                                       \
     DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::UnorientedSphereFit)                \
-    DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::UnorientedSphereFit, Ponca::GLSParam)
+    DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::UnorientedSphereFit, Ponca::GLSParam) \
+    DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::SphereFit)                            \
+    DEF_FIT_FOR_ALL_WEIGHTED_FUNCS(SCALAR, Ponca::SphereFit, Ponca::GLSParam)

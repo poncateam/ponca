@@ -1,12 +1,8 @@
 # STATIC lib for explicit instantiation of the templated class (makes them reusable with the vtable)
-add_library(PoncaCommonPrecompiled STATIC
-        ${PONCA_src_ROOT}/Ponca/precompiled/Common/commonPrecompiled.cpp
-)
-# OPTIONAL : To speed up header parsing speed when recompiling
+add_library(PoncaCommonPrecompiled STATIC commonPrecompiled.cpp)
+# OPTIONAL : To speed up header parsing speed when recompiling a target
 if(PONCA_GENERATE_PCH)
-    target_precompile_headers(PoncaCommonPrecompiled PUBLIC
-            ${PONCA_src_ROOT}/Ponca/precompiled/Common/commonPCH.h
-    )
+    target_precompile_headers(PoncaCommonPrecompiled PUBLIC commonPCH.h)
 endif()
 target_include_directories(PoncaCommonPrecompiled PUBLIC ${PONCA_src_ROOT})
 target_link_libraries(PoncaCommonPrecompiled PUBLIC Ponca::SpatialPartitioning)

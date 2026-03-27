@@ -145,6 +145,7 @@ set(PONCA_src_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/")
 include(PoncaConfigureFitting)
 include(PoncaConfigureCommon)
 include(PoncaConfigureSpatialPartitioning)
+add_subdirectory(precompiled)
 
 install(DIRECTORY ${PONCA_src_ROOT}/Ponca
     DESTINATION include/
@@ -168,8 +169,6 @@ endif()
 # Tests                                                                        #
 ################################################################################
 if(PONCA_CONFIGURE_TESTS)
-    include(${CMAKE_CURRENT_SOURCE_DIR}/Ponca/precompiled/Common/CMakeLists.txt)
-    include(${CMAKE_CURRENT_SOURCE_DIR}/Ponca/precompiled/Fitting/CMakeLists.txt)
     include(CTest)
     set (BUILD_TESTING ON)
     option(PONCA_COVERAGE_TESTING "Enable coverage reporting" OFF)
