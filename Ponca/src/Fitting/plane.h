@@ -29,8 +29,8 @@ namespace Ponca
         This primitive requires the definition of n-dimensionnal vectors
         (VectorType) in Concept::PointConcept.
 
-        This primitive provides:
-        \verbatim PROVIDES_PLANE \endverbatim
+        This primitive respects:
+        \verbatim ProvidesPlane \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
         requires ProvidesPrimitiveBase<T>
@@ -41,18 +41,10 @@ namespace Ponca
     public:
         /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
         using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim>;
-
-    protected:
-        enum
-        {
-            PROVIDES_PLANE
-        };
-
     public:
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(); }
 
-        PONCA_EXPLICIT_CAST_OPERATORS(Plane, compactPlane) //< \fixme To be removed, kept for compatibility only
         PONCA_EXPLICIT_CAST_OPERATORS(Plane, plane)
 
         /// \brief Set the scalar field values to 0

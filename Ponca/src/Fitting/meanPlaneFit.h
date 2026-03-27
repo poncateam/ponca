@@ -25,18 +25,11 @@ namespace Ponca
         \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
     */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
+        requires ProvidesMeanPosition<T> && ProvidesMeanNormal<T> && ProvidesPlane<T> 
     class MeanPlaneFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_PLANE
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl, meanPlaneFit)
 
