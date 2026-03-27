@@ -36,21 +36,9 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
-
-    protected:
-        enum
-        {
-            /*!
-             * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
-             * in ambient 3D space to the tangent plane.
-             * \see worldToTangentPlane
-             * \see tangentPlaneToWorld
-             */
-            PROVIDES_TANGENT_PLANE_BASIS
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl, covariancePlaneFit)
+        PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl, tangentPlaneBasis)
         PONCA_FITTING_DECLARE_FINALIZE
         PONCA_FITTING_IS_SIGNED(false)
 

@@ -22,7 +22,7 @@ namespace Ponca
 
         \see Plane
 
-        \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
+        \todo Add local frame computation to enable ProvidesTangentPlaneBasis
     */
     template <class DataPoint, class _NFilter, typename T>
         requires ProvidesMeanPosition<T> && ProvidesMeanNormal<T> && ProvidesPlane<T> 

@@ -177,6 +177,7 @@ namespace Ponca
     {
         ///////// WeingartenCurvatureEstimator
         template <class DataPoint, class _NFilter, typename T>
+            requires ProvidesTangentPlaneBasis<T>
         FIT_RESULT WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::finalize()
         {
 
