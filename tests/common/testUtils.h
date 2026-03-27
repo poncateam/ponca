@@ -13,10 +13,10 @@
 
 #include <precompiled/Common/commonPCH.h>
 #include <precompiled/Fitting/fittingPCH.h>
+#include <precompiled/SpatialPartitioning/spatialPartitioningPCH.h>
 #include "Eigen/Eigen"
 #include "Ponca/src/Common/defines.h"
 #include "Ponca/src/Common/pointTypes.h"
-#include "Ponca/src/Common/pointGeneration.h"
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
 #include <vector>
