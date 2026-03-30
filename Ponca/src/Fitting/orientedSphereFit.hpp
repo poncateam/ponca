@@ -5,7 +5,7 @@
 */
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
+    requires ORIENTED_SPHERE_FIT_REQUIREMENTS
 void OrientedSphereFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -18,7 +18,7 @@ void OrientedSphereFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
+    requires ORIENTED_SPHERE_FIT_REQUIREMENTS
 void OrientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                      const DataPoint& attributes)
 {
@@ -28,7 +28,7 @@ void OrientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, c
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
+    requires ORIENTED_SPHERE_FIT_REQUIREMENTS
 FIT_RESULT OrientedSphereFitImpl<DataPoint, _NFilter, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
@@ -79,7 +79,7 @@ FIT_RESULT OrientedSphereFitImpl<DataPoint, _NFilter, T>::finalize()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+    requires ORIENTED_SPHERE_DER_REQUIREMENTS
 void OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
@@ -97,7 +97,7 @@ void OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+    requires ORIENTED_SPHERE_DER_REQUIREMENTS
 void OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                                const DataPoint& attributes,
                                                                                ScalarArray& dw)
@@ -109,7 +109,7 @@ void OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(S
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+    requires ORIENTED_SPHERE_DER_REQUIREMENTS
 FIT_RESULT OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
@@ -150,7 +150,7 @@ FIT_RESULT OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+    requires ORIENTED_SPHERE_DER_REQUIREMENTS
 typename OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::VectorArray OrientedSphereDerImpl<
     DataPoint, _NFilter, DiffType, T>::dNormal() const
 {
@@ -166,7 +166,7 @@ typename OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::VectorArray Or
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+    requires ORIENTED_SPHERE_DER_REQUIREMENTS
 typename OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::ScalarArray OrientedSphereDerImpl<
     DataPoint, _NFilter, DiffType, T>::dPotential() const
 {
@@ -177,7 +177,7 @@ typename OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::ScalarArray Or
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+    requires ORIENTED_SPHERE_DER_REQUIREMENTS
 bool OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::applyPrattNorm()
 {
     if (Base::isNormalized())

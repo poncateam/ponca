@@ -12,6 +12,8 @@
 #include "./concepts.h"
 #include <Eigen/Geometry>
 
+#define PLANE_REQUIREMENTS ProvidesPrimitiveBase<T>
+
 namespace Ponca
 {
 
@@ -33,7 +35,7 @@ namespace Ponca
         \verbatim ProvidesPlane \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesPrimitiveBase<T>
+        requires PLANE_REQUIREMENTS
     class Plane : public T, public Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim>
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -41,6 +43,7 @@ namespace Ponca
     public:
         /// \brief Specialization of Eigen::Hyperplane inherited by Ponca::Plane
         using EigenBase = Eigen::Hyperplane<typename DataPoint::Scalar, DataPoint::Dim>;
+
     public:
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(); }

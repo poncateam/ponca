@@ -10,6 +10,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include "./concepts.h"
 #include "./mean.h" // used to define OrientedSphereFit
 
+#define ORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>
+#define ORIENTED_SPHERE_DER_REQUIREMENTS \
+    ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
+
 namespace Ponca
 {
 
@@ -23,7 +27,7 @@ namespace Ponca
         \see AlgebraicSphere
     */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T> && ProvidesMeanNormal<T>
+        requires ORIENTED_SPHERE_FIT_REQUIREMENTS
     class OrientedSphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -53,7 +57,7 @@ namespace Ponca
         \brief Internal generic class performing the Fit derivation
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+        requires ORIENTED_SPHERE_DER_REQUIREMENTS
     class OrientedSphereDerImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -76,12 +80,12 @@ namespace Ponca
         VectorArray m_dUl{VectorArray::Zero()}; /*!< \brief Derivatives of the hyper-sphere linear term    */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, orientedSphereDer)        
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, orientedSphereDer)
         PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, algebraicSphereDer)
         PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, normalDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
- 
+
         /*! \brief Returns the derivatives of the scalar field at the evaluation point */
         PONCA_MULTIARCH [[nodiscard]] inline ScalarArray dPotential() const;
 

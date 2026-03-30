@@ -15,6 +15,8 @@
 #include <Eigen/Dense>
 #include "concepts.h"
 
+#define COVARIANCE_LINE_FIT_REQUIREMENTS ProvidesPositionCovariance<T>&& ProvidesLine<T>
+
 namespace Ponca
 {
 
@@ -32,7 +34,7 @@ namespace Ponca
      */
 
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesPositionCovariance<T> && ProvidesLine<T>
+        requires COVARIANCE_LINE_FIT_REQUIREMENTS
     class CovarianceLineFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES

@@ -8,6 +8,11 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #include "./defines.h"
 
+#define FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS \
+    ProvidesFirstFondamentalFormComponents<T>&& ProvidesSecondFondamentalFormComponents<T>
+#define WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS \
+    ProvidesTangentPlaneBasis<T>&& ProvidesPrincipalCurvatures<T>&& ProvidesWeingartenMap<T>
+
 namespace Ponca
 {
     /*!
@@ -30,7 +35,7 @@ namespace Ponca
         \verbatim ProvidesFirstFondamentalFormComponents, ProvidesSecondFondamentalFormComponents \endverbatim
         */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesFirstFondamentalFormComponents<T> && ProvidesSecondFondamentalFormComponents<T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     class FundamentalFormWeingartenEstimator : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -108,6 +113,7 @@ namespace Ponca
         using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
         static_assert(DataPoint::Dim == 3, "NormalDerivativeWeingartenEstimator is only valid in 3D");
         static_assert(Base::isSpaceDer(), "NormalDerivativeWeingartenEstimator requires spatial derivation");
+
     private:
         MatrixType m_tangentBasis{MatrixType::Zero()};
 
@@ -156,12 +162,13 @@ namespace Ponca
             \verbatim ProvidesTangentPlaneBasis, PROVIDES_WEINGARTEN_MAP, ProvidesPrincipalCurvatures \endverbatim
             */
         template <class DataPoint, class _NFilter, typename T>
-            requires ProvidesTangentPlaneBasis<T> && ProvidesPrincipalCurvatures<T> && ProvidesWeingartenMap<T>
+            requires WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS
         class WeingartenCurvatureEstimatorBase : public T
         {
             PONCA_FITTING_DECLARE_DEFAULT_TYPES
             using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
             static_assert(DataPoint::Dim == 3, "WeingartenCurvatureEstimator is only valid in 3D");
+
         public:
             PONCA_FITTING_DECLARE_FINALIZE
         };

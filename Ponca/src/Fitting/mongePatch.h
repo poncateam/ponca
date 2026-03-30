@@ -17,6 +17,8 @@
 #include <Eigen/SVD>
 #include <Eigen/Geometry>
 
+#define MONGE_MATCH_REQUIREMENTS ProvidesTangentPlaneBasis<T>
+
 namespace Ponca
 {
     /*!
@@ -29,13 +31,14 @@ namespace Ponca
         CovariancePlaneFitImpl::worldToTangentPlane() wraps up coordinates in this order (height, u and v).
 
         This primitive provides:
-        \verbatim PROVIDES_MONGE_PATCH, ProvidesFirstFondamentalFormComponents, ProvidesSecondFondamentalFormComponents\endverbatim
+        \verbatim PROVIDES_MONGE_PATCH, ProvidesFirstFondamentalFormComponents,
+       ProvidesSecondFondamentalFormComponents\endverbatim
 
         This primitive requires:
         \verbatim ProvidesPlane, ProvidesTangentPlaneBasis, PROVIDES_HEIGHTFIELD \endverbatim
         */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesTangentPlaneBasis<T>
+        requires MONGE_MATCH_REQUIREMENTS
     class MongePatch : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -44,8 +47,8 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_HEIGHTFIELD,         /*!< \brief Requires a heightfield function */
-            PROVIDES_MONGE_PATCH,                       /*!< \brief Provides MongePatch API */
+            Check = Base::PROVIDES_HEIGHTFIELD, /*!< \brief Requires a heightfield function */
+            PROVIDES_MONGE_PATCH,               /*!< \brief Provides MongePatch API */
         };
 
     public:

@@ -16,6 +16,10 @@
 
 #include <Eigen/Dense>
 
+#define COVARIANCE_FIT_BASE_REQUIREMENTS ProvidesMeanPosition<T>
+#define COVARIANCE_FIT_DER_REQUIREMENTS \
+    ProvidesPrimitiveDerivative<T>&& ProvidesMeanPositionDerivative<T>&& ProvidesPositionCovariance<T>
+
 namespace Ponca
 {
 
@@ -57,7 +61,7 @@ namespace Ponca
      */
 
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesMeanPosition<T>
+        requires COVARIANCE_FIT_BASE_REQUIREMENTS
     class CovarianceFitBase : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -134,7 +138,7 @@ namespace Ponca
         \inherit Concept::FittingExtensionConcept
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T> && ProvidesPositionCovariance<T>
+        requires COVARIANCE_FIT_DER_REQUIREMENTS
     class CovarianceFitDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
