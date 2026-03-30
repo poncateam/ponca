@@ -21,7 +21,7 @@ void MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar
     else // base plane is ready, we can now fit the patch
     {
         // express neighbor in local coordinate frame
-        const VectorType local = Base::worldToTangentPlane(attributes.pos());
+        const VectorType local = Base::worldToFrame(attributes.pos());
         const Scalar& h        = Base::getHFromLocalCoordinates(local);
         const Scalar& u        = Base::getUFromLocalCoordinates(local);
         const Scalar& v        = Base::getVFromLocalCoordinates(local);

@@ -117,7 +117,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_NORMAL_DERIVATIVE,
+            Check = Base::PROVIDES_NORMAL_DERIVATIVE && Base::PROVIDES_LOCAL_FRAME,
             PROVIDES_WEINGARTEN_MAP,
             PROVIDES_TANGENT_PLANE_BASIS
         };
@@ -139,14 +139,6 @@ namespace Ponca
         /// \tparam Matrix2Derived Input matrix type that must have same interface than Matrix2
         template <typename Matrix2Derived>
         PONCA_MULTIARCH inline void weingartenMap(Matrix2Derived& w) const;
-
-        /// \copydoc CovariancePlaneFitImpl::worldToTangentPlane
-        PONCA_MULTIARCH inline VectorType worldToTangentPlane(const VectorType& _q,
-                                                              bool _isPositionVector = true) const;
-
-        /// \copydoc CovariancePlaneFitImpl::tangentPlaneToWorld
-        PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType& _q,
-                                                              bool _isPositionVector = true) const;
     };
 
     namespace internal

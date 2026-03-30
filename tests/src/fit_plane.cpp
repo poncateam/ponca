@@ -17,6 +17,10 @@
 #include "../common/testUtils.h"
 
 #include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/mean.h>
+#include <Ponca/src/Fitting/plane.h>
+#include <Ponca/src/Fitting/localFrame.h>
+#include <Ponca/src/Fitting/covarianceFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
@@ -158,11 +162,11 @@ void callSubTests()
 
     // test if conflicts are detected
     //! [Conflicting type]
-    using Hybrid1 = Basket<Point, NoWeightFuncGlobal, Plane, MeanNormal, MeanPosition, MeanPlaneFitImpl,
-                           CovarianceFitBase, CovariancePlaneFitImpl>; // test conflict detection in one direction
+    using Hybrid1 = Basket<Point, NoWeightFuncGlobal, Plane, LocalFrame, LocalFrameEstimator, MeanNormal, MeanPosition,
+        MeanPlaneFitImpl, CovarianceFitBase, CovariancePlaneFitImpl>; // test conflict detection in one direction
     //! [Conflicting type]
-    using Hybrid2 = Basket<Point, NoWeightFuncGlobal, Plane, MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
-                           MeanNormal, MeanPlaneFitImpl>; // test conflict detection in the second direction
+    using Hybrid2 = Basket<Point, NoWeightFuncGlobal, Plane, LocalFrame, LocalFrameEstimator, MeanPosition,
+        CovarianceFitBase, CovariancePlaneFitImpl, MeanNormal, MeanPlaneFitImpl>; // test conflict detection in the second direction
 
     cout << "Testing with perfect plane..." << endl;
     for (int i = 0; i < g_repeat; ++i)
