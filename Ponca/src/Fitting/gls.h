@@ -10,6 +10,9 @@
 #include "./concepts.h"
 #include "./curvature.h"
 
+#define GLS_PARAM_REQUIREMENTS ProvidesAlgebraicSphere<T>
+#define GLS_DER_REQUIREMENTS ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T> && ProvidesGLSParam<T>
+
 namespace Ponca
 {
 
@@ -39,7 +42,7 @@ namespace Ponca
         \verbatim ProvidesGLSParam \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesAlgebraicSphere<T>
+        requires GLS_PARAM_REQUIREMENTS
     class GLSParam : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -110,7 +113,7 @@ namespace Ponca
         Method published in \cite Mellado:2012:GLS
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T> && ProvidesGLSParam<T>
+        requires GLS_DER_REQUIREMENTS
     class GLSDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES

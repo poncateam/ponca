@@ -8,6 +8,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "./algebraicSphere.h"
 
+#define SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>
+
 namespace Ponca
 {
 
@@ -54,7 +56,7 @@ namespace Ponca
         \see AlgebraicSphere
     */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesAlgebraicSphere<T>
+        requires SPHERE_FIT_REQUIREMENTS
     class SphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES

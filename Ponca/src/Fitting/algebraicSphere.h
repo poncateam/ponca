@@ -14,6 +14,8 @@
 
 #include <Eigen/Core>
 
+#define ALGEBRAIC_SPHERE_REQUIREMENTS ProvidesPrimitiveBase<T>&& HasLocalFrame<_NFilter>
+
 namespace Ponca
 {
 
@@ -41,11 +43,10 @@ namespace Ponca
     */
 
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesPrimitiveBase<T>
+        requires ALGEBRAIC_SPHERE_REQUIREMENTS
     class AlgebraicSphere : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-        static_assert(_NFilter::hasLocalFrame, "AlgebraicSphere requires local frame");
 
     protected:
         //! \brief Is the implicit scalar field normalized using Pratt

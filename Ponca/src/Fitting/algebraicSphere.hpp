@@ -5,7 +5,7 @@
 */
 
 template <class DataPoint, class _NFilter, typename T> // Outer template for the class
-    requires ProvidesPrimitiveBase<T>
+    requires ALGEBRAIC_SPHERE_REQUIREMENTS
 typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType // Return type
 AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
 {
@@ -30,7 +30,7 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesPrimitiveBase<T>
+    requires ALGEBRAIC_SPHERE_REQUIREMENTS
 typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar AlgebraicSphere<DataPoint, _NFilter, T>::potentialLocal(
     const VectorType& _lq) const
 {
@@ -38,7 +38,7 @@ typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar AlgebraicSphere<DataPoi
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesPrimitiveBase<T>
+    requires ALGEBRAIC_SPHERE_REQUIREMENTS
 typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType AlgebraicSphere<
     DataPoint, _NFilter, T>::primitiveGradientLocal(const VectorType& _lq) const
 {

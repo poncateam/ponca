@@ -14,6 +14,10 @@
 
 #include <Eigen/Dense>
 
+#define UNORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>
+#define UNORIENTED_SPHERE_DER_REQUIREMENTS \
+    ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
+
 namespace Ponca
 {
     /*!
@@ -46,7 +50,7 @@ namespace Ponca
         \see class AlgebraicSphere, class OrientedSphereFit
     */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T>
+        requires UNORIENTED_SPHERE_FIT_REQUIREMENTS
     class UnorientedSphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -87,6 +91,7 @@ namespace Ponca
 
         using VectorB  = typename Base::VectorB;
         using MatrixBB = typename Base::MatrixBB;
+
     protected:
         // computation data
         MatrixBB m_dmatA[Base::NbDerivatives];
@@ -102,7 +107,6 @@ namespace Ponca
         PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, unorientedSphereDer)
         PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, algebraicSphereDer)
         PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, normalDer)
-
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 

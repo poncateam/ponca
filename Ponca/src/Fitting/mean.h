@@ -10,6 +10,9 @@
 #include "./concepts.h"
 #include "./primitive.h"
 
+#define MEAN_POSITION_DER_REQUIREMENTS ProvidesPrimitiveDerivative<T>&& ProvidesMeanPosition<T>
+#define MEAN_NORMAL_DER_REQUIREMENTS ProvidesPrimitiveDerivative<T>&& ProvidesMeanNormal<T>
+
 namespace Ponca
 {
 
@@ -115,7 +118,7 @@ namespace Ponca
         \see MeanNormal
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPosition<T>
+        requires MEAN_POSITION_DER_REQUIREMENTS
     class MeanPositionDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -176,7 +179,7 @@ namespace Ponca
         \see MeanNormal
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesMeanNormal<T>
+        requires MEAN_NORMAL_DER_REQUIREMENTS
     class MeanNormalDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES

@@ -5,7 +5,7 @@
 */
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
+    requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 void MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
@@ -22,7 +22,7 @@ void MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
+    requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 void MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                          const DataPoint& attributes, ScalarArray& dw)
 {
@@ -54,7 +54,7 @@ void MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar 
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
+    requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 FIT_RESULT MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     Base::finalize();
@@ -148,7 +148,7 @@ FIT_RESULT MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
+    requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::ScalarArray MlsSphereFitDer<DataPoint, _NFilter, DiffType,
                                                                                         T>::dPotential() const
 {
@@ -165,7 +165,7 @@ typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::ScalarArray MlsSpher
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
+    requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorType MlsSphereFitDer<DataPoint, _NFilter, DiffType,
                                                                                        T>::primitiveGradient() const
 {
@@ -175,7 +175,7 @@ typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorType MlsSphere
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphereDerivative<T>
+    requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorArray MlsSphereFitDer<DataPoint, _NFilter, DiffType,
                                                                                         T>::dNormal() const
 {

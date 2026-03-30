@@ -8,7 +8,7 @@ namespace Ponca
 {
 
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T>
+        requires UNORIENTED_SPHERE_FIT_REQUIREMENTS
     void UnorientedSphereFitImpl<DataPoint, _NFilter, T>::init()
     {
         Base::init();
@@ -18,7 +18,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T>
+        requires UNORIENTED_SPHERE_FIT_REQUIREMENTS
     void UnorientedSphereFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                            const DataPoint& attributes)
     {
@@ -31,7 +31,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesAlgebraicSphere<T> && ProvidesMeanPosition<T>
+        requires UNORIENTED_SPHERE_FIT_REQUIREMENTS
     FIT_RESULT UnorientedSphereFitImpl<DataPoint, _NFilter, T>::finalize()
     {
         PONCA_MULTIARCH_STD_MATH(sqrt);
@@ -74,7 +74,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+        requires UNORIENTED_SPHERE_DER_REQUIREMENTS
     void UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::init()
     {
         Base::init();
@@ -87,7 +87,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+        requires UNORIENTED_SPHERE_DER_REQUIREMENTS
     void UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                                      const DataPoint& attributes,
                                                                                      ScalarArray& dw)
@@ -106,7 +106,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+        requires UNORIENTED_SPHERE_DER_REQUIREMENTS
     FIT_RESULT UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
     {
         constexpr int Dim        = DataPoint::Dim;
@@ -187,7 +187,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+        requires UNORIENTED_SPHERE_DER_REQUIREMENTS
     typename UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::ScalarArray UnorientedSphereDerImpl<
         DataPoint, _NFilter, DiffType, T>::dPotential() const
     {
@@ -199,7 +199,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+        requires UNORIENTED_SPHERE_DER_REQUIREMENTS
     typename UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::VectorArray UnorientedSphereDerImpl<
         DataPoint, _NFilter, DiffType, T>::dNormal() const
     {

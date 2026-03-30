@@ -8,7 +8,7 @@
 */
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 void CovarianceFitBase<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -16,7 +16,7 @@ void CovarianceFitBase<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 void CovarianceFitBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                  const DataPoint& attributes)
 {
@@ -25,7 +25,7 @@ void CovarianceFitBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 FIT_RESULT CovarianceFitBase<DataPoint, _NFilter, T>::finalize()
 {
     // handle specific configurations
@@ -50,7 +50,7 @@ FIT_RESULT CovarianceFitBase<DataPoint, _NFilter, T>::finalize()
 }
 
 template <class DataPoint, class _NFilter, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar CovarianceFitBase<DataPoint, _NFilter, T>::surfaceVariation()
     const
 {
@@ -58,7 +58,7 @@ typename CovarianceFitBase<DataPoint, _NFilter, T>::Scalar CovarianceFitBase<Dat
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::planarity()
     const
 {
@@ -74,7 +74,7 @@ typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<Da
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::sphericity()
     const
 {
@@ -82,7 +82,7 @@ typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<Da
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::anisotropy()
     const
 {
@@ -90,7 +90,7 @@ typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<Da
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::eigenentropy()
     const
 {
@@ -100,28 +100,28 @@ typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<Da
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_0() const
 {
     return m_solver.eigenvalues()(0);
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_1() const
 {
     return m_solver.eigenvalues()(1);
 }
 
 template <class DataPoint, class _WFunctor, typename T>
-    requires ProvidesMeanPosition<T>
+    requires COVARIANCE_FIT_BASE_REQUIREMENTS
 typename CovarianceFitBase<DataPoint, _WFunctor, T>::Scalar CovarianceFitBase<DataPoint, _WFunctor, T>::lambda_2() const
 {
     return m_solver.eigenvalues()(2);
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T> && ProvidesPositionCovariance<T>
+    requires COVARIANCE_FIT_DER_REQUIREMENTS
 void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::init()
 {
     Base::init();
@@ -131,7 +131,7 @@ void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::init()
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T> && ProvidesPositionCovariance<T>
+    requires COVARIANCE_FIT_DER_REQUIREMENTS
 void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                           const DataPoint& attributes, ScalarArray& dw)
 {
@@ -141,7 +141,7 @@ void CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::addLocalNeighbor(Scalar
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
-    requires ProvidesPrimitiveDerivative<T> && ProvidesMeanPositionDerivative<T> && ProvidesPositionCovariance<T>
+    requires COVARIANCE_FIT_DER_REQUIREMENTS
 FIT_RESULT CovarianceFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);

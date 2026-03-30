@@ -17,6 +17,9 @@
 
 #include <Eigen/Eigenvalues>
 
+#define COVARIANCE_PLANE_FIT_REQUIREMENTS ProvidesPlane<T>
+#define COVARIANCE_PLANE_DER_REQUIREMENTS ProvidesPlane<T>&& Is3D<DataPoint>
+
 namespace Ponca
 {
 
@@ -31,7 +34,7 @@ namespace Ponca
         \see Plane
     */
     template <class DataPoint, class _NFilter, typename T>
-        requires ProvidesPlane<T>
+        requires COVARIANCE_PLANE_FIT_REQUIREMENTS
     class CovariancePlaneFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -86,13 +89,12 @@ namespace Ponca
         \warning Defined in 3D only
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPlane<T>
+        requires COVARIANCE_PLANE_DER_REQUIREMENTS
     class CovariancePlaneDerImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-        static_assert(DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
     private:
         VectorArray m_dNormal{VectorArray::Zero()}; /*!< \brief Derivatives of the hyper-plane normal */
         ScalarArray m_dDist{ScalarArray::Zero()};   /*!< \brief Derivatives of the MLS scalar field */
