@@ -22,6 +22,7 @@
 #include <Ponca/src/Fitting/weingarten.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/src/Fitting/localFrame.h>
 
 #include <vector>
 
@@ -136,10 +137,10 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;                 \
     using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;               \
                                                                                                   \
-    using FitSmoothOriented     = Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>;   \
-    using FitConstantOriented   = Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam>; \
-    using FitSmoothUnoriented   = Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam>; \
-    using FitConstantUnoriented = Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam>;
+    using FitSmoothOriented     = Basket<Point, WeightSmoothFunc, LocalFrame, OrientedSphereFit, GLSParam>;   \
+    using FitConstantOriented   = Basket<Point, WeightConstantFunc, LocalFrame, OrientedSphereFit, GLSParam>; \
+    using FitSmoothUnoriented   = Basket<Point, WeightSmoothFunc, LocalFrame, UnorientedSphereFit, GLSParam>; \
+    using FitConstantUnoriented = Basket<Point, WeightConstantFunc, LocalFrame, UnorientedSphereFit, GLSParam>;
 
 template <typename Scalar, int Dim>
 void callSubTests()

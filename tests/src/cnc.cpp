@@ -18,6 +18,7 @@
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 
 #include <vector>
+#include <Ponca/src/Fitting/localFrame.h>
 
 #include "Ponca/src/Fitting/curvature.h"
 #include "Ponca/src/Fitting/mlsSphereFitDer.h"
@@ -194,7 +195,7 @@ void callSubTests()
 
     using SmoothWeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
     using FitASODiff =
-        BasketDiff<Basket<Point, SmoothWeightFunc, OrientedSphereFit>, FitSpaceDer, OrientedSphereDer, MlsSphereFitDer,
+        BasketDiff<Basket<Point, SmoothWeightFunc, LocalFrame, OrientedSphereFit>, FitSpaceDer, OrientedSphereDer, MlsSphereFitDer,
                    CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
 
     //! [CNCFitType]

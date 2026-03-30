@@ -100,11 +100,11 @@ protected :
     /*!
      * \copydoc LocalFrame::worldToFrame
      */
-    PONCA_MULTIARCH inline VectorType worldToFrameLocal(const VectorType &_q) const;
+    PONCA_MULTIARCH inline VectorType worldToFrameLocal(const VectorType &_lq) const;
     /*!
      * \copydoc LocalFrame::frameToWorld
      */
-    PONCA_MULTIARCH inline VectorType frameToWorldLocal(const VectorType &_q) const;
+    PONCA_MULTIARCH inline VectorType frameToWorldLocal(const VectorType &_lq) const;
 
 }; //class LocalFrame
 

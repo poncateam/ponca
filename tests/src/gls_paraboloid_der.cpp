@@ -28,6 +28,7 @@
 #include <Ponca/Common>
 
 #include <vector>
+#include <Ponca/src/Fitting/localFrame.h>
 
 using namespace std;
 using namespace Ponca;
@@ -245,10 +246,10 @@ void callSubTests()
     using WeightSmoothFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
 
     using FitSphereOriented =
-        BasketDiff<Basket<Point, WeightSmoothFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer,
+        BasketDiff<Basket<Point, WeightSmoothFunc, LocalFrame, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer,
                    CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
     using RefFitSphereOriented =
-        BasketDiff<Basket<RefPoint, RefWeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer,
+        BasketDiff<Basket<RefPoint, RefWeightFunc, LocalFrame, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer,
                    CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
     //    using TestFitSphereOriented = BasketDiff<Basket<TestPoint, TestWeightFunc, OrientedSphereFit>,
     //            internal::FitScaleDer | internal::FitScaleDer, OrientedSphereDer,

@@ -155,24 +155,6 @@ namespace Ponca
         W(0, 1) = W(1, 0) = (W(0, 1) + W(1, 0)) / Scalar(2);
     }
 
-    template <class DataPoint, class _NFilter, int DiffType, typename T>
-    typename NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::VectorType
-    NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::worldToTangentPlane(
-        const VectorType& _q, bool _isPositionVector) const
-    {
-        return m_tangentBasis.normalized().transpose() *
-               Base::getNeighborFilter().convertToLocalBasis(_q, _isPositionVector);
-    }
-
-    template <class DataPoint, class _NFilter, int DiffType, typename T>
-    typename NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::VectorType
-    NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::tangentPlaneToWorld(
-        const VectorType& _lq, bool _isPositionVector) const
-    {
-        return Base::getNeighborFilter().convertToGlobalBasis(m_tangentBasis.normalized().transpose().inverse() * _lq,
-                                                              _isPositionVector);
-    }
-
     namespace internal
     {
         ///////// WeingartenCurvatureEstimator
@@ -199,8 +181,8 @@ namespace Ponca
             vmin.template bottomRows<2>() = solver.eigenvectors().col(0);
             vmax.template bottomRows<2>() = solver.eigenvectors().col(1);
 
-            vmin = Base::tangentPlaneToWorld(vmin, false);
-            vmax = Base::tangentPlaneToWorld(vmax, false);
+            vmin = Base::frameToWorldLocal(vmin);
+            vmax = Base::frameToWorldLocal(vmax);
 
             Base::setCurvatureValues(kmin, kmax, vmin, vmax);
 
