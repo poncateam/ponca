@@ -15,6 +15,7 @@
 #include "../split_test_helper.h"
 
 #include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/mls.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
@@ -62,10 +63,12 @@ void testFunction()
         Fit fit;
         fit.setNeighborFilter({pos, analysisScale});
         fit.compute(vectorPoints);
-
+        
         Fit fitMLS;
         fitMLS.setNeighborFilter({pos, analysisScale});
-        fitMLS.computeMLS(vectorPoints, 1000);
+
+        MLS<Scalar> mls(1000);
+        mls.compute(fitMLS, vectorPoints);
 
         if (fit.isStable())
         {

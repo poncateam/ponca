@@ -193,72 +193,11 @@ namespace Ponca
 
             return res;
         }
-
-    protected:
-        /*!
-         * \brief Computes the fit using the MLS iteration process.
-         * The position of the projected point is outputted through the lastPosition argument.
-         * \param points An STL-like container of points
-         * \param mlsIter The amount of MLS iteration that is being done for this fit
-         * \return The result of the fit
-         */
-        template <typename Func>
-        PONCA_MULTIARCH FIT_RESULT computeMLSImpl(Func&& computeFunc, const int mlsIter, const Scalar epsilon)
-        {
-            FIT_RESULT res = UNDEFINED;
-            auto lastPos   = Base::getNeighborFilter().evalPos();
-
-            for (int mm = 0; mm < mlsIter; ++mm)
-            {
-                Base::m_nFilter.changeNeighborhoodFrame(lastPos);
-                res = computeFunc();
-
-                if (Base::isStable())
-                {
-                    auto newPos = Base::project(lastPos);
-                    if (newPos.isApprox(lastPos, epsilon))
-                        return res;
-                    lastPos = newPos;
-                }
-                else
-                {
-                    return res;
-                }
-            }
-            return res;
-        }
-
-    public:
-        /*!
-         * \copydoc BasketComputeObject::computeMLSImpl
-         * \tparam PointContainer STL-like container storing the points
-         */
-        template <typename PointContainer>
-        PONCA_MULTIARCH FIT_RESULT computeMLS(const PointContainer& points, const int mlsIter = 5,
-                                              const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision())
-        {
-            return computeMLSImpl([&]() { return compute(points); }, mlsIter, epsilon);
-        }
-
-        /*!
-         * \copydoc BasketComputeObject::computeMLSImpl
-         * \tparam IndexRange STL-Like range storing indices
-         * \tparam PointContainer STL-like container storing the points
-         */
-        template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH FIT_RESULT computeWithIdsMLS(const IndexRange& ids, const PointContainer& points,
-                                                     const int mlsIter    = 5,
-                                                     const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision())
-        {
-            return computeMLSImpl([&]() { return computeWithIds(ids, points); }, mlsIter, epsilon);
-        }
     };
 
-#define WRITE_COMPUTE_FUNCTIONS                            \
-    using BasketComputeObject<Self, Base>::compute;        \
-    using BasketComputeObject<Self, Base>::computeWithIds; \
-    using BasketComputeObject<Self, Base>::computeMLS;     \
-    using BasketComputeObject<Self, Base>::computeWithIdsMLS;
+#define WRITE_COMPUTE_FUNCTIONS                     \
+    using BasketComputeObject<Self, Base>::compute; \
+    using BasketComputeObject<Self, Base>::computeWithIds;
 
     /*!
          \brief Aggregator class used to declare specialized structures with derivatives computations, using CRTP
