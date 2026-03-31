@@ -1,9 +1,21 @@
+/*
+This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+/*!
+ * \file tests/common/testUtils.h
+ * \brief Useful functions for kdtree tests
+*/
+
+#pragma once
+
 #include <chrono>
 #include <Eigen/Dense>
 #include <cassert>
 
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
+#include <precompiled/SpatialPartitioning/spatialPartitioningPCH.h>
 #include <chrono>
 #include <random>
 #include <iterator>

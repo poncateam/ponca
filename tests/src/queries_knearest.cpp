@@ -15,10 +15,6 @@
 #include "../common/kdtree_utils.h"
 #include "../split_test_helper.h"
 
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
-#include <Ponca/src/Common/pointTypes.h>
-
 #define PRINT_TIMING
 
 using namespace Ponca;

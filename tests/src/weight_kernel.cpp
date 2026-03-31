@@ -13,9 +13,6 @@
 #include "../common/testUtils.h"
 
 #include <unsupported/Eigen/AutoDiff>
-
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
 #include <chrono>
 
 using namespace std;
