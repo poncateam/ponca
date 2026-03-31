@@ -372,8 +372,7 @@ namespace Ponca
             PONCA_MULTIARCH_STD_MATH(exp);
             const Scalar xSqrd         = _x * _x;
             const Scalar xSqrdMinusOne = (xSqrd - Scalar(1));
-            return (Scalar(2) * exp(xSqrd - Scalar(1)) *
-                    (Scalar(2) * xSqrd * xSqrd - Scalar(5) * xSqrd - Scalar(1))) /
+            return (Scalar(2) * exp(xSqrd - Scalar(1)) * (Scalar(2) * xSqrd * xSqrd - Scalar(5) * xSqrd - Scalar(1))) /
                    xSqrdMinusOne * xSqrdMinusOne * xSqrdMinusOne;
         }
 
