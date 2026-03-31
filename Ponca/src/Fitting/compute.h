@@ -63,14 +63,16 @@ namespace Ponca
             return UNDEFINED;
         };
     }; // struct ComputeObject
-    
+
     /**
-     * \brief ComputeScheme serves as an interface to reuse and modify the result of ComputeObject::compute
+     * \brief SimpleCompute serves as an interface guideline to reuse and modify the result of computations
      *
-     * This class is not templated on the ComputeObject to allow easier comparison with same scheme and 
+     * This class is not templated on the ComputeObject to allow easier comparison with same scheme and
      * parameters but different objects.
+     *
+     * It also allows for a unified interface between all computationnal schemes.
      */
-    struct ComputeScheme
+    struct SimpleCompute
     {
     public:
 #ifdef PONCA_CPU_ARCH
@@ -82,7 +84,7 @@ namespace Ponca
          * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
          */
         template <typename ComputeObject, typename Container>
-        FIT_RESULT compute(ComputeObject& co, const Container& c)
+        FIT_RESULT compute(ComputeObject& co, const Container& c) const
         {
             return co.compute(std::begin(c), std::end(c));
         }
@@ -94,7 +96,8 @@ namespace Ponca
             \tparam IteratorEnd   The end of the iterator (std::end(iterator)
         */
         template <typename ComputeObject, typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(ComputeObject& co, const IteratorBegin& begin, const IteratorEnd& end)
+        PONCA_MULTIARCH inline FIT_RESULT compute(ComputeObject& co, const IteratorBegin& begin,
+                                                  const IteratorEnd& end) const
         {
             return co.compute(begin, end);
         };
@@ -106,16 +109,13 @@ namespace Ponca
             \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
         */
         template <typename ComputeObject, typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(ComputeObject& co, IndexRange ids, const PointContainer& points)
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(ComputeObject& co, IndexRange ids,
+                                                         const PointContainer& points) const
         {
             return co.computeWithIds(ids, points);
         };
 
     private:
     };
-    
-    // This class allows for a unified interface with other methods.
-    using SimpleCompute = ComputeScheme;
-
 } // namespace Ponca
 
