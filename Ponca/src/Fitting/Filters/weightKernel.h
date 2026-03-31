@@ -353,14 +353,14 @@ namespace Ponca
          * \brief Defines the varifolds weighting function
          *
          * \warning rho prime is negative but the basket ignores negative weights
-         * (see Basket::addNeighbor()), so the opposite is returned here
-         * and Varifold::addLocalNeighbor() takes the opposite again
-         * \code return - 2 * _x * y * y * std::exp(-y); \endcode
+         * (\see Basket::addNeighbor()), so the opposite is returned here
+         * and VarifoldsImpl::addLocalNeighbor() takes the opposite again
          */
         PONCA_MULTIARCH Scalar f(const Scalar& _x) const
         {
+            PONCA_MULTIARCH_STD_MATH(exp);
             const Scalar y = Scalar(1) / (Scalar(1) - _x * _x);
-            return Scalar(2) * _x * y * y * std::exp(-y);
+            return Scalar(2) * _x * y * y * exp(-y);
         }
 
         /*!
@@ -369,9 +369,10 @@ namespace Ponca
          */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar df(const Scalar& _x) const
         {
+            PONCA_MULTIARCH_STD_MATH(exp);
             const Scalar xSqrd         = _x * _x;
             const Scalar xSqrdMinusOne = (xSqrd - Scalar(1));
-            return (Scalar(2) * std::exp(xSqrd - Scalar(1)) *
+            return (Scalar(2) * exp(xSqrd - Scalar(1)) *
                     (Scalar(2) * xSqrd * xSqrd - Scalar(5) * xSqrd - Scalar(1))) /
                    xSqrdMinusOne * xSqrdMinusOne * xSqrdMinusOne;
         }
@@ -382,8 +383,9 @@ namespace Ponca
          */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar ddf(const Scalar& _x) const
         {
+            PONCA_MULTIARCH_STD_MATH(exp);
             const Scalar xSqrd = _x * _x;
-            return Scalar(4) * std::exp(xSqrd - Scalar(1)) * _x *
+            return Scalar(4) * exp(xSqrd - Scalar(1)) * _x *
                    (Scalar(2) * xSqrd * xSqrd * xSqrd - xSqrd * xSqrd - Scalar(10) * xSqrd + Scalar(5));
         }
 
