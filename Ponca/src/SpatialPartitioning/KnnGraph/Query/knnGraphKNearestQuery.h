@@ -50,7 +50,10 @@ namespace Ponca
         using Self = KnnGraphKNearestQuery<Traits>;
 
     public:
-        PONCA_MULTIARCH inline KnnGraphKNearestQuery(const StaticKnnGraphBase<Traits>* graph, int index) : QueryType(index), m_graph(graph) {}
+        PONCA_MULTIARCH inline KnnGraphKNearestQuery(const StaticKnnGraphBase<Traits>* graph, int index)
+            : QueryType(index), m_graph(graph)
+        {
+        }
 
         /// \brief Call the k-nearest neighbors query with new input parameter.
         PONCA_MULTIARCH inline Self& operator()(int index) { return QueryType::template operator()<Self>(index); }
