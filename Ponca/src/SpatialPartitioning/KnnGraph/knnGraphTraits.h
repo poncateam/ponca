@@ -46,7 +46,7 @@ namespace Ponca
         using IndexContainer = std::vector<IndexType>;
     };
     /*!
-    * \brief Variant to the KnnGraph Traits type that uses pointers as internal storage instead of an STL-like
+     * \brief Variant to the KnnGraph Traits type that uses pointers as internal storage instead of an STL-like
      * container.
      */
     template <typename _DataPoint>
