@@ -5,6 +5,7 @@ namespace Ponca
 {
     ///////// FundamentalFormWeingartenEstimator
     template <class DataPoint, class _NFilter, typename T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     typename FundamentalFormWeingartenEstimator<DataPoint, _NFilter, T>::Matrix2 FundamentalFormWeingartenEstimator<
         DataPoint, _NFilter, T>::firstFundamentalForm() const
     {
@@ -14,6 +15,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     template <typename Matrix2Derived>
     void FundamentalFormWeingartenEstimator<DataPoint, _NFilter, T>::firstFundamentalForm(Matrix2Derived& first) const
     {
@@ -22,6 +24,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     typename FundamentalFormWeingartenEstimator<DataPoint, _NFilter, T>::Matrix2 FundamentalFormWeingartenEstimator<
         DataPoint, _NFilter, T>::secondFundamentalForm() const
     {
@@ -31,6 +34,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     template <typename Matrix2Derived>
     void FundamentalFormWeingartenEstimator<DataPoint, _NFilter, T>::secondFundamentalForm(Matrix2Derived& second) const
     {
@@ -39,6 +43,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     typename FundamentalFormWeingartenEstimator<DataPoint, _NFilter, T>::Matrix2 FundamentalFormWeingartenEstimator<
         DataPoint, _NFilter, T>::weingartenMap() const
     {
@@ -48,6 +53,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     template <typename Matrix2Derived>
     void FundamentalFormWeingartenEstimator<DataPoint, _NFilter, T>::weingartenMap(Matrix2Derived& w) const
     {
@@ -55,6 +61,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     typename FundamentalFormWeingartenEstimator<DataPoint, _NFilter, T>::Scalar FundamentalFormWeingartenEstimator<
         DataPoint, _NFilter, T>::kMean() const
     {
@@ -65,6 +72,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, typename T>
+        requires FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     typename FundamentalFormWeingartenEstimator<DataPoint, _NFilter, T>::Scalar FundamentalFormWeingartenEstimator<
         DataPoint, _NFilter, T>::GaussianCurvature() const
     {
@@ -177,6 +185,7 @@ namespace Ponca
     {
         ///////// WeingartenCurvatureEstimator
         template <class DataPoint, class _NFilter, typename T>
+            requires WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS
         FIT_RESULT WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::finalize()
         {
 

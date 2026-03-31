@@ -9,11 +9,16 @@
 
 #pragma once
 #include "./defines.h"
+#include "./concepts.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(limits)
 
 #include <Eigen/Dense>
+
+#define COVARIANCE_FIT_BASE_REQUIREMENTS ProvidesMeanPosition<T>
+#define COVARIANCE_FIT_DER_REQUIREMENTS \
+    ProvidesPrimitiveDerivative<T>&& ProvidesMeanPositionDerivative<T>&& ProvidesPositionCovariance<T>
 
 namespace Ponca
 {
@@ -56,17 +61,10 @@ namespace Ponca
      */
 
     template <class DataPoint, class _NFilter, typename T>
+        requires COVARIANCE_FIT_BASE_REQUIREMENTS
     class CovarianceFitBase : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_MEAN_POSITION,
-            PROVIDES_POSITION_COVARIANCE
-        };
-
     public:
         using MatrixType = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/
         /*! \brief Solver used to analyse the covariance matrix*/
@@ -140,20 +138,12 @@ namespace Ponca
         \inherit Concept::FittingExtensionConcept
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires COVARIANCE_FIT_DER_REQUIREMENTS
     class CovarianceFitDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && Base::PROVIDES_MEAN_POSITION_DERIVATIVE &&
-                    Base::PROVIDES_POSITION_COVARIANCE,
-            PROVIDES_POSITION_COVARIANCE_DERIVATIVE
-        };
-
     protected:
         /// Computation data: derivatives of the covariance matrix
         MatrixType m_dCov[Base::NbDerivatives];

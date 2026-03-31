@@ -17,6 +17,8 @@
 #include <Eigen/SVD>
 #include <Eigen/Geometry>
 
+#define MONGE_MATCH_REQUIREMENTS ProvidesTangentPlaneBasis<T>
+
 namespace Ponca
 {
     /*!
@@ -29,13 +31,14 @@ namespace Ponca
         CovariancePlaneFitImpl::worldToTangentPlane() wraps up coordinates in this order (height, u and v).
 
         This primitive provides:
-        \verbatim PROVIDES_MONGE_PATCH, PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS,
-       PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS \endverbatim
+        \verbatim PROVIDES_MONGE_PATCH, ProvidesFirstFondamentalFormComponents,
+       ProvidesSecondFondamentalFormComponents\endverbatim
 
         This primitive requires:
-        \verbatim PROVIDES_PLANE, PROVIDES_TANGENT_PLANE_BASIS, PROVIDES_HEIGHTFIELD \endverbatim
+        \verbatim ProvidesPlane, ProvidesTangentPlaneBasis, PROVIDES_HEIGHTFIELD \endverbatim
         */
     template <class DataPoint, class _NFilter, typename T>
+        requires MONGE_MATCH_REQUIREMENTS
     class MongePatch : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -44,11 +47,8 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_PLANE && Base::PROVIDES_TANGENT_PLANE_BASIS &&
-                    Base::PROVIDES_HEIGHTFIELD,         /*!< \brief Requires a heightfield function */
-            PROVIDES_MONGE_PATCH,                       /*!< \brief Provides MongePatch API */
-            PROVIDES_FIRST_FUNDAMENTAL_FORM_COMPONENTS, /*!< \brief Provides first fundamental form */
-            PROVIDES_SECOND_FUNDAMENTAL_FORM_COMPONENTS /*!< \brief Provides second fundamental form */
+            Check = Base::PROVIDES_HEIGHTFIELD, /*!< \brief Requires a heightfield function */
+            PROVIDES_MONGE_PATCH,               /*!< \brief Provides MongePatch API */
         };
 
     public:
@@ -56,6 +56,8 @@ namespace Ponca
         PONCA_MULTIARCH inline MongePatch() : Base() { Base::init(); }
 
         PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, mongePatchPrimitive)
+        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, firstFondamentalFormComponent)
+        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, secondFondamentalFormComponent)
 
         //! \brief Value of the scalar field at the evaluation point
         //! \see method `#isSigned` of the fit to check if the sign is reliable

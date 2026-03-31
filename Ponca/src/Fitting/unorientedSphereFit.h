@@ -9,9 +9,14 @@
 #pragma once
 
 #include "./algebraicSphere.h"
+#include "./concepts.h"
 #include "./mean.h" // used to define UnorientedSphereFit
 
 #include <Eigen/Dense>
+
+#define UNORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>
+#define UNORIENTED_SPHERE_DER_REQUIREMENTS \
+    ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
 
 namespace Ponca
 {
@@ -45,16 +50,12 @@ namespace Ponca
         \see class AlgebraicSphere, class OrientedSphereFit
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires UNORIENTED_SPHERE_FIT_REQUIREMENTS
     class UnorientedSphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION
-        };
-
         using VectorB  = Eigen::Matrix<Scalar, DataPoint::Dim + 1, 1>;
         using MatrixBB = Eigen::Matrix<Scalar, DataPoint::Dim + 1, DataPoint::Dim + 1>;
 
@@ -81,6 +82,7 @@ namespace Ponca
                                 MeanPosition<DataPoint, _NFilter, AlgebraicSphere<DataPoint, _NFilter, T>>>;
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
     class UnorientedSphereDerImpl : public T
     {
     protected:
@@ -89,15 +91,6 @@ namespace Ponca
 
         using VectorB  = typename Base::VectorB;
         using MatrixBB = typename Base::MatrixBB;
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE &
-                    Base::PROVIDES_PRIMITIVE_DERIVATIVE,
-            PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
-            PROVIDES_NORMAL_DERIVATIVE
-        };
 
     protected:
         // computation data
@@ -112,6 +105,8 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, unorientedSphereDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, algebraicSphereDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, normalDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 

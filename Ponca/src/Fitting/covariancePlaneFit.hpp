@@ -8,6 +8,7 @@
 */
 
 template <class DataPoint, class _NFilter, typename T>
+    requires COVARIANCE_PLANE_FIT_REQUIREMENTS
 FIT_RESULT CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize()
 {
     if (Base::finalize() == STABLE)
@@ -21,6 +22,7 @@ FIT_RESULT CovariancePlaneFitImpl<DataPoint, _NFilter, T>::finalize()
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires COVARIANCE_PLANE_FIT_REQUIREMENTS
 typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType CovariancePlaneFitImpl<
     DataPoint, _NFilter, T>::worldToTangentPlane(const VectorType& _q, bool _isPositionVector) const
 {
@@ -29,6 +31,7 @@ typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType CovariancePl
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires COVARIANCE_PLANE_FIT_REQUIREMENTS
 typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType CovariancePlaneFitImpl<
     DataPoint, _NFilter, T>::tangentPlaneToWorld(const VectorType& _lq, bool _isPositionVector) const
 {
@@ -37,6 +40,7 @@ typename CovariancePlaneFitImpl<DataPoint, _NFilter, T>::VectorType CovariancePl
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires COVARIANCE_PLANE_DER_REQUIREMENTS
 FIT_RESULT CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_CU_STD_FUNC(numeric_limits);

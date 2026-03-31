@@ -17,6 +17,9 @@
 
 #include <Eigen/Eigenvalues>
 
+#define COVARIANCE_PLANE_FIT_REQUIREMENTS ProvidesPlane<T>
+#define COVARIANCE_PLANE_DER_REQUIREMENTS ProvidesPlane<T>&& Is3D<DataPoint>
+
 namespace Ponca
 {
 
@@ -31,26 +34,14 @@ namespace Ponca
         \see Plane
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires COVARIANCE_PLANE_FIT_REQUIREMENTS
     class CovariancePlaneFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_PLANE && Base::PROVIDES_POSITION_COVARIANCE,
-            /*!
-             * \brief Expose a method worldToTangentPlane(VectorType), which turns a point
-             * in ambient 3D space to the tangent plane.
-             * \see worldToTangentPlane
-             * \see tangentPlaneToWorld
-             */
-            PROVIDES_TANGENT_PLANE_BASIS
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl, covariancePlaneFit)
+        PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl, tangentPlaneBasis)
         PONCA_FITTING_DECLARE_FINALIZE
         PONCA_FITTING_IS_SIGNED(false)
 
@@ -98,27 +89,19 @@ namespace Ponca
         \warning Defined in 3D only
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires COVARIANCE_PLANE_DER_REQUIREMENTS
     class CovariancePlaneDerImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-        static_assert(DataPoint::Dim == 3, "CovariancePlaneDer is only valid in 3D");
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_PLANE & Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
-            PROVIDES_COVARIANCE_PLANE_DERIVATIVE, /*!< \brief Provides derivatives for hyper-planes */
-            PROVIDES_NORMAL_DERIVATIVE
-        };
-
     private:
         VectorArray m_dNormal{VectorArray::Zero()}; /*!< \brief Derivatives of the hyper-plane normal */
         ScalarArray m_dDist{ScalarArray::Zero()};   /*!< \brief Derivatives of the MLS scalar field */
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, covariancePlaneDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, normalDer)
 
         /*! \see Concept::FittingProcedureConcept::finalize() */
         PONCA_MULTIARCH FIT_RESULT finalize();

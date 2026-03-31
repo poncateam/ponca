@@ -10,6 +10,8 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #include <Eigen/Dense>
 
+#define HEIGHT_FIELD_REQUIREMENTS Is3D<DataPoint>
+
 namespace Ponca
 {
     /*!
@@ -21,10 +23,10 @@ namespace Ponca
     \verbatim PROVIDES_HEIGHTFIELD \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires HEIGHT_FIELD_REQUIREMENTS
     class HeightField : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-        static_assert(DataPoint::Dim == 3, "HeightField is only valid in 3D");
 
     protected:
         enum

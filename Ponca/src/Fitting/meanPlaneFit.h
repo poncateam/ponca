@@ -11,6 +11,8 @@
 #include "./plane.h"
 #include "./mean.h"
 
+#define MEAN_PLANE_REQUIREMENTS ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>&& ProvidesPlane<T>
+
 namespace Ponca
 {
 
@@ -22,20 +24,14 @@ namespace Ponca
 
         \see Plane
 
-        \todo Add local frame computation to enable PROVIDES_TANGENT_PLANE_BASIS
+        \todo Add local frame computation to enable ProvidesTangentPlaneBasis
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires MEAN_PLANE_REQUIREMENTS
     class MeanPlaneFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_MEAN_POSITION && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_PLANE
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(MeanPlaneFitImpl, meanPlaneFit)
 

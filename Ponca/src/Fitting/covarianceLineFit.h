@@ -13,6 +13,9 @@
 #include "./covarianceFit.h" // used to define CovarianceLineFit
 
 #include <Eigen/Dense>
+#include "concepts.h"
+
+#define COVARIANCE_LINE_FIT_REQUIREMENTS ProvidesPositionCovariance<T>&& ProvidesLine<T>
 
 namespace Ponca
 {
@@ -31,17 +34,11 @@ namespace Ponca
      */
 
     template <class DataPoint, class _NFilter, typename T>
+        requires COVARIANCE_LINE_FIT_REQUIREMENTS
     class CovarianceLineFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
-
-    protected:
-        enum
-        {
-            check = Base::PROVIDES_LINE && Base::PROVIDES_POSITION_COVARIANCE,
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl, covarianceLineFit)
 

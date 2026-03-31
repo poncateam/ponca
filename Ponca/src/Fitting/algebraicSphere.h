@@ -7,11 +7,14 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(limits)
 
 #include <Eigen/Core>
+
+#define ALGEBRAIC_SPHERE_REQUIREMENTS ProvidesPrimitiveBase<T>&& HasLocalFrame<_NFilter>
 
 namespace Ponca
 {
@@ -34,24 +37,16 @@ namespace Ponca
         coordinates (e.g. you don't need to convert your query in the current locale
         frame).
 
-        This primitive provides:
-        \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
+        This primitive satisfies: ProvidesAlgebraicSphere
 
         \todo Deal with planar case (_uq == 0) and what about _ul == 0 ?
     */
 
     template <class DataPoint, class _NFilter, typename T>
+        requires ALGEBRAIC_SPHERE_REQUIREMENTS
     class AlgebraicSphere : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-        static_assert(_NFilter::hasLocalFrame, "AlgebraicSphere requires local frame");
-
-    protected:
-        enum
-        {
-            check = Base::PROVIDES_PRIMITIVE_BASE, /*!< \brief Requires PrimitiveBase */
-            PROVIDES_ALGEBRAIC_SPHERE              /*!< \brief Provides Algebraic Sphere */
-        };
 
     protected:
         //! \brief Is the implicit scalar field normalized using Pratt

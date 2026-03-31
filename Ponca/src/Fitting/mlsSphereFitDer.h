@@ -7,6 +7,9 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
+
+#define MLS_SPHERE_FIT_DER_REQUIREMENTS ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphereDerivative<T>
 
 namespace Ponca
 {
@@ -19,18 +22,12 @@ namespace Ponca
      * provides first order derivatives of the algebraic sphere parameters.
      */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires MLS_SPHERE_FIT_DER_REQUIREMENTS
     class MlsSphereFitDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE & Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
-            PROVIDES_NORMAL_DERIVATIVE
-        };
-
         enum
         {
             Dim    = DataPoint::Dim,     //!< Dimension of the ambient space
@@ -90,6 +87,7 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, mlsSphereFitDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, normalDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 

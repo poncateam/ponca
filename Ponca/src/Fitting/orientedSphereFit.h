@@ -7,7 +7,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #pragma once
 
 #include "./algebraicSphere.h"
+#include "./concepts.h"
 #include "./mean.h" // used to define OrientedSphereFit
+
+#define ORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>
+#define ORIENTED_SPHERE_DER_REQUIREMENTS \
+    ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
 
 namespace Ponca
 {
@@ -22,16 +27,12 @@ namespace Ponca
         \see AlgebraicSphere
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires ORIENTED_SPHERE_FIT_REQUIREMENTS
     class OrientedSphereFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_NORMAL && Base::PROVIDES_MEAN_POSITION
-        };
-
         // computation data
         Scalar m_sumDotPN{0}, /*!< \brief Sum of the dot product between relative positions and normals */
             m_sumDotPP{0},    /*!< \brief Sum of the squared relative positions */
@@ -56,20 +57,13 @@ namespace Ponca
         \brief Internal generic class performing the Fit derivation
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires ORIENTED_SPHERE_DER_REQUIREMENTS
     class OrientedSphereDerImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE &
-                    Base::PROVIDES_PRIMITIVE_DERIVATIVE,
-            PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
-            PROVIDES_NORMAL_DERIVATIVE
-        };
-
         // computation data
         VectorArray m_dSumN{VectorArray::Zero()};     /*!< \brief Sum of the normal vectors with weight derivatives */
         ScalarArray m_dSumDotPN{ScalarArray::Zero()}, /*!< \brief Sum of the dot product between relative positions and
@@ -87,6 +81,8 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, orientedSphereDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, algebraicSphereDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, normalDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 

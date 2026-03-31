@@ -10,8 +10,11 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
 #include <Eigen/Geometry>
 #include <Eigen/Core>
+
+#define LINE_REQUIREMENTS ProvidesPrimitiveBase<T>
 
 namespace Ponca
 {
@@ -26,11 +29,12 @@ namespace Ponca
         This primitive requires the definition of n-d vectors
         (VectorType) in Concept::PointConcept.
 
-        This primitive provides:
-        \verbatim PROVIDES_LINE \endverbatim
+        This primitive respects:
+        \verbatim ProvidesLines \endverbatim
     */
 
     template <class DataPoint, class _NFilter, typename T>
+        requires LINE_REQUIREMENTS
     class Line : public T, public Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim>
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -38,13 +42,6 @@ namespace Ponca
     public:
         /// \brief Specialization of Eigen::ParametrizedLine inherited by Ponca::Line
         using EigenBase = Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim>;
-
-    protected:
-        enum
-        {
-            check = Base::PROVIDES_PRIMITIVE_BASE, /*!< \brief Requires PrimitiveBase */
-            PROVIDES_LINE                          /*!< \brief Provides  Line */
-        };
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(Line, line)

@@ -8,9 +8,12 @@
 
 #pragma once
 #include "./defines.h"
+#include "./concepts.h"
 #include "./primitive.h"
 
 #include <Eigen/Dense>
+
+#define DRY_FIT_REQUIREMENTS ProvidesPrimitiveBase<T>
 
 namespace Ponca
 {
@@ -20,16 +23,10 @@ namespace Ponca
      */
 
     template <class DataPoint, class _NFilter, typename T>
+        requires DRY_FIT_REQUIREMENTS
     class DryFit : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-    protected:
-        enum
-        {
-            check = Base::PROVIDES_PRIMITIVE_BASE
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(DryFit, dryfit)
 

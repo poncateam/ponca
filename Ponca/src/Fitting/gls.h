@@ -7,7 +7,11 @@
 #pragma once
 
 #include "./defines.h"
+#include "./concepts.h"
 #include "./curvature.h"
+
+#define GLS_PARAM_REQUIREMENTS ProvidesAlgebraicSphere<T>
+#define GLS_DER_REQUIREMENTS ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphereDerivative<T>&& ProvidesGLSParam<T>
 
 namespace Ponca
 {
@@ -33,24 +37,15 @@ namespace Ponca
         \f$ \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\f$
 
         Requirements:
-        \verbatim PROVIDES_ALGEBRAIC_SPHERE \endverbatim
-        Provides:
-        \verbatim PROVIDES_GLS_PARAMETRIZATION \endverbatim
+        \verbatim ProvidesAlgebraicSphere \endverbatim
+        Respects:
+        \verbatim ProvidesGLSParam \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires GLS_PARAM_REQUIREMENTS
     class GLSParam : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-        //! [Requirements]
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
-            PROVIDES_GLS_PARAMETRIZATION
-        };
-        //! [Requirements]
-
     protected:
         Scalar m_fitness{0}; /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
@@ -118,22 +113,14 @@ namespace Ponca
         Method published in \cite Mellado:2012:GLS
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires GLS_DER_REQUIREMENTS
     class GLSDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_GLS_PARAMETRIZATION & Base::PROVIDES_PRIMITIVE_DERIVATIVE &
-                    Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
-            PROVIDES_GLS_DERIVATIVE,
-            PROVIDES_GLS_GEOM_VAR
-        };
-
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, glsDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, geomVar)
 
         PONCA_MULTIARCH inline ScalarArray dtau() const;   /*!< \brief Compute and return \f$ \tau \f$ derivatives */
         PONCA_MULTIARCH inline VectorArray deta() const;   /*!< \brief Compute and return \f$ \eta \f$ derivatives */

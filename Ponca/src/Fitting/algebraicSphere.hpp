@@ -4,7 +4,8 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-template <class DataPoint, class _NFilter, typename T>       // Outer template for the class
+template <class DataPoint, class _NFilter, typename T> // Outer template for the class
+    requires ALGEBRAIC_SPHERE_REQUIREMENTS
 typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType // Return type
 AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
 {
@@ -29,6 +30,7 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ALGEBRAIC_SPHERE_REQUIREMENTS
 typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar AlgebraicSphere<DataPoint, _NFilter, T>::potentialLocal(
     const VectorType& _lq) const
 {
@@ -36,6 +38,7 @@ typename AlgebraicSphere<DataPoint, _NFilter, T>::Scalar AlgebraicSphere<DataPoi
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ALGEBRAIC_SPHERE_REQUIREMENTS
 typename AlgebraicSphere<DataPoint, _NFilter, T>::VectorType AlgebraicSphere<
     DataPoint, _NFilter, T>::primitiveGradientLocal(const VectorType& _lq) const
 {
