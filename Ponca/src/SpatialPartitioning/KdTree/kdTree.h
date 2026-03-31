@@ -612,3 +612,5 @@ PONCA_MULTIARCH_HOST std::ostream& operator<<(std::ostream& os, const Ponca::KdT
     kdtree.print(os);
     return os;
 }
+
+#undef WRITE_TRAITS
