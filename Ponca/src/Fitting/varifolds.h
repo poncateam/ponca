@@ -6,46 +6,19 @@
 
 namespace Ponca
 {
-    template <class _Scalar>
-    class VarifoldWeightKernel
-    {
-    public:
-        using Scalar                    = _Scalar;
-        static constexpr bool isCompact = true;
-
-        Scalar f(const Scalar& _x) const
-        {
-            const Scalar y = Scalar(1) / (1 - _x * _x);
-            //
-            // WARNING
-            // rho prime is negative but the basket ignores negative weights
-            // (see Basket::addNeighbor()), so the opposite is returned here
-            // and Varifold::addLocalNeighbor() takes the opposite again
-            //
-            // return - 2 * _x * y * y * std::exp(-y);
-            return +2 * _x * y * y * std::exp(-y);
-        }
-    };
-
     // ============================================================================
 
-    //!
-    //! Implementation of
-    //!     Weak and approximate curvatures of a measure: a varifold perspective
-    //!     B Buet, GP Leonardi, S Masnou
-    //!
-    //! See Equation 7.2 of the article
-    //!
-    //! The _NFilter must be DistWeightFunc<D,VarifoldWeightKernel<S>>.
-    //! Since rho' is negative and the basket ignores negative weights,
-    //! VarifoldWeightKernel::f() returns the opposite (positive) weight
-    //! and Varifold::addLocalNeighbor() takes the opposite back (see WARNING).
-    //!
-    //! Remarks
-    //! - point weights (m_l) are set to 1
-    //! - only valid in 3D
-    //! - normals are required
-    //!
+    /*!
+     * \brief Implementation of Weak and approximate curvatures of a measure: a varifold perspective \cite
+     * BUET2022112983
+     *
+     * \warning The _NFilter must be DistWeightFunc<D,VarifoldWeightKernel<S>>.
+     *
+     * Remarks
+     *  - point weights (m_l) are set to 1
+     *  - only valid in 3D
+     *  - normals are required
+     */
     template <class DataPoint, class _NFilter, typename T>
     class VarifoldsImpl : public T
     {
@@ -55,7 +28,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_PRIMITIVE_BASE && Base::PROVIDES_LOCAL_FRAME
+            Check = Base::PROVIDES_PRIMITIVE_BASE && Base::PROVIDES_TANGENT_PLANE_BASIS
         };
 
         using Mat32 = Eigen::Matrix<Scalar, 3, 2>;
@@ -91,7 +64,7 @@ namespace Ponca
 
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
-        PONCA_MULTIARCH inline Scalar f_smooth(const Scalar& _x) const
+        PONCA_MULTIARCH inline Scalar fSmooth(const Scalar& _x) const
         {
             Scalar v = _x * _x - Scalar(1.);
             return v * v;

@@ -31,7 +31,7 @@ namespace Ponca
             VectorType pos        = attributes.pos();
             VectorType centerPos  = pos - baryCenter;
             Scalar dist           = centerPos.norm();
-            Scalar val            = f_smooth(dist / Base::getNeighborFilter().evalScale());
+            Scalar val            = fSmooth(dist / Base::getNeighborFilter().evalScale());
 
             Base::addLocalNeighbor(val, localQ, attributes);
             m_sumWeight += val;
