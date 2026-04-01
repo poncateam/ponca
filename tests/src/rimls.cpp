@@ -67,7 +67,7 @@ void testFunction()
         Fit fitMLS;
         fitMLS.setNeighborFilter({pos, analysisScale});
 
-        MLS<Scalar> mls(1000);
+        RIMLS<Scalar, GaussianWeightKernel<Scalar>> mls;
         mls.compute(fitMLS, vectorPoints);
 
         if (fit.isStable())
