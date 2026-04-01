@@ -93,7 +93,7 @@ namespace Ponca
          * \param _bufs Internal buffers of the KnnGraph
          * \param _k The k number of neighbors
          */
-        PONCA_MULTIARCH inline StaticKnnGraphBase(Buffers& _bufs, int _k) : m_bufs(_bufs), m_k(_k) {}
+        PONCA_MULTIARCH inline StaticKnnGraphBase(Buffers& _bufs, const int _k) : m_bufs(_bufs), m_k(_k) {}
 
         // Query -------------------------------------------------------------------
     public:
@@ -191,13 +191,14 @@ namespace Ponca
     public:
         /// \brief Build a KnnGraph from a KdTreeDense
         ///
-        /// \param k Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1
+        /// \param _kdtree Reference to the KdTree
+        /// \param _k Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1
         ///          (query point is not included in query output, thus -1)
         ///
         /// \warning Stores a const reference to kdtree.point_data()
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
-        PONCA_MULTIARCH inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
+        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
             : Base(std::min(_k, _kdtree.sampleCount() - 1))
         {
             Base::m_bufs.points_size = _kdtree.points().size();

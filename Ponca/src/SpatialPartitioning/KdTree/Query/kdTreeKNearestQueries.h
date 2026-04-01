@@ -50,7 +50,7 @@ namespace Ponca
         }
 
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
-        PONCA_MULTIARCH inline Iterator begin()
+        PONCA_MULTIARCH_HOST inline Iterator begin()
         {
             QueryAccelType::reset();
             QueryType::reset();
@@ -59,10 +59,10 @@ namespace Ponca
         }
 
         /// \brief Returns an iterator to the end of the k-nearest neighbors query.
-        PONCA_MULTIARCH inline Iterator end() { return Iterator(QueryType::m_queue.end()); }
+        PONCA_MULTIARCH_HOST inline Iterator end() { return Iterator(QueryType::m_queue.end()); }
 
     protected:
-        PONCA_MULTIARCH inline void search()
+        PONCA_MULTIARCH_HOST inline void search()
         {
             KdTreeQuery<Traits>::searchInternal(
                 QueryType::template getInputPosition<VectorType>(QueryAccelType::m_kdtree->points()),

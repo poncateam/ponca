@@ -301,26 +301,26 @@ namespace Ponca
         using OutputParameter = Index;
 
         /// \brief Default constructor that initialize the output parameter value
-        PONCA_MULTIARCH inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
+        PONCA_MULTIARCH_HOST inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
 
         /// \brief Access operator that resets the output parameter
-        PONCA_MULTIARCH inline void operator()(OutputParameter k)
+        PONCA_MULTIARCH_HOST inline void operator()(OutputParameter k)
         {
             m_queue = limited_priority_queue<IndexSquaredDistance<Index, Scalar>>(k);
         }
 
         /// \brief Access to the priority queue storing the neighbors
-        PONCA_MULTIARCH inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>>& queue() { return m_queue; }
+        PONCA_MULTIARCH_HOST inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>>& queue() { return m_queue; }
 
     protected:
         /// \brief Reset Query for a new search
-        PONCA_MULTIARCH void reset()
+        PONCA_MULTIARCH_HOST void reset()
         {
             m_queue.clear();
             m_queue.push({-1, PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits) < Scalar > ::max()});
         }
         /// \brief Distance threshold used during tree descent to select nodes to explore
-        PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
+        PONCA_MULTIARCH_HOST inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
         /// \brief Queue storing the neighbors
         limited_priority_queue<IndexSquaredDistance<Index, Scalar>> m_queue;
     };
