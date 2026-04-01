@@ -63,7 +63,7 @@ void testFunction()
         Fit fit;
         fit.setNeighborFilter({pos, analysisScale});
         fit.compute(vectorPoints);
-        
+
         Fit fitMLS;
         fitMLS.setNeighborFilter({pos, analysisScale});
 
