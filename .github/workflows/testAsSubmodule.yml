@@ -69,5 +69,9 @@ jobs:
       - name: Configure cmake project with local or packaged eigen
         run : mkdir build && cd build && cmake ../repo
         if: ${{ matrix.config.installEigen != 'COMPILE'}}
-      - name: Build
+      - name: Build (Submodule)
         run : cd build && cmake --build .
+      - name: Pulling PR through CPM
+        run : cd repo/cpm/ && mkdir build && cd build && cmake .. -DPONCA_REPOSITORY="${{ github.event.pull_request.head.repo.full_name }}#${{ github.head_ref }}"
+      - name: Build (CPM project)
+        run : cd repo/cpm/build && cmake --build .
