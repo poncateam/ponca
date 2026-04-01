@@ -31,6 +31,12 @@ if( CMAKE_CUDA_COMPILER )
     set_property(TARGET cuda_fit_plane_kdtree PROPERTY CUDA_ARCHITECTURES OFF)
     ponca_handle_eigen_dependency(cuda_fit_plane_kdtree)
 
+    add_executable(cuda_fit_plane_knngraph "ponca_fit_knngraph.cu")
+    target_include_directories(cuda_fit_plane_knngraph PRIVATE ${PONCA_src_ROOT})
+    add_dependencies(ponca-examples cuda_fit_plane_knngraph)
+    set_property(TARGET cuda_fit_plane_knngraph PROPERTY CUDA_ARCHITECTURES OFF)
+    ponca_handle_eigen_dependency(cuda_fit_plane_knngraph)
+
     add_subdirectory(ssgls)
 else()
     message(INFO "Cuda not found, skipping Ponca_Examples_cuda")

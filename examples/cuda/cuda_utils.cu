@@ -13,6 +13,7 @@
 #pragma once
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
+#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 
 #define CUDA_CHECK(err) \
     if (err != cudaSuccess) { \
@@ -32,30 +33,32 @@
  * \param deviceBuffers The pointer to the Buffers structure on the device
  * \see freeBuffersOnDevice to free memory on the device with hostBuffersHoldingDevicePointers as an argument
  */
-template <typename Traits, typename KdTreeDenseBuffers, typename StaticKdTreeBuffers>
+template <typename Traits, bool SendNode = true, typename KdTreeDenseBuffers, typename StaticKdTreeBuffers>
 void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTreeBuffers& hostBuffersHoldingDevicePointers, StaticKdTreeBuffers* const deviceBuffers)
 {
     using DataPoint      = typename Traits::DataPoint; ///< DataPoint given by user via Traits
     using IndexType      = typename Traits::IndexType; ///< Type used to index points into the PointContainer
-    using NodeType       = typename Traits::NodeType;  ///< Type of nodes used inside the KdTree
 
     // Assign buffer sizes
     hostBuffersHoldingDevicePointers.points_size  = hostBuffers.points_size;
-    hostBuffersHoldingDevicePointers.nodes_size   = hostBuffers.nodes_size;
     hostBuffersHoldingDevicePointers.indices_size = hostBuffers.indices_size;
 
     // Allocate memory for the data on the device
     CUDA_CHECK(cudaMalloc(&hostBuffersHoldingDevicePointers.points,  hostBuffers.points_size  * sizeof(DataPoint)));
-    CUDA_CHECK(cudaMalloc(&hostBuffersHoldingDevicePointers.nodes,   hostBuffers.nodes_size   * sizeof(NodeType)));
     CUDA_CHECK(cudaMalloc(&hostBuffersHoldingDevicePointers.indices, hostBuffers.indices_size * sizeof(IndexType)));
 
     // Copy the data to the device
     CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.points, hostBuffers.points.data(),
         hostBuffers.points_size * sizeof(DataPoint), cudaMemcpyHostToDevice));
-    CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.nodes, hostBuffers.nodes.data(),
-        hostBuffers.nodes_size * sizeof(NodeType), cudaMemcpyHostToDevice));
     CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.indices, hostBuffers.indices.data(),
         hostBuffers.indices_size * sizeof(IndexType), cudaMemcpyHostToDevice));
+    if constexpr (SendNode) {
+        using NodeType       = typename Traits::NodeType;  ///< Type of nodes used inside the KdTree
+        hostBuffersHoldingDevicePointers.nodes_size   = hostBuffers.nodes_size;
+        CUDA_CHECK(cudaMalloc(&hostBuffersHoldingDevicePointers.nodes,   hostBuffers.nodes_size   * sizeof(NodeType)));
+        CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.nodes, hostBuffers.nodes.data(),
+            hostBuffers.nodes_size * sizeof(NodeType), cudaMemcpyHostToDevice));
+    }
 
     // Copy host structure itself to device
     CUDA_CHECK(cudaMemcpy(deviceBuffers, &hostBuffersHoldingDevicePointers,
@@ -68,12 +71,13 @@ void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTree
  * \tparam Buffers The Buffers structure type containing the internal containers of the KdTree
  * \param hostBuffersHoldingDevicePointers The Buffers structure that references memory on the GPU
  */
-template <typename Buffers>
+template <bool SendNode = true, typename Buffers>
 void freeBuffersOnDevice(const Buffers& hostBuffersHoldingDevicePointers)
 {
     CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.points));
-    CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.nodes));
     CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.indices));
+    if constexpr (SendNode)
+        CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.nodes));
 }
 
 //! [Definition KdTreeGPU]
@@ -86,3 +90,10 @@ void freeBuffersOnDevice(const Buffers& hostBuffersHoldingDevicePointers)
 template <typename DataPoint>
 using KdTreeGPU = Ponca::StaticKdTreeBase<Ponca::KdTreePointerTraits<DataPoint>>;
 //! [Definition KdTreeGPU]
+
+//! [Definition KnnGraphGPU]
+/*! \brief A KnnGraph Type that can be run on the GPU
+ */
+template <typename DataPoint>
+using KnnGraphGPU = Ponca::StaticKnnGraphBase<Ponca::KnnGraphPointerTraits<DataPoint>>;
+//! [Definition KnnGraphGPU]

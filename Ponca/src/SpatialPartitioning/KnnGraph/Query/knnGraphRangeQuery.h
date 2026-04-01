@@ -16,7 +16,7 @@
 namespace Ponca
 {
     template <typename Traits>
-    class KnnGraphBase;
+    class StaticKnnGraphBase;
 
     /*!
      * \brief Extension of the Query class that allows to read the result of a range neighbor search on the KnnGraph.
@@ -41,22 +41,22 @@ namespace Ponca
         using Self       = KnnGraphRangeQuery<Traits>;
 
     public:
-        inline KnnGraphRangeQuery(const KnnGraphBase<Traits>* graph, Scalar radius, int index)
+        PONCA_MULTIARCH inline KnnGraphRangeQuery(const StaticKnnGraphBase<Traits>* graph, Scalar radius, int index)
             : QueryType(radius, index), m_graph(graph), m_flag(), m_stack()
         {
         }
 
         /// \brief Call the range neighbors query with new input and radius parameters.
-        inline Self& operator()(int index, Scalar radius)
+        PONCA_MULTIARCH inline Self& operator()(int index, Scalar radius)
         {
             return QueryType::template operator()<Self>(index, radius);
         }
 
         /// \brief Call the range neighbors query with new input parameter.
-        inline Self& operator()(int index) { return QueryType::template operator()<Self>(index); }
+        PONCA_MULTIARCH inline Self& operator()(int index) { return QueryType::template operator()<Self>(index); }
 
         /// \brief Returns an iterator to the beginning of the range neighbors query.
-        inline Iterator begin()
+        PONCA_MULTIARCH_HOST inline Iterator begin()
         {
             QueryType::reset();
             Iterator it(this);
@@ -66,10 +66,10 @@ namespace Ponca
         }
 
         /// \brief Returns an iterator to the end of the range neighbors query.
-        inline Iterator end() { return Iterator(this, static_cast<int>(m_graph->size())); }
+        PONCA_MULTIARCH_HOST inline Iterator end() { return Iterator(this, static_cast<int>(m_graph->size())); }
 
     protected:
-        inline void initialize(Iterator& iterator)
+        PONCA_MULTIARCH inline void initialize(Iterator& iterator)
         {
             m_flag.clear();
             m_flag.insert(QueryType::input());
@@ -80,9 +80,9 @@ namespace Ponca
             iterator.m_index = -1;
         }
 
-        inline void advance(Iterator& iterator)
+        PONCA_MULTIARCH_HOST inline void advance(Iterator& iterator)
         {
-            const auto& points = m_graph->m_kdTreePoints;
+            const auto& points = m_graph->points();
             const auto& point  = points[QueryType::input()].pos();
 
             if (!(iterator != end()))
@@ -118,7 +118,7 @@ namespace Ponca
         }
 
     protected:
-        const KnnGraphBase<Traits>* m_graph{nullptr};
+        const StaticKnnGraphBase<Traits>* m_graph{nullptr};
         std::set<int> m_flag;    ///< store visited ids
         std::stack<int> m_stack; ///< hold ids (ids range from 0 to point cloud size)
     };
