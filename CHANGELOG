@@ -48,6 +48,7 @@ improves Cuda support, an introduces several bug fixes and minors improvements.
 - CI/Actions
     - [ci] Fix CNC coverage test (crash + slow execution) (#272)
     - [ci] New github action for checking formatting (#274)
+    - [ci] New github action for checking CPM installation (#302)
 
 - Examples
     - [all] Update according to API changes (#201)
@@ -56,6 +57,7 @@ improves Cuda support, an introduces several bug fixes and minors improvements.
 - Docs
     - [doc] Update doc according to recent API changes and new curvature estimators (#201)
     - [doc] Add cuda examples and extend Spatial Partitioning package description (#242)
+    - [doc] Add documentation about CPM installation for ponca (#302)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha1
