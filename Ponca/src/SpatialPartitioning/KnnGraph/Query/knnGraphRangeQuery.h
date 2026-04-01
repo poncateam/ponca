@@ -56,7 +56,7 @@ namespace Ponca
         PONCA_MULTIARCH inline Self& operator()(int index) { return QueryType::template operator()<Self>(index); }
 
         /// \brief Returns an iterator to the beginning of the range neighbors query.
-        PONCA_MULTIARCH inline Iterator begin()
+        PONCA_MULTIARCH_HOST inline Iterator begin()
         {
             QueryType::reset();
             Iterator it(this);
@@ -66,7 +66,7 @@ namespace Ponca
         }
 
         /// \brief Returns an iterator to the end of the range neighbors query.
-        PONCA_MULTIARCH inline Iterator end() { return Iterator(this, static_cast<int>(m_graph->size())); }
+        PONCA_MULTIARCH_HOST inline Iterator end() { return Iterator(this, static_cast<int>(m_graph->size())); }
 
     protected:
         PONCA_MULTIARCH inline void initialize(Iterator& iterator)
@@ -80,7 +80,7 @@ namespace Ponca
             iterator.m_index = -1;
         }
 
-        PONCA_MULTIARCH inline void advance(Iterator& iterator)
+        PONCA_MULTIARCH_HOST inline void advance(Iterator& iterator)
         {
             const auto& points = m_graph->points();
             const auto& point  = points[QueryType::input()].pos();
