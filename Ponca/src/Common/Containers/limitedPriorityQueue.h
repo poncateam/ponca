@@ -116,22 +116,22 @@ namespace Ponca
 
         // Capacity ----------------------------------------------------------------
     public:
-        PONCA_MULTIARCH_HOST [[nodiscard]] inline bool empty() const;
+        PONCA_MULTIARCH [[nodiscard]] inline bool empty() const;
         PONCA_MULTIARCH_HOST [[nodiscard]] inline bool full() const;
-        PONCA_MULTIARCH_HOST [[nodiscard]] inline size_t size() const;
+        PONCA_MULTIARCH [[nodiscard]] inline size_t size() const;
         PONCA_MULTIARCH_HOST [[nodiscard]] inline size_t capacity() const;
 
         // Modifiers ---------------------------------------------------------------
     public:
         PONCA_MULTIARCH_HOST inline bool push(const T& value);
         PONCA_MULTIARCH_HOST inline bool push(T&& value);
-        PONCA_MULTIARCH_HOST inline void pop();
+        PONCA_MULTIARCH inline void pop();
         PONCA_MULTIARCH_HOST inline void reserve(int capacity);
-        PONCA_MULTIARCH_HOST inline void clear();
+        PONCA_MULTIARCH inline void clear();
 
         // Data --------------------------------------------------------------------
     public:
-        PONCA_MULTIARCH_HOST inline const container_type& container() const;
+        PONCA_MULTIARCH inline const container_type& container() const;
 
     protected:
         container_type m_c;
