@@ -80,16 +80,16 @@ namespace Ponca
          * \tparam ItB Begin iterator type
          * \tparam ItE End iterator type
          *
-         * \param fit The fitting object
-         * \param beg The begining of point range
-         * \param end The end of point range
+         * \param _fit The fitting object
+         * \param _beg The begining of point range
+         * \param _end The end of point range
          *
          * \return The result of the fit
          */
         template <typename Fit, typename ItB, typename ItE>
-        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& fit, const ItB& itb, const ItE& ite) const
+        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& _fit, const ItB& _itb, const ItE& _ite) const
         {
-            return computeMLSImpl(fit, [&]() { return compute(fit, itb, ite); });
+            return computeMLSImpl(_fit, [&]() { return _fit.compute(_itb, _ite); });
         }
 
         /**
@@ -98,8 +98,8 @@ namespace Ponca
          * \tparam Fit Fit type
          * \tparam Container Container of points
          *
-         * \param fit The fitting object
-         * \param container The point container
+         * \param _fit The fitting object
+         * \param _container The point container
          *
          * \return The result of the fit
          */
@@ -116,17 +116,17 @@ namespace Ponca
          * \tparam IdxRange Range index type
          * \tparam PointContainer Point container (must provide random access)
          *
-         * \param fit The fitting object
-         * \param range The container of indices
-         * \param container The point container
+         * \param _fit The fitting object
+         * \param _range The container of indices
+         * \param _container The point container
          *
          * \return The result of the fit
          */
         template <typename Fit, typename IdxRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(Fit& fit, const IdxRange& range,
-                                                         const PointContainer& container) const
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(Fit& _fit, const IdxRange& _range,
+                                                         const PointContainer& _container) const
         {
-            return computeMLSImpl(fit, [&]() { return computeWithIds(fit, range, container); });
+            return computeMLSImpl(_fit, [&]() { return _fit.computeWithIds(_range, _container); });
         }
 
     protected:
@@ -141,27 +141,27 @@ namespace Ponca
          * \tparam Fit The fitting type
          * \tparam Func The compute procedure
          *
-         * \param fit The fitting object
-         * \param compute The procedure to compute estimator
+         * \param _fit The fitting object
+         * \param _compute The procedure to compute estimator
          *
          * \return The result of the fit
          */
         template <typename Fit, typename Func>
-        PONCA_MULTIARCH inline FIT_RESULT computeMLSImpl(Fit& fit, Func&& compute) const
+        PONCA_MULTIARCH inline FIT_RESULT computeMLSImpl(Fit& _fit, Func&& _compute) const
         {
             FIT_RESULT res = UNDEFINED;
-            auto filter    = fit.getNeighborFilter();
+            auto filter    = _fit.getNeighborFilter();
             auto lastPos   = filter.evalPos();
 
             for (unsigned int mm = 0; mm < m_nIter; ++mm)
             {
                 filter.changeNeighborhoodFrame(lastPos);
-                fit.setNeighborFilter(filter);
-                res = compute();
+                _fit.setNeighborFilter(filter);
+                res = _compute();
 
-                if (fit.isStable())
+                if (_fit.isStable())
                 {
-                    auto newPos = fit.project(lastPos);
+                    auto newPos = _fit.project(lastPos);
                     if (newPos.isApprox(lastPos, m_eps))
                         return res;
                     lastPos = newPos;
@@ -264,16 +264,17 @@ namespace Ponca
          * \tparam ItB Begin iterator type
          * \tparam ItE End iterator type
          *
-         * \param fit The fitting object
-         * \param beg The begining of point range
-         * \param end The end of point range
+         * \param _fit The fitting object
+         * \param _beg The begining of point range
+         * \param _end The end of point range
          *
          * \return The result of the fit
          */
         template <typename Fit, typename ItB, typename ItE>
-        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& fit, const ItB& itb, const ItE& ite) const
+        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& _fit, const ItB& _itb, const ItE& _ite) const
         {
-            return computeRIMLSImpl(fit, itb, ite, [](const auto& it) { return *it; });
+            return computeRIMLSImpl(
+                _fit, _itb, _ite, [](const auto& _it) { return *_it; }, [&]() { return _fit.compute(_itb, _ite); });
         }
 
         /**
@@ -282,15 +283,15 @@ namespace Ponca
          * \tparam Fit Fit type
          * \tparam Container Container of points
          *
-         * \param fit The fitting object
-         * \param container The point container
+         * \param _fit The fitting object
+         * \param _container The point container
          *
          * \return The result of the fit
          */
         template <typename Fit, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& fit, const PointContainer& container) const
+        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& _fit, const PointContainer& _container) const
         {
-            return compute(fit, std::begin(container), std::end(container));
+            return compute(_fit, std::begin(_container), std::end(_container));
         }
 
         /**
@@ -300,18 +301,20 @@ namespace Ponca
          * \tparam IdxRange Range index type
          * \tparam PointContainer Point container (must provide random access)
          *
-         * \param fit The fitting object
-         * \param range The container of indices
-         * \param container The point container
+         * \param _fit The fitting object
+         * \param _range The container of indices
+         * \param _container The point container
          *
          * \return The result of the fit
          */
         template <typename Fit, typename IdxRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(Fit& fit, const IdxRange& range,
-                                                         const PointContainer& container) const
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(Fit& _fit, const IdxRange& _range,
+                                                         const PointContainer& _container) const
         {
-            return computeRIMLSImpl(fit, std::begin(range), std::end(range),
-                                    [&](const auto& it) { return container[*it]; });
+            // TODO: when availaible use cuda::std::views instead of a lambda
+            return computeRIMLSImpl(
+                _fit, std::begin(_range), std::end(_range), [&](const auto& _it) { return _container[*_it]; },
+                [&]() { return _fit.computeWithIds(_range, _container); });
         }
 
     protected:
@@ -343,12 +346,13 @@ namespace Ponca
          * \param _end End of range
          * \param _extractPoint Iterator-to-point converter
          */
-        template <typename Fit, typename ItB, typename ItE, typename Func>
-        PONCA_MULTIARCH FIT_RESULT computeRIMLSImpl(Fit& _fit, ItB _beg, ItE _end, Func&& _extractPoint) const
+        template <typename Fit, typename ItB, typename ItE, typename Func, typename Compute>
+        PONCA_MULTIARCH FIT_RESULT computeRIMLSImpl(Fit& _fit, ItB _beg, ItE _end, Func&& _extractPoint,
+                                                    Compute&& _compute) const
         {
             using VectorType = typename Fit::VectorType;
 
-            FIT_RESULT res = _fit.compute(_beg, _end);
+            FIT_RESULT res = _compute();
 
             if (res != STABLE)
                 return res;
