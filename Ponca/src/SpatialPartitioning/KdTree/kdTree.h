@@ -277,22 +277,24 @@ namespace Ponca
         /// The returned object can be reset and reused with the () operator
         /// (using the same argument types as parameters).
         ///
+        /// \warning This method can't be called in a CUDA kernel because KdTreeKNearestPointQuery relies on STL-like vectors.
         /// \param point Point from where the query is evaluated
         /// \param k Number of neighbors returned
         /// \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
         /// \see KdTreeKNearestQueryBase
-        PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point,
+        PONCA_MULTIARCH_HOST [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point,
                                                                                                IndexType k) const
         {
             return KdTreeKNearestPointQuery<Traits>(this, k, point);
         }
 
         /// \copybrief KdTreeBase::kNearestNeighbors
+        /// \warning This method can't be called in a CUDA kernel because KdTreeKNearestPointQuery relies on STL-like vectors.
         /// \param index Index of the point from where the query is evaluated
         /// \param k Number of neighbors returned
         /// \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
         /// \see KdTreeKNearestQueryBase
-        PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index,
+        PONCA_MULTIARCH_HOST [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index,
                                                                                                IndexType k) const
         {
             return KdTreeKNearestIndexQuery<Traits>(this, k, index);
@@ -304,9 +306,10 @@ namespace Ponca
         /// which takes a k and a **position** as parameters.
         ///
         /// Same as `KdTreeBase::kNearestNeighbors (0, VectorType::Zero())`
+        /// \warning This method can't be called in a CUDA kernel because KdTreeKNearestPointQuery relies on STL-like vectors.
         /// \return The empty \ref KdTreeKNearestPointQuery mutable object to iterate over the search results.
         /// \see KdTreeKNearestQueryBase
-        PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
+        PONCA_MULTIARCH_HOST [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighborsQuery() const
         {
             return KdTreeKNearestPointQuery<Traits>(this, 0, VectorType::Zero());
         }
@@ -317,9 +320,10 @@ namespace Ponca
         /// which takes a k and an **index** as parameters.
         ///
         /// Same as `KdTreeBase::kNearestNeighbors (0, 0)`
+        /// \warning This method can't be called in a CUDA kernel because KdTreeKNearestPointQuery relies on STL-like vectors.
         /// \return The empty \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
         /// \see KdTreeKNearestQueryBase
-        PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
+        PONCA_MULTIARCH_HOST [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighborsIndexQuery() const
         {
             return KdTreeKNearestIndexQuery<Traits>(this, 0, 0);
         }

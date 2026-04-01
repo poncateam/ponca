@@ -59,13 +59,13 @@ namespace Ponca
         PONCA_MULTIARCH inline Self& operator()(int index) { return QueryType::template operator()<Self>(index); }
 
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
-        PONCA_MULTIARCH inline Iterator begin() const
+        PONCA_MULTIARCH_HOST inline Iterator begin() const
         {
             return std::begin(m_graph->samples()) + QueryType::input() * m_graph->k();
         }
 
         /// \brief Returns an iterator to the end of the k-nearest neighbors query.
-        PONCA_MULTIARCH inline Iterator end() const
+        PONCA_MULTIARCH_HOST inline Iterator end() const
         {
             return std::begin(m_graph->samples()) + (QueryType::input() + 1) * m_graph->k();
         }

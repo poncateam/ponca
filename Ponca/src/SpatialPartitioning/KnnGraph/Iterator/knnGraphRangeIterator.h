@@ -51,23 +51,23 @@ namespace Ponca
 
     public:
         /// \brief Inequality operand
-        bool operator!=(const KnnGraphRangeIterator& other) const { return m_index != other.m_index; }
+        PONCA_MULTIARCH bool operator!=(const KnnGraphRangeIterator& other) const { return m_index != other.m_index; }
 
         /// \brief Equality operand
-        bool operator==(const KnnGraphRangeIterator& other) const { return m_index == other.m_index; }
+        PONCA_MULTIARCH bool operator==(const KnnGraphRangeIterator& other) const { return m_index == other.m_index; }
 
         /// Prefix increment
-        inline KnnGraphRangeIterator& operator++()
+        PONCA_MULTIARCH inline KnnGraphRangeIterator& operator++()
         {
             m_query->advance(*this);
             return *this;
         }
 
         /// \brief Postfix increment
-        inline void operator++(value_type) { ++*this; }
+        PONCA_MULTIARCH inline void operator++(value_type) { ++*this; }
 
         /// \brief Dereference operator
-        inline reference operator*() const { return const_cast<reference>(m_index); }
+        PONCA_MULTIARCH inline reference operator*() const { return const_cast<reference>(m_index); }
 
     protected:
         KnnGraphRangeQuery<Traits>* m_query{nullptr};

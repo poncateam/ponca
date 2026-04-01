@@ -81,7 +81,7 @@ namespace Ponca
         };
 
     protected:
-        PONCA_MULTIARCH inline StaticKnnGraphBase(int _k) : m_bufs(), m_k(_k){};
+        PONCA_MULTIARCH inline StaticKnnGraphBase(const int _k) : m_bufs(), m_k(_k){};
 
     public:
         /*! \brief Constructor that allows the use of prebuilt KnnGraph containers.
@@ -91,7 +91,8 @@ namespace Ponca
          * \note This constructor can be used to avoid the convertion and building process,
          * which is useful to transfer directly the KnnGraph to the device in CUDA.
          *
-         * \param buf Internal buffers of the KnnGraph
+         * \param _bufs Internal buffers of the KnnGraph
+         * \param _k The k number of neighbors
          */
         PONCA_MULTIARCH inline StaticKnnGraphBase(Buffers& _bufs, int _k) : m_bufs(_bufs), m_k(_k) {}
 
@@ -104,9 +105,10 @@ namespace Ponca
         /// The returned object can be reset and reused with the () operator, to compute a new result
         /// (also takes an index as parameter).
         ///
+        /// \warning This method can't be called in a CUDA kernel because KdTreeKNearestPointQuery.
         /// \param index Index of the point that the query evaluates
         /// \return The \ref KNearestIndexQuery mutable object to iterate over the search results.
-        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighbors(int index) const
+        PONCA_MULTIARCH_HOST inline KNearestIndexQuery kNearestNeighbors(int index) const
         {
             return KNearestIndexQuery(this, index);
         }
@@ -133,10 +135,11 @@ namespace Ponca
         /// zero, as it is a value that is managed by the KnnGraphBase structure. Therefore, this function returns the
         /// k-nearest neighbors query made with the evaluation point set to 0.
         ///
+        /// \warning This method can't be called in a CUDA kernel because KdTreeKNearestPointQuery.
         /// \return The \ref KNearestIndexQuery mutable object that can be called with the operator ()
         /// with an index as argument, to fetch the k-nearest neighbors of a point.
         /// \see #kNearestNeighbors
-        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
+        PONCA_MULTIARCH_HOST inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
         {
             return KNearestIndexQuery(this, 0);
         }
