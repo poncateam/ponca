@@ -65,21 +65,26 @@ endif()
 
 find_package(Eigen3 3.4 QUIET)
 if( NOT Eigen3_FOUND )
-    message(STATUS "Cannot find Eigen, use submodule (disable transitive linking)")
-
+    message(STATUS "Cannot find Eigen, use submodule")
+    
+    get_directory_property(hasParent PARENT_DIRECTORY)
     if( NOT EXISTS ${EIGEN_SUBMODULE_ROOT_PATH}/signature_of_eigen3_matrix_library )
         execute_process(COMMAND git submodule update --init -- ${EIGEN_SUBMODULE_ROOT_PATH}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
     endif()
 
-    get_directory_property(hasParent PARENT_DIRECTORY)
-    if(hasParent)
-        set(EIGEN3_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/external/eigen" PARENT_SCOPE)
-        message(STATUS "Make EIGEN3_INCLUDE_DIRS available to parent project.")
-    else()
-        set(EIGEN3_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/external/eigen")
+    # Eigen defines a target buildtests that conflicts with ponca buildtest target
+    # hence we have to disable it. 
+    # In Ponca, we expect this to be controlled by PONCA_CONFIGURE_TESTING
+    # therefore we can set this variable without side effects here
+    set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
+    
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/eigen)    
+    
+    set(Eigen3_FOUND TRUE) # For current scope
+    if (hasParent)
+        set(Eigen3_FOUND TRUE PARENT_SCOPE)
     endif()
-    include_directories(${EIGEN3_INCLUDE_DIRS})
 endif()
 
 macro(ponca_handle_eigen_dependency TARGETNAME)
@@ -167,8 +172,15 @@ endif()
 # Tests                                                                        #
 ################################################################################
 if(PONCA_CONFIGURE_TESTS)
+    set(BUILD_TESTING ON CACHE BOOL "" FORCE)
+    
+    # When Eigen is used through submodules, the testing is disable but CTest
+    # might still be included. In this case, the following line is skipped due
+    # to cache ; but the enable_testing macro was skipped...
     include(CTest)
-    set (BUILD_TESTING ON)
+    enable_testing() 
+    
+    
     option(PONCA_COVERAGE_TESTING "Enable coverage reporting" OFF)
     add_custom_target(buildtests)
     add_subdirectory(tests EXCLUDE_FROM_ALL)
