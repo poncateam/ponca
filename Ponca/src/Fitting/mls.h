@@ -41,10 +41,22 @@ namespace Ponca
             m_eps = std::abs(newEps);
         }
 
-        void setNIter(unsigned int m_nIter)
+        /**
+         * \brief Sets precision for early stopping
+         *
+         * \param _eps
+         */
+        void setPrecision(Scalar _eps) { eps = _eps; }
+
+        /**
+         * \brief Set maximum number of iterations
+         *
+         * \param _nIter Maximum number of iterations
+         */
+        void setNIter(unsigned int _nIter)
         {
             // At least 1, otherwise no computation would be performed
-            m_nIter = std::max(m_nIter, 1u);
+            nIter = nIter;
         }
 
         /**
@@ -103,10 +115,11 @@ namespace Ponca
             return computeMLSImpl(_fit, [&]() { return _fit.computeWithIds(_range, _container); });
         }
 
-    protected:
-        Scalar m_eps         = Eigen::NumTraits<Scalar>::dummy_precision();
-        unsigned int m_nIter = 5;
-
+    public:
+        Scalar eps         = Eigen::NumTraits<Scalar>::dummy_precision();
+        unsigned int nIter = 5;
+        
+    private:
         /*!
          * \brief Computes the fit using the MLS iteration process.
          *
@@ -127,7 +140,7 @@ namespace Ponca
             auto filter    = _fit.getNeighborFilter();
             auto lastPos   = filter.evalPos();
 
-            for (unsigned int mm = 0; mm < m_nIter; ++mm)
+            for (unsigned int mm = 0; mm < nIter; ++mm)
             {
                 filter.changeNeighborhoodFrame(lastPos);
                 _fit.setNeighborFilter(filter);
@@ -136,7 +149,7 @@ namespace Ponca
                 if (_fit.isStable())
                 {
                     auto newPos = _fit.project(lastPos);
-                    if (newPos.isApprox(lastPos, m_eps))
+                    if (newPos.isApprox(lastPos, eps))
                         return res;
                     lastPos = newPos;
                 }
