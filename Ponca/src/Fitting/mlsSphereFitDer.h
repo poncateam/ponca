@@ -27,7 +27,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE & Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
+            Check = Base::PROVIDES_PRIMITIVE_DERIVATIVE && Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
             PROVIDES_NORMAL_DERIVATIVE
         };
 

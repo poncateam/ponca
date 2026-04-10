@@ -64,7 +64,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_ALGEBRAIC_SPHERE & Base::PROVIDES_MEAN_POSITION_DERIVATIVE &
+            Check = Base::PROVIDES_ALGEBRAIC_SPHERE && Base::PROVIDES_MEAN_POSITION_DERIVATIVE &&
                     Base::PROVIDES_PRIMITIVE_DERIVATIVE,
             PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
             PROVIDES_NORMAL_DERIVATIVE

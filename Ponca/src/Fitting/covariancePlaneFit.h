@@ -108,7 +108,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_PLANE & Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
+            Check = Base::PROVIDES_PLANE && Base::PROVIDES_POSITION_COVARIANCE_DERIVATIVE,
             PROVIDES_COVARIANCE_PLANE_DERIVATIVE, /*!< \brief Provides derivatives for hyper-planes */
             PROVIDES_NORMAL_DERIVATIVE
         };
