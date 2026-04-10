@@ -126,7 +126,7 @@ namespace Ponca
     protected:
         enum
         {
-            Check = Base::PROVIDES_GLS_PARAMETRIZATION & Base::PROVIDES_PRIMITIVE_DERIVATIVE &
+            Check = Base::PROVIDES_GLS_PARAMETRIZATION && Base::PROVIDES_PRIMITIVE_DERIVATIVE &&
                     Base::PROVIDES_ALGEBRAIC_SPHERE_DERIVATIVE,
             PROVIDES_GLS_DERIVATIVE,
             PROVIDES_GLS_GEOM_VAR
