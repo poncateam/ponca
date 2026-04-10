@@ -5,7 +5,9 @@ Ponca changelog
 Current head (v.2.0.alpha3 RC)
 This release will introduce a refactoring of the requirement library using cpp20::concepts.
 
--CI/Actions
+- Bug-fixes and code improvements
+   - [Fitting] Fix warnings introduced when bumping to cxx20 (#303)
+- CI/Actions
     - [ci] Fix Issue with Eigen build in buildAsSubmodule (#299)
 
 
