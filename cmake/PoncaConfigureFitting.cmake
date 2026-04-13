@@ -55,6 +55,10 @@ add_dependencies(Fitting Common)
 set_target_properties(Fitting PROPERTIES
   INTERFACE_COMPILE_FEATURES cxx_std_11
 )
+if(Eigen3_FOUND)
+    message("Compiling with installed Eigen package, enable transitive linking (Version ${Eigen3_VERSION}, path: ${Eigen3_DIR})")
+    target_link_libraries(Fitting PUBLIC INTERFACE Eigen3::Eigen)
+endif()
 
 install(TARGETS Fitting
     EXPORT FittingTargets

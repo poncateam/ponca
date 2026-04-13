@@ -25,7 +25,7 @@ set_target_properties(Common PROPERTIES
 
 if(Eigen3_FOUND)
     message("Compiling with installed Eigen package, enable transitive linking (Version ${Eigen3_VERSION}, path: ${Eigen3_DIR})")
-    target_link_libraries(Fitting PUBLIC INTERFACE Eigen3::Eigen)
+    target_link_libraries(Common PUBLIC INTERFACE Eigen3::Eigen)
 endif()
 
 install(TARGETS Common
