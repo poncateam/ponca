@@ -10,6 +10,7 @@ OPTION( PONCA_CONFIGURE_EXAMPLES   "Include compilation rules for built-in examp
 OPTION( PONCA_CONFIGURE_DOC        "Include compilation rules for built-in documentation" ON)
 OPTION( PONCA_CONFIGURE_TESTS      "Include compilation rules for built-in tests"         ON)
 OPTION( PONCA_GENERATE_IDE_TARGETS "Generate targets to show source files in IDEs"        ON)
+OPTION( PONCA_GENERATE_PCH         "Precompile the headers for faster recompiling"        OFF)
 
 ##
 ## END USER OPTIONS
@@ -144,6 +145,7 @@ set(PONCA_src_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/")
 include(PoncaConfigureFitting)
 include(PoncaConfigureCommon)
 include(PoncaConfigureSpatialPartitioning)
+add_subdirectory(precompiled)
 
 install(DIRECTORY ${PONCA_src_ROOT}/Ponca
     DESTINATION include/
