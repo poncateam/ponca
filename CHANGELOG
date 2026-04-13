@@ -7,8 +7,14 @@ This release will introduce a refactoring of the requirement library using cpp20
 
 - Bug-fixes and code improvements
    - [Fitting] Fix warnings introduced when bumping to cxx20 (#303)
+- Cmake
+    - [all] Eigen is now always for transitive linking (#302)
 - CI/Actions
     - [ci] Fix Issue with Eigen build in buildAsSubmodule (#299)
+    - [ci] New github action for checking CPM installation (#302)
+- Docs
+    - [doc] Add documentation about CPM installation for ponca (#302)
+
 
 
 --------------------------------------------------------------------------------
@@ -48,7 +54,6 @@ improves Cuda support, an introduces several bug fixes and minors improvements.
 - CI/Actions
     - [ci] Fix CNC coverage test (crash + slow execution) (#272)
     - [ci] New github action for checking formatting (#274)
-    - [ci] New github action for checking CPM installation (#302)
 
 - Examples
     - [all] Update according to API changes (#201)
@@ -57,7 +62,6 @@ improves Cuda support, an introduces several bug fixes and minors improvements.
 - Docs
     - [doc] Update doc according to recent API changes and new curvature estimators (#201)
     - [doc] Add cuda examples and extend Spatial Partitioning package description (#242)
-    - [doc] Add documentation about CPM installation for ponca (#302)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha1
