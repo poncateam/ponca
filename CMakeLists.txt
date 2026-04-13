@@ -80,22 +80,7 @@ if( NOT Eigen3_FOUND )
     set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
     
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/eigen)    
-    
-    set(Eigen3_FOUND TRUE) # For current scope
-    if (hasParent)
-        set(Eigen3_FOUND TRUE PARENT_SCOPE)
-    endif()
 endif()
-
-macro(ponca_handle_eigen_dependency TARGETNAME)
-    ## Should be retrieved by transitive linking, however it seems to fails with older cmake versions
-    if(Eigen3_FOUND)
-        get_target_property(MODULE Fitting INTERFACE_LINK_LIBRARIES )
-        if ("${MODULE}" STREQUAL "Eigen3::Eigen")
-            target_link_libraries(${TARGETNAME} PUBLIC Eigen3::Eigen)
-        endif()
-    endif()
-endmacro()
 
 ################################################################################
 # Generate install target                                                      #

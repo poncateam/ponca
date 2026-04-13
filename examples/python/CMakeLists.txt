@@ -26,7 +26,7 @@ if(CMAKE_CUDA_COMPILER)
 
     # Include directories
     target_include_directories(ssgls_ptx PRIVATE ${PONCA_src_ROOT})
-    ponca_handle_eigen_dependency(ssgls_ptx)
+    target_link_libraries(ssgls_ptx PUBLIC Eigen3::Eigen)
     set_target_properties(ssgls_ptx PROPERTIES
         CUDA_PTX_COMPILATION ON
     )
