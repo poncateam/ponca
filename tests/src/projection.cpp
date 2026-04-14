@@ -22,6 +22,7 @@
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/src/Fitting/project.h>
 
 #include <chrono>
 #include <math.h>
@@ -79,12 +80,13 @@ void testFunction(
 
     if (fit.isStable())
     {
+        GradientDescentProject projection(1000);
         for (int i = 0; i < nbPoints; ++i)
         {
             const VectorType p = center + analysisScale * VectorType::Random();
 
             // check that the projected point is on the surface
-            VectorType projD = fit.projectDescent(p, 1000);
+            VectorType projD = projection(fit, p);
             VERIFY(std::abs(fit.potential(projD)) < lowPrecisionEpsilon);
 
             VectorType proj = fit.project(p);
@@ -99,12 +101,13 @@ void testFunction(
 #ifdef COMPARE_PROJECTION_TIMINGS
         auto start1 = std::chrono::system_clock::now();
         for (const auto& p : samples)
-            fit.project(p);
+            SimpleProject().project(fit, p);
         auto end1 = std::chrono::system_clock::now();
 
         auto start2 = std::chrono::system_clock::now();
         for (const auto& p : samples)
-            fit.projectDescent(p);
+            GradientDescentProject().project(fit, p);
+
         auto end2 = std::chrono::system_clock::now();
 
         std::chrono::duration<double> elapsed_seconds1 = end1 - start1;

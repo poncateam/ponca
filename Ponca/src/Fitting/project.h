@@ -15,13 +15,13 @@ namespace Ponca
     public:
         /**
          * \brief Project a point using the primitive projection operator
-         * 
+         *
          * \tparam Fit The fitting object
-         * 
+         *
          * \param f The fitting object
          * \param pos The position to project
          */
-        template<typename Fit>
+        template <typename Fit>
         PONCA_MULTIARCH typename Fit::VectorType project(const Fit& _f, const typename Fit::VectorType& _pos) const
         {
             return _f.project(_pos);
@@ -36,12 +36,12 @@ namespace Ponca
             return project(_f, _pos);
         }
     };
-    
+
     /**
      * \brief Project a point using the gradinet of the sdf
-     * 
+     *
      * \tparam Fit The fitting object
-     * 
+     *
      * \param f The fitting object
      * \param pos The position to project
      */
@@ -52,18 +52,18 @@ namespace Ponca
 
         /**
          * \brief Project a point using the gradinet of the sdf
-         * 
+         *
          * \tparam Fit The fitting object
-         * 
+         *
          * \param f The fitting object
          * \param pos The position to project
          */
-        template<typename Fit>
+        template <typename Fit>
         PONCA_MULTIARCH typename Fit::VectorType project(const Fit& _f, const typename Fit::VectorType& _pos) const
         {
             PONCA_MULTIARCH_STD_MATH(min)
             using VectorType = typename Fit::VectorType;
-            using Scalar = typename Fit::Scalar;
+            using Scalar     = typename Fit::Scalar;
 
             VectorType grad;
             VectorType dir  = _f.primitiveGradient(_pos);
@@ -91,6 +91,7 @@ namespace Ponca
         {
             return project(f, pos);
         }
+
     public:
         unsigned int nbIter;
     };
