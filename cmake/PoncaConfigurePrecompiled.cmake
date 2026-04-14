@@ -3,15 +3,14 @@ set(ponca_Precompiled_PRECOMPILED
 )
 
 set(ponca_Precompiled_INCLUDE
-    "${PONCA_src_ROOT}/Ponca/Ponca"
-    "${PONCA_src_ROOT}/Ponca/Ponca"
+    "${PONCA_src_ROOT}/Ponca"
 )
 
 set(ponca_Precompiled_SRC
     "${PONCA_src_ROOT}/Ponca/precompiled/precompiled.cpp"
     )
 
-add_library(Precompiled STATIC)
+add_library(Precompiled SHARED)
 add_library(Ponca::Precompiled ALIAS Precompiled)
 
 target_include_directories(Precompiled PUBLIC 
@@ -26,8 +25,34 @@ target_sources(Precompiled PUBLIC
 target_precompile_headers(Precompiled PUBLIC
     "$<BUILD_INTERFACE:${ponca_Precompiled_PRECOMPILED}>"
     )
-
+    
+target_link_libraries(Precompiled PUBLIC Eigen3::Eigen)
 target_compile_definitions(Precompiled PRIVATE _PONCA_COMPILE_DEFINITION)
+
+# Instantiation options
+option(PONCA_INSTANTIATE_ALL "Instantiate everything defined in Ponca/Precompiled. This options takes priority over all other options for instantiation." ON)
+if (${PONCA_INSTANTIATE_ALL})
+    target_compile_definitions(Precompiled PUBLIC _PONCA_INSTANTIATE_ALL)
+endif()
+
+set(ponca_Precompiled_OPTIONS
+    PONCA_INSTANTIATE_DOUBLE
+    PONCA_INSTANTIATE_FLOAT
+    PONCA_INSTANTIATE_2D
+    PONCA_INSTANTIATE_3D
+    PONCA_INSTANTIATE_POINTPOSITION
+    PONCA_INSTANTIATE_POINTPOSITIONNORMAL
+    PONCA_INSTANTIATE_SMOOTHWEIGHT
+    PONCA_INSTANTIATE_SPACEDER
+    )
+foreach(param IN LISTS ponca_Precompiled_OPTIONS)
+    option(${param} "" OFF)
+    if (${param})
+        target_compile_definitions(Precompiled PUBLIC _${param})
+    endif()
+endforeach()
+
+
 
 set_target_properties(Precompiled PROPERTIES
   LINKER_LANGUAGE CXX

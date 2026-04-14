@@ -3,4 +3,6 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
-#include "precompiled/precompiled.h"
+
+// This file is just for having a better name to include
+#include "types.h"
