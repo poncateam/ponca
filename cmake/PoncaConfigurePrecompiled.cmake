@@ -7,11 +7,21 @@ set(ponca_Precompiled_INCLUDE
 )
 
 set(ponca_Precompiled_SRC
+    "${PONCA_src_ROOT}/Ponca/Precompiled"
+    "${PONCA_src_ROOT}/Ponca/precompiled/precompiled.h"
     "${PONCA_src_ROOT}/Ponca/precompiled/precompiled.cpp"
+    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/types.h"
+    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/dims.h"
+    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/points.h"
+    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/filters.h"
+    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/baskets.h"
+    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/basketsdiff.h"
     )
 
 add_library(Precompiled SHARED)
 add_library(Ponca::Precompiled ALIAS Precompiled)
+add_dependencies(Precompiled Fitting Common SpatialPartitioning)
+
 
 target_include_directories(Precompiled PUBLIC 
     "$<BUILD_INTERFACE:${PONCA_src_ROOT}>"
@@ -20,7 +30,7 @@ target_include_directories(Precompiled PUBLIC
 
 target_sources(Precompiled PUBLIC
     "$<BUILD_INTERFACE:${ponca_Precompiled_SRC}>"
-    "$<INSTALL_INTERFACE:/>"
+    "$<INSTALL_INTERFACE:>"
     )
 target_precompile_headers(Precompiled PUBLIC
     "$<BUILD_INTERFACE:${ponca_Precompiled_PRECOMPILED}>"
