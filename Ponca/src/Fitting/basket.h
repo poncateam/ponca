@@ -16,6 +16,8 @@ namespace Ponca
 
 #define BSKNF typename BasketType::NeighborFilter
 #define BSKP typename BasketType::DataPoint
+#define BSKS typename BasketType::Scalar
+#define BSKV typename BasketType::VectorType
 
 #ifndef PARSED_WITH_DOXYGEN
     /*! \brief Namespace used for structure or classes used internally by the lib */
@@ -223,23 +225,43 @@ namespace Ponca
         /// Point type used for computation
         using DataPoint = BSKP;
         /// Scalar type used for computation, as defined from Basket
-        using Scalar = typename BasketType::Scalar;
+        using Scalar = BSKS;
+        /// Vector type used for computation, as defined from Basket
+        using VectorType = BSKV;
         WRITE_COMPUTE_FUNCTIONS
 
-        /// \copydoc Basket::addNeighbor
-        PONCA_MULTIARCH inline bool addNeighbor(const DataPoint& _nei)
-        {
-            // compute weight
-            auto neiFilterOutput = Base::getNeighborFilter()(_nei);
-            typename Base::ScalarArray dw;
+        /// \brief Initialize the fit
+        PONCA_MULTIARCH void init();
 
-            if (neiFilterOutput.first > Scalar(0.))
-            {
-                Base::addLocalNeighbor(neiFilterOutput.first, neiFilterOutput.second, _nei, dw);
-                return true;
-            }
-            return false;
-        }
+        /// \brief Start a new iteration over neighbor. 
+        ///
+        /// /!\ Do not forget to use this function when multiple pass are needed
+        PONCA_MULTIARCH void startNewPass();
+
+        /// \brief Finalize the fitting procedure
+        PONCA_MULTIARCH void finalize();
+
+        /// \brief Add a neighbor to perform the fit
+        ///
+        /// When called directly, don't forget to call Fit::startNewPass when starting multiple passes
+        /// \see compute Prefer when using a range of Points
+        /// \see computeWithIds Prefer when using a range of ids
+        /// \return false if param nei is not a valid neighbor (weight = 0)
+        PONCA_MULTIARCH bool addNeighbor(const DataPoint& _nei);
+
+        /// \brief Add a local neighbor to perform the fit
+        ///
+        /// When called directly, don't forget to call Fit::startNewPass when starting multiple passes
+        /// \see compute Prefer when using a range of Points
+        /// \see computeWithIds Prefer when using a range of ids
+        /// 
+        /// \param _w The weight of the neighbor
+        /// \param _localQ The location expressed in local coordinates
+        /// \param _nei The neighbor
+        /// \param _dw Derivative array
+        ///
+        /// \return false if param nei is not a valid neighbor (weight = 0)
+        PONCA_MULTIARCH void addLocalNeighbor(Scalar _w, const VectorType& _localQ, const DataPoint& _nei, typename Base::ScalarArray& _dw);
     };
 
     /*!
@@ -271,26 +293,41 @@ namespace Ponca
 
         WRITE_COMPUTE_FUNCTIONS
 
+        /// \brief Initialize the fit
+        PONCA_MULTIARCH void init();
+
+        /// \brief Start a new iteration over neighbor. 
+        ///
+        /// /!\ Do not forget to use this function when multiple pass are needed
+        PONCA_MULTIARCH void startNewPass();
+
+        /// \brief Finalize the fitting procedure
+        PONCA_MULTIARCH void finalize();
+
         /// \brief Add a neighbor to perform the fit
         ///
-        /// When called directly, don't forget to call PrimitiveBase::startNewPass when starting multiple passes
+        /// When called directly, don't forget to call Fit::startNewPass when starting multiple passes
         /// \see compute Prefer when using a range of Points
         /// \see computeWithIds Prefer when using a range of ids
         /// \return false if param nei is not a valid neighbor (weight = 0)
-        PONCA_MULTIARCH inline bool addNeighbor(const DataPoint& _nei)
-        {
-            // compute weight
-            auto neiFilterOutput = Base::getNeighborFilter()(_nei);
+        PONCA_MULTIARCH bool addNeighbor(const DataPoint& _nei);
 
-            if (neiFilterOutput.first > Scalar(0.))
-            {
-                Base::addLocalNeighbor(neiFilterOutput.first, neiFilterOutput.second, _nei);
-                return true;
-            }
-            return false;
-        }
+        /// \brief Add a local neighbor to perform the fit
+        ///
+        /// When called directly, don't forget to call Fit::startNewPass when starting multiple passes
+        /// \see compute Prefer when using a range of Points
+        /// \see computeWithIds Prefer when using a range of ids
+        /// 
+        /// \param _w The weight of the neighbor
+        /// \param _localQ The location expressed in local coordinates
+        /// \param _nei The neighbor
+        ///
+        /// \return false if param nei is not a valid neighbor (weight = 0)
+        PONCA_MULTIARCH void addLocalNeighbor(typename P::Scalar _w, const typename P::VectorType& _localQ,
+                                              const P& _nei);
     }; // class Basket
 
 #undef WRITE_COMPUTE_FUNCTIONS
-} // namespace Ponca
+} // namespace Ponca    
 
+#include "basket.hpp"
