@@ -38,7 +38,7 @@
 #include "src/Fitting/sphereFit.h"
 #include "src/Fitting/orientedSphereFit.h"
 #ifndef __CUDACC__
-# include "src/Fitting/unorientedSphereFit.h"
+#    include "src/Fitting/unorientedSphereFit.h"
 #endif
 
 // Extensions
@@ -47,5 +47,4 @@
 #include "src/Fitting/heightField.h"
 #include "src/Fitting/weingarten.h"
 #include "src/Fitting/gls.h"
-
 

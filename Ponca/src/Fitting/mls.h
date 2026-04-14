@@ -9,6 +9,7 @@
 #include "enums.h"
 
 #include "./compute.h"
+#include "./project.h"
 
 #include <algorithm>
 
@@ -35,12 +36,6 @@ namespace Ponca
 
         MLS(unsigned int nIter, Scalar eps) : MLS(nIter) { setPrecision(Eigen::NumTraits<Scalar>::dummy_precision()); }
 
-        void setPrecision(Scalar newEps)
-        {
-            // Enforce positiveness
-            m_eps = std::abs(newEps);
-        }
-
         /**
          * \brief Sets precision for early stopping
          *
@@ -65,17 +60,20 @@ namespace Ponca
          * \tparam Fit Fit type
          * \tparam ItB Begin iterator type
          * \tparam ItE End iterator type
+         * \tparam Project Projection functor type
          *
          * \param _fit The fitting object
          * \param _beg The begining of point range
          * \param _end The end of point range
+         * \param _p Projection functor
          *
          * \return The result of the fit
          */
-        template <typename Fit, typename ItB, typename ItE>
-        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& _fit, const ItB& _itb, const ItE& _ite) const
+        template <typename Fit, typename ItB, typename ItE, typename Project = SimpleProject>
+        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& _fit, const ItB& _itb, const ItE& _ite,
+                                                  const Project& _p = Project{}) const
         {
-            return computeMLSImpl(_fit, [&]() { return _fit.compute(_itb, _ite); });
+            return computeMLSImpl(_fit, [&]() { return _fit.compute(_itb, _ite); }, _p);
         }
 
         /**
@@ -83,16 +81,19 @@ namespace Ponca
          *
          * \tparam Fit Fit type
          * \tparam Container Container of points
+         * \tparam Project Projection functor type
          *
          * \param _fit The fitting object
          * \param _container The point container
+         * \param _p Projection functor
          *
          * \return The result of the fit
          */
-        template <typename Fit, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& fit, const PointContainer& container)
+        template <typename Fit, typename PointContainer, typename Project = SimpleProject>
+        PONCA_MULTIARCH inline FIT_RESULT compute(Fit& fit, const PointContainer& container,
+                                                  const Project& _p = Project{})
         {
-            return compute(fit, std::begin(container), std::end(container));
+            return compute(fit, std::begin(container), std::end(container), _p);
         }
 
         /**
@@ -101,24 +102,27 @@ namespace Ponca
          * \tparam Fit Fit type
          * \tparam IdxRange Range index type
          * \tparam PointContainer Point container (must provide random access)
+         * \tparam Project Projection functor type
          *
          * \param _fit The fitting object
          * \param _range The container of indices
          * \param _container The point container
+         * \param _p Projection functor
          *
          * \return The result of the fit
          */
-        template <typename Fit, typename IdxRange, typename PointContainer>
+        template <typename Fit, typename IdxRange, typename PointContainer, typename Project = SimpleProject>
         PONCA_MULTIARCH inline FIT_RESULT computeWithIds(Fit& _fit, const IdxRange& _range,
-                                                         const PointContainer& _container) const
+                                                         const PointContainer& _container,
+                                                         const Project& _p = Project{}) const
         {
-            return computeMLSImpl(_fit, [&]() { return _fit.computeWithIds(_range, _container); });
+            return computeMLSImpl(_fit, [&]() { return _fit.computeWithIds(_range, _container); }, _p);
         }
 
     public:
         Scalar eps         = Eigen::NumTraits<Scalar>::dummy_precision();
         unsigned int nIter = 5;
-        
+
     private:
         /*!
          * \brief Computes the fit using the MLS iteration process.
@@ -127,14 +131,17 @@ namespace Ponca
          *
          * \tparam Fit The fitting type
          * \tparam Func The compute procedure
+         * \tparam Project Projection functor type
          *
          * \param _fit The fitting object
          * \param _compute The procedure to compute estimator
+         * \param _p Projection functor
          *
          * \return The result of the fit
          */
-        template <typename Fit, typename Func>
-        PONCA_MULTIARCH inline FIT_RESULT computeMLSImpl(Fit& _fit, Func&& _compute) const
+        template <typename Fit, typename Func, typename Project = SimpleProject>
+        PONCA_MULTIARCH inline FIT_RESULT computeMLSImpl(Fit& _fit, Func&& _compute,
+                                                         const Project& _p = Project{}) const
         {
             FIT_RESULT res = UNDEFINED;
             auto filter    = _fit.getNeighborFilter();
@@ -148,7 +155,7 @@ namespace Ponca
 
                 if (_fit.isStable())
                 {
-                    auto newPos = _fit.project(lastPos);
+                    auto newPos = _p(_fit, lastPos);
                     if (newPos.isApprox(lastPos, eps))
                         return res;
                     lastPos = newPos;
