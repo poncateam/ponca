@@ -64,10 +64,10 @@ jobs:
         run: cd repo/ponca && git fetch && git checkout ${{ github.head_ref }}
         if: ${{ github.event.pull_request.head.repo.full_name == 'poncateam/ponca' }}
       - name: Configure cmake project with installed eigen
-        run : mkdir build && cd build && cmake ../repo -DEigen3_DIR=../eigen_installed/share/eigen3/cmake/
+        run : mkdir build && cd build && cmake ../repo -DEigen3_DIR=../eigen_installed/share/eigen3/cmake/ -DCMAKE_Fortran_COMPILER=""
         if: ${{ matrix.config.installEigen == 'COMPILE'}}
       - name: Configure cmake project with local or packaged eigen
-        run : mkdir build && cd build && cmake ../repo
+        run : mkdir build && cd build && cmake ../repo -DCMAKE_Fortran_COMPILER=""
         if: ${{ matrix.config.installEigen != 'COMPILE'}}
       - name: Build (Submodule)
         run : cd build && cmake --build .
