@@ -123,10 +123,10 @@ PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildWithSampling(PointUser
 
     // Move, copy or convert input samples
     c(std::forward<PointUserContainer>(points), Base::m_bufs.points);
-    Base::m_bufs.points_size = points.size();
+    Base::m_bufs.points_size = Base::m_bufs.points.size();
 
-    Base::m_bufs.indices_size = sampling.size();
-    Base::m_bufs.indices      = std::move(sampling);
+    Base::m_bufs.indices      = std::forward<IndexUserContainer>(sampling);
+    Base::m_bufs.indices_size = Base::m_bufs.indices.size();
 
     Base::m_bufs.nodes.reserve(4 * Base::pointCount() / Base::m_min_cell_size);
     Base::m_bufs.nodes.emplace_back();
