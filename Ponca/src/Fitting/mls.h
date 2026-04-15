@@ -16,7 +16,8 @@
 namespace Ponca
 {
     /*!
-     * \brief Computes the fit using the MLS iteration process \cite oztireli:2009:feature
+     * \brief Computes the fit using the Moving Least Squares approach.
+     * The projection operator can be customized, see \cite Alexa:2004:projection.
      *
      * The position of the projected point is outputted within getNeighborFilter().evalPos()
      *
