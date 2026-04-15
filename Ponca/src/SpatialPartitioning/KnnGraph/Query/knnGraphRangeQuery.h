@@ -13,6 +13,8 @@
 #include <stack>
 #include <set>
 
+#include "Ponca/src/Common/Containers/bitset.h"
+
 namespace Ponca
 {
     template <typename Traits>
@@ -107,7 +109,7 @@ namespace Ponca
                     Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
                     Scalar th = QueryType::descentDistanceThreshold();
                     if ((point - points[idx_nei].pos()).squaredNorm() < QueryType::descentDistanceThreshold() &&
-                        m_flag.insert(idx_nei).second)
+                        m_flag.insert(idx_nei))
                     {
                         m_stack.push(idx_nei);
                     }
@@ -119,7 +121,7 @@ namespace Ponca
 
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
-        std::set<int> m_flag;    ///< store visited ids
+        Bitset<100000> m_flag;    ///< store visited ids
         std::stack<int> m_stack; ///< hold ids (ids range from 0 to point cloud size)
     };
 
