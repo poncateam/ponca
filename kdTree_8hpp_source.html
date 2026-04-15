@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">6e4c1f2db137478f1d8c7d210c8ed67ae5e2017e</span>
+   &#160;<span id="projectnumber">73247abfe24d29406a95aee1d4dfa2d34da85d4c</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -249,10 +249,10 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="comment">// Move, copy or convert input samples</span></div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    c(std::forward&lt;PointUserContainer&gt;(points), Base::m_bufs.points);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    Base::m_bufs.points_size = points.size();</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    Base::m_bufs.points_size = Base::m_bufs.points.size();</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    Base::m_bufs.indices_size = sampling.size();</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    Base::m_bufs.indices      = std::move(sampling);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    Base::m_bufs.indices      = std::forward&lt;IndexUserContainer&gt;(sampling);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    Base::m_bufs.indices_size = Base::m_bufs.indices.size();</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    Base::m_bufs.nodes.reserve(4 * Base::pointCount() / Base::m_min_cell_size);</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    Base::m_bufs.nodes.emplace_back();</div>
@@ -315,7 +315,7 @@ $(document).ready(function(){initNavTree('kdTree_8hpp_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_12c32e53c838db195d209d78f62f8479.html">SpatialPartitioning</a></li><li class="navelem"><a class="el" href="dir_1714f3cab0d35a638840fab853fb5d40.html">KdTree</a></li><li class="navelem"><b>kdTree.hpp</b></li>
-    <li class="footer">Generated on Wed Apr 15 2026 08:55:49 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Apr 15 2026 12:29:34 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
