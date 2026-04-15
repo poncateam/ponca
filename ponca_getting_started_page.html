@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">d74bced3f939733d17d668bc5376833fce8a5478</span>
+   &#160;<span id="projectnumber">6e4c1f2db137478f1d8c7d210c8ed67ae5e2017e</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -172,7 +172,19 @@ Cmake package</h2>
 <div class="line">add_executable(test main.cpp)</div>
 <div class="line">target_link_libraries(test <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::Fitting</a>)</div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="limitedPriorityQueue_8h_source.html#l00015">limitedPriorityQueue.h:16</a></div></div>
-</div><!-- fragment --><p>That said, the (quite heavy) use of templates in some modules may increase compilation times. Precompiled headers are recommended if this becomes a source of frustration. You will also have to pre-compile <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> using nvcc if you want to use CUDA versions. This is explained in more details in related examples.</p>
+</div><!-- fragment --><h2><a class="anchor" id="getting_started_installation_cmake_cpm"></a>
+CPM</h2>
+<p><a href="https://github.com/cpm-cmake/cpm.cmake">CPM </a> is a CMake package manager that allows to download, compiles and manages dependancies with a single line of cmake. <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is compatible with CPM. Once the <a href="https://github.com/cpm-cmake/CPM.cmake/blob/master/cmake/CPM.cmake">CPM.cmake </a> file downloaded, the following script will get you started with the library:</p>
+<div class="fragment"><div class="line">cmake_minimum_required(VERSION 3.11)</div>
+<div class="line">project(PoncaTest LANGUAGES CXX)</div>
+<div class="line"> </div>
+<div class="line">include(CPM.cmake) <span class="preprocessor"># Or any path to the downloaded file</span></div>
+<div class="line">CPMAddPackage(<span class="stringliteral">&quot;gh:poncateam/ponca#master&quot;</span>) <span class="preprocessor"># This will download ponca and run its cmake automatically</span></div>
+<div class="line"> </div>
+<div class="line">add_executable(test main.cpp)</div>
+<div class="line">target_link_libraries(test PRIVATE <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::Fitting</a>) <span class="preprocessor"># Or any other Ponca defined modules</span></div>
+</div><!-- fragment --><p>You may also specify other branches, tags or commit and options within the <code>CPMAddPackage</code> call. See <a href="https://github.com/cpm-cmake/cpm.cmake">CPM documentation </a> for more information.</p>
+<p>That said, the (quite heavy) use of templates in some modules may increase compilation times. Precompiled headers are recommended if this becomes a source of frustration. You will also have to pre-compile <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> using nvcc if you want to use CUDA versions. This is explained in more details in related examples.</p>
 <h1><a class="anchor" id="getting_started_first_step_sec"></a>
 First steps</h1>
 <p>You're now ready to play with Ponca! Checkout the user manual here: <a class="el" href="user_manual_page.html">User Manual</a>.</p>
@@ -183,7 +195,7 @@ First steps</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Apr 10 2026 14:11:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Apr 15 2026 08:55:49 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

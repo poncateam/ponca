@@ -99,7 +99,8 @@ var NAVTREE =
       [ "Installation", "ponca_getting_started_page.html#getting_started_installation_sec", [
         [ "Use as cmake subdirectory", "ponca_getting_started_page.html#getting_started_installation_cmakesubdirectory_subsec", null ],
         [ "Compilation", "ponca_getting_started_page.html#getting_started_installation_compilation_subsec", null ],
-        [ "Cmake package", "ponca_getting_started_page.html#getting_started_installation_cmake_subsec", null ]
+        [ "Cmake package", "ponca_getting_started_page.html#getting_started_installation_cmake_subsec", null ],
+        [ "CPM", "ponca_getting_started_page.html#getting_started_installation_cmake_cpm", null ]
       ] ],
       [ "First steps", "ponca_getting_started_page.html#getting_started_first_step_sec", null ]
     ] ],
@@ -188,7 +189,7 @@ var NAVTREEINDEX =
 "classPonca_1_1GLSDer.html#ad8ece9295539bece9d287a06921dccf4",
 "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a456ca1542f1ba92e008d44077ef76509",
 "classPonca_1_1UnorientedSphereFitImpl.html#a2e399e1782b3de7d5b2c259b6b07a252",
-"structPonca_1_1ComputeObject.html#a7bad382d90e0a8af867cd9ba5ccc37b9"
+"structPonca_1_1ComputeObject.html#a19794c89d55fef61b6a712dd94d7452b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
