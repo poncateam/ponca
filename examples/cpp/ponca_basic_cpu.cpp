@@ -12,22 +12,9 @@
 
 #include <algorithm>
 #include <iostream>
-
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/sphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Fitting/curvature.h>
-#include <Ponca/src/Fitting/weingarten.h>
-
-#include <Ponca/SpatialPartitioning>
-#include <Ponca/src/Common/pointTypes.h>
-#include <Ponca/src/Common/pointGeneration.h>
-
 #include <vector>
+
+#include <Ponca/Precompiled>
 
 using namespace std;
 using namespace Ponca;

@@ -1,5 +1,5 @@
 set(ponca_Precompiled_PRECOMPILED
-    "${PONCA_src_ROOT}/Ponca/Precompiled"
+    "${PONCA_src_ROOT}/Ponca/precompiled/precompiled.h"
 )
 
 set(ponca_Precompiled_INCLUDE

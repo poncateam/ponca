@@ -6,7 +6,7 @@ set(ponca_basic_SRCS
     ponca_basic_cpu.cpp
 )
 add_executable(ponca_basic_cpu ${ponca_basic_SRCS})
-target_include_directories(ponca_basic_cpu PRIVATE ${PONCA_src_ROOT})
+target_link_libraries(ponca_basic_cpu PUBLIC Ponca::Precompiled)
 add_dependencies(ponca-examples ponca_basic_cpu)
 target_link_libraries(ponca_basic_cpu PUBLIC Eigen3::Eigen)
 
