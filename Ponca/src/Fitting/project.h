@@ -10,7 +10,7 @@ namespace Ponca
     /**
      * \brief Project a point using the primitive projection operator
      */
-    struct SimpleProject
+    struct DirectProjectionOperator
     {
     public:
         /**
@@ -45,10 +45,10 @@ namespace Ponca
      * \param f The fitting object
      * \param pos The position to project
      */
-    struct GradientDescentProject
+    struct GradientDescentProjectionOperator
     {
     public:
-        GradientDescentProject(unsigned int _nbIter = 16) : nbIter(_nbIter) {}
+        GradientDescentProjectionOperator(unsigned int _nbIter = 16) : nbIter(_nbIter) {}
 
         /**
          * \brief Project a point using the gradinet of the sdf

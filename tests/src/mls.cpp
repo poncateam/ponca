@@ -67,7 +67,7 @@ void testFunction()
         Fit fitMLS;
         fitMLS.setNeighborFilter({pos, analysisScale});
 
-        MLS<Scalar> mls(1000);
+        MLSEvaluationScheme<Scalar> mls(1000);
         mls.compute(fitMLS, vectorPoints);
 
         if (fit.isStable())
