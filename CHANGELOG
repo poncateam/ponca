@@ -7,8 +7,14 @@ This release will introduce a refactoring of the requirement library using cpp20
 
 - Bug-fixes and code improvements
    - [Fitting] Fix warnings introduced when bumping to cxx20 (#303)
+- Cmake
+    - [all] Eigen is now always for transitive linking (#302)
 - CI/Actions
     - [ci] Fix Issue with Eigen build in buildAsSubmodule (#299)
+    - [ci] New github action for checking CPM installation (#302)
+- Docs
+    - [doc] Add documentation about CPM installation for ponca (#302)
+
 
 
 --------------------------------------------------------------------------------

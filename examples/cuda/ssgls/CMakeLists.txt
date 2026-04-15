@@ -6,7 +6,7 @@ if ( PNG_FOUND )
     target_link_libraries(ponca_ssgls PRIVATE PNG::PNG)
     add_dependencies(ponca-examples ponca_ssgls)
     set_property(TARGET ponca_ssgls PROPERTY CUDA_ARCHITECTURES OFF)
-    ponca_handle_eigen_dependency(ponca_ssgls)
+    target_link_libraries(ponca_ssgls PUBLIC Eigen3::Eigen)
 
     # Copy assets
     add_custom_command(TARGET ponca_ssgls POST_BUILD
