@@ -14,8 +14,20 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 namespace Ponca
 {
-    //!
-    //! @tparam N
+    /*!
+     * \brief Cuda friendly implementation of a Bitset
+     *
+     * Allows to insert and search in O(1) complexity, but is memory expensive, because we allocate a single
+     * bit for each possible indices, to flag if it was inserted or not, which is not ideal for large amount of indices.
+     *
+     * The memory use should be :
+     * Bitset<10000> → 10k bits = 1.25 KB
+     * Bitset<1e6> → 125 KB
+     * Bitset<1e7> → 1.25 MB
+     *
+     * \tparam N Maximum number of indices
+     * \tparam T The data type of the array storing the bits. Default to unsigned long long for 64 bits storage.
+     */
     template <int N, typename T=unsigned long long>
     class Bitset
     {
@@ -27,9 +39,9 @@ namespace Ponca
         PONCA_MULTIARCH void clear();
 
     protected:
-        static constexpr size_t BIT_SIZE = sizeof(T) * 8;
-        static constexpr size_t ARRAY_SIZE = (N + BIT_SIZE - 1) / BIT_SIZE;
-        T m_data[ARRAY_SIZE]; //!< An array of bytes
+        static constexpr size_t BIT_SIZE = sizeof(T) * 8; //! The number of bits in one element of the array
+        static constexpr size_t ARRAY_SIZE = (N + BIT_SIZE - 1) / BIT_SIZE; //!< The array size
+        T m_data[ARRAY_SIZE] = {}; //!< An array of bytes
     };
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -53,9 +65,10 @@ namespace Ponca
         assert(index>=0 && index<N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
-        const bool res = (m_data[byte] & (T(1) << bit)) != 0;
-        m_data[byte] |= (T(1) << bit);
-        return res;
+        const T bitMask = (T(1) << bit);
+        const bool alreadyInserted = (m_data[byte] & bitMask) == 0;
+        m_data[byte] |= bitMask;
+        return alreadyInserted;
     }
 
     template <int N, typename T>
