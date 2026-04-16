@@ -9,11 +9,9 @@
 #include "../../query.h"
 #include "../Iterator/knnGraphRangeIterator.h"
 
-#include <vector>
 #include <stack>
-#include <set>
 
-#include "Ponca/src/Common/Containers/bitset.h"
+#include "Ponca/src/Common/Containers/hashset.h"
 
 namespace Ponca
 {
@@ -121,7 +119,7 @@ namespace Ponca
 
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
-        Bitset<100000> m_flag;    ///< store visited ids
+        HashSet<100000, int> m_flag;    ///< store visited ids
         std::stack<int> m_stack; ///< hold ids (ids range from 0 to point cloud size)
     };
 

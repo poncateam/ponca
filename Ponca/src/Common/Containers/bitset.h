@@ -7,15 +7,11 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #pragma once
 
-#include <vector>
-#include <algorithm>
-#include <functional>
 #include "../defines.h"
 
 namespace Ponca
 {
-    /*!
-     * \brief Cuda friendly implementation of a Bitset
+    /*! \brief BitSet implementation, similar to std::bitset
      *
      * Allows to insert and search in O(1) complexity, but is memory expensive, because we allocate a single
      * bit for each possible indices, to flag if it was inserted or not, which is not ideal for large amount of indices.
@@ -29,10 +25,10 @@ namespace Ponca
      * \tparam T The data type of the array storing the bits. Default to unsigned long long for 64 bits storage.
      */
     template <int N, typename T=unsigned long long>
-    class Bitset
+    class BitSet
     {
     public:
-        PONCA_MULTIARCH Bitset();
+        PONCA_MULTIARCH BitSet();
         PONCA_MULTIARCH void flip(int index);
         PONCA_MULTIARCH bool insert(int index);
         PONCA_MULTIARCH [[nodiscard]] bool find(int index) const;
@@ -49,10 +45,10 @@ namespace Ponca
     ////////////////////////////////////////////////////////////////////////////////
 
     template <int N, typename T>
-    Bitset<N, T>::Bitset() = default;
+    BitSet<N, T>::BitSet() = default;
 
     template <int N, typename T>
-    PONCA_MULTIARCH void Bitset<N, T>::clear()
+    PONCA_MULTIARCH void BitSet<N, T>::clear()
     {
         for (int i = 0; i < ARRAY_SIZE; i++)
         {
@@ -61,7 +57,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool Bitset<N, T>::insert(const int index) {
+    PONCA_MULTIARCH bool BitSet<N, T>::insert(const int index) {
         assert(index>=0 && index<N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
@@ -72,7 +68,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH void Bitset<N, T>::flip(const int index) {
+    PONCA_MULTIARCH void BitSet<N, T>::flip(const int index) {
         assert(index>=0 && index<N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
@@ -80,7 +76,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH [[nodiscard]] bool Bitset<N, T>::find(const int index) const {
+    PONCA_MULTIARCH [[nodiscard]] bool BitSet<N, T>::find(const int index) const {
         assert(index>=0 && index<N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
