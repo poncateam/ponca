@@ -28,6 +28,8 @@
  * \warning The buffers needs to be freed after use, with the \ref freeBuffersOnDevice function
  *
  * \tparam Traits The KdTree traits structure type
+ * \tparam SendNode A boolean flag to tell if the buffer has a node array to send or not. Is set to true by default
+ * \tparam StaticKdTreeBuffers A reference to a KdTree buffer that is holding memory pointers
  * \param hostBuffers The Buffers structure holding the internal storage of the KdTree that we want to upload to the device
  * \param hostBuffersHoldingDevicePointers The Buffers structure on the host that references memory on the device
  * \param deviceBuffers The pointer to the Buffers structure on the device
@@ -52,6 +54,7 @@ void deepCopyBuffersToDevice(const KdTreeDenseBuffers& hostBuffers, StaticKdTree
         hostBuffers.points_size * sizeof(DataPoint), cudaMemcpyHostToDevice));
     CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.indices, hostBuffers.indices.data(),
         hostBuffers.indices_size * sizeof(IndexType), cudaMemcpyHostToDevice));
+
     if constexpr (SendNode) {
         using NodeType       = typename Traits::NodeType;  ///< Type of nodes used inside the KdTree
         hostBuffersHoldingDevicePointers.nodes_size   = hostBuffers.nodes_size;
