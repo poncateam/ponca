@@ -8,10 +8,9 @@
 #include "defines.h"
 #include "enums.h"
 
-#include "./compute.h"
 #include "./project.h"
 
-#include <algorithm>
+#include "Eigen/Core"
 
 namespace Ponca
 {
@@ -26,37 +25,7 @@ namespace Ponca
     template <typename Scalar>
     struct MLSEvaluationScheme
     {
-    public:
-        MLSEvaluationScheme()
-        {
-            setPrecision(Eigen::NumTraits<Scalar>::dummy_precision());
-            setNIter(5);
-        }
-
-        MLSEvaluationScheme(unsigned int nIter) : MLSEvaluationScheme() { setNIter(nIter); }
-
-        MLSEvaluationScheme(unsigned int nIter, Scalar eps) : MLSEvaluationScheme(nIter)
-        {
-            setPrecision(Eigen::NumTraits<Scalar>::dummy_precision());
-        }
-
-        /**
-         * \brief Sets precision for early stopping
-         *
-         * \param _eps
-         */
-        void setPrecision(Scalar _eps) { eps = _eps; }
-
-        /**
-         * \brief Set maximum number of iterations
-         *
-         * \param _nIter Maximum number of iterations
-         */
-        void setNIter(unsigned int _nIter)
-        {
-            // At least 1, otherwise no computation would be performed
-            nIter = nIter;
-        }
+        MLSEvaluationScheme(unsigned int _nIter = nIterDefault, Scalar _eps = epsDefault) : nIter(_nIter), eps(_eps) {}
 
         /**
          * \copydoc computeMLSImpl
@@ -124,9 +93,14 @@ namespace Ponca
             return computeMLSImpl(_co, [&]() { return _co.computeWithIds(_range, _container); }, _p);
         }
 
-    public:
-        Scalar eps         = Eigen::NumTraits<Scalar>::dummy_precision();
-        unsigned int nIter = 5;
+        /// \brief Default epsilon value for stopping MLS iterations
+        static constexpr Scalar epsDefault = Eigen::NumTraits<Scalar>::dummy_precision();
+        /// \brief Default maximum number of MLS iterations
+        static constexpr int nIterDefault = 5;
+        /// \brief Epsilon value for stopping MLS iterations
+        Scalar eps = epsDefault;
+        /// \brief Maximum number of MLS iterations
+        unsigned int nIter = nIterDefault;
 
     private:
         /*!
