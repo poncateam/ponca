@@ -39,12 +39,14 @@ namespace Ponca
             \tparam IteratorBegin The beginning of the iterator (std::begin(iterator)
             \tparam IteratorEnd   The end of the iterator (std::end(iterator)
         */
+        //! [SingleEvaluationScheme Compute Definition]
         template <typename ComputeObject, typename IteratorBegin, typename IteratorEnd>
         PONCA_MULTIARCH inline FIT_RESULT compute(ComputeObject& co, const IteratorBegin& begin,
                                                   const IteratorEnd& end) const
         {
             return co.compute(begin, end);
         };
+        //! [SingleEvaluationScheme Compute Definition]
 
         /*! \brief Convenience function to iterate over a subset of samples in a PointContainer
             \tparam ComputeObject Compute object to call the function on
