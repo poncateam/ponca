@@ -11,6 +11,11 @@
 #include "src/Fitting/enums.h"
 #include "src/Fitting/compute.h"
 
+// Evaluation schemes
+#include "src/Fitting/evaluationScheme.h"
+#include "src/Fitting/mlsEvaluationScheme.h"
+#include "src/Fitting/project.h"
+
 // Weighting
 #include "src/Fitting/weightKernel.h"
 #include "src/Fitting/weightFunc.h"
