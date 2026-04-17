@@ -18,7 +18,6 @@
 
 namespace Ponca
 {
-
     /*!
         \brief Algebraic Sphere primitive
 
@@ -60,6 +59,8 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, algebraicSphere)
+        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, implicitPrimitive)
+        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, projectionOperator)
 
         /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 
@@ -93,6 +94,7 @@ namespace Ponca
             return pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
                    pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon && m_ul.isApprox(other.m_ul);
         }
+
         /// \brief Approximate operator \warning Assume that other shares the same basis \see changeBasis()
         template <typename Other>
         PONCA_MULTIARCH [[nodiscard]] inline bool isApprox(

@@ -1,4 +1,3 @@
-
 /*
  Copyright (C) 2021 aniket agarwalla <aniketagarwalla37@gmail.com>
 
@@ -18,7 +17,6 @@
 
 namespace Ponca
 {
-
     /*!
         \brief A parametrized line is defined by an origin point \f$\mathbf{o}\f$ and a unit direction vector
         \f$\overrightarrow{\mathbf{d}}\f$ such that the line corresponds to the set
@@ -45,6 +43,8 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(Line, line)
+        PONCA_EXPLICIT_CAST_OPERATORS(Line, implicitPrimitive)
+        PONCA_EXPLICIT_CAST_OPERATORS(Line, projectionOperator)
 
         /*!
          * \brief Set the scalar field values to 0 and reset the distance() and origin() status
@@ -126,6 +126,18 @@ namespace Ponca
                 EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
         }
 
+        /*! \brief Approximation of the scalar field gradient at \f$ \mathbf{q}\f$
+        \warning The gradient norm is equal to the distance to the line */
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient(const VectorType& _q) const
+        {
+            // Turn to centered basis
+            const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+            return primitiveGradientLocal(lq);
+        }
+
+        /*! \brief Gradient of the scalar field at the line location. As it is undefined, we set it to 0.  */
+        PONCA_MULTIARCH [[nodiscard]] inline const VectorType& primitiveGradient() const { return VectorType::Zero(); }
+
     protected:
         /// \copydoc Line::potential
         PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal(const VectorType& _lq) const
@@ -133,6 +145,10 @@ namespace Ponca
             // The potential is the distance from a point to the line
             return EigenBase::squaredDistance(_lq);
         }
-    }; // class Line
 
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal(const VectorType& _lq) const
+        {
+            return project(_lq) - _lq;
+        }
+    }; // class Line
 } // namespace Ponca

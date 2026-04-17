@@ -4,6 +4,7 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 #pragma once
+#include "concepts.h"
 
 namespace Ponca
 {
@@ -16,13 +17,15 @@ namespace Ponca
         /**
          * \brief Project a point using the primitive projection operator
          *
-         * \tparam Fit The fitting object
+         * \tparam ComputeObject The fitting object
          *
          * \param f The fitting object
          * \param pos The position to project
          */
-        template <typename Fit>
-        PONCA_MULTIARCH typename Fit::VectorType project(const Fit& _f, const typename Fit::VectorType& _pos) const
+        template <typename ComputeObject>
+            requires ProvidesProjectionOperator<ComputeObject>
+        PONCA_MULTIARCH typename ComputeObject::VectorType project(const ComputeObject& _f,
+                                                                   const typename ComputeObject::VectorType& _pos) const
         {
             return _f.project(_pos);
         }
@@ -30,8 +33,9 @@ namespace Ponca
         /**
          * \copydoc project
          */
-        template <typename Fit>
-        PONCA_MULTIARCH typename Fit::VectorType operator()(const Fit& _f, const typename Fit::VectorType& _pos) const
+        template <typename ComputeObject>
+        PONCA_MULTIARCH typename ComputeObject::VectorType operator()(
+            const ComputeObject& _f, const typename ComputeObject::VectorType& _pos) const
         {
             return project(_f, _pos);
         }
@@ -53,17 +57,19 @@ namespace Ponca
         /**
          * \brief Project a point using the gradinet of the sdf
          *
-         * \tparam Fit The fitting object
+         * \tparam ComputeObject The fitting object
          *
          * \param f The fitting object
          * \param pos The position to project
          */
-        template <typename Fit>
-        PONCA_MULTIARCH typename Fit::VectorType project(const Fit& _f, const typename Fit::VectorType& _pos) const
+        template <typename ComputeObject>
+            requires ProvidesImplicitPrimitive<ComputeObject>
+        PONCA_MULTIARCH typename ComputeObject::VectorType project(const ComputeObject& _f,
+                                                                   const typename ComputeObject::VectorType& _pos) const
         {
             PONCA_MULTIARCH_STD_MATH(min)
-            using VectorType = typename Fit::VectorType;
-            using Scalar     = typename Fit::Scalar;
+            using VectorType = typename ComputeObject::VectorType;
+            using Scalar     = typename ComputeObject::Scalar;
 
             VectorType grad;
             VectorType dir  = _f.primitiveGradient(_pos);
@@ -86,8 +92,9 @@ namespace Ponca
         /**
          * \copydoc project
          */
-        template <typename Fit>
-        PONCA_MULTIARCH typename Fit::VectorType operator()(const Fit& f, const typename Fit::VectorType& pos) const
+        template <typename ComputeObject>
+        PONCA_MULTIARCH typename ComputeObject::VectorType operator()(
+            const ComputeObject& f, const typename ComputeObject::VectorType& pos) const
         {
             return project(f, pos);
         }

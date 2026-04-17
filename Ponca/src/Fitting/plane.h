@@ -16,7 +16,6 @@
 
 namespace Ponca
 {
-
     /*!
         \brief Implicit hyperplane defined by an homogeneous vector \f$\mathbf{p}\f$.
 
@@ -49,6 +48,8 @@ namespace Ponca
         PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(); }
 
         PONCA_EXPLICIT_CAST_OPERATORS(Plane, plane)
+        PONCA_EXPLICIT_CAST_OPERATORS(Plane, implicitPrimitive)
+        PONCA_EXPLICIT_CAST_OPERATORS(Plane, projectionOperator)
 
         /// \brief Set the scalar field values to 0
         PONCA_MULTIARCH inline void init()
@@ -146,11 +147,11 @@ namespace Ponca
             // The potential is the distance from the point to the plane
             return EigenBase::signedDistance(_lq);
         }
+
         /// \copydoc Plane::primitiveGradient
         PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal(const VectorType& /*_lq*/) const
         {
             return EigenBase::normal();
         }
     }; // class Plane
-
 } // namespace Ponca

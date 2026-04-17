@@ -39,31 +39,44 @@ namespace Ponca
     };
 
     template <typename T>
-    concept ProvidesAlgebraicSphere = requires(T t, const T ct, typename T::VectorType v, typename T::Scalar s) {
-        ct.algebraicSphere();
+    concept ProvidesProjectionOperator = requires(T t, const T ct, typename T::VectorType v, typename T::Scalar s) {
+        ct.projectionOperator();
 
-        { ct.algebraicSphere().potential() } -> std::same_as<typename T::Scalar>;
-        { ct.algebraicSphere().potential(v) } -> std::same_as<typename T::Scalar>;
-
-        { ct.algebraicSphere().project(v) } -> std::same_as<typename T::VectorType>;
-
-        { ct.algebraicSphere().primitiveGradient() } -> std::convertible_to<typename T::VectorType>;
-        { ct.algebraicSphere().primitiveGradient(v) } -> std::same_as<typename T::VectorType>;
-
-        { ct.algebraicSphere().isPlane() } -> std::same_as<bool>;
-        { ct.algebraicSphere().isValid() } -> std::same_as<bool>;
-        { ct.algebraicSphere().isNormalized() } -> std::same_as<bool>;
-        { ct.algebraicSphere().isApprox(ct, s) } -> std::same_as<bool>;
-
-        { t.algebraicSphere().applyPrattNorm() } -> std::same_as<bool>;
-        { ct.algebraicSphere().prattNorm() } -> std::same_as<typename T::Scalar>;
-        { ct.algebraicSphere().prattNorm2() } -> std::same_as<typename T::Scalar>;
-
-        { ct.algebraicSphere().radius() } -> std::convertible_to<typename T::Scalar>;
-        { ct.algebraicSphere().center() } -> std::convertible_to<typename T::VectorType>;
-
-        t.algebraicSphere().changeBasis(v);
+        { ct.projectionOperator().project(v) } -> std::same_as<typename T::VectorType>;
     };
+
+    template <typename T>
+    concept ProvidesImplicitPrimitive =
+        ProvidesProjectionOperator<T> && requires(T t, const T ct, typename T::VectorType v, typename T::Scalar s) {
+            t.implicitPrimitive();
+            ct.implicitPrimitive();
+
+            { ct.implicitPrimitive().potential() } -> std::same_as<typename T::Scalar>;
+            { ct.implicitPrimitive().potential(v) } -> std::same_as<typename T::Scalar>;
+
+            { ct.implicitPrimitive().primitiveGradient() } -> std::convertible_to<typename T::VectorType>;
+            { ct.implicitPrimitive().primitiveGradient(v) } -> std::same_as<typename T::VectorType>;
+
+            t.implicitPrimitive().changeBasis(v);
+        };
+
+    template <typename T>
+    concept ProvidesAlgebraicSphere =
+        ProvidesImplicitPrimitive<T> && requires(T t, const T ct, typename T::VectorType v, typename T::Scalar s) {
+            ct.algebraicSphere();
+
+            { ct.algebraicSphere().isPlane() } -> std::same_as<bool>;
+            { ct.algebraicSphere().isValid() } -> std::same_as<bool>;
+            { ct.algebraicSphere().isNormalized() } -> std::same_as<bool>;
+            { ct.algebraicSphere().isApprox(ct, s) } -> std::same_as<bool>;
+
+            { t.algebraicSphere().applyPrattNorm() } -> std::same_as<bool>;
+            { ct.algebraicSphere().prattNorm() } -> std::same_as<typename T::Scalar>;
+            { ct.algebraicSphere().prattNorm2() } -> std::same_as<typename T::Scalar>;
+
+            { ct.algebraicSphere().radius() } -> std::convertible_to<typename T::Scalar>;
+            { ct.algebraicSphere().center() } -> std::convertible_to<typename T::VectorType>;
+        };
 
     template <typename T>
     concept ProvidesAlgebraicSphereDerivative = requires(const T ct) {
@@ -141,35 +154,22 @@ namespace Ponca
     };
 
     template <typename T>
-    concept ProvidesPlane = requires(T t, const T ct, typename T::Scalar s, typename T::VectorType v) {
-        t.plane();
-        ct.plane();
+    concept ProvidesPlane =
+        ProvidesImplicitPrimitive<T> && requires(T t, const T ct, typename T::Scalar s, typename T::VectorType v) {
+            t.plane();
+            ct.plane();
 
-        t.plane().setPlane(v, v);
-        { ct.plane().potential() } -> std::same_as<typename T::Scalar>;
-        { ct.plane().potential(v) } -> std::same_as<typename T::Scalar>;
-
-        // TODO: Add this function to plane for coherence with Algebraic sphere ?
-        // { ct.plane().project() } -> std::convertible_to<typename T::VectorType>;
-        { ct.plane().project(v) } -> std::same_as<typename T::VectorType>;
-
-        { ct.plane().primitiveGradient() } -> std::same_as<typename T::VectorType>;
-        { ct.plane().primitiveGradient(v) } -> std::same_as<typename T::VectorType>;
-    };
+            t.plane().setPlane(v, v);
+        };
 
     template <typename T>
-    concept ProvidesLine = requires(T t, const T ct, typename T::Scalar s, typename T::VectorType v) {
-        t.line();
-        ct.line();
+    concept ProvidesLine =
+        ProvidesImplicitPrimitive<T> && requires(T t, const T ct, typename T::Scalar s, typename T::VectorType v) {
+            t.line();
+            ct.line();
 
-        t.line().setLine(v, v);
-        { ct.line().potential() } -> std::same_as<typename T::Scalar>;
-        { ct.line().potential(v) } -> std::same_as<typename T::Scalar>;
-
-        // TODO: Add this function to plane for coherence with Algebraic sphere ?
-        // { ct.line().project() } -> std::convertible_to<typename T::VectorType>;
-        { ct.line().project(v) } -> std::same_as<typename T::VectorType>;
-    };
+            t.line().setLine(v, v);
+        };
 
     template <typename T>
     concept ProvidesPositionCovariance = requires(const T ct) {
@@ -231,5 +231,4 @@ namespace Ponca
         { ct.weingartenMap() } -> std::convertible_to<typename T::Matrix2>;
         ct.weingartenMap(m);
     };
-
 } // namespace Ponca
