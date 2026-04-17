@@ -199,17 +199,26 @@ namespace Ponca
 
     template <typename T>
     concept ProvidesMeanCurvature = requires(const T ct) {
-        { ct.kMean() } -> std::same_as<typename T::Scalar>;
+        ct.meanCurvature();
+
+        { ct.meanCurvature().kMean() } -> std::same_as<typename T::Scalar>;
     };
 
+    /**
+     *
+     * \brief Base concept for any 3d curvature estimator: provides \f$k_{\min}\f$, \f$k_{\max}\f$ and associated
+     * vectors, such that \f$ k_{\min} <= k_{\max} \f$
+     */
     template <typename T>
     concept ProvidesPrincipalCurvatures = ProvidesMeanCurvature<T> && requires(const T ct) {
-        { ct.kmin() } -> std::same_as<typename T::Scalar>;
-        { ct.kmax() } -> std::same_as<typename T::Scalar>;
-        { ct.GaussianCurvature() } -> std::same_as<typename T::Scalar>;
+        ct.curvatureTensor();
 
-        { ct.kminDirection() } -> std::convertible_to<typename T::VectorType>;
-        { ct.kmaxDirection() } -> std::convertible_to<typename T::VectorType>;
+        { ct.curvatureTensor().kmin() } -> std::same_as<typename T::Scalar>;
+        { ct.curvatureTensor().kmax() } -> std::same_as<typename T::Scalar>;
+        { ct.curvatureTensor().GaussianCurvature() } -> std::same_as<typename T::Scalar>;
+
+        { ct.curvatureTensor().kminDirection() } -> std::convertible_to<typename T::VectorType>;
+        { ct.curvatureTensor().kmaxDirection() } -> std::convertible_to<typename T::VectorType>;
     };
 
     template <typename T>

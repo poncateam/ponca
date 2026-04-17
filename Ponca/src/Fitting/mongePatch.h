@@ -7,7 +7,6 @@
 #pragma once
 
 #include "./defines.h"
-#include "./curvature.h"
 #include "./weingarten.h"
 #include "./heightField.h"
 
@@ -205,30 +204,26 @@ namespace Ponca
     template <class DataPoint, class _NFilter, typename T>
     using MongePatchQuadraticFit = WeingartenCurvatureEstimator<
         DataPoint, _NFilter,
-        CurvatureEstimator<
+        FundamentalFormWeingartenEstimator<
             DataPoint, _NFilter,
-            FundamentalFormWeingartenEstimator<
+            MongePatchQuadraticFitImpl<
                 DataPoint, _NFilter,
-                MongePatchQuadraticFitImpl<
-                    DataPoint, _NFilter,
-                    MongePatch<DataPoint, _NFilter,
-                               QuadraticHeightField<
-                                   DataPoint, _NFilter,
-                                   HeightField<DataPoint, _NFilter, CovariancePlaneFit<DataPoint, _NFilter, T>>>>>>>>;
+                MongePatch<DataPoint, _NFilter,
+                           QuadraticHeightField<
+                               DataPoint, _NFilter,
+                               HeightField<DataPoint, _NFilter, CovariancePlaneFit<DataPoint, _NFilter, T>>>>>>>;
 
     template <class DataPoint, class _NFilter, typename T>
     using MongePatchRestrictedQuadraticFit = WeingartenCurvatureEstimator<
         DataPoint, _NFilter,
-        CurvatureEstimator<
+        FundamentalFormWeingartenEstimator<
             DataPoint, _NFilter,
-            FundamentalFormWeingartenEstimator<
+            MongePatchRestrictedQuadraticFitImpl<
                 DataPoint, _NFilter,
-                MongePatchRestrictedQuadraticFitImpl<
-                    DataPoint, _NFilter,
-                    MongePatch<DataPoint, _NFilter,
-                               RestrictedQuadraticHeightField<
-                                   DataPoint, _NFilter,
-                                   HeightField<DataPoint, _NFilter, CovariancePlaneFit<DataPoint, _NFilter, T>>>>>>>>;
+                MongePatch<DataPoint, _NFilter,
+                           RestrictedQuadraticHeightField<
+                               DataPoint, _NFilter,
+                               HeightField<DataPoint, _NFilter, CovariancePlaneFit<DataPoint, _NFilter, T>>>>>>>;
 
 #include "mongePatch.hpp"
 
