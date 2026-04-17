@@ -12,7 +12,7 @@
 #include "./concepts.h"
 #include <Eigen/Geometry>
 
-#define PLANE_REQUIREMENTS ProvidesPrimitiveBase<T>
+#define PLANE_REQUIREMENTS ProvidesBasketUnitBase<T>
 
 namespace Ponca
 {

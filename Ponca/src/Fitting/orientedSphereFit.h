@@ -12,7 +12,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #define ORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>
 #define ORIENTED_SPHERE_DER_REQUIREMENTS \
-    ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
+    ProvidesBasketDiffUnitBase<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
 
 namespace Ponca
 {

@@ -9,7 +9,7 @@
 #include "../Common/concepts.h"
 #include "defines.h"
 #include "enums.h"
-#include "primitive.h"
+#include "basketUnit.h"
 #include "compute.h"
 
 namespace Ponca
@@ -61,7 +61,7 @@ namespace Ponca
          * \tparam Exts CRTP variadic list
          */
         template <class P, class NF, template <class, class, typename> class... Exts>
-        struct BasketAggregate : BasketAggregateImpl<P, NF, PrimitiveBase<P, NF>, Exts...>
+        struct BasketAggregate : BasketAggregateImpl<P, NF, BasketUnitBase<P, NF>, Exts...>
         {
         };
 
@@ -103,7 +103,7 @@ namespace Ponca
          * \tparam Exts CRTP variadic list
          */
         template <typename BasketType, int Type, template <class, class, int, typename> class... Exts>
-        struct BasketDiffAggregate : BasketDiffAggregateImpl<Type, BasketType, PrimitiveDer, Exts...>
+        struct BasketDiffAggregate : BasketDiffAggregateImpl<Type, BasketType, BasketDiffUnitBase, Exts...>
         {
         };
     } // namespace internal
@@ -275,7 +275,7 @@ namespace Ponca
 
         /// \brief Add a neighbor to perform the fit
         ///
-        /// When called directly, don't forget to call PrimitiveBase::startNewPass when starting multiple passes
+        /// When called directly, don't forget to call BasketBaseUnit::startNewPass when starting multiple passes
         /// \see compute Prefer when using a range of Points
         /// \see computeWithIds Prefer when using a range of ids
         /// \return false if param nei is not a valid neighbor (weight = 0)

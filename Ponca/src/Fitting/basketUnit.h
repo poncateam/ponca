@@ -17,18 +17,15 @@ namespace Ponca
 {
 
     /*!
-        \brief Primitive base class.
+        \brief Base class of any computation unit of a Basket
 
-        This class stores and provides public access to the fitting state, and must
-        be inherited by classes implementing new primitives.
-
-        \note This class should not be inherited explicitly: this is done by the
-        #Basket class.
+        It is the first unit of the Basket class. It is used to define default fallback functions, and to store
+        and provide public access to the neighborhood statistics, fitting status, ... It also stores the shared
+        datastructures such as the NeighborFilter.
     */
     template <class DataPoint, class _NFilter, typename T = void>
-    class PrimitiveBase
+    class BasketUnitBase
     {
-    protected:
     public:
         using Scalar         = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
         using VectorType     = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
@@ -63,9 +60,10 @@ namespace Ponca
             startNewPass();
         }
 
-        /*! \brief Is the primitive well fitted and ready to use (finalize has been
-        called) ?
-        \warning The fit can be unstable (having neighbors between 3 and 6) */
+        /*!
+         * \brief Is the primitive well-fitted and ready to use (finalize has been called) ?
+         * \warning The fit can still be unstable \see isStable
+         */
         PONCA_MULTIARCH [[nodiscard]] inline bool isReady() const
         {
             return (m_eCurrentState == STABLE) || (m_eCurrentState == UNSTABLE);
@@ -78,7 +76,7 @@ namespace Ponca
          * \see startNewPass */
         PONCA_MULTIARCH [[nodiscard]] inline bool needAnotherPass() const { return m_eCurrentState == NEED_OTHER_PASS; }
 
-        /*! \brief Get number of points added in the neighborhood (with non negative weight)  */
+        /*! \brief Get number of points added in the neighborhood (with positive weight)  */
         PONCA_MULTIARCH [[nodiscard]] inline int getNumNeighbors() const { return m_nbNeighbors; }
 
         /*! \brief Get the sum of the weights */
@@ -116,15 +114,13 @@ namespace Ponca
             return m_eCurrentState = STABLE;
         }
 
-    }; // class Primitive
+    }; // class BasketUnit
 
     /**
-        \brief Generic class performing the Fit derivation
-        \inherit Concept::FittingExtensionConcept
+        \brief Base class of any computation unit of a BasketDiff
 
-        The differentiation can be done automatically in scale and/or space, by
-        combining the enum values FitScaleDer and FitSpaceDer in the template
-        parameter Type.
+        The differentiation can be done automatically in scale and/or space, by combining the enum values FitScaleDer
+        and FitSpaceDer in the template parameter Type.
 
         The differentiated values are stored in static arrays. The size of the
         arrays is computed with respect to the derivation type (scale and/or space)
@@ -134,13 +130,13 @@ namespace Ponca
         derDimension(), and the differentiation type by isScaleDer() and
         isSpaceDer().
 
-        Thanks to the BasketDiff definition, we know that PrimitiveDer has Primitive
+        Thanks to the BasketDiff definition, we know that BasketDiffUnitBase has BasketUnitBase
         as base class (through the Basket). As a result, this class first asks to
         compute the Fit, and if it works properly, compute the weight derivatives.
      */
     template <class DataPoint, class _NFilter, int Type, typename T>
-        requires ProvidesPrimitiveBase<T>
-    class PrimitiveDer : public T
+        requires ProvidesBasketUnitBase<T>
+    class BasketDiffUnitBase : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE

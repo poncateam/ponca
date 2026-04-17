@@ -8,10 +8,10 @@
 
 #include "./defines.h"
 #include "./concepts.h"
-#include "./primitive.h"
+#include "./basketUnit.h"
 
-#define MEAN_POSITION_DER_REQUIREMENTS ProvidesPrimitiveDerivative<T>&& ProvidesMeanPosition<T>
-#define MEAN_NORMAL_DER_REQUIREMENTS ProvidesPrimitiveDerivative<T>&& ProvidesMeanNormal<T>
+#define MEAN_POSITION_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesMeanPosition<T>
+#define MEAN_NORMAL_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesMeanNormal<T>
 
 namespace Ponca
 {
@@ -171,7 +171,7 @@ namespace Ponca
         \inherit Concept::FittingProcedureConcept
 
         This primitive requires:
-        \verbatim ProvidesPrimitiveDerivative, ProvidesMeanNormal\endverbatim
+        \verbatim ProvidesBasketDiffUnitBase, ProvidesMeanNormal\endverbatim
 
         This primitive provides:
         \verbatim ProvidesMeanNormalDer \endverbatim

@@ -5,6 +5,7 @@
 */
 #pragma once
 
+#include "concepts.h"
 #include "defines.h"
 #include "enums.h"
 
@@ -119,6 +120,7 @@ namespace Ponca
          * \return The result of the fit
          */
         template <typename ComputeObject, typename Func, typename Project = DirectProjectionOperator>
+            requires ProvidesBasketUnitBase<ComputeObject>
         PONCA_MULTIARCH inline FIT_RESULT computeMLSImpl(ComputeObject& _co, Func&& _compute,
                                                          const Project& _p = Project{}) const
         {
