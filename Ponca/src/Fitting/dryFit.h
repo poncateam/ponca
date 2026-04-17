@@ -9,11 +9,10 @@
 #pragma once
 #include "./defines.h"
 #include "./concepts.h"
-#include "./primitive.h"
 
 #include <Eigen/Dense>
 
-#define DRY_FIT_REQUIREMENTS ProvidesPrimitiveBase<T>
+#define DRY_FIT_REQUIREMENTS ProvidesBasketUnitBase<T>
 
 namespace Ponca
 {

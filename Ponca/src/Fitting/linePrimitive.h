@@ -14,7 +14,7 @@
 #include <Eigen/Geometry>
 #include <Eigen/Core>
 
-#define LINE_REQUIREMENTS ProvidesPrimitiveBase<T>
+#define LINE_REQUIREMENTS ProvidesBasketUnitBase<T>
 
 namespace Ponca
 {

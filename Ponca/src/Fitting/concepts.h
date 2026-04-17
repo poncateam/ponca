@@ -11,11 +11,12 @@ namespace Ponca
     template <typename T>
     concept Is3D = (T::Dim == 3);
 
+    /// \brief This concept ensures that the default types and accessors in a Basket are well-formed
+    ///
+    /// This concept is implemented by BasketUnitBase, which is set by default in the Basket.
     template <typename T>
-    concept ProvidesFittingDefaultTypes = ProvidesCommonTypes<T> && requires { typename T::NeighborFilter; };
-
-    template <typename T>
-    concept ProvidesPrimitiveBase = ProvidesFittingDefaultTypes<T> && requires(T t, const T ct) {
+    concept ProvidesBasketUnitBase = ProvidesCommonTypes<T> && requires(T t, const T ct) {
+        typename T::NeighborFilter;
         t.setNeighborFilter(typename T::NeighborFilter{});
         { ct.getNeighborFilter() } -> std::convertible_to<typename T::NeighborFilter>;
 
@@ -27,8 +28,11 @@ namespace Ponca
         { ct.getNumNeighbors() } -> std::integral;
     };
 
+    /// \brief This concept ensures that the default types and accessors in a BasketDiff are well-formed
+    ///
+    /// This concept is implemented by BasketDiffUnitBase, which is set by default in the BasketDiff.
     template <typename T>
-    concept ProvidesPrimitiveDerivative = ProvidesFittingDefaultTypes<T> && requires(T t, const T ct) {
+    concept ProvidesBasketDiffUnitBase = ProvidesBasketUnitBase<T> && requires(T t, const T ct) {
         { ct.isScaleDer() } -> std::same_as<bool>;
         { ct.isSpaceDer() } -> std::same_as<bool>;
         { ct.derDimension() } -> std::integral;

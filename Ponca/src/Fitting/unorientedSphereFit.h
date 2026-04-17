@@ -16,7 +16,7 @@
 
 #define UNORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>
 #define UNORIENTED_SPHERE_DER_REQUIREMENTS \
-    ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
+    ProvidesBasketDiffUnitBase<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
 
 namespace Ponca
 {
@@ -82,7 +82,7 @@ namespace Ponca
                                 MeanPosition<DataPoint, _NFilter, AlgebraicSphere<DataPoint, _NFilter, T>>>;
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
-        requires ProvidesPrimitiveDerivative<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
+        requires ProvidesBasketDiffUnitBase<T> && ProvidesAlgebraicSphere<T> && ProvidesMeanPositionDerivative<T>
     class UnorientedSphereDerImpl : public T
     {
     protected:

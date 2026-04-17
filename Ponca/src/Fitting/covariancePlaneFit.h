@@ -11,7 +11,6 @@
 
 #include "./defines.h"
 #include "./plane.h"
-#include "./primitive.h"
 #include "./mean.h"          // used to define CovarianceLineFit
 #include "./covarianceFit.h" // use to define CovariancePlaneFit
 

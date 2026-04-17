@@ -25,7 +25,7 @@
 #include "src/Fitting/basket.h"
 
 // Primitives
-#include "src/Fitting/primitive.h"
+#include "src/Fitting/basketUnit.h"
 #include "src/Fitting/linePrimitive.h"
 #include "src/Fitting/plane.h"
 #include "src/Fitting/algebraicSphere.h"

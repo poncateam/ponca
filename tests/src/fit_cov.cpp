@@ -185,8 +185,8 @@ void callSubTests()
     using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitBase>;
     using CovFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitBase>;
 
-    using RefFitSmooth   = Basket<Point, WeightSmoothFunc, PrimitiveBase, MeanPosition, CovarianceFitTwoPassesBase>;
-    using RefFitConstant = Basket<Point, WeightConstantFunc, PrimitiveBase, MeanPosition, CovarianceFitTwoPassesBase>;
+    using RefFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitTwoPassesBase>;
+    using RefFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitTwoPassesBase>;
 
     cout << "Testing with data sampling a perfect plane..." << endl;
     for (int i = 0; i < g_repeat; ++i)

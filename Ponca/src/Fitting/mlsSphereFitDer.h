@@ -9,7 +9,7 @@
 #include "./defines.h"
 #include "./concepts.h"
 
-#define MLS_SPHERE_FIT_DER_REQUIREMENTS ProvidesPrimitiveDerivative<T>&& ProvidesAlgebraicSphereDerivative<T>
+#define MLS_SPHERE_FIT_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesAlgebraicSphereDerivative<T>
 
 namespace Ponca
 {

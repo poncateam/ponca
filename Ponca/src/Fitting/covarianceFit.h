@@ -18,7 +18,7 @@
 
 #define COVARIANCE_FIT_BASE_REQUIREMENTS ProvidesMeanPosition<T>
 #define COVARIANCE_FIT_DER_REQUIREMENTS \
-    ProvidesPrimitiveDerivative<T>&& ProvidesMeanPositionDerivative<T>&& ProvidesPositionCovariance<T>
+    ProvidesBasketDiffUnitBase<T>&& ProvidesMeanPositionDerivative<T>&& ProvidesPositionCovariance<T>
 
 namespace Ponca
 {

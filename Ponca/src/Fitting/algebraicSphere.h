@@ -14,7 +14,7 @@
 
 #include <Eigen/Core>
 
-#define ALGEBRAIC_SPHERE_REQUIREMENTS ProvidesPrimitiveBase<T>&& HasLocalFrame<_NFilter>
+#define ALGEBRAIC_SPHERE_REQUIREMENTS ProvidesBasketUnitBase<T>&& HasLocalFrame<_NFilter>
 
 namespace Ponca
 {
