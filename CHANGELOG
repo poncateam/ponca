@@ -5,19 +5,24 @@ Ponca changelog
 Current head (v.2.0.alpha3 RC)
 This release will introduce a refactoring of the requirement library using cpp20::concepts.
 
+- API
+    - [fitting] MLS is now a separate class from Basket (#298)
+    - [fitting] projectDescent is now a separate class from Basket (#298)
+
 - Bug-fixes and code improvements
-    - [Fitting] Fix warnings introduced when bumping to cxx20 (#303)
+    - [fitting] Fix warnings introduced when bumping to cxx20 (#303)
+    - [spatialPartitioning] Fix regression introduced by the CUDA kdtree update (#306)
     - [common] Fix PONCA_ASSERT macro on MSVC and clang (#309)
+
 - Cmake
     - [all] Eigen is now always for transitive linking (#302)
-    - [spatialPartitioning] Fix regression introduced by the CUDA kdtree update (#306)
+
 - CI/Actions
     - [ci] Fix Issue with Eigen build in buildAsSubmodule (#299)
     - [ci] New github action for checking CPM installation (#302)
+
 - Docs
     - [doc] Add documentation about CPM installation for ponca (#302)
-
-
 
 --------------------------------------------------------------------------------
 v.2.0.alpha2

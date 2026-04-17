@@ -22,6 +22,7 @@
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/src/Fitting/project.h>
 
 #include <chrono>
 #include <math.h>
@@ -79,17 +80,22 @@ void testFunction(
 
     if (fit.isStable())
     {
+        GradientDescentProjectionOperator projection(1000);
+        DirectProjectionOperator directProjection;
         for (int i = 0; i < nbPoints; ++i)
         {
             const VectorType p = center + analysisScale * VectorType::Random();
 
             // check that the projected point is on the surface
-            VectorType projD = fit.projectDescent(p, 1000);
-            VERIFY(std::abs(fit.potential(projD)) < lowPrecisionEpsilon);
+            VectorType projG = projection(fit, p);
+            VERIFY(std::abs(fit.potential(projG)) < lowPrecisionEpsilon);
 
+            // check that the direction projection scheme does what it should
             VectorType proj = fit.project(p);
-            Scalar p1       = std::abs(fit.potential(proj));
-            Scalar p2       = std::abs(fit.potential(p));
+            VERIFY(directProjection(fit, p).isApprox(proj));
+
+            Scalar p1 = std::abs(fit.potential(proj));
+            Scalar p2 = std::abs(fit.potential(p));
             // check the direct projection did not move the point away from the surface (can be stationary if already
             // on the surface)
             VERIFY(p1 <= p2);
@@ -99,12 +105,13 @@ void testFunction(
 #ifdef COMPARE_PROJECTION_TIMINGS
         auto start1 = std::chrono::system_clock::now();
         for (const auto& p : samples)
-            fit.project(p);
+            DirectProjectionOperator().project(fit, p);
         auto end1 = std::chrono::system_clock::now();
 
         auto start2 = std::chrono::system_clock::now();
         for (const auto& p : samples)
-            fit.projectDescent(p);
+            GradientDescentProjectionOperator().project(fit, p);
+
         auto end2 = std::chrono::system_clock::now();
 
         std::chrono::duration<double> elapsed_seconds1 = end1 - start1;

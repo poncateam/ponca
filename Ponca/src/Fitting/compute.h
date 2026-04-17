@@ -63,6 +63,5 @@ namespace Ponca
             return UNDEFINED;
         };
     }; // struct ComputeObject
-
 } // namespace Ponca
 

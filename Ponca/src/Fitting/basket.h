@@ -193,72 +193,11 @@ namespace Ponca
 
             return res;
         }
-
-    protected:
-        /*!
-         * \brief Computes the fit using the MLS iteration process.
-         * The position of the projected point is outputted through the lastPosition argument.
-         * \param points An STL-like container of points
-         * \param mlsIter The amount of MLS iteration that is being done for this fit
-         * \return The result of the fit
-         */
-        template <typename Func>
-        PONCA_MULTIARCH FIT_RESULT computeMLSImpl(Func&& computeFunc, const int mlsIter, const Scalar epsilon)
-        {
-            FIT_RESULT res = UNDEFINED;
-            auto lastPos   = Base::getNeighborFilter().evalPos();
-
-            for (int mm = 0; mm < mlsIter; ++mm)
-            {
-                Base::m_nFilter.changeNeighborhoodFrame(lastPos);
-                res = computeFunc();
-
-                if (Base::isStable())
-                {
-                    auto newPos = Base::project(lastPos);
-                    if (newPos.isApprox(lastPos, epsilon))
-                        return res;
-                    lastPos = newPos;
-                }
-                else
-                {
-                    return res;
-                }
-            }
-            return res;
-        }
-
-    public:
-        /*!
-         * \copydoc BasketComputeObject::computeMLSImpl
-         * \tparam PointContainer STL-like container storing the points
-         */
-        template <typename PointContainer>
-        PONCA_MULTIARCH FIT_RESULT computeMLS(const PointContainer& points, const int mlsIter = 5,
-                                              const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision())
-        {
-            return computeMLSImpl([&]() { return compute(points); }, mlsIter, epsilon);
-        }
-
-        /*!
-         * \copydoc BasketComputeObject::computeMLSImpl
-         * \tparam IndexRange STL-Like range storing indices
-         * \tparam PointContainer STL-like container storing the points
-         */
-        template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH FIT_RESULT computeWithIdsMLS(const IndexRange& ids, const PointContainer& points,
-                                                     const int mlsIter    = 5,
-                                                     const Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision())
-        {
-            return computeMLSImpl([&]() { return computeWithIds(ids, points); }, mlsIter, epsilon);
-        }
     };
 
-#define WRITE_COMPUTE_FUNCTIONS                            \
-    using BasketComputeObject<Self, Base>::compute;        \
-    using BasketComputeObject<Self, Base>::computeWithIds; \
-    using BasketComputeObject<Self, Base>::computeMLS;     \
-    using BasketComputeObject<Self, Base>::computeWithIdsMLS;
+#define WRITE_COMPUTE_FUNCTIONS                     \
+    using BasketComputeObject<Self, Base>::compute; \
+    using BasketComputeObject<Self, Base>::computeWithIds;
 
     /*!
          \brief Aggregator class used to declare specialized structures with derivatives computations, using CRTP
@@ -349,38 +288,6 @@ namespace Ponca
                 return true;
             }
             return false;
-        }
-
-        /*!
-           \brief Project a point on the primitive using Gradient Descent
-           This projection is realized by following the gradient of the primitive scalar field
-           \warning This function is in most cases slower than #project.
-           \param _q Starting point
-           \param nbIter Number of iterations (default = 16)
-         */
-        PONCA_MULTIARCH [[nodiscard]] inline VectorType projectDescent(const VectorType& _q, int nbIter = 16) const
-        {
-            PONCA_MULTIARCH_STD_MATH(min)
-
-            // turn to centered basis
-            const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
-
-            VectorType grad;
-            VectorType dir  = Base::primitiveGradientLocal(lq);
-            Scalar ilg      = Scalar(1.) / dir.norm();
-            dir             = dir * ilg;
-            Scalar ad       = Base::potentialLocal(lq);
-            Scalar delta    = -ad * min(ilg, Scalar(1.));
-            VectorType proj = lq + dir * delta;
-
-            for (int i = 0; i < nbIter; ++i)
-            {
-                grad  = Base::primitiveGradientLocal(proj);
-                ilg   = Scalar(1.) / grad.norm();
-                delta = -Base::potentialLocal(proj) * min(ilg, Scalar(1.));
-                proj += dir * delta;
-            }
-            return Base::getNeighborFilter().convertToGlobalBasis(proj);
         }
     }; // class Basket
 

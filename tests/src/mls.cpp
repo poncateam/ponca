@@ -15,6 +15,7 @@
 #include "../split_test_helper.h"
 
 #include <Ponca/src/Fitting/basket.h>
+#include <Ponca/src/Fitting/mlsEvaluationScheme.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
@@ -55,7 +56,8 @@ void testFunction()
     int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
 
     // Test for each point if the normal is correct
-#pragma omp parallel for
+    MLSEvaluationScheme<Scalar> mls(1000);
+#pragma omp parallel for private(mls)
     for (int i = 0; i < size; ++i)
     {
         VectorType pos = vectorPoints[i].pos();
@@ -65,7 +67,10 @@ void testFunction()
 
         Fit fitMLS;
         fitMLS.setNeighborFilter({pos, analysisScale});
-        fitMLS.computeMLS(vectorPoints, 1000);
+
+        //! [MLS Fit]
+        mls.compute(fitMLS, vectorPoints);
+        //! [MLS Fit]
 
         if (fit.isStable())
         {

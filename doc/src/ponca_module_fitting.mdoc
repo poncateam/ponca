@@ -112,6 +112,20 @@ namespace Ponca
 
   \see \ref fittingreference_outputandcapabilities for information about outputs of Fitting objects.
 
+  \section evaluation_schemes Evaluation schemes and projection
+
+  Some ComputeObject provide projection operators, which allows to define Moving Least Squares (MLS) surfaces (see \cite Levin:1998 and \cite Cheng:2008).
+  MLS surfaces are not defined explicitly, but rather implicitly by projection operators.
+  Under the hood, projecting on a MLS surface require to iterate between successive local fits (handled by the ComputeObject) and projection step (handled by a projection operator, as detailed below).
+  Ponca provide MLSEvaluationScheme to perform this evaluation.
+  To evaluate a MLS surface, you only need a ComputeObject and a set of points:
+  \snippet mls.cpp MLS Fit
+  The method MLSEvaluationScheme::compute can be customized by changing the projection operator (DirectProjectionOperator and GradientDescentProjectionOperator are currently available).
+  The class also provide control over the iteration stopping criteria (convergence and maximum number of iteration).
+
+  For convenience, Ponca also provide SingleEvaluationScheme, which has the same API than MLSEvaluationScheme, but simply does a single fit without projection. It is literally defined as
+  \snippet evaluationScheme.h SingleEvaluationScheme Compute Definition
+
   \section fitting_derivatives Computing derivatives
 
   Ponca provides BasketDiff, a class to extend an existing Basket with differentiation tools.
