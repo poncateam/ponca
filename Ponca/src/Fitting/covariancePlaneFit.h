@@ -100,7 +100,7 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, covariancePlaneDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, normalDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, implicitPrimitiveDer)
 
         /*! \see Concept::FittingProcedureConcept::finalize() */
         PONCA_MULTIARCH FIT_RESULT finalize();

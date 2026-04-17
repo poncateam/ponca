@@ -106,7 +106,7 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, unorientedSphereDer)
         PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, algebraicSphereDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, normalDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, implicitPrimitiveDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 
