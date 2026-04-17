@@ -23,7 +23,7 @@ namespace Ponca
      *
      *  \see KdTreeKNearestQueryBase
      */
-    template <typename Index, typename DataPoint>
+    template <typename Index, typename DataPoint, int MAX_KNN_SIZE>
     class KdTreeKNearestIterator
     {
     public:
@@ -34,7 +34,7 @@ namespace Ponca
         using reference         = const Index&;
 
         using Scalar   = typename DataPoint::Scalar;
-        using Iterator = typename limitedPriorityQueue<IndexSquaredDistance<Index, Scalar>>::iterator;
+        using Iterator = typename LimitedPriorityQueue<IndexSquaredDistance<Index, Scalar>, MAX_KNN_SIZE>::iterator;
 
         PONCA_MULTIARCH inline KdTreeKNearestIterator() = default;
         PONCA_MULTIARCH_HOST inline KdTreeKNearestIterator(const Iterator& iterator) : m_iterator(iterator) {}

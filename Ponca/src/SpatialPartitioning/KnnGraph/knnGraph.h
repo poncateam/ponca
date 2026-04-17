@@ -106,7 +106,7 @@ namespace Ponca
         /// (also takes an index as parameter).
         ///
         /// \warning This method can't be called in a CUDA kernel because KnnGraphKNearestQuery uses
-        /// limitedPriorityQueue.
+        /// LimitedPriorityQueue.
         /// \param index Index of the point that the query evaluates
         /// \return The \ref KNearestIndexQuery mutable object to iterate over the search results.
         PONCA_MULTIARCH_HOST inline KNearestIndexQuery kNearestNeighbors(int index) const
@@ -120,7 +120,7 @@ namespace Ponca
         /// (also takes an index and a radius as parameters).
         ///
         /// \warning This method can't be called in a CUDA kernel because KnnGraphRangeQuery uses
-        /// limitedPriorityQueue.
+        /// LimitedPriorityQueue.
         /// \param index Index of the point that the query evaluates
         /// \param r Radius around where to search the neighbors
         /// \return The \ref RangeIndexQuery mutable object to iterate over the search results.
@@ -139,7 +139,7 @@ namespace Ponca
         /// k-nearest neighbors query made with the evaluation point set to 0.
         ///
         /// \warning This method can't be called in a CUDA kernel because KnnGraphKNearestQuery uses
-        /// limitedPriorityQueue.
+        /// LimitedPriorityQueue.
         /// \return The \ref KNearestIndexQuery mutable object that can be called with the operator ()
         /// with an index as argument, to fetch the k-nearest neighbors of a point.
         /// \see #kNearestNeighbors
@@ -156,7 +156,7 @@ namespace Ponca
         /// Same as `KnnGraphBase::rangeNeighbors (0, 0)`.
         ///
         /// \warning This method can't be called in a CUDA kernel because KnnGraphRangeQuery uses
-        /// limitedPriorityQueue.
+        /// LimitedPriorityQueue.
         /// \return The empty \ref KNearestIndexQuery mutable object to iterate over the search results.
         /// \see #rangeNeighbors
         PONCA_MULTIARCH_HOST inline RangeIndexQuery rangeNeighborsIndexQuery() const

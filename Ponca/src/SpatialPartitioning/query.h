@@ -251,11 +251,13 @@ namespace Ponca
      *  Stores internally the neighbors collection of the knn request and the Distance threshold (for tree descent).
      *  \see QueryOutputBase
      */
-    template <typename Index, typename Scalar>
+    template <typename Index, typename Scalar, int MAX_KNN_SIZE>
     struct QueryOutputIsKNearest : public QueryOutputBase
     {
         /// \brief Alias to Output type
         using OutputParameter = Index;
+        /// \brief Alias to LimitedPriorityQueue
+        using Queue = LimitedPriorityQueue<IndexSquaredDistance<Index, Scalar>, MAX_KNN_SIZE>;
 
         /// \brief Default constructor that initialize the output parameter value
         PONCA_MULTIARCH_HOST inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
@@ -263,11 +265,11 @@ namespace Ponca
         /// \brief Access operator that resets the output parameter
         PONCA_MULTIARCH_HOST inline void operator()(OutputParameter k)
         {
-            m_queue = limitedPriorityQueue<IndexSquaredDistance<Index, Scalar>>(k);
+            m_queue = Queue(k);
         }
 
         /// \brief Access to the priority queue storing the neighbors
-        PONCA_MULTIARCH_HOST inline limitedPriorityQueue<IndexSquaredDistance<Index, Scalar>>& queue()
+        PONCA_MULTIARCH_HOST inline Queue& queue()
         {
             return m_queue;
         }
@@ -285,7 +287,7 @@ namespace Ponca
             return m_queue.bottom().squared_distance;
         }
         /// \brief Queue storing the neighbors
-        limitedPriorityQueue<IndexSquaredDistance<Index, Scalar>> m_queue;
+        Queue m_queue;
     };
 
     /*!
@@ -352,18 +354,21 @@ namespace Ponca
      *  using a ##OUT_TYPE## Index Query request. */
 
     POINT_QUERY_DOC(KNearest)
-    template <typename Index, typename DataPoint>
-    using KNearestPointQuery = Query<QueryInputIsPosition<DataPoint>, QueryOutputIsKNearest<Index, typename DataPoint::Scalar>>;
+    template <typename Index, typename DataPoint, int MAX_KNN_SIZE>
+    using KNearestPointQuery = Query<QueryInputIsPosition<DataPoint>,
+        QueryOutputIsKNearest<Index, typename DataPoint::Scalar, MAX_KNN_SIZE>>;
     POINT_QUERY_DOC(Nearest)
     template <typename Index, typename DataPoint>
-    using NearestPointQuery = Query<QueryInputIsPosition<DataPoint>, QueryOutputIsNearest<Index, typename DataPoint::Scalar>>;
+    using NearestPointQuery = Query<QueryInputIsPosition<DataPoint>,
+        QueryOutputIsNearest<Index, typename DataPoint::Scalar>>;
     POINT_QUERY_DOC(Range)
     template <typename Index, typename DataPoint>
-    using RangePointQuery = Query<QueryInputIsPosition<DataPoint>, QueryOutputIsRange<Index, typename DataPoint::Scalar>>;
+    using RangePointQuery = Query<QueryInputIsPosition<DataPoint>,
+        QueryOutputIsRange<Index, typename DataPoint::Scalar>>;
 
     INDEX_QUERY_DOC(KNearest)
-    template <typename Index, typename Scalar>
-    using KNearestIndexQuery = Query<QueryInputIsIndex<Index>, QueryOutputIsKNearest<Index, Scalar>>;
+    template <typename Index, typename Scalar, int MAX_KNN_SIZE>
+    using KNearestIndexQuery = Query<QueryInputIsIndex<Index>, QueryOutputIsKNearest<Index, Scalar, MAX_KNN_SIZE>>;
     INDEX_QUERY_DOC(Nearest)
     template <typename Index, typename Scalar>
     using NearestIndexQuery = Query<QueryInputIsIndex<Index>, QueryOutputIsNearest<Index, Scalar>>;
