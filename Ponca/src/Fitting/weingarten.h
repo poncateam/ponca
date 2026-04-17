@@ -10,8 +10,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #define FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS \
     ProvidesFirstFondamentalFormComponents<T>&& ProvidesSecondFondamentalFormComponents<T>
-#define WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS \
-    ProvidesTangentPlaneBasis<T>&& ProvidesPrincipalCurvatures<T>&& ProvidesWeingartenMap<T>
+#define WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS ProvidesTangentPlaneBasis<T>&& ProvidesWeingartenMap<T>
 
 namespace Ponca
 {
@@ -169,8 +168,43 @@ namespace Ponca
             using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
             static_assert(DataPoint::Dim == 3, "WeingartenCurvatureEstimator is only valid in 3D");
 
+        private:
+            Eigen::SelfAdjointEigenSolver<Matrix2> m_solver;
+
         public:
             PONCA_FITTING_DECLARE_FINALIZE
+
+            //! \brief Returns an estimate of the minimal principal curvature value
+            PONCA_MULTIARCH [[nodiscard]] inline Scalar kmin() const { return m_solver.eigenvalues().x(); }
+
+            //! \brief Returns an estimate of the maximal principal curvature value
+            PONCA_MULTIARCH [[nodiscard]] inline Scalar kmax() const { return m_solver.eigenvalues().y(); }
+
+            //! \brief Returns an estimate of the minimal principal curvature direction
+            PONCA_MULTIARCH [[nodiscard]] inline VectorType kminDirection() const
+            {
+                VectorType vmin;
+                vmin(0)                       = Scalar(0); // set height
+                vmin.template bottomRows<2>() = m_solver.eigenvectors().col(0);
+                vmin                          = Base::tangentPlaneToWorld(vmin, false);
+                return vmin;
+            }
+
+            //! \brief Returns an estimate of the maximal principal curvature direction
+            PONCA_MULTIARCH [[nodiscard]] inline VectorType kmaxDirection() const
+            {
+                VectorType vmax;
+                vmax(0)                       = Scalar(0); // set height
+                vmax.template bottomRows<2>() = m_solver.eigenvectors().col(1);
+                vmax                          = Base::tangentPlaneToWorld(vmax, false);
+                return vmax;
+            }
+
+            //! \brief Returns an estimate of the mean curvature
+            PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return (kmin() + kmax()) / Scalar(2); }
+
+            //! \brief Returns an estimate of the Gaussian curvature
+            PONCA_MULTIARCH [[nodiscard]] inline Scalar GaussianCurvature() const { return kmin() * kmax(); }
         };
     } // namespace internal
 
@@ -179,7 +213,7 @@ namespace Ponca
     struct WeingartenCurvatureEstimator : public internal::WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-        PONCA_EXPLICIT_CAST_OPERATORS(WeingartenCurvatureEstimator, weingartenCurvatureEstimator)
+        PONCA_EXPLICIT_CAST_OPERATORS(WeingartenCurvatureEstimator, curvatureTensor)
     };
 
     /// \copydoc internal::WeingartenCurvatureEstimatorBase
@@ -188,7 +222,7 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(WeingartenCurvatureEstimatorDer, weingartenCurvatureEstimator)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(WeingartenCurvatureEstimatorDer, curvatureTensor)
     };
 
 } // namespace Ponca

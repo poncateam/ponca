@@ -8,7 +8,6 @@
 
 #include "./defines.h"
 #include "./concepts.h"
-#include "./curvature.h"
 
 #define GLS_PARAM_REQUIREMENTS ProvidesAlgebraicSphere<T>
 #define GLS_DER_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesImplicitPrimitiveDerivative<T>&& ProvidesGLSParam<T>

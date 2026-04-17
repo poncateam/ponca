@@ -188,30 +188,12 @@ namespace Ponca
             requires WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS
         FIT_RESULT WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::finalize()
         {
-
             if (Base::finalize() != STABLE)
                 return Base::m_eCurrentState;
 
             Matrix2 w;
             Base::weingartenMap(w);
-
-            // w is self adjoint by construction
-            Eigen::SelfAdjointEigenSolver<Matrix2> solver;
-            solver.computeDirect(w);
-
-            Scalar kmin = solver.eigenvalues().x();
-            Scalar kmax = solver.eigenvalues().y();
-            VectorType vmin, vmax; // maxi directions
-
-            vmin(0)                       = Scalar(0); // set height
-            vmax(0)                       = Scalar(0); // set height
-            vmin.template bottomRows<2>() = solver.eigenvectors().col(0);
-            vmax.template bottomRows<2>() = solver.eigenvectors().col(1);
-
-            vmin = Base::tangentPlaneToWorld(vmin, false);
-            vmax = Base::tangentPlaneToWorld(vmax, false);
-
-            Base::setCurvatureValues(kmin, kmax, vmin, vmax);
+            m_solver.computeDirect(w);
 
             return Base::m_eCurrentState;
         }
