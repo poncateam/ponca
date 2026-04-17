@@ -26,10 +26,11 @@ namespace Ponca
      * \tparam N Maximum number of indices
      * \tparam T The data type of the array storing the bits. Default to unsigned long long for 64 bits storage.
      */
-    template <int N, typename T=unsigned long long>
+    template <int N, typename T = unsigned long long>
     class BitSet
     {
         static_assert(N > 0, "The capacity must be strictly positive");
+
     public:
         PONCA_MULTIARCH BitSet();
         PONCA_MULTIARCH void flip(int index);
@@ -38,9 +39,9 @@ namespace Ponca
         PONCA_MULTIARCH void clear();
 
     protected:
-        static constexpr size_t BIT_SIZE = sizeof(T) * 8; //! The number of bits in one element of the array
+        static constexpr size_t BIT_SIZE   = sizeof(T) * 8; //! The number of bits in one element of the array
         static constexpr size_t ARRAY_SIZE = (N + BIT_SIZE - 1) / BIT_SIZE; //!< The array size
-        T m_data[ARRAY_SIZE] = {}; //!< An array of bytes
+        T m_data[ARRAY_SIZE]               = {};                            //!< An array of bytes
     };
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -60,29 +61,32 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool BitSet<N, T>::insert(const int index) {
-        PONCA_DEBUG_ASSERT(index>=0 && index<N);
-        const int byte = index / BIT_SIZE;
-        const int bit  = index % BIT_SIZE;
-        const T bitMask = (T(1) << bit);
+    PONCA_MULTIARCH bool BitSet<N, T>::insert(const int index)
+    {
+        PONCA_DEBUG_ASSERT(index >= 0 && index < N);
+        const int byte             = index / BIT_SIZE;
+        const int bit              = index % BIT_SIZE;
+        const T bitMask            = (T(1) << bit);
         const bool alreadyInserted = (m_data[byte] & bitMask) == 0;
         m_data[byte] |= bitMask;
         return alreadyInserted;
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH void BitSet<N, T>::flip(const int index) {
-        PONCA_DEBUG_ASSERT(index>=0 && index<N);
+    PONCA_MULTIARCH void BitSet<N, T>::flip(const int index)
+    {
+        PONCA_DEBUG_ASSERT(index >= 0 && index < N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
         m_data[byte] ^= (T(1) << bit);
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH [[nodiscard]] bool BitSet<N, T>::find(const int index) const {
-        PONCA_DEBUG_ASSERT(index>=0 && index<N);
+    PONCA_MULTIARCH [[nodiscard]] bool BitSet<N, T>::find(const int index) const
+    {
+        PONCA_DEBUG_ASSERT(index >= 0 && index < N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
         return (m_data[byte] & (T(1) << bit)) != 0;
     }
-}
+} // namespace Ponca

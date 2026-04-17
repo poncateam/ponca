@@ -19,7 +19,7 @@ namespace Ponca
     {
         enum
         {
-            MAX_KNN_SIZE = 10000
+            MAX_KNN_SIZE = 10000 //!< The maximum size of a knn query
         };
         /*!
          * \brief The type used to store point data.
@@ -33,8 +33,8 @@ namespace Ponca
         using DataPoint = _DataPoint;
 
     private:
-        using Scalar     = typename DataPoint::Scalar;
-        using VectorType = typename DataPoint::VectorType;
+        using Scalar     = DataPoint::Scalar;
+        using VectorType = DataPoint::VectorType;
 
     public:
         /*!
@@ -58,7 +58,7 @@ namespace Ponca
     {
         enum
         {
-            MAX_KNN_SIZE = 10000
+            MAX_KNN_SIZE = 10000 //!< The maximum size of a knn query
         };
         /*!
          * \brief The type used to store point data.
@@ -72,8 +72,8 @@ namespace Ponca
         using DataPoint = _DataPoint;
 
     private:
-        using Scalar     = typename DataPoint::Scalar;
-        using VectorType = typename DataPoint::VectorType;
+        using Scalar     = DataPoint::Scalar;
+        using VectorType = DataPoint::VectorType;
 
     public:
         /*!

@@ -260,32 +260,23 @@ namespace Ponca
         using Queue = LimitedPriorityQueue<IndexSquaredDistance<Index, Scalar>, MAX_KNN_SIZE>;
 
         /// \brief Default constructor that initialize the output parameter value
-        PONCA_MULTIARCH_HOST inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
+        PONCA_MULTIARCH inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
 
         /// \brief Access operator that resets the output parameter
-        PONCA_MULTIARCH_HOST inline void operator()(OutputParameter k)
-        {
-            m_queue = Queue(k);
-        }
+        PONCA_MULTIARCH inline void operator()(OutputParameter k) { m_queue = Queue(k); }
 
         /// \brief Access to the priority queue storing the neighbors
-        PONCA_MULTIARCH_HOST inline Queue& queue()
-        {
-            return m_queue;
-        }
+        PONCA_MULTIARCH inline Queue& queue() { return m_queue; }
 
     protected:
         /// \brief Reset Query for a new search
-        PONCA_MULTIARCH_HOST void reset()
+        PONCA_MULTIARCH void reset()
         {
             m_queue.clear();
             m_queue.push({-1, PONCA_MULTIARCH_CU_STD_NAMESPACE(numeric_limits) < Scalar > ::max()});
         }
         /// \brief Distance threshold used during tree descent to select nodes to explore
-        PONCA_MULTIARCH_HOST inline Scalar descentDistanceThreshold() const
-        {
-            return m_queue.bottom().squared_distance;
-        }
+        PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
         /// \brief Queue storing the neighbors
         Queue m_queue;
     };
@@ -337,15 +328,15 @@ namespace Ponca
         }
     };
 
-    #define POINT_QUERY_DOC(OUT_TYPE)                                                                                 \
+#define POINT_QUERY_DOC(OUT_TYPE)
     /*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##. */                      \
     /*! `PointQuery` objects acts as a `Range` that can be iterated over. */                                          \
     /*! They are used as the return type for the index searches */                                                    \
     /*! and they allow easy access to the result outputs. */                                                          \
     /*! This specialization of the `PointQuery` concept is used to iterate over the neighbors of a given point        \
-     * position, using a ##OUT_TYPE## Point Query request. */                                                         \
+     * position, using a ##OUT_TYPE## Point Query request. */
 
-    #define INDEX_QUERY_DOC(OUT_TYPE)                                                                                 \
+#define INDEX_QUERY_DOC(OUT_TYPE)
     /*! \brief Base Query alias combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##. */                         \
     /*! `IndexQuery` objects acts as a `Range` that can be iterated over. */                                          \
     /*! They are used as the return type for the index searches */                                                    \
@@ -355,16 +346,16 @@ namespace Ponca
 
     POINT_QUERY_DOC(KNearest)
     template <typename Index, typename DataPoint, int MAX_KNN_SIZE>
-    using KNearestPointQuery = Query<QueryInputIsPosition<DataPoint>,
-        QueryOutputIsKNearest<Index, typename DataPoint::Scalar, MAX_KNN_SIZE>>;
+    using KNearestPointQuery =
+        Query<QueryInputIsPosition<DataPoint>, QueryOutputIsKNearest<Index, typename DataPoint::Scalar, MAX_KNN_SIZE>>;
     POINT_QUERY_DOC(Nearest)
     template <typename Index, typename DataPoint>
-    using NearestPointQuery = Query<QueryInputIsPosition<DataPoint>,
-        QueryOutputIsNearest<Index, typename DataPoint::Scalar>>;
+    using NearestPointQuery =
+        Query<QueryInputIsPosition<DataPoint>, QueryOutputIsNearest<Index, typename DataPoint::Scalar>>;
     POINT_QUERY_DOC(Range)
     template <typename Index, typename DataPoint>
-    using RangePointQuery = Query<QueryInputIsPosition<DataPoint>,
-        QueryOutputIsRange<Index, typename DataPoint::Scalar>>;
+    using RangePointQuery =
+        Query<QueryInputIsPosition<DataPoint>, QueryOutputIsRange<Index, typename DataPoint::Scalar>>;
 
     INDEX_QUERY_DOC(KNearest)
     template <typename Index, typename Scalar, int MAX_KNN_SIZE>
@@ -377,6 +368,6 @@ namespace Ponca
     using RangeIndexQuery = Query<QueryInputIsIndex<Index>, QueryOutputIsRange<Index, Scalar>>;
     /// \}
 
-    #undef POINT_QUERY_DOC
-    #undef INDEX_QUERY_DOC
+#undef POINT_QUERY_DOC
+#undef INDEX_QUERY_DOC
 } // namespace Ponca

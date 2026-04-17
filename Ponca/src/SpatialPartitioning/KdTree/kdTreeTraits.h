@@ -315,8 +315,8 @@ namespace Ponca
             /*!
              * \brief A compile-time constant specifying the maximum depth of the kd-tree.
              */
-            MAX_DEPTH = 32,
-            MAX_KNN_SIZE = 10000
+            MAX_DEPTH    = 32,
+            MAX_KNN_SIZE = 10000 //!< The maximum size of a knn query
         };
 
         /*!
@@ -358,8 +358,8 @@ namespace Ponca
             /*!
              * \brief A compile-time constant specifying the maximum depth of the kd-tree.
              */
-            MAX_DEPTH = 32,
-            MAX_KNN_SIZE = 10000
+            MAX_DEPTH    = 32,
+            MAX_KNN_SIZE = 10000 //!< The maximum size of a knn query
         };
 
         /*!

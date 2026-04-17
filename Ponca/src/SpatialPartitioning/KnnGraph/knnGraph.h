@@ -109,7 +109,7 @@ namespace Ponca
         /// LimitedPriorityQueue.
         /// \param index Index of the point that the query evaluates
         /// \return The \ref KNearestIndexQuery mutable object to iterate over the search results.
-        PONCA_MULTIARCH_HOST inline KNearestIndexQuery kNearestNeighbors(int index) const
+        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighbors(int index) const
         {
             return KNearestIndexQuery(this, index);
         }
@@ -124,7 +124,7 @@ namespace Ponca
         /// \param index Index of the point that the query evaluates
         /// \param r Radius around where to search the neighbors
         /// \return The \ref RangeIndexQuery mutable object to iterate over the search results.
-        PONCA_MULTIARCH_HOST inline RangeIndexQuery rangeNeighbors(int index, Scalar r) const
+        PONCA_MULTIARCH inline RangeIndexQuery rangeNeighbors(int index, Scalar r) const
         {
             return RangeIndexQuery(this, r, index);
         }
@@ -143,7 +143,7 @@ namespace Ponca
         /// \return The \ref KNearestIndexQuery mutable object that can be called with the operator ()
         /// with an index as argument, to fetch the k-nearest neighbors of a point.
         /// \see #kNearestNeighbors
-        PONCA_MULTIARCH_HOST inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
+        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
         {
             return KNearestIndexQuery(this, 0);
         }
@@ -159,10 +159,7 @@ namespace Ponca
         /// LimitedPriorityQueue.
         /// \return The empty \ref KNearestIndexQuery mutable object to iterate over the search results.
         /// \see #rangeNeighbors
-        PONCA_MULTIARCH_HOST inline RangeIndexQuery rangeNeighborsIndexQuery() const
-        {
-            return RangeIndexQuery(this, 0, 0);
-        }
+        PONCA_MULTIARCH inline RangeIndexQuery rangeNeighborsIndexQuery() const { return RangeIndexQuery(this, 0, 0); }
 
         // Accessors ---------------------------------------------------------------
     public:
@@ -208,7 +205,7 @@ namespace Ponca
         /// \warning Stores a const reference to kdtree.point_data()
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
-        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
+        PONCA_MULTIARCH inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
             : Base(std::min(_k, _kdtree.sampleCount() - 1))
         {
             Base::m_bufs.points_size = _kdtree.points().size();

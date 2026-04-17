@@ -25,13 +25,12 @@ namespace Ponca
     {
     public:
         using DataPoint      = typename Traits::DataPoint;
-        using IndexType      = typename Traits::IndexType;
-        using Scalar         = typename DataPoint::Scalar;
-        using VectorType     = typename DataPoint::VectorType;
+        using IndexType      = Traits::IndexType;
+        using Scalar         = DataPoint::Scalar;
+        using VectorType     = DataPoint::VectorType;
         using QueryAccelType = KdTreeQuery<Traits>;
-        using Iterator       = IteratorType<typename Traits::IndexType, typename Traits::DataPoint,
-            Traits::MAX_KNN_SIZE>;
-        using Self           = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
+        using Iterator = IteratorType<typename Traits::IndexType, typename Traits::DataPoint, Traits::MAX_KNN_SIZE>;
+        using Base     = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
 
         PONCA_MULTIARCH inline KdTreeKNearestQueryBase(const StaticKdTreeBase<Traits>* kdtree, IndexType k,
                                                        typename QueryType::InputType input)
@@ -40,18 +39,18 @@ namespace Ponca
         }
 
         /// \brief Call the k-nearest neighbors query with new input and neighbor number parameters.
-        PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input, IndexType k)
+        PONCA_MULTIARCH inline Base& operator()(typename QueryType::InputType input, IndexType k)
         {
-            return QueryType::template operator()<Self>(input, k);
+            return QueryType::template operator()<Base>(input, k);
         }
         /// \brief Call the k-nearest neighbors query with new input parameter.
-        PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input)
+        PONCA_MULTIARCH inline Base& operator()(typename QueryType::InputType input)
         {
-            return QueryType::template operator()<Self>(input);
+            return QueryType::template operator()<Base>(input);
         }
 
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
-        PONCA_MULTIARCH_HOST inline Iterator begin()
+        PONCA_MULTIARCH inline Iterator begin()
         {
             QueryAccelType::reset();
             QueryType::reset();
@@ -60,10 +59,10 @@ namespace Ponca
         }
 
         /// \brief Returns an iterator to the end of the k-nearest neighbors query.
-        PONCA_MULTIARCH_HOST inline Iterator end() { return Iterator(QueryType::m_queue.end()); }
+        PONCA_MULTIARCH inline Iterator end() { return Iterator(QueryType::m_queue.end()); }
 
     protected:
-        PONCA_MULTIARCH_HOST inline void search()
+        PONCA_MULTIARCH inline void search()
         {
             KdTreeQuery<Traits>::searchInternal(
                 QueryType::template getInputPosition<VectorType>(QueryAccelType::m_kdtree->points()),
@@ -82,10 +81,9 @@ namespace Ponca
      * \see KNearestIndexQuery
      */
     template <typename Traits>
-    using KdTreeKNearestIndexQuery =
-        KdTreeKNearestQueryBase<Traits, KdTreeKNearestIterator,
-                                KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar,
-                                Traits::MAX_KNN_SIZE>>;
+    using KdTreeKNearestIndexQuery = KdTreeKNearestQueryBase<
+        Traits, KdTreeKNearestIterator,
+        KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar, Traits::MAX_KNN_SIZE>>;
     /*!
      * \copybrief KdTreeKNearestQueryBase
      *
@@ -93,8 +91,7 @@ namespace Ponca
      * \see KNearestPointQuery
      */
     template <typename Traits>
-    using KdTreeKNearestPointQuery =
-        KdTreeKNearestQueryBase<Traits, KdTreeKNearestIterator,
-                                KNearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint,
-                                Traits::MAX_KNN_SIZE>>;
+    using KdTreeKNearestPointQuery = KdTreeKNearestQueryBase<
+        Traits, KdTreeKNearestIterator,
+        KNearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint, Traits::MAX_KNN_SIZE>>;
 } // namespace Ponca

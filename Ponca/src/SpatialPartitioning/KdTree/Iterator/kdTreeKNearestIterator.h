@@ -37,31 +37,31 @@ namespace Ponca
         using Iterator = typename LimitedPriorityQueue<IndexSquaredDistance<Index, Scalar>, MAX_KNN_SIZE>::iterator;
 
         PONCA_MULTIARCH inline KdTreeKNearestIterator() = default;
-        PONCA_MULTIARCH_HOST inline KdTreeKNearestIterator(const Iterator& iterator) : m_iterator(iterator) {}
+        PONCA_MULTIARCH inline KdTreeKNearestIterator(const Iterator& iterator) : m_iterator(iterator) {}
         PONCA_MULTIARCH virtual inline ~KdTreeKNearestIterator() = default;
 
     public:
         /// \brief Inequality operand
-        PONCA_MULTIARCH_HOST inline bool operator!=(const KdTreeKNearestIterator& other) const
+        PONCA_MULTIARCH inline bool operator!=(const KdTreeKNearestIterator& other) const
         {
             return m_iterator != other.m_iterator;
         }
 
         /// \brief Equality operand
-        PONCA_MULTIARCH_HOST inline bool operator==(const KdTreeKNearestIterator& other) const
+        PONCA_MULTIARCH inline bool operator==(const KdTreeKNearestIterator& other) const
         {
             return m_iterator == other.m_iterator;
         }
 
         /// Prefix increment
-        PONCA_MULTIARCH_HOST inline KdTreeKNearestIterator& operator++()
+        PONCA_MULTIARCH inline KdTreeKNearestIterator& operator++()
         {
             ++m_iterator;
             return *this;
         }
 
         /// \brief Postfix increment
-        PONCA_MULTIARCH_HOST inline KdTreeKNearestIterator operator++(int)
+        PONCA_MULTIARCH inline KdTreeKNearestIterator operator++(int)
         {
             KdTreeKNearestIterator tmp = *this;
             ++m_iterator;
@@ -69,10 +69,10 @@ namespace Ponca
         }
 
         /// \brief Value increment
-        PONCA_MULTIARCH_HOST inline void operator+=(int i) { m_iterator += i; }
+        PONCA_MULTIARCH inline void operator+=(int i) { m_iterator += i; }
 
         /// \brief Dereference operator
-        PONCA_MULTIARCH_HOST inline reference operator*() const { return const_cast<reference>(m_iterator->index); }
+        PONCA_MULTIARCH inline reference operator*() const { return const_cast<reference>(m_iterator->index); }
 
     protected:
         Iterator m_iterator;

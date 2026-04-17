@@ -9,7 +9,8 @@
 
 #include "../defines.h"
 
-namespace Ponca {
+namespace Ponca
+{
     /*! \brief A simple HashMap implementation, that stores unique elements in an array of signed values.
      *
      * The internal values stored must not be equal to -1, because it is used as an empty flag by the HashSet.
@@ -20,9 +21,11 @@ namespace Ponca {
      * \tparam N The maximum size of the HashSet
      * \tparam T The value type stored in the HashSet : Must be a signed integer-like type
      */
-    template <int N, typename T=int>
-    class HashSet {
+    template <int N, typename T = int>
+    class HashSet
+    {
         static_assert(N > 0, "The capacity must be strictly positive");
+
     public:
         /*! \brief Empty the array
          *
@@ -42,18 +45,15 @@ namespace Ponca {
 
     private:
         static constexpr T EMPTY = T(-1);
-        T table[N] = {};
+        T table[N]               = {};
 
-        PONCA_MULTIARCH [[nodiscard]] static int hash(const int x)
-        {
-            return (x * 2654435761u) % N;
-        }
+        PONCA_MULTIARCH [[nodiscard]] static int hash(const int x) { return (x * 2654435761u) % N; }
     };
 
     template <int N, typename T>
     PONCA_MULTIARCH void HashSet<N, T>::clear()
     {
-        for (int i = 0; i < N; i ++)
+        for (int i = 0; i < N; i++)
             table[i] = EMPTY;
     }
 
@@ -63,17 +63,20 @@ namespace Ponca {
         const int h = hash(value);
 
         // Try to insert
-        for (int i = 0; i < N; ++i) {
+        for (int i = 0; i < N; ++i)
+        {
             const int idx = (h + i) % N;
-            T& slot = table[idx]; // Get the address
+            T& slot       = table[idx]; // Get the address
 
             // Stores here if the address is empty
-            if (slot == EMPTY) {
+            if (slot == EMPTY)
+            {
                 slot = value;
                 return true;
             }
             // The value was already inserted in the array
-            if (slot == value) {
+            if (slot == value)
+            {
                 return false;
             }
         }
@@ -81,4 +84,4 @@ namespace Ponca {
         // The array is full
         return false;
     }
-}
+} // namespace Ponca

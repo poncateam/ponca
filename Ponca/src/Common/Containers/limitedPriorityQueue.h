@@ -82,6 +82,7 @@ namespace Ponca
     class LimitedPriorityQueue
     {
         static_assert(N > 0, "The capacity must be strictly positive");
+
     public:
         using value_type     = T;
         using container_type = std::array<T, N>;
@@ -89,7 +90,7 @@ namespace Ponca
         using compare        = CompareT;
         using iterator       = typename container_type::iterator;
         using const_iterator = typename container_type::const_iterator;
-        using Base      = LimitedPriorityQueue<T, N, CompareT>;
+        using Base           = LimitedPriorityQueue<T, N, CompareT>;
 
         // LimitedPriorityQueue --------------------------------------------------
     public:
@@ -140,7 +141,7 @@ namespace Ponca
         PONCA_MULTIARCH inline const container_type& container() const;
 
     protected:
-        container_type m_data {};
+        container_type m_data{};
         compare m_comp;
         size_t m_size{0};     //!< The current size of the Queue
         size_t m_capacity{0}; //!< The capacity of the limited queue
@@ -156,41 +157,44 @@ namespace Ponca
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue() : m_comp()
     {
-        PONCA_ASSERT(m_capacity <= N);
+        PONCA_ASSERT((m_capacity <= N));
     }
 
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const Base& other)
         : m_data(other.m_data), m_comp(other.m_comp), m_size(other.m_size), m_capacity(other.m_capacity)
     {
-        PONCA_ASSERT(m_capacity <= N);
+        PONCA_ASSERT((m_capacity <= N));
     }
 
     template <class T, int N, class Cmp>
-    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const int capacity) : m_comp(), m_capacity(capacity)
+    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const int capacity)
+        : m_comp(), m_capacity(capacity)
     {
-        PONCA_ASSERT(capacity >= 0);
-        PONCA_ASSERT(capacity <= N);
+        PONCA_ASSERT((capacity >= 0));
+        PONCA_ASSERT((capacity <= N));
     }
 
     template <class T, int N, class Cmp>
     template <class InputIt>
-    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const int capacity, InputIt first, InputIt last)
+    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const int capacity, InputIt first,
+                                                                          InputIt last)
         : m_comp(), m_capacity(capacity)
     {
         for (InputIt it = first; it < last; ++it)
         {
             push(*it);
         }
-        PONCA_ASSERT(capacity >= 0);
-        PONCA_ASSERT(capacity <= N);
+        PONCA_ASSERT((capacity >= 0));
+        PONCA_ASSERT((capacity <= N));
     }
 
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::~LimitedPriorityQueue() = default;
 
     template <class T, int N, class Cmp>
-    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>& LimitedPriorityQueue<T, N, Cmp>::operator=(const Base& other) = default;
+    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>& LimitedPriorityQueue<T, N, Cmp>::operator=(const Base& other) =
+        default;
 
     // Iterator --------------------------------------------------------------------
 
@@ -219,7 +223,8 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
-    PONCA_MULTIARCH typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::end() const
+    PONCA_MULTIARCH typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::end()
+        const
     {
         return m_data.begin() + m_size;
     }
@@ -238,7 +243,7 @@ namespace Ponca
         return m_data[0];
     }
 
-    template <class T, int N,class Cmp>
+    template <class T, int N, class Cmp>
     PONCA_MULTIARCH const T& LimitedPriorityQueue<T, N, Cmp>::bottom() const
     {
         return m_data[m_size - 1];
@@ -354,7 +359,8 @@ namespace Ponca
     // Data ------------------------------------------------------------------------
 
     template <class T, int N, class Cmp>
-    PONCA_MULTIARCH const LimitedPriorityQueue<T, N, Cmp>::container_type& LimitedPriorityQueue<T, N, Cmp>::container() const
+    PONCA_MULTIARCH const LimitedPriorityQueue<T, N, Cmp>::container_type& LimitedPriorityQueue<T, N, Cmp>::container()
+        const
     {
         return m_data;
     }
