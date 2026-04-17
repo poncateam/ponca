@@ -198,10 +198,14 @@ namespace Ponca
     };
 
     template <typename T>
-    concept ProvidesPrincipalCurvatures = requires(const T ct) {
+    concept ProvidesMeanCurvature = requires(const T ct) {
+        { ct.kMean() } -> std::same_as<typename T::Scalar>;
+    };
+
+    template <typename T>
+    concept ProvidesPrincipalCurvatures = ProvidesMeanCurvature<T> && requires(const T ct) {
         { ct.kmin() } -> std::same_as<typename T::Scalar>;
         { ct.kmax() } -> std::same_as<typename T::Scalar>;
-        { ct.kMean() } -> std::same_as<typename T::Scalar>;
         { ct.GaussianCurvature() } -> std::same_as<typename T::Scalar>;
 
         { ct.kminDirection() } -> std::convertible_to<typename T::VectorType>;
