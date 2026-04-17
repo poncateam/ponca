@@ -17,6 +17,10 @@ namespace Ponca
     template <typename _DataPoint>
     struct KnnGraphDefaultTraits
     {
+        enum
+        {
+            MAX_KNN_SIZE = 10000
+        };
         /*!
          * \brief The type used to store point data.
          *
@@ -52,6 +56,10 @@ namespace Ponca
     template <typename _DataPoint>
     struct KnnGraphPointerTraits
     {
+        enum
+        {
+            MAX_KNN_SIZE = 10000
+        };
         /*!
          * \brief The type used to store point data.
          *

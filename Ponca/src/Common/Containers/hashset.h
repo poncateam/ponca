@@ -18,15 +18,15 @@ namespace Ponca {
      * Sparser hashing results will reduce the searching complexity.
      *
      * \tparam N The maximum size of the HashSet
-     * \tparam T The value type stored in the HashSet : Must be a signed value type that can be used as an array index
-     * (int-like)
+     * \tparam T The value type stored in the HashSet : Must be a signed integer-like type
      */
-    template <int N, typename T>
+    template <int N, typename T=int>
     class HashSet {
+        static_assert(N > 0, "The capacity must be strictly positive");
     public:
         /*! \brief Empty the array
          *
-         * Iterates over every element and sets its value to -1
+         * Iterates over every element and sets their values to -1 (empty flag)
          */
         PONCA_MULTIARCH void clear();
 
@@ -64,9 +64,8 @@ namespace Ponca {
 
         // Try to insert
         for (int i = 0; i < N; ++i) {
-            int idx = (h + i) % N;
-
-            int& slot = table[idx];
+            const int idx = (h + i) % N;
+            T& slot = table[idx]; // Get the address
 
             // Stores here if the address is empty
             if (slot == EMPTY) {

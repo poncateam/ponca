@@ -7,7 +7,9 @@
 
 #pragma once
 
+#include <cstddef>
 #include "../defines.h"
+#include <Ponca/src/Common/Assert.h>
 
 namespace Ponca
 {
@@ -27,6 +29,7 @@ namespace Ponca
     template <int N, typename T=unsigned long long>
     class BitSet
     {
+        static_assert(N > 0, "The capacity must be strictly positive");
     public:
         PONCA_MULTIARCH BitSet();
         PONCA_MULTIARCH void flip(int index);
@@ -58,7 +61,7 @@ namespace Ponca
 
     template <int N, typename T>
     PONCA_MULTIARCH bool BitSet<N, T>::insert(const int index) {
-        assert(index>=0 && index<N);
+        PONCA_DEBUG_ASSERT(index>=0 && index<N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
         const T bitMask = (T(1) << bit);
@@ -69,7 +72,7 @@ namespace Ponca
 
     template <int N, typename T>
     PONCA_MULTIARCH void BitSet<N, T>::flip(const int index) {
-        assert(index>=0 && index<N);
+        PONCA_DEBUG_ASSERT(index>=0 && index<N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
         m_data[byte] ^= (T(1) << bit);
@@ -77,7 +80,7 @@ namespace Ponca
 
     template <int N, typename T>
     PONCA_MULTIARCH [[nodiscard]] bool BitSet<N, T>::find(const int index) const {
-        assert(index>=0 && index<N);
+        PONCA_DEBUG_ASSERT(index>=0 && index<N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
         return (m_data[byte] & (T(1) << bit)) != 0;

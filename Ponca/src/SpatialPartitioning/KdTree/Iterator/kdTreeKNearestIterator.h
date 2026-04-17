@@ -34,7 +34,7 @@ namespace Ponca
         using reference         = const Index&;
 
         using Scalar   = typename DataPoint::Scalar;
-        using Iterator = typename limited_priority_queue<IndexSquaredDistance<Index, Scalar>>::iterator;
+        using Iterator = typename limitedPriorityQueue<IndexSquaredDistance<Index, Scalar>>::iterator;
 
         PONCA_MULTIARCH inline KdTreeKNearestIterator() = default;
         PONCA_MULTIARCH_HOST inline KdTreeKNearestIterator(const Iterator& iterator) : m_iterator(iterator) {}
