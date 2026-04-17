@@ -14,9 +14,18 @@
 #define PONCA_XSTR(S) #S
 #define PONCA_STR(S) PONCA_XSTR(S)
 
-#define PONCA_CRASH         \
-    PONCA_MACRO_START       \
-    asm volatile("int $3"); \
+#if defined(_MSC_VER)
+#    define PONCA_ABORT __debugbreak();
+#elif defined(__clang__) || defined(__GNUC__)
+#    define PONCA_ABORT __builtin_trap();
+#else
+#    include <cstdlib>
+#    define PONCA_ABORT std::abort();
+#endif
+
+#define PONCA_CRASH   \
+    PONCA_MACRO_START \
+    PONCA_ABORT       \
     PONCA_MACRO_END
 
 #define PONCA_PRINT_ERROR(MSG)                                       \
