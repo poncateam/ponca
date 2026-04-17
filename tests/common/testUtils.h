@@ -12,9 +12,7 @@
 #pragma once
 
 #include "Eigen/Eigen"
-#include "Ponca/src/Common/defines.h"
-#include "Ponca/src/Common/pointTypes.h"
-#include "Ponca/src/Common/pointGeneration.h"
+#include "Ponca/Ponca" // directly include main headers, to be sure they are well-formed
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
 #include <vector>
