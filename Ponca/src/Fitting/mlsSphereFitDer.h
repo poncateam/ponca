@@ -9,7 +9,7 @@
 #include "./defines.h"
 #include "./concepts.h"
 
-#define MLS_SPHERE_FIT_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesAlgebraicSphereDerivative<T>
+#define MLS_SPHERE_FIT_DER_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesImplicitPrimitiveDerivative<T>
 
 namespace Ponca
 {
@@ -87,7 +87,7 @@ namespace Ponca
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, mlsSphereFitDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, normalDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, implicitPrimitiveDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 

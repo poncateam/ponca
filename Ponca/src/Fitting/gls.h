@@ -11,7 +11,7 @@
 #include "./curvature.h"
 
 #define GLS_PARAM_REQUIREMENTS ProvidesAlgebraicSphere<T>
-#define GLS_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesAlgebraicSphereDerivative<T>&& ProvidesGLSParam<T>
+#define GLS_DER_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesImplicitPrimitiveDerivative<T>&& ProvidesGLSParam<T>
 
 namespace Ponca
 {

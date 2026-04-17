@@ -138,6 +138,7 @@ void isSameSphere(const Fit1& fit1, const Fit2& fit2)
 }
 
 template <typename Fit1, typename Fit2>
+    requires Ponca::ProvidesImplicitPrimitiveDerivative<Fit1> && Ponca::ProvidesImplicitPrimitiveDerivative<Fit2>
 void hasSamePlaneDerivatives(const Fit1& fit1, const Fit2& fit2)
 {
     // Get covariance

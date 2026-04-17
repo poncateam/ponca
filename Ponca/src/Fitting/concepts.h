@@ -61,6 +61,14 @@ namespace Ponca
         };
 
     template <typename T>
+    concept ProvidesImplicitPrimitiveDerivative = requires(const T ct) {
+        ct.implicitPrimitiveDer();
+
+        { ct.implicitPrimitiveDer().dPotential() } -> std::convertible_to<typename T::ScalarArray>;
+        { ct.implicitPrimitiveDer().dNormal() } -> std::convertible_to<typename T::VectorArray>;
+    };
+
+    template <typename T>
     concept ProvidesAlgebraicSphere =
         ProvidesImplicitPrimitive<T> && requires(T t, const T ct, typename T::VectorType v, typename T::Scalar s) {
             ct.algebraicSphere();
@@ -77,13 +85,6 @@ namespace Ponca
             { ct.algebraicSphere().radius() } -> std::convertible_to<typename T::Scalar>;
             { ct.algebraicSphere().center() } -> std::convertible_to<typename T::VectorType>;
         };
-
-    template <typename T>
-    concept ProvidesAlgebraicSphereDerivative = requires(const T ct) {
-        ct.algebraicSphereDer();
-
-        { ct.algebraicSphereDer().dPotential() } -> std::convertible_to<typename T::ScalarArray>;
-    };
 
     template <typename T>
     concept ProvidesMeanPosition = requires(const T ct) {
@@ -186,13 +187,6 @@ namespace Ponca
         ct.covariancePlaneDer();
 
         { ct.covariancePlaneDer().dPotential() } -> std::convertible_to<typename T::ScalarArray>;
-    };
-
-    template <typename T>
-    concept ProvidesNormalDer = requires(const T ct) {
-        ct.covariancePlaneDer();
-
-        { ct.covariancePlaneDer().dNormal() } -> std::convertible_to<typename T::VectorArray>;
     };
 
     template <typename T>
