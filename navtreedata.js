@@ -118,6 +118,7 @@ var NAVTREE =
           [ "Check fitting status", "fitting.html#fitting_Checkstatus", null ],
           [ "Basic Outputs", "fitting.html#fitting_outputs", null ]
         ] ],
+        [ "Evaluation schemes and projection", "fitting.html#evaluation_schemes", null ],
         [ "Computing derivatives", "fitting.html#fitting_derivatives", null ],
         [ "Changing fitting process", "fitting.html#fitting_custom", null ],
         [ "Defining a new neighbor filter", "fitting.html#fitting_newfilter", [
@@ -186,10 +187,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1GLSDer.html#ad8ece9295539bece9d287a06921dccf4",
-"classPonca_1_1NormalDerivativeWeingartenEstimator.html#a456ca1542f1ba92e008d44077ef76509",
-"classPonca_1_1UnorientedSphereFitImpl.html#a2e399e1782b3de7d5b2c259b6b07a252",
-"structPonca_1_1ComputeObject.html#a19794c89d55fef61b6a712dd94d7452b"
+"classPonca_1_1GLSDer.html#adbd5c9acc1515c79390d6c1962ef5d63",
+"classPonca_1_1NormalDerivativeWeingartenEstimator.html#a4cf8ebc202d9d0aa6ac0ce7f0100e8fe",
+"classPonca_1_1UnorientedSphereFitImpl.html#a36ee49b0dc6a829720f57c2d7962b3d2",
+"structPonca_1_1ComputeObject.html#af4490afa97b2845366ee339c56661b5d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

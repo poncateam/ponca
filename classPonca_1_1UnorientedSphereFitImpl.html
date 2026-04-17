@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">aa7b77954708a0c4925e37b88ab770f58ef3fa07</span>
+   &#160;<span id="projectnumber">cfb0fcc680f97b3ab7288990161ce80053655869</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -210,7 +210,7 @@ Protected Types</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint, <a class="el" href="classPonca_1_1Basket.html">class</a> <a class="el" href="classPonca_1_1Basket.html">_NFilter</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> T&gt;<br />
 class Ponca::UnorientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;</div><p>Algebraic Sphere fitting procedure on point sets with non-oriented normals. </p>
-<p>This method published in <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[4]</a> maximizes the sum of squared dot product between the input normal vectors and the gradient of the algebraic sphere. The maximization is done under the constraint that the norm of the gradient is unitary on average. In practice, it amounts to solve the generalized eigenvalue problem  </p><p class="formulaDsp">
+<p>This method published in <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[5]</a> maximizes the sum of squared dot product between the input normal vectors and the gradient of the algebraic sphere. The maximization is done under the constraint that the norm of the gradient is unitary on average. In practice, it amounts to solve the generalized eigenvalue problem  </p><p class="formulaDsp">
 \[
      A \mathbf{u} = \lambda Q \mathbf{u}
  \]
@@ -232,7 +232,7 @@ class Ponca::UnorientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;</div><p>Alg
 w_i \mathbf{p}_i^T\mathbf{p}_i \end{bmatrix}
  \]
 </p>
-<p> The constant coefficient \(u_c\) is computed as in <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a> by minimizing the sum of squared potential evaluated at the points \(\mathbf{p}_i\). This fitting method corresponds to the case where the scalar field is \( f^* \) in the Section 3.3 of <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[4]</a>.</p>
+<p> The constant coefficient \(u_c\) is computed as in <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html">OrientedSphereFitImpl</a> by minimizing the sum of squared potential evaluated at the points \(\mathbf{p}_i\). This fitting method corresponds to the case where the scalar field is \( f^* \) in the Section 3.3 of <a class="el" href="citelist.html#CITEREF_Chen:2013:NOMG">[5]</a>.</p>
 <dl class="section see"><dt>See also</dt><dd>class <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a>, class <a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be" title="Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl [OrientedSphereFit ...">OrientedSphereFit</a> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="unorientedSphereFit_8h_source.html#l00048">48</a> of file <a class="el" href="unorientedSphereFit_8h_source.html">unorientedSphereFit.h</a>.</p>
@@ -715,7 +715,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl</a></li>
-    <li class="footer">Generated on Fri Apr 17 2026 15:20:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri Apr 17 2026 15:43:22 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

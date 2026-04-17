@@ -6,7 +6,7 @@ var searchData=
   ['get_3',['get',['../group__spatialpartitioning.html#a035df03d9e59c0f20a12c85d5bec6749',1,'Ponca::QueryOutputIsNearest']]],
   ['getcurrentstate_4',['getCurrentState',['../classPonca_1_1PrimitiveBase.html#af0e6053988ef7d7ec4a9b56a70d607ce',1,'Ponca::PrimitiveBase']]],
   ['gethfromlocalcoordinates_5',['gethfromlocalcoordinates',['../classPonca_1_1HeightField.html#acb4aee1a32ba3d85a7538b7c158aeb6e',1,'Ponca::HeightField::getHFromLocalCoordinates(const VectorType &amp;_lq) const'],['../classPonca_1_1HeightField.html#adde188dc44fc4ff6f563e493b91687db',1,'Ponca::HeightField::getHFromLocalCoordinates(VectorType &amp;_lq) const']]],
-  ['getinputposition_6',['getinputposition',['../group__spatialpartitioning.html#a4844c662bcda36c14389b793bedf53d9',1,'Ponca::QueryInputIsIndex::getInputPosition()'],['../group__spatialpartitioning.html#a307b614f02e7a79548476cd2f3b8cc32',1,'Ponca::QueryInputIsPosition::getInputPosition()']]],
+  ['getinputposition_6',['getinputposition',['../group__spatialpartitioning.html#a307b614f02e7a79548476cd2f3b8cc32',1,'Ponca::QueryInputIsPosition::getInputPosition()'],['../group__spatialpartitioning.html#a4844c662bcda36c14389b793bedf53d9',1,'Ponca::QueryInputIsIndex::getInputPosition()']]],
   ['getneighborfilter_7',['getNeighborFilter',['../classPonca_1_1PrimitiveBase.html#acf1a246696337165d89b6109f01b7b2d',1,'Ponca::PrimitiveBase']]],
   ['getnumneighbors_8',['getNumNeighbors',['../classPonca_1_1PrimitiveBase.html#a8e5aec632b519d3860e8cb2962e82646',1,'Ponca::PrimitiveBase']]],
   ['getnumtriangles_9',['getNumTriangles',['../classPonca_1_1CNC.html#a247d665ba7bc25d4bbfa6dda04745eab',1,'Ponca::CNC']]],
@@ -27,5 +27,6 @@ var searchData=
   ['globalneighborhoodframe_24',['GlobalNeighborhoodFrame',['../classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html',1,'Ponca::internal']]],
   ['glsder_25',['glsder',['../classPonca_1_1GLSDer.html#ad8ece9295539bece9d287a06921dccf4',1,'Ponca::GLSDer::glsDer() const'],['../classPonca_1_1GLSDer.html#a3b34ab307240c9e3dbc8f2a2306c083e',1,'Ponca::GLSDer::glsDer()'],['../classPonca_1_1GLSDer.html',1,'Ponca::GLSDer&lt; DataPoint, _NFilter, DiffType, T &gt;']]],
   ['glsparam_26',['glsparam',['../classPonca_1_1GLSParam.html#a2e060936f008c88f912d7548353dd325',1,'Ponca::GLSParam::glsParam() const'],['../classPonca_1_1GLSParam.html#a0ba0d1471c3c824ee9d07da56368ff87',1,'Ponca::GLSParam::glsParam()'],['../classPonca_1_1GLSParam.html',1,'Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt;']]],
-  ['grenaille_20crew_20and_20contributors_27',['Patate/Grenaille crew and contributors',['../index.html#ponca_credits_subsection_grenaille',1,'']]]
+  ['gradientdescentprojectionoperator_27',['GradientDescentProjectionOperator',['../structPonca_1_1GradientDescentProjectionOperator.html',1,'Ponca']]],
+  ['grenaille_20crew_20and_20contributors_28',['Patate/Grenaille crew and contributors',['../index.html#ponca_credits_subsection_grenaille',1,'']]]
 ];
