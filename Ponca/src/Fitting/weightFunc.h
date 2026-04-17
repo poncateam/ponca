@@ -52,6 +52,8 @@ namespace Ponca
             }
 
             /// \brief Change neighborhood frame (move basis center)
+            /// \warning Calling this method invalidates any primitive defined relatively to the previous frame.
+            ///          In this situation, it is recommended to use ProvidesImplicitPrimitive::changeBasis instead.
             PONCA_MULTIARCH inline void changeNeighborhoodFrame(const VectorType& _newEvalPos) { m_p = _newEvalPos; };
 
             /*!
@@ -126,6 +128,8 @@ namespace Ponca
             }
 
             /// \brief Change neighborhood frame (has no effect for global basis)
+            /// \warning Calling this method invalidates any primitive defined relatively to the previous frame.
+            ///          In this situation, it is recommended to use ProvidesImplicitPrimitive::changeBasis instead.
             PONCA_MULTIARCH inline void changeNeighborhoodFrame(const VectorType& /*_newEvalPos*/) {};
 
             /*!
