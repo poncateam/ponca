@@ -205,7 +205,7 @@ namespace Ponca
         /// \warning Stores a const reference to kdtree.point_data()
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
-        PONCA_MULTIARCH inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
+        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
             : Base(std::min(_k, _kdtree.sampleCount() - 1))
         {
             Base::m_bufs.points_size = _kdtree.points().size();

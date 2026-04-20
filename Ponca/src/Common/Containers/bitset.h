@@ -1,4 +1,4 @@
-/**
+/*
  This Source Code Form is subject to the terms of the Mozilla Public
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -9,7 +9,6 @@
 
 #include <cstddef>
 #include "../defines.h"
-#include <Ponca/src/Common/Assert.h>
 
 namespace Ponca
 {
@@ -63,7 +62,7 @@ namespace Ponca
     template <int N, typename T>
     PONCA_MULTIARCH bool BitSet<N, T>::insert(const int index)
     {
-        PONCA_DEBUG_ASSERT(index >= 0 && index < N);
+        // PONCA_DEBUG_ASSERT(index >= 0 && index < N);
         const int byte             = index / BIT_SIZE;
         const int bit              = index % BIT_SIZE;
         const T bitMask            = (T(1) << bit);
@@ -75,7 +74,7 @@ namespace Ponca
     template <int N, typename T>
     PONCA_MULTIARCH void BitSet<N, T>::flip(const int index)
     {
-        PONCA_DEBUG_ASSERT(index >= 0 && index < N);
+        // PONCA_DEBUG_ASSERT(index >= 0 && index < N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
         m_data[byte] ^= (T(1) << bit);
@@ -84,7 +83,7 @@ namespace Ponca
     template <int N, typename T>
     PONCA_MULTIARCH [[nodiscard]] bool BitSet<N, T>::find(const int index) const
     {
-        PONCA_DEBUG_ASSERT(index >= 0 && index < N);
+        // PONCA_DEBUG_ASSERT(index >= 0 && index < N);
         const int byte = index / BIT_SIZE;
         const int bit  = index % BIT_SIZE;
         return (m_data[byte] & (T(1) << bit)) != 0;

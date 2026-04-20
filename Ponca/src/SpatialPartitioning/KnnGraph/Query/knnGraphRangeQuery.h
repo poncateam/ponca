@@ -10,6 +10,7 @@
 #include "../Iterator/knnGraphRangeIterator.h"
 
 #include <stack>
+#include <cassert>
 
 #include "Ponca/src/Common/Containers/hashset.h"
 
@@ -97,13 +98,13 @@ namespace Ponca
                 int idx_current = m_stack.top();
                 m_stack.pop();
 
-                PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
+                assert((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
 
                 iterator.m_index = idx_current;
 
                 for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
                 {
-                    PONCA_DEBUG_ASSERT(idx_nei >= 0);
+                    assert(idx_nei >= 0);
                     Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
                     Scalar th = QueryType::descentDistanceThreshold();
                     if ((point - points[idx_nei].pos()).squaredNorm() < QueryType::descentDistanceThreshold() &&
@@ -119,8 +120,8 @@ namespace Ponca
 
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
-        HashSet<100000, int> m_flag; ///< store visited ids
-        Stack<int, 100000> m_stack;     ///< hold ids (ids range from 0 to point cloud size)
+        HashSet<Traits::MAX_KNN_SIZE, int> m_flag; ///< store visited ids
+        Stack<int, Traits::MAX_KNN_SIZE> m_stack;  ///< hold ids (ids range from 0 to point cloud size)
     };
 
 } // namespace Ponca

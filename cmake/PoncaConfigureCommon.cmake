@@ -2,6 +2,7 @@ set(ponca_Common_INCLUDE
     "${PONCA_src_ROOT}/Ponca/Common"
     "${PONCA_src_ROOT}/Ponca/Ponca"
     "${PONCA_src_ROOT}/Ponca/src/Common/defines.h"
+    "${PONCA_src_ROOT}/Ponca/src/Common/Containers/iterator_utils.h"
     "${PONCA_src_ROOT}/Ponca/src/Common/Containers/limitedPriorityQueue.h"
     "${PONCA_src_ROOT}/Ponca/src/Common/Containers/stack.h"
     "${PONCA_src_ROOT}/Ponca/src/Common/Containers/bitset.h"

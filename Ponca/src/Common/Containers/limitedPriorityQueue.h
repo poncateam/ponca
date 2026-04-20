@@ -7,10 +7,12 @@
 
 #pragma once
 
+#include <cstddef>
+#include <cassert>
 #include <array>
 #include <algorithm>
 #include <functional>
-#include <Ponca/src/Common/Assert.h>
+#include <Ponca/src/Common/Containers/iteratorUtils.h>
 
 #include "../defines.h"
 
@@ -288,7 +290,6 @@ namespace Ponca
     }
 
     // Modifiers -------------------------------------------------------------------
-
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH bool LimitedPriorityQueue<T, N, Cmp>::push(T&& value)
     {
@@ -303,7 +304,7 @@ namespace Ponca
         }
         else
         {
-            iterator it = std::upper_bound(begin(), end(), value, m_comp);
+            iterator it = Ponca::internal::upperBound(begin(), end(), value, m_comp);
             if (it == end())
             {
                 if (!full())
@@ -317,12 +318,12 @@ namespace Ponca
             {
                 if (full())
                 {
-                    std::copy_backward(it, end() - 1, end());
+                    Ponca::internal::copyBackward(it, end() - 1, end());
                     *it = std::forward<T>(value);
                 }
                 else
                 {
-                    std::copy_backward(it, end(), end() + 1);
+                    Ponca::internal::copyBackward(it, end(), end() + 1);
                     *it = std::forward<T>(value);
                     ++m_size;
                 }
@@ -341,8 +342,8 @@ namespace Ponca
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH void LimitedPriorityQueue<T, N, Cmp>::reserve(const int capacity)
     {
-        PONCA_ASSERT(capacity >= 0);
-        PONCA_ASSERT(capacity <= N);
+        assert(capacity >= 0);
+        assert(capacity <= N);
         m_capacity = capacity;
         if (m_size > capacity)
         {

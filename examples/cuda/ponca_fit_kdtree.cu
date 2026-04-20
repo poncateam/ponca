@@ -58,6 +58,8 @@ __global__ void fitPotentialAndGradientKernel(
 
     //! [Use KdTree on the GPU]
     fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), kdtree.points());
+    // Works as well
+    // fit.computeWithIds(kdtree.kNearestNeighbors(i, 10), kdtree.points());
     //! [Use KdTree on the GPU]
 
     // Returns NaN if not stable
@@ -183,7 +185,7 @@ __host__ void testPlaneCuda(
 
 
 __host__ int main(const int /*argc*/, char** /*argv*/) {
-    std::cout << "Test plane fitting on CUDA..." << std::endl;
+    std::cout << "Example plane fitting using KdTree on CUDA..." << std::endl;
     testPlaneCuda<float, 3>();
     std::cout << "(ok)" << std::endl;
 }

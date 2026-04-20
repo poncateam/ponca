@@ -32,35 +32,29 @@ namespace Ponca
     public:
         using iterator_category = std::input_iterator_tag;
         using difference_type   = std::ptrdiff_t;
-        // using value_type        = Index;
-        // using pointer           = Index*;
+        using value_type        = Index;
+        using pointer           = Index*;
         using reference         = const Index&;
 
         // PONCA_MULTIARCH KnnGraphKNearestIterator() = default;
 
-        PONCA_MULTIARCH KnnGraphKNearestIterator(const Container* data, Index i)
-            : m_data(data), m_i(i) {}
+        PONCA_MULTIARCH KnnGraphKNearestIterator(const Container* data, Index i) : m_data(data), m_i(i) {}
 
         /// \brief Inequality operand
-        PONCA_MULTIARCH bool operator!=(const KnnGraphKNearestIterator& other) const {
-            return m_i != other.m_i;
-        }
+        PONCA_MULTIARCH bool operator!=(const KnnGraphKNearestIterator& other) const { return m_i != other.m_i; }
 
         /// \brief Equality operand
-        PONCA_MULTIARCH bool operator==(const KnnGraphKNearestIterator& other) const {
-            return m_i == other.m_i;
-        }
+        PONCA_MULTIARCH bool operator==(const KnnGraphKNearestIterator& other) const { return m_i == other.m_i; }
 
         /// \brief Equality operand
-        PONCA_MULTIARCH KnnGraphKNearestIterator& operator++() {
+        PONCA_MULTIARCH KnnGraphKNearestIterator& operator++()
+        {
             ++m_i;
             return *this;
         }
 
         /// \brief Dereference operator
-        PONCA_MULTIARCH reference operator*() const {
-            return (*m_data)[m_i];
-        }
+        PONCA_MULTIARCH reference operator*() const { return (*m_data)[m_i]; }
 
         /// \brief Postfix increment
         PONCA_MULTIARCH inline KnnGraphKNearestIterator operator++(Index)

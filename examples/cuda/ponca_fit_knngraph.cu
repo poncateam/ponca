@@ -12,7 +12,6 @@
 
 
 #include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
@@ -21,7 +20,6 @@
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTreeTraits.h>
 #include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraphTraits.h>
 #include <iostream>
 
 #include "cuda_utils.cu"
@@ -59,8 +57,8 @@ __global__ void fitPotentialAndGradientKernel(
     fit.setNeighborFilter({ pos, analysisScale });
 
     //! [Use KdTree on the GPU]
+    // fit.computeWithIds(knngraph.kNearestNeighbors(i), knngraph.points());
     fit.computeWithIds(knngraph.rangeNeighbors(i, analysisScale), knngraph.points()); // TODO : Fix this
-    // fit.compute(buffers->points, buffers->points + buffers->points_size);
     //! [Use KdTree on the GPU]
 
     // Returns NaN if not stable
@@ -187,7 +185,7 @@ __host__ void testPlaneCuda(
 
 
 __host__ int main(const int /*argc*/, char** /*argv*/) {
-    std::cout << "Test plane fitting on CUDA..." << std::endl;
+    std::cout << "Example plane fitting using KnnGraph on CUDA..." << std::endl;
     testPlaneCuda<float, 3>();
     std::cout << "(ok)" << std::endl;
 }
