@@ -1,5 +1,5 @@
 set(ponca_Precompiled_PRECOMPILED
-    "${PONCA_src_ROOT}/Ponca/precompiled/precompiled.h"
+    "${PONCA_src_ROOT}/Ponca/src/Precompiled/precompiled.h"
 )
 
 set(ponca_Precompiled_INCLUDE
@@ -8,14 +8,15 @@ set(ponca_Precompiled_INCLUDE
 
 set(ponca_Precompiled_SRC
     "${PONCA_src_ROOT}/Ponca/Precompiled"
-    "${PONCA_src_ROOT}/Ponca/precompiled/precompiled.h"
-    "${PONCA_src_ROOT}/Ponca/precompiled/precompiled.cpp"
-    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/types.h"
-    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/dims.h"
-    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/points.h"
-    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/filters.h"
-    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/baskets.h"
-    "${PONCA_src_ROOT}/Ponca/precompiled/instantiate/basketsdiff.h"
+    "${PONCA_src_ROOT}/Ponca/src/Precompiled/instantiate.h"
+    "${PONCA_src_ROOT}/Ponca/src/Precompiled/precompiled.h"
+    "${PONCA_src_ROOT}/Ponca/src/Precompiled/precompiled.cpp"
+    "${PONCA_src_ROOT}/Ponca/src/Common/instantiate/types.h"
+    "${PONCA_src_ROOT}/Ponca/src/Common/instantiate/dims.h"
+    "${PONCA_src_ROOT}/Ponca/src/Common/instantiate/points.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/instantiate/filters.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/instantiate/baskets.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/instantiate/basketsdiff.h"
     )
 
 add_library(Precompiled SHARED)
@@ -23,7 +24,7 @@ add_library(Ponca::Precompiled ALIAS Precompiled)
 add_dependencies(Precompiled Fitting Common SpatialPartitioning)
 
 
-target_include_directories(Precompiled PUBLIC 
+target_include_directories(Precompiled PUBLIC
     "$<BUILD_INTERFACE:${PONCA_src_ROOT}>"
     "$<INSTALL_INTERFACE:include/>"
     )

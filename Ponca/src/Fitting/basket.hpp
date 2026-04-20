@@ -70,9 +70,9 @@ namespace Ponca
 
     template <class P, class NF, template <class, class, typename> class Ext0,
               template <class, class, typename> class... Exts>
-    PONCA_MULTIARCH void Basket<P, NF, Ext0, Exts...>::finalize()
+    PONCA_MULTIARCH FIT_RESULT Basket<P, NF, Ext0, Exts...>::finalize()
     {
-        Base::finalize();
+        return Base::finalize();
     }
 
     template <class P, class NF, template <class, class, typename> class Ext0,
