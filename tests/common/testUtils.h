@@ -42,7 +42,7 @@ inline long double testEpsilon<long double>()
     return 1e-5;
 }
 
-template <typename DataPoint>
+template <Ponca::IsPointNormal DataPoint>
 void reverseNormals(std::vector<DataPoint>& _dest, const std::vector<DataPoint>& _src, bool _bRandom = true)
 {
     using VectorType = typename DataPoint::VectorType;
@@ -70,7 +70,7 @@ void reverseNormals(std::vector<DataPoint>& _dest, const std::vector<DataPoint>&
     }
 }
 
-template <typename DataPoint>
+template <Ponca::IsPoint DataPoint>
 typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPoint, typename DataPoint::Scalar _a,
                                              typename DataPoint::Scalar _b)
 {
@@ -91,7 +91,7 @@ typename DataPoint::Scalar getPointKappaMean(typename DataPoint::VectorType _vPo
     return kappa;
 }
 
-template <typename DataPoint>
+template <Ponca::IsPoint DataPoint>
 typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoints,
                                         typename DataPoint::VectorType _vCenter, typename DataPoint::Scalar _a,
                                         typename DataPoint::Scalar _b, typename DataPoint::Scalar _analysisScale)
@@ -117,7 +117,7 @@ typename DataPoint::Scalar getKappaMean(const std::vector<DataPoint>& _vectorPoi
     return kappaMean / nbNei;
 }
 
-template <typename Fit1, typename Fit2>
+template <Ponca::ProvidesPlane Fit1, Ponca::ProvidesPlane Fit2>
 void isSamePlane(const Fit1& fit1, const Fit2& fit2)
 {
     const auto& plane1 = fit1.plane();
@@ -127,7 +127,7 @@ void isSamePlane(const Fit1& fit1, const Fit2& fit2)
     VERIFY(plane1.isApprox(plane2));
 }
 
-template <typename Fit1, typename Fit2>
+template <Ponca::ProvidesAlgebraicSphere Fit1, Ponca::ProvidesAlgebraicSphere Fit2>
 void isSameSphere(const Fit1& fit1, const Fit2& fit2)
 {
     const auto& sphere1 = fit1.algebraicSphere();
@@ -137,8 +137,7 @@ void isSameSphere(const Fit1& fit1, const Fit2& fit2)
     VERIFY(sphere1 == sphere2);
 }
 
-template <typename Fit1, typename Fit2>
-    requires Ponca::ProvidesImplicitPrimitiveDerivative<Fit1> && Ponca::ProvidesImplicitPrimitiveDerivative<Fit2>
+template <Ponca::ProvidesImplicitPrimitiveDerivative Fit1, Ponca::ProvidesImplicitPrimitiveDerivative Fit2>
 void hasSamePlaneDerivatives(const Fit1& fit1, const Fit2& fit2)
 {
     // Get covariance
