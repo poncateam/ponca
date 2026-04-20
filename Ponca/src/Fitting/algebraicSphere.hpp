@@ -12,12 +12,12 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
     // turn to centered basis
-    const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+    const VectorType lq = Base::getNeighborFrame().convertToLocalBasis(_q);
 
     if (isPlane())
     {
         Scalar sqnorm = m_ul.squaredNorm();
-        return Base::getNeighborFilter().convertToGlobalBasis(lq - m_ul * (lq.dot(m_ul)) / sqnorm);
+        return Base::getNeighborFrame().convertToGlobalBasis(lq - m_ul * (lq.dot(m_ul)) / sqnorm);
     }
     else
     {
@@ -25,7 +25,7 @@ AlgebraicSphere<DataPoint, _NFilter, T>::project(const VectorType& _q) const
         VectorType grad  = primitiveGradientLocal(lq);
         Scalar norm      = grad.norm();
         Scalar t         = -(norm - sqrt(norm * norm - Scalar(4) * m_uq * potential)) / (Scalar(2) * m_uq * norm);
-        return Base::getNeighborFilter().convertToGlobalBasis(lq + t * grad);
+        return Base::getNeighborFrame().convertToGlobalBasis(lq + t * grad);
     }
 }
 

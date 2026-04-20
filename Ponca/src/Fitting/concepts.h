@@ -17,7 +17,18 @@ namespace Ponca
 
         { ct.convertToGlobalBasis(v, true) } -> std::convertible_to<typename T::VectorType>;
         { ct.convertToLocalBasis(v, true) } -> std::convertible_to<typename T::VectorType>;
+
+        { t.center() } -> std::convertible_to<typename T::VectorType>;
+        { ct.center() } -> std::convertible_to<typename T::VectorType>;
     };
+
+    template <typename T>
+    concept ProvidesNeighborhoodFilter =
+        ProvidesCommonTypes<T> && ProvidesNeighborhoodFrame<typename T::NeighborhoodFrame> &&
+        requires(T t, const T ct) {
+            t.frame();
+            ct.frame();
+        };
 
     /// \brief This concept ensures that the default types and accessors in a Basket are well-formed
     ///

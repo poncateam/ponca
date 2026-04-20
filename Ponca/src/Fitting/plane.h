@@ -96,7 +96,7 @@ namespace Ponca
         */
         PONCA_MULTIARCH inline void changeBasis(const VectorType& newbasis)
         {
-            VectorType diff = Base::getNeighborFilter().evalPos() - newbasis;
+            VectorType diff = Base::getNeighborFrame().center() - newbasis;
             Base::m_nFilter.changeNeighborhoodFrame(newbasis);
             Base::init();
             EigenBase::offset() -= EigenBase::normal().dot(diff);
@@ -114,7 +114,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& _q) const
         {
             // turn to centered basis
-            const VectorType lq = Base::getNeighborFilter().convertToLocalBasis(_q);
+            const VectorType lq = Base::getNeighborFrame().convertToLocalBasis(_q);
             return potentialLocal(lq);
         }
 
@@ -122,8 +122,8 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline VectorType project(const VectorType& _q) const
         {
             // Project on the normal vector and add the offset value
-            return Base::getNeighborFilter().convertToGlobalBasis(
-                EigenBase::projection(Base::getNeighborFilter().convertToLocalBasis(_q)));
+            return Base::getNeighborFrame().convertToGlobalBasis(
+                EigenBase::projection(Base::getNeighborFrame().convertToLocalBasis(_q)));
         }
 
         //! \brief Scalar field gradient direction at the evaluation point

@@ -30,6 +30,7 @@ namespace Ponca
         using Scalar         = typename DataPoint::Scalar;     /*!< \brief Inherited scalar type*/
         using VectorType     = typename DataPoint::VectorType; /*!< \brief Inherited vector type*/
         using NeighborFilter = _NFilter;                       /*!< \brief Filter applied on each neighbor*/
+        using NeighborFrame  = typename NeighborFilter::NeighborhoodFrame;
 
     private:
         //! \brief Number of neighbors
@@ -91,6 +92,9 @@ namespace Ponca
 
         /*! \brief Read access to the NeighborFilter \see setNeighborFilter */
         PONCA_MULTIARCH inline const NeighborFilter& getNeighborFilter() const { return m_nFilter; }
+
+        PONCA_MULTIARCH inline NeighborFrame& getNeighborFrame() { return m_nFilter.frame(); }
+        PONCA_MULTIARCH inline const NeighborFrame& getNeighborFrame() const { return m_nFilter.frame(); }
 
     public:
         /*! \return the current test of the fit */

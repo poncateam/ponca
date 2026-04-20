@@ -19,7 +19,7 @@ namespace Ponca
      * \brief Computes the fit using the Moving Least Squares approach.
      * The projection operator can be customized, see \cite Alexa:2004:projection.
      *
-     * The position of the projected point is outputted within getNeighborFilter().evalPos()
+     * The position of the projected point is outputted within getNeighborFrame().center()
      *
      * \tparam Scalar scalar type
      */
@@ -107,7 +107,7 @@ namespace Ponca
         /*!
          * \brief Computes the fit using the MLS iteration process.
          *
-         * The position of the projected point is outputted within getNeighborFilter().evalPos()
+         * The position of the projected point is outputted within getNeighborFrame().center()
          *
          * \tparam ComputeObject The fitting type
          * \tparam Func The compute procedure
@@ -125,13 +125,12 @@ namespace Ponca
                                                          const Project& _p = Project{}) const
         {
             FIT_RESULT res = UNDEFINED;
-            auto filter    = _co.getNeighborFilter();
-            auto lastPos   = filter.evalPos();
+            auto& frame    = _co.getNeighborFrame();
+            auto lastPos   = frame.center();
 
             for (unsigned int mm = 0; mm < nIter; ++mm)
             {
-                filter.changeNeighborhoodFrame(lastPos);
-                _co.setNeighborFilter(filter);
+                frame.changeNeighborhoodFrame(lastPos);
                 res = _compute();
 
                 if (_co.isStable())

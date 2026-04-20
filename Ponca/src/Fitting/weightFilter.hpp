@@ -7,8 +7,8 @@
 #pragma once
 
 template <class DataPoint, class WeightKernel>
-typename DistWeightFilter<DataPoint, WeightKernel>::WeightReturnType DistWeightFilter<DataPoint, WeightKernel>::operator()(
-    const DataPoint& _q) const
+typename DistWeightFilter<DataPoint, WeightKernel>::WeightReturnType DistWeightFilter<
+    DataPoint, WeightKernel>::operator()(const DataPoint& _q) const
 {
     const auto lq = NeighborhoodFrame::convertToLocalBasis(_q.pos());
     Scalar d      = lq.norm();
