@@ -11,6 +11,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #include <Eigen/Dense>
 
 #define HEIGHT_FIELD_REQUIREMENTS Is3D<DataPoint>
+#define QUADRATIC_HEIGHT_FIELD_REQUIREMENTS ProvidesHeightFieldBase<T>
 
 namespace Ponca
 {
@@ -28,11 +29,7 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-    protected:
-        enum
-        {
-            PROVIDES_HEIGHTFIELD /*!< \brief Provides generic heightfield API */
-        };
+        PONCA_EXPLICIT_CAST_OPERATORS(HeightField, heightFieldBase)
 
         /// \brief get access to height from local coordinate vector
         PONCA_MULTIARCH [[nodiscard]] inline const Scalar& getHFromLocalCoordinates(const VectorType& _lq) const
@@ -80,6 +77,7 @@ namespace Ponca
     \verbatim PROVIDES_QUADRIC_HEIGHTFIELD \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires QUADRATIC_HEIGHT_FIELD_REQUIREMENTS
     class QuadraticHeightField : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -87,11 +85,6 @@ namespace Ponca
         static_assert(DataPoint::Dim == 3, "QuadraticHeightField is only valid in 3D");
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_HEIGHTFIELD,
-            PROVIDES_QUADRIC_HEIGHTFIELD /*!< \brief Provides quadric heightfield API */
-        };
         /// \brief Quadric parameters, stored as \f$[h_uu, h_vv, h_uv, h_u, h_v, h_c]\f$
         HeightFieldCoefficients m_coeffs{HeightFieldCoefficients::Zero()};
 
@@ -205,6 +198,7 @@ namespace Ponca
      \verbatim PROVIDES_QUADRIC_HEIGHTFIELD \endverbatim
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires QUADRATIC_HEIGHT_FIELD_REQUIREMENTS
     class RestrictedQuadraticHeightField : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
@@ -212,11 +206,6 @@ namespace Ponca
         static_assert(DataPoint::Dim == 3, "QuadraticHeightField is only valid in 3D");
 
     protected:
-        enum
-        {
-            Check = Base::PROVIDES_HEIGHTFIELD,
-            PROVIDES_RESTRICTED_QUADRIC_HEIGHTFIELD /*!< \brief Provides quadric heightfield API */
-        };
         /// \brief Quadric parameters, stored as \f$[h_uu, h_vv, h_uv]\f$
         HeightFieldCoefficients m_coeffs{HeightFieldCoefficients::Zero()};
 

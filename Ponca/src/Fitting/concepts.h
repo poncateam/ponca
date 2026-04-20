@@ -173,6 +173,16 @@ namespace Ponca
         };
 
     template <typename T>
+    concept ProvidesHeightFieldBase =
+        requires(const T ct, typename T::Scalar s, const typename T::VectorType cv, typename T::VectorType v) {
+            ct.heightFieldBase();
+
+            { ct.heightFieldBase().getHFromLocalCoordinates(cv) } -> std::same_as<const typename T::Scalar&>;
+            { ct.heightFieldBase().getUFromLocalCoordinates(cv) } -> std::same_as<const typename T::Scalar&>;
+            { ct.heightFieldBase().getVFromLocalCoordinates(cv) } -> std::same_as<const typename T::Scalar&>;
+        };
+
+    template <typename T>
     concept ProvidesHeightField = requires(const T ct, typename T::Scalar s, typename T::VectorType v) {
         ct.heightField();
 
