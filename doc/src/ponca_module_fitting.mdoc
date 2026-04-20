@@ -46,7 +46,7 @@ namespace Ponca
   The Fitting Object is what Two template classes must be specialized to configure computations.
 
   1. The first step consists in specifying a weighting function: it defines how neighbor samples will contribute to the fit, as illustrated in \ref figure2 "Figure 2(a)" in 2D.
-  In this example, we choose a weight based on the Euclidean distance using Ponca::DistWeightFunc, remapped through a bisquare kernel defined in Ponca::SmoothWeightKernel:
+  In this example, we choose a weight based on the Euclidean distance using Ponca::DistWeightFilter, remapped through a bisquare kernel defined in Ponca::SmoothWeightKernel:
   \snippet basket.cpp NeighborFilter
 
   2. The second step identifies a complete fitting procedure through the specialization of a Ponca::Basket.
@@ -161,24 +161,24 @@ namespace Ponca
   Neighbor filters are critical components of the library. Their main goal is to provide computation information on how
   much a point is considered to be a neighbor. This information is given through weights defined by the Filter and the
   Kernel. In additions, some filters may transform the neighbors, for instance to express relatively to the evaluation
-  point. Perhaps the most common filter is DistWeightFunc, which filters out points that are too far and weight the
+  point. Perhaps the most common filter is DistWeightFilter, which filters out points that are too far and weight the
   other according to their distance from the evaluation position, and also translate neighbors in the local frame.
-  Another alternative are the classes NoWeightFunc and NoWeightFuncGlobal, which do not filter any neighbor and offer
+  Another alternative are the classes NoWeightFilter and NoWeightFilterGlobal, which do not filter any neighbor and offer
   control over the transformation of the neighbors.
 
   \see \ref fitting_filters
   
   \subsection fitting_newkernel Defining a new distance kernel
 
-  DistWeightFunc is defined from the euclidean distance field centered at the
-  evaluation position (see \ref DistWeightFunc::init()). Given a distance to this evaluation position, the weight
-  is computed (see \ref DistWeightFunc::w()) by applying a 1d weighting function defined as follows:
+  DistWeightFilter is defined from the euclidean distance field centered at the
+  evaluation position (see \ref DistWeightFilter::init()). Given a distance to this evaluation position, the weight
+  is computed (see \ref DistWeightFilter::w()) by applying a 1d weighting function defined as follows:
 
   \snippet concepts.hpp WeightKernelConcept
 
-  DistWeightFunc also provides computation of the first and second order derivatives of the weight, both in
-  scale (\ref DistWeightFunc::scaledw(), \ref DistWeightFunc::scaled2w()) and space (\ref DistWeightFunc::spacedw(),
-  \ref DistWeightFunc::spaced2w()), and their cross derivatives (\ref DistWeightFunc::scaleSpaced2w()).
+  DistWeightFilter also provides computation of the first and second order derivatives of the weight, both in
+  scale (\ref DistWeightFilter::scaledw(), \ref DistWeightFilter::scaled2w()) and space (\ref DistWeightFilter::spacedw(),
+  \ref DistWeightFilter::spaced2w()), and their cross derivatives (\ref DistWeightFilter::scaleSpaced2w()).
   Theses methods check if the weight kernels provides the appropriate derivatives.
     
   \subsection fitting_newfilterapi Filter API
@@ -287,7 +287,7 @@ namespace Ponca
   \code
   Building CXX object /xxxxx/wrongType.cpp.o
   In file included from /xxxxx/wrongType.cpp:19:
-  /xxxxx/ponca/Ponca/src/Fitting/gls.h:51:23: error: no member named 'PROVIDES_ALGEBRAIC_SPHERE' in 'Ponca::PrimitiveBase<PointPositionNormal<float, 3>, Ponca::DistWeightFunc<PointPositionNormal<float, 3>, Ponca::SmoothWeightKernel<float> >, void>'
+  /xxxxx/ponca/Ponca/src/Fitting/gls.h:51:23: error: no member named 'PROVIDES_ALGEBRAIC_SPHERE' in 'Ponca::PrimitiveBase<PointPositionNormal<float, 3>, Ponca::DistWeightFilter<PointPositionNormal<float, 3>, Ponca::SmoothWeightKernel<float> >, void>'
           Check = Base::PROVIDES_ALGEBRAIC_SPHERE,
                   ~~~~~~^
   \endcode

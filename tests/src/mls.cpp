@@ -18,7 +18,7 @@
 #include <Ponca/src/Fitting/mlsEvaluationScheme.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 
@@ -99,14 +99,14 @@ void callSubTests()
 
     // We test only primitive functions and not the fitting procedure
     //! [WeightFunction]
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightFunc = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     //! [WeightFunction]
     using Sphere = Basket<Point, WeightFunc, OrientedSphereFit>;
     //! [PlaneFitType]
     using Plane = Basket<Point, WeightFunc, CovariancePlaneFit>;
     //! [PlaneFitType]
 
-    using WeightSmoothFunc  = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightSmoothFunc  = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using FitSmoothOriented = Basket<Point, WeightSmoothFunc, OrientedSphereFit>;
 
     // //! [PlaneFitDerTypes]

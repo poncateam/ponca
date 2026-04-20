@@ -26,7 +26,7 @@ using namespace Ponca;
 using MyPoint    = PointPosition<double, 3>;
 using Scalar     = MyPoint::Scalar;
 using VectorType = MyPoint::VectorType;
-using WeightFunc = DistWeightFunc<MyPoint, ConstantWeightKernel<Scalar>>;
+using WeightFunc = DistWeightFilter<MyPoint, ConstantWeightKernel<Scalar>>;
 using Fit        = Basket<MyPoint, WeightFunc, CovarianceLineFit>;
 
 int main(int /*argc*/, char** /*argv*/)

@@ -27,7 +27,7 @@ namespace Ponca
         using Scalar = _Scalar;
 
         /// \brief The kernel is compact and shall not be evaluated outside of the scale bounds.
-        /// \see #NoWeightFunc and #NoWeightFuncGlobal for alternative way to use uniform weight.
+        /// \see #NoWeightFilter and #NoWeightFilterGlobal for alternative way to use uniform weight.
         static constexpr bool isCompact = true;
 
         // Init

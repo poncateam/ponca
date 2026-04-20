@@ -19,7 +19,7 @@
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
 #include <Ponca/src/Fitting/mlsSphereFitDer.h>
 #include <Ponca/src/Fitting/weingarten.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <vector>
@@ -132,8 +132,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 #define DECLARE_DEFAULT_TYPES                                                                     \
     using Point = PointPositionNormal<Scalar, Dim>;                                               \
                                                                                                   \
-    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;                 \
-    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;               \
+    using WeightSmoothFunc   = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;               \
+    using WeightConstantFunc = DistWeightFilter<Point, ConstantWeightKernel<Scalar>>;             \
                                                                                                   \
     using FitSmoothOriented     = Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>;   \
     using FitConstantOriented   = Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam>; \

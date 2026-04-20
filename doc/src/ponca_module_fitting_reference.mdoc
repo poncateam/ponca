@@ -244,19 +244,19 @@ namespace Ponca
       <th>Documentation</th>
     </tr>
     <tr> 
-      <td>DistWeightFunc</td>
+      <td>DistWeightFilter</td>
       <td>Eval location: p, Radius: t</td>
       <td>Filter points further than t, and weigh them according to kernel (\ref fitting_kernel) </td>
     </tr>
     <tr> 
-      <td> NoWeightFunc</td>
+      <td> NoWeightFilter</td>
       <td>Eval location: p</td>
-      <td>Constant kernel for every point. Does not check for radius unlike DistWeightFunc with contant kernel. Transform neighbors to local frame.</td>
+      <td>Constant kernel for every point. Does not check for radius unlike DistWeightFilter with contant kernel. Transform neighbors to local frame.</td>
     </tr>
     <tr>
-      <td>NoWeightFuncGlobal</td>
+      <td>NoWeightFilterGlobal</td>
       <td>Eval location: p</td>
-      <td>Constant kernel for every point. Does not check for radius unlike DistWeightFunc with contant kernel. Keep neighbors coordinates in global frame</td>
+      <td>Constant kernel for every point. Does not check for radius unlike DistWeightFilter with contant kernel. Keep neighbors coordinates in global frame</td>
     </tr>
     <tr> 
       <td>NeighborFilterStoreNormal</td>

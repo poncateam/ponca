@@ -18,7 +18,7 @@
 #include <Ponca/src/Fitting/defines.h>
 #include <Ponca/src/Fitting/mean.h>
 #include <Ponca/src/Fitting/covarianceFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <vector>
@@ -179,8 +179,8 @@ void callSubTests()
 {
     using Point = PointPositionNormal<Scalar, Dim>;
 
-    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
-    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
+    using WeightSmoothFunc   = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFilter<Point, ConstantWeightKernel<Scalar>>;
 
     using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitBase>;
     using CovFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitBase>;

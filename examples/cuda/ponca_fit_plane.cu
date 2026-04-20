@@ -13,7 +13,7 @@
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/Common/pointTypes.h>
 #include <Ponca/src/Common/pointGeneration.h>
@@ -88,7 +88,7 @@ __host__ void testPlaneCuda(
     const bool _bAddNormalNoise   = false
 ) {
     using DataPoint        = Ponca::PointPositionNormal<Scalar, Dim>;
-    using WeightSmoothFunc = Ponca::DistWeightFunc<DataPoint, Ponca::SmoothWeightKernel<Scalar> >;
+    using WeightSmoothFunc = Ponca::DistWeightFilter<DataPoint, Ponca::SmoothWeightKernel<Scalar> >;
     using MeanFitSmooth    = Ponca::Basket<DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit>;
     using VectorType       = typename DataPoint::VectorType;
 

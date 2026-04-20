@@ -7,7 +7,7 @@
 #pragma once
 
 template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::WeightReturnType DistWeightFunc<DataPoint, WeightKernel>::operator()(
+typename DistWeightFilter<DataPoint, WeightKernel>::WeightReturnType DistWeightFilter<DataPoint, WeightKernel>::operator()(
     const DataPoint& _q) const
 {
     const auto lq = NeighborhoodFrame::convertToLocalBasis(_q.pos());
@@ -19,7 +19,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::WeightReturnType DistWeightFun
 }
 
 template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::VectorType DistWeightFunc<DataPoint, WeightKernel>::spacedw(
+typename DistWeightFilter<DataPoint, WeightKernel>::VectorType DistWeightFilter<DataPoint, WeightKernel>::spacedw(
     const VectorType& _q, const DataPoint&) const
 {
     static_assert(WeightKernel::isDValid, "First order derivatives are required");
@@ -33,7 +33,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::VectorType DistWeightFunc<Data
 }
 
 template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::MatrixType DistWeightFunc<DataPoint, WeightKernel>::spaced2w(
+typename DistWeightFilter<DataPoint, WeightKernel>::MatrixType DistWeightFilter<DataPoint, WeightKernel>::spaced2w(
     const VectorType& _q, const DataPoint&) const
 {
     static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
@@ -51,7 +51,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::MatrixType DistWeightFunc<Data
 }
 
 template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::Scalar DistWeightFunc<DataPoint, WeightKernel>::scaledw(
+typename DistWeightFilter<DataPoint, WeightKernel>::Scalar DistWeightFilter<DataPoint, WeightKernel>::scaledw(
     const VectorType& _q, const DataPoint&) const
 {
     static_assert(WeightKernel::isDValid, "First order derivatives are required");
@@ -60,7 +60,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::Scalar DistWeightFunc<DataPoin
 }
 
 template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::Scalar DistWeightFunc<DataPoint, WeightKernel>::scaled2w(
+typename DistWeightFilter<DataPoint, WeightKernel>::Scalar DistWeightFilter<DataPoint, WeightKernel>::scaled2w(
     const VectorType& _q, const DataPoint&) const
 {
     static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
@@ -71,7 +71,7 @@ typename DistWeightFunc<DataPoint, WeightKernel>::Scalar DistWeightFunc<DataPoin
 }
 
 template <class DataPoint, class WeightKernel>
-typename DistWeightFunc<DataPoint, WeightKernel>::VectorType DistWeightFunc<DataPoint, WeightKernel>::scaleSpaced2w(
+typename DistWeightFilter<DataPoint, WeightKernel>::VectorType DistWeightFilter<DataPoint, WeightKernel>::scaleSpaced2w(
     const VectorType& _q, const DataPoint&) const
 {
     static_assert(WeightKernel::isDDValid, "Second order derivatives are required");

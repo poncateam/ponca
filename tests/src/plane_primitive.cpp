@@ -14,7 +14,7 @@
 
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/plane.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <vector>
@@ -61,7 +61,7 @@ void callSubTests()
     using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
-    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using NeighborFilter = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using Plane          = Basket<Point, NeighborFilter, Plane>;
 
     for (int i = 0; i < g_repeat; ++i)

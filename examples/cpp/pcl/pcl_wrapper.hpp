@@ -60,7 +60,7 @@ void pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCl
                                                               const std::vector<int>& indices, float& curvature)
 {
     using Scalar     = GlsPoint::Scalar;
-    using WeightFunc = Ponca::DistWeightFunc<GlsPoint, Ponca::SmoothWeightKernel<Scalar>>;
+    using WeightFunc = Ponca::DistWeightFilter<GlsPoint, Ponca::SmoothWeightKernel<Scalar>>;
     using FitBasket  = Ponca::Basket<GlsPoint, WeightFunc, Ponca::CovariancePlaneFit>;
     using Fit        = Ponca::BasketDiff<FitBasket, Ponca::FitScaleSpaceDer, Ponca::CovariancePlaneDer,
                                          Ponca::NormalDerivativeWeingartenEstimator, Ponca::WeingartenCurvatureEstimatorDer>;

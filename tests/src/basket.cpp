@@ -17,7 +17,7 @@
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 
@@ -163,7 +163,7 @@ void callSubTests()
 
     // We test only primitive functions and not the fitting procedure
     //! [NeighborFilter]
-    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using NeighborFilter = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     //! [NeighborFilter]
     //! [PlaneFitType]
     using TestPlane = Basket<Point, NeighborFilter, CovariancePlaneFit>;

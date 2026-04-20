@@ -16,7 +16,7 @@
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/covarianceLineFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <vector>
@@ -85,7 +85,7 @@ void callSubTests()
     using Point = PointPositionNormal<Scalar, Dim>;
 
     // We test only primitive functions and not the fitting procedure
-    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using NeighborFilter = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using Sphere         = Basket<Point, NeighborFilter, OrientedSphereFit>;
     using Plane          = Basket<Point, NeighborFilter, CovariancePlaneFit>;
     using Line           = Basket<Point, NeighborFilter, CovarianceLineFit>;
