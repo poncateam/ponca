@@ -59,8 +59,8 @@ __global__ void fitPotentialAndGradientKernel(
     fit.setNeighborFilter({ pos, analysisScale });
 
     //! [Use KdTree on the GPU]
-    // fit.computeWithIds(knngraph.rangeNeighbors(i, analysisScale), knngraph.points()); // TODO : Fix this
-    fit.compute(buffers->points, buffers->points + buffers->points_size);
+    fit.computeWithIds(knngraph.rangeNeighbors(i, analysisScale), knngraph.points()); // TODO : Fix this
+    // fit.compute(buffers->points, buffers->points + buffers->points_size);
     //! [Use KdTree on the GPU]
 
     // Returns NaN if not stable

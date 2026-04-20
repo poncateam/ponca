@@ -120,7 +120,7 @@ namespace Ponca
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
         HashSet<100000, int> m_flag; ///< store visited ids
-        std::stack<int> m_stack;     ///< hold ids (ids range from 0 to point cloud size)
+        Stack<int, 100000> m_stack;     ///< hold ids (ids range from 0 to point cloud size)
     };
 
 } // namespace Ponca

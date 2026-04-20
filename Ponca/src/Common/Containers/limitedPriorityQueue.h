@@ -157,22 +157,22 @@ namespace Ponca
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue() : m_comp()
     {
-        PONCA_ASSERT((m_capacity <= N));
+        assert((m_capacity <= N));
     }
 
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const Base& other)
         : m_data(other.m_data), m_comp(other.m_comp), m_size(other.m_size), m_capacity(other.m_capacity)
     {
-        PONCA_ASSERT((m_capacity <= N));
+        assert((m_capacity <= N));
     }
 
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const int capacity)
         : m_comp(), m_capacity(capacity)
     {
-        PONCA_ASSERT((capacity >= 0));
-        PONCA_ASSERT((capacity <= N));
+        assert((capacity >= 0));
+        assert((capacity <= N));
     }
 
     template <class T, int N, class Cmp>
@@ -185,8 +185,8 @@ namespace Ponca
         {
             push(*it);
         }
-        PONCA_ASSERT((capacity >= 0));
-        PONCA_ASSERT((capacity <= N));
+        assert((capacity >= 0));
+        assert((capacity <= N));
     }
 
     template <class T, int N, class Cmp>

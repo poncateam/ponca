@@ -35,7 +35,7 @@ if( CMAKE_CUDA_COMPILER )
     target_include_directories(cuda_fit_plane_knngraph PRIVATE ${PONCA_src_ROOT})
     add_dependencies(ponca-examples cuda_fit_plane_knngraph)
     set_property(TARGET cuda_fit_plane_knngraph PROPERTY CUDA_ARCHITECTURES OFF)
-    ponca_handle_eigen_dependency(cuda_fit_plane_knngraph)
+    target_link_libraries(cuda_fit_plane_knngraph PUBLIC Eigen3::Eigen)
 
     add_subdirectory(ssgls)
 else()

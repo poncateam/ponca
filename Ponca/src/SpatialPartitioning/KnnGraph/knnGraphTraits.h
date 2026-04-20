@@ -33,8 +33,8 @@ namespace Ponca
         using DataPoint = _DataPoint;
 
     private:
-        using Scalar     = DataPoint::Scalar;
-        using VectorType = DataPoint::VectorType;
+        using Scalar     = typename DataPoint::Scalar;
+        using VectorType = typename DataPoint::VectorType;
 
     public:
         /*!
@@ -72,8 +72,8 @@ namespace Ponca
         using DataPoint = _DataPoint;
 
     private:
-        using Scalar     = DataPoint::Scalar;
-        using VectorType = DataPoint::VectorType;
+        using Scalar     = typename DataPoint::Scalar;
+        using VectorType = typename DataPoint::VectorType;
 
     public:
         /*!

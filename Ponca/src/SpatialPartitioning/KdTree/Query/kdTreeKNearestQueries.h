@@ -25,9 +25,9 @@ namespace Ponca
     {
     public:
         using DataPoint      = typename Traits::DataPoint;
-        using IndexType      = Traits::IndexType;
-        using Scalar         = DataPoint::Scalar;
-        using VectorType     = DataPoint::VectorType;
+        using IndexType      = typename Traits::IndexType;
+        using Scalar         = typename DataPoint::Scalar;
+        using VectorType     = typename DataPoint::VectorType;
         using QueryAccelType = KdTreeQuery<Traits>;
         using Iterator = IteratorType<typename Traits::IndexType, typename Traits::DataPoint, Traits::MAX_KNN_SIZE>;
         using Base     = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
