@@ -1,5 +1,6 @@
 ﻿
 template <class DataPoint, class _NFilter, typename T>
+    requires MONGE_PATCH_FIT_REQUIREMENTS
 void MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -11,6 +12,7 @@ void MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires MONGE_PATCH_FIT_REQUIREMENTS
 void MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                           const DataPoint& attributes)
 {
@@ -34,6 +36,7 @@ void MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires MONGE_PATCH_FIT_REQUIREMENTS
 FIT_RESULT MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::finalize()
 {
     // end of the fitting process, check plane is ready
@@ -62,6 +65,7 @@ FIT_RESULT MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::finalize()
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires MONGE_PATCH_FIT_REQUIREMENTS
 void MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -73,6 +77,7 @@ void MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires MONGE_PATCH_FIT_REQUIREMENTS
 void MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                                     const DataPoint& attributes)
 {
@@ -96,6 +101,7 @@ void MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::addLocalNeigh
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires MONGE_PATCH_FIT_REQUIREMENTS
 FIT_RESULT MongePatchRestrictedQuadraticFitImpl<DataPoint, _NFilter, T>::finalize()
 {
     // end of the fitting process, check plane is ready

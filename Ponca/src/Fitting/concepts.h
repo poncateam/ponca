@@ -173,6 +173,31 @@ namespace Ponca
         };
 
     template <typename T>
+    concept ProvidesHeightField = requires(const T ct, typename T::Scalar s, typename T::VectorType v) {
+        ct.heightField();
+
+        { ct.heightField().height(s, s) } -> std::same_as<typename T::Scalar>;
+        { ct.heightField().h_uu() } -> std::same_as<const typename T::Scalar&>;
+        { ct.heightField().h_vv() } -> std::same_as<const typename T::Scalar&>;
+        { ct.heightField().h_uv() } -> std::same_as<const typename T::Scalar&>;
+        { ct.heightField().h_c() } -> std::same_as<const typename T::Scalar&>;
+        { ct.heightField().h_uu() } -> std::same_as<const typename T::Scalar&>;
+        { ct.heightField().h_uu() } -> std::same_as<const typename T::Scalar&>;
+
+        { ct.heightField().dh_du(s, s) } -> std::same_as<typename T::Scalar>;
+        { ct.heightField().dh_dv(s, s) } -> std::same_as<typename T::Scalar>;
+        { ct.heightField().d2h_duu(s, s) } -> std::same_as<typename T::Scalar>;
+        { ct.heightField().d2h_dvv(s, s) } -> std::same_as<typename T::Scalar>;
+        { ct.heightField().d2h_duv(s, s) } -> std::same_as<typename T::Scalar>;
+
+        { ct.heightField().heightTangentULocal(v) } -> std::same_as<typename T::VectorType>;
+        { ct.heightField().heightTangentVLocal(v) } -> std::same_as<typename T::VectorType>;
+    };
+
+    template <typename T>
+    concept ProvidesMongePatch = requires(const T ct) { ct.mongePatchPrimitive(); };
+
+    template <typename T>
     concept ProvidesPositionCovariance = requires(const T ct) {
         ct.covarianceFit();
 

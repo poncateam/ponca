@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "./concepts.h"
 #include "./defines.h"
 #include "./weingarten.h"
 #include "./heightField.h"
@@ -13,10 +14,9 @@
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 
 #include <Eigen/Dense>
-#include <Eigen/SVD>
-#include <Eigen/Geometry>
 
-#define MONGE_MATCH_REQUIREMENTS ProvidesTangentPlaneBasis<T>
+#define MONGE_PATCH_REQUIREMENTS ProvidesTangentPlaneBasis<T>&& ProvidesHeightField<T>&& Is3D<DataPoint>
+#define MONGE_PATCH_FIT_REQUIREMENTS ProvidesImplicitPrimitive<T>&& ProvidesMongePatch<T>
 
 namespace Ponca
 {
@@ -37,24 +37,16 @@ namespace Ponca
         \verbatim ProvidesPlane, ProvidesTangentPlaneBasis, PROVIDES_HEIGHTFIELD \endverbatim
         */
     template <class DataPoint, class _NFilter, typename T>
-        requires MONGE_MATCH_REQUIREMENTS
+        requires MONGE_PATCH_REQUIREMENTS
     class MongePatch : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-        static_assert(DataPoint::Dim == 3, "MongePatch is only valid in 3D");
 
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_HEIGHTFIELD, /*!< \brief Requires a heightfield function */
-            PROVIDES_MONGE_PATCH,               /*!< \brief Provides MongePatch API */
-        };
-
-    public:
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline MongePatch() : Base() { Base::init(); }
 
         PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, mongePatchPrimitive)
+        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, implicitPrimitive)
         PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, firstFondamentalFormComponent)
         PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, secondFondamentalFormComponent)
 
@@ -140,17 +132,10 @@ namespace Ponca
      * \warning This class is valid only in 3D.
      */
     template <class DataPoint, class _NFilter, typename T>
+        requires MONGE_PATCH_FIT_REQUIREMENTS
     class MongePatchQuadraticFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_QUADRIC_HEIGHTFIELD && Base::PROVIDES_MONGE_PATCH
-        };
-
-    public:
         // we need to use dynamic matric to use ThinU, ThinV for solving
         using SampleMatrix                     = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         using QuadraticHeightFieldCoefficients = typename Base::HeightFieldCoefficients;
@@ -175,17 +160,11 @@ namespace Ponca
      * \warning This class is valid only in 3D.
      */
     template <class DataPoint, class _NFilter, typename T>
+        requires MONGE_PATCH_FIT_REQUIREMENTS
     class MongePatchRestrictedQuadraticFitImpl : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-    protected:
-        enum
-        {
-            Check = Base::PROVIDES_RESTRICTED_QUADRIC_HEIGHTFIELD && Base::PROVIDES_MONGE_PATCH
-        };
-
-    public:
         // we need to use dynamic matric to use ThinU, ThinV for solving
         using SampleMatrix                     = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         using QuadraticHeightFieldCoefficients = typename Base::HeightFieldCoefficients;

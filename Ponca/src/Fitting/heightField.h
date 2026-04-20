@@ -99,6 +99,7 @@ namespace Ponca
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline QuadraticHeightField() : Base() { init(); }
 
+        PONCA_EXPLICIT_CAST_OPERATORS(QuadraticHeightField, heightField)
         PONCA_EXPLICIT_CAST_OPERATORS(QuadraticHeightField, quadraticHeightField)
 
         /// \brief Set the scalar field values
@@ -223,6 +224,7 @@ namespace Ponca
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline RestrictedQuadraticHeightField() : Base() { init(); }
 
+        PONCA_EXPLICIT_CAST_OPERATORS(QuadraticHeightField, heightField)
         PONCA_EXPLICIT_CAST_OPERATORS(RestrictedQuadraticHeightField, quadraticHeightField)
 
         /// \brief Set the scalar field values
@@ -256,6 +258,14 @@ namespace Ponca
             const RestrictedQuadraticHeightField<DataPoint, _NFilter, T>& other) const
         {
             return !((*this) == other);
+        }
+
+        /// \brief Approximate comparison operator operator
+        template <typename Other>
+        PONCA_MULTIARCH [[nodiscard]] inline bool isApprox(
+            const Other& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const
+        {
+            return m_coeffs.isApprox(other.m_params, epsilon);
         }
 
         //! \brief Height value at local uv
