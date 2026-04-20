@@ -61,13 +61,13 @@ namespace Ponca
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
         PONCA_MULTIARCH [[nodiscard]] inline Iterator begin() const
         {
-            return Iterator(m_graph->samples(), QueryType::input() * m_graph->k());
+            return Iterator(&(m_graph->samples()), QueryType::input() * m_graph->k());
         }
 
         /// \brief Returns an iterator to the end of the k-nearest neighbors query.
         PONCA_MULTIARCH [[nodiscard]] inline Iterator end() const
         {
-            return Iterator(m_graph->samples(), (QueryType::input() + 1) * m_graph->k());
+            return Iterator(&(m_graph->samples()), (QueryType::input() + 1) * m_graph->k());
         }
 
     protected:

@@ -36,9 +36,9 @@ namespace Ponca
         // using pointer           = Index*;
         using reference         = const Index&;
 
-        PONCA_MULTIARCH KnnGraphKNearestIterator() = default;
+        // PONCA_MULTIARCH KnnGraphKNearestIterator() = default;
 
-        PONCA_MULTIARCH KnnGraphKNearestIterator(Container data, Index i)
+        PONCA_MULTIARCH KnnGraphKNearestIterator(const Container* data, Index i)
             : m_data(data), m_i(i) {}
 
         /// \brief Inequality operand
@@ -59,7 +59,7 @@ namespace Ponca
 
         /// \brief Dereference operator
         PONCA_MULTIARCH reference operator*() const {
-            return m_data[m_i];
+            return (*m_data)[m_i];
         }
 
         /// \brief Postfix increment
@@ -74,7 +74,7 @@ namespace Ponca
         PONCA_MULTIARCH inline void operator+=(const Index i) { m_i += i; }
 
     protected:
-        const Index* m_data{nullptr};
+        const Container* m_data{nullptr};
         Index m_i{0};
     };
 } // namespace Ponca
