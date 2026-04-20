@@ -22,8 +22,7 @@ namespace Ponca
          * \param f The fitting object
          * \param pos The position to project
          */
-        template <typename ComputeObject>
-            requires ProvidesProjectionOperator<ComputeObject>
+        template <ProvidesProjectionOperator ComputeObject>
         PONCA_MULTIARCH typename ComputeObject::VectorType project(const ComputeObject& _f,
                                                                    const typename ComputeObject::VectorType& _pos) const
         {
@@ -62,8 +61,7 @@ namespace Ponca
          * \param f The fitting object
          * \param pos The position to project
          */
-        template <typename ComputeObject>
-            requires ProvidesImplicitPrimitive<ComputeObject>
+        template <ProvidesImplicitPrimitive ComputeObject>
         PONCA_MULTIARCH typename ComputeObject::VectorType project(const ComputeObject& _f,
                                                                    const typename ComputeObject::VectorType& _pos) const
         {
