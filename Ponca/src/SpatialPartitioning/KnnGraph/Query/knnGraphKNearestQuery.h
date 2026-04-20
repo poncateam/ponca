@@ -8,8 +8,8 @@
 
 #include "../../query.h"
 #include "../Iterator/knnGraphRangeIterator.h"
+#include <Ponca/src/SpatialPartitioning/KnnGraph/Iterator/knnGraphKNearestIterator.h>
 #include <cstddef>
-#include <vector>
 
 namespace Ponca
 {
@@ -42,7 +42,7 @@ namespace Ponca
 #endif
     {
     public:
-        using Iterator = std::vector<int>::const_iterator; // = typename Traits::IndexContainer::const_iterator;
+        using Iterator = KnnGraphKNearestIterator<typename Traits::IndexContainer, typename Traits::IndexType>;
 #ifdef PARSED_WITH_DOXYGEN
         using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
 #else
@@ -61,13 +61,13 @@ namespace Ponca
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
         PONCA_MULTIARCH [[nodiscard]] inline Iterator begin() const
         {
-            return std::begin(m_graph->samples()) + QueryType::input() * m_graph->k();
+            return Iterator(m_graph->samples(), QueryType::input() * m_graph->k());
         }
 
         /// \brief Returns an iterator to the end of the k-nearest neighbors query.
         PONCA_MULTIARCH [[nodiscard]] inline Iterator end() const
         {
-            return std::begin(m_graph->samples()) + (QueryType::input() + 1) * m_graph->k();
+            return Iterator(m_graph->samples(), (QueryType::input() + 1) * m_graph->k());
         }
 
     protected:

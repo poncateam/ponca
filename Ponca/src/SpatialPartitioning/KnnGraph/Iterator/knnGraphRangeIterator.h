@@ -44,7 +44,7 @@ namespace Ponca
         using pointer           = Index*;
         using reference         = const Index&;
 
-        inline KnnGraphRangeIterator(KnnGraphRangeQuery<Traits>* query, Index index = Index(-1))
+        PONCA_MULTIARCH inline KnnGraphRangeIterator(KnnGraphRangeQuery<Traits>* query, Index index = Index(-1))
             : m_query(query), m_index(index)
         {
         }
