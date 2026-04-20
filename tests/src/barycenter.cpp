@@ -14,7 +14,7 @@
 
 #include "Ponca/src/Fitting/basket.h"
 #include "Ponca/src/Fitting/mean.h"
-#include "Ponca/src/Fitting/weightFunc.h"
+#include "Ponca/src/Fitting/weightFilter.h"
 #include "Ponca/src/Fitting/weightKernel.h"
 #include "Ponca/src/Fitting/evaluationScheme.h"
 
@@ -84,13 +84,13 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     using Point                   = Ponca::PointPositionNormal<Scalar, Dim>;
-    using WeightConstantFuncLocal = Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar>>;
-    using NoWeightFuncGlobal      = Ponca::NoWeightFuncGlobal<Point>;
-    using NoWeightFunc            = Ponca::NoWeightFunc<Point>;
+    using WeightConstantFuncLocal = Ponca::DistWeightFilter<Point, Ponca::ConstantWeightKernel<Scalar>>;
+    using NoWeightFilterGlobal    = Ponca::NoWeightFilterGlobal<Point>;
+    using NoWeightFilter          = Ponca::NoWeightFilter<Point>;
 
     using FitConstantLocal  = Ponca::Basket<Point, WeightConstantFuncLocal, Ponca::MeanPosition>;
-    using FitNoWeightLocal  = Ponca::Basket<Point, NoWeightFunc, Ponca::MeanPosition>;
-    using FitNoWeightGlobal = Ponca::Basket<Point, NoWeightFuncGlobal, Ponca::MeanPosition>;
+    using FitNoWeightLocal  = Ponca::Basket<Point, NoWeightFilter, Ponca::MeanPosition>;
+    using FitNoWeightGlobal = Ponca::Basket<Point, NoWeightFilterGlobal, Ponca::MeanPosition>;
 
     for (int i = 0; i < g_repeat; ++i)
     {

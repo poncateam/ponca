@@ -11,7 +11,7 @@ All rights reserved.
 
 #include "defines.h"
 #include "cncFormulaEigen.h"
-#include "weightFunc.h"
+#include "weightFilter.h"
 #include "weightKernel.h"
 
 namespace Ponca
@@ -106,14 +106,14 @@ namespace Ponca
     class CNC : ComputeObject<CNC<P, _method>>
     {
     public:
-        using DataPoint   = P;
-        using MatrixType  = typename DataPoint::MatrixType;
-        using Scalar      = typename DataPoint::Scalar;
-        using VectorType  = typename DataPoint::VectorType;
-        using DenseVector = Eigen::VectorXd;
-        using DenseMatrix = Eigen::MatrixXd;
+        using DataPoint      = P;
+        using MatrixType     = typename DataPoint::MatrixType;
+        using Scalar         = typename DataPoint::Scalar;
+        using VectorType     = typename DataPoint::VectorType;
+        using DenseVector    = Eigen::VectorXd;
+        using DenseMatrix    = Eigen::MatrixXd;
         using NeighborFilter =
-            NeighborFilterStoreNormal<DataPoint, DistWeightFunc<DataPoint, ConstantWeightKernel<Scalar>>>;
+            NeighborFilterStoreNormal<DataPoint, DistWeightFilter<DataPoint, ConstantWeightKernel<Scalar>>>;
 
     protected:
         // Basis

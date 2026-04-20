@@ -57,12 +57,12 @@ using VectorType       = MyPoint::VectorType;
 using ScreenVectorType = MyPoint::ScreenVectorType;
 
 //! [w_def]
-class ProjectWeightFunc: public Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar> >
+class ProjectWeightFunc: public Ponca::DistWeightFilter<MyPoint, Ponca::SmoothWeightKernel<Scalar> >
 {
 public:
     using Scalar     = MyPoint::Scalar;
     using VectorType = MyPoint::VectorType;
-    using Base       = Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar> >;
+    using Base       = Ponca::DistWeightFilter<MyPoint, Ponca::SmoothWeightKernel<Scalar> >;
 
     /*
     Default constructor (needed by Ponca). Note that the screenspace

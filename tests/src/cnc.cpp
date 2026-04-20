@@ -193,7 +193,7 @@ void callSubTests()
     using VectorType = typename Point::VectorType;
     //! [SpecializedPointType]
 
-    using SmoothWeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using SmoothWeightFunc = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using FitASODiff =
         BasketDiff<Basket<Point, SmoothWeightFunc, OrientedSphereFit>, FitSpaceDer, OrientedSphereDer, MlsSphereFitDer,
                    NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;

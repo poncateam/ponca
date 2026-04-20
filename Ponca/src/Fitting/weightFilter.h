@@ -30,7 +30,7 @@ namespace Ponca
         \warning DistWeightFunc assumes that the evaluation scale t is strictly positive, but the valus is not checked
     */
     template <class DataPoint, class WeightKernel>
-    class DistWeightFunc : public CenteredNeighborhoodFrame<DataPoint>
+    class DistWeightFilter : public CenteredNeighborhoodFrame<DataPoint>
     {
     public:
         /*! \brief Scalar type from DataPoint */
@@ -50,7 +50,7 @@ namespace Ponca
             \brief Constructor that defines the current evaluation scale
             \warning t > 0
         */
-        PONCA_MULTIARCH inline DistWeightFunc(const VectorType& _evalPos = VectorType::Zero(),
+        PONCA_MULTIARCH inline DistWeightFilter(const VectorType& _evalPos = VectorType::Zero(),
                                               const Scalar& _t           = Scalar(1.))
             : NeighborhoodFrame(_evalPos), m_t(_t)
         {
@@ -58,7 +58,7 @@ namespace Ponca
         }
 
         ///! \copydoc DistWeightFunc
-        PONCA_MULTIARCH inline DistWeightFunc(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1.))
+        PONCA_MULTIARCH inline DistWeightFilter(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1.))
             : NeighborhoodFrame(_evalPoint.pos()), m_t(_t)
         {
             PONCA_ASSERT(_t > Scalar(0));
@@ -201,7 +201,7 @@ namespace Ponca
            maintain computation accuracy
         */
         template <class DataPoint, template <typename> typename _NeighborhoodFrame>
-        class NoWeightFuncBase : public _NeighborhoodFrame<DataPoint>
+        class NoWeightFilterBase : public _NeighborhoodFrame<DataPoint>
         {
         public:
             /*! \brief Scalar type from DataPoint */
@@ -218,13 +218,13 @@ namespace Ponca
             /*!
                 \brief Default constructor. All parameters are ignored (kept for API compatibility with DistWeightFunc.
             */
-            PONCA_MULTIARCH inline NoWeightFuncBase(const VectorType& v = VectorType::Zero(), Scalar = 0)
+            PONCA_MULTIARCH inline NoWeightFilterBase(const VectorType& v = VectorType::Zero(), Scalar = 0)
                 : NeighborhoodFrame(v)
             {
             }
 
             ///! \copydoc NoWeightFuncBase
-            PONCA_MULTIARCH inline NoWeightFuncBase(const DataPoint& v, Scalar = 0) : NeighborhoodFrame(v.pos()) {}
+            PONCA_MULTIARCH inline NoWeightFilterBase(const DataPoint& v, Scalar = 0) : NoWeightFilterBase(v.pos()) {}
 
             /*!
                 \brief Compute the weight of the given query, which is always $1$
@@ -337,19 +337,19 @@ namespace Ponca
     /// \brief Weighting function that set uniform weight to all samples, but transform neighbors coordinates to local
     /// frame
     /// \see internal::NoWeightFuncBase
-    struct NoWeightFunc : public internal::NoWeightFuncBase<DataPoint, CenteredNeighborhoodFrame>
+    struct NoWeightFilter : public internal::NoWeightFilterBase<DataPoint, CenteredNeighborhoodFrame>
     {
-        using internal::NoWeightFuncBase<DataPoint, CenteredNeighborhoodFrame>::NoWeightFuncBase;
+        using internal::NoWeightFilterBase<DataPoint, CenteredNeighborhoodFrame>::NoWeightFilterBase;
     };
 
     template <class DataPoint>
     /// \brief Weighting function that set uniform weight to all samples and keep neighbors coordinates in global frame
     /// \see internal::NoWeightFuncBase
-    struct NoWeightFuncGlobal : public internal::NoWeightFuncBase<DataPoint, GlobalNeighborhoodFrame>
+    struct NoWeightFilterGlobal : public internal::NoWeightFilterBase<DataPoint, GlobalNeighborhoodFrame>
     {
-        using internal::NoWeightFuncBase<DataPoint, GlobalNeighborhoodFrame>::NoWeightFuncBase;
+        using internal::NoWeightFilterBase<DataPoint, GlobalNeighborhoodFrame>::NoWeightFilterBase;
     };
 
-#include "weightFunc.hpp"
+#include "weightFilter.hpp"
 
 } // namespace Ponca

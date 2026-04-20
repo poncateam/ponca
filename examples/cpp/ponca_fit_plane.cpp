@@ -30,7 +30,7 @@ using Scalar     = MyPoint::Scalar;
 using VectorType = MyPoint::VectorType;
 
 // Define related structure
-using WeightFunc  = DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>>;
+using WeightFunc  = DistWeightFilter<MyPoint, SmoothWeightKernel<Scalar>>;
 using CovPlaneFit = Basket<MyPoint, WeightFunc, CovariancePlaneFit>;
 
 template <typename Fit>

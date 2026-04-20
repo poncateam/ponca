@@ -18,7 +18,7 @@
 #include <Ponca/src/Fitting/orientedSphereFit.h>
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
 #include <Ponca/src/Fitting/sphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/Fitting/weingarten.h>
 
@@ -36,7 +36,7 @@ using Scalar     = MyPoint::Scalar;
 using VectorType = MyPoint::VectorType;
 
 // Define related structure
-using WeightFunc = DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>>;
+using WeightFunc = DistWeightFilter<MyPoint, SmoothWeightKernel<Scalar>>;
 using Fit1       = Basket<MyPoint, WeightFunc, OrientedSphereFit, GLSParam>;
 using Fit2       = Basket<MyPoint, WeightFunc, UnorientedSphereFit, GLSParam>;
 using Fit3       = BasketDiff<Fit1, FitSpaceDer, OrientedSphereDer, GLSDer, NormalDerivativeWeingartenEstimator,

@@ -18,7 +18,7 @@
 
 // Weighting
 #include "src/Fitting/weightKernel.h"
-#include "src/Fitting/weightFunc.h"
+#include "src/Fitting/weightFilter.h"
 
 // Compute objects
 #include "src/Fitting/cnc.h"

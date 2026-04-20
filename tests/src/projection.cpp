@@ -20,7 +20,7 @@
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/sphereFit.h>
 #include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/Fitting/project.h>
 
@@ -127,24 +127,24 @@ void callSubTests()
 {
     using Point = PointPositionNormal<Scalar, Dim>;
 
-    using WeightSmoothFunc        = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
-    using WeightConstantFuncLocal = Ponca::DistWeightFunc<Point, Ponca::ConstantWeightKernel<Scalar>>;
-    using NoWeightFuncGlobal      = Ponca::NoWeightFuncGlobal<Point>;
-    using NoWeightFunc            = Ponca::NoWeightFunc<Point>;
+    using WeightSmoothFunc        = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFuncLocal = Ponca::DistWeightFilter<Point, Ponca::ConstantWeightKernel<Scalar>>;
+    using NoWeightFilterGlobal    = Ponca::NoWeightFilterGlobal<Point>;
+    using NoWeightFilter          = Ponca::NoWeightFilter<Point>;
 
 #define MAKE_FIT_TYPE(Fit, Weight) Basket<Point, Weight, Fit>
 
 #define TEST_FIT(Fit)                                                            \
     CALL_SUBTEST((testFunction<MAKE_FIT_TYPE(Fit, WeightSmoothFunc)>()));        \
     CALL_SUBTEST((testFunction<MAKE_FIT_TYPE(Fit, WeightConstantFuncLocal)>())); \
-    CALL_SUBTEST((testFunction<MAKE_FIT_TYPE(Fit, NoWeightFunc)>()));
+    CALL_SUBTEST((testFunction<MAKE_FIT_TYPE(Fit, NoWeightFilter)>()));
 
     cout << "Testing with " << typeid(Scalar).name() << endl;
     for (int i = 0; i < g_repeat; ++i)
     {
         TEST_FIT(OrientedSphereFit) // AlgebraicSphere requires local basis
         TEST_FIT(CovariancePlaneFit)
-        CALL_SUBTEST((testFunction<MAKE_FIT_TYPE(CovariancePlaneFit, NoWeightFuncGlobal)>()));
+        CALL_SUBTEST((testFunction<MAKE_FIT_TYPE(CovariancePlaneFit, NoWeightFilterGlobal)>()));
         TEST_FIT(UnorientedSphereFit)
         TEST_FIT(SphereFit)
     }

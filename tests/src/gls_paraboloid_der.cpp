@@ -21,7 +21,7 @@
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/weingarten.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <Ponca/Common>
@@ -233,15 +233,15 @@ void callSubTests()
 {
     using RefScalar     = long double;
     using RefPoint      = PointPositionNormal<RefScalar, 3>;
-    using RefWeightFunc = DistWeightFunc<RefPoint, SmoothWeightKernel<RefScalar>>;
+    using RefWeightFunc = DistWeightFilter<RefPoint, SmoothWeightKernel<RefScalar>>;
 
     typedef ScalarPrecisionCheck<Scalar, RefScalar> TestScalar;
     TestScalar::check_enabled = false; // set it to true to track diverging computations
                                        //    typedef PointPositionNormal<TestScalar, 3> TestPoint;
-    //    using TestWeightFunc = DistWeightFunc<TestPoint, SmoothWeightKernel<TestScalar> >;
+    //    using TestWeightFunc = DistWeightFilter<TestPoint, SmoothWeightKernel<TestScalar> >;
 
     using Point            = PointPositionNormal<Scalar, Dim>;
-    using WeightSmoothFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightSmoothFunc = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
 
     using FitSphereOriented =
         BasketDiff<Basket<Point, WeightSmoothFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer,

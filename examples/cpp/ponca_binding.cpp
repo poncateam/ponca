@@ -15,7 +15,7 @@
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/gls.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 #include <Ponca/src/Common/pointTypes.h>
 
@@ -31,7 +31,7 @@ using Scalar     = MyPoint::Scalar;
 using VectorType = MyPoint::VectorType;
 
 // Define related structure
-using WeightFunc = DistWeightFunc<MyPoint, SmoothWeightKernel<Scalar>>;
+using WeightFunc = DistWeightFilter<MyPoint, SmoothWeightKernel<Scalar>>;
 using Fit        = Basket<MyPoint, WeightFunc, OrientedSphereFit, GLSParam>;
 
 template <typename Fit>

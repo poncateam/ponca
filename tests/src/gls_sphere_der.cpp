@@ -15,7 +15,7 @@
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/gls.h>
 #include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
+#include <Ponca/src/Fitting/weightFilter.h>
 #include <Ponca/src/Fitting/weightKernel.h>
 
 #include <Ponca/SpatialPartitioning>
@@ -84,7 +84,7 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     using Point             = PointPositionNormal<Scalar, Dim>;
-    using WeightSmoothFunc  = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightSmoothFunc  = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using FitSmoothOriented = BasketDiff<Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>, FitScaleSpaceDer,
                                          OrientedSphereDer, GLSDer>;
 
