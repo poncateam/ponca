@@ -51,7 +51,7 @@ namespace Ponca
             \warning t > 0
         */
         PONCA_MULTIARCH inline DistWeightFilter(const VectorType& _evalPos = VectorType::Zero(),
-                                              const Scalar& _t           = Scalar(1.))
+                                                const Scalar& _t           = Scalar(1.))
             : NeighborhoodFrame(_evalPos), m_t(_t)
         {
             PONCA_ASSERT(_t > Scalar(0));
@@ -185,6 +185,9 @@ namespace Ponca
         /*! \brief Access to the evaluation scale set during the initialization */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar evalScale() const { return m_t; }
 
+        PONCA_MULTIARCH [[nodiscard]] inline NeighborhoodFrame& frame() { return *this; }
+        PONCA_MULTIARCH [[nodiscard]] inline const NeighborhoodFrame& frame() const { return *this; }
+
     protected:
         Scalar m_t;        /*!< \brief Evaluation scale */
         WeightKernel m_wk; /*!< \brief 1D function applied to weight queries */
@@ -287,6 +290,9 @@ namespace Ponca
             {
                 return VectorType::Zeros();
             }
+
+            PONCA_MULTIARCH [[nodiscard]] inline NeighborhoodFrame& frame() { return *this; }
+            PONCA_MULTIARCH [[nodiscard]] inline const NeighborhoodFrame& frame() const { return *this; }
         }; // class NoWeightFuncBase
     } // namespace internal
 

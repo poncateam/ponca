@@ -44,6 +44,9 @@ namespace Ponca
         {
         }
 
+        PONCA_MULTIARCH inline VectorType center() { return m_p; }
+        PONCA_MULTIARCH inline VectorType center() const { return m_p; }
+
         /// \brief Change neighborhood frame (move basis center)
         /// \warning Calling this method invalidates any primitive defined relatively to the previous frame.
         ///          In this situation, it is recommended to use ProvidesImplicitPrimitive::changeBasis instead.
@@ -82,12 +85,6 @@ namespace Ponca
             return (_isPositionVector ? (_q - m_p) : _q);
         }
 
-        /*!
-         * \brief Get access to the stored points of evaluation
-         * \return Position of the local basis center
-         */
-        PONCA_MULTIARCH [[nodiscard]] inline const VectorType& evalPos() const { return m_p; }
-
     private:
         VectorType m_p; /*!< \brief basis center */
     };
@@ -123,6 +120,8 @@ namespace Ponca
         ///          In this situation, it is recommended to use ProvidesImplicitPrimitive::changeBasis instead.
         PONCA_MULTIARCH inline void changeNeighborhoodFrame(const VectorType& /*_newEvalPos*/) {};
 
+        PONCA_MULTIARCH inline VectorType center() { return VectorType::Zero(); }
+        PONCA_MULTIARCH inline VectorType center() const { return VectorType::Zero(); }
         /*!
          * \brief Convert position from local to global coordinate system : does nothing as this is global frame
          * \param _q Position in local coordinate
