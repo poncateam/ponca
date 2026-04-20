@@ -11,6 +11,14 @@ namespace Ponca
     template <typename T>
     concept Is3D = (T::Dim == 3);
 
+    template <typename T>
+    concept ProvidesNeighborhoodFrame = ProvidesCommonTypes<T> && requires(T t, const T ct, typename T::VectorType v) {
+        t.changeNeighborhoodFrame(v);
+
+        { ct.convertToGlobalBasis(v, true) } -> std::convertible_to<typename T::VectorType>;
+        { ct.convertToLocalBasis(v, true) } -> std::convertible_to<typename T::VectorType>;
+    };
+
     /// \brief This concept ensures that the default types and accessors in a Basket are well-formed
     ///
     /// This concept is implemented by BasketUnitBase, which is set by default in the Basket.
