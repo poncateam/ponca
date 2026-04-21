@@ -19,8 +19,8 @@ namespace Ponca
      *
      * The memory use should be :
      * Bitset<10000> → 10k bits = 1.25 KB
-     * Bitset<1e6> → 125 KB
-     * Bitset<1e7> → 1.25 MB
+     * Bitset<1e6>   → 125 KB
+     * Bitset<1e7>   → 1.25 MB
      *
      * \tparam N Maximum number of indices
      * \tparam T The data type of the array storing the bits. Default to unsigned long long for 64 bits storage.

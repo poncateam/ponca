@@ -282,7 +282,7 @@ namespace Ponca
         /// The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results. \see
         /// KdTreeKNearestQueryBase
         PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point,
-                                                                                                    IndexType k) const
+                                                                                               IndexType k) const
         {
                   return KdTreeKNearestPointQuery<Traits>(this, k, point);
         }
@@ -293,7 +293,7 @@ namespace Ponca
         /// returned \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results. \see
         /// KdTreeKNearestQueryBase
         PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index,
-                                                                                                    IndexType k) const
+                                                                                               IndexType k) const
         {
                   return KdTreeKNearestIndexQuery<Traits>(this, k, index);
         }

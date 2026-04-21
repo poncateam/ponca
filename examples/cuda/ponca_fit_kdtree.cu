@@ -24,60 +24,29 @@
 
 #include "cuda_utils.cu"
 
-/*! \brief Computes the fitting process for each point of the point cloud and returns the potential and primitive gradient result.
- *
- * \tparam DataPoint The DataPoint type.
- * \tparam Fit The Fit that will be computed by the Kernel.
- * \param buffers The buffers structure that holds the internal containers of the KdTree.
- * \param analysisScale The radius of the neighborhood.
- * \param potentialResults As an Output, the potential results of the fit for each point of the Point Cloud.
- * \param gradientResults As an Output, the primitiveGradient results of the fit for each point of the Point Cloud.
- */
-template<typename DataPoint, typename Fit>
-__global__ void fitPotentialAndGradientKernel(
-    typename KdTreeGPU<DataPoint>::Buffers* const buffers,
-    const typename DataPoint::Scalar analysisScale,
-    typename DataPoint::Scalar* const potentialResults,
-    typename DataPoint::Scalar* const gradientResults
-) {
-    using VectorType = typename DataPoint::VectorType;
-
-    // Get global index
-    const unsigned int i = threadIdx.x + blockIdx.x * blockDim.x;
-    // Skip when not in the point cloud
-    if (i >= buffers->points_size) return;
-
-    //! [Create KdTree on the GPU]
-    KdTreeGPU<DataPoint> kdtree(*buffers);
-    //! [Create KdTree on the GPU]
-
-    // Set up the fit
-    Fit fit;
-    VectorType pos = kdtree.points()[i].pos();
-    fit.setNeighborFilter({ pos, analysisScale });
-
-    //! [Use KdTree on the GPU]
-    fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), kdtree.points());
-    // Works as well
-    // fit.computeWithIds(kdtree.kNearestNeighbors(i, 10), kdtree.points());
-    //! [Use KdTree on the GPU]
-
-    // Returns NaN if not stable
-    if (! fit.isStable()) {
-        potentialResults[i] = NAN;
-        for (int d = 0; d < DataPoint::Dim; ++d) {
-            gradientResults[i*DataPoint::Dim + d] = NAN;
-        }
-        return;
+template<typename DataPoint>
+struct KdTreeRangeNeighborsFunctor {
+    static __device__ inline auto query(
+        KdTreeGPU<DataPoint>& d_kdtree,
+        int i, typename DataPoint::Scalar analysisScale
+    ) -> Ponca::KdTreeRangeIndexQuery<Ponca::KdTreePointerTraits<DataPoint>> {
+        //! [Use KdTree.rangeNeighbors on the GPU]
+        return d_kdtree.rangeNeighbors(i, analysisScale);
+        //! [Use KdTree.rangeNeighbors on the GPU]
     }
+};
 
-    // Return the fit.potential result as an output
-    potentialResults[i]   = fit.potential(pos);
-    const VectorType grad = fit.primitiveGradient(pos);
-    for (int d = 0; d < DataPoint::Dim; ++d) {
-        gradientResults[i*DataPoint::Dim + d] = grad(d);
+template<typename DataPoint>
+struct KdTreeKNearestNeighborsFunctor {
+    static __device__ inline auto query(
+        KdTreeGPU<DataPoint>& d_kdtree,
+        int i, typename DataPoint::Scalar analysisScale
+    ) -> Ponca::KdTreeKNearestIndexQuery<Ponca::KdTreePointerTraits<DataPoint>> {
+        //! [Use KdTree.kNearestNeighbors on the GPU]
+        return d_kdtree.kNearestNeighbors(i, d_kdtree.pointCount());
+        //! [Use KdTree.kNearestNeighbors on the GPU]
     }
-}
+};
 
 /*! \brief Test a MeanPlaneFit on a plane using the CUDA kernel
  *
@@ -131,7 +100,9 @@ __host__ void testPlaneCuda(
     BuffersGPU* kdtreeBuffersDevice;
     CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(BuffersGPU)));
     BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory
-    deepCopyBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);
+    deepCopyKdTreeBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(
+        kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice
+    );
     //! [Copy KdTree on GPU]
 
     // Prepare output buffers
@@ -147,7 +118,8 @@ __host__ void testPlaneCuda(
     const     unsigned int gridSize  = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
-    fitPotentialAndGradientKernel<DataPoint, MeanFitSmooth><<<gridSize, blockSize>>>(
+    fitPotentialAndGradientKernel<KdTreeGPU<DataPoint>, MeanFitSmooth, KdTreeRangeNeighborsFunctor<DataPoint>>
+    <<<gridSize, blockSize>>>(
         kdtreeBuffersDevice, analysisScale,           // Inputs
         potentialResultsDevice, gradientResultsDevice // Outputs
     );
@@ -161,8 +133,10 @@ __host__ void testPlaneCuda(
     // Free CUDA memory
     CUDA_CHECK(cudaFree(potentialResultsDevice));
     CUDA_CHECK(cudaFree(gradientResultsDevice));
-    freeBuffersOnDevice(hostBuffersHoldingDevicePointers);
+    //! [Free KdTree from memory on GPU]
+    freeKdTreeBuffersOnDevice(hostBuffersHoldingDevicePointers);
     CUDA_CHECK(cudaFree(kdtreeBuffersDevice));
+    //! [Free KdTree from memory on GPU]
 
     // Validate results
     const auto epsilon = Scalar(0.001);

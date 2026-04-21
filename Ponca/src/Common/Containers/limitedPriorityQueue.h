@@ -8,13 +8,13 @@
 #pragma once
 
 #include <cstddef>
-#include <cassert>
 #include <array>
 #include <algorithm>
 #include <functional>
 #include <Ponca/src/Common/Containers/iteratorUtils.h>
 
 #include "../defines.h"
+#include "Ponca/src/Common/Assert.h"
 
 namespace Ponca
 {
@@ -159,22 +159,22 @@ namespace Ponca
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue() : m_comp()
     {
-        assert((m_capacity <= N));
+        PONCA_ASSERT((m_capacity <= N));
     }
 
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const Base& other)
         : m_data(other.m_data), m_comp(other.m_comp), m_size(other.m_size), m_capacity(other.m_capacity)
     {
-        assert((m_capacity <= N));
+        PONCA_ASSERT((m_capacity <= N));
     }
 
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const int capacity)
         : m_comp(), m_capacity(capacity)
     {
-        assert((capacity >= 0));
-        assert((capacity <= N));
+        PONCA_ASSERT((capacity >= 0));
+        PONCA_ASSERT((capacity <= N));
     }
 
     template <class T, int N, class Cmp>
@@ -187,8 +187,8 @@ namespace Ponca
         {
             push(*it);
         }
-        assert((capacity >= 0));
-        assert((capacity <= N));
+        PONCA_ASSERT((capacity >= 0));
+        PONCA_ASSERT((capacity <= N));
     }
 
     template <class T, int N, class Cmp>
@@ -342,8 +342,8 @@ namespace Ponca
     template <class T, int N, class Cmp>
     PONCA_MULTIARCH void LimitedPriorityQueue<T, N, Cmp>::reserve(const int capacity)
     {
-        assert(capacity >= 0);
-        assert(capacity <= N);
+        PONCA_ASSERT(capacity >= 0);
+        PONCA_ASSERT(capacity <= N);
         m_capacity = capacity;
         if (m_size > capacity)
         {

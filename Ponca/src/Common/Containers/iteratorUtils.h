@@ -27,7 +27,7 @@ namespace Ponca::internal
      *
      * \see https://en.cppreference.com/cpp/algorithm/copy_backward
      */
-    template<class ForwardIt, class T = typename std::iterator_traits<ForwardIt>::value_type, class Compare>
+    template <class ForwardIt, class T = typename std::iterator_traits<ForwardIt>::value_type, class Compare>
     PONCA_MULTIARCH ForwardIt upperBound(ForwardIt first, ForwardIt last, const T& value, Compare comp)
     {
         ForwardIt it;
@@ -36,7 +36,7 @@ namespace Ponca::internal
 
         while (count > 0)
         {
-            it = first;
+            it   = first;
             step = count / 2;
             it += step;
 
@@ -65,11 +65,11 @@ namespace Ponca::internal
      *
      * \see https://en.cppreference.com/cpp/algorithm/copy_backward
      */
-    template<class BidirIt1, class BidirIt2>
+    template <class BidirIt1, class BidirIt2>
     PONCA_MULTIARCH BidirIt2 copyBackward(BidirIt1 first, BidirIt1 last, BidirIt2 d_last)
     {
         while (first != last)
             *(--d_last) = *(--last);
         return d_last;
     }
-}
+} // namespace Ponca::internal

@@ -8,25 +8,26 @@
 
 #include "../../query.h"
 #include "../Iterator/knnGraphRangeIterator.h"
-
-#include <stack>
-#include <cassert>
-
-#include "Ponca/src/Common/Containers/hashset.h"
+#include <Ponca/src/Common/Containers/stack.h>
 
 namespace Ponca
 {
     template <typename Traits>
     class StaticKnnGraphBase;
 
-    /*!
-     * \brief Extension of the Query class that allows to read the result of a range neighbor search on the KnnGraph.
+    /*! \brief Extension of the Query class that allows to read the result of a range neighbor search on the KnnGraph.
      *
-     *  Output result of a `KnnGraph::rangeNeighbors` query request.
+     * Output result of a `KnnGraph::rangeNeighbors` query request.
      *
-     *  \see KnnGraphBase
+     * - Use `Set = BitSet<Traits::MAX_KNN_SIZE>` for the fastest search : Provides trivial insertion and search,
+     * with O(1) complexity at the expense of memory.
+     *
+     * - Use `Set = HashSet<Traits::MAX_KNN_SIZE>` for bigger data set : Best case complexity for insertion and search
+     * is O(1) and worst case is O(N) (depends on the given dataset and on the chosen hashing function).
+     *
+     * \see StaticKnnGraphBase
      */
-    template <typename Traits>
+    template <typename Traits, typename Set>
     class KnnGraphRangeQuery : public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
     {
     protected:
@@ -98,13 +99,13 @@ namespace Ponca
                 int idx_current = m_stack.top();
                 m_stack.pop();
 
-                assert((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
+                PONCA_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
 
                 iterator.m_index = idx_current;
 
                 for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
                 {
-                    assert(idx_nei >= 0);
+                    PONCA_ASSERT(idx_nei >= 0);
                     Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
                     Scalar th = QueryType::descentDistanceThreshold();
                     if ((point - points[idx_nei].pos()).squaredNorm() < QueryType::descentDistanceThreshold() &&
@@ -120,8 +121,8 @@ namespace Ponca
 
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
-        HashSet<Traits::MAX_KNN_SIZE, int> m_flag; ///< store visited ids
-        Stack<int, Traits::MAX_KNN_SIZE> m_stack;  ///< hold ids (ids range from 0 to point cloud size)
+        Set m_flag; ///< store visited ids
+        Stack<int, Traits::MAX_KNN_SIZE> m_stack; ///< hold ids (ids range from 0 to point cloud size)
     };
 
 } // namespace Ponca

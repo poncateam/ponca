@@ -36,7 +36,7 @@ namespace Ponca
     /*!
      * \brief Customizable base class for KnnGraph datastructure
      *
-     * \see Ponca::KnGraph
+     * \see Ponca::KnnGraph
      *
      * \tparam Traits Traits type providing the types and constants used by the KnnGraph. Must have the
      * same interface as the default traits type.
@@ -59,8 +59,8 @@ namespace Ponca
 
         using KNearestIndexQuery = KnnGraphKNearestQuery<Traits>;
         using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
-        friend class KnnGraphKNearestQuery<Traits>; /*!< This type must be equal to KnnGraphBase::KNearestIndexQuery*/
-        friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery   */
+        friend class KnnGraphKNearestQuery<Traits>; /*!< This type must be equal to KnnGraphBase::KNearestIndexQuery \see KnnGraphKNearestQuery */
+        friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see KnnGraphRangeQuery */
 
         /// \brief Internal structure storing all the buffers used by the KdTree
         struct Buffers
@@ -70,18 +70,21 @@ namespace Ponca
 
             size_t points_size{0};
             size_t indices_size{0};
+            int k{0};
 
             PONCA_MULTIARCH inline Buffers() = default;
 
+            PONCA_MULTIARCH inline Buffers(const int _k) : k(_k) {}
+
             PONCA_MULTIARCH inline Buffers(PointContainer _points, IndexContainer _indices, const size_t _points_size,
-                                           const size_t _indices_size)
-                : points(_points), indices(_indices), points_size(_points_size), indices_size(_indices_size)
+                                           const size_t _indices_size, const int _k)
+                : points(_points), indices(_indices), points_size(_points_size), indices_size(_indices_size), k(_k)
             {
             }
         };
 
     protected:
-        PONCA_MULTIARCH inline StaticKnnGraphBase(const int _k) : m_bufs(), m_k(_k){};
+        PONCA_MULTIARCH inline StaticKnnGraphBase(const int _k) : m_bufs(_k) {}
 
     public:
         /*! \brief Constructor that allows the use of prebuilt KnnGraph containers.
@@ -92,9 +95,8 @@ namespace Ponca
          * which is useful to transfer directly the KnnGraph to the device in CUDA.
          *
          * \param _bufs Internal buffers of the KnnGraph
-         * \param _k The k number of neighbors
          */
-        PONCA_MULTIARCH inline StaticKnnGraphBase(Buffers& _bufs, const int _k) : m_bufs(_bufs), m_k(_k) {}
+        PONCA_MULTIARCH inline StaticKnnGraphBase(Buffers& _bufs) : m_bufs(_bufs) {}
 
         // Query -------------------------------------------------------------------
     public:
@@ -164,11 +166,11 @@ namespace Ponca
         // Accessors ---------------------------------------------------------------
     public:
         /// \brief Number of neighbor per vertex
-        PONCA_MULTIARCH [[nodiscard]] inline int k() const { return m_k; }
+        PONCA_MULTIARCH [[nodiscard]] inline int k() const { return m_bufs.k; }
         /// \brief Number of vertices in the neighborhood graph
         PONCA_MULTIARCH [[nodiscard]] inline size_t size() const
         {
-            return m_bufs.indices_size / static_cast<size_t>(m_k);
+            return m_bufs.indices_size / static_cast<size_t>(m_bufs.k);
         }
         //! \brief Get the number of indices
         PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const { return (IndexType)m_bufs.indices_size; }
@@ -184,7 +186,6 @@ namespace Ponca
         // Data --------------------------------------------------------------------
     protected:          // for friends relations
         Buffers m_bufs; ///< Buffers used to store the KnnGraph
-        const int m_k;
     };
 
     template <typename Traits>
@@ -205,10 +206,11 @@ namespace Ponca
         /// \warning Stores a const reference to kdtree.point_data()
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
-        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
-            : Base(std::min(_k, _kdtree.sampleCount() - 1))
+        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6) : Base(_k)
+        // : Base({std::min(_k, _kdtree.sampleCount() - 1)})
+        // : Base(typename Base::Buffers(std::min(_k, _kdtree.sampleCount() - 1)))
         {
-            Base::m_bufs.points_size = _kdtree.points().size();
+            Base::m_bufs.points_size = _kdtree.pointCount();
             Base::m_bufs.points      = std::move(_kdtree.points());
             static_assert(std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
                           "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
@@ -226,7 +228,7 @@ namespace Ponca
                 PONCA_ASSERT(cloudSize == samplesSize);
             }
 
-            Base::m_bufs.indices_size = cloudSize * Base::m_k;
+            Base::m_bufs.indices_size = cloudSize * Base::m_bufs.k;
             Base::m_bufs.indices.resize(Base::m_bufs.indices_size, -1);
 
 #pragma omp parallel for shared(_kdtree, cloudSize) default(none)
@@ -234,9 +236,9 @@ namespace Ponca
             {
                 int j = 0;
                 for (auto n : _kdtree.kNearestNeighbors(typename KdTreeTraits::IndexType(i),
-                                                        typename KdTreeTraits::IndexType(Base::m_k)))
+                                                        typename KdTreeTraits::IndexType(Base::m_bufs.k)))
                 {
-                    Base::m_bufs.indices[i * Base::m_k + j] = n;
+                    Base::m_bufs.indices[i * Base::m_bufs.k + j] = n;
                     ++j;
                 }
             }

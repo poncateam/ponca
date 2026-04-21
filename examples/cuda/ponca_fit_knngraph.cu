@@ -24,59 +24,29 @@
 
 #include "cuda_utils.cu"
 
-/*! \brief Computes the fitting process for each point of the point cloud and returns the potential and primitive gradient result.
- *
- * \tparam DataPoint The DataPoint type.
- * \tparam Fit The Fit that will be computed by the Kernel.
- * \param buffers The buffers structure that holds the internal containers of the KdTree.
- * \param analysisScale The radius of the neighborhood.
- * \param potentialResults As an Output, the potential results of the fit for each point of the Point Cloud.
- * \param gradientResults As an Output, the primitiveGradient results of the fit for each point of the Point Cloud.
- */
-template<typename DataPoint, typename Fit>
-__global__ void fitPotentialAndGradientKernel(
-    typename KnnGraphGPU<DataPoint>::Buffers* const buffers,
-    const typename DataPoint::Scalar analysisScale,
-    typename DataPoint::Scalar* const potentialResults,
-    typename DataPoint::Scalar* const gradientResults
-) {
-    using VectorType = typename DataPoint::VectorType;
-
-    // Get global index
-    const unsigned int i = threadIdx.x + blockIdx.x * blockDim.x;
-    // Skip when not in the point cloud
-    if (i >= buffers->points_size) return;
-
-    //! [Create KdTree on the GPU]
-    KnnGraphGPU<DataPoint> knngraph(*buffers, buffers->points_size);
-    //! [Create KdTree on the GPU]
-
-    // Set up the fit
-    Fit fit;
-    VectorType pos = buffers->points[i].pos();
-    fit.setNeighborFilter({ pos, analysisScale });
-
-    //! [Use KdTree on the GPU]
-    // fit.computeWithIds(knngraph.kNearestNeighbors(i), knngraph.points());
-    fit.computeWithIds(knngraph.rangeNeighbors(i, analysisScale), knngraph.points()); // TODO : Fix this
-    //! [Use KdTree on the GPU]
-
-    // Returns NaN if not stable
-    if (! fit.isStable()) {
-        potentialResults[i] = NAN;
-        for (int d = 0; d < DataPoint::Dim; ++d) {
-            gradientResults[i*DataPoint::Dim + d] = NAN;
-        }
-        return;
+template<typename DataPoint>
+struct KnnGraphRangeFunctor {
+    static __device__ inline auto query(
+        KnnGraphGPU<DataPoint>& d_knngraph,
+        int i, typename DataPoint::Scalar analysisScale
+    ) -> Ponca::KnnGraphRangeQuery<Ponca::KnnGraphPointerTraits<DataPoint>> {
+        //! [Use KnnGraph.rangeNeighbors on the GPU]
+        return d_knngraph.rangeNeighbors(i, analysisScale);
+        //! [Use KnnGraph.rangeNeighbors on the GPU]
     }
+};
 
-    // Return the fit.potential result as an output
-    potentialResults[i]   = fit.potential(pos);
-    const VectorType grad = fit.primitiveGradient(pos);
-    for (int d = 0; d < DataPoint::Dim; ++d) {
-        gradientResults[i*DataPoint::Dim + d] = grad(d);
+template<typename DataPoint>
+struct KnnGraphKNearestFunctor {
+    static __device__ inline auto query(
+        KnnGraphGPU<DataPoint>& d_knngraph,
+        int i, typename DataPoint::Scalar analysisScale
+    ) -> Ponca::KnnGraphKNearestQuery<Ponca::KnnGraphPointerTraits<DataPoint>> {
+        //! [Use KnnGraph.kNearestNeighbors on the GPU]
+        return d_knngraph.kNearestNeighbors(i);
+        //! [Use KnnGraph.kNearestNeighbors on the GPU]
     }
-}
+};
 
 /*! \brief Test a MeanPlaneFit on a plane using the CUDA kernel
  *
@@ -117,7 +87,7 @@ __host__ void testPlaneCuda(
 
     //! [Build KnnGraph for CPU]
     Ponca::KdTreeDense<DataPoint> kdtree(points);
-    Ponca::KnnGraph<DataPoint>    knngraph(kdtree, points.size());
+    Ponca::KnnGraph<DataPoint>    knngraph(kdtree, points.size()-1);
     //! [Build KnnGraph for CPU]
 
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
@@ -126,13 +96,15 @@ __host__ void testPlaneCuda(
     const unsigned long scalarBufferSize     = nbPoints * sizeof(Scalar);
     const unsigned long vectorBufferSize     = scalarBufferSize * Dim;
 
-    //! [Copy KdTree on GPU]
+    //! [Copy KnnGraph on GPU]
     using BuffersGPU = typename KnnGraphGPU<DataPoint>::Buffers;
     BuffersGPU* knnGraphBuffersDevice;
     CUDA_CHECK(cudaMalloc(&knnGraphBuffersDevice, sizeof(BuffersGPU)));
     BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory
-    deepCopyBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>, false>(knngraph.buffers(), hostBuffersHoldingDevicePointers, knnGraphBuffersDevice);
-    //! [Copy KdTree on GPU]
+    deepCopyKnnGraphBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(
+        knngraph.buffers(), hostBuffersHoldingDevicePointers, knnGraphBuffersDevice
+    );
+    //! [Copy KnnGraph on GPU]
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
@@ -147,10 +119,12 @@ __host__ void testPlaneCuda(
     const     unsigned int gridSize  = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
-    fitPotentialAndGradientKernel<DataPoint, MeanFitSmooth><<<gridSize, blockSize>>>(
+    fitPotentialAndGradientKernel<KnnGraphGPU<DataPoint>, MeanFitSmooth, KnnGraphKNearestFunctor<DataPoint>>
+    <<<gridSize, blockSize>>>(
         knnGraphBuffersDevice, analysisScale,           // Inputs
-        potentialResultsDevice, gradientResultsDevice // Outputs
+        potentialResultsDevice, gradientResultsDevice   // Outputs
     );
+
     CUDA_CHECK(cudaGetLastError()); // Catch kernel launch errors
     CUDA_CHECK(cudaDeviceSynchronize());
 
@@ -161,8 +135,10 @@ __host__ void testPlaneCuda(
     // Free CUDA memory
     CUDA_CHECK(cudaFree(potentialResultsDevice));
     CUDA_CHECK(cudaFree(gradientResultsDevice));
-    freeBuffersOnDevice<false>(hostBuffersHoldingDevicePointers);
+    //! [Free KnnGraph from memory on GPU]
+    freeKnnGraphBuffersOnDevice(hostBuffersHoldingDevicePointers);
     CUDA_CHECK(cudaFree(knnGraphBuffersDevice));
+    //! [Free KnnGraph from memory on GPU]
 
     // Validate results
     const auto epsilon = Scalar(0.001);

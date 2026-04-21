@@ -49,20 +49,79 @@ auto testRangeNeighbors(AcceleratingStructure& structure, PointContainer& points
         g_repeat, r);
 }
 
+//! \brief Build and test a kdtree for the rangeNeighbors Query
 template <template <typename> class KdTreeType, typename P>
-inline KdTreeType<P> testKdTree(std::vector<P>& points, std::vector<int>& sample)
+KdTreeType<P> buildAndTestKdTree(std::vector<P>& points, std::vector<int>& sample, const std::string& name = "KdTree")
 {
     KdTreeType<P> kdtree = std::move(*testBuildKdTree<P, KdTreeType>(points, sample));
 
     std::chrono::milliseconds timing = testRangeNeighbors<true>(kdtree, points, sample); // Index query test
 #ifdef PRINT_TIMING
-    cout << "    Compute Time KdTree index query : " << timing.count() << "ms" << endl;
+    cout << "    Compute Time " << name << " index query : " << timing.count() << "ms" << endl;
 #endif
     timing = testRangeNeighbors<false>(kdtree, points, sample); // Position query test
 #ifdef PRINT_TIMING
-    cout << "    Compute Time KdTree position query : " << timing.count() << "ms" << endl;
+    cout << "    Compute Time " << name << " position query : " << timing.count() << "ms" << endl;
 #endif
     return kdtree;
+}
+
+//! \brief Test a kdtree with pointers for the KNearestNeighbors Query
+template <typename P, typename KdTree>
+void testStaticKdTree(KdTree& kdtree, const std::string& name = "KdTree")
+{
+    auto points = kdtree.points();
+    auto sample = kdtree.samples();
+
+    // Test the KdTree with raw memory pointers
+    using KdTreePointerStatic = StaticKdTreeBase<KdTreePointerTraits<P>>;
+    auto kdtreeBuffers        = kdtree.buffers(); // Buffer that use STL-like containers
+    // Convert previous KdTree to pointers
+    typename KdTreePointerStatic::Buffers kdtreeStaticBuffers{kdtreeBuffers.points.data(),  kdtreeBuffers.nodes.data(),
+                                                              kdtreeBuffers.indices.data(), kdtreeBuffers.points_size,
+                                                              kdtreeBuffers.nodes_size,     kdtreeBuffers.indices_size};
+    KdTreePointerStatic kdtreeStatic(kdtreeStaticBuffers);
+
+    std::chrono::milliseconds timing = testRangeNeighbors<false>(kdtreeStatic, points, sample); // Position query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " (with pointers) position query : " << timing.count() << "ms" << endl;
+#endif
+    timing = testRangeNeighbors<true>(kdtreeStatic, points, sample); // Position query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " (with pointers) index query : " << timing.count() << "ms" << endl;
+#endif
+}
+
+//! \brief Build a KnnGraph and test the KNN query with default container type and raw memory pointers
+template <typename P, typename KdTree>
+void buildAndTestKnnGraph(KdTree& kdtree, std::vector<int>& sampleDense, const std::string& name = "KnnGraph")
+{
+    auto points = kdtree.points();
+    const int k = kdtree.sampleCount() / 4;
+    // Test KnnGraph
+    KnnGraph<P> knnGraph(kdtree, k); /* We need a large graph, otherwise we might miss some points
+                                        (which is the goal of the graph: to replace full Euclidean
+                                        collection by geodesic-like region growing bounded by
+                                        the Euclidean ball). */
+    std::chrono::milliseconds timing = testRangeNeighbors<true>(knnGraph, points, sampleDense); // Index query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " index query : " << timing.count() << "ms" << endl;
+#endif
+    cout << "  (ok)" << endl;
+
+    // Test the KnnGraph with raw memory pointers
+    using KnnGraphPointerStatic = StaticKnnGraphBase<KnnGraphPointerTraits<P>>;
+    auto knngraphBuffers        = knnGraph.buffers(); // Buffer that use STL-like containers
+    // Convert previous KnnGraph to pointers
+    typename KnnGraphPointerStatic::Buffers knnGraphStaticBuffers{
+        knngraphBuffers.points.data(), knngraphBuffers.indices.data(), knngraphBuffers.points_size,
+        knngraphBuffers.indices_size, k};
+    KnnGraphPointerStatic knnGraphStatic(knnGraphStaticBuffers);
+    timing = testRangeNeighbors<true>(knnGraphStatic, points, sampleDense); // Index query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " (with pointers) index query : " << timing.count() << "ms" << endl;
+#endif
+    cout << "  (ok)" << endl;
 }
 
 template <typename Scalar, int Dim>
@@ -77,20 +136,14 @@ void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 
     //////////// Test KdTree STL-like containers
     std::vector<int> sampleDense;
-    KdTreeDense<P> kdtreeDense = testKdTree<KdTreeDense>(points, sampleDense);
+    auto kdtreeDense = buildAndTestKdTree<KdTreeDense>(points, sampleDense);
+
     std::vector<int> sampleSparse;
-    testKdTree<KdTreeSparse>(points, sampleSparse);
+    buildAndTestKdTree<KdTreeSparse>(points, sampleSparse, "KdTreeSparse");
+    testStaticKdTree<P>(kdtreeDense);
 
     ////////// Test KnnGraph
-    KnnGraph<P> knnGraph(kdtreeDense, N / 4); /* We need a large graph, otherwise we might miss some points
-                                                (which is the goal of the graph: to replace full Euclidean
-                                                collection by geodesic-like region growing bounded by
-                                                the Euclidean ball). */
-    std::chrono::milliseconds timing = testRangeNeighbors<true>(knnGraph, points, sampleDense); // Index query test
-#ifdef PRINT_TIMING
-    cout << "    Compute Time KnnGraph index query : " << timing.count() << "ms" << endl;
-#endif
-    cout << "  (ok)" << endl;
+    buildAndTestKnnGraph<P>(kdtreeDense, sampleDense);
 }
 
 int main(const int argc, char** argv)
