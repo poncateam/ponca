@@ -13,6 +13,7 @@
 
 #include "../KdTree/kdTree.h"
 
+#include <Ponca/src/Common/Assert.h>
 #include <memory>
 
 namespace Ponca
@@ -87,7 +88,7 @@ namespace Ponca
             const int cloudSize = kdtree.pointCount();
             {
                 const int samplesSize = kdtree.sampleCount();
-                eigen_assert(cloudSize == samplesSize);
+                PONCA_ASSERT(cloudSize == samplesSize);
             }
 
             m_indices.resize(cloudSize * m_k, -1);

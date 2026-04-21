@@ -18,8 +18,7 @@
 #include <vector>
 
 #include <Eigen/Geometry> // aabb
-
-#include "../../Common/Assert.h"
+#include <Ponca/src/Common/Assert.h>
 
 #include "Query/kdTreeNearestQueries.h"
 #include "Query/kdTreeKNearestQueries.h"

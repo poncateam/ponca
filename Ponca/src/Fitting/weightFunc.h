@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include <Ponca/src/Common/Assert.h>
 #include "./defines.h"
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(utility)
 
@@ -196,16 +197,14 @@ namespace Ponca
                                               const Scalar& _t           = Scalar(1.))
             : NeighborhoodFrame(_evalPos), m_t(_t)
         {
-            //\todo manage that assert on __host__ and __device__
-            // assert(_t > Scalar(0));
+            PONCA_ASSERT(_t > Scalar(0));
         }
 
         ///! \copydoc DistWeightFunc
         PONCA_MULTIARCH inline DistWeightFunc(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1.))
             : NeighborhoodFrame(_evalPoint.pos()), m_t(_t)
         {
-            //\todo manage that assert on __host__ and __device__
-            // assert(_t > Scalar(0));
+            PONCA_ASSERT(_t > Scalar(0));
         }
 
         /*!
