@@ -61,7 +61,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #pragma once
 
-#include <Ponca/src/Common/Assert.h>
+#include "../Common/Assert.h"
 #include <Eigen/Dense>
 
 namespace Ponca::internal

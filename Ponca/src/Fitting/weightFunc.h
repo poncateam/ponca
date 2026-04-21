@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <Ponca/src/Common/Assert.h>
+#include "../Common/Assert.h"
 #include "./defines.h"
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(utility)
 

@@ -12,8 +12,8 @@
 #include "Query/knnGraphRangeQuery.h"
 
 #include "../KdTree/kdTree.h"
+#include "../../Common/Assert.h"
 
-#include <Ponca/src/Common/Assert.h>
 #include <memory>
 
 namespace Ponca
