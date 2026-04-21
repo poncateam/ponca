@@ -14,7 +14,7 @@
 #define PONCA_XSTR(S) #S
 #define PONCA_STR(S) PONCA_XSTR(S)
 
-#ifdef __CUDACC__
+#ifdef __CUDA_ARCH__
 #    define PONCA_ABORT asm("trap;");
 #elif defined(_MSC_VER)
 #    define PONCA_ABORT __debugbreak();
@@ -30,7 +30,7 @@
     PONCA_ABORT       \
     PONCA_MACRO_END
 
-#ifdef __CUDACC__
+#ifdef __CUDA_ARCH__
 #    define PONCA_PRINT_ERROR(MSG)                              \
         PONCA_MACRO_START                                       \
         printf("%s:%i: [Error] %s\n", __FILE__, __LINE__, MSG); \
