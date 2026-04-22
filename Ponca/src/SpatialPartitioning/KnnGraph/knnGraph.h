@@ -59,8 +59,10 @@ namespace Ponca
 
         using KNearestIndexQuery = KnnGraphKNearestQuery<Traits>;
         using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
-        friend class KnnGraphKNearestQuery<Traits>; /*!< This type must be equal to KnnGraphBase::KNearestIndexQuery \see KnnGraphKNearestQuery */
-        friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see KnnGraphRangeQuery */
+        friend class KnnGraphKNearestQuery<Traits>; /*!< This type must be equal to KnnGraphBase::KNearestIndexQuery
+                                                       \see KnnGraphKNearestQuery */
+        friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see
+                                                       KnnGraphRangeQuery */
 
         /// \brief Internal structure storing all the buffers used by the KdTree
         struct Buffers
