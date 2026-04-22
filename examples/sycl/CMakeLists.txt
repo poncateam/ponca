@@ -2,7 +2,7 @@ project(Ponca_Examples_sycle LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(AdaptiveCpp CONFIG OPTIONAL)
+find_package(AdaptiveCpp OPTIONAL)
 
 if(AdaptiveCpp_FOUND)
     message(STATUS "Compiling Sycl examples")
