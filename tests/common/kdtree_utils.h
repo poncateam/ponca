@@ -222,7 +222,8 @@ void generateData(std::vector<DataPoint>& points)
  * If the KdTree supports subsampling, it will build a kdtree for half the points
  * to test the subsampling.
  *
- * \tparam KdTree The KdTree type
+ * \tparam DataPoint The Point data type
+ * \tparam KdTree The KdTree type templated over the DataPoint (e.g. \ref KdTreeDense or \ref KdTreeSparse)
  * \param points The vector of points
  * \param sampling An empty integer vector, to output the sampled points
  * \return A unique pointer to the KdTree instance
@@ -327,3 +328,4 @@ std::chrono::milliseconds testQuery(PointContainer& points, MutableQueryFunctor 
     }
     return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - time);
 }
+
