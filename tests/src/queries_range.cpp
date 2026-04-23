@@ -97,7 +97,7 @@ template <typename P, typename KdTree>
 void buildAndTestKnnGraph(KdTree& kdtree, std::vector<int>& sampleDense, const std::string& name = "KnnGraph")
 {
     auto points = kdtree.points();
-    const int k = kdtree.sampleCount() / 4;
+    const int k = std::min(100, kdtree.pointCount() / 4);
     // Test KnnGraph
     KnnGraph<P> knnGraph(kdtree, k); /* We need a large graph, otherwise we might miss some points
                                         (which is the goal of the graph: to replace full Euclidean

@@ -65,7 +65,7 @@ namespace Ponca
 
     private:
         static constexpr T EMPTY = T(-1);
-        T m_data[N]               = {};
+        T m_data[N]              = {};
 
         //! \brief The hashing function : (x * 2654435761u) % N
         PONCA_MULTIARCH [[nodiscard]] static int hash(const int x)

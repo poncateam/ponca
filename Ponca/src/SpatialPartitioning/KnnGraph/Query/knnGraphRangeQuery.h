@@ -121,7 +121,7 @@ namespace Ponca
 
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
-        Set m_flag;                               ///< store visited ids
+        Set m_flag;                                           ///< store visited ids
         Stack<int, Traits::MAX_RANGE_NEIGHBORS_SIZE> m_stack; ///< hold ids (ids range from 0 to point cloud size)
     };
 

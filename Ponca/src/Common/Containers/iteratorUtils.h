@@ -27,7 +27,7 @@ namespace Ponca::internal
      *
      * \see https://en.cppreference.com/cpp/algorithm/fill
      */
-    template<class ForwardIt, class T = typename std::iterator_traits<ForwardIt>::value_type>
+    template <class ForwardIt, class T = typename std::iterator_traits<ForwardIt>::value_type>
     void fill(ForwardIt first, ForwardIt last, const T& value)
     {
 #ifdef __CUDA_ARCH__
