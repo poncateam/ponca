@@ -19,7 +19,7 @@ namespace Ponca
     {
         enum
         {
-            MAX_KNN_SIZE = 10000 //!< The maximum size of a knn query
+            MAX_KNN_SIZE = 128 //!< The maximum size of a knn query
         };
         /*!
          * \brief The type used to store point data.
@@ -58,7 +58,7 @@ namespace Ponca
     {
         enum
         {
-            MAX_KNN_SIZE = 10000 //!< The maximum size of a knn query
+            MAX_KNN_SIZE = 128 //!< The maximum size of a knn query
         };
         /*!
          * \brief The type used to store point data.

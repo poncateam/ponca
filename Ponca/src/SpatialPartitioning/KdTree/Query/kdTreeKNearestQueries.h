@@ -30,7 +30,7 @@ namespace Ponca
         using VectorType     = typename DataPoint::VectorType;
         using QueryAccelType = KdTreeQuery<Traits>;
         using Iterator = IteratorType<typename Traits::IndexType, typename Traits::DataPoint, Traits::MAX_KNN_SIZE>;
-        using Base     = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
+        using Self     = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
 
         PONCA_MULTIARCH inline KdTreeKNearestQueryBase(const StaticKdTreeBase<Traits>* kdtree, IndexType k,
                                                        typename QueryType::InputType input)
@@ -39,14 +39,14 @@ namespace Ponca
         }
 
         /// \brief Call the k-nearest neighbors query with new input and neighbor number parameters.
-        PONCA_MULTIARCH inline Base& operator()(typename QueryType::InputType input, IndexType k)
+        PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input, IndexType k)
         {
-            return QueryType::template operator()<Base>(input, k);
+            return QueryType::template operator()<Self>(input, k);
         }
         /// \brief Call the k-nearest neighbors query with new input parameter.
-        PONCA_MULTIARCH inline Base& operator()(typename QueryType::InputType input)
+        PONCA_MULTIARCH inline Self& operator()(typename QueryType::InputType input)
         {
-            return QueryType::template operator()<Base>(input);
+            return QueryType::template operator()<Self>(input);
         }
 
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.

@@ -92,19 +92,19 @@ namespace Ponca
         using compare        = CompareT;
         using iterator       = typename container_type::iterator;
         using const_iterator = typename container_type::const_iterator;
-        using Base           = LimitedPriorityQueue<T, N, CompareT>;
+        using Self           = LimitedPriorityQueue<T, N, CompareT>;
 
         // LimitedPriorityQueue --------------------------------------------------
     public:
         PONCA_MULTIARCH inline LimitedPriorityQueue();
-        PONCA_MULTIARCH inline LimitedPriorityQueue(const Base& other);
+        PONCA_MULTIARCH inline LimitedPriorityQueue(const Self& other);
         PONCA_MULTIARCH inline explicit LimitedPriorityQueue(int capacity);
         template <class InputIt>
         PONCA_MULTIARCH inline LimitedPriorityQueue(int capacity, InputIt first, InputIt last);
 
         PONCA_MULTIARCH inline ~LimitedPriorityQueue();
 
-        PONCA_MULTIARCH inline LimitedPriorityQueue& operator=(const Base& other);
+        PONCA_MULTIARCH inline LimitedPriorityQueue& operator=(const Self& other);
 
         // Iterator ----------------------------------------------------------------
     public:
@@ -163,7 +163,7 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
-    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const Base& other)
+    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const Self& other)
         : m_data(other.m_data), m_comp(other.m_comp), m_size(other.m_size), m_capacity(other.m_capacity)
     {
         PONCA_ASSERT((m_capacity <= N));
@@ -195,7 +195,7 @@ namespace Ponca
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::~LimitedPriorityQueue() = default;
 
     template <class T, int N, class Cmp>
-    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>& LimitedPriorityQueue<T, N, Cmp>::operator=(const Base& other) =
+    PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>& LimitedPriorityQueue<T, N, Cmp>::operator=(const Self& other) =
         default;
 
     // Iterator --------------------------------------------------------------------

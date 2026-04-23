@@ -64,12 +64,12 @@ namespace Ponca
 
     private:
         static constexpr T EMPTY = T(-1);
-        T table[N]               = {};
+        T m_data[N]               = {};
 
         //! \brief The hashing function : (x * 2654435761u) % N
         PONCA_MULTIARCH [[nodiscard]] static int hash(const int x)
         {
-            PONCA_ASSERT_MSG(x >= 0 && x < N, "Index is outside the scope of the HashSet");
+            PONCA_ASSERT_MSG(x >= 0, "Index must be positive HashSet");
             return (x * 2654435761u) % N;
         }
     };
@@ -77,8 +77,12 @@ namespace Ponca
     template <int N, typename T>
     PONCA_MULTIARCH void HashSet<N, T>::clear()
     {
+#ifdef __CUDA_ARCH__
         for (int i = 0; i < N; i++)
-            table[i] = EMPTY;
+            m_data[i] = EMPTY;
+#else
+        std::fill(m_data, m_data + N, T(0));
+#endif
     }
 
     template <int N, typename T>
@@ -90,7 +94,7 @@ namespace Ponca
         for (int i = 0; i < N; ++i)
         {
             const int idx = (h + i) % N;
-            T& slot       = table[idx]; // Get the address
+            T& slot       = m_data[idx]; // Get the address
 
             // Stores here if the address is empty
             if (slot == EMPTY)
@@ -118,7 +122,7 @@ namespace Ponca
         for (int i = 0; i < N; ++i)
         {
             const int idx = (h + i) % N;
-            T& slot       = table[idx]; // Get the address
+            T& slot       = m_data[idx]; // Get the address
 
             // Stops the search here if the address is empty
             if (slot == EMPTY)

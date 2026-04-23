@@ -87,10 +87,14 @@ namespace Ponca
     template <int N, typename T>
     PONCA_MULTIARCH void BitSet<N, T>::clear()
     {
+#ifdef __CUDA_ARCH__
         for (int i = 0; i < ARRAY_SIZE; i++)
         {
             m_data[i] = T(0);
         }
+#else
+        std::fill(m_data, m_data + ARRAY_SIZE, T(0));
+#endif
     }
 
     template <int N, typename T>

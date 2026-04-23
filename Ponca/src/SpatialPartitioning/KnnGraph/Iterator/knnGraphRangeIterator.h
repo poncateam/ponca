@@ -7,7 +7,6 @@
 #pragma once
 
 #include <cstddef>
-#include "Ponca/src/Common/Containers/bitset.h"
 #include <Ponca/src/Common/Containers/hashset.h>
 
 namespace Ponca
@@ -19,7 +18,7 @@ namespace Ponca
      * - Use `Set = HashSet<Traits::MAX_KNN_SIZE>` for bigger data set : Best case complexity for insertion and search
      * is O(1) and worst case is O(N) (depends on the given dataset and on the chosen hashing function).
      */
-    template <typename Traits, typename Set = BitSet<Traits::MAX_KNN_SIZE>>
+    template <typename Traits, typename Set = HashSet<Traits::MAX_KNN_SIZE>>
     class KnnGraphRangeQuery;
 
     /*!
