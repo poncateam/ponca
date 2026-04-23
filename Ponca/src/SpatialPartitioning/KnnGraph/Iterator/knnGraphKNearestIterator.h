@@ -36,8 +36,6 @@ namespace Ponca
         using pointer           = Index*;
         using reference         = const Index&;
 
-        // PONCA_MULTIARCH KnnGraphKNearestIterator() = default;
-
         PONCA_MULTIARCH KnnGraphKNearestIterator(const Container* data, Index i) : m_data(data), m_i(i) {}
 
         /// \brief Inequality operand

@@ -8,7 +8,7 @@
 
 #include "../../query.h"
 #include "../Iterator/knnGraphRangeIterator.h"
-#include <Ponca/src/Common/Containers/stack.h>
+#include "../../../Common/Containers/stack.h"
 
 namespace Ponca
 {
@@ -19,11 +19,11 @@ namespace Ponca
      *
      * Output result of a `KnnGraph::rangeNeighbors` query request.
      *
-     * - Use `Set = BitSet<Traits::MAX_KNN_SIZE>` for the fastest search : Provides trivial insertion and search,
+     * - Use `Set = BitSet<MAX_NUMBER_OF_POINTS>` for the fastest search : Provides trivial insertion and search,
      * with O(1) complexity at the expense of memory.
      *
-     * - Use `Set = HashSet<Traits::MAX_KNN_SIZE>` for bigger data set : Best case complexity for insertion and search
-     * is O(1) and worst case is O(N) (depends on the given dataset and on the chosen hashing function).
+     * - Use `Set = HashSet<Traits::MAX_RANGE_NEIGHBORS_SIZE>` for bigger data set : Best case complexity for insertion
+     * and search is O(1) and worst case is O(N) (depends on the given dataset and on the chosen hashing function).
      *
      * \see StaticKnnGraphBase
      */
@@ -122,7 +122,7 @@ namespace Ponca
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
         Set m_flag;                               ///< store visited ids
-        Stack<int, Traits::MAX_KNN_SIZE> m_stack; ///< hold ids (ids range from 0 to point cloud size)
+        Stack<int, Traits::MAX_RANGE_NEIGHBORS_SIZE> m_stack; ///< hold ids (ids range from 0 to point cloud size)
     };
 
 } // namespace Ponca

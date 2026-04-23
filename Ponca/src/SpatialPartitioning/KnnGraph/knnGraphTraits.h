@@ -19,7 +19,7 @@ namespace Ponca
     {
         enum
         {
-            MAX_KNN_SIZE = 128 //!< The maximum size of a knn query
+            MAX_RANGE_NEIGHBORS_SIZE = 128 //!< The maximum number of neighbors in a range neighbors query
         };
         /*!
          * \brief The type used to store point data.
@@ -58,7 +58,7 @@ namespace Ponca
     {
         enum
         {
-            MAX_KNN_SIZE = 128 //!< The maximum size of a knn query
+            MAX_RANGE_NEIGHBORS_SIZE = 128 //!< The maximum number of neighbors in a range neighbors query
         };
         /*!
          * \brief The type used to store point data.

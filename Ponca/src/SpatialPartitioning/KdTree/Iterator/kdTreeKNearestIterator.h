@@ -7,6 +7,7 @@
 #pragma once
 
 #include "../../indexSquaredDistance.h"
+#include "../../../Common/Containers/limitedPriorityQueue.h"
 #include <cstddef>
 
 namespace Ponca

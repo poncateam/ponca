@@ -11,10 +11,10 @@
 #include <array>
 #include <algorithm>
 #include <functional>
-#include <Ponca/src/Common/Containers/iteratorUtils.h>
 
 #include "../defines.h"
-#include "Ponca/src/Common/Assert.h"
+#include "./iteratorUtils.h"
+#include "../Assert.h"
 
 namespace Ponca
 {
