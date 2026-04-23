@@ -8,6 +8,7 @@
 #pragma once
 
 #include "../defines.h"
+#include "./iteratorUtils.h"
 
 namespace Ponca
 {
@@ -77,12 +78,7 @@ namespace Ponca
     template <int N, typename T>
     PONCA_MULTIARCH void HashSet<N, T>::clear()
     {
-#ifdef __CUDA_ARCH__
-        for (int i = 0; i < N; i++)
-            m_data[i] = EMPTY;
-#else
-        std::fill(m_data, m_data + N, T(0));
-#endif
+        Ponca::internal::fill(m_data, m_data + N, EMPTY);
     }
 
     template <int N, typename T>

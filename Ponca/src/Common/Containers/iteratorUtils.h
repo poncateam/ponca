@@ -11,9 +11,33 @@
 #pragma once
 
 #include "../defines.h"
+#include <algorithm>
 
 namespace Ponca::internal
 {
+    /*! \brief Assigns the given value to all elements in the range [first, last).
+     *
+     * \note If value is not writable to first, the program is ill-formed.
+     *
+     * \tparam ForwardIt ForwardIt must meet the requirements of LegacyForwardIterator
+     * \tparam T The type of the value to be assigned
+     * \param first Iterator defining the beginning of the range of elements to modify
+     * \param last Iterator defining the end of the range of elements to modify
+     * \param value the value to be assigned
+     *
+     * \see https://en.cppreference.com/cpp/algorithm/fill
+     */
+    template<class ForwardIt, class T = typename std::iterator_traits<ForwardIt>::value_type>
+    void fill(ForwardIt first, ForwardIt last, const T& value)
+    {
+#ifdef __CUDA_ARCH__
+        for (; first != last; ++first)
+            *first = value;
+#else
+        std::fill(first, last, value);
+#endif
+    }
+
     /*! \brief Searches for the first element in the partitioned range [first, last) which is ordered after value.
      *
      * \tparam ForwardIt Must meet the requirements of LegacyForwardIterator
@@ -30,6 +54,7 @@ namespace Ponca::internal
     template <class ForwardIt, class T = typename std::iterator_traits<ForwardIt>::value_type, class Compare>
     PONCA_MULTIARCH ForwardIt upperBound(ForwardIt first, ForwardIt last, const T& value, Compare comp)
     {
+#ifdef __CUDA_ARCH__
         ForwardIt it;
         typename std::iterator_traits<ForwardIt>::difference_type count, step;
         count = last - first;
@@ -50,6 +75,9 @@ namespace Ponca::internal
         }
 
         return first;
+#else
+        return std::upper_bound(first, last, value, comp);
+#endif
     }
 
     /*! \brief Copies the elements from the range [first, last) to another range ending at d_last. The elements are
@@ -60,7 +88,7 @@ namespace Ponca::internal
      * \tparam BidirIt1 must meet the requirements of LegacyBidirectionalIterator
      * \tparam BidirIt2 must meet the requirements of LegacyBidirectionalIterator
      * \param first Iterator defining the beginning of the range of elements to copy from (the source)
-     * \param first Iterator defining the end of the range of elements to copy from (the source)
+     * \param last Iterator defining the end of the range of elements to copy from (the source)
      * \param d_last The end of the destination range
      *
      * \see https://en.cppreference.com/cpp/algorithm/copy_backward
@@ -68,8 +96,12 @@ namespace Ponca::internal
     template <class BidirIt1, class BidirIt2>
     PONCA_MULTIARCH BidirIt2 copyBackward(BidirIt1 first, BidirIt1 last, BidirIt2 d_last)
     {
+#ifdef __CUDA_ARCH__
         while (first != last)
             *(--d_last) = *(--last);
         return d_last;
+#else
+        return std::copy_backward(first, last, d_last);
+#endif
     }
 } // namespace Ponca::internal
