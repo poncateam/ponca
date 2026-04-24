@@ -7,8 +7,18 @@
 
 #ifdef _PONCA_COMPILE_DEFINITION
 #    define _PRECOMPILED_PONCA_EXTERN
+#    if defined(_MSC_VER)
+#        define _PONCA_EXPORT __declspec(dllexport)
+#    else
+#        define _PONCA_EXPORT
+#    endif
 #else
 #    define _PRECOMPILED_PONCA_EXTERN extern
+#    if defined(_MSC_VER)
+#        define _PONCA_EXPORT __declspec(dllimport)
+#    else
+#        define _PONCA_EXPORT
+#    endif
 #endif
 
 #include "../../Ponca"
@@ -17,8 +27,8 @@ namespace Ponca
 {
 // Note: Variadic macros here because ',' in template definition are parsed as different arguments
 // we could use a trick by wrapping the class in parenthesis, but for now this works and is simpler.
-#define _PONCA_BASKET_X(name, desc, ...) _PRECOMPILED_PONCA_EXTERN template class __VA_ARGS__;
-#define _PONCA_BASKET_DIFF_X(name, desc, ...) _PRECOMPILED_PONCA_EXTERN template class __VA_ARGS__;
+#define _PONCA_BASKET_X(name, desc, ...) _PRECOMPILED_PONCA_EXTERN template class _PONCA_EXPORT __VA_ARGS__;
+#define _PONCA_BASKET_DIFF_X(name, desc, ...) _PRECOMPILED_PONCA_EXTERN template class _PONCA_EXPORT __VA_ARGS__;
 #include "instantiate.h"
 #undef _PONCA_BASKET_X
 #undef _PONCA_BASKET_DIFF_X
