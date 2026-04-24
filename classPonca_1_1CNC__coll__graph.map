@@ -1,27 +1,31 @@
 <map id="Ponca::CNC&lt; P, _method &gt;" name="Ponca::CNC&lt; P, _method &gt;">
-<area shape="rect" id="Node000001" title="Corrected Normal Current Fit type." alt="" coords="270,1144,462,1689"/>
-<area shape="rect" id="Node000002" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="58,941,221,1081"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,1092,272,1243,268,1246,182,1095"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1NeighborFilterStoreNormal.html" title=" " alt="" coords="245,944,487,1079"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="369,1079,369,1127,363,1127,363,1079"/>
-<area shape="rect" id="Node000004" href="$structPonca_1_1NoWeightFunc.html" title="Weighting function that set uniform weight to all samples, but transform neighbors coordinates to loc..." alt="" coords="61,764,215,844"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="193,852,294,942,290,946,190,856"/>
-<area shape="rect" id="Node000005" href="$classPonca_1_1internal_1_1NoWeightFuncBase.html" title=" " alt="" coords="24,447,252,681"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="141,695,141,764,135,764,135,695"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,212,228,292"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="123,306,133,446,127,447,118,306"/>
-<area shape="rect" id="Node000007" href="$classPonca_1_1internal_1_1NoWeightFuncBase.html" title="Weighting function that set uniform weight to all samples." alt="" coords="251,135,513,369"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="284,382,232,448,228,445,280,378"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="305,5,459,85"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="385,99,385,135,379,135,379,99"/>
-<area shape="rect" id="Node000009" href="$classPonca_1_1NeighborFilterStoreNormal.html" title="This class extends a NeighborFilter class to also store the normal of the evaluation point,..." alt="" coords="239,744,495,864"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="370,878,369,944,364,944,364,878"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="314,531,421,597"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="370,610,370,744,365,744,365,610"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="513,964,651,1059"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="560,1060,472,1223,467,1221,555,1058"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="521,771,643,837"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="585,850,585,964,579,964,579,850"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="571,531,593,597"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="585,597,585,755,579,755,579,597"/>
+<area shape="rect" id="Node000001" title="Corrected Normal Current Fit type." alt="" coords="420,1319,612,1864"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="204,1111,367,1251"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="333,1262,422,1419,418,1422,329,1265"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1NeighborFilterStoreNormal.html" title=" " alt="" coords="391,1107,641,1256"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="519,1256,519,1302,513,1302,513,1256"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1DistWeightFunc.html" title=" " alt="" coords="141,740,345,1015"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="356,999,451,1105,447,1108,352,1003"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html" title="NeighborhoodFrame that express 3d points relatively to a prescribed center." alt="" coords="5,130,245,310"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="105,324,95,399,89,485,93,575,99,619,109,662,124,701,143,739,138,742,119,703,104,663,94,620,87,575,84,485,89,399,100,323"/>
+<area shape="rect" id="Node000009" href="$classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position." alt="" coords="119,383,321,663"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="160,322,179,381,174,383,155,324"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1ConstantWeightKernel.html" title=" " alt="" coords="345,423,551,623"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="448,623,438,671,420,717,392,758,359,794,355,790,388,755,415,715,433,670,442,622"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="310,5,525,71"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="420,84,429,320,439,422,433,423,424,320,415,85"/>
+<area shape="rect" id="Node000008" href="$classPonca_1_1ConstantWeightKernel.html" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="439,120,644,320"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="449,81,475,118,471,121,445,84"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="509,334,481,423,476,422,504,332"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="223,676,225,716,227,740,222,740,220,716,218,677"/>
+<area shape="rect" id="Node000010" href="$classPonca_1_1NeighborFilterStoreNormal.html" title="This class extends a NeighborFilter class to also store the normal of the evaluation point,..." alt="" coords="415,817,671,937"/>
+<area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="539,951,531,1039,525,1107,519,1106,525,1038,533,951"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="575,490,681,555"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="620,570,559,818,554,817,615,568"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="689,1134,826,1229"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="732,1230,623,1415,618,1412,728,1228"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="718,845,839,910"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="778,924,763,1134,758,1133,773,924"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="767,490,790,555"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="781,556,781,828,776,828,776,556"/>
 </map>

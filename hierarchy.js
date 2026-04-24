@@ -9,12 +9,13 @@ var hierarchy =
     [ "Ponca::StaticKdTreeBase< Traits >::Buffers", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html", null ],
     [ "internal::CenteredNeighborhoodFrame", null, [
       [ "Ponca::internal::NoWeightFuncBase< DataPoint, internal::CenteredNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", [
-        [ "Ponca::NoWeightFunc< DataPoint >", "structPonca_1_1NoWeightFunc.html", [
-          [ "Ponca::NeighborFilterStoreNormal< DataPoint, NoWeightFunc< DataPoint > >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
-        ] ]
+        [ "Ponca::NoWeightFunc< DataPoint >", "structPonca_1_1NoWeightFunc.html", null ]
       ] ]
     ] ],
     [ "Ponca::internal::CenteredNeighborhoodFrame< DataPoint >", "classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html", [
+      [ "Ponca::DistWeightFunc< DataPoint, ConstantWeightKernel< Scalar > >", "classPonca_1_1DistWeightFunc.html", [
+        [ "Ponca::NeighborFilterStoreNormal< DataPoint, DistWeightFunc< DataPoint, ConstantWeightKernel< Scalar > > >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
+      ] ],
       [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ]
     ] ],
     [ "Ponca::internal::CNCEigen< DataPoint >", "structPonca_1_1internal_1_1CNCEigen.html", null ],
@@ -272,6 +273,7 @@ var hierarchy =
       [ "Ponca::BasketComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... >, internal::BasketDiffAggregate< BasketType, Type, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
     [ "Concept::WeightKernelConcept", null, [
+      [ "Ponca::ConstantWeightKernel< Scalar >", "classPonca_1_1ConstantWeightKernel.html", null ],
       [ "Ponca::CompactExpWeightKernel< _Scalar >", "classPonca_1_1CompactExpWeightKernel.html", null ],
       [ "Ponca::ConstantWeightKernel< _Scalar >", "classPonca_1_1ConstantWeightKernel.html", null ],
       [ "Ponca::GaussianWeightKernel< _Scalar >", "classPonca_1_1GaussianWeightKernel.html", null ],

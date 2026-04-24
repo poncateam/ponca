@@ -4,7 +4,7 @@ var searchData=
   ['nearestneighborindexquery_1',['nearestNeighborIndexQuery',['../classPonca_1_1StaticKdTreeBase.html#af31160bafac28e57d970fcba57a79692',1,'Ponca::StaticKdTreeBase']]],
   ['nearestneighborquery_2',['nearestNeighborQuery',['../classPonca_1_1StaticKdTreeBase.html#afe7464d1a84882c13af85311adc002a4',1,'Ponca::StaticKdTreeBase']]],
   ['needanotherpass_3',['needAnotherPass',['../classPonca_1_1PrimitiveBase.html#afbd24bb6c8775af7b84d59e2fbb550be',1,'Ponca::PrimitiveBase']]],
-  ['neighborfilterstorenormal_4',['NeighborFilterStoreNormal',['../classPonca_1_1NeighborFilterStoreNormal.html#acd3397eb6b1429c14d05ca622b80cd42',1,'Ponca::NeighborFilterStoreNormal']]],
+  ['neighborfilterstorenormal_4',['NeighborFilterStoreNormal',['../classPonca_1_1NeighborFilterStoreNormal.html#ab9de8e27e3514411d24328207116a878',1,'Ponca::NeighborFilterStoreNormal']]],
   ['nodecount_5',['nodeCount',['../classPonca_1_1StaticKdTreeBase.html#aba18f54849f7d9f20c984c296cc5994b',1,'Ponca::StaticKdTreeBase']]],
   ['nodes_6',['nodes',['../classPonca_1_1StaticKdTreeBase.html#a30008fc02951aa7b6258768c84d7a582',1,'Ponca::StaticKdTreeBase']]],
   ['normal_7',['normal',['../classPonca_1_1PointPositionNormal.html#ac08ababe88dce063932069921b63f0db',1,'Ponca::PointPositionNormal::normal() const'],['../classPonca_1_1PointPositionNormal.html#a2a3a783a717adc9b8af5adf90ea9d481',1,'Ponca::PointPositionNormal::normal()'],['../classPonca_1_1PointPositionNormalBinding.html#a2673248a8401fa7e362e684f27d54310',1,'Ponca::PointPositionNormalBinding::normal()'],['../classPonca_1_1PointPositionNormalLazyBinding.html#af33dcab8c3aa39100395a61628bf80ee',1,'Ponca::PointPositionNormalLazyBinding::normal()']]],

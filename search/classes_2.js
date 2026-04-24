@@ -10,12 +10,13 @@ var searchData=
   ['computeobject_3c_20basketdiff_3c_20baskettype_2c_20type_2c_20ext0_2c_20exts_2e_2e_2e_20_3e_20_3e_7',['ComputeObject&lt; BasketDiff&lt; BasketType, Type, Ext0, Exts... &gt; &gt;',['../structPonca_1_1ComputeObject.html',1,'Ponca']]],
   ['computeobject_3c_20cnc_3c_20p_2c_20uniformgeneration_20_3e_20_3e_8',['ComputeObject&lt; CNC&lt; P, UniformGeneration &gt; &gt;',['../structPonca_1_1ComputeObject.html',1,'Ponca']]],
   ['constantweightkernel_9',['ConstantWeightKernel',['../classPonca_1_1ConstantWeightKernel.html',1,'Ponca']]],
-  ['covariancefitbase_10',['CovarianceFitBase',['../classPonca_1_1CovarianceFitBase.html',1,'Ponca']]],
-  ['covariancefitder_11',['CovarianceFitDer',['../classPonca_1_1CovarianceFitDer.html',1,'Ponca']]],
-  ['covariancelinefitimpl_12',['CovarianceLineFitImpl',['../classPonca_1_1CovarianceLineFitImpl.html',1,'Ponca']]],
-  ['covarianceplanederimpl_13',['CovariancePlaneDerImpl',['../classPonca_1_1CovariancePlaneDerImpl.html',1,'Ponca']]],
-  ['covarianceplanefitimpl_14',['CovariancePlaneFitImpl',['../classPonca_1_1CovariancePlaneFitImpl.html',1,'Ponca']]],
-  ['curvatureestimator_15',['CurvatureEstimator',['../classPonca_1_1CurvatureEstimator.html',1,'Ponca']]],
-  ['curvatureestimatorbase_16',['CurvatureEstimatorBase',['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html',1,'Ponca::internal']]],
-  ['curvatureestimatorder_17',['CurvatureEstimatorDer',['../classPonca_1_1CurvatureEstimatorDer.html',1,'Ponca']]]
+  ['constantweightkernel_3c_20scalar_20_3e_10',['ConstantWeightKernel&lt; Scalar &gt;',['../classPonca_1_1ConstantWeightKernel.html',1,'Ponca']]],
+  ['covariancefitbase_11',['CovarianceFitBase',['../classPonca_1_1CovarianceFitBase.html',1,'Ponca']]],
+  ['covariancefitder_12',['CovarianceFitDer',['../classPonca_1_1CovarianceFitDer.html',1,'Ponca']]],
+  ['covariancelinefitimpl_13',['CovarianceLineFitImpl',['../classPonca_1_1CovarianceLineFitImpl.html',1,'Ponca']]],
+  ['covarianceplanederimpl_14',['CovariancePlaneDerImpl',['../classPonca_1_1CovariancePlaneDerImpl.html',1,'Ponca']]],
+  ['covarianceplanefitimpl_15',['CovariancePlaneFitImpl',['../classPonca_1_1CovariancePlaneFitImpl.html',1,'Ponca']]],
+  ['curvatureestimator_16',['CurvatureEstimator',['../classPonca_1_1CurvatureEstimator.html',1,'Ponca']]],
+  ['curvatureestimatorbase_17',['CurvatureEstimatorBase',['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html',1,'Ponca::internal']]],
+  ['curvatureestimatorder_18',['CurvatureEstimatorDer',['../classPonca_1_1CurvatureEstimatorDer.html',1,'Ponca']]]
 ];

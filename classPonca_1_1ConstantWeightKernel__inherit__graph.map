@@ -1,5 +1,7 @@
 <map id="Ponca::ConstantWeightKernel&lt; _Scalar &gt;" name="Ponca::ConstantWeightKernel&lt; _Scalar &gt;">
-<area shape="rect" id="Node000001" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="10,119,215,319"/>
+<area shape="rect" id="Node000001" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="10,120,215,320"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1ConstantWeightKernel.html" title=" " alt="" coords="10,383,215,583"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,334,115,383,110,383,110,334"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,220,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,84,115,119,110,119,110,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,85,115,120,110,120,110,85"/>
 </map>
