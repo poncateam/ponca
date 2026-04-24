@@ -36,14 +36,19 @@ target_sources(Precompiled PUBLIC
 target_precompile_headers(Precompiled PUBLIC
     "$<BUILD_INTERFACE:${ponca_Precompiled_PRECOMPILED}>"
     )
-    
+
 target_link_libraries(Precompiled PUBLIC Eigen3::Eigen)
 target_compile_definitions(Precompiled PRIVATE _PONCA_COMPILE_DEFINITION)
+
 
 # Instantiation options
 option(PONCA_INSTANTIATE_ALL "Instantiate everything defined in Ponca/Precompiled. This options takes priority over all other options for instantiation." ON)
 if (${PONCA_INSTANTIATE_ALL})
     target_compile_definitions(Precompiled PUBLIC _PONCA_INSTANTIATE_ALL)
+    # MSVC complains when too much symbols are within a library... 
+    target_compile_options(Precompiled PRIVATE
+        $<$<CXX_COMPILER_ID:MSVC>:/bigobj>
+    )    
 endif()
 
 set(ponca_Precompiled_OPTIONS
