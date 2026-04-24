@@ -13,6 +13,7 @@ This release will introduce a refactoring of the requirement library using cpp20
     - [fitting] Fix warnings introduced when bumping to cxx20 (#303)
     - [spatialPartitioning] Fix regression introduced by the CUDA kdtree update (#306)
     - [common] Fix PONCA_ASSERT macro on MSVC and clang (#309)
+    - [common] Adapt PONCA_ASSERT macro to CUDA (#311)
 
 - Cmake
     - [all] Eigen is now always for transitive linking (#302)

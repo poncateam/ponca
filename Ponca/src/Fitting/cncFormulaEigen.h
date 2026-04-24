@@ -61,6 +61,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #pragma once
 
+#include "../Common/Assert.h"
 #include <Eigen/Dense>
 
 namespace Ponca::internal
@@ -310,8 +311,8 @@ namespace Ponca::internal
 
             // SelfAdjointEigenSolver returns sorted eigenvalues, no
             // need to reorder the eigenvectors.
-            assert(eigensolver.eigenvalues()(0) <= eigensolver.eigenvalues()(1));
-            assert(eigensolver.eigenvalues()(1) <= eigensolver.eigenvalues()(2));
+            PONCA_ASSERT(eigensolver.eigenvalues()(0) <= eigensolver.eigenvalues()(1));
+            PONCA_ASSERT(eigensolver.eigenvalues()(1) <= eigensolver.eigenvalues()(2));
             VectorType v1 = eigensolver.eigenvectors().col(1);
             VectorType v2 = eigensolver.eigenvectors().col(0);
             return std::pair<VectorType, VectorType>(v1, v2);
@@ -341,8 +342,8 @@ namespace Ponca::internal
             {
                 // SelfAdjointEigenSolver returns sorted eigenvalues, no
                 // need to reorder the eigenvectors.
-                assert(eigensolver.eigenvalues()(0) <= eigensolver.eigenvalues()(1));
-                assert(eigensolver.eigenvalues()(1) <= eigensolver.eigenvalues()(2));
+                PONCA_ASSERT(eigensolver.eigenvalues()(0) <= eigensolver.eigenvalues()(1));
+                PONCA_ASSERT(eigensolver.eigenvalues()(1) <= eigensolver.eigenvalues()(2));
                 VectorType v1 = eigensolver.eigenvectors().col(0);
                 VectorType v2 = eigensolver.eigenvectors().col(1);
                 return std::make_tuple(-eigensolver.eigenvalues()(0), -eigensolver.eigenvalues()(1), v1, v2);
