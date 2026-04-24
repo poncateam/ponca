@@ -11,6 +11,7 @@ This release will introduce a refactoring of the requirement library using cpp20
 
 - Bug-fixes and code improvements
     - [fitting] Fix warnings introduced when bumping to cxx20 (#303)
+    - [fitting] Fix CNC not using the DistWeightFunc (#316)
     - [spatialPartitioning] Fix regression introduced by the CUDA kdtree update (#306)
     - [common] Fix PONCA_ASSERT macro on MSVC and clang (#309)
     - [common] Adapt PONCA_ASSERT macro to CUDA (#311)
