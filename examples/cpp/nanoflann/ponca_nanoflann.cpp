@@ -16,8 +16,7 @@
 
 #include "./nanoflann.hpp"
 
-#include <Ponca/Fitting>
-#include <Ponca/SpatialPartitioning>
+#include <Ponca/Precompiled>
 
 using namespace Ponca;
 

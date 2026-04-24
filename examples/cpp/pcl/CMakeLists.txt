@@ -21,7 +21,7 @@ else()
         if(Boost_FOUND)
             target_link_libraries(ponca_pclwrapper PUBLIC ${Boost_LIBRARIES})
         endif()
-        target_link_libraries(ponca_pclwrapper PUBLIC Eigen3::Eigen)
+        target_link_libraries(ponca_pclwrapper PUBLIC Ponca::Precompiled Eigen3::Eigen)
 
         add_custom_command( TARGET ponca_pclwrapper POST_BUILD
                             COMMAND ${CMAKE_COMMAND} -E copy
@@ -35,7 +35,6 @@ else()
         target_link_directories(ponca_pclwrapper PUBLIC ${PCL_LIBRARY_DIRS})
 #        target_compile_definitions(ponca_pclwrapper PUBLIC ${PCL_DEFINITIONS})
         target_link_libraries(ponca_pclwrapper PUBLIC ${PCL_LIBRARIES})
-        target_include_directories(ponca_pclwrapper PRIVATE ${PONCA_src_ROOT})
         target_include_directories(ponca_pclwrapper PUBLIC ${PCL_INCLUDE_DIRS})
         add_dependencies(ponca-examples ponca_pclwrapper)
     endif()

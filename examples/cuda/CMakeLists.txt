@@ -17,19 +17,18 @@ if( CMAKE_CUDA_COMPILER )
     endif()
 
     add_definitions(-DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int)
-    add_definitions(--expt-relaxed-constexpr)
 
     add_executable(cuda_fit_plane "ponca_fit_plane.cu")
-    target_include_directories(cuda_fit_plane PRIVATE ${PONCA_src_ROOT})
     add_dependencies(ponca-examples cuda_fit_plane)
     set_property(TARGET cuda_fit_plane PROPERTY CUDA_ARCHITECTURES OFF)
-    target_link_libraries(cuda_fit_plane PUBLIC Eigen3::Eigen)
+    target_compile_options(cuda_fit_plane PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
+    target_link_libraries(cuda_fit_plane PUBLIC Ponca::Precompiled Eigen3::Eigen)
 
     add_executable(cuda_fit_plane_kdtree "ponca_fit_kdtree.cu")
-    target_include_directories(cuda_fit_plane_kdtree PRIVATE ${PONCA_src_ROOT})
     add_dependencies(ponca-examples cuda_fit_plane_kdtree)
     set_property(TARGET cuda_fit_plane_kdtree PROPERTY CUDA_ARCHITECTURES OFF)
-    target_link_libraries(cuda_fit_plane_kdtree PUBLIC Eigen3::Eigen)
+    target_compile_options(cuda_fit_plane_kdtree PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
+    target_link_libraries(cuda_fit_plane_kdtree PUBLIC Ponca::Precompiled Eigen3::Eigen)
 
     add_subdirectory(ssgls)
 else()

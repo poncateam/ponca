@@ -12,14 +12,7 @@
 
 #include <iostream>
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Common/pointTypes.h>
-
-#include "Eigen/Eigen"
+#include <Ponca/Precompiled>
 
 using namespace std;
 using namespace Ponca;

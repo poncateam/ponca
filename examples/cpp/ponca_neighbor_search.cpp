@@ -11,10 +11,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include <iostream>
 #include <random>
-#include <Ponca/SpatialPartitioning>
-#include <Ponca/src/Common/pointTypes.h>
-
-#include <Eigen/Core>
+#include <Ponca/Precompiled>
 
 using DataPoint = Ponca::PointPosition<float, 3>;
 
