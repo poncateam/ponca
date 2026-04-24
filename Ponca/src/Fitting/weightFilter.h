@@ -297,13 +297,13 @@ namespace Ponca
     } // namespace internal
 
     /*!
-     * This class extends a NeighborFilter class to also store the normal of the evaluation point, for use outside the
+     * This class extends a NeighborFilter class to also store additionnal data, for use outside the
      * scope of this class.
      *
-     * \tparam Any NeighborFilter type (NoWeightFunc or DistWeightFunc<ConstantWeightKernel> for example)
+     * \tparam Any NeighborFilter type (NoWeightFilter or DistWeightFilter<ConstantWeightKernel> for example)
      */
-    template <class DataPoint, typename NeighborFilter>
-    class NeighborFilterStoreNormal : public NeighborFilter
+    template <class DataPoint, typename DataType, typename NeighborFilter>
+    class FilterWithAttributes : public NeighborFilter
     {
     public:
         using Base = NeighborFilter;
@@ -320,24 +320,23 @@ namespace Ponca
             \brief Constructor that defines the current evaluation scale
             \warning t > 0
         */
-        PONCA_MULTIARCH inline NeighborFilterStoreNormal(const VectorType& _evalPos    = VectorType::Zero(),
-                                                         const Scalar& _t              = Scalar(1.),
-                                                         const VectorType& _evalNormal = VectorType::Zero())
-            : Base(_evalPos, _t), m_n(_evalNormal)
+        PONCA_MULTIARCH inline FilterWithAttributes(const VectorType& _evalPos = VectorType::Zero(),
+                                                    const Scalar& _t = Scalar(1), const DataType& _data = DataType{})
+            : Base(_evalPos, _t), m_data(_data)
         {
         }
 
-        PONCA_MULTIARCH inline NeighborFilterStoreNormal(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1.))
-            : Base(_evalPoint.pos(), _t), m_n(_evalPoint.normal())
+        PONCA_MULTIARCH inline FilterWithAttributes(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1))
+            : Base(_evalPoint.pos(), _t)
         {
         }
 
         /*! \brief Access to the evaluation normal set during the initialization */
-        PONCA_MULTIARCH inline const VectorType& evalNormal() const { return m_n; }
+        PONCA_MULTIARCH inline const DataType& data() const { return m_data; }
 
     protected:
-        VectorType m_n; /*!< \brief Evaluation normal */
-    }; // class NeighborFilterStoreNormal
+        DataType m_data; /*!< \brief Evaluation normal */
+    }; // class FilterWithAttributes
 
     template <class DataPoint>
     /// \brief Weighting function that set uniform weight to all samples, but transform neighbors coordinates to local

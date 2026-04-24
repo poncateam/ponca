@@ -157,8 +157,8 @@ namespace Ponca::internal
         {
             PONCA_MULTIARCH_STD_MATH(abs);
             // Compute normal and maximum distance.
-            VectorType c = w.evalPos();
-            VectorType n = w.evalNormal();
+            VectorType c = w.center();
+            VectorType n = w.data();
             VectorType a{VectorType::Zero()};
             Scalar avg_d = Scalar(0);
 
@@ -202,8 +202,8 @@ namespace Ponca::internal
             {
                 distance2[i] = avg_d * avg_d;
                 targets[i]   = avg_d * (u * cos(i * M_PI / 3.0) + v * sin(i * M_PI / 3.0));
-                positions[i] = w.evalPos();
-                normals[i]   = w.evalNormal();
+                positions[i] = w.center();
+                normals[i]   = w.data();
             }
 
             // Compute closest points.
@@ -253,8 +253,8 @@ namespace Ponca::internal
                                    std::vector<Triangle<P>>& triangles)
         {
             // Compute normal and maximum distance.
-            VectorType c = w.evalPos();
-            VectorType n = w.evalNormal();
+            VectorType c = w.center();
+            VectorType n = w.data();
             VectorType a = VectorType::Zero();
             Scalar avg_d = Scalar(0);
 
@@ -327,8 +327,8 @@ namespace Ponca::internal
             {
                 if (array_nb[i] == 0)
                 {
-                    array_avg_normals[i] = w.evalNormal();
-                    array_avg_pos[i]     = w.evalPos();
+                    array_avg_normals[i] = w.data();
+                    array_avg_pos[i]     = w.center();
                 }
                 else
                 {
@@ -427,7 +427,7 @@ namespace Ponca
             m_G = Scalar(0);
         }
 
-        std::tie(m_k2, m_k1, m_v2, m_v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, m_nFilter.evalNormal());
+        std::tie(m_k2, m_k1, m_v2, m_v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, m_nFilter.data());
 
         return STABLE;
     }
