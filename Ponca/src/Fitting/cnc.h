@@ -112,8 +112,7 @@ namespace Ponca
         using VectorType     = typename DataPoint::VectorType;
         using DenseVector    = Eigen::VectorXd;
         using DenseMatrix    = Eigen::MatrixXd;
-        using NeighborFilter =
-            NeighborFilterStoreNormal<DataPoint, DistWeightFilter<DataPoint, ConstantWeightKernel<Scalar>>>;
+        using NeighborFilter = FilterWithAttributes<DataPoint, VectorType, DistWeightFilter<DataPoint, ConstantWeightKernel<Scalar>>>;
 
     protected:
         // Basis
