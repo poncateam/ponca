@@ -213,6 +213,7 @@ namespace Ponca
     struct WeingartenCurvatureEstimator : public internal::WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
+        PONCA_EXPLICIT_CAST_OPERATORS(WeingartenCurvatureEstimator, meanCurvature)
         PONCA_EXPLICIT_CAST_OPERATORS(WeingartenCurvatureEstimator, curvatureTensor)
     };
 
@@ -222,6 +223,7 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(WeingartenCurvatureEstimatorDer, meanCurvature)
         PONCA_EXPLICIT_CAST_OPERATORS_DER(WeingartenCurvatureEstimatorDer, curvatureTensor)
     };
 
