@@ -45,6 +45,10 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weingarten.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/weightKernel.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/linePrimitive.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/localFrame.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/localFrame.hpp"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/localFrameEstimation.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/linePrimitive.h"
     )
 
 add_library(Fitting INTERFACE)
