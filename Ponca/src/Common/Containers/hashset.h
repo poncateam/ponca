@@ -56,7 +56,8 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] bool search(int _value, int& _searchedIdx) const;
 
     public:
-        PONCA_MULTIARCH HashSet() { Ponca::internal::fill(m_data, m_data + N, EMPTY); }
+        constexpr PONCA_MULTIARCH HashSet() : m_data() { Ponca::internal::fill(m_data, m_data + N, EMPTY); }
+
         /*! \brief Empty the array
          *
          * Iterates over every element and sets their values to the EMPTY flag value (default to -1)
@@ -86,7 +87,7 @@ namespace Ponca
 
     private:
         static constexpr T EMPTY = T(-1);
-        T m_data[N]              = {};
+        T m_data[N];
 
         //! \brief The hashing function : (x * 2654435761u) % N
         PONCA_MULTIARCH [[nodiscard]] static int hash(const int x)
@@ -136,13 +137,13 @@ namespace Ponca
         if (search(value, availableIdx)) // If search is successful
             return false;                // Insertion can't be done because found the value in the array
 
-        // The value wasn't found in the array, so either
+        // The value wasn't found in the array, so either :
         // A - The array is full (The last search index shouldn't point to an available address in the array)
-        if (availableIdx == -1) // Search returns -1 if it was full
+        if (availableIdx == -1) // Search returns -1 if the Set is full
             return false;
 
-        // B - The array isn't full and the value can be inserted (The last search index should therefore point to an
-        // available address in the array)
+        // B - The array isn't full and the value can be inserted. Therefore the last search index is the next available
+        // address in the array
         m_data[availableIdx] = value;
         return true;
     }
