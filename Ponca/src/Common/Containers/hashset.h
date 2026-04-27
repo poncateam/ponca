@@ -35,10 +35,30 @@ namespace Ponca
     {
         static_assert(N > 0, "The capacity must be strictly positive");
 
+    protected:
+        /*! \brief Search for a value in the HashSet.
+         *
+         * Use the hashing function to check if a value is inside the internal array.
+         *
+         * - The value isn't considered inside if the value at the address corresponds to the EMPTY flag, (will stop
+         * the search and return false as a result)
+         *
+         * - If there is already an element at address, but which doesn't correspond to the value, we keep looking at
+         * the next address for our value until we either find it, or until we searched everywhere.
+         *
+         * Use a reference to either output the id of the last element that was searched in the m_data array or will
+         * output -1 if the array is completely full.
+         *
+         * \param _value The value to be inserted in the HashSet
+         * \param _searchedIdx Reference to the last searched index or -1 if the array is full.
+         * \return True if the value is inside the HashSet, false if it's not in the HashSet.
+         */
+        PONCA_MULTIARCH [[nodiscard]] bool search(int _value, int& _searchedIdx) const;
+
     public:
         /*! \brief Empty the array
          *
-         * Iterates over every element and sets their values to -1 (empty flag)
+         * Iterates over every element and sets their values to the EMPTY flag value (default to -1)
          */
         PONCA_MULTIARCH void clear();
 
@@ -61,11 +81,11 @@ namespace Ponca
          * \param value The value to search for
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
          */
-        PONCA_MULTIARCH bool contains(int value);
+        PONCA_MULTIARCH [[nodiscard]] bool contains(int value) const;
 
     private:
         static constexpr T EMPTY = T(-1);
-        T m_data[N]              = { EMPTY };
+        T m_data[N]              = {EMPTY};
 
         //! \brief The hashing function : (x * 2654435761u) % N
         PONCA_MULTIARCH [[nodiscard]] static int hash(const int x)
@@ -82,57 +102,60 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::insert(const int value)
+    PONCA_MULTIARCH bool HashSet<N, T>::search(const int _value, int& _searchedIdx) const
     {
-        const int h = hash(value);
-
-        // Try to insert
-        for (int i = 0; i < N; ++i)
-        {
-            const int idx = (h + i) % N;
-            T& slot       = m_data[idx]; // Get the address
-
-            // Stores here if the address is empty
-            if (slot == EMPTY)
-            {
-                slot = value;
-                return true;
-            }
-            // The value was already inserted in the array
-            if (slot == value)
-            {
-                return false;
-            }
-        }
-
-        // The array is full
-        return false;
-    }
-
-    template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::contains(const int value)
-    {
-        const int h = hash(value);
+        const int h = hash(_value);
 
         // Try to find the value
         for (int i = 0; i < N; ++i)
         {
-            const int idx = (h + i) % N;
-            T& slot       = m_data[idx]; // Get the address
+            _searchedIdx  = (h + i) % N;
+            const T& slot = m_data[_searchedIdx]; // Get the address
 
             // Stops the search here if the address is empty
             if (slot == EMPTY)
-            {
                 return false;
-            }
+
             // Value found
-            if (slot == value)
-            {
+            if (slot == _value)
                 return true;
-            }
+
             // The value might have been inserted elsewhere, keep looking...
         }
+
         // Value not in HashSet
+        _searchedIdx = -1;
         return false;
+    }
+
+    template <int N, typename T>
+    PONCA_MULTIARCH bool HashSet<N, T>::insert(const int value)
+    {
+        int availableIdx = 0;
+        if (search(value, availableIdx))
+        { // If search is successful
+            // Insertion can't be done because found the value in the array
+            std::cout << "Insertion can't be done because found duplicated at" << availableIdx << "." << std::endl;
+            return false;
+        }
+        // The value wasn't found in the array, so either
+        // A - The array is full (The last search index shouldn't point to an available address in the array)
+        if (availableIdx == -1) // Search returns -1 if it was full
+        {
+            std::cout << "Insertion can't be done because array is full" << std::endl;
+            return false;
+        }
+
+        // B - The array isn't full and the value can be inserted (The last search index should therefore point to an
+        // available address in the array)
+        m_data[availableIdx] = value;
+        return true;
+    }
+
+    template <int N, typename T>
+    PONCA_MULTIARCH bool HashSet<N, T>::contains(const int value) const
+    {
+        int i = 0;
+        return search(value, i);
     }
 } // namespace Ponca

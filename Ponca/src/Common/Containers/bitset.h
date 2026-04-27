@@ -20,10 +20,13 @@ namespace Ponca
      * Allows to insert and search in O(1) complexity, but is memory expensive, because we allocate a single
      * bit for each possible indices, to flag if it was inserted or not, which is not ideal for large amount of indices.
      *
-     * The memory use of the BitSet depending on N should be :
-     * Bitset<10000> → 10k bits = 1.25 KB
-     * Bitset<1e6>   → 125 KB
-     * Bitset<1e7>   → 1.25 MB
+     * The memory use of the BitSet depending on N should be in theory :
+     *
+     * BitSet size   | Memory used
+     * ------------- | ------------
+     * Bitset<10000> | 1.25 KB
+     * Bitset<1e6>   | 125 KB
+     * Bitset<1e7>   | 1.25 MB
      *
      * \tparam N Maximum number of indices
      * \tparam T The data type of the array storing the bits. Default to 'unsigned long long' for 64 bits storage.
