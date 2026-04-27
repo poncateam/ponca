@@ -61,11 +61,11 @@ namespace Ponca
          * \param value The value to search for
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
          */
-        PONCA_MULTIARCH bool find(int value);
+        PONCA_MULTIARCH bool contains(int value);
 
     private:
         static constexpr T EMPTY = T(-1);
-        T m_data[N]              = {};
+        T m_data[N]              = { EMPTY };
 
         //! \brief The hashing function : (x * 2654435761u) % N
         PONCA_MULTIARCH [[nodiscard]] static int hash(const int x)
@@ -110,7 +110,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::find(const int value)
+    PONCA_MULTIARCH bool HashSet<N, T>::contains(const int value)
     {
         const int h = hash(value);
 

@@ -10,6 +10,7 @@
 #include <cstddef>
 #include "../defines.h"
 #include "./iteratorUtils.h"
+#include "../../Common/Assert.h"
 
 namespace Ponca
 {
@@ -67,7 +68,7 @@ namespace Ponca
          * \param value The value to search for (search is O(N) because it corresponds to the index in the BitSet)
          * \return
          */
-        PONCA_MULTIARCH [[nodiscard]] bool find(int value) const;
+        PONCA_MULTIARCH [[nodiscard]] bool contains(int value) const;
 
         //! \brief Sets all the bits to EMPTY
         PONCA_MULTIARCH void clear();
@@ -126,7 +127,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH [[nodiscard]] bool BitSet<N, T>::find(const int value) const
+    PONCA_MULTIARCH [[nodiscard]] bool BitSet<N, T>::contains(const int value) const
     {
         PONCA_ASSERT_MSG(value >= 0 && value < N, "Searched value is outside the scope of the BitSet");
         const int byte = value / BIT_SIZE;
