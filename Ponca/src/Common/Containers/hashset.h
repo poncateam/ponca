@@ -56,6 +56,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] bool search(int _value, int& _searchedIdx) const;
 
     public:
+        PONCA_MULTIARCH HashSet() { Ponca::internal::fill(m_data, m_data + N, EMPTY); }
         /*! \brief Empty the array
          *
          * Iterates over every element and sets their values to the EMPTY flag value (default to -1)
@@ -85,7 +86,7 @@ namespace Ponca
 
     private:
         static constexpr T EMPTY = T(-1);
-        T m_data[N]              = {EMPTY};
+        T m_data[N]              = {};
 
         //! \brief The hashing function : (x * 2654435761u) % N
         PONCA_MULTIARCH [[nodiscard]] static int hash(const int x)
@@ -132,19 +133,13 @@ namespace Ponca
     PONCA_MULTIARCH bool HashSet<N, T>::insert(const int value)
     {
         int availableIdx = 0;
-        if (search(value, availableIdx))
-        { // If search is successful
-            // Insertion can't be done because found the value in the array
-            std::cout << "Insertion can't be done because found duplicated at" << availableIdx << "." << std::endl;
-            return false;
-        }
+        if (search(value, availableIdx)) // If search is successful
+            return false;                // Insertion can't be done because found the value in the array
+
         // The value wasn't found in the array, so either
         // A - The array is full (The last search index shouldn't point to an available address in the array)
         if (availableIdx == -1) // Search returns -1 if it was full
-        {
-            std::cout << "Insertion can't be done because array is full" << std::endl;
             return false;
-        }
 
         // B - The array isn't full and the value can be inserted (The last search index should therefore point to an
         // available address in the array)
