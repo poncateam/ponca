@@ -51,11 +51,14 @@ namespace Ponca
          * Use a reference to either output the id of the last element that was searched in the m_data array or will
          * output -1 if the array is completely full.
          *
+         * \tparam HashFunctor The Hashing Functor type
          * \param _value The value to be inserted in the HashSet
          * \param _searchedIdx Reference to the last searched index or -1 if the array is full.
+         * \param _hash The hashing function
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
-         */
-        PONCA_MULTIARCH [[nodiscard]] inline bool search(int _value, int& _searchedIdx) const;
+        */
+        template<typename HashFunctor>
+        PONCA_MULTIARCH [[nodiscard]] inline bool search(int _value, int& _searchedIdx, HashFunctor _hash) const;
 
     public:
         constexpr PONCA_MULTIARCH HashSet() : m_data()
@@ -85,22 +88,45 @@ namespace Ponca
          * \return True if the value was inserted successfully, and false if the value was already inserted or if the
          * HashSet is full
          */
-        PONCA_MULTIARCH bool insert(int _value);
+        PONCA_MULTIARCH bool insert(const int _value)
+        {
+            return insert(_value, hash); // Use default hashing function
+        }
+
+        /*!
+         * \copydoc HashSet::insert
+         * \tparam HashFunctor The Hashing Functor type
+         * \param _hash The hashing function
+         */
+        template<typename HashFunctor>
+        PONCA_MULTIARCH bool insert(int _value, HashFunctor _hash);
+
 
         /*! \brief Tries to find a value in the HashSet
          *
          * \param _value The value to search for
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
          */
-        PONCA_MULTIARCH [[nodiscard]] bool contains(int _value) const;
+        PONCA_MULTIARCH [[nodiscard]] bool contains(const int _value) const
+        {
+            return contains(_value, hash); // Use default hashing function
+        };
 
+
+        /*!
+         * \copydoc HashSet::contains
+         * \tparam HashFunctor The Hashing Functor type
+         * \param _hash The hashing function
+         */
+        template<typename HashFunctor>
+        PONCA_MULTIARCH [[nodiscard]] bool contains(int _value, HashFunctor _hash) const;
     private:
         static constexpr T OFFSET =
             T(1); //< Offsets the value when storing in m_data, to avoid mistaking the stored index value with EMPTY
         static constexpr T EMPTY = T(0); //< The flag to tell if the address is available or not (Should always be zero)
         T m_data[N];                     //< Where we store the elements in memory
 
-        //! \brief The hashing function : (x * 2654435761u) % N
+        //! \brief The default hashing function : (abs(x) * 2654435761u) % N
         PONCA_MULTIARCH [[nodiscard]] static int hash(const int _x)
         {
             PONCA_MULTIARCH_STD_MATH(abs);

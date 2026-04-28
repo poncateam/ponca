@@ -14,9 +14,10 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::search(const int _value, int& _searchedIdx) const
+    template <typename HashFunctor>
+    PONCA_MULTIARCH bool HashSet<N, T>::search(const int _value, int& _searchedIdx, HashFunctor _hash) const
     {
-        const int h = hash(_value);
+        const int h = _hash(_value);
 
         // Try to find the value
         for (int i = 0; i < N; ++i)
@@ -41,11 +42,12 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::insert(const int _value)
+    template <typename HashFunctor>
+    PONCA_MULTIARCH bool HashSet<N, T>::insert(const int _value, HashFunctor _hash)
     {
-        PONCA_ASSERT_MSG(_value != EMPTY + OFFSET, "Illegal value was inserted into the HashSet");
+        PONCA_ASSERT_MSG(_value != EMPTY - OFFSET, "Illegal value was inserted into the HashSet");
         int availableIdx = 0;
-        if (search(_value, availableIdx)) // If search is successful
+        if (search(_value, availableIdx, _hash)) // If search is successful
             return false;                 // Insertion can't be done because found the value in the array
 
         // The value wasn't found in the array, so either :
@@ -60,10 +62,11 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::contains(const int _value) const
+    template <typename HashFunctor>
+    PONCA_MULTIARCH bool HashSet<N, T>::contains(const int _value, HashFunctor _hash) const
     {
-        PONCA_DEBUG_ASSERT_MSG(_value != EMPTY + OFFSET, "Illegal value was searched from the HashSet");
-        int i = 0;
-        return search(_value, i);
+        PONCA_DEBUG_ASSERT_MSG(_value != EMPTY - OFFSET, "Illegal value was searched from the HashSet");
+        int i;
+        return search(_value, i, _hash);
     }
 } // namespace Ponca
