@@ -95,33 +95,33 @@ namespace Ponca
 
         // LimitedPriorityQueue --------------------------------------------------
     public:
-        PONCA_MULTIARCH inline LimitedPriorityQueue();
-        PONCA_MULTIARCH inline LimitedPriorityQueue(const Self& other);
-        PONCA_MULTIARCH inline explicit LimitedPriorityQueue(int capacity);
+        PONCA_MULTIARCH LimitedPriorityQueue();
+        PONCA_MULTIARCH LimitedPriorityQueue(const Self& other);
+        PONCA_MULTIARCH explicit LimitedPriorityQueue(int capacity);
         template <class InputIt>
-        PONCA_MULTIARCH inline LimitedPriorityQueue(int capacity, InputIt first, InputIt last);
+        PONCA_MULTIARCH LimitedPriorityQueue(int capacity, InputIt first, InputIt last);
 
         PONCA_MULTIARCH inline ~LimitedPriorityQueue() = default;
 
-        PONCA_MULTIARCH inline LimitedPriorityQueue& operator=(const Self& other);
+        PONCA_MULTIARCH LimitedPriorityQueue& operator=(const Self& other);
 
         // Iterator ----------------------------------------------------------------
     public:
-        PONCA_MULTIARCH inline iterator begin();
-        PONCA_MULTIARCH inline const_iterator begin() const;
-        PONCA_MULTIARCH inline const_iterator cbegin() const;
+        PONCA_MULTIARCH iterator begin();
+        PONCA_MULTIARCH const_iterator begin() const;
+        PONCA_MULTIARCH const_iterator cbegin() const;
 
-        PONCA_MULTIARCH inline iterator end();
-        PONCA_MULTIARCH inline const_iterator end() const;
-        PONCA_MULTIARCH inline const_iterator cend() const;
+        PONCA_MULTIARCH iterator end();
+        PONCA_MULTIARCH const_iterator end() const;
+        PONCA_MULTIARCH const_iterator cend() const;
 
         // Element access ----------------------------------------------------------
     public:
-        PONCA_MULTIARCH inline const T& top() const;
-        PONCA_MULTIARCH inline const T& bottom() const;
+        PONCA_MULTIARCH const T& top() const;
+        PONCA_MULTIARCH const T& bottom() const;
 
-        PONCA_MULTIARCH inline T& top();
-        PONCA_MULTIARCH inline T& bottom();
+        PONCA_MULTIARCH T& top();
+        PONCA_MULTIARCH T& bottom();
 
         // Capacity ----------------------------------------------------------------
     public:
@@ -131,15 +131,18 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline size_t capacity() const;
 
         // Modifiers ---------------------------------------------------------------
+    protected:
+        PONCA_MULTIARCH inline bool pushImpl(const T& _value, T** _addr);
     public:
-        PONCA_MULTIARCH inline bool push(T&& value);
-        PONCA_MULTIARCH inline void pop();
-        PONCA_MULTIARCH inline void reserve(int capacity);
-        PONCA_MULTIARCH inline void clear();
+        PONCA_MULTIARCH bool push(T&& _value);
+        PONCA_MULTIARCH bool push(const T& _value);
+        PONCA_MULTIARCH void pop();
+        PONCA_MULTIARCH void reserve(int _capacity);
+        PONCA_MULTIARCH void clear();
 
         // Data --------------------------------------------------------------------
     public:
-        PONCA_MULTIARCH inline const container_type& container() const;
+        PONCA_MULTIARCH const container_type& container() const;
 
     protected:
         container_type m_data{};

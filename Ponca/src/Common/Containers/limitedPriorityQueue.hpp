@@ -104,44 +104,63 @@ namespace Ponca
 
     // Modifiers -------------------------------------------------------------------
     template <class T, int N, class Cmp>
-    PONCA_MULTIARCH bool LimitedPriorityQueue<T, N, Cmp>::push(T&& value)
+    PONCA_MULTIARCH bool LimitedPriorityQueue<T, N, Cmp>::pushImpl(const T& _value, T** _addr)
     {
         if (empty())
         {
             if (capacity() > 0)
             {
-                m_data.front() = std::forward<T>(value);
+                *_addr = &m_data.front();
                 ++m_size;
                 return true;
             }
+            return false; // No capacity to insert
+        }
+        iterator it = internal::upperBound(begin(), end(), _value, m_comp);
+        if (it == end())
+        {
+            if (!full())
+            {
+                *_addr = &(*it);
+                ++m_size;
+                return true;
+            }
+            return false;
+        }
+        if (full())
+        {
+            internal::copyBackward(it, end() - 1, end());
+            *_addr = &(*it);
         }
         else
         {
-            iterator it = Ponca::internal::upperBound(begin(), end(), value, m_comp);
-            if (it == end())
-            {
-                if (!full())
-                {
-                    *it = std::forward<T>(value);
-                    ++m_size;
-                    return true;
-                }
-            }
-            else
-            {
-                if (full())
-                {
-                    Ponca::internal::copyBackward(it, end() - 1, end());
-                    *it = std::forward<T>(value);
-                }
-                else
-                {
-                    Ponca::internal::copyBackward(it, end(), end() + 1);
-                    *it = std::forward<T>(value);
-                    ++m_size;
-                }
-                return true;
-            }
+            internal::copyBackward(it, end(), end() + 1);
+            *_addr = &(*it);
+            ++m_size;
+        }
+        return true;
+    }
+
+    template <class T, int N, class Cmp>
+    PONCA_MULTIARCH bool LimitedPriorityQueue<T, N, Cmp>::push(T&& _value)
+    {
+        T* addr;
+        if (pushImpl(_value, &addr)) // Needs to insert
+        {
+            *addr = std::forward<T>(_value);
+            return true;
+        }
+        return false;
+    }
+
+    template <class T, int N, class Cmp>
+    PONCA_MULTIARCH bool LimitedPriorityQueue<T, N, Cmp>::push(const T& _value)
+    {
+        T* addr;
+        if (pushImpl(_value, &addr)) // Needs to insert
+        {
+            *addr = _value;
+            return true;
         }
         return false;
     }
@@ -153,15 +172,13 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
-    PONCA_MULTIARCH void LimitedPriorityQueue<T, N, Cmp>::reserve(const int capacity)
+    PONCA_MULTIARCH void LimitedPriorityQueue<T, N, Cmp>::reserve(const int _capacity)
     {
-        PONCA_ASSERT(capacity >= 0);
-        PONCA_ASSERT(capacity <= N);
-        m_capacity = capacity;
-        if (m_size > capacity)
-        {
-            m_size = capacity;
-        }
+        PONCA_ASSERT(_capacity >= 0);
+        PONCA_ASSERT(_capacity <= N);
+        m_capacity = _capacity;
+        if (m_size > _capacity)
+            m_size = _capacity;
     }
 
     template <class T, int N, class Cmp>

@@ -5,8 +5,8 @@
 */
 
 /*!
- * \file tests/src/set.cpp
- * \brief Validate custom HashSet and BitSet
+ * \file tests/src/common_containers.cpp
+ * \brief Validate LimitedPriorityQueue, HashSet and BitSet
  */
 
 #include "../common/testing.h"
@@ -18,11 +18,27 @@
 #include <set>
 #include <vector>
 
+#include "Ponca/src/Common/Containers/limitedPriorityQueue.h"
+
 using namespace Ponca;
 using namespace std;
 
+/*! \brief Builds a vector of indice that are shuffled
+ * \return The number of total elements
+ */
+int makeShuffledIndexVector(vector<int>& indices, const int min, const int max)
+{
+    const int nbTotal = QUICK_TESTS ? 1 : Eigen::internal::random<int>(min, max-1)+1;
+    indices.resize(nbTotal);
+
+    std::iota(indices.begin(), indices.end(), 1);
+    ranges::shuffle(indices, std::mt19937{std::random_device{}()});
+
+    return nbTotal;
+}
+
 /*!
- * \brief Test the validity of Ponca Common Set of int classes by randomly inserting values
+ * \brief Test the validity of Ponca Common Set of int classes by inserting random values
  * and comparing the results with standard std::set<int>
  *
  * \tparam IndexSet The Set of indices to evaluate
@@ -31,7 +47,7 @@ using namespace std;
  * \param _pickRandom The function to call when generating a random value
  */
 template <typename IndexSet, typename RandomFunctor>
-void testSetStandardFeatures(const int _maxIndex, RandomFunctor _pickRandom)
+void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom)
 {
     assert(_maxIndex > 100);
     IndexSet indexSet;
@@ -69,9 +85,9 @@ void testSetStandardFeatures(const int _maxIndex, RandomFunctor _pickRandom)
  * \param _maxIndex The maximum possible index (must be > 100)
  */
 template <typename IndexSet>
-void testSetStandardFeatures(const int _maxIndex)
+void testSetStandardCapabilities(const int _maxIndex)
 {
-    testSetStandardFeatures<IndexSet>(_maxIndex, [&_maxIndex]()
+    testSetStandardCapabilities<IndexSet>(_maxIndex, [&_maxIndex]()
     {
         return Eigen::internal::random<int>(0, _maxIndex - 1);
     });
@@ -80,7 +96,6 @@ void testSetStandardFeatures(const int _maxIndex)
 /*
  * \brief Test the insert capabilities of the limited Set
  *
- * \tparam IndexSet A Set of indices limited in size to evaluate
  * \param _maxIndex The maximum possible index
  * \param _setCapacity The maximum capacity of the limited set
  */
@@ -89,21 +104,43 @@ void testLimitedSet(const int _maxIndex, const int _setCapacity)
 {
     IndexSet indexSet;
 
-    // Select a number of insertion that exceed available total capacity
-    const int nbTotalInsertion = QUICK_TESTS ? 1 : Eigen::internal::random<int>(_setCapacity + 1, _maxIndex);
+    vector<int> indices; // To keep track that we insert each index only once
+    const int nbTotalInsertion = // A number of insertion that exceed available total capacity
+        makeShuffledIndexVector(indices, _setCapacity, _maxIndex);
 
-    // To keep track that we insert each index only once
-    vector<int> indices(nbTotalInsertion);
-    std::iota(indices.begin(), indices.end(), 1);
-    ranges::shuffle(indices, std::mt19937{std::random_device{}()});
 
     // Insert until we reach max capacity
     for (int i = 0; i < _setCapacity; ++i)
-        VERIFY((indexSet.insert(indices[i]) == true));
+        VERIFY((indexSet.insert(indices[i])));
 
-    // Select a number of insertion that exceed available total capacity
+    // Test insert above capacity
     for (int i = _setCapacity; i < nbTotalInsertion; ++i)
-        VERIFY((indexSet.insert(indices[i]) == false));
+        VERIFY(! (indexSet.insert(indices[i])));
+}
+
+template <int MAX_INSERT_SIZE>
+void testLimitedQueue(const int _maxIndex, const int _setCapacity)
+{
+    LimitedPriorityQueue<int, MAX_INSERT_SIZE, std::greater<>> queue(_setCapacity);
+
+    vector<int> indices; // To keep track that we insert each index only once
+    const int nbTotalInsertion = QUICK_TESTS ? 1 : Eigen::internal::random<int>(_setCapacity, _maxIndex-1)+1;
+
+    // Insert until we reach max capacity
+    for (int i = 0; i < _setCapacity; ++i)
+        VERIFY(queue.push(i));
+
+    int i = 0;
+    // Test insert above capacity
+    for (int j = _setCapacity; j < nbTotalInsertion; ++j, ++i)
+    {
+        VERIFY(queue.bottom() == i);
+        VERIFY(queue.push(j));
+        // Verify that it removed the lowest element (bottom)
+        VERIFY(queue.bottom() == i+1);
+        // Verify the new top
+        VERIFY(queue.top() == j);
+    }
 }
 
 int main(const int argc, char** argv)
@@ -115,14 +152,14 @@ int main(const int argc, char** argv)
     // The upper limit of index range (index can't go higher than this number for BITSET)
     constexpr int MAX_INDEX = 10000;
     // The maximum size of a limited set (values won't be inserted after that)
-    constexpr int MAX_INSERT_SIZE = MAX_INDEX;
+    constexpr int MAX_INSERT_SIZE = 100;
 
     cout << "Check consistency of Set of Indices class" << endl;
 
     for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST((testSetStandardFeatures<BitSet<MAX_INDEX>>(MAX_INDEX)));
-        CALL_SUBTEST((testSetStandardFeatures<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX, []()
+        CALL_SUBTEST((testSetStandardCapabilities<BitSet<MAX_INDEX>>(MAX_INDEX)));
+        CALL_SUBTEST((testSetStandardCapabilities<HashSet<MAX_INDEX>>(MAX_INDEX, []()
         {
             // Also test storing negative, but not -1 as it's not allowed by the HashSet
             int x = -1;
@@ -132,5 +169,6 @@ int main(const int argc, char** argv)
             return x;
         })));
         CALL_SUBTEST((testLimitedSet<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX, MAX_INSERT_SIZE)));
+        CALL_SUBTEST((testLimitedQueue<MAX_INSERT_SIZE>(MAX_INDEX, MAX_INSERT_SIZE)));
     }
 }
