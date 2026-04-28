@@ -4,7 +4,7 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 #if defined(_PONCA_INSTANTIATE_SPACEDER) || defined(_PONCA_INSTANTIATE_ALL)
-#    define _DT FitSpaceDer
+#    define _DT FitScaleSpaceDer
 #    include "basketsdiff.h"
 #    undef _DT
 #endif

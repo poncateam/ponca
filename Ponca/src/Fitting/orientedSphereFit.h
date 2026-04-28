@@ -118,7 +118,7 @@ namespace Ponca
         }
 
         /*! \brief compute the Pratt norm derivative */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar dprattNorm() const
+        PONCA_MULTIARCH [[nodiscard]] inline ScalarArray dprattNorm() const
         {
             PONCA_MULTIARCH_STD_MATH(sqrt);
             return dprattNorm2().array().sqrt();
