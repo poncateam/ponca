@@ -195,4 +195,4 @@ namespace Ponca
     {
         return m_data;
     }
-}
+} // namespace Ponca

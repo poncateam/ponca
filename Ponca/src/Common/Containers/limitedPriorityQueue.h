@@ -133,6 +133,7 @@ namespace Ponca
         // Modifiers ---------------------------------------------------------------
     protected:
         PONCA_MULTIARCH inline bool pushImpl(const T& _value, T** _addr);
+
     public:
         PONCA_MULTIARCH bool push(T&& _value);
         PONCA_MULTIARCH bool push(const T& _value);

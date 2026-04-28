@@ -48,7 +48,7 @@ namespace Ponca
         PONCA_ASSERT_MSG(_value != EMPTY - OFFSET, "Illegal value was inserted into the HashSet");
         int availableIdx = 0;
         if (search(_value, availableIdx, _hash)) // If search is successful
-            return false;                 // Insertion can't be done because found the value in the array
+            return false;                        // Insertion can't be done because found the value in the array
 
         // The value wasn't found in the array, so either :
         // A - The set is full (The last search index shouldn't point to an available address in the array)

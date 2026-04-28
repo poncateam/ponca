@@ -17,18 +17,19 @@
 #include <random>
 #include <set>
 #include <vector>
+#include <algorithm>
 
 #include "Ponca/src/Common/Containers/limitedPriorityQueue.h"
 
 using namespace Ponca;
 using namespace std;
 
-/*! \brief Builds a vector of indice that are shuffled
+/*! \brief Builds a vector of indices that are shuffled
  * \return The number of total elements
  */
 int makeShuffledIndexVector(vector<int>& indices, const int min, const int max)
 {
-    const int nbTotal = QUICK_TESTS ? 1 : Eigen::internal::random<int>(min, max-1)+1;
+    const int nbTotal = QUICK_TESTS ? 1 : Eigen::internal::random<int>(min, max - 1) + 1;
     indices.resize(nbTotal);
 
     std::iota(indices.begin(), indices.end(), 1);
@@ -87,10 +88,8 @@ void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom)
 template <typename IndexSet>
 void testSetStandardCapabilities(const int _maxIndex)
 {
-    testSetStandardCapabilities<IndexSet>(_maxIndex, [&_maxIndex]()
-    {
-        return Eigen::internal::random<int>(0, _maxIndex - 1);
-    });
+    testSetStandardCapabilities<IndexSet>(_maxIndex,
+                                          [&_maxIndex]() { return Eigen::internal::random<int>(0, _maxIndex - 1); });
 }
 
 /*
@@ -104,10 +103,9 @@ void testLimitedSet(const int _maxIndex, const int _setCapacity)
 {
     IndexSet indexSet;
 
-    vector<int> indices; // To keep track that we insert each index only once
+    vector<int> indices;         // To keep track that we insert each index only once
     const int nbTotalInsertion = // A number of insertion that exceed available total capacity
         makeShuffledIndexVector(indices, _setCapacity, _maxIndex);
-
 
     // Insert until we reach max capacity
     for (int i = 0; i < _setCapacity; ++i)
@@ -115,7 +113,7 @@ void testLimitedSet(const int _maxIndex, const int _setCapacity)
 
     // Test insert above capacity
     for (int i = _setCapacity; i < nbTotalInsertion; ++i)
-        VERIFY(! (indexSet.insert(indices[i])));
+        VERIFY(!(indexSet.insert(indices[i])));
 }
 
 template <int MAX_INSERT_SIZE>
@@ -124,7 +122,7 @@ void testLimitedQueue(const int _maxIndex, const int _setCapacity)
     LimitedPriorityQueue<int, MAX_INSERT_SIZE, std::greater<>> queue(_setCapacity);
 
     vector<int> indices; // To keep track that we insert each index only once
-    const int nbTotalInsertion = QUICK_TESTS ? 1 : Eigen::internal::random<int>(_setCapacity, _maxIndex-1)+1;
+    const int nbTotalInsertion = QUICK_TESTS ? 1 : Eigen::internal::random<int>(_setCapacity, _maxIndex - 1) + 1;
 
     // Insert until we reach max capacity
     for (int i = 0; i < _setCapacity; ++i)
@@ -137,7 +135,7 @@ void testLimitedQueue(const int _maxIndex, const int _setCapacity)
         VERIFY(queue.bottom() == i);
         VERIFY(queue.push(j));
         // Verify that it removed the lowest element (bottom)
-        VERIFY(queue.bottom() == i+1);
+        VERIFY(queue.bottom() == i + 1);
         // Verify the new top
         VERIFY(queue.top() == j);
     }
@@ -159,12 +157,12 @@ int main(const int argc, char** argv)
     for (int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST((testSetStandardCapabilities<BitSet<MAX_INDEX>>(MAX_INDEX)));
-        CALL_SUBTEST((testSetStandardCapabilities<HashSet<MAX_INDEX>>(MAX_INDEX, []()
-        {
+        CALL_SUBTEST((testSetStandardCapabilities<HashSet<MAX_INDEX>>(MAX_INDEX, []() {
             // Also test storing negative, but not -1 as it's not allowed by the HashSet
             int x = -1;
-            while (x == -1) {
-                x = Eigen::internal::random<int>(-(MAX_INDEX-1), MAX_INDEX - 1);
+            while (x == -1)
+            {
+                x = Eigen::internal::random<int>(-(MAX_INDEX - 1), MAX_INDEX - 1);
             }
             return x;
         })));

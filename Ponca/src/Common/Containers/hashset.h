@@ -56,8 +56,8 @@ namespace Ponca
          * \param _searchedIdx Reference to the last searched index or -1 if the array is full.
          * \param _hash The hashing function
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
-        */
-        template<typename HashFunctor>
+         */
+        template <typename HashFunctor>
         PONCA_MULTIARCH [[nodiscard]] inline bool search(int _value, int& _searchedIdx, HashFunctor _hash) const;
 
     public:
@@ -98,9 +98,8 @@ namespace Ponca
          * \tparam HashFunctor The Hashing Functor type
          * \param _hash The hashing function
          */
-        template<typename HashFunctor>
+        template <typename HashFunctor>
         PONCA_MULTIARCH bool insert(int _value, HashFunctor _hash);
-
 
         /*! \brief Tries to find a value in the HashSet
          *
@@ -112,14 +111,14 @@ namespace Ponca
             return contains(_value, hash); // Use default hashing function
         };
 
-
         /*!
          * \copydoc HashSet::contains
          * \tparam HashFunctor The Hashing Functor type
          * \param _hash The hashing function
          */
-        template<typename HashFunctor>
+        template <typename HashFunctor>
         PONCA_MULTIARCH [[nodiscard]] bool contains(int _value, HashFunctor _hash) const;
+
     private:
         static constexpr T OFFSET =
             T(1); //< Offsets the value when storing in m_data, to avoid mistaking the stored index value with EMPTY
