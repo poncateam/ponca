@@ -110,4 +110,4 @@ EOF
 ENV PATH="$PATH:/usr/local/cuda/bin"
 ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
 ENV CC=clang-${LLVM_VERSION}
-ENV CXX=acpp
+ENV CXX=clang++-${LLVM_VERSION}

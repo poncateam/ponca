@@ -78,10 +78,10 @@ jobs:
     - uses: actions/checkout@master
       with:
         submodules: 'recursive'
+        path: src
+        
+    - name: cmake
+      run: mkdir build && cd build && cmake ../src  -GNinja -DCMAKE_Fortran_COMPILER="" -DCMAKE_BUILD_TYPE=Release -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=OFF -DPONCA_CONFIGURE_TESTS=OFF
     
-    - name: Debug
-      run: |
-        mkdir build && cd build
-        pwd 
-        echo $CXX
-        acpp --version
+    - name: build
+      run: cd build && cmake --build . --target ponca-examples
