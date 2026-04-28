@@ -15,9 +15,12 @@ namespace Ponca
     /*! \brief A simple HashMap implementation that mimics a set of indices, by only storing the keys (Hence the name
      * HashSet). The internal logic of this HashMap is similar to a `std::unordered_map`, but is compatible with CUDA.
      *
-     * Stores unique signed integer values in a contiguous array.
+     * Stores unique integer values in a contiguous array.
      *
-     * \warning The internal values stored must not be equal to -1, because it is used as an empty flag by the HashSet.
+     * \warning Logic was optimized for signed integer: The stored values must never be equal to -1, because it
+     * will be mistaken as being empty in the HashSet, and break the search logic. Change the OFFSET value, depending
+     * on the negative value you need to store to avoid this issue, with the following rule : illegal_value =
+     * EMPTY-OFFSET (e.g. set OFFSET to 2 to allow to store -1).
      *
      * For the search, the best case complexity is O(1), and the worst case complexity is O(n).
      * The complexity is entirely dependent on the hashing function, and the given values :
@@ -27,8 +30,7 @@ namespace Ponca
      * \see HashSet::hash for the hashing function
      *
      * \tparam N The maximum size of the HashSet
-     * \tparam T The value type stored in the HashSet : Must be a signed integer type, because the values are used as
-     * indices for the array
+     * \tparam T The value type stored in the HashSet. Default to int
      */
     template <int N, typename T = int>
     class HashSet
@@ -53,10 +55,17 @@ namespace Ponca
          * \param _searchedIdx Reference to the last searched index or -1 if the array is full.
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
          */
-        PONCA_MULTIARCH [[nodiscard]] bool search(int _value, int& _searchedIdx) const;
+        PONCA_MULTIARCH [[nodiscard]] inline bool search(int _value, int& _searchedIdx) const;
 
     public:
-        constexpr PONCA_MULTIARCH HashSet() : m_data() { Ponca::internal::fill(m_data, m_data + N, EMPTY); }
+        constexpr PONCA_MULTIARCH HashSet() : m_data()
+        {
+            // Skip this initialization step if EMPTY is set to 0
+            if constexpr (EMPTY != T(0))
+            {
+                Ponca::internal::fill(m_data, m_data + N, EMPTY);
+            }
+        }
 
         /*! \brief Empty the array
          *
@@ -72,86 +81,32 @@ namespace Ponca
          * search will have to keep looking for the value if it isn't stored at the hashing result, which is why the
          * search isn't always of a O(1) complexity.
          *
-         * \param value The value to be inserted in the HashSet
+         * \param _value The value to be inserted in the HashSet
          * \return True if the value was inserted successfully, and false if the value was already inserted or if the
          * HashSet is full
          */
-        PONCA_MULTIARCH bool insert(int value);
+        PONCA_MULTIARCH bool insert(int _value);
 
         /*! \brief Tries to find a value in the HashSet
          *
-         * \param value The value to search for
+         * \param _value The value to search for
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
          */
-        PONCA_MULTIARCH [[nodiscard]] bool contains(int value) const;
+        PONCA_MULTIARCH [[nodiscard]] bool contains(int _value) const;
 
     private:
-        static constexpr T EMPTY = T(-1);
-        T m_data[N];
+        static constexpr T OFFSET =
+            T(1); //< Offsets the value when storing in m_data, to avoid mistaking the stored index value with EMPTY
+        static constexpr T EMPTY = T(0); //< The flag to tell if the address is available or not (Should always be zero)
+        T m_data[N];                     //< Where we store the elements in memory
 
         //! \brief The hashing function : (x * 2654435761u) % N
-        PONCA_MULTIARCH [[nodiscard]] static int hash(const int x)
+        PONCA_MULTIARCH [[nodiscard]] static int hash(const int _x)
         {
-            PONCA_ASSERT_MSG(x >= 0, "Index must be positive HashSet");
-            return (x * 2654435761u) % N;
+            PONCA_MULTIARCH_STD_MATH(abs);
+            return (abs(_x) * 2654435761u) % N;
         }
     };
-
-    template <int N, typename T>
-    PONCA_MULTIARCH void HashSet<N, T>::clear()
-    {
-        Ponca::internal::fill(m_data, m_data + N, EMPTY);
-    }
-
-    template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::search(const int _value, int& _searchedIdx) const
-    {
-        const int h = hash(_value);
-
-        // Try to find the value
-        for (int i = 0; i < N; ++i)
-        {
-            _searchedIdx  = (h + i) % N;
-            const T& slot = m_data[_searchedIdx]; // Get the address
-
-            // Stops the search here if the address is empty
-            if (slot == EMPTY)
-                return false;
-
-            // Value found
-            if (slot == _value)
-                return true;
-
-            // The value might have been inserted elsewhere, keep looking...
-        }
-
-        // Value not in HashSet
-        _searchedIdx = -1;
-        return false;
-    }
-
-    template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::insert(const int value)
-    {
-        int availableIdx = 0;
-        if (search(value, availableIdx)) // If search is successful
-            return false;                // Insertion can't be done because found the value in the array
-
-        // The value wasn't found in the array, so either :
-        // A - The array is full (The last search index shouldn't point to an available address in the array)
-        if (availableIdx == -1) // Search returns -1 if the Set is full
-            return false;
-
-        // B - The array isn't full and the value can be inserted. Therefore the last search index is the next available
-        // address in the array
-        m_data[availableIdx] = value;
-        return true;
-    }
-
-    template <int N, typename T>
-    PONCA_MULTIARCH bool HashSet<N, T>::contains(const int value) const
-    {
-        int i = 0;
-        return search(value, i);
-    }
 } // namespace Ponca
+
+#include "./hashset.hpp"

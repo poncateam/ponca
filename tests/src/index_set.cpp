@@ -22,14 +22,16 @@ using namespace Ponca;
 using namespace std;
 
 /*!
- * \brief Test the validity of Ponca Common Set of int classes by randomly inserting elements
+ * \brief Test the validity of Ponca Common Set of int classes by randomly inserting values
  * and comparing the results with standard std::set<int>
  *
  * \tparam IndexSet The Set of indices to evaluate
+ * \tparam RandomFunctor The Random functor type
  * \param _maxIndex The maximum possible index (must be > 100)
+ * \param _pickRandom The function to call when generating a random value
  */
-template <typename IndexSet>
-void testSetStandardFeatures(const int _maxIndex)
+template <typename IndexSet, typename RandomFunctor>
+void testSetStandardFeatures(const int _maxIndex, RandomFunctor _pickRandom)
 {
     assert(_maxIndex > 100);
     IndexSet indexSet;
@@ -47,7 +49,7 @@ void testSetStandardFeatures(const int _maxIndex)
     for (int i = 0; i < nbInsertion; ++i)
     {
         // Select a random index to add to the set
-        const int idx = Eigen::internal::random<int>(0, _maxIndex - 1);
+        const int idx = _pickRandom();
         VERIFY((indexSetSTD.contains(idx) == indexSetPonca.contains(idx))); // Check before insert
         VERIFY((indexSetSTD.insert(idx).second == indexSetPonca.insert(idx)));
         VERIFY((indexSetSTD.contains(idx) == indexSetPonca.contains(idx))); // Check after insert
@@ -57,6 +59,22 @@ void testSetStandardFeatures(const int _maxIndex)
     {
         VERIFY((indexSetSTD.contains(i) == indexSetPonca.contains(i)));
     }
+}
+
+/*!
+ * \brief Test the validity of Ponca Common Set of int classes by randomly inserting positive values
+ * and comparing the results with standard std::set<int>
+ *
+ * \tparam IndexSet The Set of indices to evaluate
+ * \param _maxIndex The maximum possible index (must be > 100)
+ */
+template <typename IndexSet>
+void testSetStandardFeatures(const int _maxIndex)
+{
+    testSetStandardFeatures<IndexSet>(_maxIndex, [&_maxIndex]()
+    {
+        return Eigen::internal::random<int>(0, _maxIndex - 1);
+    });
 }
 
 /*
@@ -104,7 +122,15 @@ int main(const int argc, char** argv)
     for (int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST((testSetStandardFeatures<BitSet<MAX_INDEX>>(MAX_INDEX)));
-        CALL_SUBTEST((testSetStandardFeatures<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX)));
+        CALL_SUBTEST((testSetStandardFeatures<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX, []()
+        {
+            // Also test storing negative, but not -1 as it's not allowed by the HashSet
+            int x = -1;
+            while (x == -1) {
+                x = Eigen::internal::random<int>(-(MAX_INDEX-1), MAX_INDEX - 1);
+            }
+            return x;
+        })));
         CALL_SUBTEST((testLimitedSet<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX, MAX_INSERT_SIZE)));
     }
 }
