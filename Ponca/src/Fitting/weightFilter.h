@@ -301,8 +301,10 @@ namespace Ponca
      * scope of this class.
      *
      * \tparam Any NeighborFilter type (NoWeightFilter or DistWeightFilter<ConstantWeightKernel> for example)
+     * \tparam DataType The type of data to store along the filter
+     * \tparam Extractor A function that extracts DataType from DataPoint
      */
-    template <class DataPoint, typename DataType, typename NeighborFilter>
+    template <class DataPoint, typename DataType, typename NeighborFilter, auto Extractor>
     class FilterWithAttributes : public NeighborFilter
     {
     public:
@@ -326,8 +328,8 @@ namespace Ponca
         {
         }
 
-        PONCA_MULTIARCH inline FilterWithAttributes(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1))
-            : Base(_evalPoint.pos(), _t)
+        PONCA_MULTIARCH inline FilterWithAttributes(const DataPoint& _evalPoint, const Scalar& _t = Scalar(0))
+            : Base(_evalPoint.pos(), _t), m_data(Extractor(_evalPoint))
         {
         }
 
