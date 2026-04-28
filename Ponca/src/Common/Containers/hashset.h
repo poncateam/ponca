@@ -20,7 +20,7 @@ namespace Ponca
      * \warning Logic was optimized for signed integer: The stored values must never be equal to -1, because it
      * will be mistaken as being empty in the HashSet, and break the search logic. Change the OFFSET value, depending
      * on the negative value you need to store to avoid this issue, with the following rule : illegal_value =
-     * EMPTY-OFFSET (e.g. set OFFSET to 2 to allow to store -1).
+     * EMPTY-OFFSET (e.g. set OFFSET to 2 to allow to store -1, but make -2 illegal to store).
      *
      * For the search, the best case complexity is O(1), and the worst case complexity is O(n).
      * The complexity is entirely dependent on the hashing function, and the given values :
