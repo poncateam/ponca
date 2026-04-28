@@ -29,7 +29,7 @@ using namespace std;
  */
 int makeShuffledIndexVector(vector<int>& indices, const int min, const int max)
 {
-    const int nbTotal = QUICK_TESTS ? 1 : Eigen::internal::random<int>(min, max - 1) + 1;
+    const int nbTotal = QUICK_TESTS ? min : Eigen::internal::random<int>(min, max - 1) + 1;
     indices.resize(nbTotal);
 
     std::iota(indices.begin(), indices.end(), 1);
@@ -150,7 +150,7 @@ int main(const int argc, char** argv)
     // The upper limit of index range (index can't go higher than this number for BITSET)
     constexpr int MAX_INDEX = 10000;
     // The maximum size of a limited set (values won't be inserted after that)
-    constexpr int MAX_INSERT_SIZE = 100;
+    constexpr int MAX_INSERT_SIZE = QUICK_TESTS ? 1 : 100;
 
     cout << "Check consistency of Set of Indices class" << endl;
 
