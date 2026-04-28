@@ -75,6 +75,7 @@ __host__ void testPlaneCuda(
     const Scalar centerScale    = Eigen::internal::random<Scalar>(1, 10000);
     const VectorType center     = VectorType::Random() * centerScale;
     const VectorType direction  = VectorType::Random().normalized();
+    const Scalar kNearestAmount = 40;
 
     // Generate the point cloud
     std::vector<DataPoint> points(nbPoints);
@@ -87,7 +88,7 @@ __host__ void testPlaneCuda(
 
     //! [Build KnnGraph for CPU]
     Ponca::KdTreeDense<DataPoint> kdtree(points);
-    Ponca::KnnGraph<DataPoint>    knngraph(kdtree, points.size()-1);
+    Ponca::KnnGraph<DataPoint>    knngraph(kdtree, kNearestAmount);
     //! [Build KnnGraph for CPU]
 
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
