@@ -121,26 +121,44 @@ void testLimitedSet(const int _maxIndex, int _setCapacity)
 }
 
 template <int MAX_INSERT_SIZE>
-void testLimitedQueue(const int _maxIndex, const int _setCapacity)
+void testLimitedPriorityQueue(const int _maxIndex, const int _setCapacity)
 {
-    LimitedPriorityQueue<int, MAX_INSERT_SIZE, std::greater<>> queue(_setCapacity);
+    using RisingQueue     = LimitedPriorityQueue<int, MAX_INSERT_SIZE, std::greater<>>;
+    using DescendingQueue = LimitedPriorityQueue<int, MAX_INSERT_SIZE, std::less<>>;
+    RisingQueue risingQueue(_setCapacity);
+    DescendingQueue descQueue(_setCapacity);
 
     vector<int> indices; // To keep track that we insert each index only once
     const int amountOverCapacity = QUICK_TESTS ? 1 : Eigen::internal::random<int>(1, _maxIndex);
 
     // Insert until we reach max capacity
     for (int i = 0; i < _setCapacity; ++i)
-        VERIFY(queue.push(i));
-
-    // Test insert above capacity
+    {
+        VERIFY(risingQueue.push(i));
+        VERIFY(descQueue.push(i));
+    }
+    // Test insert above capacity for the LimitedPriorityQueue
     for (int i = 0; i < amountOverCapacity; ++i)
     {
         int j = _setCapacity + i;
-        VERIFY(queue.bottom() == i);
-        VERIFY(queue.top() == j - 1); // Verify the previous top
-        VERIFY(queue.push(j));
-        VERIFY(queue.bottom() == i + 1); // Verify that it removed the lowest element
-        VERIFY(queue.top() == j);        // Verify the new top
+
+        //////////////// Ascending Limited Queue Test
+        // Verify the previous top and bottom
+        VERIFY((risingQueue.bottom() == i) && (risingQueue.top() == j - 1));
+        // Add in the queue
+        VERIFY(risingQueue.push(j));
+        // Verify that it removed the lowest element
+        VERIFY(risingQueue.bottom() == i + 1);
+        VERIFY(risingQueue.top() == j); // New inserted highest element is at the top
+
+        //////////////// Descending Limited Queue Test
+        VERIFY(descQueue.top() == 0);
+        VERIFY(!descQueue.push(j)); // Will fail to insert, because element is not lower than the rest
+        VERIFY(descQueue.bottom() == j - 1);
+        // Pop last element to be able to insert
+        descQueue.pop();
+        VERIFY(descQueue.push(j));
+        VERIFY(descQueue.bottom() == j);
     }
 }
 
@@ -168,6 +186,6 @@ int main(const int argc, char** argv)
             return x;
         })));
         CALL_SUBTEST((testLimitedSet<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX, MAX_INSERT_SIZE)));
-        CALL_SUBTEST((testLimitedQueue<MAX_INSERT_SIZE>(MAX_INDEX, MAX_INSERT_SIZE)));
+        CALL_SUBTEST((testLimitedPriorityQueue<MAX_INSERT_SIZE>(MAX_INDEX, MAX_INSERT_SIZE)));
     }
 }
