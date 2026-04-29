@@ -23,6 +23,8 @@ namespace Ponca
      *  \note This iterator object can be duplicated with no issues.
      *
      *  \see KdTreeKNearestQueryBase
+     *
+     *  \tparam MAX_KNN_SIZE Maximum size of the K-neighborhood
      */
     template <typename Index, typename DataPoint, int MAX_KNN_SIZE>
     class KdTreeKNearestIterator

@@ -32,6 +32,7 @@ namespace Ponca
      * \tparam T The data type of the array storing the bits. Default to 'unsigned long long' for 64 bits storage.
      *
      * \see `BitSet::erase`, `BitSet::insert` for set-index-like methods
+     * \see HashSet For alternative data structure with compatible API
      *
      * \warning The inserted values must always be smaller than N, because we are using them as indices to store the
      * bits inside the BitSet.

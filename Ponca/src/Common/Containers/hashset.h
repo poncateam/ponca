@@ -28,6 +28,7 @@ namespace Ponca
      * searches, and therefore improve the performance of our algorithm.
      *
      * \see HashSet::hash for the hashing function
+     * \see BitSet For alternative data structure with compatible API
      *
      * \tparam N The maximum size of the HashSet
      * \tparam T The value type stored in the HashSet. Default to int

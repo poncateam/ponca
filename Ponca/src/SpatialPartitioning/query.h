@@ -250,6 +250,8 @@ namespace Ponca
      *
      *  Stores internally the neighbors collection of the knn request and the Distance threshold (for tree descent).
      *  \see QueryOutputBase
+     *
+     *  \tparam MAX_KNN_SIZE Maximum size of the K-neighborhood
      */
     template <typename Index, typename Scalar, int MAX_KNN_SIZE>
     struct QueryOutputIsKNearest : public QueryOutputBase
@@ -345,6 +347,7 @@ namespace Ponca
      *  using a ##OUT_TYPE## Index Query request. */
 
     POINT_QUERY_DOC(KNearest)
+    /*! \tparam MAX_KNN_SIZE Maximum size of the K-neighborhood */
     template <typename Index, typename DataPoint, int MAX_KNN_SIZE>
     using KNearestPointQuery =
         Query<QueryInputIsPosition<DataPoint>, QueryOutputIsKNearest<Index, typename DataPoint::Scalar, MAX_KNN_SIZE>>;
