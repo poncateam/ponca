@@ -29,7 +29,7 @@ using namespace std;
  */
 int makeShuffledIndexVector(vector<int>& indices, const int min, const int max)
 {
-    const int nbTotal = QUICK_TESTS ? min : Eigen::internal::random<int>(min, max - 1) + 1;
+    const int nbTotal = QUICK_TESTS ? min : Eigen::internal::random<int>(min, max);
     indices.resize(nbTotal);
 
     std::iota(indices.begin(), indices.end(), 1);
@@ -99,13 +99,17 @@ void testSetStandardCapabilities(const int _maxIndex)
  * \param _setCapacity The maximum capacity of the limited set
  */
 template <typename IndexSet>
-void testLimitedSet(const int _maxIndex, const int _setCapacity)
+void testLimitedSet(const int _maxIndex, int _setCapacity)
 {
     IndexSet indexSet;
 
+    // Test that the hashset starts empty
+    for (int i = 0; i < _setCapacity; ++i)
+        VERIFY(!(indexSet.contains(i)));
+
     vector<int> indices;         // To keep track that we insert each index only once
     const int nbTotalInsertion = // A number of insertion that exceed available total capacity
-        makeShuffledIndexVector(indices, _setCapacity, _maxIndex);
+        makeShuffledIndexVector(indices, _setCapacity + 1, _maxIndex);
 
     // Insert until we reach max capacity
     for (int i = 0; i < _setCapacity; ++i)
@@ -122,31 +126,28 @@ void testLimitedQueue(const int _maxIndex, const int _setCapacity)
     LimitedPriorityQueue<int, MAX_INSERT_SIZE, std::greater<>> queue(_setCapacity);
 
     vector<int> indices; // To keep track that we insert each index only once
-    const int nbTotalInsertion = QUICK_TESTS ? 1 : Eigen::internal::random<int>(_setCapacity, _maxIndex - 1) + 1;
+    const int amountOverCapacity = QUICK_TESTS ? 1 : Eigen::internal::random<int>(1, _maxIndex);
 
     // Insert until we reach max capacity
     for (int i = 0; i < _setCapacity; ++i)
         VERIFY(queue.push(i));
 
-    int i = 0;
     // Test insert above capacity
-    for (int j = _setCapacity; j < nbTotalInsertion; ++j, ++i)
+    for (int i = 0; i < amountOverCapacity; ++i)
     {
+        int j = _setCapacity + i;
         VERIFY(queue.bottom() == i);
+        VERIFY(queue.top() == j - 1); // Verify the previous top
         VERIFY(queue.push(j));
-        // Verify that it removed the lowest element (bottom)
-        VERIFY(queue.bottom() == i + 1);
-        // Verify the new top
-        VERIFY(queue.top() == j);
+        VERIFY(queue.bottom() == i + 1); // Verify that it removed the lowest element
+        VERIFY(queue.top() == j);        // Verify the new top
     }
 }
 
 int main(const int argc, char** argv)
 {
     if (!init_testing(argc, argv))
-    {
         return EXIT_FAILURE;
-    }
     // The upper limit of index range (index can't go higher than this number for BITSET)
     constexpr int MAX_INDEX = 10000;
     // The maximum size of a limited set (values won't be inserted after that)
