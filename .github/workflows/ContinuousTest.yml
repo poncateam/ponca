@@ -50,3 +50,38 @@ jobs:
         run: cd build && cmake --build . --target ponca-examples
       - name: make install
         run: cd build && cmake --build . --target install
+
+  prep-sycl-container:
+    runs-on: "ubuntu-latest"
+    permissions:
+      packages: write
+    outputs: 
+      docker_image: ${{ steps.docker.outputs.docker_image }}
+    
+    steps:
+      - uses: actions/checkout@master
+      
+      - uses: ./.github/workflows/create-adaptivecpp-container
+        id: docker
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-sycl:
+    runs-on: "ubuntu-latest"
+    needs: prep-sycl-container
+    container: 
+      image: ${{ needs.prep-sycl-container.outputs.docker_image }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - uses: actions/checkout@master
+      with:
+        submodules: 'recursive'
+        path: src
+        
+    - name: cmake
+      run: mkdir build && cd build && cmake ../src  -GNinja -DCMAKE_Fortran_COMPILER="" -DCMAKE_BUILD_TYPE=Release -DPONCA_CONFIGURE_EXAMPLES=ON -DPONCA_CONFIGURE_DOC=OFF -DPONCA_CONFIGURE_TESTS=OFF
+    
+    - name: build
+      run: cd build && cmake --build . --target ponca-examples
