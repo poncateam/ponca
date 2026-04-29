@@ -95,33 +95,33 @@ namespace Ponca
 
         // LimitedPriorityQueue --------------------------------------------------
     public:
-        PONCA_MULTIARCH LimitedPriorityQueue();
-        PONCA_MULTIARCH LimitedPriorityQueue(const Self& other);
-        PONCA_MULTIARCH explicit LimitedPriorityQueue(int capacity);
+        PONCA_MULTIARCH inline LimitedPriorityQueue();
+        PONCA_MULTIARCH inline LimitedPriorityQueue(const Self& other);
+        PONCA_MULTIARCH inline explicit LimitedPriorityQueue(int capacity);
         template <class InputIt>
         PONCA_MULTIARCH LimitedPriorityQueue(int capacity, InputIt first, InputIt last);
 
         PONCA_MULTIARCH inline ~LimitedPriorityQueue() = default;
 
-        PONCA_MULTIARCH LimitedPriorityQueue& operator=(const Self& other);
+        PONCA_MULTIARCH inline LimitedPriorityQueue& operator=(const Self& other) = default;
 
         // Iterator ----------------------------------------------------------------
     public:
-        PONCA_MULTIARCH iterator begin();
-        PONCA_MULTIARCH const_iterator begin() const;
-        PONCA_MULTIARCH const_iterator cbegin() const;
+        PONCA_MULTIARCH [[nodiscard]] inline iterator begin();
+        PONCA_MULTIARCH [[nodiscard]] inline const_iterator begin() const;
+        PONCA_MULTIARCH [[nodiscard]] inline const_iterator cbegin() const;
 
-        PONCA_MULTIARCH iterator end();
-        PONCA_MULTIARCH const_iterator end() const;
-        PONCA_MULTIARCH const_iterator cend() const;
+        PONCA_MULTIARCH [[nodiscard]] inline iterator end();
+        PONCA_MULTIARCH [[nodiscard]] inline const_iterator end() const;
+        PONCA_MULTIARCH [[nodiscard]] inline const_iterator cend() const;
 
         // Element access ----------------------------------------------------------
     public:
-        PONCA_MULTIARCH const T& top() const;
-        PONCA_MULTIARCH const T& bottom() const;
+        PONCA_MULTIARCH [[nodiscard]] inline const T& top() const;
+        PONCA_MULTIARCH [[nodiscard]] inline const T& bottom() const;
 
-        PONCA_MULTIARCH T& top();
-        PONCA_MULTIARCH T& bottom();
+        PONCA_MULTIARCH [[nodiscard]] inline T& top();
+        PONCA_MULTIARCH [[nodiscard]] inline T& bottom();
 
         // Capacity ----------------------------------------------------------------
     public:

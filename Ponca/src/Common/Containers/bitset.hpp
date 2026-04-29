@@ -11,13 +11,13 @@ namespace Ponca
     ////////////////////////////// Set like methods ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     template <int N, typename T>
-    PONCA_MULTIARCH void BitSet<N, T>::clear()
+    void BitSet<N, T>::clear()
     {
         Ponca::internal::fill(m_data, m_data + ARRAY_SIZE, T(0));
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool BitSet<N, T>::erase(const int value)
+    bool BitSet<N, T>::erase(const int value)
     {
         PONCA_ASSERT_MSG(value >= 0 && value < N,
                          "Attempted to remove a value that is outside the scope of the BitSet");
@@ -30,7 +30,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH bool BitSet<N, T>::insert(const int value)
+    bool BitSet<N, T>::insert(const int value)
     {
         PONCA_ASSERT_MSG(value >= 0 && value < N, "Inserted value is outside the scope of the BitSet");
         const int byte             = value / BIT_SIZE;
@@ -42,7 +42,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    PONCA_MULTIARCH [[nodiscard]] bool BitSet<N, T>::contains(const int value) const
+    bool BitSet<N, T>::contains(const int value) const
     {
         PONCA_ASSERT_MSG(value >= 0 && value < N, "Searched value is outside the scope of the BitSet");
         const int byte = value / BIT_SIZE;
@@ -54,7 +54,7 @@ namespace Ponca
     //////////////////////////// BitSet like methods ///////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     template <int N, typename T>
-    PONCA_MULTIARCH void BitSet<N, T>::flip(const int i)
+    void BitSet<N, T>::flip(const int i)
     {
         PONCA_ASSERT_MSG(i >= 0 && i < N, "Flipped value is outside the scope of the BitSet");
         const int byte = i / BIT_SIZE;

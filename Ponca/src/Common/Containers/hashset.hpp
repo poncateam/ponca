@@ -8,14 +8,14 @@
 namespace Ponca
 {
     template <int N, typename T>
-    PONCA_MULTIARCH void HashSet<N, T>::clear()
+    void HashSet<N, T>::clear()
     {
         Ponca::internal::fill(m_data, m_data + N, EMPTY);
     }
 
     template <int N, typename T>
     template <typename HashFunctor>
-    PONCA_MULTIARCH bool HashSet<N, T>::search(const int _value, int& _searchedIdx, HashFunctor _hash) const
+    bool HashSet<N, T>::search(const int _value, int& _searchedIdx, HashFunctor _hash) const
     {
         const int h = _hash(_value);
 
@@ -43,7 +43,7 @@ namespace Ponca
 
     template <int N, typename T>
     template <typename HashFunctor>
-    PONCA_MULTIARCH bool HashSet<N, T>::insert(const int _value, HashFunctor _hash)
+    bool HashSet<N, T>::insert(const int _value, HashFunctor _hash)
     {
         PONCA_ASSERT_MSG(_value != EMPTY - OFFSET, "Illegal value was inserted into the HashSet");
         int availableIdx = 0;
@@ -63,7 +63,7 @@ namespace Ponca
 
     template <int N, typename T>
     template <typename HashFunctor>
-    PONCA_MULTIARCH bool HashSet<N, T>::contains(const int _value, HashFunctor _hash) const
+    bool HashSet<N, T>::contains(const int _value, HashFunctor _hash) const
     {
         PONCA_DEBUG_ASSERT_MSG(_value != EMPTY - OFFSET, "Illegal value was searched from the HashSet");
         int i;

@@ -7,8 +7,8 @@
 
 #pragma once
 
-#include <cstddef>
 #include "../defines.h"
+#include <cstddef>
 #include "./iteratorUtils.h"
 #include "../../Common/Assert.h"
 
