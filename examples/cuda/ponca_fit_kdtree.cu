@@ -10,7 +10,6 @@
  * \authors Auberval Florian, Nicolas Mellado
  */
 
-
 #include <Ponca/src/Fitting/basket.h>
 #include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
@@ -24,30 +23,6 @@
 
 #include "cuda_utils.cu"
 
-template<typename DataPoint>
-struct KdTreeRangeNeighborsFunctor {
-    static __device__ inline auto query(
-        KdTreeGPU<DataPoint>& d_kdtree,
-        int i, typename DataPoint::Scalar analysisScale
-    ) -> Ponca::KdTreeRangeIndexQuery<Ponca::KdTreePointerTraits<DataPoint>> {
-        //! [Use KdTree.rangeNeighbors on the GPU]
-        return d_kdtree.rangeNeighbors(i, analysisScale);
-        //! [Use KdTree.rangeNeighbors on the GPU]
-    }
-};
-
-template<typename DataPoint>
-struct KdTreeKNearestNeighborsFunctor {
-    static __device__ inline auto query(
-        KdTreeGPU<DataPoint>& d_kdtree,
-        int i, typename DataPoint::Scalar analysisScale
-    ) -> Ponca::KdTreeKNearestIndexQuery<Ponca::KdTreePointerTraits<DataPoint>> {
-        //! [Use KdTree.kNearestNeighbors on the GPU]
-        return d_kdtree.kNearestNeighbors(i, d_kdtree.pointCount());
-        //! [Use KdTree.kNearestNeighbors on the GPU]
-    }
-};
-
 /*! \brief Test a MeanPlaneFit on a plane using the CUDA kernel
  *
  * \tparam Scalar The scalar type (e.g. double, float or long double...)
@@ -56,14 +31,12 @@ struct KdTreeKNearestNeighborsFunctor {
  * \param _bAddPositionNoise Determines if we add a randomly generated offset to the position.
  * \param _bAddNormalNoise Determines if we add a randomly generated offset to the normal.
  */
-template<typename Scalar, int Dim>
-__host__ void testPlaneCuda(
-    const bool _bUnoriented       = false,
-    const bool _bAddPositionNoise = false,
-    const bool _bAddNormalNoise   = false
-) {
+template <typename Scalar, int Dim>
+__host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPositionNoise = false,
+                            const bool _bAddNormalNoise = false)
+{
     using DataPoint        = Ponca::PointPositionNormal<Scalar, Dim>;
-    using WeightSmoothFunc = Ponca::DistWeightFunc<DataPoint, Ponca::SmoothWeightKernel<Scalar> >;
+    using WeightSmoothFunc = Ponca::DistWeightFunc<DataPoint, Ponca::SmoothWeightKernel<Scalar>>;
     using MeanFitSmooth    = Ponca::Basket<DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit>;
     using VectorType       = typename DataPoint::VectorType;
 
@@ -71,18 +44,17 @@ __host__ void testPlaneCuda(
     const unsigned int nbPoints = Eigen::internal::random<int>(100, 1000);
     const Scalar width          = Eigen::internal::random<Scalar>(1., 10.);
     const Scalar height         = width;
-    const Scalar analysisScale  = Scalar(15.) * std::sqrt( width * height / nbPoints);
+    const Scalar analysisScale  = Scalar(15.) * std::sqrt(width * height / nbPoints);
     const Scalar centerScale    = Eigen::internal::random<Scalar>(1, 10000);
     const VectorType center     = VectorType::Random() * centerScale;
     const VectorType direction  = VectorType::Random().normalized();
 
     // Generate the point cloud
     std::vector<DataPoint> points(nbPoints);
-    for(unsigned int i = 0; i < nbPoints; ++i) {
-        points[i] = Ponca::getPointOnPlane<DataPoint>(
-            center, direction, width,
-            _bAddPositionNoise, _bAddNormalNoise, _bUnoriented
-        );
+    for (unsigned int i = 0; i < nbPoints; ++i)
+    {
+        points[i] = Ponca::getPointOnPlane<DataPoint>(center, direction, width, _bAddPositionNoise, _bAddNormalNoise,
+                                                      _bUnoriented);
     }
 
     //! [Build KdTree on CPU]
@@ -92,8 +64,8 @@ __host__ void testPlaneCuda(
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
 
     // The size of the data we send between Host and Device
-    const unsigned long scalarBufferSize     = nbPoints * sizeof(Scalar);
-    const unsigned long vectorBufferSize     = scalarBufferSize * Dim;
+    const unsigned long scalarBufferSize = nbPoints * sizeof(Scalar);
+    const unsigned long vectorBufferSize = scalarBufferSize * Dim;
 
     //! [Copy KdTree on GPU]
     using BuffersGPU = typename KdTreeGPU<DataPoint>::Buffers;
@@ -101,34 +73,32 @@ __host__ void testPlaneCuda(
     CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(BuffersGPU)));
     BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory
     deepCopyKdTreeBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(
-        kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice
-    );
+        kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);
     //! [Copy KdTree on GPU]
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
-    auto* const gradientResults  = new Scalar[nbPoints*Dim];
+    auto* const gradientResults  = new Scalar[nbPoints * Dim];
     Scalar* potentialResultsDevice;
     Scalar* gradientResultsDevice;
     CUDA_CHECK(cudaMalloc(&potentialResultsDevice, scalarBufferSize));
-    CUDA_CHECK(cudaMalloc(&gradientResultsDevice , vectorBufferSize));
+    CUDA_CHECK(cudaMalloc(&gradientResultsDevice, vectorBufferSize));
 
     // Set block and grid size depending on number of points
     constexpr unsigned int blockSize = 128;
-    const     unsigned int gridSize  = (nbPoints + blockSize - 1) / blockSize;
+    const unsigned int gridSize      = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
     fitPotentialAndGradientKernel<KdTreeGPU<DataPoint>, MeanFitSmooth, KdTreeRangeNeighborsFunctor<DataPoint>>
-    <<<gridSize, blockSize>>>(
-        kdtreeBuffersDevice, analysisScale,           // Inputs
-        potentialResultsDevice, gradientResultsDevice // Outputs
-    );
+        <<<gridSize, blockSize>>>(kdtreeBuffersDevice, analysisScale,           // Inputs
+                                  potentialResultsDevice, gradientResultsDevice // Outputs
+        );
     CUDA_CHECK(cudaGetLastError()); // Catch kernel launch errors
     CUDA_CHECK(cudaDeviceSynchronize());
 
     // Fetch the results (Device to Host)
     CUDA_CHECK(cudaMemcpy(potentialResults, potentialResultsDevice, scalarBufferSize, cudaMemcpyDeviceToHost));
-    CUDA_CHECK(cudaMemcpy(gradientResults , gradientResultsDevice , vectorBufferSize, cudaMemcpyDeviceToHost));
+    CUDA_CHECK(cudaMemcpy(gradientResults, gradientResultsDevice, vectorBufferSize, cudaMemcpyDeviceToHost));
 
     // Free CUDA memory
     CUDA_CHECK(cudaFree(potentialResultsDevice));
@@ -140,8 +110,9 @@ __host__ void testPlaneCuda(
 
     // Validate results
     const auto epsilon = Scalar(0.001);
-    for (int i = 0; i < nbPoints; ++i) {
-        const VectorType primGrad = Eigen::Map< const VectorType >(gradientResults + Dim*i  );
+    for (int i = 0; i < nbPoints; ++i)
+    {
+        const VectorType primGrad = Eigen::Map<const VectorType>(gradientResults + Dim * i);
 
         std::cout << "i:" << i << ", potential:" << potentialResults[i] << ", ";
         std::cout << "primitiveGradient:" << primGrad.transpose() << " ; " << std::endl;
@@ -157,8 +128,8 @@ __host__ void testPlaneCuda(
     delete[] gradientResults;
 }
 
-
-__host__ int main(const int /*argc*/, char** /*argv*/) {
+__host__ int main(const int /*argc*/, char** /*argv*/)
+{
     std::cout << "Example plane fitting using KdTree on CUDA..." << std::endl;
     testPlaneCuda<float, 3>();
     std::cout << "(ok)" << std::endl;
