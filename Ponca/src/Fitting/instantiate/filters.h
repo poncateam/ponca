@@ -9,3 +9,15 @@
 #    include "baskets.h"
 #    undef _NF
 #endif
+
+#if defined(_PONCA_INSTANTIATE_CONSTANTWEIGHT) || defined(_PONCA_INSTANTIATE_ALL)
+#    define _NF DistWeightFunc<_P, ConstantWeightKernel<_S>>
+#    include "baskets.h"
+#    undef _NF
+#endif
+
+#if defined(_PONCA_INSTANTIATE_NOWEIGHT) || defined(_PONCA_INSTANTIATE_ALL)
+#    define _NF Ponca::NoWeightFunc<_P>
+#    include "baskets.h"
+#    undef _NF
+#endif

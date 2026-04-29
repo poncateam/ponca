@@ -30,9 +30,23 @@
 // The _PONCA_BASKET_DIFF_X macro will be defined elsewhere to generate
 // the desired code
 
-#if _D == 3 && defined(_Normal)
+#if _D == 3
+_PONCA_BASKET_DIFF_X("CovariancePlaneCurvatureEstimator", "",
+                     BasketDiff<Basket<_P, _NF, CovariancePlaneFit>, _DT, CovariancePlaneDer, CurvatureEstimatorDer,
+                                NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>)
+#    if defined(_Normal)
 _PONCA_BASKET_DIFF_X(
-    "Diff", "",
+    "OrientedSphereCurvatureEstimator", "",
     BasketDiff<Basket<_P, _NF, OrientedSphereFit, GLSParam>, _DT, OrientedSphereDer, GLSDer, CurvatureEstimatorDer,
                NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>)
+_PONCA_BASKET_DIFF_X(
+    "UnorientedSphereCurvatureEstimator", "",
+    BasketDiff<Basket<_P, _NF, UnorientedSphereFit, GLSParam>, _DT, UnorientedSphereDer, GLSDer, CurvatureEstimatorDer,
+               NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>)
+_PONCA_BASKET_DIFF_X(
+    "ASOCurvatureEstimator", "",
+    BasketDiff<Basket<_P, _NF, OrientedSphereFit, GLSParam>, _DT, OrientedSphereDer, GLSDer, MlsSphereFitDer,
+               CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>)
+#    endif
 #endif
+
