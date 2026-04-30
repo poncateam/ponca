@@ -16,13 +16,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Compatibility types, macros, functions
 //
+
+#ifdef _PONCA_SHARED_LIBRARY
+#   ifdef _MSC_VER
+#      define _PONCA_EXPORT __declspec(dllexport)
+#   else
+#      define _PONCA_EXPORT
+#   endif
+#else 
+#   ifdef _MSC_VER
+#      define _PONCA_EXPORT __declspec(dllimport)
+#   else
+#      define _PONCA_EXPORT
+#   endif
+#endif
+
 #ifdef __CUDACC__
 #    include <cuda.h>
-#    define PONCA_MULTIARCH __host__ __device__
-#    define PONCA_MULTIARCH_HOST __host__
+#    define PONCA_MULTIARCH __host__ __device__ _PONCA_EXPORT
+#    define PONCA_MULTIARCH_HOST __host__ _PONCA_EXPORT
 #else
-#    define PONCA_MULTIARCH
-#    define PONCA_MULTIARCH_HOST
+#    define PONCA_MULTIARCH _PONCA_EXPORT
+#    define PONCA_MULTIARCH_HOST _PONCA_EXPORT
 
 // GCC: compile with -std=c++0x
 #    if defined(__GNUC__) && ((__GNUC__ == 4 && __GNUC_MINOR__ >= 6) || (__GNUC__ >= 5))

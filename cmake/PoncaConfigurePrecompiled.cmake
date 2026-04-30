@@ -35,7 +35,7 @@ target_sources(Instantiate PUBLIC
     )
 
 target_link_libraries(Instantiate PUBLIC Eigen3::Eigen)
-target_compile_definitions(Instantiate PRIVATE _PONCA_COMPILE_DEFINITION)
+target_compile_definitions(Instantiate PRIVATE _PONCA_SHARED_LIBRARY)
 
 
 # Instantiation options
