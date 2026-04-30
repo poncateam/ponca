@@ -29,6 +29,9 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/weingarten.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/weingarten.hpp"
 
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/tools/covariance.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/tools/covariance.hpp"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/tools/dryFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/tools/mean.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/tools/mean.hpp"
     
@@ -37,13 +40,10 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/primitive/basketUnit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/primitive/plane.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/primitive/linePrimitive.h"
-    
-    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/covarianceFit.h"
-    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/covarianceFit.hpp"
+
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/covarianceLineFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/covariancePlaneFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/covariancePlaneFit.hpp"
-    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/dryFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/meanPlaneFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/mongePatch.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/mongePatch.hpp"

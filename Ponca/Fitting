@@ -33,11 +33,11 @@
 
 // Fitting tools
 #include "src/Fitting/Basket/tools/mean.h"
+#include "src/Fitting/Basket/tools/dryFit.h"
+#include "src/Fitting/Basket/tools/covariance.h"
 
 // Fitting
-#include "src/Fitting/Basket/fit/dryFit.h"
 #include "src/Fitting/Basket/fit/meanPlaneFit.h"
-#include "src/Fitting/Basket/fit/covarianceFit.h"
 #include "src/Fitting/Basket/fit/covariancePlaneFit.h"
 #include "src/Fitting/Basket/fit/covarianceLineFit.h"
 #include "src/Fitting/Basket/fit/mongePatch.h"

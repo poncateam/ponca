@@ -11,8 +11,8 @@
 
 #include "../../defines.h"
 #include "../primitive/plane.h"
-#include "../tools/mean.h"   // used to define CovarianceLineFit
-#include "./covarianceFit.h" // use to define CovariancePlaneFit
+#include "../tools/mean.h" // used to define CovarianceLineFit
+#include "../tools/covariance.h"
 
 #include <Eigen/Eigenvalues>
 

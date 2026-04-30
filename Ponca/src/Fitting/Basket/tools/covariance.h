@@ -157,6 +157,6 @@ namespace Ponca
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
     }; // class CovarianceDer
 
-#include "covarianceFit.hpp"
+#include "covariance.hpp"
 
 } // namespace Ponca
