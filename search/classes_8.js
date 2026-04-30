@@ -23,12 +23,12 @@ var searchData=
   ['kdtreesparse_20',['KdTreeSparse',['../structPonca_1_1KdTreeSparse.html',1,'Ponca']]],
   ['kdtreesparsebase_21',['KdTreeSparseBase',['../classPonca_1_1KdTreeSparseBase.html',1,'Ponca']]],
   ['kdtreesparsebase_3c_20kdtreedefaulttraits_3c_20datapoint_20_3e_20_3e_22',['KdTreeSparseBase&lt; KdTreeDefaultTraits&lt; DataPoint &gt; &gt;',['../classPonca_1_1KdTreeSparseBase.html',1,'Ponca']]],
-  ['knearestindexquery_23',['KNearestIndexQuery',['../group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery',1,'Ponca']]],
-  ['knearestindexquery_3c_20traits_3a_3aindextype_2c_20traits_3a_3adatapoint_3a_3ascalar_20_3e_24',['KNearestIndexQuery&lt; Traits::IndexType, Traits::DataPoint::Scalar &gt;',['../group__spatialpartitioning.html',1,'Ponca']]],
-  ['knearestpointquery_25',['KNearestPointQuery',['../group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery',1,'Ponca']]],
-  ['knngraphbase_26',['KnnGraphBase',['../classPonca_1_1KnnGraphBase.html',1,'Ponca']]],
-  ['knngraphdefaulttraits_27',['KnnGraphDefaultTraits',['../structPonca_1_1KnnGraphDefaultTraits.html',1,'Ponca']]],
-  ['knngraphknearestquery_28',['KnnGraphKNearestQuery',['../classPonca_1_1KnnGraphKNearestQuery.html',1,'Ponca']]],
-  ['knngraphrangeiterator_29',['KnnGraphRangeIterator',['../classPonca_1_1KnnGraphRangeIterator.html',1,'Ponca']]],
-  ['knngraphrangequery_30',['KnnGraphRangeQuery',['../classPonca_1_1KnnGraphRangeQuery.html',1,'Ponca']]]
+  ['knngraphbase_23',['KnnGraphBase',['../classPonca_1_1KnnGraphBase.html',1,'Ponca']]],
+  ['knngraphdefaulttraits_24',['KnnGraphDefaultTraits',['../structPonca_1_1KnnGraphDefaultTraits.html',1,'Ponca']]],
+  ['knngraphknearestiterator_25',['KnnGraphKNearestIterator',['../classPonca_1_1KnnGraphKNearestIterator.html',1,'Ponca']]],
+  ['knngraphknearestquery_26',['KnnGraphKNearestQuery',['../classPonca_1_1KnnGraphKNearestQuery.html',1,'Ponca']]],
+  ['knngraphpointertraits_27',['KnnGraphPointerTraits',['../structPonca_1_1KnnGraphPointerTraits.html',1,'Ponca']]],
+  ['knngraphrangeiterator_28',['KnnGraphRangeIterator',['../classPonca_1_1KnnGraphRangeIterator.html',1,'Ponca']]],
+  ['knngraphrangequery_29',['KnnGraphRangeQuery',['../classPonca_1_1KnnGraphRangeQuery.html',1,'Ponca']]],
+  ['knngraphrangequery_3c_20traits_20_3e_30',['KnnGraphRangeQuery&lt; Traits &gt;',['../classPonca_1_1KnnGraphRangeQuery.html',1,'Ponca']]]
 ];

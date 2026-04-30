@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a8a21c362dc2c650634ff9a07307bf4e308b2e74</span>
+   &#160;<span id="projectnumber">911e152b8d5ac5c934a260b3832f7f62800b65b9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -138,7 +138,6 @@ Source code</h1>
 <div class="line"> * \authors Auberval Florian, Nicolas Mellado</div>
 <div class="line"> */</div>
 <div class="line"> </div>
-<div class="line"> </div>
 <div class="line">#include &lt;Ponca/src/Fitting/basket.h&gt;</div>
 <div class="line">#include &lt;Ponca/src/Fitting/covariancePlaneFit.h&gt;</div>
 <div class="line">#include &lt;Ponca/src/Fitting/meanPlaneFit.h&gt;</div>
@@ -152,59 +151,6 @@ Source code</h1>
 <div class="line"> </div>
 <div class="line">#include &quot;cuda_utils.cu&quot;</div>
 <div class="line"> </div>
-<div class="line">/*! \brief Computes the fitting process for each point of the point cloud and returns the potential and primitive gradient result.</div>
-<div class="line"> *</div>
-<div class="line"> * \tparam DataPoint The DataPoint type.</div>
-<div class="line"> * \tparam Fit The Fit that will be computed by the Kernel.</div>
-<div class="line"> * \param buffers The buffers structure that holds the internal containers of the KdTree.</div>
-<div class="line"> * \param analysisScale The radius of the neighborhood.</div>
-<div class="line"> * \param potentialResults As an Output, the potential results of the fit for each point of the Point Cloud.</div>
-<div class="line"> * \param gradientResults As an Output, the primitiveGradient results of the fit for each point of the Point Cloud.</div>
-<div class="line"> */</div>
-<div class="line">template&lt;typename DataPoint, typename Fit&gt;</div>
-<div class="line">__global__ void fitPotentialAndGradientKernel(</div>
-<div class="line">    typename KdTreeGPU&lt;DataPoint&gt;::Buffers* const buffers,</div>
-<div class="line">    const typename DataPoint::Scalar analysisScale,</div>
-<div class="line">    typename DataPoint::Scalar* const potentialResults,</div>
-<div class="line">    typename DataPoint::Scalar* const gradientResults</div>
-<div class="line">) {</div>
-<div class="line">    using VectorType = typename DataPoint::VectorType;</div>
-<div class="line"> </div>
-<div class="line">    // Get global index</div>
-<div class="line">    const unsigned int i = threadIdx.x + blockIdx.x * blockDim.x;</div>
-<div class="line">    // Skip when not in the point cloud</div>
-<div class="line">    if (i &gt;= buffers-&gt;points_size) return;</div>
-<div class="line"> </div>
-<div class="line">    //! [Create KdTree on the GPU]</div>
-<div class="line">    KdTreeGPU&lt;DataPoint&gt; kdtree(*buffers);</div>
-<div class="line">    //! [Create KdTree on the GPU]</div>
-<div class="line"> </div>
-<div class="line">    // Set up the fit</div>
-<div class="line">    Fit fit;</div>
-<div class="line">    VectorType pos = kdtree.points()[i].pos();</div>
-<div class="line">    fit.setNeighborFilter({ pos, analysisScale });</div>
-<div class="line"> </div>
-<div class="line">    //! [Use KdTree on the GPU]</div>
-<div class="line">    fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), kdtree.points());</div>
-<div class="line">    //! [Use KdTree on the GPU]</div>
-<div class="line"> </div>
-<div class="line">    // Returns NaN if not stable</div>
-<div class="line">    if (! fit.isStable()) {</div>
-<div class="line">        potentialResults[i] = NAN;</div>
-<div class="line">        for (int d = 0; d &lt; DataPoint::Dim; ++d) {</div>
-<div class="line">            gradientResults[i*DataPoint::Dim + d] = NAN;</div>
-<div class="line">        }</div>
-<div class="line">        return;</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    // Return the fit.potential result as an output</div>
-<div class="line">    potentialResults[i]   = fit.potential(pos);</div>
-<div class="line">    const VectorType grad = fit.primitiveGradient(pos);</div>
-<div class="line">    for (int d = 0; d &lt; DataPoint::Dim; ++d) {</div>
-<div class="line">        gradientResults[i*DataPoint::Dim + d] = grad(d);</div>
-<div class="line">    }</div>
-<div class="line">}</div>
-<div class="line"> </div>
 <div class="line">/*! \brief Test a MeanPlaneFit on a plane using the CUDA kernel</div>
 <div class="line"> *</div>
 <div class="line"> * \tparam Scalar The scalar type (e.g. double, float or long double...)</div>
@@ -213,14 +159,12 @@ Source code</h1>
 <div class="line"> * \param _bAddPositionNoise Determines if we add a randomly generated offset to the position.</div>
 <div class="line"> * \param _bAddNormalNoise Determines if we add a randomly generated offset to the normal.</div>
 <div class="line"> */</div>
-<div class="line">template&lt;typename Scalar, int Dim&gt;</div>
-<div class="line">__host__ void testPlaneCuda(</div>
-<div class="line">    const bool _bUnoriented       = false,</div>
-<div class="line">    const bool _bAddPositionNoise = false,</div>
-<div class="line">    const bool _bAddNormalNoise   = false</div>
-<div class="line">) {</div>
+<div class="line">template &lt;typename Scalar, int Dim&gt;</div>
+<div class="line">__host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPositionNoise = false,</div>
+<div class="line">                            const bool _bAddNormalNoise = false)</div>
+<div class="line">{</div>
 <div class="line">    using DataPoint        = Ponca::PointPositionNormal&lt;Scalar, Dim&gt;;</div>
-<div class="line">    using WeightSmoothFunc = Ponca::DistWeightFunc&lt;DataPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;;</div>
+<div class="line">    using WeightSmoothFunc = Ponca::DistWeightFunc&lt;DataPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
 <div class="line">    using MeanFitSmooth    = Ponca::Basket&lt;DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit&gt;;</div>
 <div class="line">    using VectorType       = typename DataPoint::VectorType;</div>
 <div class="line"> </div>
@@ -228,18 +172,17 @@ Source code</h1>
 <div class="line">    const unsigned int nbPoints = Eigen::internal::random&lt;int&gt;(100, 1000);</div>
 <div class="line">    const Scalar width          = Eigen::internal::random&lt;Scalar&gt;(1., 10.);</div>
 <div class="line">    const Scalar height         = width;</div>
-<div class="line">    const Scalar analysisScale  = Scalar(15.) * std::sqrt( width * height / nbPoints);</div>
+<div class="line">    const Scalar analysisScale  = Scalar(15.) * std::sqrt(width * height / nbPoints);</div>
 <div class="line">    const Scalar centerScale    = Eigen::internal::random&lt;Scalar&gt;(1, 10000);</div>
 <div class="line">    const VectorType center     = VectorType::Random() * centerScale;</div>
 <div class="line">    const VectorType direction  = VectorType::Random().normalized();</div>
 <div class="line"> </div>
 <div class="line">    // Generate the point cloud</div>
 <div class="line">    std::vector&lt;DataPoint&gt; points(nbPoints);</div>
-<div class="line">    for(unsigned int i = 0; i &lt; nbPoints; ++i) {</div>
-<div class="line">        points[i] = Ponca::getPointOnPlane&lt;DataPoint&gt;(</div>
-<div class="line">            center, direction, width,</div>
-<div class="line">            _bAddPositionNoise, _bAddNormalNoise, _bUnoriented</div>
-<div class="line">        );</div>
+<div class="line">    for (unsigned int i = 0; i &lt; nbPoints; ++i)</div>
+<div class="line">    {</div>
+<div class="line">        points[i] = Ponca::getPointOnPlane&lt;DataPoint&gt;(center, direction, width, _bAddPositionNoise, _bAddNormalNoise,</div>
+<div class="line">                                                      _bUnoriented);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    //! [Build KdTree on CPU]</div>
@@ -249,51 +192,55 @@ Source code</h1>
 <div class="line">    std::cout &lt;&lt; &quot;Number of nodes in the KdTree : &quot; &lt;&lt; kdtree.nodeCount() &lt;&lt; std::endl;</div>
 <div class="line"> </div>
 <div class="line">    // The size of the data we send between Host and Device</div>
-<div class="line">    const unsigned long scalarBufferSize     = nbPoints * sizeof(Scalar);</div>
-<div class="line">    const unsigned long vectorBufferSize     = scalarBufferSize * Dim;</div>
+<div class="line">    const unsigned long scalarBufferSize = nbPoints * sizeof(Scalar);</div>
+<div class="line">    const unsigned long vectorBufferSize = scalarBufferSize * Dim;</div>
 <div class="line"> </div>
 <div class="line">    //! [Copy KdTree on GPU]</div>
 <div class="line">    using BuffersGPU = typename KdTreeGPU&lt;DataPoint&gt;::Buffers;</div>
 <div class="line">    BuffersGPU* kdtreeBuffersDevice;</div>
 <div class="line">    CUDA_CHECK(cudaMalloc(&amp;kdtreeBuffersDevice, sizeof(BuffersGPU)));</div>
 <div class="line">    BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory</div>
-<div class="line">    deepCopyBuffersToDevice&lt;Ponca::KdTreePointerTraits&lt;DataPoint&gt;&gt;(kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);</div>
+<div class="line">    deepCopyKdTreeBuffersToDevice&lt;Ponca::KdTreePointerTraits&lt;DataPoint&gt;&gt;(</div>
+<div class="line">        kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);</div>
 <div class="line">    //! [Copy KdTree on GPU]</div>
 <div class="line"> </div>
 <div class="line">    // Prepare output buffers</div>
 <div class="line">    auto* const potentialResults = new Scalar[nbPoints];</div>
-<div class="line">    auto* const gradientResults  = new Scalar[nbPoints*Dim];</div>
+<div class="line">    auto* const gradientResults  = new Scalar[nbPoints * Dim];</div>
 <div class="line">    Scalar* potentialResultsDevice;</div>
 <div class="line">    Scalar* gradientResultsDevice;</div>
 <div class="line">    CUDA_CHECK(cudaMalloc(&amp;potentialResultsDevice, scalarBufferSize));</div>
-<div class="line">    CUDA_CHECK(cudaMalloc(&amp;gradientResultsDevice , vectorBufferSize));</div>
+<div class="line">    CUDA_CHECK(cudaMalloc(&amp;gradientResultsDevice, vectorBufferSize));</div>
 <div class="line"> </div>
 <div class="line">    // Set block and grid size depending on number of points</div>
 <div class="line">    constexpr unsigned int blockSize = 128;</div>
-<div class="line">    const     unsigned int gridSize  = (nbPoints + blockSize - 1) / blockSize;</div>
+<div class="line">    const unsigned int gridSize      = (nbPoints + blockSize - 1) / blockSize;</div>
 <div class="line"> </div>
 <div class="line">    // Compute the fitting in the kernel</div>
-<div class="line">    fitPotentialAndGradientKernel&lt;DataPoint, MeanFitSmooth&gt;&lt;&lt;&lt;gridSize, blockSize&gt;&gt;&gt;(</div>
-<div class="line">        kdtreeBuffersDevice, analysisScale,           // Inputs</div>
-<div class="line">        potentialResultsDevice, gradientResultsDevice // Outputs</div>
-<div class="line">    );</div>
+<div class="line">    fitPotentialAndGradientKernel&lt;KdTreeGPU&lt;DataPoint&gt;, MeanFitSmooth, KdTreeRangeNeighborsFunctor&lt;DataPoint&gt;&gt;</div>
+<div class="line">        &lt;&lt;&lt;gridSize, blockSize&gt;&gt;&gt;(kdtreeBuffersDevice, analysisScale,           // Inputs</div>
+<div class="line">                                  potentialResultsDevice, gradientResultsDevice // Outputs</div>
+<div class="line">        );</div>
 <div class="line">    CUDA_CHECK(cudaGetLastError()); // Catch kernel launch errors</div>
 <div class="line">    CUDA_CHECK(cudaDeviceSynchronize());</div>
 <div class="line"> </div>
 <div class="line">    // Fetch the results (Device to Host)</div>
 <div class="line">    CUDA_CHECK(cudaMemcpy(potentialResults, potentialResultsDevice, scalarBufferSize, cudaMemcpyDeviceToHost));</div>
-<div class="line">    CUDA_CHECK(cudaMemcpy(gradientResults , gradientResultsDevice , vectorBufferSize, cudaMemcpyDeviceToHost));</div>
+<div class="line">    CUDA_CHECK(cudaMemcpy(gradientResults, gradientResultsDevice, vectorBufferSize, cudaMemcpyDeviceToHost));</div>
 <div class="line"> </div>
 <div class="line">    // Free CUDA memory</div>
 <div class="line">    CUDA_CHECK(cudaFree(potentialResultsDevice));</div>
 <div class="line">    CUDA_CHECK(cudaFree(gradientResultsDevice));</div>
-<div class="line">    freeBuffersOnDevice(hostBuffersHoldingDevicePointers);</div>
+<div class="line">    //! [Free KdTree from memory on GPU]</div>
+<div class="line">    freeKdTreeBuffersOnDevice(hostBuffersHoldingDevicePointers);</div>
 <div class="line">    CUDA_CHECK(cudaFree(kdtreeBuffersDevice));</div>
+<div class="line">    //! [Free KdTree from memory on GPU]</div>
 <div class="line"> </div>
 <div class="line">    // Validate results</div>
 <div class="line">    const auto epsilon = Scalar(0.001);</div>
-<div class="line">    for (int i = 0; i &lt; nbPoints; ++i) {</div>
-<div class="line">        const VectorType primGrad = Eigen::Map&lt; const VectorType &gt;(gradientResults + Dim*i  );</div>
+<div class="line">    for (int i = 0; i &lt; nbPoints; ++i)</div>
+<div class="line">    {</div>
+<div class="line">        const VectorType primGrad = Eigen::Map&lt;const VectorType&gt;(gradientResults + Dim * i);</div>
 <div class="line"> </div>
 <div class="line">        std::cout &lt;&lt; &quot;i:&quot; &lt;&lt; i &lt;&lt; &quot;, potential:&quot; &lt;&lt; potentialResults[i] &lt;&lt; &quot;, &quot;;</div>
 <div class="line">        std::cout &lt;&lt; &quot;primitiveGradient:&quot; &lt;&lt; primGrad.transpose() &lt;&lt; &quot; ; &quot; &lt;&lt; std::endl;</div>
@@ -309,9 +256,9 @@ Source code</h1>
 <div class="line">    delete[] gradientResults;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"> </div>
-<div class="line">__host__ int main(const int /*argc*/, char** /*argv*/) {</div>
-<div class="line">    std::cout &lt;&lt; &quot;Test plane fitting on CUDA...&quot; &lt;&lt; std::endl;</div>
+<div class="line">__host__ int main(const int /*argc*/, char** /*argv*/)</div>
+<div class="line">{</div>
+<div class="line">    std::cout &lt;&lt; &quot;Example plane fitting using KdTree on CUDA...&quot; &lt;&lt; std::endl;</div>
 <div class="line">    testPlaneCuda&lt;float, 3&gt;();</div>
 <div class="line">    std::cout &lt;&lt; &quot;(ok)&quot; &lt;&lt; std::endl;</div>
 <div class="line">}</div>
@@ -322,7 +269,7 @@ Source code</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Fri Apr 24 2026 15:55:20 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Apr 30 2026 18:17:34 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

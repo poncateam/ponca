@@ -1,0 +1,5 @@
+<map id="Ponca::LimitedPriorityQueue&lt; T, N, CompareT &gt;" name="Ponca::LimitedPriorityQueue&lt; T, N, CompareT &gt;">
+<area shape="rect" id="Node000001" title="The LimitedPriorityQueue class is similar to std::priority_queue but has a limited capacity and handl..." alt="" coords="27,5,226,365"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1LimitedPriorityQueue.html" title=" " alt="" coords="5,457,248,832"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,379,129,457,124,457,124,379"/>
+</map>

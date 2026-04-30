@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a8a21c362dc2c650634ff9a07307bf4e308b2e74</span>
+   &#160;<span id="projectnumber">911e152b8d5ac5c934a260b3832f7f62800b65b9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -138,6 +138,7 @@ $(document).ready(function(){initNavTree('structPonca_1_1KdTreePointerTraits.htm
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a1ad67973094b97f956bcece7fad28066" id="r_a1ad67973094b97f956bcece7fad28066"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="structPonca_1_1KdTreePointerTraits.html#a1ad67973094b97f956bcece7fad28066a29f37a4a8b09d1b551065b5b9509a6d6">MAX_DEPTH</a> = 32
+, <a class="el" href="structPonca_1_1KdTreePointerTraits.html#a1ad67973094b97f956bcece7fad28066a61b8d97a4b263d4bb2771ab056d9bca3">MAX_KNN_SIZE</a> = 128
  }</td></tr>
 <tr class="separator:a1ad67973094b97f956bcece7fad28066"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac34bb76fb75064e5a978e0df55651adc" id="r_ac34bb76fb75064e5a978e0df55651adc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KdTreePointerTraits.html#ac34bb76fb75064e5a978e0df55651adc">DataPoint</a> = <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a></td></tr>
@@ -169,7 +170,7 @@ struct Ponca::KdTreePointerTraits&lt; _DataPoint, _NodeType &gt;</div><p>Variant
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00353">353</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00354">354</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ac34bb76fb75064e5a978e0df55651adc" name="ac34bb76fb75064e5a978e0df55651adc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac34bb76fb75064e5a978e0df55651adc">&#9670;&#160;</a></span>DataPoint</h2>
@@ -189,7 +190,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <p>Must provide <code>Scalar</code> and <code>VectorType</code> aliases.</p>
 <p><code>VectorType</code> must provide a <code>squaredNorm()</code> function returning a <code>Scalar</code>, as well as a <code>maxCoeff(int*)</code> function returning the dimension index of its largest scalar in its output parameter (e.g. 0 for <em>x</em>, 1 for <em>y</em>, etc.). </p>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00372">372</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00374">374</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -207,7 +208,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00378">378</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00380">380</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -225,7 +226,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00373">373</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00375">375</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -243,7 +244,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00374">374</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00376">376</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -261,7 +262,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00383">383</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00385">385</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -279,7 +280,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00381">381</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00383">383</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -297,7 +298,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00382">382</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00384">384</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -315,7 +316,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00377">377</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00379">379</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -336,9 +337,11 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1ad67973094b97f956bcece7fad28066a29f37a4a8b09d1b551065b5b9509a6d6" name="a1ad67973094b97f956bcece7fad28066a29f37a4a8b09d1b551065b5b9509a6d6"></a>MAX_DEPTH&#160;</td><td class="fielddoc"><p>A compile-time constant specifying the maximum depth of the kd-tree. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="a1ad67973094b97f956bcece7fad28066a61b8d97a4b263d4bb2771ab056d9bca3" name="a1ad67973094b97f956bcece7fad28066a61b8d97a4b263d4bb2771ab056d9bca3"></a>MAX_KNN_SIZE&#160;</td><td class="fielddoc"><p>The maximum size of a knn query. </p>
+</td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00355">355</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="kdTreeTraits_8h_source.html#l00356">356</a> of file <a class="el" href="kdTreeTraits_8h_source.html">kdTreeTraits.h</a>.</p>
 
 </div>
 </div>
@@ -348,7 +351,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="structPonca_1_1KdTreePointerTraits.html">KdTreePointerTraits</a></li>
-    <li class="footer">Generated on Fri Apr 24 2026 15:55:20 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Apr 30 2026 18:17:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,9 +1,5 @@
 <map id="Ponca::IndexSquaredDistance&lt; Index, Scalar &gt;" name="Ponca::IndexSquaredDistance&lt; Index, Scalar &gt;">
-<area shape="rect" id="Node000001" title="Associates an index with a distance." alt="" coords="236,5,443,105"/>
-<area shape="rect" id="Node000002" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="5,205,212,305"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,115,208,131,172,167,142,206,138,202,168,164,204,127,226,111"/>
-<area shape="rect" id="Node000003" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="236,197,443,312"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="342,119,342,197,337,197,337,119"/>
-<area shape="rect" id="Node000004" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="467,205,673,305"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="456,109,480,127,515,164,543,203,539,206,511,167,476,131,453,114"/>
+<area shape="rect" id="Node000001" title="Associates an index with a distance." alt="" coords="5,5,212,105"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="5,168,212,268"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,119,111,168,106,168,106,119"/>
 </map>

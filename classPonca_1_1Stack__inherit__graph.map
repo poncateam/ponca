@@ -1,5 +1,7 @@
 <map id="Ponca::Stack&lt; T, N &gt;" name="Ponca::Stack&lt; T, N &gt;">
-<area shape="rect" id="Node000001" title="Stack with fixed&#45;size storage." alt="" coords="17,5,170,251"/>
+<area shape="rect" id="Node000001" title="Stack with fixed&#45;size storage." alt="" coords="138,5,291,251"/>
 <area shape="rect" id="Node000002" href="$classPonca_1_1Stack.html" title=" " alt="" coords="5,343,181,632"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,265,96,343,91,343,91,265"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,215,112,244,97,276,88,308,84,342,78,342,83,307,92,274,107,242,127,212"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1Stack.html" title=" " alt="" coords="223,350,452,625"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="300,250,311,274,330,349,325,350,305,276,295,252"/>
 </map>

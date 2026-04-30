@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a8a21c362dc2c650634ff9a07307bf4e308b2e74</span>
+   &#160;<span id="projectnumber">911e152b8d5ac5c934a260b3832f7f62800b65b9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -160,9 +160,9 @@ Queries</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">QueryType   </th><th class="markdownTableHeadNone">Closest Point   </th><th class="markdownTableHeadNone">k-neighborhood   </th><th class="markdownTableHeadNone">Range neighborhood    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Index   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest.">NearestIndexQuery</a>   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest.">KNearestIndexQuery</a>   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange.">RangeIndexQuery</a>    </td></tr>
+<td class="markdownTableBodyNone">Index   </td><td class="markdownTableBodyNone">NearestIndexQuery   </td><td class="markdownTableBodyNone">KNearestIndexQuery   </td><td class="markdownTableBodyNone">RangeIndexQuery    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Coordinate   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1NearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsNearest.">NearestPointQuery</a>   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestPointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsKNearest.">KNearestPointQuery</a>   </td><td class="markdownTableBodyNone"><a class="el" href="group__spatialpartitioning.html#structPonca_1_1RangePointQuery" title="Base Query class combining QueryInputIsPosition and QueryOutputIsRange.">RangePointQuery</a>   </td></tr>
+<td class="markdownTableBodyNone">Coordinate   </td><td class="markdownTableBodyNone">NearestPointQuery   </td><td class="markdownTableBodyNone">KNearestPointQuery   </td><td class="markdownTableBodyNone">RangePointQuery   </td></tr>
 </table>
 <p>These classes provide a consistent API for all datastructures, where the results are exposed as <code>Range</code> and thus accessed through iterators, ie.: </p><div class="fragment"><div class="line"><span class="preprocessor">#pragma omp parallel for</span></div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; nbVert; ++i) <span class="comment">// for all the vertices of the point cloud</span></div>
@@ -174,7 +174,7 @@ Queries</h2>
 <p>Thanks to the iterator formalism, queries can be seamlessly combined with <a class="el" href="structPonca_1_1ComputeObject.html#a19794c89d55fef61b6a712dd94d7452b" title="Convenience function to iterate over a subset of samples in a PointContainer.">Basket::computeWithIds</a>: </p><div class="fragment"><div class="line">Fit fit;</div>
 <div class="line">fit.setNeighborFilter({fitInitPos, scale});</div>
 <div class="line">fit.computeWithIds( myDataStructure.rangeNeighbors(fitInitPos, scale), vectorPoints );</div>
-</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Queries from an index (<a class="el" href="group__spatialpartitioning.html#structPonca_1_1NearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsNearest.">NearestIndexQuery</a>, <a class="el" href="group__spatialpartitioning.html#structPonca_1_1KNearestIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsKNearest.">KNearestIndexQuery</a> and <a class="el" href="group__spatialpartitioning.html#structPonca_1_1RangeIndexQuery" title="Base Query class combining QueryInputIsIndex and QueryOutputIsRange.">RangeIndexQuery</a>) do not iterate on the queried index.</dd></dl>
+</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Queries from an index (NearestIndexQuery, KNearestIndexQuery and RangeIndexQuery) do not iterate on the queried index.</dd></dl>
 <h1><a class="anchor" id="spatialpartitioning_kdtree"></a>
 KdTree</h1>
 <h2><a class="anchor" id="spatialpartitioning_kdtree_implementation"></a>
@@ -257,11 +257,10 @@ Usage in Cuda kernels</h2>
 <div class="line">    BuffersGPU* kdtreeBuffersDevice;</div>
 <div class="line">    CUDA_CHECK(cudaMalloc(&amp;kdtreeBuffersDevice, sizeof(BuffersGPU)));</div>
 <div class="line">    BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory</div>
-<div class="line">    deepCopyBuffersToDevice&lt;Ponca::KdTreePointerTraits&lt;DataPoint&gt;&gt;(kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);</div>
+<div class="line">    deepCopyKdTreeBuffersToDevice&lt;Ponca::KdTreePointerTraits&lt;DataPoint&gt;&gt;(</div>
+<div class="line">        kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);</div>
 </div><!-- fragment --></li>
-<li>[device] In the kernel, create and query the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>: <div class="fragment"><div class="line">    KdTreeGPU&lt;DataPoint&gt; kdtree(*buffers);</div>
-</div><!-- fragment --> <div class="fragment"><div class="line">    fit.computeWithIds(kdtree.rangeNeighbors(i, analysisScale), kdtree.points());</div>
-</div><!-- fragment --></li>
+<li>[device] In the kernel, create and query the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a>: <div class="fragment"></div><!-- fragment --> <div class="fragment"></div><!-- fragment --></li>
 <li>[host] Free GPU memory.</li>
 </ul>
 <p>The type <code>KdTreeGPU</code> is defined as </p><div class="fragment"><div class="line">/*! \brief A KdTree Type that can be run on the GPU</div>
@@ -279,17 +278,17 @@ Customizing the KdTree using &lt;tt&gt;Traits&lt;/tt&gt;</h2>
 <div class="line">    <span class="keyword">struct </span>KdTree : <span class="keyword">public</span> <a class="code hl_class" href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a>&lt;KdTreeDefaultTraits&lt;DataPoint&gt;&gt;</div>
 <div class="line">    {</div>
 <div class="line">    };</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00457">kdTree.h:458</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeBase.html">Ponca::KdTreeBase</a></div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00455">kdTree.h:456</a></div></div>
 </div><!-- fragment --> <div class="fragment"><div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="line">    <span class="keyword">struct </span>KdTreeDense : <span class="keyword">public</span> <a class="code hl_class" href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase</a>&lt;KdTreeDefaultTraits&lt;DataPoint&gt;&gt;</div>
 <div class="line">    {</div>
 <div class="line">    };</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeDenseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase</a></div><div class="ttdoc">Customizable base class for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00540">kdTree.h:541</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeDenseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeDenseBase.html">Ponca::KdTreeDenseBase</a></div><div class="ttdoc">Customizable base class for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00538">kdTree.h:539</a></div></div>
 </div><!-- fragment --> <div class="fragment"><div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="line">    <span class="keyword">struct </span>KdTreeSparse : <a class="code hl_class" href="classPonca_1_1KdTreeSparseBase.html">Ponca::KdTreeSparseBase</a>&lt;KdTreeDefaultTraits&lt;DataPoint&gt;&gt;</div>
 <div class="line">    {</div>
 <div class="line">    };</div>
-<div class="ttc" id="aclassPonca_1_1KdTreeSparseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeSparseBase.html">Ponca::KdTreeSparseBase</a></div><div class="ttdoc">Customizable base class for KdTreeSparse datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00572">kdTree.h:573</a></div></div>
+<div class="ttc" id="aclassPonca_1_1KdTreeSparseBase_html"><div class="ttname"><a href="classPonca_1_1KdTreeSparseBase.html">Ponca::KdTreeSparseBase</a></div><div class="ttdoc">Customizable base class for KdTreeSparse datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00570">kdTree.h:571</a></div></div>
 </div><!-- fragment --><p>To use your own type of <code>Traits</code>, see <a class="el" href="structPonca_1_1KdTreeDefaultTraits.html" title="The default traits type used by the kd-tree.">KdTreeDefaultTraits</a> and <a class="el" href="classPonca_1_1KdTreeCustomizableNode.html" title="The node type used by default by the kd-tree.">KdTreeCustomizableNode</a> APIs. See also:</p><ul>
 <li><code>examples/cpp/ponca_customize_kdtree.cpp</code></li>
 </ul>
@@ -328,7 +327,7 @@ Queries</h3>
 <div class="line">    { <span class="comment">// Iterates over the neighbors of query_idx</span></div>
 <div class="line">        std::cout &lt;&lt; neighbor_idx &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;</div>
 <div class="line">    }</div>
-</div><!-- fragment --><p>Two types of queries are provided (see <a class="el" href="classPonca_1_1KnnGraphBase.html" title="Customizable base class for KnnGraph datastructure.">KnnGraphBase</a> for related method list):</p><ul>
+</div><!-- fragment --><p>Two types of queries are provided (see <a class="el" href="classPonca_1_1KnnGraphBase.html">KnnGraphBase</a> for related method list):</p><ul>
 <li><a class="el" href="classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">KnnGraphRangeQuery</a></li>
 <li><a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html" title="Extension of the Query class that allows to read the result of a k-nearest neighbors search on the Kn...">KnnGraphKNearestQuery</a>: the number of neighbors is defined at construction-time: a k-neighbor graph gives access to k-neighborhoods only. <dl class="section note"><dt>Note</dt><dd>The query KnnGraphNearestQuery does not need to exist explicitly as it boils down to <a class="el" href="classPonca_1_1KnnGraphKNearestQuery.html" title="Extension of the Query class that allows to read the result of a k-nearest neighbors search on the Kn...">KnnGraphKNearestQuery</a> with <code>k=1</code>.</dd></dl>
 <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </li>
@@ -340,7 +339,7 @@ Queries</h3>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Fri Apr 24 2026 15:55:20 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Apr 30 2026 18:17:34 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

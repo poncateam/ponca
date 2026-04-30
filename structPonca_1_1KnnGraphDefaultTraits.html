@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a8a21c362dc2c650634ff9a07307bf4e308b2e74</span>
+   &#160;<span id="projectnumber">911e152b8d5ac5c934a260b3832f7f62800b65b9</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -137,6 +137,9 @@ $(document).ready(function(){initNavTree('structPonca_1_1KnnGraphDefaultTraits.h
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
+<tr class="memitem:af741bffd024c2d71091b764a043aacc7" id="r_af741bffd024c2d71091b764a043aacc7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#af741bffd024c2d71091b764a043aacc7a59f82b4aeb0f241f9de512b9aa74ac4e">MAX_RANGE_NEIGHBORS_SIZE</a> = 128
+ }</td></tr>
+<tr class="separator:af741bffd024c2d71091b764a043aacc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accc525a889c5c101a2fdb695cb285ace" id="r_accc525a889c5c101a2fdb695cb285ace"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">DataPoint</a> = <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a></td></tr>
 <tr class="memdesc:accc525a889c5c101a2fdb695cb285ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type used to store point data.  <br /></td></tr>
 <tr class="separator:accc525a889c5c101a2fdb695cb285ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,7 +176,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <p>The type used to calculate node bounding boxes. </p>
 <p>Must provide <code>min()</code>, <code>max()</code>, and <code>center()</code> functions, all returning a <code>VectorType</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00041">41</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00045">45</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -195,7 +198,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <p>Must provide <code>Scalar</code> and <code>VectorType</code> aliases.</p>
 <p><code>VectorType</code> must provide a <code>squaredNorm()</code> function returning a <code>Scalar</code>, as well as a <code>maxCoeff(int*)</code> function returning the dimension index of its largest scalar in its output parameter (e.g. 0 for <em>x</em>, 1 for <em>y</em>, etc.). </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00029">29</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00033">33</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +216,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00046">46</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00050">50</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -231,7 +234,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00044">44</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00048">48</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -249,7 +252,30 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00045">45</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00049">49</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="af741bffd024c2d71091b764a043aacc7" name="af741bffd024c2d71091b764a043aacc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af741bffd024c2d71091b764a043aacc7">&#9670;&#160;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">anonymous</a> <a class="el" href="classPonca_1_1Basket.html">enum</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af741bffd024c2d71091b764a043aacc7a59f82b4aeb0f241f9de512b9aa74ac4e" name="af741bffd024c2d71091b764a043aacc7a59f82b4aeb0f241f9de512b9aa74ac4e"></a>MAX_RANGE_NEIGHBORS_SIZE&#160;</td><td class="fielddoc"><p>The maximum number of neighbors in a range neighbors query. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00020">20</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -259,7 +285,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">KnnGraphDefaultTraits</a></li>
-    <li class="footer">Generated on Fri Apr 24 2026 15:55:20 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Apr 30 2026 18:17:35 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

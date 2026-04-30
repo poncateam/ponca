@@ -1,3 +1,7 @@
 <map id="Ponca::KnnGraphBase&lt; Traits &gt;" name="Ponca::KnnGraphBase&lt; Traits &gt;">
-<area shape="rect" id="Node000001" title="Customizable base class for KnnGraph datastructure." alt="" coords="5,5,244,225"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="46,637,203,717"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1StaticKnnGraphBase.html" title="Customizable base class for KnnGraph datastructure." alt="" coords="5,268,244,588"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,602,127,637,122,637,122,602"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1StaticKnnGraphBase_1_1Buffers.html" title="Internal structure storing all the buffers used by the KdTree." alt="" coords="27,5,222,205"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="127,206,127,251,122,251,122,206"/>
 </map>

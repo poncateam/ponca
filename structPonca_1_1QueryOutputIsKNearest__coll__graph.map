@@ -1,15 +1,19 @@
-<map id="Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;" name="Ponca::QueryOutputIsKNearest&lt; Index, Scalar &gt;">
-<area shape="rect" id="Node000001" title="Class to construct the knearest queries." alt="" coords="58,1051,273,1211"/>
-<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types." alt="" coords="5,798,181,863"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,877,149,1050,144,1051,102,878"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1limited__priority__queue.html" title=" " alt="" coords="205,673,475,988"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="251,989,222,1038,218,1035,246,987"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="119,389,287,483"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="221,483,282,657,277,659,216,484"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="142,133,263,199"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="205,213,205,388,200,388,200,213"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="191,5,214,71"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="205,71,205,117,200,117,200,71"/>
-<area shape="rect" id="Node000007" href="$classPonca_1_1limited__priority__queue.html" title="The limited_priority_queue class is similar to std::priority_queue but has a limited capacity and han..." alt="" coords="311,276,508,596"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="381,610,370,673,365,672,376,609"/>
+<map id="Ponca::QueryOutputIsKNearest&lt; Index, Scalar, MAX_KNN_SIZE &gt;" name="Ponca::QueryOutputIsKNearest&lt; Index, Scalar, MAX_KNN_SIZE &gt;">
+<area shape="rect" id="Node000001" title="Class to construct the knearest queries." alt="" coords="5,1333,244,1493"/>
+<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types." alt="" coords="15,1061,191,1126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,1140,122,1333,117,1333,104,1140"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1LimitedPriorityQueue.html" title=" " alt="" coords="215,916,458,1271"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,1272,189,1321,184,1318,217,1269"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="185,365,365,460"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="278,460,281,621,294,824,304,900,298,900,289,824,276,621,273,460"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="389,133,503,199"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="376,177,328,193,306,206,288,224,271,257,264,294,263,331,267,365,262,365,258,331,259,293,266,255,284,221,303,202,325,188,375,171"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="404,276,536,341"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="456,212,467,275,462,276,451,213"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="487,5,509,71"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="489,52,472,72,458,96,452,118,446,116,453,94,468,68,484,49"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="512,51,525,71,535,93,541,101,551,101,563,99,574,100,580,111,576,137,560,182,530,253,524,264,519,262,525,251,555,180,570,136,574,112,571,104,563,104,551,106,539,106,530,96,520,73,507,54"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1LimitedPriorityQueue.html" title="The LimitedPriorityQueue class is similar to std::priority_queue but has a limited capacity and handl..." alt="" coords="369,484,568,824"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="416,838,393,916,387,915,411,836"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="473,342,472,467,467,467,467,342"/>
 </map>

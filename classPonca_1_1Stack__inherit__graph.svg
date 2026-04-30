@@ -46,7 +46,7 @@
   </g>
 </defs>
 <script type="application/ecmascript">
-var viewWidth = 234;
+var viewWidth = 385;
 var viewHeight = 478;
 var sectionId = 'dynsection-0';
 </script>
@@ -58,34 +58,34 @@ var sectionId = 'dynsection-0';
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title="Stack with fixed&#45;size storage.">
-<polygon fill="#999999" stroke="transparent" points="123.5,-470 8.5,-470 8.5,-286 123.5,-286 123.5,-470"/>
-<text text-anchor="start" x="14" y="-458" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; T, N &gt;</text>
-<text text-anchor="start" x="26.5" y="-443" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="53" y="-443" font-family="Helvetica,sans-Serif" font-size="10.00">m_size</text>
-<text text-anchor="start" x="26.5" y="-428" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="53" y="-428" font-family="Helvetica,sans-Serif" font-size="10.00">m_data</text>
-<text text-anchor="start" x="26.5" y="-413" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-413" font-family="Helvetica,sans-Serif" font-size="10.00">Stack()</text>
-<text text-anchor="start" x="26.5" y="-398" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-398" font-family="Helvetica,sans-Serif" font-size="10.00">top()</text>
-<text text-anchor="start" x="26.5" y="-383" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-383" font-family="Helvetica,sans-Serif" font-size="10.00">top()</text>
-<text text-anchor="start" x="26.5" y="-368" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-368" font-family="Helvetica,sans-Serif" font-size="10.00">empty()</text>
-<text text-anchor="start" x="26.5" y="-353" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-353" font-family="Helvetica,sans-Serif" font-size="10.00">size()</text>
-<text text-anchor="start" x="26.5" y="-338" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-338" font-family="Helvetica,sans-Serif" font-size="10.00">push()</text>
-<text text-anchor="start" x="26.5" y="-323" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-323" font-family="Helvetica,sans-Serif" font-size="10.00">push()</text>
-<text text-anchor="start" x="26.5" y="-308" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-308" font-family="Helvetica,sans-Serif" font-size="10.00">pop()</text>
-<text text-anchor="start" x="26.5" y="-293" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="53" y="-293" font-family="Helvetica,sans-Serif" font-size="10.00">clear()</text>
-<polygon fill="#666666" stroke="#666666" points="9,-453 9,-453 124,-453 124,-453 9,-453"/>
-<polygon fill="#666666" stroke="#666666" points="9,-423 9,-423 51,-423 51,-423 9,-423"/>
-<polygon fill="#666666" stroke="#666666" points="51,-423 51,-423 124,-423 124,-423 51,-423"/>
-<polygon fill="none" stroke="#666666" points="8.5,-286 8.5,-470 123.5,-470 123.5,-286 8.5,-286"/>
+<polygon fill="#999999" stroke="transparent" points="214.5,-470 99.5,-470 99.5,-286 214.5,-286 214.5,-470"/>
+<text text-anchor="start" x="105" y="-458" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; T, N &gt;</text>
+<text text-anchor="start" x="117.5" y="-443" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="144" y="-443" font-family="Helvetica,sans-Serif" font-size="10.00">m_size</text>
+<text text-anchor="start" x="117.5" y="-428" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="144" y="-428" font-family="Helvetica,sans-Serif" font-size="10.00">m_data</text>
+<text text-anchor="start" x="117.5" y="-413" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-413" font-family="Helvetica,sans-Serif" font-size="10.00">Stack()</text>
+<text text-anchor="start" x="117.5" y="-398" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-398" font-family="Helvetica,sans-Serif" font-size="10.00">top()</text>
+<text text-anchor="start" x="117.5" y="-383" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-383" font-family="Helvetica,sans-Serif" font-size="10.00">top()</text>
+<text text-anchor="start" x="117.5" y="-368" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-368" font-family="Helvetica,sans-Serif" font-size="10.00">empty()</text>
+<text text-anchor="start" x="117.5" y="-353" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-353" font-family="Helvetica,sans-Serif" font-size="10.00">size()</text>
+<text text-anchor="start" x="117.5" y="-338" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-338" font-family="Helvetica,sans-Serif" font-size="10.00">push()</text>
+<text text-anchor="start" x="117.5" y="-323" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-323" font-family="Helvetica,sans-Serif" font-size="10.00">push()</text>
+<text text-anchor="start" x="117.5" y="-308" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-308" font-family="Helvetica,sans-Serif" font-size="10.00">pop()</text>
+<text text-anchor="start" x="117.5" y="-293" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="144" y="-293" font-family="Helvetica,sans-Serif" font-size="10.00">clear()</text>
+<polygon fill="#666666" stroke="#666666" points="100,-453 100,-453 215,-453 215,-453 100,-453"/>
+<polygon fill="#666666" stroke="#666666" points="100,-423 100,-423 142,-423 142,-423 100,-423"/>
+<polygon fill="#666666" stroke="#666666" points="142,-423 142,-423 215,-423 215,-423 142,-423"/>
+<polygon fill="none" stroke="#666666" points="99.5,-286 99.5,-470 214.5,-470 214.5,-286 99.5,-286"/>
 </a>
 </g>
 </g>
@@ -131,13 +131,61 @@ var sectionId = 'dynsection-0';
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="orange" d="M66,-275.48C66,-256.36 66,-236.3 66,-217"/>
-<polygon fill="orange" stroke="orange" points="62.5,-275.69 66,-285.69 69.5,-275.69 62.5,-275.69"/>
+<path fill="none" stroke="orange" d="M93.08,-313.94C82.42,-299.89 72.92,-284.29 67,-268 61.22,-252.09 58.17,-234.68 56.85,-217.41"/>
+<polygon fill="orange" stroke="orange" points="90.52,-316.36 99.47,-322.03 96.02,-312.02 90.52,-316.36"/>
 </a>
 </g>
-<text text-anchor="start" x="66" y="-260" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> &lt; Ponca::IndexSquaredDistance</text>
-<text text-anchor="start" x="66" y="-249" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey">&lt; IndexType, Scalar &gt;, 2</text>
-<text text-anchor="middle" x="146" y="-238" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> *Traits::MAX_DEPTH &gt;</text>
+<text text-anchor="start" x="67" y="-260" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> &lt; Ponca::IndexSquaredDistance</text>
+<text text-anchor="start" x="67" y="-249" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey">&lt; IndexType, Scalar &gt;, 2</text>
+<text text-anchor="middle" x="147" y="-238" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> *Traits::MAX_DEPTH &gt;</text>
+</g>
+<!-- Node3 -->
+<g id="Node000003" class="node">
+<title>Node3</title>
+<g id="a_Node000003"><a xlink:href="classPonca_1_1Stack.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="transparent" points="335,-211.5 163,-211.5 163,-5.5 335,-5.5 335,-211.5"/>
+<text text-anchor="start" x="168" y="-199.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::Stack&lt; int,</text>
+<text text-anchor="start" x="168" y="-188.5" font-family="Helvetica,sans-Serif" font-size="10.00"> Traits::MAX_RANGE_NEIGHBORS</text>
+<text text-anchor="start" x="229.5" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">_SIZE &gt;</text>
+<text text-anchor="start" x="194.5" y="-162.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="235" y="-162.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_size</text>
+<text text-anchor="start" x="194.5" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="235" y="-147.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_data</text>
+<text text-anchor="start" x="194.5" y="-132.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-132.5" font-family="Helvetica,sans-Serif" font-size="10.00">Stack()</text>
+<text text-anchor="start" x="194.5" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">top()</text>
+<text text-anchor="start" x="194.5" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-102.5" font-family="Helvetica,sans-Serif" font-size="10.00">top()</text>
+<text text-anchor="start" x="194.5" y="-87.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-87.5" font-family="Helvetica,sans-Serif" font-size="10.00">empty()</text>
+<text text-anchor="start" x="194.5" y="-72.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-72.5" font-family="Helvetica,sans-Serif" font-size="10.00">size()</text>
+<text text-anchor="start" x="194.5" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">push()</text>
+<text text-anchor="start" x="194.5" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-42.5" font-family="Helvetica,sans-Serif" font-size="10.00">push()</text>
+<text text-anchor="start" x="194.5" y="-27.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-27.5" font-family="Helvetica,sans-Serif" font-size="10.00">pop()</text>
+<text text-anchor="start" x="194.5" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="235" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">clear()</text>
+<polygon fill="#666666" stroke="#666666" points="163,-172.5 163,-172.5 335,-172.5 335,-172.5 163,-172.5"/>
+<polygon fill="#666666" stroke="#666666" points="163,-142.5 163,-142.5 233,-142.5 233,-142.5 163,-142.5"/>
+<polygon fill="#666666" stroke="#666666" points="233,-142.5 233,-142.5 335,-142.5 335,-142.5 233,-142.5"/>
+<polygon fill="none" stroke="#666666" points="163,-5.5 163,-211.5 335,-211.5 335,-5.5 163,-5.5"/>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node3 -->
+<g id="edge2_Node000001_Node000003" class="edge">
+<title>Node1&#45;&gt;Node3</title>
+<g id="a_edge2_Node000001_Node000003"><a xlink:title=" ">
+<path fill="none" stroke="orange" d="M219.31,-286.02C222.17,-280.05 224.77,-274.02 227,-268 233.56,-250.28 238.18,-230.79 241.44,-211.73"/>
+<polygon fill="orange" stroke="orange" points="215.99,-284.83 214.61,-295.34 222.24,-287.99 215.99,-284.83"/>
+</a>
+</g>
+<text text-anchor="start" x="235" y="-254.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> &lt; int, Traits::MAX</text>
+<text text-anchor="middle" x="306" y="-243.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey">_RANGE_NEIGHBORS_SIZE &gt;</text>
 </g>
 </g>
 </svg>

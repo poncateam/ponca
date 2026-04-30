@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['haslocalframe_0',['haslocalframe',['../classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html#ab38fac565e6ad121ebe99d927aef2130',1,'Ponca::internal::CenteredNeighborhoodFrame::hasLocalFrame'],['../classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html#a1e2c4da04b021176d2f4d2fb4e4170a0',1,'Ponca::internal::GlobalNeighborhoodFrame::hasLocalFrame']]]
+  ['eps_0',['eps',['../structPonca_1_1MLSEvaluationScheme.html#a0d773c31cc9370c40f93e4b667602cbe',1,'Ponca::MLSEvaluationScheme']]],
+  ['epsdefault_1',['epsDefault',['../structPonca_1_1MLSEvaluationScheme.html#a8fb4edbec6c9de71a70a9adcfece9aec',1,'Ponca::MLSEvaluationScheme']]],
+  ['epsilon_2',['epsilon',['../structPonca_1_1internal_1_1CNCEigen.html#ac20fe6fe248eceedecf6202f35d95aa5',1,'Ponca::internal::CNCEigen']]]
 ];

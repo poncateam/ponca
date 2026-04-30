@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classPonca_1_1PrimitiveBase.html" title="Primitive base class." alt="" coords="5,5,196,45"/>
+<area shape="rect" id="Node000000" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="5,77,179,102"/>
+<area shape="rect" id="Node000001" href="$group__spatialpartitioning.html" title=" " alt="" coords="243,5,395,45"/>
+<area shape="poly" id="edge97_Node000000_Node000001" title=" " alt="" coords="150,70,246,43,248,48,152,75"/>
+<area shape="rect" id="Node000003" href="$group__spatialpartitioning.html" title=" " alt="" coords="227,69,411,109"/>
+<area shape="poly" id="edge99_Node000000_Node000003" title=" " alt="" coords="193,87,226,87,226,92,193,92"/>
+<area shape="rect" id="Node000005" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type." alt="" coords="243,133,395,173"/>
+<area shape="poly" id="edge101_Node000000_Node000005" title=" " alt="" coords="152,103,248,131,246,136,150,108"/>
+<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Extension of QueryInput that handles an index based search, in a partitioning structure." alt="" coords="467,5,655,45"/>
+<area shape="poly" id="edge98_Node000001_Node000002" title=" " alt="" coords="409,23,466,23,466,28,409,28"/>
+<area shape="rect" id="Node000004" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition" title="Extension of QueryInput that handles a position based search, in a partitioning structure." alt="" coords="459,69,663,109"/>
+<area shape="poly" id="edge100_Node000003_Node000004" title=" " alt="" coords="425,87,459,87,459,92,425,92"/>
 </map>
