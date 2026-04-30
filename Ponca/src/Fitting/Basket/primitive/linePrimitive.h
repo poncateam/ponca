@@ -7,11 +7,10 @@
 */
 
 #pragma once
-
 #include "../../defines.h"
 #include "../../concepts.h"
+
 #include <Eigen/Geometry>
-#include <Eigen/Core>
 
 #define LINE_REQUIREMENTS ProvidesBasketUnitBase<T>
 

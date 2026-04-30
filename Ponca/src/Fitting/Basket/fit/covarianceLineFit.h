@@ -8,12 +8,13 @@
 
 #pragma once
 #include "../../defines.h"
+#include "../../concepts.h"
+
 #include "../primitive/linePrimitive.h" // used to define CovarianceLineFit
 #include "../tools/mean.h"              // used to define CovarianceLineFit
-#include "../tools/covariance.h"
+#include "../tools/covariance.h"        // used to define CovarianceLineFit
 
 #include <Eigen/Dense>
-#include "../../concepts.h"
 
 #define COVARIANCE_LINE_FIT_REQUIREMENTS ProvidesPositionCovariance<T>&& ProvidesLine<T>
 

@@ -7,10 +7,11 @@
 */
 
 #pragma once
-
-#include "../primitive/algebraicSphere.h"
+#include "../../defines.h"
 #include "../../concepts.h"
-#include "../tools/mean.h" // used to define UnorientedSphereFit
+
+#include "../primitive/algebraicSphere.h" // used to define UnorientedSphereFit
+#include "../tools/mean.h"                // used to define UnorientedSphereFit
 
 #include <Eigen/Dense>
 

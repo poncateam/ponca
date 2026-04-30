@@ -7,9 +7,11 @@
 */
 
 #pragma once
+#include "../../defines.h"
+#include "../../concepts.h"
 
-#include "../primitive/plane.h"
-#include "../tools/mean.h"
+#include "../primitive/plane.h" // used to define MeanPlaneFit
+#include "../tools/mean.h"      // used to define MeanPlaneFit
 
 #define MEAN_PLANE_REQUIREMENTS ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>&& ProvidesPlane<T>
 
