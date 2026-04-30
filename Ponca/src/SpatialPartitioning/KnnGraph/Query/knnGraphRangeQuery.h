@@ -119,13 +119,13 @@ namespace Ponca
                 int idx_current = m_stack.top();
                 m_stack.pop();
 
-                PONCA_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
+                PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
 
                 iterator.m_index = idx_current;
 
                 for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
                 {
-                    PONCA_ASSERT(idx_nei >= 0);
+                    PONCA_DEBUG_ASSERT(idx_nei >= 0);
                     Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
                     Scalar th = QueryType::descentDistanceThreshold();
 
