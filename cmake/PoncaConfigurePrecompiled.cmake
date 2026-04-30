@@ -33,9 +33,6 @@ target_sources(Precompiled PUBLIC
     "$<BUILD_INTERFACE:${ponca_Precompiled_SRC}>"
     "$<INSTALL_INTERFACE:>"
     )
-target_precompile_headers(Precompiled PUBLIC
-    "$<BUILD_INTERFACE:${ponca_Precompiled_PRECOMPILED}>"
-    )
 
 target_link_libraries(Precompiled PUBLIC Eigen3::Eigen)
 target_compile_definitions(Precompiled PRIVATE _PONCA_COMPILE_DEFINITION)
