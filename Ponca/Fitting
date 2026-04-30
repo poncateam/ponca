@@ -24,9 +24,9 @@
 // Compute objects
 #include "src/Fitting/CNC/cnc.h"
 #include "src/Fitting/Basket/basket.h"
+#include "src/Fitting/Basket/basketUnit.h"
 
 // Primitives
-#include "src/Fitting/Basket/primitive/basketUnit.h"
 #include "src/Fitting/Basket/primitive/linePrimitive.h"
 #include "src/Fitting/Basket/primitive/plane.h"
 #include "src/Fitting/Basket/primitive/algebraicSphere.h"
