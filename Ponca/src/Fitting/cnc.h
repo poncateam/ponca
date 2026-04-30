@@ -19,12 +19,6 @@ namespace Ponca
 
     namespace internal
     {
-        template <typename DataPoint>
-        inline constexpr typename DataPoint::VectorType CNCFilterExtract(const DataPoint& pt)
-        {
-            return pt.normal();
-        }
-
         /*!
          * Stores the three points and normals of the triangles and provides access to Corrected Normal Current formula
          *
@@ -120,7 +114,7 @@ namespace Ponca
         using DenseMatrix = Eigen::MatrixXd;
         using NeighborFilter =
             FilterWithAttributes<DataPoint, VectorType, DistWeightFilter<DataPoint, ConstantWeightKernel<Scalar>>,
-                                 internal::CNCFilterExtract<DataPoint>>;
+                                 internal::ConvertDataPointToNormal<DataPoint>>;
 
     protected:
         // Basis
