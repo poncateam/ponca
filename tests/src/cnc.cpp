@@ -18,6 +18,7 @@
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 
 #include <vector>
+#include <algorithm>
 
 #include "Ponca/src/Fitting/curvature.h"
 #include "Ponca/src/Fitting/mlsSphereFitDer.h"
@@ -137,6 +138,7 @@ void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, const Scalar a
     const auto& vectorPoints = tree.points();
     // Quick testing is requested for coverage
     const int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
+    const int k    = std::min(100, int(vectorPoints.size()) / 4);
 
     // Test for each point if the curvature results are equivalent
 #ifdef NDEBUG
@@ -151,7 +153,7 @@ void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, const Scalar a
 
         if constexpr (orderedByDistance)
         {
-            for (int j : tree.kNearestNeighbors(i, int(vectorPoints.size())))
+            for (int j : tree.kNearestNeighbors(i, k))
             {
                 // Stops when we go past the analysis scale
                 if (w(vectorPoints[j]).first == Scalar(0.))

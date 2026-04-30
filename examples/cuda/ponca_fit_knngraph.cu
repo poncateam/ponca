@@ -11,7 +11,6 @@
  */
 
 #include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
@@ -19,6 +18,7 @@
 #include <Ponca/src/Common/pointGeneration.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTreeTraits.h>
+#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 #include <iostream>
 
 #include "cuda_utils.cu"
@@ -48,6 +48,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const Scalar centerScale    = Eigen::internal::random<Scalar>(1, 10000);
     const VectorType center     = VectorType::Random() * centerScale;
     const VectorType direction  = VectorType::Random().normalized();
+    const Scalar kNearestAmount = 40;
 
     // Generate the point cloud
     std::vector<DataPoint> points(nbPoints);
@@ -57,9 +58,10 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
                                                       _bUnoriented);
     }
 
-    //! [Build KdTree on CPU]
+    //! [Build KnnGraph for CPU]
     Ponca::KdTreeDense<DataPoint> kdtree(points);
-    //! [Build KdTree on CPU]
+    Ponca::KnnGraph<DataPoint> knngraph(kdtree, kNearestAmount);
+    //! [Build KnnGraph for CPU]
 
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
 
@@ -67,14 +69,14 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const unsigned long scalarBufferSize = nbPoints * sizeof(Scalar);
     const unsigned long vectorBufferSize = scalarBufferSize * Dim;
 
-    //! [Copy KdTree on GPU]
-    using BuffersGPU = typename KdTreeGPU<DataPoint>::Buffers;
-    BuffersGPU* kdtreeBuffersDevice;
-    CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(BuffersGPU)));
+    //! [Copy KnnGraph on GPU]
+    using BuffersGPU = typename KnnGraphGPU<DataPoint>::Buffers;
+    BuffersGPU* knnGraphBuffersDevice;
+    CUDA_CHECK(cudaMalloc(&knnGraphBuffersDevice, sizeof(BuffersGPU)));
     BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory
-    deepCopyKdTreeBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(
-        kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);
-    //! [Copy KdTree on GPU]
+    deepCopyKnnGraphBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(
+        knngraph.buffers(), hostBuffersHoldingDevicePointers, knnGraphBuffersDevice);
+    //! [Copy KnnGraph on GPU]
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
@@ -89,10 +91,11 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const unsigned int gridSize      = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
-    fitPotentialAndGradientKernel<KdTreeGPU<DataPoint>, MeanFitSmooth, KdTreeRangeNeighborsFunctor<DataPoint>>
-        <<<gridSize, blockSize>>>(kdtreeBuffersDevice, analysisScale,           // Inputs
+    fitPotentialAndGradientKernel<KnnGraphGPU<DataPoint>, MeanFitSmooth, KnnGraphKNearestFunctor<DataPoint>>
+        <<<gridSize, blockSize>>>(knnGraphBuffersDevice, analysisScale,         // Inputs
                                   potentialResultsDevice, gradientResultsDevice // Outputs
         );
+
     CUDA_CHECK(cudaGetLastError()); // Catch kernel launch errors
     CUDA_CHECK(cudaDeviceSynchronize());
 
@@ -103,10 +106,10 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     // Free CUDA memory
     CUDA_CHECK(cudaFree(potentialResultsDevice));
     CUDA_CHECK(cudaFree(gradientResultsDevice));
-    //! [Free KdTree from memory on GPU]
-    freeKdTreeBuffersOnDevice(hostBuffersHoldingDevicePointers);
-    CUDA_CHECK(cudaFree(kdtreeBuffersDevice));
-    //! [Free KdTree from memory on GPU]
+    //! [Free KnnGraph from memory on GPU]
+    freeKnnGraphBuffersOnDevice(hostBuffersHoldingDevicePointers);
+    CUDA_CHECK(cudaFree(knnGraphBuffersDevice));
+    //! [Free KnnGraph from memory on GPU]
 
     // Validate results
     const auto epsilon = Scalar(0.001);
@@ -130,7 +133,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
 
 __host__ int main(const int /*argc*/, char** /*argv*/)
 {
-    std::cout << "Example plane fitting using KdTree on CUDA..." << std::endl;
+    std::cout << "Example plane fitting using KnnGraph on CUDA..." << std::endl;
     testPlaneCuda<float, 3>();
     std::cout << "(ok)" << std::endl;
 }

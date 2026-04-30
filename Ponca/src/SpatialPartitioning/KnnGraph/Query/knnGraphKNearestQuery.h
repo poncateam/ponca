@@ -7,14 +7,13 @@
 #pragma once
 
 #include "../../query.h"
-#include "../Iterator/knnGraphRangeIterator.h"
-#include <vector>
+#include "../Iterator/knnGraphKNearestIterator.h"
 
 namespace Ponca
 {
 
     template <typename Traits>
-    class KnnGraphBase; // Need forward declaration to avoid mutual inclusion
+    class StaticKnnGraphBase; // Need forward declaration to avoid mutual inclusion
 
 #ifndef PARSED_WITH_DOXYGEN
     struct KnnGraphQueryOutputType : public QueryOutputBase
@@ -41,7 +40,7 @@ namespace Ponca
 #endif
     {
     public:
-        using Iterator = typename Traits::IndexContainer::const_iterator;
+        using Iterator = KnnGraphKNearestIterator<typename Traits::IndexContainer, typename Traits::IndexType>;
 #ifdef PARSED_WITH_DOXYGEN
         using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
 #else
@@ -50,19 +49,27 @@ namespace Ponca
         using Self = KnnGraphKNearestQuery<Traits>;
 
     public:
-        inline KnnGraphKNearestQuery(const KnnGraphBase<Traits>* graph, int index) : QueryType(index), m_graph(graph) {}
-
+        PONCA_MULTIARCH inline KnnGraphKNearestQuery(const StaticKnnGraphBase<Traits>* graph, int index)
+            : QueryType(index), m_graph(graph)
+        {
+        }
         /// \brief Call the k-nearest neighbors query with new input parameter.
-        inline Self& operator()(int index) { return QueryType::template operator()<Self>(index); }
+        PONCA_MULTIARCH inline Self& operator()(int index) { return QueryType::template operator()<Self>(index); }
 
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
-        inline Iterator begin() const { return m_graph->index_data().begin() + QueryType::input() * m_graph->k(); }
+        PONCA_MULTIARCH [[nodiscard]] inline Iterator begin() const
+        {
+            return Iterator(&(m_graph->samples()), QueryType::input() * m_graph->k());
+        }
 
         /// \brief Returns an iterator to the end of the k-nearest neighbors query.
-        inline Iterator end() const { return m_graph->index_data().begin() + (QueryType::input() + 1) * m_graph->k(); }
+        PONCA_MULTIARCH [[nodiscard]] inline Iterator end() const
+        {
+            return Iterator(&(m_graph->samples()), (QueryType::input() + 1) * m_graph->k());
+        }
 
     protected:
-        const KnnGraphBase<Traits>* m_graph{nullptr};
+        const StaticKnnGraphBase<Traits>* m_graph{nullptr};
     };
 
 } // namespace Ponca

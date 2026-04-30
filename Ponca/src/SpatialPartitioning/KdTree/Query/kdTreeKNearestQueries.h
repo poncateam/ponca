@@ -20,7 +20,7 @@ namespace Ponca
      *
      *  \see KdTreeBase
      */
-    template <typename Traits, template <typename, typename> typename IteratorType, typename QueryType>
+    template <typename Traits, template <typename, typename, int> typename IteratorType, typename QueryType>
     class KdTreeKNearestQueryBase : public KdTreeQuery<Traits>, public QueryType
     {
     public:
@@ -29,8 +29,8 @@ namespace Ponca
         using Scalar         = typename DataPoint::Scalar;
         using VectorType     = typename DataPoint::VectorType;
         using QueryAccelType = KdTreeQuery<Traits>;
-        using Iterator       = IteratorType<typename Traits::IndexType, typename Traits::DataPoint>;
-        using Self           = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
+        using Iterator = IteratorType<typename Traits::IndexType, typename Traits::DataPoint, Traits::MAX_KNN_SIZE>;
+        using Self     = KdTreeKNearestQueryBase<Traits, IteratorType, QueryType>;
 
         PONCA_MULTIARCH inline KdTreeKNearestQueryBase(const StaticKdTreeBase<Traits>* kdtree, IndexType k,
                                                        typename QueryType::InputType input)
@@ -81,9 +81,9 @@ namespace Ponca
      * \see KNearestIndexQuery
      */
     template <typename Traits>
-    using KdTreeKNearestIndexQuery =
-        KdTreeKNearestQueryBase<Traits, KdTreeKNearestIterator,
-                                KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>>;
+    using KdTreeKNearestIndexQuery = KdTreeKNearestQueryBase<
+        Traits, KdTreeKNearestIterator,
+        KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar, Traits::MAX_KNN_SIZE>>;
     /*!
      * \copybrief KdTreeKNearestQueryBase
      *
@@ -91,7 +91,7 @@ namespace Ponca
      * \see KNearestPointQuery
      */
     template <typename Traits>
-    using KdTreeKNearestPointQuery =
-        KdTreeKNearestQueryBase<Traits, KdTreeKNearestIterator,
-                                KNearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint>>;
+    using KdTreeKNearestPointQuery = KdTreeKNearestQueryBase<
+        Traits, KdTreeKNearestIterator,
+        KNearestPointQuery<typename Traits::IndexType, typename Traits::DataPoint, Traits::MAX_KNN_SIZE>>;
 } // namespace Ponca

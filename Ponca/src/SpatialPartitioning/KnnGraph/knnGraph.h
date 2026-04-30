@@ -36,7 +36,7 @@ namespace Ponca
     /*!
      * \brief Customizable base class for KnnGraph datastructure
      *
-     * \see Ponca::KnGraph
+     * \see Ponca::KnnGraph
      *
      * \tparam Traits Traits type providing the types and constants used by the KnnGraph. Must have the
      * same interface as the default traits type.
@@ -45,66 +45,60 @@ namespace Ponca
      *
      */
     template <typename Traits>
-    class KnnGraphBase
+    class StaticKnnGraphBase
     {
     public:
-        using DataPoint  = typename Traits::DataPoint;     ///< DataPoint given by user via Traits
-        using Scalar     = typename DataPoint::Scalar;     ///< Scalar given by user via DataPoint
-        using VectorType = typename DataPoint::VectorType; ///< VectorType given by user via DataPoint
-
-        using IndexType      = typename Traits::IndexType;
-        using PointContainer = typename Traits::PointContainer; ///< Container for DataPoint used inside the KdTree
-        using IndexContainer = typename Traits::IndexContainer; ///< Container for indices used inside the KdTree
+#define WRITE_TRAITS                                                                                                 \
+    using DataPoint      = typename Traits::DataPoint;      /*!< DataPoint given by user via Traits               */ \
+    using Scalar         = typename DataPoint::Scalar;      /*!< Scalar given by user via DataPoint               */ \
+    using VectorType     = typename DataPoint::VectorType;  /*!< VectorType given by user via DataPoint           */ \
+    using IndexType      = typename Traits::IndexType;      /*!< Type used to index points into the PointContainer*/ \
+    using PointContainer = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree   */ \
+    using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree     */
+        WRITE_TRAITS
 
         using KNearestIndexQuery = KnnGraphKNearestQuery<Traits>;
         using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
+        friend class KnnGraphKNearestQuery<Traits>; /*!< This type must be equal to KnnGraphBase::KNearestIndexQuery
+                                                       \see KnnGraphKNearestQuery */
+        friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see
+                                                       KnnGraphRangeQuery */
 
-        friend class KnnGraphKNearestQuery<Traits>; // This type must be equal to KnnGraphBase::KNearestIndexQuery
-        friend class KnnGraphRangeQuery<Traits>;    // This type must be equal to KnnGraphBase::RangeIndexQuery
-
-        // knnGraph ----------------------------------------------------------------
-    public:
-        /// \brief Build a KnnGraph from a KdTreeDense
-        ///
-        /// \param k Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1
-        ///          (query point is not included in query output, thus -1)
-        ///
-        /// \warning Stores a const reference to kdtree.point_data()
-        /// \warning KdTreeTraits compatibility is checked with static assertion
-        template <typename KdTreeTraits>
-        inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& kdtree, int k = 6)
-            : m_k(std::min(k, kdtree.sampleCount() - 1)), m_kdTreePoints(kdtree.points())
+        /// \brief Internal structure storing all the buffers used by the KdTree
+        struct Buffers
         {
-            static_assert(std::is_same<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>::value,
-                          "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
-            static_assert(std::is_same<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>::value,
-                          "KdTreeTraits::PointContainer is not equal to Traits::PointContainer");
-            static_assert(std::is_same<typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer>::value,
-                          "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer");
+            PointContainer points;  ///< Buffer storing the input points (read only)
+            IndexContainer indices; ///< Buffer storing the indices associating the input points to the nodes
 
-            // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
-            // (kNearestNeighbors) return ids of the entire point set, not it sub-sampled list of ids.
-            // \fixme Update API to properly handle kdtree subsampling
-            const int cloudSize = kdtree.pointCount();
+            size_t points_size{0};
+            size_t indices_size{0};
+            int k{0};
+
+            PONCA_MULTIARCH inline Buffers() = default;
+
+            PONCA_MULTIARCH inline Buffers(const int _k) : k(_k) {}
+
+            PONCA_MULTIARCH inline Buffers(PointContainer _points, IndexContainer _indices, const size_t _points_size,
+                                           const size_t _indices_size, const int _k)
+                : points(_points), indices(_indices), points_size(_points_size), indices_size(_indices_size), k(_k)
             {
-                const int samplesSize = kdtree.sampleCount();
-                PONCA_ASSERT(cloudSize == samplesSize);
             }
+        };
 
-            m_indices.resize(cloudSize * m_k, -1);
+    protected:
+        PONCA_MULTIARCH inline StaticKnnGraphBase(const int _k) : m_bufs(_k) {}
 
-#pragma omp parallel for shared(kdtree, cloudSize) default(none)
-            for (int i = 0; i < cloudSize; ++i)
-            {
-                int j = 0;
-                for (auto n : kdtree.kNearestNeighbors(typename KdTreeTraits::IndexType(i),
-                                                       typename KdTreeTraits::IndexType(m_k)))
-                {
-                    m_indices[i * m_k + j] = n;
-                    ++j;
-                }
-            }
-        }
+    public:
+        /*! \brief Constructor that allows the use of prebuilt KnnGraph containers.
+         *
+         * Each internal values of a KnnGraph can be extracted using \ref `KnnGraph::buffers()`
+         *
+         * \note This constructor can be used to avoid the convertion and building process,
+         * which is useful to transfer directly the KnnGraph to the device in CUDA.
+         *
+         * \param _bufs Internal buffers of the KnnGraph
+         */
+        PONCA_MULTIARCH inline StaticKnnGraphBase(Buffers& _bufs) : m_bufs(_bufs) {}
 
         // Query -------------------------------------------------------------------
     public:
@@ -117,7 +111,10 @@ namespace Ponca
         ///
         /// \param index Index of the point that the query evaluates
         /// \return The \ref KNearestIndexQuery mutable object to iterate over the search results.
-        inline KNearestIndexQuery kNearestNeighbors(int index) const { return KNearestIndexQuery(this, index); }
+        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighbors(int index) const
+        {
+            return KNearestIndexQuery(this, index);
+        }
 
         /// \brief Computes a Query object to iterate over the neighbors that are inside a given radius.
         ///
@@ -127,7 +124,10 @@ namespace Ponca
         /// \param index Index of the point that the query evaluates
         /// \param r Radius around where to search the neighbors
         /// \return The \ref RangeIndexQuery mutable object to iterate over the search results.
-        inline RangeIndexQuery rangeNeighbors(int index, Scalar r) const { return RangeIndexQuery(this, r, index); }
+        PONCA_MULTIARCH inline RangeIndexQuery rangeNeighbors(int index, Scalar r) const
+        {
+            return RangeIndexQuery(this, r, index);
+        }
 
         /// \brief Convenience function that provides a k-nearest neighbors Query object.
         ///
@@ -141,7 +141,10 @@ namespace Ponca
         /// \return The \ref KNearestIndexQuery mutable object that can be called with the operator ()
         /// with an index as argument, to fetch the k-nearest neighbors of a point.
         /// \see #kNearestNeighbors
-        inline KNearestIndexQuery kNearestNeighborsIndexQuery() const { return KNearestIndexQuery(this, 0); }
+        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
+        {
+            return KNearestIndexQuery(this, 0);
+        }
 
         /// \brief Convenience function that provides an empty range neighbors Query object.
         ///
@@ -152,23 +155,90 @@ namespace Ponca
         ///
         /// \return The empty \ref KNearestIndexQuery mutable object to iterate over the search results.
         /// \see #rangeNeighbors
-        inline RangeIndexQuery rangeNeighborsIndexQuery() const { return RangeIndexQuery(this, 0, 0); }
+        PONCA_MULTIARCH inline RangeIndexQuery rangeNeighborsIndexQuery() const { return RangeIndexQuery(this, 0, 0); }
 
         // Accessors ---------------------------------------------------------------
     public:
         /// \brief Number of neighbor per vertex
-        [[nodiscard]] inline int k() const { return m_k; }
+        PONCA_MULTIARCH [[nodiscard]] inline int k() const { return m_bufs.k; }
         /// \brief Number of vertices in the neighborhood graph
-        [[nodiscard]] inline size_t size() const { return m_indices.size() / static_cast<size_t>(m_k); }
+        PONCA_MULTIARCH [[nodiscard]] inline size_t size() const
+        {
+            return m_bufs.indices_size / static_cast<size_t>(m_bufs.k);
+        }
+        //! \brief Get the number of indices
+        PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const { return (IndexType)m_bufs.indices_size; }
+        //! \brief Get the number of points
+        PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const { return (IndexType)m_bufs.points_size; }
+        //! \brief Get the internal point container
+        PONCA_MULTIARCH [[nodiscard]] inline const PointContainer& points() const { return m_bufs.points; };
+        //! \brief Get the internal indice container
+        PONCA_MULTIARCH [[nodiscard]] inline const IndexContainer& samples() const { return m_bufs.indices; };
+        //! \brief Get access to the internal buffer, for instance to prepare GPU binding
+        PONCA_MULTIARCH [[nodiscard]] inline const Buffers& buffers() const { return m_bufs; }
 
         // Data --------------------------------------------------------------------
-    private:
-        const int m_k;
-        IndexContainer m_indices; ///< \brief Stores neighborhood relations
+    protected:          // for friends relations
+        Buffers m_bufs; ///< Buffers used to store the KnnGraph
+    };
 
-    protected: // for friends relations
-        const PointContainer& m_kdTreePoints;
-        inline const IndexContainer& index_data() const { return m_indices; };
+    template <typename Traits>
+    class KnnGraphBase : public StaticKnnGraphBase<Traits>
+    {
+    public:
+        WRITE_TRAITS
+    private:
+        using Base = StaticKnnGraphBase<Traits>;
+        // knnGraph ----------------------------------------------------------------
+    public:
+        /// \brief Build a KnnGraph from a KdTreeDense
+        ///
+        /// \param _kdtree Reference to the KdTree
+        /// \param _k Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1
+        ///          (query point is not included in query output, thus -1)
+        ///
+        /// \warning Stores a const reference to kdtree.point_data()
+        /// \warning KdTreeTraits compatibility is checked with static assertion
+        template <typename KdTreeTraits>
+        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6) : Base(_k)
+        // : Base({std::min(_k, _kdtree.sampleCount() - 1)})
+        // : Base(typename Base::Buffers(std::min(_k, _kdtree.sampleCount() - 1)))
+        {
+            Base::m_bufs.points_size = _kdtree.pointCount();
+            Base::m_bufs.points      = std::move(_kdtree.points());
+            static_assert(std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
+                          "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
+            static_assert(std::is_same_v<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>,
+                          "KdTreeTraits::PointContainer is not equal to Traits::PointContainer");
+            static_assert(std::is_same_v<typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer>,
+                          "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer");
+
+            // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
+            // (kNearestNeighbors) return ids of the entire point set, not it sub-sampled list of ids.
+            // \fixme Update API to properly handle kdtree subsampling
+            const int cloudSize = _kdtree.pointCount();
+            {
+                const int samplesSize = _kdtree.sampleCount();
+                PONCA_ASSERT(cloudSize == samplesSize);
+            }
+
+            Base::m_bufs.indices_size = cloudSize * Base::m_bufs.k;
+            Base::m_bufs.indices.resize(Base::m_bufs.indices_size, -1);
+
+#pragma omp parallel for shared(_kdtree, cloudSize) default(none)
+            for (int i = 0; i < cloudSize; ++i)
+            {
+                int j = 0;
+                for (auto n : _kdtree.kNearestNeighbors(typename KdTreeTraits::IndexType(i),
+                                                        typename KdTreeTraits::IndexType(Base::m_bufs.k)))
+                {
+                    Base::m_bufs.indices[i * Base::m_bufs.k + j] = n;
+                    ++j;
+                }
+            }
+        }
     };
 
 } // namespace Ponca
+
+#undef WRITE_TRAITS

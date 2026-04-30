@@ -49,8 +49,8 @@ auto testKNearestNeighbors(AcceleratingStructure& structure, PointContainer& poi
         g_repeat, k);
 }
 
-//! Test kNearestNeighbors query without the k argument (the size of the iterator depends on the acceleration structure
-//! (e.g. when using the knnGraph(kdtreeDense, k))
+//! \brief Test kNearestNeighbors query without the k argument. The size of the iterator depends on the acceleration
+//! structure (e.g. when using the knnGraph(kdtreeDense, k))
 template <typename AcceleratingStructure, typename PointContainer>
 auto testKNearestNeighborsEntirePointSet(AcceleratingStructure& structure, PointContainer& points, const int k)
 {
@@ -65,20 +65,77 @@ auto testKNearestNeighborsEntirePointSet(AcceleratingStructure& structure, Point
         g_repeat);
 }
 
+//! \brief Build and test a kdtree for the KNearestNeighbors Query
 template <template <typename> class KdTreeType, typename P>
-inline KdTreeType<P> testKdTree(std::vector<P>& points, std::vector<int>& sample, const int k)
+KdTreeType<P> buildAndTestKdTree(std::vector<P>& points, std::vector<int>& sample, const int k,
+                                 const std::string& name = "KdTree")
 {
-    KdTreeType<P> kdtree = *testBuildKdTree<P, KdTreeType>(points, sample);
+    auto kdtree = *testBuildKdTree<P, KdTreeType>(points, sample);
 
+    // Test a kdtree with STL-like vectors
     std::chrono::milliseconds timing = testKNearestNeighbors<true>(kdtree, points, sample, k); // Index query test
 #ifdef PRINT_TIMING
-    cout << "    Compute Time KdTree index query : " << timing.count() << "ms" << endl;
+    cout << "    Compute Time " << name << " index query : " << timing.count() << "ms" << endl;
 #endif
     timing = testKNearestNeighbors<false>(kdtree, points, sample, k); // Position query test
 #ifdef PRINT_TIMING
-    cout << "    Compute Time KdTree position query : " << timing.count() << "ms" << endl;
+    cout << "    Compute Time " << name << " position query : " << timing.count() << "ms" << endl;
 #endif
+
     return kdtree;
+}
+
+//! \brief Test a kdtree with pointers for the KNearestNeighbors Query
+template <typename P, typename KdTree>
+void testStaticKdTree(KdTree& kdtree, const int k, const std::string& name = "KnnGraph")
+{
+    auto points = kdtree.points();
+    auto sample = kdtree.samples();
+
+    // Test the KdTree with raw memory pointers
+    using KdTreePointerStatic = StaticKdTreeBase<KdTreePointerTraits<P>>;
+    auto kdtreeBuffers        = kdtree.buffers(); // Buffer that use STL-like containers
+    // Convert previous KdTree to pointers
+    typename KdTreePointerStatic::Buffers kdtreeStaticBuffers{kdtreeBuffers.points.data(),  kdtreeBuffers.nodes.data(),
+                                                              kdtreeBuffers.indices.data(), kdtreeBuffers.points_size,
+                                                              kdtreeBuffers.nodes_size,     kdtreeBuffers.indices_size};
+    KdTreePointerStatic kdtreeStatic(kdtreeStaticBuffers);
+
+    std::chrono::milliseconds timing =
+        testKNearestNeighbors<false>(kdtreeStatic, points, sample, k); // Position query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " (with pointers) position query : " << timing.count() << "ms" << endl;
+#endif
+    timing = testKNearestNeighbors<true>(kdtreeStatic, points, sample, k); // Position query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " (with pointers) index query : " << timing.count() << "ms" << endl;
+#endif
+}
+
+//! \brief Build a KnnGraph and test the KNN query with default container type and raw memory pointers
+template <typename P, typename KdTree>
+void buildAndTestKnnGraph(KdTree& kdtree, const int k, const std::string& name = "KnnGraph")
+{
+    auto points = kdtree.points();
+    // Test KnnGraph
+    KnnGraph<P> knnGraph(kdtree, k);
+    std::chrono::milliseconds timing = testKNearestNeighborsEntirePointSet(knnGraph, points, k); // Index query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " index query : " << timing.count() << "ms" << endl;
+#endif
+
+    // Test the KnnGraph with raw memory pointers
+    using KnnGraphPointerStatic = StaticKnnGraphBase<KnnGraphPointerTraits<P>>;
+    auto knngraphBuffers        = knnGraph.buffers(); // Buffer that use STL-like containers
+    // Convert previous KnnGraph to pointers
+    typename KnnGraphPointerStatic::Buffers knnGraphStaticBuffers{
+        knngraphBuffers.points.data(), knngraphBuffers.indices.data(), knngraphBuffers.points_size,
+        knngraphBuffers.indices_size, k};
+    KnnGraphPointerStatic knnGraphStatic(knnGraphStaticBuffers);
+    timing = testKNearestNeighborsEntirePointSet(knnGraphStatic, points, k); // Index query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " (with pointers) index query : " << timing.count() << "ms" << endl;
+#endif
 }
 
 template <typename Scalar, int Dim>
@@ -92,20 +149,16 @@ void testKNearestNeighborsForAllStructures(const bool quick = QUICK_TESTS)
     std::vector<P> points(N);
     generateData(points);
 
-    cout << endl;
     //////////// Test KdTree STL-like containers
     std::vector<int> sampleDense;
-    KdTreeDense<P> kdtreeDense = testKdTree<KdTreeDense>(points, sampleDense, k);
+    auto kdtreeDense = buildAndTestKdTree<KdTreeDense>(points, sampleDense, k);
+
     std::vector<int> sampleSparse;
-    testKdTree<KdTreeSparse>(points, sampleSparse, k);
+    buildAndTestKdTree<KdTreeSparse>(points, sampleSparse, k, "KdTreeSparse");
+    testStaticKdTree<P>(kdtreeDense, k);
 
     //////////// Test KnnGraph
-    KnnGraph<P> knnGraph(kdtreeDense, k);
-
-    std::chrono::milliseconds timing = testKNearestNeighborsEntirePointSet(knnGraph, points, k); // Index query test
-#ifdef PRINT_TIMING
-    cout << "    Compute Time KnnGraph index query : " << timing.count() << "ms" << endl;
-#endif
+    buildAndTestKnnGraph<P>(kdtreeDense, k);
     cout << "  (ok)" << endl;
 }
 

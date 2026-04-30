@@ -277,10 +277,9 @@ namespace Ponca
         /// The returned object can be reset and reused with the () operator
         /// (using the same argument types as parameters).
         ///
-        /// \param point Point from where the query is evaluated
-        /// \param k Number of neighbors returned
-        /// \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
-        /// \see KdTreeKNearestQueryBase
+        /// \param point Point from where the query is evaluated \param k Number of neighbors returned \return
+        /// The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results. \see
+        /// KdTreeKNearestQueryBase
         PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestPointQuery<Traits> kNearestNeighbors(const VectorType& point,
                                                                                                IndexType k) const
         {
@@ -288,10 +287,9 @@ namespace Ponca
         }
 
         /// \copybrief KdTreeBase::kNearestNeighbors
-        /// \param index Index of the point from where the query is evaluated
-        /// \param k Number of neighbors returned
-        /// \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results.
-        /// \see KdTreeKNearestQueryBase
+        /// \param index Index of the point from where the query is evaluated \param k Number of neighbors
+        /// returned \return The \ref KdTreeKNearestIndexQuery mutable object to iterate over the search results. \see
+        /// KdTreeKNearestQueryBase
         PONCA_MULTIARCH [[nodiscard]] KdTreeKNearestIndexQuery<Traits> kNearestNeighbors(IndexType index,
                                                                                                IndexType k) const
         {
@@ -612,3 +610,5 @@ PONCA_MULTIARCH_HOST std::ostream& operator<<(std::ostream& os, const Ponca::KdT
     kdtree.print(os);
     return os;
 }
+
+#undef WRITE_TRAITS
