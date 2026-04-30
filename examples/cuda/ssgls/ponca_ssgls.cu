@@ -21,11 +21,7 @@
 
 #define EIGEN_DEFAULT_DENSE_INDEX_TYPE int
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFilter.h>
-#include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/Fitting>
 
 /**************************************************************************************************/
 /* IO (source: http://zarb.org/~gc/html/libpng.html )                                             */

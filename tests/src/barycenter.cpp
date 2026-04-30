@@ -12,11 +12,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include "Ponca/src/Fitting/basket.h"
-#include "Ponca/src/Fitting/mean.h"
-#include "Ponca/src/Fitting/weightFilter.h"
-#include "Ponca/src/Fitting/weightKernel.h"
-#include "Ponca/src/Fitting/evaluationScheme.h"
+#include <Ponca/Fitting>
 
 using namespace std;
 

@@ -9,9 +9,9 @@
 
 #pragma once
 
-#include "./defines.h"
-#include "./plane.h"
-#include "./mean.h"          // used to define CovarianceLineFit
+#include "../../defines.h"
+#include "../primitive/plane.h"
+#include "../tools/mean.h"   // used to define CovarianceLineFit
 #include "./covarianceFit.h" // use to define CovariancePlaneFit
 
 #include <Eigen/Eigenvalues>

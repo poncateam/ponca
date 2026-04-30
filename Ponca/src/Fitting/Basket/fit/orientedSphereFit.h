@@ -6,9 +6,9 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #pragma once
 
-#include "./algebraicSphere.h"
-#include "./concepts.h"
-#include "./mean.h" // used to define OrientedSphereFit
+#include "../primitive/algebraicSphere.h"
+#include "../../concepts.h"
+#include "../tools/mean.h" // used to define OrientedSphereFit
 
 #define ORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>
 #define ORIENTED_SPHERE_DER_REQUIREMENTS \

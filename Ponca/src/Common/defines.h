@@ -34,7 +34,7 @@
 #endif // ifdef __CUDACC__
 
 #ifdef __CUDACC__
-#    define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) "defines.h"
+#    define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) <Ponca/Common>
 // __device__ version of math function are implicitly defined by cuda and are not inside any
 // namespaces. However, other classes (such as numeric_limits) are not. We distinguish both
 // cases with the two following macros.
