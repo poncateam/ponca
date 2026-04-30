@@ -11,7 +11,7 @@
 #include "../defines.h"
 #include "../enums.h"
 
-#include "primitive/basketUnit.h"
+#include "basketUnit.h"
 
 namespace Ponca
 {

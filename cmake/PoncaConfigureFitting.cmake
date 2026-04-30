@@ -19,6 +19,7 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/ComputeScheme/project.h"
 
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/basket.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/basketUnit.h"
 
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/gls.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/gls.hpp"
@@ -37,7 +38,6 @@ set(ponca_Fitting_INCLUDE
     
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/primitive/algebraicSphere.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/primitive/algebraicSphere.hpp"
-    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/primitive/basketUnit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/primitive/plane.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/primitive/linePrimitive.h"
 
