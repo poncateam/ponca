@@ -5,8 +5,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 #pragma once
+#include "../../defines.h"
+#include "../../concepts.h"
 
-#include "../primitive/algebraicSphere.h"
+#include "../primitive/algebraicSphere.h" // used to define SphereFit
 
 #define SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>
 

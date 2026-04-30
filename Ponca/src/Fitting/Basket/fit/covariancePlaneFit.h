@@ -8,11 +8,12 @@
 */
 
 #pragma once
-
 #include "../../defines.h"
-#include "../primitive/plane.h"
-#include "../tools/mean.h" // used to define CovarianceLineFit
-#include "../tools/covariance.h"
+#include "../../concepts.h"
+
+#include "../primitive/plane.h"  // used to define CovariancePlaneFit
+#include "../tools/mean.h"       // used to define CovariancePlaneFit
+#include "../tools/covariance.h" // used to define CovariancePlaneFit
 
 #include <Eigen/Eigenvalues>
 

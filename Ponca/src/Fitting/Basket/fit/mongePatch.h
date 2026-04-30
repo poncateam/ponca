@@ -5,11 +5,11 @@
 */
 
 #pragma once
-
-#include "../../concepts.h"
 #include "../../defines.h"
-#include "../extensions/weingarten.h"
+#include "../../concepts.h"
+
 #include "../extensions/heightField.h"
+#include "../extensions/weingarten.h"
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 
