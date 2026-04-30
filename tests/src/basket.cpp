@@ -170,7 +170,7 @@ void callSubTests()
     using Hybrid = Basket<Point, NeighborFilter, AlgebraicSphere, Plane, // primitives
                           MeanNormal, MeanPosition,                      // shared computation
                           OrientedSphereFitImpl,                         // sphere fitting
-                          CovarianceFitBase, CovariancePlaneFitImpl>;    // plane fitting
+                          CovarianceBase, CovariancePlaneFitImpl>;       // plane fitting
     //! [HybridType]
 
     //! [PlaneFitDerTypes]

@@ -29,7 +29,7 @@ namespace Ponca
   ----------------- | ------------------- | --------------------------------------------------------------------- |
   Barycenter        | Points only         | MeanPosition (nD)                                                     |
   Normal Vector     | Oriented points     | MeanNormal (nD, co-dimension 1)                                       |
-  Covariance Matrix | Points only         | CovarianceFitBase (nD)                                                |
+  Covariance Matrix | Points only         | CovarianceBase (nD)                                                |
   Weingarten Map    | Points only         | FundamentalFormWeingartenEstimator (3D) via MongePatch                |
   Weingarten Map    | Oriented points     | NormalDerivativeWeingartenEstimator (3D)                              |
 
@@ -53,7 +53,7 @@ namespace Ponca
             Mean of the input points vectors
         </td>
         <td>MeanPosition</td>
-        <td>MeanPositionDer<br>MeanPlaneFitImpl<br>OrientedSphereFitImpl<br>CovarianceFitBase<br>UnorientedSphereFitImpl</td>
+        <td>MeanPositionDer<br>MeanPlaneFitImpl<br>OrientedSphereFitImpl<br>CovarianceBase<br>UnorientedSphereFitImpl</td>
         <td>barycenter()<br>barycenterDistance()<br>barycenterLocal()</td>
       </tr>
 
@@ -63,7 +63,7 @@ namespace Ponca
             Provides derivative of the mean position
         </td>
         <td>MeanPositionDer</td>
-        <td>CovarianceFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>CovarianceDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
         <td>barycenterDerivatives()</td>
       </tr>
 
@@ -103,7 +103,7 @@ namespace Ponca
             Provides base API for primitive derivatives
         </td>
         <td>PrimitiveDer</td>
-        <td>GLSDer<br>CovarianceFitDer<br>MeanPositionDer<br>MeanNormalDer<br>MlsSphereFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
+        <td>GLSDer<br>CovarianceDer<br>MeanPositionDer<br>MeanNormalDer<br>MlsSphereFitDer<br>OrientedSphereDerImpl<br>UnorientedSphereDerImpl</td>
         <td>isScaleDer()<br>isSpaceDer()<br>derDimension()</td>
       </tr>
 
@@ -182,8 +182,8 @@ namespace Ponca
             <b>PROVIDES_POSITION_COVARIANCE</b><br>
             Provides the covariance matrix
         </td>
-        <td>CovarianceFitBase</td>
-        <td>CovarianceFitDer<br>CovarianceLineFitImpl<br>CovariancePlaneFitImpl</td>
+        <td>CovarianceBase</td>
+        <td>CovarianceDer<br>CovarianceLineFitImpl<br>CovariancePlaneFitImpl</td>
         <td>solver()</td>
       </tr>
 
@@ -192,7 +192,7 @@ namespace Ponca
             <b>PROVIDES_POSITION_COVARIANCE_DERIVATIVE</b><br>
 
         </td>
-        <td>CovarianceFitDer</td>
+        <td>CovarianceDer</td>
         <td>CovariancePlaneDerImpl</td>
         <td>-</td>
       </tr>
@@ -224,7 +224,7 @@ namespace Ponca
     Estimator Name                                                 |   Estimated quantities   | Usage  |
     -------------------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------- |
     Distance to PCA plane \cite Digne:2011:scalespacemeshing       | Mean curvature           | Method \ref Plane::potential "potential()" \snippet curvature_plane.cpp Curvature Estimator PCA plane |
-    Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | Method \ref CovarianceFitBase::surfaceVariation "surfaceVariation()" \snippet curvature_plane.cpp Curvature Estimator PCA plane  |
+    Surface Variation \cite Pauly:2002:PSSimplification            | Mean curvature           | Method \ref CovarianceBase::surfaceVariation "surfaceVariation()" \snippet curvature_plane.cpp Curvature Estimator PCA plane  |
     Growing Least Squares \cite Mellado:2012:GLS                   | Mean curvature           | `Basket<P,W,OrientedSphereFit,GLSParam> // method kappa()`                                                |
     Point Set Surfaces (PSS) \cite Alexa:2001:Pss                  | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase" : \snippet curvature_plane.cpp Curvature Tensor PCA normals |
     Monge Patch fitting (comparable to jets fitting\cite Cazals:2005:Jets ) | Curvature Tensor         | API of \ref internal::CurvatureEstimatorBase "CurvatureEstimatorBase" using a QuadraticHeightField: \snippet curvature_plane.cpp Curvature Estimator Monge Quadric |
