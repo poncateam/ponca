@@ -10,7 +10,7 @@
 #include "../../defines.h"
 #include "../primitive/linePrimitive.h" // used to define CovarianceLineFit
 #include "../tools/mean.h"              // used to define CovarianceLineFit
-#include "./covarianceFit.h"            // used to define CovarianceLineFit
+#include "../tools/covariance.h"
 
 #include <Eigen/Dense>
 #include "../../concepts.h"
