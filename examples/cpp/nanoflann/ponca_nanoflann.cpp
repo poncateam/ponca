@@ -16,7 +16,8 @@
 
 #include "./nanoflann.hpp"
 
-#include <Ponca/Precompiled>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 using namespace Ponca;
 

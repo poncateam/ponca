@@ -6,7 +6,8 @@
 
 #pragma once
 
-#include <Ponca/Precompiled>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 #include "pcl_wrapper.h"
 #include <pcl/common/point_tests.h> // isFinite

@@ -6,7 +6,7 @@ if ( PNG_FOUND )
     set_property(TARGET ponca_ssgls PROPERTY CUDA_ARCHITECTURES OFF)
     target_compile_options(ponca_ssgls PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
     target_link_libraries(ponca_ssgls PRIVATE PNG::PNG)
-    target_link_libraries(ponca_ssgls PUBLIC Ponca::Precompiled Eigen3::Eigen)
+    target_link_libraries(ponca_ssgls PUBLIC Ponca::Instantiate Eigen3::Eigen)
 
     # Copy assets
     add_custom_command(TARGET ponca_ssgls POST_BUILD

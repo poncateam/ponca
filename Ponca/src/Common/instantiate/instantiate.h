@@ -21,7 +21,7 @@
 #    endif
 #endif
 
-#include "../../Ponca"
+#include "../../../Ponca"
 
 namespace Ponca
 {
@@ -29,7 +29,7 @@ namespace Ponca
 // we could use a trick by wrapping the class in parenthesis, but for now this works and is simpler.
 #define _PONCA_BASKET_X(name, desc, ...) _PRECOMPILED_PONCA_EXTERN template class _PONCA_EXPORT __VA_ARGS__;
 #define _PONCA_BASKET_DIFF_X(name, desc, ...) _PRECOMPILED_PONCA_EXTERN template class _PONCA_EXPORT __VA_ARGS__;
-#include "instantiate.h"
+#include "instantiate_list/entrypoint.h"
 #undef _PONCA_BASKET_X
 #undef _PONCA_BASKET_DIFF_X
 }; // namespace Ponca

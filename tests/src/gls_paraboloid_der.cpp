@@ -18,7 +18,8 @@
 
 #include <fstream>
 
-#include <Ponca/Precompiled>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 #include <vector>
 

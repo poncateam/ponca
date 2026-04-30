@@ -5,14 +5,14 @@
 */
 #if defined(_PONCA_INSTANTIATE_POINTPOSITION) || defined(_PONCA_INSTANTIATE_ALL)
 #    define _P PointPosition<_S, _D>
-#    include "../../Fitting/instantiate/filters.h"
+#    include "filters.h"
 #    undef _P
 #endif
 
 #if defined(_PONCA_INSTANTIATE_POINTPOSITIONNORMAL) || defined(_PONCA_INSTANTIATE_ALL)
 #    define _P PointPositionNormal<_S, _D>
 #    define _Normal
-#    include "../../Fitting/instantiate/filters.h"
+#    include "filters.h"
 #    undef _Normal
 #    undef _P
 #endif

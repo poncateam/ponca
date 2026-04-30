@@ -14,7 +14,8 @@
 
 #include "../split_test_helper.h"
 
-#include <Ponca/Precompiled>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 
 #include <vector>

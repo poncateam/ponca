@@ -15,7 +15,8 @@
 #include <iostream>
 #include <vector>
 
-#include <Ponca/Precompiled>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 using namespace std;
 using namespace Ponca;
