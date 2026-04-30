@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include "./defines.h"
-#include "./concepts.h"
-#include "./basketUnit.h"
+#include "../../defines.h"
+#include "../../concepts.h"
+#include "../primitive/basketUnit.h"
 
 #define MEAN_POSITION_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesMeanPosition<T>
 #define MEAN_NORMAL_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesMeanNormal<T>

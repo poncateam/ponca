@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "./plane.h"
-#include "./mean.h"
+#include "../primitive/plane.h"
+#include "../tools/mean.h"
 
 #define MEAN_PLANE_REQUIREMENTS ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>&& ProvidesPlane<T>
 

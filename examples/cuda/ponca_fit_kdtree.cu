@@ -10,11 +10,7 @@
  * \authors Auberval Florian, Nicolas Mellado
  */
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/meanPlaneFit.h>
-#include <Ponca/src/Fitting/weightFilter.h>
-#include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/Fitting>
 #include <Ponca/src/Common/pointTypes.h>
 #include <Ponca/src/Common/pointGeneration.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>

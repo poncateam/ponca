@@ -9,10 +9,11 @@ All rights reserved.
 
 #pragma once
 
-#include "defines.h"
+#include "../defines.h"
 #include "cncFormulaEigen.h"
-#include "weightFilter.h"
-#include "weightKernel.h"
+
+#include "../Filters/weightFilter.h"
+#include "../Filters/weightKernel.h"
 
 namespace Ponca
 {

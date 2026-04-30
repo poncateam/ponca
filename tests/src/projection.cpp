@@ -15,15 +15,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/sphereFit.h>
-#include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFilter.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Fitting/project.h>
-
+#include <Ponca/Fitting>
 #include <chrono>
 #include <math.h>
 

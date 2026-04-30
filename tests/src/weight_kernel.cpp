@@ -14,8 +14,7 @@
 
 #include <unsupported/Eigen/AutoDiff>
 
-#include <Ponca/src/Fitting/weightFilter.h>
-#include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/Fitting>
 #include <chrono>
 
 using namespace std;

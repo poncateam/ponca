@@ -12,11 +12,7 @@
 
 #include <iostream>
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFilter.h>
-#include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/Fitting>
 #include <Ponca/src/Common/pointTypes.h>
 
 #include "Eigen/Eigen"

@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "defines.h"
-#include "enums.h"
+#include "../defines.h"
+#include "../enums.h"
 
 namespace Ponca
 {

@@ -6,7 +6,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #pragma once
 
-#include "./algebraicSphere.h"
+#include "../primitive/algebraicSphere.h"
 
 #define SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>
 

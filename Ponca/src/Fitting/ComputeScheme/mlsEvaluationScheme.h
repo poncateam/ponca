@@ -5,9 +5,9 @@
 */
 #pragma once
 
-#include "concepts.h"
-#include "defines.h"
-#include "enums.h"
+#include "../concepts.h"
+#include "../defines.h"
+#include "../enums.h"
 
 #include "./project.h"
 

@@ -12,13 +12,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFilter.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Fitting/weingarten.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;

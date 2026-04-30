@@ -13,19 +13,11 @@
 
 #include "../common/testing.h"
 #include "../common/testUtils.h"
-
 #include "../split_test_helper.h"
 
-#include <vector>
-
-#include "Ponca/src/Fitting/defines.h"
-#include "Ponca/src/Fitting/basket.h"
-#include "Ponca/src/Fitting/covariancePlaneFit.h"
-#include "Ponca/src/Fitting/mongePatch.h"
-#include "Ponca/src/Fitting/weightFilter.h"
-#include "Ponca/src/Fitting/weightKernel.h"
-
+#include <Ponca/Fitting>
 #include <Ponca/SpatialPartitioning>
+#include <vector>
 
 using namespace std;
 using namespace Ponca;

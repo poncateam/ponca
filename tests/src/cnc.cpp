@@ -12,17 +12,9 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/cnc.h>
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 #include <algorithm>
-
-#include "Ponca/src/Fitting/mlsSphereFitDer.h"
-#include "Ponca/src/Fitting/weightKernel.h"
-#include "Ponca/src/Fitting/weingarten.h"
 
 using namespace std;
 using namespace Ponca;

@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "defines.h"
-#include "concepts.h"
-#include "enums.h"
+#include "../../defines.h"
+#include "../../concepts.h"
+#include "../../enums.h"
 #include <Eigen/Dense>
 
 namespace Ponca

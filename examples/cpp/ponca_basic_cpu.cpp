@@ -13,15 +13,7 @@
 #include <algorithm>
 #include <iostream>
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/sphereFit.h>
-#include <Ponca/src/Fitting/weightFilter.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Fitting/weingarten.h>
-
+#include <Ponca/Fitting>
 #include <Ponca/SpatialPartitioning>
 #include <Ponca/src/Common/pointTypes.h>
 #include <Ponca/src/Common/pointGeneration.h>

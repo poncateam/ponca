@@ -7,8 +7,8 @@
 */
 
 #pragma once
-#include "./defines.h"
-#include "./concepts.h"
+#include "../../defines.h"
+#include "../../concepts.h"
 
 #include <Eigen/Dense>
 

@@ -8,9 +8,9 @@
 
 #pragma once
 
-#include "./algebraicSphere.h"
-#include "./concepts.h"
-#include "./mean.h" // used to define UnorientedSphereFit
+#include "../primitive/algebraicSphere.h"
+#include "../../concepts.h"
+#include "../tools/mean.h" // used to define UnorientedSphereFit
 
 #include <Eigen/Dense>
 

@@ -5,7 +5,7 @@
 */
 #pragma once
 
-#include "./defines.h"
+#include "../defines.h"
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(cmath)
 
 /*!

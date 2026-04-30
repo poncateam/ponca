@@ -12,6 +12,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;
