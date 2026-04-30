@@ -294,6 +294,12 @@ namespace Ponca
             PONCA_MULTIARCH [[nodiscard]] inline NeighborhoodFrame& frame() { return *this; }
             PONCA_MULTIARCH [[nodiscard]] inline const NeighborhoodFrame& frame() const { return *this; }
         }; // class NoWeightFuncBase
+
+        template <typename DataPoint>
+        inline constexpr typename DataPoint::VectorType ConvertDataPointToNormal(const DataPoint& pt)
+        {
+            return pt.normal();
+        }
     } // namespace internal
 
     /*!
