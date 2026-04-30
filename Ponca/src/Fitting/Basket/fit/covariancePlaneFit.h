@@ -78,7 +78,7 @@ namespace Ponca
     template <class DataPoint, class _NFilter, typename T>
     using CovariancePlaneFit = CovariancePlaneFitImpl<
         DataPoint, _NFilter,
-        CovarianceFitBase<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Plane<DataPoint, _NFilter, T>>>>;
+        CovarianceBase<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Plane<DataPoint, _NFilter, T>>>>;
     //! [CovariancePlaneFit Definition]
 
     /*!
@@ -122,7 +122,7 @@ namespace Ponca
     template <class DataPoint, class _NFilter, int DiffType, typename T>
     using CovariancePlaneDer = CovariancePlaneDerImpl<
         DataPoint, _NFilter, DiffType,
-        CovarianceFitDer<DataPoint, _NFilter, DiffType, MeanPositionDer<DataPoint, _NFilter, DiffType, T>>>;
+        CovarianceDer<DataPoint, _NFilter, DiffType, MeanPositionDer<DataPoint, _NFilter, DiffType, T>>>;
 
 #include "covariancePlaneFit.hpp"
 

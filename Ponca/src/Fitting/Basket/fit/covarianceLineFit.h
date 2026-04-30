@@ -62,6 +62,6 @@ namespace Ponca
     template <class DataPoint, class _NFilter, typename T>
     using CovarianceLineFit = CovarianceLineFitImpl<
         DataPoint, _NFilter,
-        CovarianceFitBase<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Line<DataPoint, _NFilter, T>>>>;
+        CovarianceBase<DataPoint, _NFilter, MeanPosition<DataPoint, _NFilter, Line<DataPoint, _NFilter, T>>>>;
 
 } // namespace Ponca

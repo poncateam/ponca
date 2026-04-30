@@ -228,13 +228,13 @@ namespace Ponca
 
     template <typename T>
     concept ProvidesPositionCovariance = requires(const T ct) {
-        ct.covarianceFit();
+        ct.covarianceBase();
 
-        { ct.covarianceFit().solver() } -> std::convertible_to<typename T::Solver>;
+        { ct.covarianceBase().solver() } -> std::convertible_to<typename T::Solver>;
     };
 
     template <typename T>
-    concept ProvidesPositionCovarianceDer = requires(const T ct) { ct.covarianceFitDer(); };
+    concept ProvidesPositionCovarianceDer = requires(const T ct) { ct.covarianceDer(); };
 
     template <typename T>
     concept ProvidesCovariancePlaneDer = requires(const T ct) {

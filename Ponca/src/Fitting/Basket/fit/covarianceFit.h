@@ -24,7 +24,7 @@ namespace Ponca
 {
 
     /*!
-       \brief Procedure that compute and decompose the covariance matrix of the neighbors positions in \f$3d\f$.
+       \brief Procedure that compute and decompose the covariance matrix of the neighbors positions.
 
        This process is commonly used for plane fitting and local variance analysis. It is often called Principal
        Component Analysis (PCA) of the neighborhood, and used in Geometry Processing and Computer Vision.
@@ -57,12 +57,12 @@ namespace Ponca
        \leq \lambda_1 \leq \lambda_2 \f$.
 
 
-       \warning This class is valid only in 3D.
+       \warning This class is valid for any dimensions, however some statistics can only be computed in 3d.
      */
 
     template <class DataPoint, class _NFilter, typename T>
         requires COVARIANCE_FIT_BASE_REQUIREMENTS
-    class CovarianceFitBase : public T
+    class CovarianceBase : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
     public:
@@ -76,12 +76,12 @@ namespace Ponca
         Solver m_solver;                      /*!<\brief Solver used to analyse the covariance matrix */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(CovarianceFitBase, covarianceFit)
+        PONCA_EXPLICIT_CAST_OPERATORS(CovarianceBase, covarianceBase)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
         /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
             It computes the ratio \f$ d \frac{\lambda_0}{\sum_i \lambda_i} \f$ with \c d the dimension of the ambient
-           space.
+            space.
             \return 0 for invalid fits
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar surfaceVariation() const;
@@ -89,30 +89,34 @@ namespace Ponca
         /*! \brief Implements the planarity \cite Guinard:2017 .
             Planarity is defined as:
             \f[ \frac{\lambda_1 - \lambda_0}{\lambda_2} \f]
+            \warning Valid only in 3d
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar planarity() const;
 
         /*! \brief Implements the linearity \cite Guinard:2017 .
             Linearity is defined as:
             \f[ \frac{\lambda_2 - \lambda_1}{\lambda_2} \f]
+            \warning Valid only in 3d
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar linearity() const;
 
         /*! \brief Implements the sphericity \cite Guinard:2017 .
             Sphericity is defined as:
             \f[ \frac{\lambda_0}{\lambda_2} \f]
+            \warning Valid only in 3d
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar sphericity() const;
 
         /*! \brief Implements the anisotropy \cite Guinard:2017 .
             Anisotropy is defined as:
             \f[ \frac{\lambda_2 - \lambda_0}{\lambda_2} \f]
+            \note Valid in any dimension, but not sure what it means out of 3d
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar anisotropy() const;
 
         /*! \brief Implements the eigenentropy \cite Guinard:2017 .
             Eigenentropy is defined as:
-            \f[ - \lambda_0 * \ln{\lambda_0} - \lambda_1 * \ln{\lambda_1} - \lambda_2 * \ln{\lambda_2} \f]
+            \f[ - \sum_i (\lambda_i * \ln{\lambda_i}) \f]
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar eigenentropy() const;
 
@@ -128,18 +132,18 @@ namespace Ponca
          */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar lambda_2() const;
 
-        /*! \brief Reading access to the Solver used to analyse the covariance matrix */
+        /*! \brief Reading access to the Solver used to analyze the covariance matrix */
         PONCA_MULTIARCH [[nodiscard]] inline const Solver& solver() const { return m_solver; }
     };
 
     /*!
         \brief Internal generic class computing the derivatives of covariance matrix
-        computed by CovarianceFitBase
+        computed by covarianceBase
         \inherit Concept::FittingExtensionConcept
     */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
         requires COVARIANCE_FIT_DER_REQUIREMENTS
-    class CovarianceFitDer : public T
+    class CovarianceDer : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
@@ -149,9 +153,9 @@ namespace Ponca
         MatrixType m_dCov[Base::NbDerivatives];
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceFitDer, covarianceFitDer)
+        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceDer, covarianceDer)
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
-    }; // class CovarianceFitDer
+    }; // class CovarianceDer
 
 #include "covarianceFit.hpp"
 

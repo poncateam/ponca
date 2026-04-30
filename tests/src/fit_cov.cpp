@@ -161,9 +161,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         };
 
         // check we get the same decomposition
-        checkVectors(fit.covarianceFit().solver().eigenvalues(), ref.covarianceFitTwoPasses().solver().eigenvalues());
+        checkVectors(fit.covarianceBase().solver().eigenvalues(), ref.covarianceFitTwoPasses().solver().eigenvalues());
         for (int d = 0; d != 3; ++d)
-            checkVectors(fit.covarianceFit().solver().eigenvectors().col(d),
+            checkVectors(fit.covarianceBase().solver().eigenvectors().col(d),
                          ref.covarianceFitTwoPasses().solver().eigenvectors().col(d));
     }
 }
@@ -176,8 +176,8 @@ void callSubTests()
     using WeightSmoothFunc   = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using WeightConstantFunc = DistWeightFilter<Point, ConstantWeightKernel<Scalar>>;
 
-    using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitBase>;
-    using CovFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitBase>;
+    using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceBase>;
+    using CovFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceBase>;
 
     using RefFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitTwoPassesBase>;
     using RefFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitTwoPassesBase>;

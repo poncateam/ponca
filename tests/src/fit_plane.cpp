@@ -153,9 +153,9 @@ void callSubTests()
     // test if conflicts are detected
     //! [Conflicting type]
     using Hybrid1 = Basket<Point, NoWeightFilterGlobal, Plane, MeanNormal, MeanPosition, MeanPlaneFitImpl,
-                           CovarianceFitBase, CovariancePlaneFitImpl>; // test conflict detection in one direction
+                           CovarianceBase, CovariancePlaneFitImpl>; // test conflict detection in one direction
     //! [Conflicting type]
-    using Hybrid2 = Basket<Point, NoWeightFilterGlobal, Plane, MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
+    using Hybrid2 = Basket<Point, NoWeightFilterGlobal, Plane, MeanPosition, CovarianceBase, CovariancePlaneFitImpl,
                            MeanNormal, MeanPlaneFitImpl>; // test conflict detection in the second direction
 
     cout << "Testing with perfect plane..." << endl;
