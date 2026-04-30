@@ -23,26 +23,31 @@ namespace Ponca
         }
     };
 
-    /*! \brief A simple HashMap implementation that mimics a set of indices, by only storing the keys (Hence the name
-     * HashSet). The internal logic of this HashMap is similar to a `std::unordered_map`, but is compatible with CUDA.
+    /*! \brief Stores unique signed integer values in a contiguous array.
      *
-     * Stores unique integer values in a contiguous array.
+     * A simple HashMap implementation that mimics a set of indices, by only stores the keys in a Set-like
+     * structure (Hence the name HashSet). The internal logic of this HashMap is similar to a `std::unordered_map`,
+     * but is compatible with CUDA.
      *
-     * \warning Logic was optimized for signed integer: The stored values must never be equal to -1, because it
-     * will be mistaken as being empty in the HashSet, and break the search logic. Change the OFFSET value, depending
-     * on the negative value you need to store to avoid this issue, with the following rule : illegal_value =
-     * EMPTY-OFFSET (e.g. set OFFSET to 2 to allow to store -1, but make -2 illegal to store).
+     * \note This HashSet type doesn't allow for removal of a single element from the set. It was implemented this way
+     * to provide the simplest search and insert method possible
+     *
+     * \warning The stored values must never be equal to -1, because it will be mistaken as being empty in the HashSet,
+     * and will break the search logic. If you must store -1, change the OFFSET value to something else, by following
+     * this simple rule : illegal_value = EMPTY-OFFSET (e.g. set OFFSET to 2 to allow to store -1, but make -2 illegal
+     * to store).
      *
      * For the search, the best case complexity is O(1), and the worst case complexity is O(n).
      * The complexity is entirely dependent on the hashing function, and the given values :
      * If our hashing function produce sparser result for our set of indices, it will reduce the complexity of the
-     * searches, and therefore improve the performance of our algorithm.
+     * searches for both the `HashSet::insert` and `HashSet::contains` method.
      *
-     * \see HashSet::hash for the hashing function
+     * \see HashDefaultFunctor::hash for the default hashing function
      * \see BitSet For alternative data structure with compatible API
      *
      * \tparam N The maximum size of the HashSet
-     * \tparam T The value type stored in the HashSet. Default to int
+     * \tparam T The value type stored in the HashSet (Default to int)
+     * \tparam _HashFunctor For the hashing function (Default to HashDefaultFunctor)
      */
     template <int N, typename T = int, template <int, typename> typename _HashFunctor = HashDefaultFunctor>
     class HashSet
