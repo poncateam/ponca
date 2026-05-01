@@ -121,6 +121,9 @@ PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildWithSampling(PointUser
     PONCA_DEBUG_ASSERT(static_cast<IndexType>(Base::pointCount()) <= Base::MAX_POINT_COUNT);
     Base::m_leaf_count = 0;
 
+    // Reset buffers.
+    Base::m_bufs = typename Base::Buffers();
+
     // Move, copy or convert input samples
     c(std::forward<PointUserContainer>(points), Base::m_bufs.points);
     Base::m_bufs.points_size = Base::m_bufs.points.size();
