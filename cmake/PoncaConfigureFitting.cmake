@@ -9,6 +9,7 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/CNC/cnc.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/CNC/cncFormulaEigen.h"
 
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Filters/concepts.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Filters/frame.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Filters/weightFilter.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Filters/weightFilter.hpp"
@@ -18,6 +19,7 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/ComputeScheme/mlsEvaluationScheme.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/ComputeScheme/project.h"
 
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/concepts.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/basket.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/basketUnit.h"
 

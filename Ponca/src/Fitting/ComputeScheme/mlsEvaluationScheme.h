@@ -6,6 +6,8 @@
 #pragma once
 
 #include "../concepts.h"
+#include "../Filters/concepts.h" // ProvidesNeighborhoodFrame
+#include "../Basket/concepts.h"  // ProvidesBasketUnitBase
 #include "../defines.h"
 #include "../enums.h"
 
@@ -120,7 +122,8 @@ namespace Ponca
          * \return The result of the fit
          */
         template <typename ComputeObject, typename Func, typename Project = DirectProjectionOperator>
-            requires ProvidesBasketUnitBase<ComputeObject> && ProvidesImplicitPrimitive<ComputeObject>
+            requires ProvidesNeighborhoodFilter<ComputeObject> && ProvidesBasketUnitBase<ComputeObject> &&
+                     ProvidesImplicitPrimitive<ComputeObject>
         PONCA_MULTIARCH inline FIT_RESULT computeMLSImpl(ComputeObject& _co, Func&& _compute,
                                                          const Project& _p = Project{}) const
         {

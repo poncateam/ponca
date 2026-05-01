@@ -8,7 +8,7 @@
 
 #pragma once
 #include "../../defines.h"
-#include "../../concepts.h"
+#include "../concepts.h"
 
 #include "../primitive/linePrimitive.h" // used to define CovarianceLineFit
 #include "../tools/mean.h"              // used to define CovarianceLineFit

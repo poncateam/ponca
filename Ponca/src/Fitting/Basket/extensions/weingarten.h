@@ -7,7 +7,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #pragma once
 
 #include "../../defines.h"
-#include "../../concepts.h"
+#include "../concepts.h"
 
 #define FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS \
     ProvidesFirstFondamentalFormComponents<T>&& ProvidesSecondFondamentalFormComponents<T>

@@ -6,58 +6,6 @@
 namespace Ponca
 {
     template <typename T>
-    concept HasLocalFrame = T::hasLocalFrame;
-
-    template <typename T>
-    concept Is3D = (T::Dim == 3);
-
-    template <typename T>
-    concept ProvidesNeighborhoodFrame = ProvidesCommonTypes<T> && requires(T t, const T ct, typename T::VectorType v) {
-        t.changeNeighborhoodFrame(v);
-
-        { ct.convertToGlobalBasis(v, true) } -> std::convertible_to<typename T::VectorType>;
-        { ct.convertToLocalBasis(v, true) } -> std::convertible_to<typename T::VectorType>;
-
-        { t.center() } -> std::convertible_to<typename T::VectorType>;
-        { ct.center() } -> std::convertible_to<typename T::VectorType>;
-    };
-
-    template <typename T>
-    concept ProvidesNeighborhoodFilter =
-        ProvidesCommonTypes<T> && ProvidesNeighborhoodFrame<typename T::NeighborhoodFrame> &&
-        requires(T t, const T ct) {
-            t.frame();
-            ct.frame();
-        };
-
-    /// \brief This concept ensures that the default types and accessors in a Basket are well-formed
-    ///
-    /// This concept is implemented by BasketUnitBase, which is set by default in the Basket.
-    template <typename T>
-    concept ProvidesBasketUnitBase = ProvidesCommonTypes<T> && requires(T t, const T ct) {
-        typename T::NeighborFilter;
-        t.setNeighborFilter(typename T::NeighborFilter{});
-        { ct.getNeighborFilter() } -> std::convertible_to<typename T::NeighborFilter>;
-
-        { ct.getCurrentState() } -> std::same_as<FIT_RESULT>;
-
-        { ct.getWeightSum() } -> std::same_as<typename T::Scalar>;
-        { ct.isStable() } -> std::same_as<bool>;
-        { ct.isReady() } -> std::same_as<bool>;
-        { ct.getNumNeighbors() } -> std::integral;
-    };
-
-    /// \brief This concept ensures that the default types and accessors in a BasketDiff are well-formed
-    ///
-    /// This concept is implemented by BasketDiffUnitBase, which is set by default in the BasketDiff.
-    template <typename T>
-    concept ProvidesBasketDiffUnitBase = ProvidesBasketUnitBase<T> && requires(T t, const T ct) {
-        { ct.isScaleDer() } -> std::same_as<bool>;
-        { ct.isSpaceDer() } -> std::same_as<bool>;
-        { ct.derDimension() } -> std::integral;
-    };
-
-    template <typename T>
     concept ProvidesProjectionOperator = requires(T t, const T ct, typename T::VectorType v, typename T::Scalar s) {
         ct.projectionOperator();
 

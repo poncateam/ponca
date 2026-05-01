@@ -8,7 +8,7 @@
 
 #pragma once
 #include "../../defines.h"
-#include "../../concepts.h"
+#include "../concepts.h"
 
 #include <Eigen/Geometry>
 
