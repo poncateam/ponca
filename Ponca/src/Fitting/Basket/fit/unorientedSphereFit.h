@@ -8,7 +8,7 @@
 
 #pragma once
 #include "../../defines.h"
-#include "../../concepts.h"
+#include "../concepts.h"
 
 #include "../primitive/algebraicSphere.h" // used to define UnorientedSphereFit
 #include "../tools/mean.h"                // used to define UnorientedSphereFit

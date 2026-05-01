@@ -6,12 +6,12 @@
 
 #pragma once
 
-#include "../../Common/concepts.h"
+#include "concepts.h"
+#include "basketUnit.h"
+
 #include "../compute.h"
 #include "../defines.h"
 #include "../enums.h"
-
-#include "basketUnit.h"
 
 namespace Ponca
 {

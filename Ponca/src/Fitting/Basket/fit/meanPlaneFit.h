@@ -8,7 +8,7 @@
 
 #pragma once
 #include "../../defines.h"
-#include "../../concepts.h"
+#include "../concepts.h"
 
 #include "../primitive/plane.h" // used to define MeanPlaneFit
 #include "../tools/mean.h"      // used to define MeanPlaneFit

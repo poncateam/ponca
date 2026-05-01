@@ -29,10 +29,12 @@ namespace Ponca
 
         \warning DistWeightFunc assumes that the evaluation scale t is strictly positive, but the valus is not checked
     */
-    template <class DataPoint, class WeightKernel>
-    class DistWeightFilter : public CenteredNeighborhoodFrame<DataPoint>
+    template <class _DataPoint, class WeightKernel>
+    class DistWeightFilter : public CenteredNeighborhoodFrame<_DataPoint>
     {
     public:
+        /*! \brief Alias to _DataPoint template parameter */
+        using DataPoint = _DataPoint;
         /*! \brief Scalar type from DataPoint */
         using Scalar = typename DataPoint::Scalar;
         /*! \brief Vector type from DataPoint */
@@ -203,10 +205,12 @@ namespace Ponca
             \tparam _NeighborhoodFrame Base NeighborhoodFrame used to performs (or not) local basis conversion and
            maintain computation accuracy
         */
-        template <class DataPoint, template <typename> typename _NeighborhoodFrame>
-        class NoWeightFilterBase : public _NeighborhoodFrame<DataPoint>
+        template <class _DataPoint, template <typename> typename _NeighborhoodFrame>
+        class NoWeightFilterBase : public _NeighborhoodFrame<_DataPoint>
         {
         public:
+            /*! \brief Alias to _DataPoint template parameter */
+            using DataPoint = _DataPoint;
             /*! \brief Scalar type from DataPoint */
             using Scalar = typename DataPoint::Scalar;
             /*! \brief Vector type from DataPoint */
@@ -310,11 +314,13 @@ namespace Ponca
      * \tparam NeighborFilter Any NeighborFilter type (e.g., NoWeightFilter or DistWeightFilter<ConstantWeightKernel>)
      * \tparam DataConverter A function that construct a DataType from the DataPoint
      */
-    template <class DataPoint, typename DataType, typename NeighborFilter, auto DataConverter>
+    template <class _DataPoint, typename DataType, typename NeighborFilter, auto DataConverter>
     class FilterWithAttributes : public NeighborFilter
     {
     public:
-        using Base = NeighborFilter;
+        /*! \brief Alias to _DataPoint template parameter */
+        using DataPoint = _DataPoint;
+        using Base      = NeighborFilter;
         /*! \brief Scalar type from DataPoint */
         using Scalar = typename DataPoint::Scalar;
         /*! \brief Vector type from DataPoint */

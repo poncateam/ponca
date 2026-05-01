@@ -7,7 +7,8 @@
 #pragma once
 
 #include "../../defines.h"
-#include "../../concepts.h"
+#include "../concepts.h"
+#include "../../Filters/concepts.h" // HasLocalFrame
 
 #include PONCA_MULTIARCH_INCLUDE_STD(cmath)
 #include PONCA_MULTIARCH_INCLUDE_CU_STD(limits)

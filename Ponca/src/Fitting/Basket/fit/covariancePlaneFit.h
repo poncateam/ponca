@@ -9,7 +9,7 @@
 
 #pragma once
 #include "../../defines.h"
-#include "../../concepts.h"
+#include "../concepts.h"
 
 #include "../primitive/plane.h"  // used to define CovariancePlaneFit
 #include "../tools/mean.h"       // used to define CovariancePlaneFit

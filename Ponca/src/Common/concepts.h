@@ -21,4 +21,6 @@ namespace Ponca
     template <typename T>
     concept IsPointNormal = IsPoint<T> && requires(const T ct) { ct.normal(); };
 
+    template <typename T>
+    concept Is3D = (T::Dim == 3);
 }; // namespace Ponca

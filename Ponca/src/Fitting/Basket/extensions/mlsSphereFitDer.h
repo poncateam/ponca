@@ -7,7 +7,7 @@
 #pragma once
 
 #include "../../defines.h"
-#include "../../concepts.h"
+#include "../concepts.h"
 
 #define MLS_SPHERE_FIT_DER_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesImplicitPrimitiveDerivative<T>
 
