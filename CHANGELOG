@@ -160,7 +160,7 @@ v.1.4
 
 - API
     - [fitting] Refactor the Weighting function initialization to avoid misuse (#167)
-    - [fitting] Add class NoWeightFunc to skip weight computation (#144)
+    - [fitting] Add class NoWeightFilter to skip weight computation (#144)
     - [fitting] Add ComputeObject and changed basket to inherit the compute methods from it (#188)
     - [fitting] Add features in CovarianceFitBase (#191)
     - [fitting] Generalised smooth weight kernel to any dimension (#159)

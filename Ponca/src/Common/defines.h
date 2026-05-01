@@ -34,7 +34,7 @@
 #endif // ifdef __CUDACC__
 
 #ifdef __CUDACC__
-#    define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) "defines.h"
+#    define PONCA_MULTIARCH_INCLUDE_STD(FILENAME) <Ponca/Common>
 // __device__ version of math function are implicitly defined by cuda and are not inside any
 // namespaces. However, other classes (such as numeric_limits) are not. We distinguish both
 // cases with the two following macros.
@@ -69,28 +69,4 @@
 // Source: http://www.geom.uiuc.edu/~huberty/math5337/groupe/digits.html
 #    define M_PI 3.141592653589793238462643383279502884197169399375105820974944592307816406
 #endif
-
-namespace Ponca
-{
-    /*!
-     * \brief Utility structure used to detect if a Point has a normal field
-     *
-     * Example usage:
-     * \code
-     * hasNormal<MyPoint>::value will be true if MyPoint has a member function 'normal()'
-     * \endcode
-     *
-     * \tparam T The Point type
-     */
-    template <typename T, typename = void>
-    struct hasNormal : std::false_type
-    {
-    };
-
-    /// \copydoc hasNormal<typename,typename>
-    template <typename T>
-    struct hasNormal<T, std::void_t<decltype(std::declval<T>().normal())>> : std::true_type
-    {
-    };
-} // namespace Ponca
 

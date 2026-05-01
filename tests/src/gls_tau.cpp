@@ -12,13 +12,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;
@@ -86,8 +80,8 @@ void callSubTests()
 {
     using Point = PointPositionNormal<Scalar, Dim>;
 
-    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
-    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
+    using WeightSmoothFunc   = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFilter<Point, ConstantWeightKernel<Scalar>>;
 
     //! [GLSFitTypes]
     using FitSmoothOriented     = Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>;

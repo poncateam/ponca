@@ -2,6 +2,7 @@
 #include <Eigen/Dense>
 #include <cassert>
 
+#include <Ponca/Common>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 #include <chrono>
@@ -19,7 +20,7 @@ using namespace std;
 
 using uint = unsigned int;
 
-template <typename DataPoint, typename VectorContainer, typename QueryInput, typename NeighborsIndexRange>
+template <Ponca::IsPoint DataPoint, typename VectorContainer, typename QueryInput, typename NeighborsIndexRange>
 bool checkRangeNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput,
                          typename DataPoint::Scalar r, NeighborsIndexRange& neighbors)
 {
@@ -84,7 +85,7 @@ bool checkRangeNeighbors(const VectorContainer& points, const std::vector<int>& 
     return true;
 }
 
-template <typename DataPoint, typename VectorContainer, typename QueryInput>
+template <Ponca::IsPoint DataPoint, typename VectorContainer, typename QueryInput>
 bool checkKNearestNeighbors(const VectorContainer& points, QueryInput& queryInput, const int k,
                             const std::vector<int>& neighbors)
 {
@@ -135,7 +136,7 @@ bool checkKNearestNeighbors(const VectorContainer& points, QueryInput& queryInpu
     return true;
 }
 
-template <typename DataPoint, typename VectorContainer, typename QueryInput>
+template <Ponca::IsPoint DataPoint, typename VectorContainer, typename QueryInput>
 bool checkKNearestNeighbors(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput,
                             const int k, const std::vector<int>& neighbors)
 {
@@ -197,20 +198,20 @@ bool checkKNearestNeighbors(const VectorContainer& points, const std::vector<int
     return true;
 }
 
-template <typename DataPoint, typename VectorContainer, typename QueryInput>
+template <Ponca::IsPoint DataPoint, typename VectorContainer, typename QueryInput>
 bool checkNearestNeighbor(const VectorContainer& points, QueryInput& queryInput, int nearest)
 {
     return checkKNearestNeighbors<DataPoint>(points, queryInput, 1, {nearest});
 }
 
-template <typename DataPoint, typename VectorContainer, typename QueryInput>
+template <Ponca::IsPoint DataPoint, typename VectorContainer, typename QueryInput>
 bool checkNearestNeighbor(const VectorContainer& points, const std::vector<int>& sampling, QueryInput& queryInput,
                           int nearest)
 {
     return checkKNearestNeighbors<DataPoint, VectorContainer>(points, sampling, queryInput, 1, {nearest});
 }
 
-template <typename DataPoint>
+template <Ponca::IsPoint DataPoint>
 void generateData(std::vector<DataPoint>& points)
 {
     using VectorType = typename DataPoint::VectorType;
@@ -228,7 +229,7 @@ void generateData(std::vector<DataPoint>& points)
  * \param sampling An empty integer vector, to output the sampled points
  * \return A unique pointer to the KdTree instance
  */
-template <typename DataPoint, template <typename> class KdTree = Ponca::KdTreeDense>
+template <Ponca::IsPoint DataPoint, template <typename> class KdTree = Ponca::KdTreeDense>
 std::unique_ptr<KdTree<DataPoint>> testBuildKdTree(std::vector<DataPoint>& points, std::vector<int>& sampling)
 {
     if constexpr (KdTree<DataPoint>::SUPPORTS_SUBSAMPLING)
@@ -253,7 +254,7 @@ std::unique_ptr<KdTree<DataPoint>> testBuildKdTree(std::vector<DataPoint>& point
     }
 }
 
-template <bool doIndexQuery, typename DataPoint, typename PointContainer, typename QueryFunctor,
+template <bool doIndexQuery, Ponca::IsPoint DataPoint, typename PointContainer, typename QueryFunctor,
           typename CheckQueryFunctor, typename... QueryInputTypes>
 std::chrono::milliseconds testQuery(PointContainer& points, QueryFunctor callQuery, CheckQueryFunctor checkQuery,
                                     const int retry_number = 1, QueryInputTypes&&... outs)
@@ -288,7 +289,7 @@ std::chrono::milliseconds testQuery(PointContainer& points, QueryFunctor callQue
     return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - time);
 }
 
-template <bool doIndexQuery, typename DataPoint, typename PointContainer, typename MutableQueryFunctor,
+template <bool doIndexQuery, Ponca::IsPoint DataPoint, typename PointContainer, typename MutableQueryFunctor,
           typename RegularQueryFunctor, typename CheckQueryFunctor, typename... QueryInputTypes>
 std::chrono::milliseconds testQuery(PointContainer& points, MutableQueryFunctor callMutableQuery,
                                     RegularQueryFunctor callRegularQuery, CheckQueryFunctor checkQuery,

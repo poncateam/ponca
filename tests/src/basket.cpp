@@ -14,13 +14,7 @@
 
 #include "../split_test_helper.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;
@@ -163,7 +157,7 @@ void callSubTests()
 
     // We test only primitive functions and not the fitting procedure
     //! [NeighborFilter]
-    using NeighborFilter = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using NeighborFilter = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     //! [NeighborFilter]
     //! [PlaneFitType]
     using TestPlane = Basket<Point, NeighborFilter, CovariancePlaneFit>;
@@ -176,7 +170,7 @@ void callSubTests()
     using Hybrid = Basket<Point, NeighborFilter, AlgebraicSphere, Plane, // primitives
                           MeanNormal, MeanPosition,                      // shared computation
                           OrientedSphereFitImpl,                         // sphere fitting
-                          CovarianceFitBase, CovariancePlaneFitImpl>;    // plane fitting
+                          CovarianceBase, CovariancePlaneFitImpl>;       // plane fitting
     //! [HybridType]
 
     //! [PlaneFitDerTypes]

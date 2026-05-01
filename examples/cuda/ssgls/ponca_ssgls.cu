@@ -21,11 +21,7 @@
 
 #define EIGEN_DEFAULT_DENSE_INDEX_TYPE int
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/Fitting>
 
 /**************************************************************************************************/
 /* IO (source: http://zarb.org/~gc/html/libpng.html )                                             */
@@ -247,12 +243,12 @@ using VectorType       = ScreenSpacePoint::VectorType;
 using ScreenVectorType = ScreenSpacePoint::ScreenVectorType;
 
 //! [w_def]
-class ProjectedWeightFunc : public Ponca::DistWeightFunc<ScreenSpacePoint, Ponca::SmoothWeightKernel<Scalar>>
+class ProjectedWeightFunc : public Ponca::DistWeightFilter<ScreenSpacePoint, Ponca::SmoothWeightKernel<Scalar>>
 {
 public:
     using Scalar     = ScreenSpacePoint::Scalar;
     using VectorType = ScreenSpacePoint::VectorType;
-    using Base       = Ponca::DistWeightFunc<ScreenSpacePoint, Ponca::SmoothWeightKernel<Scalar>>;
+    using Base       = Ponca::DistWeightFilter<ScreenSpacePoint, Ponca::SmoothWeightKernel<Scalar>>;
 
     PONCA_MULTIARCH inline ProjectedWeightFunc(const VectorType& _evalPos = VectorType::Zero(),
                                                const Scalar& _t = Scalar(1.), const Scalar _dz = 0.f)

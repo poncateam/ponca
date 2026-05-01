@@ -79,8 +79,8 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     typedef PointPositionNormal<Scalar, Dim> Point;
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
+    typedef DistWeightFilter<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    typedef DistWeightFilter<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
 
     typedef Basket<Point, WeightSmoothFunc, OrientedSphereFit, OrientedSphereSpaceDer> FitSmoothOrientedSpaceDer;
     typedef Basket<Point, WeightConstantFunc, OrientedSphereFit, OrientedSphereSpaceDer> FitConstantOrientedSpaceDer;

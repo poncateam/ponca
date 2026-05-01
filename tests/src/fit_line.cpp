@@ -15,11 +15,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/covarianceLineFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 #include <iostream>
 
@@ -75,8 +71,8 @@ void callSubTests()
 {
     using Point = PointPositionNormal<Scalar, Dim>;
 
-    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
-    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
+    using WeightSmoothFunc   = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFilter<Point, ConstantWeightKernel<Scalar>>;
 
     using LeastSquareFitSmooth   = Basket<Point, WeightSmoothFunc, CovarianceLineFit>;
     using LeastSquareFitConstant = Basket<Point, WeightConstantFunc, CovarianceLineFit>;

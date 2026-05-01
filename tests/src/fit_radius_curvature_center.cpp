@@ -13,16 +13,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/mlsSphereFitDer.h>
-#include <Ponca/src/Fitting/curvature.h>
-#include <Ponca/src/Fitting/weingarten.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;
@@ -133,8 +124,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 #define DECLARE_DEFAULT_TYPES                                                                     \
     using Point = PointPositionNormal<Scalar, Dim>;                                               \
                                                                                                   \
-    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;                 \
-    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;               \
+    using WeightSmoothFunc   = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;               \
+    using WeightConstantFunc = DistWeightFilter<Point, ConstantWeightKernel<Scalar>>;             \
                                                                                                   \
     using FitSmoothOriented     = Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>;   \
     using FitConstantOriented   = Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam>; \
@@ -174,17 +165,14 @@ void callDerivativeSubTests()
     DECLARE_DEFAULT_TYPES
 
     //! [Curvature Estimator APSS]
-    using FitSmoothOrientedSpatial =
-        BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorDer,
-                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    using FitSmoothOrientedSpatial = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer,
+                                                NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
     //! [Curvature Estimator APSS]
-    using FitConstantOrientedSpatial =
-        BasketDiff<FitConstantOriented, FitSpaceDer, OrientedSphereDer, CurvatureEstimatorDer,
-                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    using FitConstantOrientedSpatial = BasketDiff<FitConstantOriented, FitSpaceDer, OrientedSphereDer,
+                                                  NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
     //! [Curvature Estimator ASO]
-    using ASOSmooth =
-        BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, MlsSphereFitDer, CurvatureEstimatorDer,
-                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    using ASOSmooth = BasketDiff<FitSmoothOriented, FitSpaceDer, OrientedSphereDer, MlsSphereFitDer,
+                                 NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
     //! [Curvature Estimator ASO]
 
     cout << "Testing with perfect sphere (oriented / unoriented) with spatial derivatives..." << endl;

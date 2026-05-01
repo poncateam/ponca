@@ -1,0 +1,72 @@
+/*
+ Copyright (C) 2021 Nicolas Mellado <nmellado0@gmail.com>
+
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+#pragma once
+#include "../../defines.h"
+#include "../concepts.h"
+
+#include <Eigen/Dense>
+
+#define DRY_FIT_REQUIREMENTS ProvidesBasketUnitBase<T>
+
+namespace Ponca
+{
+
+    /*!
+       \brief Empty fitting object doing no computation
+     */
+
+    template <class DataPoint, class _NFilter, typename T>
+        requires DRY_FIT_REQUIREMENTS
+    class DryFit : public T
+    {
+        PONCA_FITTING_DECLARE_DEFAULT_TYPES
+    public:
+        PONCA_EXPLICIT_CAST_OPERATORS(DryFit, dryfit)
+
+        PONCA_FITTING_APIDOC_ADDNEIGHBOR
+        PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes)
+        {
+            Base::addLocalNeighbor(w, localQ, attributes);
+        }
+
+        PONCA_FITTING_APIDOC_FINALIZE
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize() { return Base::finalize(); }
+
+        //! \brief Simulate Scalar field computation
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential() const { return Scalar(0); }
+
+        //! \brief Simulate Scalar field computation
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& /*_q*/) const { return Scalar(0); }
+
+        //! \brief Simulate point projection
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType project(const VectorType& _q) const { return _q; }
+
+        //! \brief Simulate gradient direction computation
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient() const { return VectorType::Zero(); }
+
+        //! \brief Simulate gradient direction computation
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient(const VectorType&) const
+        {
+            return VectorType::Zero();
+        }
+
+    protected:
+        /// \copydoc DryFit::potential
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar potentialLocal(const VectorType& /*_lq*/) const
+        {
+            return Scalar(0);
+        }
+        /// \copydoc DryFit::primitiveGradient
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradientLocal(const VectorType& /*_lq*/) const
+        {
+            return VectorType::Zero();
+        }
+    };
+
+} // namespace Ponca
