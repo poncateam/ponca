@@ -16,12 +16,8 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/meanPlaneFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/SpatialPartitioning>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 #include <vector>
 

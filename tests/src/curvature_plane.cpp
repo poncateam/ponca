@@ -18,14 +18,8 @@
 
 #include <vector>
 
-#include "Ponca/src/Fitting/defines.h"
-#include "Ponca/src/Fitting/basket.h"
-#include "Ponca/src/Fitting/covariancePlaneFit.h"
-#include "Ponca/src/Fitting/curvature.h"
-#include "Ponca/src/Fitting/mongePatch.h"
-#include "Ponca/src/Fitting/weightFunc.h"
-#include "Ponca/src/Fitting/weightKernel.h"
-
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 #include <Ponca/SpatialPartitioning>
 
 using namespace std;
@@ -175,11 +169,13 @@ void callSubTests()
     using FitConstantNormalCovariance = Basket<Point, WeightConstantFunc, CovariancePlaneFit>;
     // Curvature estimators that runs on top of the covariance fit
     //! [Curvature Tensor PCA normals]
-    using EstimatorSmoothNormalCovariance = BasketDiff<FitSmoothNormalCovariance, FitSpaceDer, CovariancePlaneDer,
-                                                       CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator>;
+    using EstimatorSmoothNormalCovariance =
+        BasketDiff<FitSmoothNormalCovariance, FitSpaceDer, CovariancePlaneDer, CurvatureEstimatorDer,
+                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
     //! [Curvature Tensor PCA normals]
-    using EstimatorConstantNormalCovariance = BasketDiff<FitConstantNormalCovariance, FitSpaceDer, CovariancePlaneDer,
-                                                         CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator>;
+    using EstimatorConstantNormalCovariance =
+        BasketDiff<FitConstantNormalCovariance, FitSpaceDer, CovariancePlaneDer, CurvatureEstimatorDer,
+                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
     // Curvature estimators based on MongePatch fitting using generalized quadric
     //! [Curvature Estimator Monge Quadric]
     using FitMongeSmooth = Basket<Point, WeightSmoothFunc, MongePatchQuadraticFit>;

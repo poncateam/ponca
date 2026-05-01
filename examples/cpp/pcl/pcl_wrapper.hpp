@@ -6,8 +6,10 @@
 
 #pragma once
 
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
+
 #include "pcl_wrapper.h"
-#include <Ponca/Fitting>
 #include <pcl/common/point_tests.h> // isFinite
 
 //////////////////////////////////////////////////////////////////////////////////////////////

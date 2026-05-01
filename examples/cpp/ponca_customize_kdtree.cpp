@@ -11,10 +11,8 @@
 
 #include <iostream>
 #include <optional>
-#include <Ponca/SpatialPartitioning>
-#include <Ponca/src/Common/pointTypes.h>
-
-#include <Eigen/Core>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 using DataPoint = Ponca::PointPosition<float, 3>;
 

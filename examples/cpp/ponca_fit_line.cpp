@@ -14,8 +14,8 @@
 #include <iostream>
 #include <vector>
 
-#include <Ponca/Fitting>
-#include <Ponca/src/Common/pointTypes.h>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 using namespace Eigen;
 using namespace std;
