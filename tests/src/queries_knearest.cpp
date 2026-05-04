@@ -128,7 +128,7 @@ void buildAndTestKnnGraph(KdTree& kdtree, const int k, const std::string& name =
     using KnnGraphPointerStatic = StaticKnnGraphBase<KnnGraphPointerTraits<P>>;
     auto knngraphBuffers        = knnGraph.buffers(); // Buffer that use STL-like containers
     // Convert previous KnnGraph to pointers
-    const P* pts = knngraphBuffers.points.data(); // Returns a const P* -> error: binding reference "P*&" to "const P*"
+    const P* pts = knngraphBuffers.points.data();
     typename KnnGraphPointerStatic::Buffers knnGraphStaticBuffers{
         pts, knngraphBuffers.indices.data(), knngraphBuffers.points_size,
         knngraphBuffers.indices_size, k};
