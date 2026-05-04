@@ -10,25 +10,25 @@ namespace Ponca
     // Iterator --------------------------------------------------------------------
 
     template <class T, int N, class Cmp>
-    LimitedPriorityQueue<T, N, Cmp>::iterator LimitedPriorityQueue<T, N, Cmp>::begin()
+    typename LimitedPriorityQueue<T, N, Cmp>::iterator LimitedPriorityQueue<T, N, Cmp>::begin()
     {
         return m_data.begin();
     }
 
     template <class T, int N, class Cmp>
-    LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::begin() const
+    typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::begin() const
     {
         return m_data.begin();
     }
 
     template <class T, int N, class Cmp>
-    LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::cbegin() const
+    typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::cbegin() const
     {
         return m_data.cbegin();
     }
 
     template <class T, int N, class Cmp>
-    LimitedPriorityQueue<T, N, Cmp>::iterator LimitedPriorityQueue<T, N, Cmp>::end()
+    typename LimitedPriorityQueue<T, N, Cmp>::iterator LimitedPriorityQueue<T, N, Cmp>::end()
     {
         return m_data.begin() + m_size;
     }
@@ -40,7 +40,7 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
-    LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::cend() const
+    typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::cend() const
     {
         return m_data.cbegin() + m_size;
     }
@@ -185,7 +185,7 @@ namespace Ponca
     // Data ------------------------------------------------------------------------
 
     template <class T, int N, class Cmp>
-    const LimitedPriorityQueue<T, N, Cmp>::container_type& LimitedPriorityQueue<T, N, Cmp>::container() const
+    const typename LimitedPriorityQueue<T, N, Cmp>::container_type& LimitedPriorityQueue<T, N, Cmp>::container() const
     {
         return m_data;
     }
