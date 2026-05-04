@@ -45,9 +45,18 @@ namespace Ponca
         using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
 
         // Containers
-        using IndexType      = int;
-        using PointContainer = std::vector<DataPoint>;
+        using IndexType = int;
+        /// \brief Type used to store the external Point container in the KnnGraph::Buffer
+        using PointContainer = const std::vector<DataPoint>&;
+        /// \brief Type used to store the index container in the KnnGraph::Buffer
         using IndexContainer = std::vector<IndexType>;
+        /// \brief Type to be used to send the index container as function parameter
+        using IndexContainerRef = IndexContainer&;
+
+        /// \brief Provides access to the raw pointer where indices are stored
+        static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx.data(); }
+        /// \brief Provides access to the raw pointer where indices are stored
+        static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx.data(); }
     };
     /*!
      * \brief Variant to the KnnGraph Traits type that uses pointers as internal storage instead of an STL-like
@@ -84,8 +93,17 @@ namespace Ponca
         using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
 
         // Containers
-        using IndexType      = int;
+        using IndexType = int;
+        /// \brief Type used to store the external Point container in the KnnGraph::Buffer
         using PointContainer = const DataPoint*;
+        /// \brief Type used to store the index container in the KnnGraph::Buffer
         using IndexContainer = IndexType*;
+        /// \brief Type to be used to send the index container as function parameter
+        using IndexContainerRef = IndexContainer;
+
+        /// \brief Provides access to the raw pointer where indices are stored
+        static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx; }
+        /// \brief Provides access to the raw pointer where indices are stored
+        static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx; }
     };
 } // namespace Ponca
