@@ -33,7 +33,7 @@ This release will introduce a refactoring of the requirement library using cpp20
     - [ci] New github action for checking CPM installation (#302)
 
 - Examples
-    - [spatialPartitioning] Add a cuda example with the KnnGraph (#301)
+    - [spatialPartitioning] Add a cuda example with the KnnGraph (#301, #323)
 
 - Docs
     - [doc] Add documentation about CPM installation for ponca (#302)

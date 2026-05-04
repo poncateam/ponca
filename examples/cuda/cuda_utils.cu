@@ -22,6 +22,24 @@
         abort();                                                                                                      \
     }
 
+//! [Definition KdTreeGPU]
+/*! \brief A KdTree Type that can be run on the GPU
+ *
+ * \warning The KdTreeBase::build function cannot be used in the CUDA kernel,
+ * because it still expects an STL-like container as an input.
+ * This KdTree type is used to avoid the building process.
+ */
+template <typename DataPoint>
+using KdTreeGPU = Ponca::StaticKdTreeBase<Ponca::KdTreePointerTraits<DataPoint>>;
+//! [Definition KdTreeGPU]
+
+//! [Definition KnnGraphGPU]
+/*! \brief A KnnGraph Type that can be run on the GPU
+ */
+template <typename DataPoint>
+using KnnGraphGPU = Ponca::StaticKnnGraphBase<Ponca::KnnGraphPointerTraits<DataPoint>>;
+//! [Definition KnnGraphGPU]
+
 template <typename DataPoint>
 struct KdTreeRangeNeighborsFunctor
 {
@@ -198,24 +216,6 @@ void freeKnnGraphBuffersOnDevice(const StaticKnnGraphBuffers& hostBuffersHolding
     CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.points));
     CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.indices));
 }
-
-//! [Definition KdTreeGPU]
-/*! \brief A KdTree Type that can be run on the GPU
- *
- * \warning The KdTreeBase::build function cannot be used in the CUDA kernel,
- * because it still expects an STL-like container as an input.
- * This KdTree type is used to avoid the building process.
- */
-template <typename DataPoint>
-using KdTreeGPU = Ponca::StaticKdTreeBase<Ponca::KdTreePointerTraits<DataPoint>>;
-//! [Definition KdTreeGPU]
-
-//! [Definition KnnGraphGPU]
-/*! \brief A KnnGraph Type that can be run on the GPU
- */
-template <typename DataPoint>
-using KnnGraphGPU = Ponca::StaticKnnGraphBase<Ponca::KnnGraphPointerTraits<DataPoint>>;
-//! [Definition KnnGraphGPU]
 
 /*! \brief Computes the fitting process for each point of the point cloud and returns the potential and primitive
  * gradient result.
