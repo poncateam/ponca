@@ -115,8 +115,7 @@ void buildAndTestKnnGraph(KdTree& kdtree, std::vector<int>& sampleDense, const s
     // Convert previous KnnGraph to pointers
     const P* pts = knngraphBuffers.points.data();
     typename KnnGraphPointerStatic::Buffers knnGraphStaticBuffers{
-        pts, knngraphBuffers.indices.data(), knngraphBuffers.points_size,
-        knngraphBuffers.indices_size, k};
+        pts, knngraphBuffers.indices.data(), knngraphBuffers.points_size, knngraphBuffers.indices_size, k};
     KnnGraphPointerStatic knnGraphStatic(knnGraphStaticBuffers);
     timing = testRangeNeighbors<true>(knnGraphStatic, points, sampleDense); // Index query test
 #ifdef PRINT_TIMING

@@ -67,8 +67,8 @@ namespace Ponca
         /// \brief Internal structure storing all the buffers used by the KdTree
         struct Buffers
         {
-            const PointContainer& points;  ///< Buffer storing the input points (read only)
-            IndexContainer indices; ///< Buffer storing the indices associating the input points to the nodes
+            const PointContainer& points; ///< Buffer storing the input points (read only)
+            IndexContainer indices;       ///< Buffer storing the indices associating the input points to the nodes
 
             size_t points_size{0};
             size_t indices_size{0};
@@ -76,16 +76,15 @@ namespace Ponca
 
             PONCA_MULTIARCH inline Buffers(const PointContainer& _points, const int _k) : points(_points), k(_k) {}
 
-            PONCA_MULTIARCH inline Buffers(const PointContainer& _points, IndexContainer _indices, const size_t _points_size,
-                                           const size_t _indices_size, const int _k)
+            PONCA_MULTIARCH inline Buffers(const PointContainer& _points, IndexContainer _indices,
+                                           const size_t _points_size, const size_t _indices_size, const int _k)
                 : points(_points), indices(_indices), points_size(_points_size), indices_size(_indices_size), k(_k)
             {
             }
         };
 
     protected:
-        PONCA_MULTIARCH inline StaticKnnGraphBase(const PointContainer& _points, const int _k) : m_bufs(_points, _k)
-        { }
+        PONCA_MULTIARCH inline StaticKnnGraphBase(const PointContainer& _points, const int _k) : m_bufs(_points, _k) {}
 
     public:
         /*! \brief Constructor that allows the use of prebuilt KnnGraph containers.
