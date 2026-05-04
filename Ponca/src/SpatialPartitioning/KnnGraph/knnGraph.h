@@ -74,11 +74,7 @@ namespace Ponca
             size_t indices_size{0};
             int k{0};
 
-            PONCA_MULTIARCH inline Buffers() = default;
-
-            // PONCA_MULTIARCH inline Buffers(const int _k) : points(), k(_k) {}
-            //
-            // PONCA_MULTIARCH inline Buffers(const PointContainer& _points, const int _k) : points(_points), k(_k) {}
+            PONCA_MULTIARCH inline Buffers(const PointContainer& _points, const int _k) : points(_points), k(_k) {}
 
             PONCA_MULTIARCH inline Buffers(const PointContainer& _points, IndexContainer _indices, const size_t _points_size,
                                            const size_t _indices_size, const int _k)
@@ -88,10 +84,8 @@ namespace Ponca
         };
 
     protected:
-        PONCA_MULTIARCH inline StaticKnnGraphBase(const int _k) : m_bufs()
-        {
-            m_bufs.k = _k;
-        }
+        PONCA_MULTIARCH inline StaticKnnGraphBase(const PointContainer& _points, const int _k) : m_bufs(_points, _k)
+        { }
 
     public:
         /*! \brief Constructor that allows the use of prebuilt KnnGraph containers.
@@ -206,13 +200,10 @@ namespace Ponca
         /// \warning Stores a const reference to kdtree.point_data()
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
-        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6) : Base(_k)
-        // : Base(std::min(_k, _kdtree.sampleCount() - 1))
-        // : Base(Buffers(_kdtree.points(), std::min(_k, _kdtree.sampleCount() - 1)))
-        // : Base(typename Base::Buffers(std::min(_k, _kdtree.sampleCount() - 1)))
+        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
+            : Base(_kdtree.points(), std::min(_k, _kdtree.sampleCount() - 1))
         {
             Base::m_bufs.points_size = _kdtree.pointCount();
-            // Base::m_bufs.points      = std::move(_kdtree.points());
             static_assert(std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
                           "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
             static_assert(std::is_same_v<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>,
