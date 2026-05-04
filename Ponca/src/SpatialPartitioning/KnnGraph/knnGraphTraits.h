@@ -85,7 +85,7 @@ namespace Ponca
 
         // Containers
         using IndexType      = int;
-        using PointContainer = DataPoint*;
+        using PointContainer = const DataPoint*;
         using IndexContainer = IndexType*;
     };
 } // namespace Ponca
