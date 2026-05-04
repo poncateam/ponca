@@ -67,7 +67,7 @@ namespace Ponca
         /// \brief Internal structure storing all the buffers used by the KdTree
         struct Buffers
         {
-            PointContainer points;  ///< Buffer storing the input points (read only)
+            const PointContainer& points;  ///< Buffer storing the input points (read only)
             IndexContainer indices; ///< Buffer storing the indices associating the input points to the nodes
 
             size_t points_size{0};
@@ -76,9 +76,11 @@ namespace Ponca
 
             PONCA_MULTIARCH inline Buffers() = default;
 
-            PONCA_MULTIARCH inline Buffers(const int _k) : k(_k) {}
+            // PONCA_MULTIARCH inline Buffers(const int _k) : points(), k(_k) {}
+            //
+            // PONCA_MULTIARCH inline Buffers(const PointContainer& _points, const int _k) : points(_points), k(_k) {}
 
-            PONCA_MULTIARCH inline Buffers(PointContainer _points, IndexContainer _indices, const size_t _points_size,
+            PONCA_MULTIARCH inline Buffers(const PointContainer& _points, IndexContainer _indices, const size_t _points_size,
                                            const size_t _indices_size, const int _k)
                 : points(_points), indices(_indices), points_size(_points_size), indices_size(_indices_size), k(_k)
             {
@@ -86,7 +88,10 @@ namespace Ponca
         };
 
     protected:
-        PONCA_MULTIARCH inline StaticKnnGraphBase(const int _k) : m_bufs(_k) {}
+        PONCA_MULTIARCH inline StaticKnnGraphBase(const int _k) : m_bufs()
+        {
+            m_bufs.k = _k;
+        }
 
     public:
         /*! \brief Constructor that allows the use of prebuilt KnnGraph containers.
@@ -188,7 +193,8 @@ namespace Ponca
     public:
         WRITE_TRAITS
     private:
-        using Base = StaticKnnGraphBase<Traits>;
+        using Base    = StaticKnnGraphBase<Traits>;
+        using Buffers = typename StaticKnnGraphBase<Traits>::Buffers;
         // knnGraph ----------------------------------------------------------------
     public:
         /// \brief Build a KnnGraph from a KdTreeDense
@@ -201,11 +207,12 @@ namespace Ponca
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
         PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6) : Base(_k)
-        // : Base({std::min(_k, _kdtree.sampleCount() - 1)})
+        // : Base(std::min(_k, _kdtree.sampleCount() - 1))
+        // : Base(Buffers(_kdtree.points(), std::min(_k, _kdtree.sampleCount() - 1)))
         // : Base(typename Base::Buffers(std::min(_k, _kdtree.sampleCount() - 1)))
         {
             Base::m_bufs.points_size = _kdtree.pointCount();
-            Base::m_bufs.points      = std::move(_kdtree.points());
+            // Base::m_bufs.points      = std::move(_kdtree.points());
             static_assert(std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
                           "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
             static_assert(std::is_same_v<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>,
