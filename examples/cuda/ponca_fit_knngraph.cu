@@ -74,7 +74,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     BuffersGPU* knnGraphBuffersDevice;
     CUDA_CHECK(cudaMalloc(&knnGraphBuffersDevice, sizeof(BuffersGPU)));
     BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory
-    deepCopyKnnGraphBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(
+    deepCopyKnnGraphBuffersToDevice( kdtree,
         knngraph.buffers(), hostBuffersHoldingDevicePointers, knnGraphBuffersDevice);
     //! [Copy KnnGraph on GPU]
 
