@@ -79,6 +79,7 @@ namespace Ponca
             size_t indices_size{0};
             int k{0};
 
+            PONCA_MULTIARCH inline Buffers() = default;
             PONCA_MULTIARCH inline Buffers(PointContainer _points, const int _k) : points(_points), k(_k) {}
 
             PONCA_MULTIARCH inline Buffers(PointContainer _points, typename Traits::IndexContainerRef _indices,
