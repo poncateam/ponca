@@ -113,7 +113,8 @@ void buildAndTestKnnGraph(KdTree& kdtree, std::vector<int>& sampleDense, const s
     using KnnGraphPointerStatic = StaticKnnGraphBase<KnnGraphPointerTraits<P>>;
     auto knngraphBuffers        = knnGraph.buffers(); // Buffer that use STL-like containers
     // Convert previous KnnGraph to pointers
-    const P* pts = knngraphBuffers.points.data();
+    P* pts = new P[points.size()];
+    std::copy(points.begin(), points.end(), pts);
     typename KnnGraphPointerStatic::Buffers knnGraphStaticBuffers{
         pts, knngraphBuffers.indices.data(), knngraphBuffers.points_size, knngraphBuffers.indices_size, k};
     KnnGraphPointerStatic knnGraphStatic(knnGraphStaticBuffers);
@@ -122,6 +123,7 @@ void buildAndTestKnnGraph(KdTree& kdtree, std::vector<int>& sampleDense, const s
     cout << "    Compute Time " << name << " (with pointers) index query : " << timing.count() << "ms" << endl;
 #endif
     cout << "  (ok)" << endl;
+    delete[] pts;
 }
 
 template <typename Scalar, int Dim>

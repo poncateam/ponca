@@ -95,7 +95,8 @@ namespace Ponca
         // Containers
         using IndexType = int;
         /// \brief Type used to store the external Point container in the KnnGraph::Buffer
-        using PointContainer = const DataPoint*;
+        /// Non-const to allow KnnGraph::Buffers copy and writing to other devices
+        using PointContainer = DataPoint*;
         /// \brief Type used to store the index container in the KnnGraph::Buffer
         using IndexContainer = IndexType*;
         /// \brief Type to be used to send the index container as function parameter
