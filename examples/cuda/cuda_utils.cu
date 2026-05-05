@@ -22,6 +22,50 @@
         abort();                                                                                                      \
     }
 
+template <typename _DataPoint>
+struct KnnGraphPointerTraitsGPU
+{
+    enum
+    {
+        MAX_RANGE_NEIGHBORS_SIZE = 128 //!< The maximum number of neighbors in a range neighbors query
+    };
+    /*!
+     * \brief The type used to store point data.
+     *
+     * Must provide `Scalar` and `VectorType` aliases.
+     *
+     * `VectorType` must provide a `squaredNorm()` function returning a `Scalar`, as well as a
+     * `maxCoeff(int*)` function returning the dimension index of its largest scalar in its output
+     * parameter (e.g. 0 for *x*, 1 for *y*, etc.).
+     */
+    using DataPoint = _DataPoint;
+
+private:
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
+
+public:
+    /*!
+     * \brief The type used to calculate node bounding boxes.
+     *
+     * Must provide `min()`, `max()`, and `center()` functions, all returning a `VectorType`.
+     */
+    using AabbType = Eigen::AlignedBox<Scalar, DataPoint::Dim>;
+
+    // Containers
+    using IndexType = int;
+    /// \brief Type used to store the external Point container in the KnnGraph::Buffer
+    using PointContainer = DataPoint*;
+    /// \brief Type used to store the index container in the KnnGraph::Buffer
+    using IndexContainer = IndexType*;
+    /// \brief Type to be used to send the index container as function parameter
+    using IndexContainerRef = IndexContainer;
+
+    /// \brief Provides access to the raw pointer where indices are stored
+    static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx; }
+    /// \brief Provides access to the raw pointer where indices are stored
+    static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx; }
+};
 //! [Definition KdTreeGPU]
 /*! \brief A KdTree Type that can be run on the GPU
  *
@@ -37,7 +81,7 @@ using KdTreeGPU = Ponca::StaticKdTreeBase<Ponca::KdTreePointerTraits<DataPoint>>
 /*! \brief A KnnGraph Type that can be run on the GPU
  */
 template <typename DataPoint>
-using KnnGraphGPU = Ponca::StaticKnnGraphBase<Ponca::KnnGraphPointerTraits<DataPoint>>;
+using KnnGraphGPU = Ponca::StaticKnnGraphBase<KnnGraphPointerTraitsGPU<DataPoint>>;
 //! [Definition KnnGraphGPU]
 
 template <typename DataPoint>
@@ -69,7 +113,7 @@ struct KnnGraphRangeFunctor
 {
     static __device__ inline auto query(KnnGraphGPU<DataPoint>& d_knngraph, int i,
                                         typename DataPoint::Scalar analysisScale)
-        -> Ponca::KnnGraphRangeQuery<Ponca::KnnGraphPointerTraits<DataPoint>>
+        -> Ponca::KnnGraphRangeQuery<KnnGraphPointerTraitsGPU<DataPoint>>
     {
         //! [Use KnnGraph.rangeNeighbors on the GPU]
         return d_knngraph.rangeNeighbors(i, analysisScale);
@@ -82,7 +126,7 @@ struct KnnGraphKNearestFunctor
 {
     static __device__ inline auto query(KnnGraphGPU<DataPoint>& d_knngraph, int i,
                                         typename DataPoint::Scalar analysisScale)
-        -> Ponca::KnnGraphKNearestQuery<Ponca::KnnGraphPointerTraits<DataPoint>>
+        -> Ponca::KnnGraphKNearestQuery<KnnGraphPointerTraitsGPU<DataPoint>>
     {
         //! [Use KnnGraph.kNearestNeighbors on the GPU]
         return d_knngraph.kNearestNeighbors(i);
@@ -181,15 +225,39 @@ void deepCopyKdTreeBuffersToDevice(const KdTreeBuffers& hostBuffers, // Input
  * \param deviceBuffers The pointer to the Buffers structure on the device
  * \see freeBuffersOnDevice to free memory on the device with hostBuffersHoldingDevicePointers as an argument
  */
-template <typename Traits, typename KnnGraphBuffers, typename StaticKnnGraphBuffers>
-void deepCopyKnnGraphBuffersToDevice(const KnnGraphBuffers& hostBuffers, // Input
-                                     StaticKnnGraphBuffers& hostBuffersHoldingDevicePointers,
-                                     StaticKnnGraphBuffers* const deviceBuffers // Outputs
+template <typename KdTree, typename KnnGraphBuffers, typename StaticKnnGraphBuffers>
+void deepCopyKnnGraphBuffersToDevice( KdTree & kdtree,
+    const KnnGraphBuffers& hostBuffers, // Input
+    StaticKnnGraphBuffers& hostBuffersHoldingDevicePointers,
+    StaticKnnGraphBuffers* const deviceBuffers // Outputs
 )
 {
-    deepCopyBuffersToDevice<Traits>(
-        hostBuffers, [&]() { hostBuffersHoldingDevicePointers.k = hostBuffers.k; }, hostBuffersHoldingDevicePointers,
-        deviceBuffers);
+    using DataPoint = typename KdTree::DataPoint; ///< DataPoint given by user via Traits
+    using IndexType = typename KdTree::IndexType; ///< Type used to index points into the PointContainer
+
+    // Assign buffer sizes
+    hostBuffersHoldingDevicePointers.points_size  = hostBuffers.points_size;
+    hostBuffersHoldingDevicePointers.indices_size = hostBuffers.indices_size;
+
+    // Allocate memory for the data on the device
+    CUDA_CHECK(cudaMalloc((void**)&hostBuffersHoldingDevicePointers.points, hostBuffers.points_size * sizeof(DataPoint)));
+    CUDA_CHECK(cudaMalloc((void**)&hostBuffersHoldingDevicePointers.indices, hostBuffers.indices_size * sizeof(IndexType)));
+
+    // Copy the data to the device
+
+    /////// TO FIX : Compiles only if KnnGraphPointerTraits::PointContainer is not const but "CUDA error: unspecified launch failure" at runtime
+    CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.points, hostBuffers.points.data(), hostBuffers.points_size * sizeof(DataPoint), cudaMemcpyHostToDevice));
+    //////// TO FIX : Compiles only if KnnGraphPointerTraits::PointContainer is not const but "CUDA error: unspecified launch failure" at runtime
+    // CUDA_CHECK(cudaMemcpy((DataPoint*)hostBuffersHoldingDevicePointers.points, kdtree.buffers().points.data(), hostBuffers.points_size * sizeof(DataPoint), cudaMemcpyHostToDevice));
+
+    CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.indices, hostBuffers.indices.data(),
+                          hostBuffers.indices_size * sizeof(IndexType), cudaMemcpyHostToDevice));
+
+    hostBuffersHoldingDevicePointers.k = hostBuffers.k;
+
+    // Copy host structure itself to device
+    CUDA_CHECK(
+        cudaMemcpy(deviceBuffers, &hostBuffersHoldingDevicePointers, sizeof(StaticKnnGraphBuffers), cudaMemcpyHostToDevice));
 }
 
 /*! \brief Free the memory array internal to the Buffers on the device.
@@ -213,7 +281,8 @@ void freeKdTreeBuffersOnDevice(const StaticKdTreeBuffers& hostBuffersHoldingDevi
 template <typename StaticKnnGraphBuffers>
 void freeKnnGraphBuffersOnDevice(const StaticKnnGraphBuffers& hostBuffersHoldingDevicePointers)
 {
-    CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.points));
+    // CUDA_CHECK(cudaFree((Ponca::PointPositionNormal<float, 3>*)(hostBuffersHoldingDevicePointers.points))); // TO FIX : Can't be freed if of type const DataPoint*
+    CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.points)); // TO FIX : Can't be freed if of type const DataPoint*
     CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.indices));
 }
 
