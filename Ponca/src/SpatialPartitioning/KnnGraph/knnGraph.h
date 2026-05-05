@@ -64,6 +64,11 @@ namespace Ponca
         friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see
                                                        KnnGraphRangeQuery */
 
+    protected:
+        const IndexType* getIndexPtr() const { return Traits::getIndexRawPtr(m_bufs.indices); }
+        IndexType* getIndexPtr() { return Traits::getIndexRawPtr(m_bufs.indices); }
+
+    public:
         /// \brief Internal structure storing all the buffers used by the KdTree
         struct Buffers
         {
@@ -75,18 +80,17 @@ namespace Ponca
             int k{0};
 
             PONCA_MULTIARCH inline Buffers() = default;
+            PONCA_MULTIARCH inline Buffers(PointContainer _points, const int _k) : points(_points), k(_k) {}
 
-            PONCA_MULTIARCH inline Buffers(const int _k) : k(_k) {}
-
-            PONCA_MULTIARCH inline Buffers(PointContainer _points, IndexContainer _indices, const size_t _points_size,
-                                           const size_t _indices_size, const int _k)
+            PONCA_MULTIARCH inline Buffers(PointContainer _points, typename Traits::IndexContainerRef _indices,
+                                           const size_t _points_size, const size_t _indices_size, const int _k)
                 : points(_points), indices(_indices), points_size(_points_size), indices_size(_indices_size), k(_k)
             {
             }
         };
 
     protected:
-        PONCA_MULTIARCH inline StaticKnnGraphBase(const int _k) : m_bufs(_k) {}
+        PONCA_MULTIARCH inline StaticKnnGraphBase(PointContainer _points, const int _k) : m_bufs(_points, _k) {}
 
     public:
         /*! \brief Constructor that allows the use of prebuilt KnnGraph containers.
@@ -171,9 +175,9 @@ namespace Ponca
         //! \brief Get the number of points
         PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const { return (IndexType)m_bufs.points_size; }
         //! \brief Get the internal point container
-        PONCA_MULTIARCH [[nodiscard]] inline const PointContainer& points() const { return m_bufs.points; };
+        PONCA_MULTIARCH [[nodiscard]] inline PointContainer points() const { return m_bufs.points; };
         //! \brief Get the internal indice container
-        PONCA_MULTIARCH [[nodiscard]] inline const IndexContainer& samples() const { return m_bufs.indices; };
+        PONCA_MULTIARCH [[nodiscard]] inline IndexContainer samples() const { return m_bufs.indices; };
         //! \brief Get access to the internal buffer, for instance to prepare GPU binding
         PONCA_MULTIARCH [[nodiscard]] inline const Buffers& buffers() const { return m_bufs; }
 
@@ -188,7 +192,8 @@ namespace Ponca
     public:
         WRITE_TRAITS
     private:
-        using Base = StaticKnnGraphBase<Traits>;
+        using Base    = StaticKnnGraphBase<Traits>;
+        using Buffers = typename StaticKnnGraphBase<Traits>::Buffers;
         // knnGraph ----------------------------------------------------------------
     public:
         /// \brief Build a KnnGraph from a KdTreeDense
@@ -200,18 +205,21 @@ namespace Ponca
         /// \warning Stores a const reference to kdtree.point_data()
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
-        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6) : Base(_k)
-        // : Base({std::min(_k, _kdtree.sampleCount() - 1)})
-        // : Base(typename Base::Buffers(std::min(_k, _kdtree.sampleCount() - 1)))
+        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
+            : Base(_kdtree.points(), std::min(_k, _kdtree.sampleCount() - 1))
         {
             Base::m_bufs.points_size = _kdtree.pointCount();
-            Base::m_bufs.points      = std::move(_kdtree.points());
+#define CHECK_TRAITS_TYPENAME_COMPAT(A, B)                                                            \
+    static_assert(std::is_same_v<A, B> || std::is_convertible_v<A, B> || std::is_convertible_v<B, A>, \
+                  "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
+
             static_assert(std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
                           "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
-            static_assert(std::is_same_v<typename Traits::PointContainer, typename KdTreeTraits::PointContainer>,
-                          "KdTreeTraits::PointContainer is not equal to Traits::PointContainer");
-            static_assert(std::is_same_v<typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer>,
-                          "KdTreeTraits::IndexContainer is not equal to Traits::IndexContainer");
+
+            CHECK_TRAITS_TYPENAME_COMPAT(typename Traits::PointContainer, typename KdTreeTraits::PointContainer)
+            CHECK_TRAITS_TYPENAME_COMPAT(typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer)
+
+#undef CHECK_TRAITS_TYPENAME_COMPAT
 
             // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
             // (kNearestNeighbors) return ids of the entire point set, not it sub-sampled list of ids.
