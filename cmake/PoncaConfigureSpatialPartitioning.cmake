@@ -18,7 +18,6 @@ set(ponca_SpatialPartitioning_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/Query/knnGraphKNearestQuery.h"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/Query/knnGraphRangeQuery.h"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/Iterator/knnGraphRangeIterator.h"
-    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/Iterator/knnGraphKNearestIterator.h"
     )
 
 add_library(SpatialPartitioning INTERFACE)

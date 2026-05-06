@@ -182,39 +182,18 @@ void deepCopyKdTreeBuffersToDevice(const KdTreeBuffers& hostBuffers, // Input
  * \param deviceBuffers The pointer to the Buffers structure on the device
  * \see freeBuffersOnDevice to free memory on the device with hostBuffersHoldingDevicePointers as an argument
  */
-template <typename KdTree, typename KnnGraphBuffers, typename StaticKnnGraphBuffers>
-void deepCopyKnnGraphBuffersToDevice( KdTree & kdtree,
+template <typename Traits, typename KnnGraphBuffers, typename StaticKnnGraphBuffers>
+void deepCopyKnnGraphBuffersToDevice(
     const KnnGraphBuffers& hostBuffers, // Input
     StaticKnnGraphBuffers& hostBuffersHoldingDevicePointers,
     StaticKnnGraphBuffers* const deviceBuffers // Outputs
 )
 {
-    using DataPoint = typename KdTree::DataPoint; ///< DataPoint given by user via Traits
-    using IndexType = typename KdTree::IndexType; ///< Type used to index points into the PointContainer
-
-    // Assign buffer sizes
-    hostBuffersHoldingDevicePointers.points_size  = hostBuffers.points_size;
-    hostBuffersHoldingDevicePointers.indices_size = hostBuffers.indices_size;
-
-    // Allocate memory for the data on the device
-    CUDA_CHECK(cudaMalloc((void**)&hostBuffersHoldingDevicePointers.points, hostBuffers.points_size * sizeof(DataPoint)));
-    CUDA_CHECK(cudaMalloc((void**)&hostBuffersHoldingDevicePointers.indices, hostBuffers.indices_size * sizeof(IndexType)));
-
-    // Copy the data to the device
-
-    /////// TO FIX : Compiles only if KnnGraphPointerTraits::PointContainer is not const but "CUDA error: unspecified launch failure" at runtime
-    CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.points, hostBuffers.points.data(), hostBuffers.points_size * sizeof(DataPoint), cudaMemcpyHostToDevice));
-    //////// TO FIX : Compiles only if KnnGraphPointerTraits::PointContainer is not const but "CUDA error: unspecified launch failure" at runtime
-    // CUDA_CHECK(cudaMemcpy((DataPoint*)hostBuffersHoldingDevicePointers.points, kdtree.buffers().points.data(), hostBuffers.points_size * sizeof(DataPoint), cudaMemcpyHostToDevice));
-
-    CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.indices, hostBuffers.indices.data(),
-                          hostBuffers.indices_size * sizeof(IndexType), cudaMemcpyHostToDevice));
-
-    hostBuffersHoldingDevicePointers.k = hostBuffers.k;
-
-    // Copy host structure itself to device
     CUDA_CHECK(
         cudaMemcpy(deviceBuffers, &hostBuffersHoldingDevicePointers, sizeof(StaticKnnGraphBuffers), cudaMemcpyHostToDevice));
+        deepCopyBuffersToDevice<Traits>( hostBuffers, [&]() { hostBuffersHoldingDevicePointers.k = hostBuffers.k; },
+            hostBuffersHoldingDevicePointers, deviceBuffers
+    );
 }
 
 /*! \brief Free the memory array internal to the Buffers on the device.
@@ -238,8 +217,7 @@ void freeKdTreeBuffersOnDevice(const StaticKdTreeBuffers& hostBuffersHoldingDevi
 template <typename StaticKnnGraphBuffers>
 void freeKnnGraphBuffersOnDevice(const StaticKnnGraphBuffers& hostBuffersHoldingDevicePointers)
 {
-    // CUDA_CHECK(cudaFree((Ponca::PointPositionNormal<float, 3>*)(hostBuffersHoldingDevicePointers.points))); // TO FIX : Can't be freed if of type const DataPoint*
-    CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.points)); // TO FIX : Can't be freed if of type const DataPoint*
+    CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.points));
     CUDA_CHECK(cudaFree(hostBuffersHoldingDevicePointers.indices));
 }
 

@@ -75,7 +75,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     BuffersGPU* knnGraphBuffersDevice;
     CUDA_CHECK(cudaMalloc(&knnGraphBuffersDevice, sizeof(BuffersGPU)));
     BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory
-    deepCopyKnnGraphBuffersToDevice( kdtree,
+    deepCopyKnnGraphBuffersToDevice<Ponca::KnnGraphPointerTraits<DataPoint>>(
         knngraph.buffers(), hostBuffersHoldingDevicePointers, knnGraphBuffersDevice);
     //! [Copy KnnGraph on GPU]
 
@@ -137,6 +137,6 @@ __host__ int main(const int /*argc*/, char** /*argv*/)
     std::cout << "Example plane fitting using KnnGraph on CUDA..." << std::endl;
     std::cout << "Using k-nearest neighbors query :" << std::endl;
     testPlaneCuda<float, 3, KnnGraphKNearestFunctor>();
-    std::cout << "Using range neighbors query :" << std::endl;
-    testPlaneCuda<float, 3, KnnGraphRangeFunctor>();
+    // std::cout << "Using range neighbors query :" << std::endl;
+    // testPlaneCuda<float, 3, KnnGraphRangeFunctor>();
 }

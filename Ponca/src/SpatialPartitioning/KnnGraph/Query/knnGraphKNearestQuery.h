@@ -7,7 +7,7 @@
 #pragma once
 
 #include "../../query.h"
-#include "../Iterator/knnGraphKNearestIterator.h"
+#include <array>
 
 namespace Ponca
 {
@@ -40,7 +40,7 @@ namespace Ponca
 #endif
     {
     public:
-        using Iterator = KnnGraphKNearestIterator<const typename Traits::IndexType*, typename Traits::IndexType>;
+        using Iterator = typename std::array<const typename Traits::IndexType, Traits::MAX_RANGE_NEIGHBORS_SIZE>::const_iterator;
 #ifdef PARSED_WITH_DOXYGEN
         using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
 #else
@@ -59,13 +59,13 @@ namespace Ponca
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
         PONCA_MULTIARCH [[nodiscard]] inline Iterator begin() const
         {
-            return Iterator(m_graph->getIndexPtr(), QueryType::input() * m_graph->k());
+            return Iterator(m_graph->getIndexPtr()) + QueryType::input() * m_graph->k();
         }
 
         /// \brief Returns an iterator to the end of the k-nearest neighbors query.
         PONCA_MULTIARCH [[nodiscard]] inline Iterator end() const
         {
-            return Iterator(m_graph->getIndexPtr(), (QueryType::input() + 1) * m_graph->k());
+            return Iterator(m_graph->getIndexPtr()) + (QueryType::input() + 1) * m_graph->k();
         }
 
     protected:
