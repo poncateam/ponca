@@ -65,8 +65,8 @@ namespace Ponca
                                                        KnnGraphRangeQuery */
 
     protected:
-        const IndexType* getIndexPtr() const { return Traits::getIndexRawPtr(m_bufs.indices); }
-        IndexType* getIndexPtr() { return Traits::getIndexRawPtr(m_bufs.indices); }
+        PONCA_MULTIARCH inline const IndexType* getIndexPtr() const { return Traits::getIndexRawPtr(m_bufs.indices); }
+        PONCA_MULTIARCH inline IndexType* getIndexPtr() { return Traits::getIndexRawPtr(m_bufs.indices); }
 
     public:
         /// \brief Internal structure storing all the buffers used by the KdTree

@@ -54,9 +54,9 @@ namespace Ponca
         using IndexContainerRef = IndexContainer&;
 
         /// \brief Provides access to the raw pointer where indices are stored
-        static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx.data(); }
+        PONCA_MULTIARCH static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx.data(); }
         /// \brief Provides access to the raw pointer where indices are stored
-        static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx.data(); }
+        PONCA_MULTIARCH static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx.data(); }
     };
     /*!
      * \brief Variant to the KnnGraph Traits type that uses pointers as internal storage instead of an STL-like
@@ -103,8 +103,8 @@ namespace Ponca
         using IndexContainerRef = IndexContainer;
 
         /// \brief Provides access to the raw pointer where indices are stored
-        static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx; }
+        PONCA_MULTIARCH static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx; }
         /// \brief Provides access to the raw pointer where indices are stored
-        static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx; }
+        PONCA_MULTIARCH static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx; }
     };
 } // namespace Ponca
