@@ -176,7 +176,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const { return (IndexType)m_bufs.points_size; }
         //! \brief Get the internal point container
         PONCA_MULTIARCH [[nodiscard]] inline PointContainer points() const { return m_bufs.points; };
-        //! \brief Get the internal indice container
+        //! \brief Get the internal index container
         PONCA_MULTIARCH [[nodiscard]] inline IndexContainer samples() const { return m_bufs.indices; };
         //! \brief Get access to the internal buffer, for instance to prepare GPU binding
         PONCA_MULTIARCH [[nodiscard]] inline const Buffers& buffers() const { return m_bufs; }

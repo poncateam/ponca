@@ -102,7 +102,7 @@ namespace Ponca
          * \param iterator The KnnGraphRangeIterator from where the advance request is made
          * \see KnnGraphRangeIterator
          */
-        PONCA_MULTIARCH inline void advance(Iterator& iterator)
+        PONCA_MULTIARCH inline void advanceRecursive(Iterator& iterator)
         {
             const auto& points = m_graph->points();
             const auto& point  = points[QueryType::input()].pos();
@@ -136,8 +136,50 @@ namespace Ponca
                     }
                 }
                 if (iterator.m_index == QueryType::input())
-                    advance(iterator); // query is not included in returned set
+                    advanceRecursive(iterator); // query is not included in returned set
             }
+        }
+
+        /*! \brief Helper function for the KnnGraphRangeIterator that advances the range neighbors search using the
+         * k-nearest neighbors known by the KnnGraph
+         *
+         * \param iterator The KnnGraphRangeIterator from where the advance request is made
+         * \see KnnGraphRangeIterator
+         */
+        PONCA_MULTIARCH inline void advance(Iterator& iterator)
+        {
+            const auto& points = m_graph->points();
+            const auto& point  = points[QueryType::input()].pos();
+
+            if (iterator == end())
+                return;
+
+            // Search the next neighbor in range
+            while (!m_stack.empty())
+            {
+                int idx_current = m_stack.top();
+                m_stack.pop();
+
+                PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
+
+                iterator.m_index = idx_current;
+
+                for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
+                {
+                    PONCA_DEBUG_ASSERT(idx_nei >= 0);
+                    Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
+                    Scalar th = QueryType::descentDistanceThreshold();
+
+                    // Add into the search stack only if within range and only if not already visited
+                    if (d < th && m_flag.insert(idx_nei))
+                        m_stack.push(idx_nei);
+                }
+
+                // Query is not included in returned set
+                if (iterator.m_index != QueryType::input())
+                    return; // Next neighbor was found
+            }
+            iterator = end(); // If no neighbor was found, we've reached the end
         }
 
     protected:

@@ -137,6 +137,6 @@ __host__ int main(const int /*argc*/, char** /*argv*/)
     std::cout << "Example plane fitting using KnnGraph on CUDA..." << std::endl;
     std::cout << "Using k-nearest neighbors query :" << std::endl;
     testPlaneCuda<float, 3, KnnGraphKNearestFunctor>();
-    // std::cout << "Using range neighbors query :" << std::endl;
-    // testPlaneCuda<float, 3, KnnGraphRangeFunctor>();
+    std::cout << "Using range neighbors query :" << std::endl;
+    testPlaneCuda<float, 3, KnnGraphRangeFunctor>(); // TOFIX : Provokes an illegal memory access
 }
