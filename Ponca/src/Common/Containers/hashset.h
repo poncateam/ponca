@@ -78,11 +78,9 @@ namespace Ponca
     public:
         constexpr PONCA_MULTIARCH HashSet() : m_data()
         {
-            // Skip this initialization step if EMPTY is set to 0
+            // Skip this array initialization step if the EMPTY flag is set to 0
             if constexpr (EMPTY() != T(0))
-            {
                 Ponca::internal::fill(m_data, m_data + N, EMPTY());
-            }
         }
 
         /*! \brief Empty the array
@@ -115,9 +113,13 @@ namespace Ponca
     private:
         static constexpr T OFFSET =
             T(1); //< Offsets the value when storing in m_data, to avoid mistaking the stored index value with EMPTY
-        static constexpr T EMPTY_VALUE = T(0); //< The flag to tell if the address is available or not (Should always be zero)
+        static constexpr T EMPTY_VALUE =
+            T(0); //< The flag to tell if the address is available or not (Should always be zero)
+        //! \brief Get the empty flag
+        //! \note This has to be put in a function to allow use inside constexpr expression in CUDA
+        //! (useful for the constructor) \see HashSet
         static constexpr PONCA_MULTIARCH inline T EMPTY() { return EMPTY_VALUE; }
-        T m_data[N];                     //< Where we store the elements in memory
+        T m_data[N]; //< Where we store the elements in memory
     };
 } // namespace Ponca
 

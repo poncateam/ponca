@@ -25,11 +25,11 @@ namespace Ponca
             const T& slot = m_data[_searchedIdx]; // Get the address
 
             // Stops the search here if the address is empty
-            if (slot == HashSet<N, T, HF>::EMPTY())
+            if (slot == EMPTY())
                 return false;
 
             // Is stored as value+OFFSET in the array (see insert)
-            if (slot == _value + HashSet<N, T, HF>::OFFSET)
+            if (slot == _value + OFFSET)
                 return true; // Value was found
 
             // The value might have been inserted elsewhere, keep looking...

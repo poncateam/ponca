@@ -23,15 +23,16 @@
 
 #include "cuda_utils.cu"
 
-/*! \brief Test a MeanPlaneFit on a plane using the CUDA kernel
+/*! \brief Use the KnnGraph to do a MeanPlaneFit over a plane with the CUDA kernel
  *
  * \tparam Scalar The scalar type (e.g. double, float or long double...)
  * \tparam Dim The number of dimension that the VectorType will have.
+ * \tparam KnnGraphFunctor The Functor making the KnnGraph Query in the kernel (must take DataPoint as a template param)
  * \param _bUnoriented Generates an unoriented point cloud.
  * \param _bAddPositionNoise Determines if we add a randomly generated offset to the position.
  * \param _bAddNormalNoise Determines if we add a randomly generated offset to the normal.
  */
-template <typename Scalar, int Dim>
+template <typename Scalar, int Dim, template <typename> typename KnnGraphFunctor>
 __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPositionNoise = false,
                             const bool _bAddNormalNoise = false)
 {
@@ -91,7 +92,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const unsigned int gridSize      = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
-    fitPotentialAndGradientKernel<KnnGraphGPU<DataPoint>, MeanFitSmooth, KnnGraphRangeFunctor<DataPoint>>
+    fitPotentialAndGradientKernel<KnnGraphGPU<DataPoint>, MeanFitSmooth, KnnGraphFunctor<DataPoint>>
         <<<gridSize, blockSize>>>(knnGraphBuffersDevice, analysisScale,         // Inputs
                                   potentialResultsDevice, gradientResultsDevice // Outputs
         );
@@ -134,6 +135,8 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
 __host__ int main(const int /*argc*/, char** /*argv*/)
 {
     std::cout << "Example plane fitting using KnnGraph on CUDA..." << std::endl;
-    testPlaneCuda<float, 3>();
-    std::cout << "(ok)" << std::endl;
+    std::cout << "Using k-nearest neighbors query :" << std::endl;
+    testPlaneCuda<float, 3, KnnGraphKNearestFunctor>();
+    std::cout << "Using range neighbors query :" << std::endl;
+    testPlaneCuda<float, 3, KnnGraphRangeFunctor>();
 }
