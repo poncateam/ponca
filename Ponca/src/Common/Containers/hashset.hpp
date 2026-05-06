@@ -10,7 +10,7 @@ namespace Ponca
     template <int N, typename T, template <int, typename> typename HF>
     void HashSet<N, T, HF>::clear()
     {
-        Ponca::internal::fill(m_data, m_data + N, EMPTY);
+        Ponca::internal::fill(m_data, m_data + N, EMPTY());
     }
 
     template <int N, typename T, template <int, typename> typename HF>
@@ -25,11 +25,11 @@ namespace Ponca
             const T& slot = m_data[_searchedIdx]; // Get the address
 
             // Stops the search here if the address is empty
-            if (slot == EMPTY)
+            if (slot == HashSet<N, T, HF>::EMPTY())
                 return false;
 
             // Is stored as value+OFFSET in the array (see insert)
-            if (slot == _value + OFFSET)
+            if (slot == _value + HashSet<N, T, HF>::OFFSET)
                 return true; // Value was found
 
             // The value might have been inserted elsewhere, keep looking...
@@ -43,7 +43,7 @@ namespace Ponca
     template <int N, typename T, template <int, typename> typename HF>
     bool HashSet<N, T, HF>::insert(int _value)
     {
-        PONCA_ASSERT_MSG(_value != EMPTY - OFFSET, "Illegal value was inserted into the HashSet");
+        PONCA_ASSERT_MSG(_value != EMPTY() - OFFSET, "Illegal value was inserted into the HashSet");
         int availableIdx = 0;
         if (search(_value, availableIdx)) // If search is successful
             return false;                 // Insertion can't be done because found the value in the array
@@ -62,7 +62,7 @@ namespace Ponca
     template <int N, typename T, template <int, typename> typename HF>
     bool HashSet<N, T, HF>::contains(int _value) const
     {
-        PONCA_DEBUG_ASSERT_MSG(_value != EMPTY - OFFSET, "Illegal value was searched from the HashSet");
+        PONCA_DEBUG_ASSERT_MSG(_value != EMPTY() - OFFSET, "Illegal value was searched from the HashSet");
         int i;
         return search(_value, i);
     }

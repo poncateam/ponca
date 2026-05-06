@@ -91,7 +91,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const unsigned int gridSize      = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
-    fitPotentialAndGradientKernel<KnnGraphGPU<DataPoint>, MeanFitSmooth, KnnGraphKNearestFunctor<DataPoint>>
+    fitPotentialAndGradientKernel<KnnGraphGPU<DataPoint>, MeanFitSmooth, KnnGraphRangeFunctor<DataPoint>>
         <<<gridSize, blockSize>>>(knnGraphBuffersDevice, analysisScale,         // Inputs
                                   potentialResultsDevice, gradientResultsDevice // Outputs
         );

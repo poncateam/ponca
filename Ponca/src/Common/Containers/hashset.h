@@ -71,7 +71,6 @@ namespace Ponca
          *
          * \param _value The value to be inserted in the HashSet
          * \param _searchedIdx Reference to the last searched index or -1 if the array is full.
-         * \param _hash The hashing function
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
          */
         PONCA_MULTIARCH [[nodiscard]] inline bool search(int _value, int& _searchedIdx) const;
@@ -80,9 +79,9 @@ namespace Ponca
         constexpr PONCA_MULTIARCH HashSet() : m_data()
         {
             // Skip this initialization step if EMPTY is set to 0
-            if constexpr (EMPTY != T(0))
+            if constexpr (EMPTY() != T(0))
             {
-                Ponca::internal::fill(m_data, m_data + N, EMPTY);
+                Ponca::internal::fill(m_data, m_data + N, EMPTY());
             }
         }
 
@@ -116,7 +115,8 @@ namespace Ponca
     private:
         static constexpr T OFFSET =
             T(1); //< Offsets the value when storing in m_data, to avoid mistaking the stored index value with EMPTY
-        static constexpr T EMPTY = T(0); //< The flag to tell if the address is available or not (Should always be zero)
+        static constexpr T EMPTY_VALUE = T(0); //< The flag to tell if the address is available or not (Should always be zero)
+        static constexpr PONCA_MULTIARCH inline T EMPTY() { return EMPTY_VALUE; }
         T m_data[N];                     //< Where we store the elements in memory
     };
 } // namespace Ponca
