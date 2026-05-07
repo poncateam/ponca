@@ -156,16 +156,15 @@ void deepCopyKdTreeBuffersToDevice(const KdTreeBuffers& hostBuffers, // Input
                                    StaticKdTreeBuffers* const deviceBuffers // Outputs
 )
 {
-    deepCopyBuffersToDevice<Traits>(
-        hostBuffers,
-        [&]() {
+    deepCopyBuffersToDevice<Traits>( hostBuffers, [&]() {
             using NodeType = typename Traits::NodeType; ///< Type of nodes used inside the KdTree
             hostBuffersHoldingDevicePointers.nodes_size = hostBuffers.nodes_size;
             CUDA_CHECK(cudaMalloc(&hostBuffersHoldingDevicePointers.nodes, hostBuffers.nodes_size * sizeof(NodeType)));
             CUDA_CHECK(cudaMemcpy(hostBuffersHoldingDevicePointers.nodes, hostBuffers.nodes.data(),
                                   hostBuffers.nodes_size * sizeof(NodeType), cudaMemcpyHostToDevice));
         },
-        hostBuffersHoldingDevicePointers, deviceBuffers);
+        hostBuffersHoldingDevicePointers, deviceBuffers
+    );
 }
 
 /*! \brief Converts and uploads the internal data of the KnnGraph Buffers structure to the device using raw memory
@@ -190,8 +189,9 @@ void deepCopyKnnGraphBuffersToDevice(
 )
 {
     CUDA_CHECK(
-        cudaMemcpy(deviceBuffers, &hostBuffersHoldingDevicePointers, sizeof(StaticKnnGraphBuffers), cudaMemcpyHostToDevice));
-        deepCopyBuffersToDevice<Traits>( hostBuffers, [&]() { hostBuffersHoldingDevicePointers.k = hostBuffers.k; },
+        deepCopyBuffersToDevice<Traits>( hostBuffers, [&]() {
+            hostBuffersHoldingDevicePointers.k = hostBuffers.k;
+            },
             hostBuffersHoldingDevicePointers, deviceBuffers
     );
 }
