@@ -49,9 +49,8 @@ namespace Ponca
             return false;                 // Insertion can't be done because found the value in the array
 
         // The value wasn't found in the array, so either :
-        // A - The set is full (The last search index shouldn't point to an available address in the array)
-        if (availableIdx == -1) // Search returns -1 if the Set is full
-            return false;
+        // A - The set is full (The last search index is -1 if it didn't find an available address in the array)
+        PONCA_ASSERT_MSG((availableIdx != -1), "Failed to insert in an already full HashSet");
 
         // B - The set isn't full and the value can be inserted. Therefore, the last search index is the next available
         // address in the array

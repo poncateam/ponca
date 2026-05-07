@@ -94,9 +94,10 @@ namespace Ponca
          * search will have to keep looking for the value if it isn't stored at the hashing result, which is why the
          * search isn't always of a O(1) complexity.
          *
+         * \note Throws an error if value was inserted in an already full HashSet
+         *
          * \param _value The value to be inserted in the HashSet
-         * \return True if the value was inserted successfully, and false if the value was already inserted or if the
-         * HashSet is full
+         * \return True if the value was inserted successfully, and false if the value was already inserted in the set
          */
         PONCA_MULTIARCH bool insert(int _value);
 
