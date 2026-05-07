@@ -48,7 +48,7 @@ int makeShuffledIndexVector(vector<int>& indices, const int min, const int max)
  * \param _pickRandom The function to call when generating a random value
  */
 template <typename IndexSet, typename RandomFunctor>
-void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom)
+void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom, int offset=0)
 {
     assert(_maxIndex > 100);
     IndexSet indexSet;
@@ -68,7 +68,11 @@ void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom)
         // Select a random index to add to the set
         const int idx = _pickRandom();
         VERIFY((indexSetSTD.contains(idx) == indexSetPonca.contains(idx))); // Check before insert
-        VERIFY((indexSetSTD.insert(idx).second == indexSetPonca.insert(idx)));
+        auto pairOutputSTD = indexSetSTD.insert(idx);
+        auto pairOutPonca  = indexSetPonca.insert(idx);
+        VERIFY((pairOutputSTD.second == pairOutPonca.second));
+        // Verify that unreferencing leads to the same behaviour as std::set
+        VERIFY((*pairOutputSTD.first == *pairOutPonca.first - offset)); // The true element is offseted inside the HashSet
         VERIFY((indexSetSTD.contains(idx) == indexSetPonca.contains(idx))); // Check after insert
     }
 
@@ -99,7 +103,7 @@ void testSetStandardCapabilities(const int _maxIndex)
  * \param _setCapacity The maximum capacity of the limited set
  */
 template <typename IndexSet>
-void testLimitedSet(const int _maxIndex, int _setCapacity)
+void testLimitedSet(const int _maxIndex, int _setCapacity, int offset = 0)
 {
     IndexSet indexSet;
 
@@ -112,12 +116,18 @@ void testLimitedSet(const int _maxIndex, int _setCapacity)
         makeShuffledIndexVector(indices, _setCapacity + 1, _maxIndex);
 
     // Insert until we reach max capacity
-    for (int i = 0; i < _setCapacity; ++i)
-        VERIFY((indexSet.insert(indices[i])));
+    for (int i = 0; i < _setCapacity; ++i) {
+        auto insertOutPair = indexSet.insert(indices[i]);
+        VERIFY((insertOutPair.second));
+        VERIFY((*insertOutPair.first -offset == indices[i]));  // The true element is offseted inside the HashSet
+    }
 
     // Test insert above capacity
-    for (int i = _setCapacity; i < nbTotalInsertion; ++i)
-        VERIFY(!(indexSet.insert(indices[i])));
+    for (int i = _setCapacity; i < nbTotalInsertion; ++i) {
+        auto insertOutPair = indexSet.insert(indices[i]);
+        VERIFY(!(insertOutPair.second));
+        VERIFY((insertOutPair.first == indexSet.end()));
+    }
 }
 
 template <int MAX_INSERT_SIZE>
@@ -184,8 +194,9 @@ int main(const int argc, char** argv)
                 x = Eigen::internal::random<int>(-(MAX_INDEX - 1), MAX_INDEX - 1);
             }
             return x;
-        })));
-        CALL_SUBTEST((testLimitedSet<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX, MAX_INSERT_SIZE)));
+        }, 1)));
+        CALL_SUBTEST((testLimitedSet<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX, MAX_INSERT_SIZE, 1)));
         CALL_SUBTEST((testLimitedPriorityQueue<MAX_INSERT_SIZE>(MAX_INDEX, MAX_INSERT_SIZE)));
     }
+    cout << "(ok)" << endl;
 }

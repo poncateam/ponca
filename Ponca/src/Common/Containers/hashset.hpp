@@ -7,14 +7,40 @@
 
 namespace Ponca
 {
+    // Iterators --------------------------------------------------------------------
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
-    void HashSet<N, T, HF, OFFSET>::clear()
+    typename HashSet<N, T, HF, OFFSET>::const_iterator HashSet<N, T, HF, OFFSET>::cbegin() const
     {
-        Ponca::internal::fill(m_data, m_data + N, 0);
+        return m_data.begin();
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
-    bool HashSet<N, T, HF, OFFSET>::search(const int _value, int& _searchedIdx) const
+    typename HashSet<N, T, HF, OFFSET>::const_iterator HashSet<N, T, HF, OFFSET>::cend() const
+    {
+        return m_data.begin() + N;
+    }
+
+    template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+    typename HashSet<N, T, HF, OFFSET>::iterator HashSet<N, T, HF, OFFSET>::begin()
+    {
+        return m_data.begin();
+    }
+
+    template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+    typename HashSet<N, T, HF, OFFSET>::iterator HashSet<N, T, HF, OFFSET>::end()
+    {
+        return m_data.begin() + N;
+    }
+
+    // Set-like methods --------------------------------------------------------------------
+    template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+    void HashSet<N, T, HF, OFFSET>::clear()
+    {
+        Ponca::internal::fill(m_data.begin(), m_data.begin() + N, 0);
+    }
+
+    template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+    bool HashSet<N, T, HF, OFFSET>::search(const T _value, T& _searchedIdx) const
     {
         const int h = HashFunctor::hash(_value);
 
@@ -41,25 +67,26 @@ namespace Ponca
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
-    bool HashSet<N, T, HF, OFFSET>::insert(int _value)
+    std::pair<typename HashSet<N, T, HF, OFFSET>::iterator, bool> HashSet<N, T, HF, OFFSET>::insert(const T& _value)
     {
         PONCA_ASSERT_MSG(_value != -OFFSET, "Illegal value was inserted into the HashSet");
         int availableIdx = 0;
         if (search(_value, availableIdx)) // If search is successful
-            return false;                 // Insertion can't be done because found the value in the array
+            return std::make_pair(m_data.begin() + availableIdx, false);                 // Insertion can't be done because found the value in the array
 
         // The value wasn't found in the array, so either :
         // A - The set is full (The last search index is -1 if it didn't find an available address in the array)
-        PONCA_ASSERT_MSG((availableIdx != -1), "Failed to insert in an already full HashSet");
-
+        if (availableIdx == -1) {
+            return std::make_pair(end(), false);
+        }
         // B - The set isn't full and the value can be inserted. Therefore, the last search index is the next available
         // address in the array
         m_data[availableIdx] = _value + OFFSET;
-        return true;
+        return std::make_pair(m_data.begin() + availableIdx, true);
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
-    bool HashSet<N, T, HF, OFFSET>::contains(int _value) const
+    bool HashSet<N, T, HF, OFFSET>::contains(T _value) const
     {
         PONCA_DEBUG_ASSERT_MSG(_value != -OFFSET, "Illegal value was searched from the HashSet");
         int i;

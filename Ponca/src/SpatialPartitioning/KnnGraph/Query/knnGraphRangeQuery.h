@@ -8,7 +8,6 @@
 
 #include "../../query.h"
 #include "../Iterator/knnGraphRangeIterator.h"
-#include "../../../Common/Containers/stack.h"
 
 namespace Ponca
 {
@@ -40,8 +39,14 @@ namespace Ponca
      * Extensively big point clouds can therefore provoke memory allocation problems if we have a memory limit (e.g. if
      * we are instantiating the `KnnGraphRangeQuery` inside local memory, in a CUDA kernel).
      * \see BitSet for more detailed information about the memory usage.
+     *
+     * \tparam Stack The stack type storing the next neighbor to visit.
+     * - (Default) std::set<int> A stack that dynamically allocates memory
+     *
+     * - Stack<int, Traits::MAX_RANGE_EXPLORATION_AMOUNT> : Has a limited amount of storage. Will throw out of bound
+     * exception in debug mode if elements are inserted above the maximum capacity of the stack.
      */
-    template <typename Traits, typename IndexSet>
+    template <typename Traits, typename IndexSet, typename Stack>
     class KnnGraphRangeQuery : public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
     {
     protected:
@@ -102,50 +107,6 @@ namespace Ponca
          * \param iterator The KnnGraphRangeIterator from where the advance request is made
          * \see KnnGraphRangeIterator
          */
-        PONCA_MULTIARCH inline void advanceRecursive(Iterator& iterator)
-        {
-            const auto& points = m_graph->points();
-            const auto& point  = points[QueryType::input()].pos();
-
-            if (!(iterator != end()))
-                return;
-
-            if (m_stack.empty())
-            {
-                iterator = end();
-            }
-            else
-            {
-                int idx_current = m_stack.top();
-                m_stack.pop();
-
-                PONCA_DEBUG_ASSERT((point - points[idx_current].pos()).squaredNorm() < QueryType::squaredRadius());
-
-                iterator.m_index = idx_current;
-
-                for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
-                {
-                    PONCA_DEBUG_ASSERT(idx_nei >= 0);
-                    Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
-                    Scalar th = QueryType::descentDistanceThreshold();
-
-                    if ((point - points[idx_nei].pos()).squaredNorm() < QueryType::descentDistanceThreshold() &&
-                        m_flag.insert(idx_nei))
-                    {
-                        m_stack.push(idx_nei);
-                    }
-                }
-                if (iterator.m_index == QueryType::input())
-                    advanceRecursive(iterator); // query is not included in returned set
-            }
-        }
-
-        /*! \brief Helper function for the KnnGraphRangeIterator that advances the range neighbors search using the
-         * k-nearest neighbors known by the KnnGraph
-         *
-         * \param iterator The KnnGraphRangeIterator from where the advance request is made
-         * \see KnnGraphRangeIterator
-         */
         PONCA_MULTIARCH inline void advance(Iterator& iterator)
         {
             const auto& points = m_graph->points();
@@ -167,12 +128,21 @@ namespace Ponca
                 for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
                 {
                     PONCA_DEBUG_ASSERT(idx_nei >= 0);
+                    // Add into the search stack only if :
+                    // A - The point is within range
                     Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
                     Scalar th = QueryType::descentDistanceThreshold();
+                    if (d >= th) continue;
 
-                    // Add into the search stack only if within range and only if not already visited
-                    if (d < th && m_flag.insert(idx_nei))
-                        m_stack.push(idx_nei);
+                    // B - The point is not already visited
+                    auto [iteratorToInsertedValue, wasInserted] = m_flag.insert(idx_nei);
+                    if (!wasInserted) {
+                        // Check that the Set isn't full (in case if it's a limited capacity set)
+                        PONCA_ASSERT(iteratorToInsertedValue != m_flag.end());
+                        continue;
+                    }
+
+                    m_stack.push(idx_nei);
                 }
 
                 // Query is not included in returned set
@@ -184,8 +154,8 @@ namespace Ponca
 
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
-        IndexSet m_flag;                                          ///< Stores every visited neighbor ids
-        Stack<int, Traits::MAX_RANGE_EXPLORATION_AMOUNT> m_stack; ///< Holds the next ids the Query should visit
+        IndexSet m_flag; ///< Stores every visited neighbor ids
+        Stack m_stack;   ///< Holds the next ids the Query should visit
     };
 
 } // namespace Ponca

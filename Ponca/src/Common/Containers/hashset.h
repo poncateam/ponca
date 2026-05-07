@@ -9,6 +9,7 @@
 
 #include "../defines.h"
 #include "./iteratorUtils.h"
+#include <utility>
 
 namespace Ponca
 {
@@ -56,7 +57,10 @@ namespace Ponca
     {
         static_assert(N > 0, "The capacity must be strictly positive");
         using HashFunctor = _HashFunctor<N, T>;
-
+        using container_type = std::array<T, N>;
+        using iterator       = typename container_type::iterator;
+        using const_iterator = typename container_type::const_iterator;
+        using Self           = HashSet<N, T, _HashFunctor, OFFSET>;
     protected:
         /*! \brief Search for a value in the HashSet.
          *
@@ -75,7 +79,7 @@ namespace Ponca
          * \param _searchedIdx Reference to the last searched index or -1 if the array is full.
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
          */
-        PONCA_MULTIARCH [[nodiscard]] inline bool search(int _value, int& _searchedIdx) const;
+        PONCA_MULTIARCH [[nodiscard]] inline bool search(T _value, T& _searchedIdx) const;
 
     public:
         constexpr PONCA_MULTIARCH HashSet() : m_data() {}
@@ -97,19 +101,34 @@ namespace Ponca
          * \note Throws an error if value was inserted in an already full HashSet
          *
          * \param _value The value to be inserted in the HashSet
-         * \return True if the value was inserted successfully, and false if the value was already inserted in the set
+         * \return An std::pair of
+         * - First : The iterator to the inserted value or end() if the HashSet is full
+         * - Second : True if the value was inserted successfully, and false if the value wasn't inserted
          */
-        PONCA_MULTIARCH bool insert(int _value);
+        PONCA_MULTIARCH std::pair<typename Self::iterator, bool> insert(const T& _value);
 
         /*! \brief Tries to find a value in the HashSet
          *
          * \param _value The value to search for
          * \return True if the value is inside the HashSet, false if it's not in the HashSet.
          */
-        PONCA_MULTIARCH [[nodiscard]] bool contains(int _value) const;
+        PONCA_MULTIARCH [[nodiscard]] bool contains(T _value) const;
+
+    public :
+        //! \brief The beginning of the internal array
+        PONCA_MULTIARCH [[nodiscard]] inline Self::const_iterator cbegin() const;
+
+        //! \brief The end of the internal array
+        PONCA_MULTIARCH [[nodiscard]] inline Self::const_iterator cend() const;
+
+        //! \brief The beginning of the internal array
+        PONCA_MULTIARCH [[nodiscard]] inline Self::iterator begin();
+
+        //! \brief The end of the internal array
+        PONCA_MULTIARCH [[nodiscard]] inline Self::iterator end();
 
     private:
-        T m_data[N]; //< Where we store the elements in memory
+        container_type m_data {}; //< Where we store the elements in memory
     };
 } // namespace Ponca
 

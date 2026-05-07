@@ -7,19 +7,41 @@
 #pragma once
 
 #include <cstddef>
+
+#include <stack>
+#include <set>
+
 #include "../../../Common/Containers/hashset.h"
+#include "../../../Common/Containers/bitset.h"
+#include "../../../Common/Containers/stack.h"
 
 namespace Ponca
 {
     /*
-     * - Use `Set = BitSet<MAX_NUMBER_OF_POINTS>` for the fastest search : Provides trivial insertion and search,
-     * with O(1) complexity at the expense of memory.
+     * For the Set :
+     * - (Default) Use `Set = std::set<int>` for dynamic memory (not compatible with CUDA)
      *
-     * - Use `Set = HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>` for bigger data set : Best case complexity for
+     * - Use `Set = Ponca::BitSet<MAX_NUMBER_OF_POINTS>` for the fastest search : Provides trivial insertion and search,
+     * with O(1) complexity at the expense of memory. (Going for more than a factor of 100000 provokes a memory seg
+     * fault)
+     *
+     * - Use `Set = Ponca::HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>` for bigger data set : Best case complexity for
      * insertion and search is O(1) and worst case is O(N) (depends on the given dataset and on the chosen hashing
      * function).
+     *
+     * For the Stack :
+     * - (Default) Use `Stack = std::stack<int>` for dynamic memory (not compatible with CUDA)
+     *
+     * - Use `Stack = Ponca::Stack<int, Traits::MAX_RANGE_EXPLORATION_AMOUNT>` for a stack with a fixed maximum size
+     * (will throw an out of bound exception on debug mode if max memory is reached)
      */
-    template <typename Traits, typename Set = HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>>
+    template <typename Traits,
+        // typename Set = std::set<int>,
+        typename Set = Ponca::BitSet<100000>,
+        // typename Set = Ponca::HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>,
+        typename Stack = std::stack<int>
+        // typename Set = Ponca::Stack<Traits::MAX_RANGE_EXPLORATION_AMOUNT>
+    >
     class KnnGraphRangeQuery;
 
     /*!
