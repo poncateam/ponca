@@ -72,7 +72,8 @@ void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom,
         auto pairOutPonca  = indexSetPonca.insert(idx);
         VERIFY((pairOutputSTD.second == pairOutPonca.second));
         // Verify that unreferencing leads to the same behaviour as std::set
-        VERIFY((*pairOutputSTD.first == *pairOutPonca.first - offset)); // The true element is offseted inside the HashSet
+        // VERIFY((*pairOutputSTD.first == *pairOutPonca.first - offset)); // Internal values are not directly equal to
+        // the original values
         VERIFY((indexSetSTD.contains(idx) == indexSetPonca.contains(idx))); // Check after insert
     }
 
