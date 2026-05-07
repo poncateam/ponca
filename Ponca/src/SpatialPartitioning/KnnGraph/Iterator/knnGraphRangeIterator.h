@@ -36,11 +36,11 @@ namespace Ponca
      * (will throw an out of bound exception on debug mode if max memory is reached)
      */
     template <typename Traits,
-        // typename Set = std::set<int>,
-        typename Set = Ponca::BitSet<100000>,
+        typename Set = std::set<int>,
+        // typename Set = Ponca::BitSet<100000>,
         // typename Set = Ponca::HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>,
         typename Stack = std::stack<int>
-        // typename Set = Ponca::Stack<Traits::MAX_RANGE_EXPLORATION_AMOUNT>
+        // typename Stack = Ponca::Stack<int, Traits::MAX_RANGE_EXPLORATION_AMOUNT>
     >
     class KnnGraphRangeQuery;
 
