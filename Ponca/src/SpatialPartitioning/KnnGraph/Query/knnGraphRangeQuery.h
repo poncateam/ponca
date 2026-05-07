@@ -27,7 +27,7 @@ namespace Ponca
      *
      * For the `IndexSet`, Ponca provides two possible choices :
      *
-     * - (Default) `HashSet<Traits::MAX_RANGE_NEIGHBORS_SIZE>` : Stores the index in a HashMap-like structure.
+     * - (Default) `HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>` : Stores the index in a HashMap-like structure.
      * The Best case complexity for insertion and search is O(1) and worst case is O(N), depending on the given dataset
      * and on the chosen hashing function (Sparser hashing results will lead to a reduce look-up time).
      * \see HashSet
@@ -184,8 +184,8 @@ namespace Ponca
 
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
-        IndexSet m_flag;                                      ///< Stores every visited neighbor ids
-        Stack<int, Traits::MAX_RANGE_NEIGHBORS_SIZE> m_stack; ///< Holds the next ids the Query should visit
+        IndexSet m_flag;                                          ///< Stores every visited neighbor ids
+        Stack<int, Traits::MAX_RANGE_EXPLORATION_AMOUNT> m_stack; ///< Holds the next ids the Query should visit
     };
 
 } // namespace Ponca
