@@ -8,7 +8,6 @@
 namespace Ponca
 {
 
-
     // Iterator --------------------------------------------------------------------
 
     template <class T, int N, class Cmp>

@@ -56,11 +56,12 @@ namespace Ponca
     class HashSet
     {
         static_assert(N > 0, "The capacity must be strictly positive");
-        using HashFunctor = _HashFunctor<N, T>;
+        using HashFunctor    = _HashFunctor<N, T>;
         using container_type = std::array<T, N>;
         using iterator       = typename container_type::iterator;
         using const_iterator = typename container_type::const_iterator;
         using Self           = HashSet<N, T, _HashFunctor, OFFSET>;
+
     protected:
         /*! \brief Search for a value in the HashSet.
          *
@@ -114,7 +115,7 @@ namespace Ponca
          */
         PONCA_MULTIARCH [[nodiscard]] bool contains(T _value) const;
 
-    public :
+    public:
         //! \brief The beginning of the internal array
         PONCA_MULTIARCH [[nodiscard]] inline Self::const_iterator cbegin() const;
 
@@ -128,7 +129,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline Self::iterator end();
 
     private:
-        container_type m_data {}; //< Where we store the elements in memory
+        container_type m_data{}; //< Where we store the elements in memory
     };
 } // namespace Ponca
 

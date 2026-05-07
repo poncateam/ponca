@@ -48,7 +48,7 @@ int makeShuffledIndexVector(vector<int>& indices, const int min, const int max)
  * \param _pickRandom The function to call when generating a random value
  */
 template <typename IndexSet, typename RandomFunctor>
-void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom, int offset=0)
+void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom, int offset = 0)
 {
     assert(_maxIndex > 100);
     IndexSet indexSet;
@@ -117,14 +117,16 @@ void testLimitedSet(const int _maxIndex, int _setCapacity, int offset = 0)
         makeShuffledIndexVector(indices, _setCapacity + 1, _maxIndex);
 
     // Insert until we reach max capacity
-    for (int i = 0; i < _setCapacity; ++i) {
+    for (int i = 0; i < _setCapacity; ++i)
+    {
         auto insertOutPair = indexSet.insert(indices[i]);
         VERIFY((insertOutPair.second));
-        VERIFY((*insertOutPair.first -offset == indices[i]));  // The true element is offseted inside the HashSet
+        VERIFY((*insertOutPair.first - offset == indices[i])); // The true element is offseted inside the HashSet
     }
 
     // Test insert above capacity
-    for (int i = _setCapacity; i < nbTotalInsertion; ++i) {
+    for (int i = _setCapacity; i < nbTotalInsertion; ++i)
+    {
         auto insertOutPair = indexSet.insert(indices[i]);
         VERIFY(!(insertOutPair.second));
         VERIFY((insertOutPair.first == indexSet.end()));
@@ -187,15 +189,18 @@ int main(const int argc, char** argv)
     for (int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST((testSetStandardCapabilities<BitSet<MAX_INDEX>>(MAX_INDEX)));
-        CALL_SUBTEST((testSetStandardCapabilities<HashSet<MAX_INDEX>>(MAX_INDEX, []() {
-            // Also test storing negative, but not -1 as it's not allowed by the HashSet
-            int x = -1;
-            while (x == -1)
-            {
-                x = Eigen::internal::random<int>(-(MAX_INDEX - 1), MAX_INDEX - 1);
-            }
-            return x;
-        }, 1)));
+        CALL_SUBTEST((testSetStandardCapabilities<HashSet<MAX_INDEX>>(
+            MAX_INDEX,
+            []() {
+                // Also test storing negative, but not -1 as it's not allowed by the HashSet
+                int x = -1;
+                while (x == -1)
+                {
+                    x = Eigen::internal::random<int>(-(MAX_INDEX - 1), MAX_INDEX - 1);
+                }
+                return x;
+            },
+            1)));
         CALL_SUBTEST((testLimitedSet<HashSet<MAX_INSERT_SIZE>>(MAX_INDEX, MAX_INSERT_SIZE, 1)));
         CALL_SUBTEST((testLimitedPriorityQueue<MAX_INSERT_SIZE>(MAX_INDEX, MAX_INSERT_SIZE)));
     }

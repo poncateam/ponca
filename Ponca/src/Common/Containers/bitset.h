@@ -74,7 +74,7 @@ namespace Ponca
          * - First : The pointer to the inserted value (included for the sake of compatibility with std::set)
          * - Second : True if the value was inserted successfully, and false if the value wasn't inserted
          */
-        PONCA_MULTIARCH std::pair<iterator, bool> insert(const int & value);
+        PONCA_MULTIARCH std::pair<iterator, bool> insert(const int& value);
 
         /*! \brief Search if the value was already inserted or not
          *
@@ -91,7 +91,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] iterator end();
 
     protected:
-        container_type m_data = {};                            //!< An array of bytes
+        container_type m_data = {}; //!< An array of bytes
     };
 } // namespace Ponca
 

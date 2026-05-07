@@ -132,11 +132,13 @@ namespace Ponca
                     // A - The point is within range
                     Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
                     Scalar th = QueryType::descentDistanceThreshold();
-                    if (d >= th) continue;
+                    if (d >= th)
+                        continue;
 
                     // B - The point is not already visited
                     auto [iteratorToInsertedValue, wasInserted] = m_flag.insert(idx_nei);
-                    if (!wasInserted) {
+                    if (!wasInserted)
+                    {
                         // Check that the Set isn't full (in case if it's a limited capacity set)
                         PONCA_ASSERT(iteratorToInsertedValue != m_flag.end());
                         continue;

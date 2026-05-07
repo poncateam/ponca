@@ -72,11 +72,13 @@ namespace Ponca
         PONCA_ASSERT_MSG(_value != -OFFSET, "Illegal value was inserted into the HashSet");
         int availableIdx = 0;
         if (search(_value, availableIdx)) // If search is successful
-            return std::make_pair(m_data.begin() + availableIdx, false);                 // Insertion can't be done because found the value in the array
+            return std::make_pair(m_data.begin() + availableIdx,
+                                  false); // Insertion can't be done because found the value in the array
 
         // The value wasn't found in the array, so either :
         // A - The set is full (The last search index is -1 if it didn't find an available address in the array)
-        if (availableIdx == -1) {
+        if (availableIdx == -1)
+        {
             return std::make_pair(end(), false);
         }
         // B - The set isn't full and the value can be inserted. Therefore, the last search index is the next available
