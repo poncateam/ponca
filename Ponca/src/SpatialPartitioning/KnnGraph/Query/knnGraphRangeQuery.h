@@ -26,7 +26,7 @@ namespace Ponca
      *
      * For the `IndexSet`, Ponca provides two possible choices :
      *
-     * - (Default) `HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>` : Stores the index in a HashMap-like structure.
+     * - (Default) `HashSet<Traits::K_MAX_NN>` : Stores the index in a HashMap-like structure.
      * The Best case complexity for insertion and search is O(1) and worst case is O(N), depending on the given dataset
      * and on the chosen hashing function (Sparser hashing results will lead to a reduce look-up time).
      * \see HashSet
@@ -43,7 +43,7 @@ namespace Ponca
      * \tparam Stack The stack type storing the next neighbor to visit.
      * - (Default) std::set<int> A stack that dynamically allocates memory
      *
-     * - Stack<int, Traits::MAX_RANGE_EXPLORATION_AMOUNT> : Has a limited amount of storage. Will throw out of bound
+     * - Stack<int, Traits::K_MAX_NN> : Has a limited amount of storage. Will throw out of bound
      * exception in debug mode if elements are inserted above the maximum capacity of the stack.
      */
     template <typename Traits, typename IndexSet, typename Stack>

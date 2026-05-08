@@ -19,8 +19,7 @@ namespace Ponca
     {
         enum
         {
-            MAX_RANGE_EXPLORATION_AMOUNT =
-                1000 //!< The maximum number of neighbors that will be visited in a range neighbors query
+            K_MAX_NN = 1000 //!< The maximum number of neighbors that will be visited in a range neighbors query
         };
         /*!
          * \brief The type used to store point data.
@@ -68,8 +67,7 @@ namespace Ponca
     {
         enum
         {
-            MAX_RANGE_EXPLORATION_AMOUNT =
-                1000 //!< The maximum number of neighbors that will be visited in a range neighbors query
+            K_MAX_NN = 1000 //!< The maximum number of neighbors that will be visited in a range neighbors query
         };
         /*!
          * \brief The type used to store point data.

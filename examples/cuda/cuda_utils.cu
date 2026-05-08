@@ -57,10 +57,10 @@ struct KdTreeKNearestNeighborsFunctor
 {
 
     static __device__ inline auto query(KdTreeGPU<DataPoint>& d_kdtree, int i, typename DataPoint::Scalar analysisScale,
-        const int kNearestAmount = 40) -> Ponca::KdTreeKNearestIndexQuery<Ponca::KdTreePointerTraits<DataPoint>>
+        const int k = 40) -> Ponca::KdTreeKNearestIndexQuery<Ponca::KdTreePointerTraits<DataPoint>>
     {
         //! [Use KdTree.kNearestNeighbors on the GPU]
-        return d_kdtree.kNearestNeighbors(i, kNearestAmount);
+        return d_kdtree.kNearestNeighbors(i, k);
         //! [Use KdTree.kNearestNeighbors on the GPU]
     }
 };

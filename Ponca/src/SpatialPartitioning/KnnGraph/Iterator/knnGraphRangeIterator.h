@@ -25,21 +25,21 @@ namespace Ponca
      * with O(1) complexity at the expense of memory. (Going for more than a factor of 100000 provokes a memory seg
      * fault)
      *
-     * - Use `Set = Ponca::HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>` for bigger data set : Best case complexity for
+     * - Use `Set = Ponca::HashSet<Traits::K_MAX_NN>` for bigger data set : Best case complexity for
      * insertion and search is O(1) and worst case is O(N) (depends on the given dataset and on the chosen hashing
      * function).
      *
      * For the Stack :
      * - (Default) Use `Stack = std::stack<int>` for dynamic memory (not compatible with CUDA)
      *
-     * - Use `Stack = Ponca::Stack<int, Traits::MAX_RANGE_EXPLORATION_AMOUNT>` for a stack with a fixed maximum size
+     * - Use `Stack = Ponca::Stack<int, Traits::K_MAX_NN>` for a stack with a fixed maximum size
      * (will throw an out of bound exception on debug mode if max memory is reached)
      */
     template <typename Traits, typename Set = std::set<int>,
               // typename Set = Ponca::BitSet<100000>,
-              // typename Set = Ponca::HashSet<Traits::MAX_RANGE_EXPLORATION_AMOUNT>,
+              // typename Set = Ponca::HashSet<Traits::K_MAX_NN>,
               typename Stack = std::stack<int>
-              // typename Stack = Ponca::Stack<int, Traits::MAX_RANGE_EXPLORATION_AMOUNT>
+              // typename Stack = Ponca::Stack<int, Traits::K_MAX_NN>
               >
     class KnnGraphRangeQuery;
 

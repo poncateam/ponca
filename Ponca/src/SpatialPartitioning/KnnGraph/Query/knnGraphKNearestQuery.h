@@ -40,8 +40,7 @@ namespace Ponca
 #endif
     {
     public:
-        using Iterator =
-            typename std::array<const typename Traits::IndexType, Traits::MAX_RANGE_EXPLORATION_AMOUNT>::const_iterator;
+        using Iterator = typename std::array<const typename Traits::IndexType, Traits::K_MAX_NN>::const_iterator;
 #ifdef PARSED_WITH_DOXYGEN
         using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
 #else
