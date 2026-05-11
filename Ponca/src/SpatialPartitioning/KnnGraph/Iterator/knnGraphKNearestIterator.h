@@ -70,6 +70,7 @@ namespace Ponca
 
         /// \brief Plus operator
         PONCA_MULTIARCH inline Self operator+(const Index i) { return Self(m_data, m_i + i); }
+
     protected:
         ContainerPtr m_data;
         Index m_i{0};
