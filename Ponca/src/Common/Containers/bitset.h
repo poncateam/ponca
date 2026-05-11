@@ -71,8 +71,12 @@ namespace Ponca
          * \param value The value to be inserted in the HashSet. Must always be smaller than N, because we are using the
          * values as indices inside the BitSet.
          * \return An std::pair of
-         * - First : The pointer to the inserted value (included for the sake of compatibility with std::set)
+         * - First : Pointer to the inserted value (not usable, see warning below)
          * - Second : True if the value was inserted successfully, and false if the value wasn't inserted
+         *
+         * \warning The returned pointer cannot be used as several values are packed behind the same pointer location.
+         * This value is included for the sake of compatibility with std::set, but cannot be used directly as
+         * the bitmask is not exported (unreferencing the pointer will not give access to the value).
          */
         PONCA_MULTIARCH std::pair<iterator, bool> insert(const int& value);
 

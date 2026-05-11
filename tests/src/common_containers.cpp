@@ -71,12 +71,13 @@ void testSetStandardCapabilities(const int _maxIndex, RandomFunctor _pickRandom,
         auto pairOutputSTD = indexSetSTD.insert(idx);
         auto pairOutPonca  = indexSetPonca.insert(idx);
         VERIFY((pairOutputSTD.second == pairOutPonca.second));
-        // Verify that unreferencing leads to the same behaviour as std::set
-        // VERIFY((*pairOutputSTD.first == *pairOutPonca.first - offset)); // Internal values are not directly equal to
-        // the original values
-        VERIFY((indexSetSTD.contains(idx) == indexSetPonca.contains(idx))); // Check after insert
+
+        // check the value is in the containers (inserted now or earlier)
+        VERIFY((indexSetSTD.contains(idx)));
+        VERIFY((indexSetPonca.contains(idx)));
     }
 
+    // check consistency on inserted and non-inserted values
     for (int i = 0; i < nbInsertion; ++i)
     {
         VERIFY((indexSetSTD.contains(i) == indexSetPonca.contains(i)));

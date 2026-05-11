@@ -7,7 +7,7 @@
 #pragma once
 
 #include "../../query.h"
-#include "Ponca/src/SpatialPartitioning/KnnGraph/Iterator/knnGraphKNearestIterator.h"
+#include "../Iterator/knnGraphKNearestIterator.h"
 
 namespace Ponca
 {
