@@ -7,6 +7,12 @@
 #pragma once
 
 #include <Eigen/Geometry>
+#include <stack>
+#include <vector>
+#include <set>
+
+#include "../../Common/Containers/hashset.h"
+#include "../../Common/Containers/stack.h"
 
 namespace Ponca
 {
@@ -17,10 +23,6 @@ namespace Ponca
     template <typename _DataPoint>
     struct KnnGraphDefaultTraits
     {
-        enum
-        {
-            K_MAX_NN = 1000 //!< The maximum number of neighbors that will be visited in a range neighbors query
-        };
         /*!
          * \brief The type used to store point data.
          *
@@ -52,6 +54,19 @@ namespace Ponca
         using IndexContainer = std::vector<IndexType>;
         /// \brief Type to be used to send the index container as function parameter
         using IndexContainerRef = IndexContainer&;
+
+        /*! \brief A Set dynamic in memory, used by KnnGraphRangeQuery
+         *  \warning Not compatible with CUDA
+         */
+        using KnnGraphRangeSet = std::set<int>;
+        /*! \brief A Stack dynamic in memory, used by KnnGraphRangeQuery
+         *  \warning Not compatible with CUDA
+         */
+        using KnnGraphRangeStack = std::stack<int>;
+        /*! \brief The const iterator to iterate over the RangeNeighbor query
+         *  \warning Not compatible with CUDA
+         */
+        using KnnGraphRangeIterator = std::vector<IndexType>::const_iterator;
 
         /// \brief Provides access to the raw pointer where indices are stored
         PONCA_MULTIARCH static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx.data(); }
@@ -101,6 +116,13 @@ namespace Ponca
         using IndexContainer = IndexType*;
         /// \brief Type to be used to send the index container as function parameter
         using IndexContainerRef = IndexContainer;
+
+        //! \brief A static Set used by KnnGraphRangeQuery
+        using KnnGraphRangeSet = HashSet<K_MAX_NN>;
+        //! \brief A static Stack used by KnnGraphRangeQuery
+        using KnnGraphRangeStack = Stack<int, K_MAX_NN>;
+        //! \brief The const iterator to iterate over the RangeNeighbor query
+        using KnnGraphRangeIterator = typename std::array<const IndexType, K_MAX_NN>::const_iterator;
 
         /// \brief Provides access to the raw pointer where indices are stored
         PONCA_MULTIARCH static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx; }

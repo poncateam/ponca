@@ -188,11 +188,10 @@ void deepCopyKnnGraphBuffersToDevice(
     StaticKnnGraphBuffers* const deviceBuffers // Outputs
 )
 {
-    CUDA_CHECK(
-        deepCopyBuffersToDevice<Traits>( hostBuffers, [&]() {
-            hostBuffersHoldingDevicePointers.k = hostBuffers.k;
-            },
-            hostBuffersHoldingDevicePointers, deviceBuffers
+    deepCopyBuffersToDevice<Traits>( hostBuffers, [&]() {
+        hostBuffersHoldingDevicePointers.k = hostBuffers.k;
+        },
+        hostBuffersHoldingDevicePointers, deviceBuffers
     );
 }
 
@@ -232,7 +231,7 @@ void freeKnnGraphBuffersOnDevice(const StaticKnnGraphBuffers& hostBuffersHolding
  * \param gradientResults As an Output, the primitiveGradient results of the fit for each point of the Point Cloud.
  */
 template <typename SpatialPartitioning, typename Fit, typename SpatialPartitioningQueryFunctor>
-__global__ void fitPotentialAndGradientKernel(typename SpatialPartitioning::Buffers* const buffers,
+__global__ void spatialPartitioningFitPotentialAndGradientKernel(typename SpatialPartitioning::Buffers* const buffers,
                                               const typename SpatialPartitioning::DataPoint::Scalar analysisScale,
                                               typename SpatialPartitioning::DataPoint::Scalar* const potentialResults,
                                               typename SpatialPartitioning::DataPoint::Scalar* const gradientResults)

@@ -90,7 +90,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const unsigned int gridSize      = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
-    fitPotentialAndGradientKernel<KdTreeGPU<DataPoint>, MeanFitSmooth, KdTreeFunctor<DataPoint>>
+    spatialPartitioningFitPotentialAndGradientKernel<KdTreeGPU<DataPoint>, MeanFitSmooth, KdTreeFunctor<DataPoint>>
         <<<gridSize, blockSize>>>(kdtreeBuffersDevice, analysisScale,           // Inputs
                                   potentialResultsDevice, gradientResultsDevice // Outputs
         );
