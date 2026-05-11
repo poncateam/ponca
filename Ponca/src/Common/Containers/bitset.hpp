@@ -8,12 +8,26 @@
 namespace Ponca
 {
     ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////// Iterator Methods ////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
+    template <int N, typename T>
+    typename BitSet<N, T>::iterator BitSet<N, T>::begin()
+    {
+        return m_data.begin();
+    }
+
+    template <int N, typename T>
+    typename BitSet<N, T>::iterator BitSet<N, T>::end()
+    {
+        return m_data.begin() + N;
+    }
+    ////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////// Set like methods ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     template <int N, typename T>
     void BitSet<N, T>::clear()
     {
-        Ponca::internal::fill(m_data, m_data + ARRAY_SIZE, T(0));
+        Ponca::internal::fill(m_data.begin(), m_data.begin() + ARRAY_SIZE, T(0));
     }
 
     template <int N, typename T>
@@ -30,7 +44,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
-    bool BitSet<N, T>::insert(const int value)
+    std::pair<typename BitSet<N, T>::iterator, bool> BitSet<N, T>::insert(const int& value)
     {
         PONCA_ASSERT_MSG(value >= 0 && value < N, "Inserted value is outside the scope of the BitSet");
         const int byte             = value / BIT_SIZE;
@@ -38,7 +52,7 @@ namespace Ponca
         const T bitMask            = (T(1) << bit);
         const bool alreadyInserted = (m_data[byte] & bitMask) == 0;
         m_data[byte] |= bitMask;
-        return alreadyInserted;
+        return std::make_pair(m_data.begin() + byte, alreadyInserted);
     }
 
     template <int N, typename T>

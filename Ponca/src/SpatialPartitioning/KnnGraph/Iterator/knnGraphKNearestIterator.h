@@ -26,17 +26,20 @@ namespace Ponca
      *
      *  \see KnnGraphKNearestQueryBase
      */
-    template <typename Container, typename Index>
+    template <typename ContainerPtr, typename Index>
     class KnnGraphKNearestIterator
     {
     public:
         using iterator_category = std::input_iterator_tag;
         using difference_type   = std::ptrdiff_t;
         using value_type        = Index;
-        using pointer           = Index*;
+        using pointer           = ContainerPtr;
         using reference         = const Index&;
+        using Self              = KnnGraphKNearestIterator<ContainerPtr, Index>;
 
-        PONCA_MULTIARCH KnnGraphKNearestIterator(const Container* data, Index i) : m_data(data), m_i(i) {}
+        PONCA_MULTIARCH KnnGraphKNearestIterator(ContainerPtr data) : m_data(data) {}
+
+        PONCA_MULTIARCH KnnGraphKNearestIterator(ContainerPtr data, Index i) : m_data(data), m_i(i) {}
 
         /// \brief Inequality operand
         PONCA_MULTIARCH bool operator!=(const KnnGraphKNearestIterator& other) const { return m_i != other.m_i; }
@@ -52,12 +55,12 @@ namespace Ponca
         }
 
         /// \brief Dereference operator
-        PONCA_MULTIARCH reference operator*() const { return (*m_data)[m_i]; }
+        PONCA_MULTIARCH reference operator*() const { return m_data[m_i]; }
 
         /// \brief Postfix increment
-        PONCA_MULTIARCH inline KnnGraphKNearestIterator operator++(Index)
+        PONCA_MULTIARCH inline Self operator++(Index)
         {
-            KnnGraphKNearestIterator tmp = *this;
+            Self tmp = *this;
             ++m_i;
             return tmp;
         }
@@ -65,8 +68,11 @@ namespace Ponca
         /// \brief Value increment
         PONCA_MULTIARCH inline void operator+=(const Index i) { m_i += i; }
 
+        /// \brief Plus operator
+        PONCA_MULTIARCH inline Self operator+(const Index i) { return Self(m_data, m_i + i); }
+
     protected:
-        const Container* m_data{nullptr};
+        ContainerPtr m_data;
         Index m_i{0};
     };
 } // namespace Ponca

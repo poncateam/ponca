@@ -128,14 +128,16 @@ void buildAndTestKnnGraph(KdTree& kdtree, const int k, const std::string& name =
     using KnnGraphPointerStatic = StaticKnnGraphBase<KnnGraphPointerTraits<P>>;
     auto knngraphBuffers        = knnGraph.buffers(); // Buffer that use STL-like containers
     // Convert previous KnnGraph to pointers
+    P* pts = new P[points.size()];
+    std::copy(points.begin(), points.end(), pts);
     typename KnnGraphPointerStatic::Buffers knnGraphStaticBuffers{
-        knngraphBuffers.points.data(), knngraphBuffers.indices.data(), knngraphBuffers.points_size,
-        knngraphBuffers.indices_size, k};
+        pts, knngraphBuffers.indices.data(), knngraphBuffers.points_size, knngraphBuffers.indices_size, k};
     KnnGraphPointerStatic knnGraphStatic(knnGraphStaticBuffers);
     timing = testKNearestNeighborsEntirePointSet(knnGraphStatic, points, k); // Index query test
 #ifdef PRINT_TIMING
     cout << "    Compute Time " << name << " (with pointers) index query : " << timing.count() << "ms" << endl;
 #endif
+    delete[] pts;
 }
 
 template <typename Scalar, int Dim>

@@ -9,6 +9,7 @@
 
 #include "../defines.h"
 #include <cstddef>
+#include <utility>
 #include "./iteratorUtils.h"
 #include "../../Common/Assert.h"
 
@@ -42,6 +43,13 @@ namespace Ponca
     {
         static_assert(N > 0, "The capacity must be strictly positive");
 
+    private:
+        static constexpr size_t BIT_SIZE   = sizeof(T) * 8; //! The number of bits in one element of the array
+        static constexpr size_t ARRAY_SIZE = (N + BIT_SIZE - 1) / BIT_SIZE; //!< The array size
+    public:
+        using container_type = std::array<T, N>;
+        using iterator       = typename container_type::iterator;
+
     public:
         PONCA_MULTIARCH BitSet() = default;
 
@@ -62,10 +70,15 @@ namespace Ponca
          *
          * \param value The value to be inserted in the HashSet. Must always be smaller than N, because we are using the
          * values as indices inside the BitSet.
-         * \return True if the value was inserted successfully, and false if the value was already inserted or if the
-         * HashSet is full
+         * \return An std::pair of
+         * - First : Pointer to the inserted value (not usable, see warning below)
+         * - Second : True if the value was inserted successfully, and false if the value wasn't inserted
+         *
+         * \warning The returned pointer cannot be used as several values are packed behind the same pointer location.
+         * This value is included for the sake of compatibility with std::set, but cannot be used directly as
+         * the bitmask is not exported (unreferencing the pointer will not give access to the value).
          */
-        PONCA_MULTIARCH bool insert(int value);
+        PONCA_MULTIARCH std::pair<iterator, bool> insert(const int& value);
 
         /*! \brief Search if the value was already inserted or not
          *
@@ -77,10 +90,12 @@ namespace Ponca
         //! \brief Sets all the bits to EMPTY
         PONCA_MULTIARCH void clear();
 
+        PONCA_MULTIARCH [[nodiscard]] iterator begin();
+
+        PONCA_MULTIARCH [[nodiscard]] iterator end();
+
     protected:
-        static constexpr size_t BIT_SIZE   = sizeof(T) * 8; //! The number of bits in one element of the array
-        static constexpr size_t ARRAY_SIZE = (N + BIT_SIZE - 1) / BIT_SIZE; //!< The array size
-        T m_data[ARRAY_SIZE]               = {};                            //!< An array of bytes
+        container_type m_data = {}; //!< An array of bytes
     };
 } // namespace Ponca
 

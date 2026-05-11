@@ -8,7 +8,6 @@
 
 #include "../../query.h"
 #include "../Iterator/knnGraphRangeIterator.h"
-#include "../../../Common/Containers/stack.h"
 
 namespace Ponca
 {
@@ -20,28 +19,40 @@ namespace Ponca
      * Output result of a `KnnGraph::rangeNeighbors` query request. \see StaticKnnGraphBase
      *
      * Contrary to the `KdTreeRangeQuery` this `RangeIndexQuery` needs to keep track of all the already visited
-     * neighbors using a Set-like Data structure.
+     * neighbors using a Set, and to record the next neighbors to explore during the search using a Stack.
      *
-     * \tparam IndexSet An index set type used to avoid the already visited neighbor in our search algorithm. This
-     * structure is required by the `KnnGraphRangeQuery::advance` method.
+     * `Traits::KnnGraphRangeSet` A set of indices that is used to avoid the already visited neighbor in our search
+     * algorithm. Can either be :
      *
-     * For the `IndexSet`, Ponca provides two possible choices :
+     * - `Traits::KnnGraphRangeSet = std::set<int>` for dynamic memory, which is not compatible with CUDA. (Used by
+     * `KnnGraphDefaultTraits`)
      *
-     * - (Default) `HashSet<Traits::MAX_RANGE_NEIGHBORS_SIZE>` : Stores the index in a HashMap-like structure.
+     * -`Traits::KnnGraphRangeSet = HashSet<K_MAX_NN>` : Stores the index in a HashMap-like structure.
      * The Best case complexity for insertion and search is O(1) and worst case is O(N), depending on the given dataset
-     * and on the chosen hashing function (Sparser hashing results will lead to a reduce look-up time).
+     * and on the chosen hashing function (Sparser hashing results will lead to a reduce look-up time). (Used by
+     * `KnnGraphPointerTraits`)
      * \see HashSet
      *
-     * - `BitSet<MAX_POINT_CLOUD_SIZE>` : Stores the index in a set of bits by allocating a single bit to each possible
-     * indices. This structure provides better search and insert complexity at the cost of more memory use (trivial
-     * insertion and search, with O(1) complexity). Since we need to allocate a single memory bit for each possible
-     * indices, to indicate if the index was stored or not, the memory use of this BitSet type is dependant of the total
-     * size of the point cloud.
+     * - `Traits::KnnGraphRangeSet = BitSet<MAX_POINT_CLOUD_SIZE>` : Stores the index in a set of bits by allocating a
+     * single bit to each possible indices.
+     * This structure provides better search and insert complexity at the cost of more memory use (trivial insertion
+     * and search, with O(1) complexity). Since we need to allocate a single memory bit for each possible indices, to
+     * indicate if the index was stored or not, the memory use of this BitSet type is dependant of the total size of
+     * the point cloud.
      * Extensively big point clouds can therefore provoke memory allocation problems if we have a memory limit (e.g. if
      * we are instantiating the `KnnGraphRangeQuery` inside local memory, in a CUDA kernel).
      * \see BitSet for more detailed information about the memory usage.
+     *
+     * `Traits::KnnGraphRangeStack` The stack type storing the next neighbor to visit. Can either be :
+     *
+     * - `Traits::KnnGraphRangeStack = std::set<int>` A stack that dynamically allocates memory (Used by
+     * `KnnGraphDefaultTraits`)
+     *
+     * - `Traits::KnnGraphRangeStack = Stack<int, K_MAX_NN>` : Has a limited amount of storage. Will throw out of bound
+     * exception in debug mode if elements are inserted above the maximum capacity of the stack. (Used by
+     * `KnnGraphPointerTraits`)
      */
-    template <typename Traits, typename IndexSet>
+    template <typename Traits>
     class KnnGraphRangeQuery : public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
     {
     protected:
@@ -107,14 +118,11 @@ namespace Ponca
             const auto& points = m_graph->points();
             const auto& point  = points[QueryType::input()].pos();
 
-            if (!(iterator != end()))
+            if (iterator == end())
                 return;
 
-            if (m_stack.empty())
-            {
-                iterator = end();
-            }
-            else
+            // Search the next neighbor in range
+            while (!m_stack.empty())
             {
                 int idx_current = m_stack.top();
                 m_stack.pop();
@@ -126,24 +134,36 @@ namespace Ponca
                 for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
                 {
                     PONCA_DEBUG_ASSERT(idx_nei >= 0);
+                    // Add into the search stack only if :
+                    // A - The point is within range
                     Scalar d  = (point - points[idx_nei].pos()).squaredNorm();
                     Scalar th = QueryType::descentDistanceThreshold();
+                    if (d >= th)
+                        continue;
 
-                    if ((point - points[idx_nei].pos()).squaredNorm() < QueryType::descentDistanceThreshold() &&
-                        m_flag.insert(idx_nei))
+                    // B - The point is not already visited
+                    auto [iteratorToInsertedValue, wasInserted] = m_flag.insert(idx_nei);
+                    if (!wasInserted)
                     {
-                        m_stack.push(idx_nei);
+                        // Check that the Set isn't full (in case if it's a limited capacity set)
+                        PONCA_ASSERT(iteratorToInsertedValue != m_flag.end());
+                        continue;
                     }
+
+                    m_stack.push(idx_nei);
                 }
-                if (iterator.m_index == QueryType::input())
-                    advance(iterator); // query is not included in returned set
+
+                // Query is not included in returned set
+                if (iterator.m_index != QueryType::input())
+                    return; // Next neighbor was found
             }
+            iterator = end(); // If no neighbor was found, we've reached the end
         }
 
     protected:
         const StaticKnnGraphBase<Traits>* m_graph{nullptr};
-        IndexSet m_flag;                                      ///< Stores every visited neighbor ids
-        Stack<int, Traits::MAX_RANGE_NEIGHBORS_SIZE> m_stack; ///< Holds the next ids the Query should visit
+        typename Traits::KnnGraphRangeSet m_flag;    ///< Stores every visited neighbor ids
+        typename Traits::KnnGraphRangeStack m_stack; ///< Holds the next ids the Query should visit
     };
 
 } // namespace Ponca
