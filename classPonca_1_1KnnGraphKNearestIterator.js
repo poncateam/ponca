@@ -1,9 +1,10 @@
 var classPonca_1_1KnnGraphKNearestIterator =
 [
-    [ "operator!=", "classPonca_1_1KnnGraphKNearestIterator.html#a37729f18aab576b9d910f30ac105f66c", null ],
-    [ "operator*", "classPonca_1_1KnnGraphKNearestIterator.html#a19a4fe8bfadedc4d2aaabd8e84247032", null ],
-    [ "operator++", "classPonca_1_1KnnGraphKNearestIterator.html#a1799eb0c4dc338222a6154483db9cf27", null ],
-    [ "operator++", "classPonca_1_1KnnGraphKNearestIterator.html#aaa7095f9e8436e1d6781d2cefaef0423", null ],
-    [ "operator+=", "classPonca_1_1KnnGraphKNearestIterator.html#af77fa29102422d71dec981cf723fa691", null ],
-    [ "operator==", "classPonca_1_1KnnGraphKNearestIterator.html#a0197df536780038c5aebe4964037d0e6", null ]
+    [ "operator!=", "classPonca_1_1KnnGraphKNearestIterator.html#a9be6c5129846228d776650e8bcaa086f", null ],
+    [ "operator*", "classPonca_1_1KnnGraphKNearestIterator.html#a78f68b41ecd810aa0a8b1e7208754be0", null ],
+    [ "operator+", "classPonca_1_1KnnGraphKNearestIterator.html#a342c3eec35aa8dd73f81e2d82702ba50", null ],
+    [ "operator++", "classPonca_1_1KnnGraphKNearestIterator.html#a2bc122479a9884a6244095ef8307fce4", null ],
+    [ "operator++", "classPonca_1_1KnnGraphKNearestIterator.html#a5996912ca986db5be3394d01246cfa7b", null ],
+    [ "operator+=", "classPonca_1_1KnnGraphKNearestIterator.html#a1863639e8c9d822e6f92add9f47ba8b5", null ],
+    [ "operator==", "classPonca_1_1KnnGraphKNearestIterator.html#aa6085a6fed8db951c18dc0f8b58ec6b0", null ]
 ];

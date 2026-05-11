@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">526eceec4ff6f8c48b01e3fe17f9fcb43c14afad</span>
+   &#160;<span id="projectnumber">7df32c91629c89b89840c4d7917cb272433f2d2b</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -151,15 +151,16 @@ Source code</h1>
 <div class="line"> </div>
 <div class="line">#include &quot;cuda_utils.cu&quot;</div>
 <div class="line"> </div>
-<div class="line">/*! \brief Test a MeanPlaneFit on a plane using the CUDA kernel</div>
+<div class="line">/*! \brief Use the KdTree to do a MeanPlaneFit over a plane with the CUDA kernel</div>
 <div class="line"> *</div>
 <div class="line"> * \tparam Scalar The scalar type (e.g. double, float or long double...)</div>
 <div class="line"> * \tparam Dim The number of dimension that the VectorType will have.</div>
+<div class="line"> * \tparam KdTreeFunctor The Functor making the KdTree Query in the kernel (must take DataPoint as a template param)</div>
 <div class="line"> * \param _bUnoriented Generates an unoriented point cloud.</div>
 <div class="line"> * \param _bAddPositionNoise Determines if we add a randomly generated offset to the position.</div>
 <div class="line"> * \param _bAddNormalNoise Determines if we add a randomly generated offset to the normal.</div>
 <div class="line"> */</div>
-<div class="line">template &lt;typename Scalar, int Dim&gt;</div>
+<div class="line">template &lt;typename Scalar, int Dim, template &lt;typename&gt; typename KdTreeFunctor&gt;</div>
 <div class="line">__host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPositionNoise = false,</div>
 <div class="line">                            const bool _bAddNormalNoise = false)</div>
 <div class="line">{</div>
@@ -217,7 +218,7 @@ Source code</h1>
 <div class="line">    const unsigned int gridSize      = (nbPoints + blockSize - 1) / blockSize;</div>
 <div class="line"> </div>
 <div class="line">    // Compute the fitting in the kernel</div>
-<div class="line">    fitPotentialAndGradientKernel&lt;KdTreeGPU&lt;DataPoint&gt;, MeanFitSmooth, KdTreeRangeNeighborsFunctor&lt;DataPoint&gt;&gt;</div>
+<div class="line">    spatialPartitioningFitPotentialAndGradientKernel&lt;KdTreeGPU&lt;DataPoint&gt;, MeanFitSmooth, KdTreeFunctor&lt;DataPoint&gt;&gt;</div>
 <div class="line">        &lt;&lt;&lt;gridSize, blockSize&gt;&gt;&gt;(kdtreeBuffersDevice, analysisScale,           // Inputs</div>
 <div class="line">                                  potentialResultsDevice, gradientResultsDevice // Outputs</div>
 <div class="line">        );</div>
@@ -259,8 +260,10 @@ Source code</h1>
 <div class="line">__host__ int main(const int /*argc*/, char** /*argv*/)</div>
 <div class="line">{</div>
 <div class="line">    std::cout &lt;&lt; &quot;Example plane fitting using KdTree on CUDA...&quot; &lt;&lt; std::endl;</div>
-<div class="line">    testPlaneCuda&lt;float, 3&gt;();</div>
-<div class="line">    std::cout &lt;&lt; &quot;(ok)&quot; &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; &quot;Using k-nearest neighbors query :&quot; &lt;&lt; std::endl;</div>
+<div class="line">    testPlaneCuda&lt;float, 3, KdTreeKNearestNeighborsFunctor&gt;();</div>
+<div class="line">    std::cout &lt;&lt; &quot;Using range neighbors query :&quot; &lt;&lt; std::endl;</div>
+<div class="line">    testPlaneCuda&lt;float, 3, KdTreeRangeNeighborsFunctor&gt;();</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
@@ -269,7 +272,7 @@ Source code</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Mon May 11 2026 13:53:25 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon May 11 2026 18:49:05 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

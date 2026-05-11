@@ -189,9 +189,9 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classPonca_1_1GLSDer.html#a9da016ce90ec70c9c3ed6c09e83e055b",
-"classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a5e676f5d7395a1c496a903d0d1da0208",
-"classPonca_1_1StaticKdTreeBase.html#af31160bafac28e57d970fcba57a79692",
-"ponca_changelog.html#ponca_changelog_sec"
+"classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a07860bb980bc95706f31fe15a25f42a0",
+"classPonca_1_1StaticKdTreeBase.html#abcc85cc97d1bf9dcc775cb0e6cc2c13d",
+"index.html#ponca_credits_subsection_crew"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

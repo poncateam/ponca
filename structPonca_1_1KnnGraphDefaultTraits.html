@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">526eceec4ff6f8c48b01e3fe17f9fcb43c14afad</span>
+   &#160;<span id="projectnumber">7df32c91629c89b89840c4d7917cb272433f2d2b</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -118,6 +118,7 @@ $(document).ready(function(){initNavTree('structPonca_1_1KnnGraphDefaultTraits.h
 <div class="header">
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="structPonca_1_1KnnGraphDefaultTraits-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Ponca::KnnGraphDefaultTraits&lt; _DataPoint &gt; Struct Template Reference</div></div>
 </div><!--header-->
@@ -132,14 +133,11 @@ $(document).ready(function(){initNavTree('structPonca_1_1KnnGraphDefaultTraits.h
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1KnnGraphDefaultTraits__coll__graph.svg" width="219" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="structPonca_1_1KnnGraphDefaultTraits__coll__graph.svg" width="219" height="111"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:af741bffd024c2d71091b764a043aacc7" id="r_af741bffd024c2d71091b764a043aacc7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#af741bffd024c2d71091b764a043aacc7a59f82b4aeb0f241f9de512b9aa74ac4e">MAX_RANGE_NEIGHBORS_SIZE</a> = 128
- }</td></tr>
-<tr class="separator:af741bffd024c2d71091b764a043aacc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accc525a889c5c101a2fdb695cb285ace" id="r_accc525a889c5c101a2fdb695cb285ace"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">DataPoint</a> = <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a></td></tr>
 <tr class="memdesc:accc525a889c5c101a2fdb695cb285ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type used to store point data.  <br /></td></tr>
 <tr class="separator:accc525a889c5c101a2fdb695cb285ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,16 +146,36 @@ Public Types</h2></td></tr>
 <tr class="separator:afbd815b8b1de95ffedf2e89a53766dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae11cac2410696e27ddaa67f687430605" id="r_ae11cac2410696e27ddaa67f687430605"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#ae11cac2410696e27ddaa67f687430605">IndexType</a> = <a class="el" href="classPonca_1_1Basket.html">int</a></td></tr>
 <tr class="separator:ae11cac2410696e27ddaa67f687430605"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae79700f2398a03243445284aff98e57" id="r_aae79700f2398a03243445284aff98e57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#aae79700f2398a03243445284aff98e57">PointContainer</a> = std::vector&lt; <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">DataPoint</a> &gt;</td></tr>
-<tr class="separator:aae79700f2398a03243445284aff98e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d275a9da1c8e86e02b449b0691d8d6d" id="r_a3d275a9da1c8e86e02b449b0691d8d6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a3d275a9da1c8e86e02b449b0691d8d6d">PointContainer</a> = <a class="el" href="classPonca_1_1Basket.html">const</a> std::vector&lt; <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">DataPoint</a> &gt; &amp;</td></tr>
+<tr class="memdesc:a3d275a9da1c8e86e02b449b0691d8d6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to store the external Point container in the KnnGraph::Buffer.  <br /></td></tr>
+<tr class="separator:a3d275a9da1c8e86e02b449b0691d8d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a696fa3f024c7016d2ea5cf0ac928b1aa" id="r_a696fa3f024c7016d2ea5cf0ac928b1aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a696fa3f024c7016d2ea5cf0ac928b1aa">IndexContainer</a> = std::vector&lt; <a class="el" href="classPonca_1_1Basket.html">IndexType</a> &gt;</td></tr>
+<tr class="memdesc:a696fa3f024c7016d2ea5cf0ac928b1aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used to store the index container in the KnnGraph::Buffer.  <br /></td></tr>
 <tr class="separator:a696fa3f024c7016d2ea5cf0ac928b1aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1af17d56cc6f707e60a21479d427de" id="r_ade1af17d56cc6f707e60a21479d427de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#ade1af17d56cc6f707e60a21479d427de">IndexContainerRef</a> = <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a696fa3f024c7016d2ea5cf0ac928b1aa">IndexContainer</a> &amp;</td></tr>
+<tr class="memdesc:ade1af17d56cc6f707e60a21479d427de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type to be used to send the index container as function parameter.  <br /></td></tr>
+<tr class="separator:ade1af17d56cc6f707e60a21479d427de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac273516443730e03ef6f838c8b4e7668" id="r_ac273516443730e03ef6f838c8b4e7668"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#ac273516443730e03ef6f838c8b4e7668">KnnGraphRangeSet</a> = std::set&lt; <a class="el" href="classPonca_1_1Basket.html">int</a> &gt;</td></tr>
+<tr class="memdesc:ac273516443730e03ef6f838c8b4e7668"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Set dynamic in memory, used by <a class="el" href="classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">KnnGraphRangeQuery</a>.  <br /></td></tr>
+<tr class="separator:ac273516443730e03ef6f838c8b4e7668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad42c61a99347955b455eb040e7b2e9b2" id="r_ad42c61a99347955b455eb040e7b2e9b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#ad42c61a99347955b455eb040e7b2e9b2">KnnGraphRangeStack</a> = std::stack&lt; <a class="el" href="classPonca_1_1Basket.html">int</a> &gt;</td></tr>
+<tr class="memdesc:ad42c61a99347955b455eb040e7b2e9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> dynamic in memory, used by <a class="el" href="classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">KnnGraphRangeQuery</a>.  <br /></td></tr>
+<tr class="separator:ad42c61a99347955b455eb040e7b2e9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a06942d3e8a6cfae31671d6a403ee2c00" id="r_a06942d3e8a6cfae31671d6a403ee2c00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">static</a> <a class="el" href="classPonca_1_1Basket.html">IndexType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a06942d3e8a6cfae31671d6a403ee2c00">getIndexRawPtr</a> (<a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a696fa3f024c7016d2ea5cf0ac928b1aa">IndexContainer</a> &amp;<a class="el" href="classPonca_1_1Basket.html">idx</a>)</td></tr>
+<tr class="memdesc:a06942d3e8a6cfae31671d6a403ee2c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides access to the raw pointer where indices are stored.  <br /></td></tr>
+<tr class="separator:a06942d3e8a6cfae31671d6a403ee2c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4131448c3c6a0b3c76ada83427b43f8" id="r_ac4131448c3c6a0b3c76ada83427b43f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">static</a> <a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="classPonca_1_1Basket.html">IndexType</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#ac4131448c3c6a0b3c76ada83427b43f8">getIndexRawPtr</a> (<a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a696fa3f024c7016d2ea5cf0ac928b1aa">IndexContainer</a> &amp;<a class="el" href="classPonca_1_1Basket.html">idx</a>)</td></tr>
+<tr class="memdesc:ac4131448c3c6a0b3c76ada83427b43f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides access to the raw pointer where indices are stored.  <br /></td></tr>
+<tr class="separator:ac4131448c3c6a0b3c76ada83427b43f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a>&gt;<br />
 struct Ponca::KnnGraphDefaultTraits&lt; _DataPoint &gt;</div><p>The default traits type used by the kd-tree. </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00018">18</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00023">23</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="afbd815b8b1de95ffedf2e89a53766dfa" name="afbd815b8b1de95ffedf2e89a53766dfa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afbd815b8b1de95ffedf2e89a53766dfa">&#9670;&#160;</a></span>AabbType</h2>
@@ -176,7 +194,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <p>The type used to calculate node bounding boxes. </p>
 <p>Must provide <code>min()</code>, <code>max()</code>, and <code>center()</code> functions, all returning a <code>VectorType</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00045">45</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00046">46</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -198,7 +216,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <p>Must provide <code>Scalar</code> and <code>VectorType</code> aliases.</p>
 <p><code>VectorType</code> must provide a <code>squaredNorm()</code> function returning a <code>Scalar</code>, as well as a <code>maxCoeff(int*)</code> function returning the dimension index of its largest scalar in its output parameter (e.g. 0 for <em>x</em>, 1 for <em>y</em>, etc.). </p>
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00033">33</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00034">34</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -216,7 +234,29 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00050">50</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p>Type used to store the index container in the KnnGraph::Buffer. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00053">53</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+
+</div>
+</div>
+<a id="ade1af17d56cc6f707e60a21479d427de" name="ade1af17d56cc6f707e60a21479d427de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade1af17d56cc6f707e60a21479d427de">&#9670;&#160;</a></span>IndexContainerRef</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">using</a> <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">Ponca::KnnGraphDefaultTraits</a>&lt; <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt;::IndexContainerRef =  <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a696fa3f024c7016d2ea5cf0ac928b1aa">IndexContainer</a>&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type to be used to send the index container as function parameter. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00055">55</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -234,31 +274,12 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00048">48</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
-
-</div>
-</div>
-<a id="aae79700f2398a03243445284aff98e57" name="aae79700f2398a03243445284aff98e57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae79700f2398a03243445284aff98e57">&#9670;&#160;</a></span>PointContainer</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">using</a> <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">Ponca::KnnGraphDefaultTraits</a>&lt; <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt;::PointContainer =  std::vector&lt;<a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">DataPoint</a>&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
 <p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00049">49</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="af741bffd024c2d71091b764a043aacc7" name="af741bffd024c2d71091b764a043aacc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af741bffd024c2d71091b764a043aacc7">&#9670;&#160;</a></span>anonymous enum</h2>
+<a id="ac273516443730e03ef6f838c8b4e7668" name="ac273516443730e03ef6f838c8b4e7668"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac273516443730e03ef6f838c8b4e7668">&#9670;&#160;</a></span>KnnGraphRangeSet</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -266,16 +287,121 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">anonymous</a> <a class="el" href="classPonca_1_1Basket.html">enum</a></td>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">using</a> <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">Ponca::KnnGraphDefaultTraits</a>&lt; <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt;::KnnGraphRangeSet =  std::set&lt;<a class="el" href="classPonca_1_1Basket.html">int</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af741bffd024c2d71091b764a043aacc7a59f82b4aeb0f241f9de512b9aa74ac4e" name="af741bffd024c2d71091b764a043aacc7a59f82b4aeb0f241f9de512b9aa74ac4e"></a>MAX_RANGE_NEIGHBORS_SIZE&#160;</td><td class="fielddoc"><p>The maximum number of neighbors in a range neighbors query. </p>
-</td></tr>
-</table>
 
-<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00020">20</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+<p>A Set dynamic in memory, used by <a class="el" href="classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">KnnGraphRangeQuery</a>. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not compatible with CUDA </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00060">60</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+
+</div>
+</div>
+<a id="ad42c61a99347955b455eb040e7b2e9b2" name="ad42c61a99347955b455eb040e7b2e9b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad42c61a99347955b455eb040e7b2e9b2">&#9670;&#160;</a></span>KnnGraphRangeStack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">using</a> <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">Ponca::KnnGraphDefaultTraits</a>&lt; <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt;::KnnGraphRangeStack =  std::stack&lt;<a class="el" href="classPonca_1_1Basket.html">int</a>&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A <a class="el" href="classPonca_1_1Stack.html" title="Stack with fixed-size storage.">Stack</a> dynamic in memory, used by <a class="el" href="classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap...">KnnGraphRangeQuery</a>. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Not compatible with CUDA </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00064">64</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+
+</div>
+</div>
+<a id="a3d275a9da1c8e86e02b449b0691d8d6d" name="a3d275a9da1c8e86e02b449b0691d8d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d275a9da1c8e86e02b449b0691d8d6d">&#9670;&#160;</a></span>PointContainer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">using</a> <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">Ponca::KnnGraphDefaultTraits</a>&lt; <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt;::PointContainer =  <a class="el" href="classPonca_1_1Basket.html">const</a> std::vector&lt;<a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#accc525a889c5c101a2fdb695cb285ace">DataPoint</a>&gt;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Type used to store the external Point container in the KnnGraph::Buffer. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00051">51</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac4131448c3c6a0b3c76ada83427b43f8" name="ac4131448c3c6a0b3c76ada83427b43f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4131448c3c6a0b3c76ada83427b43f8">&#9670;&#160;</a></span>getIndexRawPtr() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">static</a> <a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="classPonca_1_1Basket.html">IndexType</a> * <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">Ponca::KnnGraphDefaultTraits</a>&lt; <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt;::getIndexRawPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a696fa3f024c7016d2ea5cf0ac928b1aa">IndexContainer</a> &amp;&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Provides access to the raw pointer where indices are stored. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00069">69</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
+
+</div>
+</div>
+<a id="a06942d3e8a6cfae31671d6a403ee2c00" name="a06942d3e8a6cfae31671d6a403ee2c00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06942d3e8a6cfae31671d6a403ee2c00">&#9670;&#160;</a></span>getIndexRawPtr() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">static</a> <a class="el" href="classPonca_1_1Basket.html">IndexType</a> * <a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">Ponca::KnnGraphDefaultTraits</a>&lt; <a class="el" href="classPonca_1_1Basket.html">_DataPoint</a> &gt;::getIndexRawPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html#a696fa3f024c7016d2ea5cf0ac928b1aa">IndexContainer</a> &amp;&#160;</td>
+          <td class="paramname"><em>idx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Provides access to the raw pointer where indices are stored. </p>
+
+<p class="definition">Definition at line <a class="el" href="knnGraphTraits_8h_source.html#l00067">67</a> of file <a class="el" href="knnGraphTraits_8h_source.html">knnGraphTraits.h</a>.</p>
 
 </div>
 </div>
@@ -285,7 +411,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="structPonca_1_1KnnGraphDefaultTraits.html">KnnGraphDefaultTraits</a></li>
-    <li class="footer">Generated on Mon May 11 2026 13:53:25 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Mon May 11 2026 18:49:06 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -1,14 +1,11 @@
 <map id="Ponca::Query&lt; Input_, Output_ &gt;" name="Ponca::Query&lt; Input_, Output_ &gt;">
-<area shape="rect" id="Node000001" title="Composes the Query object depending on an input type and output type." alt="" coords="162,120,310,260"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1KnnGraphRangeQuery.html" title=" " alt="" coords="5,612,211,852"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="154,255,132,281,114,310,101,347,91,385,81,464,81,541,88,611,82,612,76,541,76,463,86,384,96,345,110,308,127,278,150,251"/>
-<area shape="rect" id="Node000005" href="$classPonca_1_1KnnGraphKNearestQuery.html" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kn..." alt="" coords="124,359,348,499"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="239,274,239,359,233,359,233,274"/>
-<area shape="rect" id="Node000006" href="$classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap..." alt="" coords="372,309,577,549"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="321,268,362,307,374,319,370,323,358,311,317,271"/>
+<area shape="rect" id="Node000001" title="Composes the Query object depending on an input type and output type." alt="" coords="162,119,310,259"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1KnnGraphKNearestQuery.html" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kn..." alt="" coords="5,357,229,497"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="198,272,154,358,150,355,193,270"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap..." alt="" coords="253,307,459,547"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="279,269,298,305,293,308,275,272"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="167,5,222,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,83,219,119,214,120,204,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,83,219,118,214,119,205,85"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="246,5,311,71"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,85,258,120,253,119,263,83"/>
-<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="363,550,362,551,287,611,213,665,210,661,284,607,358,547,360,546"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,85,258,119,253,117,263,83"/>
 </map>

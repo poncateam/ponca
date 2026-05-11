@@ -5,7 +5,7 @@ var searchData=
   ['inner_5fsplit_5fdim_2',['inner_split_dim',['../classPonca_1_1KdTreeCustomizableNode.html#aaa958a4e327cc397f0adab45d0291c3d',1,'Ponca::KdTreeCustomizableNode']]],
   ['inner_5fsplit_5fvalue_3',['inner_split_value',['../classPonca_1_1KdTreeCustomizableNode.html#a0543531368e892ba9509fd747d7533be',1,'Ponca::KdTreeCustomizableNode']]],
   ['input_4',['input',['../group__spatialpartitioning.html#ae8daacbf35275acfe22e2a66685bbb6b',1,'Ponca::QueryInput']]],
-  ['insert_5',['insert',['../classPonca_1_1HashSet.html#a86e91818e80679bff0eb0df2b2ab4de0',1,'Ponca::HashSet::insert()'],['../classPonca_1_1BitSet.html#a13c93654c52fad76b901756f67614120',1,'Ponca::BitSet::insert()']]],
+  ['insert_5',['insert',['../classPonca_1_1HashSet.html#a3892363ec3b2da051c60bfd36af26070',1,'Ponca::HashSet::insert()'],['../classPonca_1_1BitSet.html#a167fbf02347a6d61689ddf1c328cca52',1,'Ponca::BitSet::insert()']]],
   ['interiorangles_6',['interiorAngles',['../structPonca_1_1internal_1_1CNCEigen_1_1SphericalTriangle.html#af77db362ef78e1eaa76f51556bcc7025',1,'Ponca::internal::CNCEigen::SphericalTriangle']]],
   ['isapprox_7',['isapprox',['../classPonca_1_1AlgebraicSphere.html#ad13fd165f26211b37d98a1f60b5e755d',1,'Ponca::AlgebraicSphere::isApprox()'],['../classPonca_1_1CNC.html#a327df749ca781c50da22a20ddc4eb24c',1,'Ponca::CNC::isApprox()']]],
   ['isdegenerate_8',['isDegenerate',['../structPonca_1_1internal_1_1CNCEigen_1_1SphericalTriangle.html#aef4b0fddfe6686a97c9c8d86ec77908a',1,'Ponca::internal::CNCEigen::SphericalTriangle']]],

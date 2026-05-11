@@ -29,6 +29,5 @@ var searchData=
   ['knngraphknearestquery_26',['KnnGraphKNearestQuery',['../classPonca_1_1KnnGraphKNearestQuery.html',1,'Ponca']]],
   ['knngraphpointertraits_27',['KnnGraphPointerTraits',['../structPonca_1_1KnnGraphPointerTraits.html',1,'Ponca']]],
   ['knngraphrangeiterator_28',['KnnGraphRangeIterator',['../classPonca_1_1KnnGraphRangeIterator.html',1,'Ponca']]],
-  ['knngraphrangequery_29',['KnnGraphRangeQuery',['../classPonca_1_1KnnGraphRangeQuery.html',1,'Ponca']]],
-  ['knngraphrangequery_3c_20traits_20_3e_30',['KnnGraphRangeQuery&lt; Traits &gt;',['../classPonca_1_1KnnGraphRangeQuery.html',1,'Ponca']]]
+  ['knngraphrangequery_29',['KnnGraphRangeQuery',['../classPonca_1_1KnnGraphRangeQuery.html',1,'Ponca']]]
 ];

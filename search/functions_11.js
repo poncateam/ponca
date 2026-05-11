@@ -1,11 +1,11 @@
 var searchData=
 [
   ['samplecount_0',['samplecount',['../classPonca_1_1StaticKnnGraphBase.html#a5c72f0ba2db31b0a6178a1d1c05abf54',1,'Ponca::StaticKnnGraphBase::sampleCount()'],['../classPonca_1_1StaticKdTreeBase.html#aea2983cd1331b13fda17b37b16f9c9c1',1,'Ponca::StaticKdTreeBase::sampleCount()']]],
-  ['samples_1',['samples',['../classPonca_1_1StaticKnnGraphBase.html#ae10d40c473b0d0fd5f71c8f459a7c85b',1,'Ponca::StaticKnnGraphBase::samples()'],['../classPonca_1_1StaticKdTreeBase.html#a2ac29b44c8dbcb174a9d70f7b7a9b74a',1,'Ponca::StaticKdTreeBase::samples()']]],
+  ['samples_1',['samples',['../classPonca_1_1StaticKnnGraphBase.html#a2e6cc89b52dd7a0271fba261e980bd71',1,'Ponca::StaticKnnGraphBase::samples()'],['../classPonca_1_1StaticKdTreeBase.html#a2ac29b44c8dbcb174a9d70f7b7a9b74a',1,'Ponca::StaticKdTreeBase::samples()']]],
   ['scaled2w_2',['scaled2w',['../classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d',1,'Ponca::DistWeightFunc::scaled2w()'],['../classPonca_1_1internal_1_1NoWeightFuncBase.html#a7caaa6fdcf64b24183dfef3e4e1d823b',1,'Ponca::internal::NoWeightFuncBase::scaled2w()']]],
   ['scaledw_3',['scaledw',['../classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5',1,'Ponca::DistWeightFunc::scaledw()'],['../classPonca_1_1internal_1_1NoWeightFuncBase.html#a853ede0669f5087c689998f16faac090',1,'Ponca::internal::NoWeightFuncBase::scaledw()']]],
   ['scalespaced2w_4',['scalespaced2w',['../classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110',1,'Ponca::DistWeightFunc::scaleSpaced2w()'],['../classPonca_1_1internal_1_1NoWeightFuncBase.html#a402adbbc90e9842b6fceae56bb1df799',1,'Ponca::internal::NoWeightFuncBase::scaleSpaced2w()']]],
-  ['search_5',['search',['../classPonca_1_1HashSet.html#a9dc819c976d24f4cb1ecd6e8ba245c35',1,'Ponca::HashSet']]],
+  ['search_5',['search',['../classPonca_1_1HashSet.html#ad515a1e8c4004cda9b65a6dcecfd2dde',1,'Ponca::HashSet']]],
   ['searchinternal_6',['searchInternal',['../classPonca_1_1KdTreeQuery.html#a7921819468c7f2a16d5ac5ff85b1d93d',1,'Ponca::KdTreeQuery']]],
   ['secondfundamentalform_7',['secondfundamentalform',['../classPonca_1_1FundamentalFormWeingartenEstimator.html#a5f2e39fff4dcb81528d9abb44b896f84',1,'Ponca::FundamentalFormWeingartenEstimator::secondFundamentalForm() const'],['../classPonca_1_1FundamentalFormWeingartenEstimator.html#a6f7e0fe081183b5385bb43231fe971e1',1,'Ponca::FundamentalFormWeingartenEstimator::secondFundamentalForm(Matrix2Derived &amp;second) const']]],
   ['setcurvaturevalues_8',['setCurvatureValues',['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a39ce0fe4a9e0d6136cd9152240bf0e46',1,'Ponca::internal::CurvatureEstimatorBase']]],
