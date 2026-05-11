@@ -8,7 +8,6 @@
 
 #include <Eigen/Geometry>
 #include <stack>
-#include <vector>
 #include <set>
 
 #include "../../Common/Containers/hashset.h"
@@ -63,10 +62,6 @@ namespace Ponca
          *  \warning Not compatible with CUDA
          */
         using KnnGraphRangeStack = std::stack<int>;
-        /*! \brief The const iterator to iterate over the RangeNeighbor query
-         *  \warning Not compatible with CUDA
-         */
-        using KnnGraphRangeIterator = std::vector<IndexType>::const_iterator;
 
         /// \brief Provides access to the raw pointer where indices are stored
         PONCA_MULTIARCH static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx.data(); }
@@ -121,8 +116,6 @@ namespace Ponca
         using KnnGraphRangeSet = HashSet<K_MAX_NN>;
         //! \brief A static Stack used by KnnGraphRangeQuery
         using KnnGraphRangeStack = Stack<int, K_MAX_NN>;
-        //! \brief The const iterator to iterate over the RangeNeighbor query
-        using KnnGraphRangeIterator = typename std::array<const IndexType, K_MAX_NN>::const_iterator;
 
         /// \brief Provides access to the raw pointer where indices are stored
         PONCA_MULTIARCH static IndexType* getIndexRawPtr(IndexContainer& idx) { return idx; }

@@ -7,7 +7,7 @@
 #pragma once
 
 #include "../../query.h"
-#include <array>
+#include "Ponca/src/SpatialPartitioning/KnnGraph/Iterator/knnGraphKNearestIterator.h"
 
 namespace Ponca
 {
@@ -40,7 +40,7 @@ namespace Ponca
 #endif
     {
     public:
-        using Iterator = typename Traits::KnnGraphRangeIterator;
+        using Iterator = KnnGraphKNearestIterator<const typename Traits::IndexType*, typename Traits::IndexType>;
 #ifdef PARSED_WITH_DOXYGEN
         using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
 #else
