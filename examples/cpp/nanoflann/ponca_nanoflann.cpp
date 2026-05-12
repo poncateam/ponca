@@ -51,7 +51,7 @@ using Scalar     = MyPoint::Scalar;
 using VectorType = MyPoint::VectorType;
 
 //! [Define Fit Type]
-using NeighborFilter = DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar>>;
+using NeighborFilter = DistWeightFilter<MyPoint, Ponca::SmoothWeightKernel<Scalar>>;
 using FitType        = Basket<MyPoint, NeighborFilter, Ponca::DryFit>; // build a fitting object that does nothing
 //! [Define Fit Type]
 

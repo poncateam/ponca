@@ -16,13 +16,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/meanPlaneFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/SpatialPartitioning>
-
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;
@@ -141,27 +135,27 @@ void callSubTests()
 {
     using Point = PointPositionNormal<Scalar, Dim>;
 
-    using WeightSmoothFunc        = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
-    using WeightConstantFuncLocal = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
-    using NoWeightFuncGlobal      = NoWeightFuncGlobal<Point>;
-    using NoWeightFunc            = NoWeightFunc<Point>;
+    using WeightSmoothFunc        = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFuncLocal = DistWeightFilter<Point, ConstantWeightKernel<Scalar>>;
+    using NoWeightFilterGlobal    = NoWeightFilterGlobal<Point>;
+    using NoWeightFilter          = NoWeightFilter<Point>;
 
     using CovFitSmooth    = Basket<Point, WeightSmoothFunc, CovariancePlaneFit>;
     using CovFitConstant  = Basket<Point, WeightConstantFuncLocal, CovariancePlaneFit>;
-    using CovFitConstant2 = Basket<Point, NoWeightFunc, CovariancePlaneFit>;
-    // using CovFitConstantGlobal = Basket<Point, NoWeightFuncGlobal, CovariancePlaneFit>;
+    using CovFitConstant2 = Basket<Point, NoWeightFilter, CovariancePlaneFit>;
+    // using CovFitConstantGlobal = Basket<Point, NoWeightFilterGlobal, CovariancePlaneFit>;
 
     using MeanFitSmooth         = Basket<Point, WeightSmoothFunc, MeanPlaneFit>;
     using MeanFitConstant       = Basket<Point, WeightConstantFuncLocal, MeanPlaneFit>;
-    using MeanFitConstant2      = Basket<Point, NoWeightFunc, MeanPlaneFit>;
-    using MeanFitConstantGlobal = Basket<Point, NoWeightFuncGlobal, MeanPlaneFit>;
+    using MeanFitConstant2      = Basket<Point, NoWeightFilter, MeanPlaneFit>;
+    using MeanFitConstantGlobal = Basket<Point, NoWeightFilterGlobal, MeanPlaneFit>;
 
     // test if conflicts are detected
     //! [Conflicting type]
-    using Hybrid1 = Basket<Point, NoWeightFuncGlobal, Plane, MeanNormal, MeanPosition, MeanPlaneFitImpl,
-                           CovarianceFitBase, CovariancePlaneFitImpl>; // test conflict detection in one direction
+    using Hybrid1 = Basket<Point, NoWeightFilterGlobal, Plane, MeanNormal, MeanPosition, MeanPlaneFitImpl,
+                           CovarianceBase, CovariancePlaneFitImpl>; // test conflict detection in one direction
     //! [Conflicting type]
-    using Hybrid2 = Basket<Point, NoWeightFuncGlobal, Plane, MeanPosition, CovarianceFitBase, CovariancePlaneFitImpl,
+    using Hybrid2 = Basket<Point, NoWeightFilterGlobal, Plane, MeanPosition, CovarianceBase, CovariancePlaneFitImpl,
                            MeanNormal, MeanPlaneFitImpl>; // test conflict detection in the second direction
 
     cout << "Testing with perfect plane..." << endl;

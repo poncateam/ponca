@@ -12,18 +12,9 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/cnc.h>
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 #include <algorithm>
-
-#include "Ponca/src/Fitting/curvature.h"
-#include "Ponca/src/Fitting/mlsSphereFitDer.h"
-#include "Ponca/src/Fitting/weightKernel.h"
-#include "Ponca/src/Fitting/weingarten.h"
 
 using namespace std;
 using namespace Ponca;
@@ -194,10 +185,10 @@ void callSubTests()
     using VectorType = typename Point::VectorType;
     //! [SpecializedPointType]
 
-    using SmoothWeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using SmoothWeightFunc = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using FitASODiff =
         BasketDiff<Basket<Point, SmoothWeightFunc, OrientedSphereFit>, FitSpaceDer, OrientedSphereDer, MlsSphereFitDer,
-                   CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
 
     //! [CNCFitType]
     using FitCNCIndependent = CNC<Point, IndependentGeneration>;

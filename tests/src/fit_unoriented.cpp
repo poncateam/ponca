@@ -12,14 +12,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Fitting/curvature.h>
-#include <Ponca/src/Fitting/weingarten.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;
@@ -130,14 +123,14 @@ void callSubTests()
 {
     using Point = PointPositionNormal<Scalar, Dim>;
 
-    typedef DistWeightFunc<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
-    typedef DistWeightFunc<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
+    typedef DistWeightFilter<Point, SmoothWeightKernel<Scalar>> WeightSmoothFunc;
+    typedef DistWeightFilter<Point, ConstantWeightKernel<Scalar>> WeightConstantFunc;
 
     typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
     typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
 
-    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, CurvatureEstimatorDer,
-                       NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>
+    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, NormalDerivativeWeingartenEstimator,
+                       WeingartenCurvatureEstimatorDer>
         FitSmoothUnorientedDiff;
 
     cout << "Testing with perfect sphere (unoriented)..." << endl;

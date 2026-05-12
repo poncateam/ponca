@@ -17,37 +17,39 @@
 #include <Eigen/Core>
 #include <Ponca/Fitting>
 
-
 //! [mypoint]
 class MyPoint
 {
 public:
-    enum {Dim = 3};
+    enum
+    {
+        Dim = 3
+    };
     using Scalar           = float;
     using VectorType       = Eigen::Matrix<Scalar, Dim, 1>;
     using MatrixType       = Eigen::Matrix<Scalar, Dim, Dim>;
     using ScreenVectorType = Eigen::Matrix<Scalar, 2, 1>;
 
-    PONCA_MULTIARCH inline MyPoint(
-        const VectorType& _pos        = VectorType::Zero(),
-        const VectorType& _normal     = VectorType::Zero(),
-        const ScreenVectorType& _spos = ScreenVectorType::Zero(),
-        const Scalar _dz              = 0.f
-    ) : m_pos(_pos), m_normal(_normal), m_spos(_spos), m_dz(_dz){}
+    PONCA_MULTIARCH inline MyPoint(const VectorType& _pos        = VectorType::Zero(),
+                                   const VectorType& _normal     = VectorType::Zero(),
+                                   const ScreenVectorType& _spos = ScreenVectorType::Zero(), const Scalar _dz = 0.f)
+        : m_pos(_pos), m_normal(_normal), m_spos(_spos), m_dz(_dz)
+    {
+    }
 
-    PONCA_MULTIARCH inline const VectorType& pos()	const { return m_pos; }
-    PONCA_MULTIARCH inline const VectorType& normal()	const { return m_normal; }
+    PONCA_MULTIARCH inline const VectorType& pos() const { return m_pos; }
+    PONCA_MULTIARCH inline const VectorType& normal() const { return m_normal; }
     PONCA_MULTIARCH inline const ScreenVectorType& spos() const { return m_spos; }
-    PONCA_MULTIARCH inline const float & dz()	const { return m_dz; }
+    PONCA_MULTIARCH inline const float& dz() const { return m_dz; }
 
-    PONCA_MULTIARCH inline VectorType& pos()	 { return m_pos; }
-    PONCA_MULTIARCH inline VectorType& normal()	 { return m_normal; }
+    PONCA_MULTIARCH inline VectorType& pos() { return m_pos; }
+    PONCA_MULTIARCH inline VectorType& normal() { return m_normal; }
     PONCA_MULTIARCH inline ScreenVectorType& spos() { return m_spos; }
-    PONCA_MULTIARCH inline float& dz()	 { return m_dz; }
+    PONCA_MULTIARCH inline float& dz() { return m_dz; }
 
 private:
     ScreenVectorType m_spos;
-    VectorType	m_pos, m_normal;
+    VectorType m_pos, m_normal;
     float m_dz; // depth threshold
 };
 //! [mypoint]
@@ -57,34 +59,35 @@ using VectorType       = MyPoint::VectorType;
 using ScreenVectorType = MyPoint::ScreenVectorType;
 
 //! [w_def]
-class ProjectWeightFunc: public Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar> >
+class ProjectWeightFunc : public Ponca::DistWeightFilter<MyPoint, Ponca::SmoothWeightKernel<Scalar>>
 {
 public:
     using Scalar     = MyPoint::Scalar;
     using VectorType = MyPoint::VectorType;
-    using Base       = Ponca::DistWeightFunc<MyPoint, Ponca::SmoothWeightKernel<Scalar> >;
+    using Base       = Ponca::DistWeightFilter<MyPoint, Ponca::SmoothWeightKernel<Scalar>>;
 
     /*
     Default constructor (needed by Ponca). Note that the screenspace
     evaluation position is specified as parameter
     */
-    PONCA_MULTIARCH inline ProjectWeightFunc(
-        const VectorType& _refPos = VectorType::Zero(),
-        const ScreenVectorType& _refScreenPos = ScreenVectorType::Zero(),
-        const Scalar& _t                = Scalar(1.f),
-        const Scalar& _dz               = Scalar(0.f)
-    ) : Base(_refPos, _t), m_refScreenPos(_refScreenPos), m_dz(_dz) {}
-
-    PONCA_MULTIARCH inline Scalar w(const VectorType& _q, const MyPoint&  _attributes) const
+    PONCA_MULTIARCH inline ProjectWeightFunc(const VectorType& _refPos             = VectorType::Zero(),
+                                             const ScreenVectorType& _refScreenPos = ScreenVectorType::Zero(),
+                                             const Scalar& _t = Scalar(1.f), const Scalar& _dz = Scalar(0.f))
+        : Base(_refPos, _t), m_refScreenPos(_refScreenPos), m_dz(_dz)
     {
-        Scalar d = (_attributes.spos()-m_refScreenPos).norm();
+    }
+
+    PONCA_MULTIARCH inline Scalar w(const VectorType& _q, const MyPoint& _attributes) const
+    {
+        Scalar d        = (_attributes.spos() - m_refScreenPos).norm();
         const Scalar dz = _attributes.dz();
 
         if (d > m_t || dz > m_dz)
             return Scalar(0.);
 
-        return m_wk.f(d/m_t);
+        return m_wk.f(d / m_t);
     }
+
 private:
     ScreenVectorType m_refScreenPos;
     float m_dz;
@@ -92,113 +95,99 @@ private:
 //! [w_def]
 
 //! [fit_def]
-using Gls = Ponca::Basket<MyPoint,ProjectWeightFunc, Ponca::OrientedSphereFit, Ponca::GLSParam>;
+using Gls = Ponca::Basket<MyPoint, ProjectWeightFunc, Ponca::OrientedSphereFit, Ponca::GLSParam>;
 //! [fit_def]
 
 //! [data_acces]
-__device__ int getId(const int _x,
-                     const int _y,
-                     const int _width,
-                     const int _height,
-                     const int _component,
+__device__ int getId(const int _x, const int _y, const int _width, const int _height, const int _component,
                      const int _nbComponent)
 {
-    return (_component) + _nbComponent*(_x + _y * _width);
+    return (_component) + _nbComponent * (_x + _y * _width);
 }
 
-__device__ VectorType getVector(const int _x,
-                                const int _y,
-                                const int _width,
-                                const int _height,
-                                const float* _buffer)
+__device__ VectorType getVector(const int _x, const int _y, const int _width, const int _height, const float* _buffer)
 {
     VectorType r;
-    r << Scalar(_buffer[getId(_x,_y,_width,_height,0,3)]),
-        Scalar(_buffer[getId(_x,_y,_width,_height,1,3)]),
-        Scalar(_buffer[getId(_x,_y,_width,_height,2,3)]);
+    r << Scalar(_buffer[getId(_x, _y, _width, _height, 0, 3)]), Scalar(_buffer[getId(_x, _y, _width, _height, 1, 3)]),
+        Scalar(_buffer[getId(_x, _y, _width, _height, 2, 3)]);
     return r;
 }
 
-
 //! [data_acces]
 
-
 //! [kernel]
-extern "C" { 
-__global__ void doGLS_kernel(const int* _params, //[w, h, scale]
-                             const float* _positions,
-                             const float* _normals,
-                             float* const _result)
+extern "C"
 {
-    
-    const int x = int((blockIdx.x * blockDim.x) + threadIdx.x);
-    const int y = int((blockIdx.y * blockDim.y) + threadIdx.y);
-    
-    const int &width     = _params[0];
-    const int &height    = _params[1];
-
-    if (x < width && y < height)
+    __global__ void doGLS_kernel(const int* _params, //[w, h, scale]
+                                 const float* _positions, const float* _normals, float* const _result)
     {
-        const int &scale = _params[2];
 
-        ScreenVectorType refScreenPos;
-        refScreenPos << Scalar(x), Scalar(y);
+        const int x = int((blockIdx.x * blockDim.x) + threadIdx.x);
+        const int y = int((blockIdx.y * blockDim.y) + threadIdx.y);
 
-        int dx, dy; // neighbor offset ids
-        int nx, ny; // neighbor ids
+        const int& width  = _params[0];
+        const int& height = _params[1];
 
-        Gls gls;
-        gls.init();
-        gls.setNeighborFilter({getVector(x, y, width, height, _positions), refScreenPos, Scalar(scale)});
-
-        if (getVector(x, y, width, height, _normals).squaredNorm() == 0.f )
+        if (x < width && y < height)
         {
-            _result[getId(x, y, width, height, 0, 1)] = -1.0;
-        }
-        else
-        {
-            //_result[getId(x,y,width,height,0,1)] = getVector(x,y,width,height,_normals)(0);
-            VectorType n;
+            const int& scale = _params[2];
 
-            // collect neighborhood
-            const VectorType one = VectorType::Ones();
+            ScreenVectorType refScreenPos;
+            refScreenPos << Scalar(x), Scalar(y);
 
-            for(dy = -scale; dy != scale; dy++)
+            int dx, dy; // neighbor offset ids
+            int nx, ny; // neighbor ids
+
+            Gls gls;
+            gls.init();
+            gls.setNeighborFilter({getVector(x, y, width, height, _positions), refScreenPos, Scalar(scale)});
+
+            if (getVector(x, y, width, height, _normals).squaredNorm() == 0.f)
             {
-                for(dx = -scale; dx != scale; dx++)
+                _result[getId(x, y, width, height, 0, 1)] = -1.0;
+            }
+            else
+            {
+                //_result[getId(x,y,width,height,0,1)] = getVector(x,y,width,height,_normals)(0);
+                VectorType n;
+
+                // collect neighborhood
+                const VectorType one = VectorType::Ones();
+
+                for (dy = -scale; dy != scale; dy++)
                 {
-                    nx = x+dx;
-                    ny = y+dy;
-
-                    // Check image boundaries
-                    if (nx >= 0 && ny >= 0 && nx < width && ny < height)
+                    for (dx = -scale; dx != scale; dx++)
                     {
-                        n = getVector(nx,ny,width,height,_normals);
+                        nx = x + dx;
+                        ny = y + dy;
 
-                        // add nei only when the _normal is properly defined
-                        // need to use an explicit floating point comparison with pycuda
-                        if (n.squaredNorm() != 0.f )
+                        // Check image boundaries
+                        if (nx >= 0 && ny >= 0 && nx < width && ny < height)
                         {
+                            n = getVector(nx, ny, width, height, _normals);
 
-                            // RGB to XYZ remapping
-                            n = Scalar(2.f) * n - one;
-                            n.normalize();
+                            // add nei only when the _normal is properly defined
+                            // need to use an explicit floating point comparison with pycuda
+                            if (n.squaredNorm() != 0.f)
+                            {
 
-                            // GLS computation
-                            gls.addNeighbor(MyPoint(getVector(nx,ny,width,height,_positions),
-                                n,
-                                ScreenVectorType(nx,ny)));
+                                // RGB to XYZ remapping
+                                n = Scalar(2.f) * n - one;
+                                n.normalize();
+
+                                // GLS computation
+                                gls.addNeighbor(
+                                    MyPoint(getVector(nx, ny, width, height, _positions), n, ScreenVectorType(nx, ny)));
+                            }
                         }
                     }
                 }
+                // closed form minimization
+                gls.finalize();
+                _result[getId(x, y, width, height, 0, 1)] = gls.kappa();
             }
-            // closed form minimization
-            gls.finalize();
-            _result[getId(x,y,width,height,0,1)] = gls.kappa();
         }
     }
-}
-
 }
 //! [kernel]
 

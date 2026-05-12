@@ -9,47 +9,47 @@
 // Include Ponca Fitting components
 #include "src/Fitting/defines.h"
 #include "src/Fitting/enums.h"
+
 #include "src/Fitting/compute.h"
 
 // Evaluation schemes
-#include "src/Fitting/evaluationScheme.h"
-#include "src/Fitting/mlsEvaluationScheme.h"
-#include "src/Fitting/project.h"
+#include "src/Fitting/ComputeScheme/evaluationScheme.h"
+#include "src/Fitting/ComputeScheme/mlsEvaluationScheme.h"
+#include "src/Fitting/ComputeScheme/project.h"
 
 // Weighting
-#include "src/Fitting/weightKernel.h"
-#include "src/Fitting/weightFunc.h"
+#include "src/Fitting/Filters/weightKernel.h"
+#include "src/Fitting/Filters/weightFilter.h"
 
 // Compute objects
-#include "src/Fitting/cnc.h"
-#include "src/Fitting/basket.h"
+#include "src/Fitting/CNC/cnc.h"
+#include "src/Fitting/Basket/basket.h"
+#include "src/Fitting/Basket/basketUnit.h"
 
 // Primitives
-#include "src/Fitting/primitive.h"
-#include "src/Fitting/linePrimitive.h"
-#include "src/Fitting/plane.h"
-#include "src/Fitting/algebraicSphere.h"
+#include "src/Fitting/Basket/primitive/linePrimitive.h"
+#include "src/Fitting/Basket/primitive/plane.h"
+#include "src/Fitting/Basket/primitive/algebraicSphere.h"
 
 // Fitting tools
-#include "src/Fitting/mean.h"
+#include "src/Fitting/Basket/tools/mean.h"
+#include "src/Fitting/Basket/tools/dryFit.h"
+#include "src/Fitting/Basket/tools/covariance.h"
 
 // Fitting
-#include "src/Fitting/dryFit.h"
-#include "src/Fitting/meanPlaneFit.h"
-#include "src/Fitting/covarianceFit.h"
-#include "src/Fitting/covariancePlaneFit.h"
-#include "src/Fitting/covarianceLineFit.h"
-#include "src/Fitting/mongePatch.h"
-#include "src/Fitting/sphereFit.h"
-#include "src/Fitting/orientedSphereFit.h"
+#include "src/Fitting/Basket/fit/meanPlaneFit.h"
+#include "src/Fitting/Basket/fit/covariancePlaneFit.h"
+#include "src/Fitting/Basket/fit/covarianceLineFit.h"
+#include "src/Fitting/Basket/fit/mongePatch.h"
+#include "src/Fitting/Basket/fit/sphereFit.h"
+#include "src/Fitting/Basket/fit/orientedSphereFit.h"
 #ifndef __CUDACC__
-#    include "src/Fitting/unorientedSphereFit.h"
+#    include "src/Fitting/Basket/fit/unorientedSphereFit.h"
 #endif
 
 // Extensions
-#include "src/Fitting/mlsSphereFitDer.h"
-#include "src/Fitting/curvature.h"
-#include "src/Fitting/heightField.h"
-#include "src/Fitting/weingarten.h"
-#include "src/Fitting/gls.h"
+#include "src/Fitting/Basket/extensions/mlsSphereFitDer.h"
+#include "src/Fitting/Basket/extensions/heightField.h"
+#include "src/Fitting/Basket/extensions/weingarten.h"
+#include "src/Fitting/Basket/extensions/gls.h"
 

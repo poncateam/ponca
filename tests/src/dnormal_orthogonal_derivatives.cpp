@@ -13,13 +13,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/mlsSphereFitDer.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-
+#include <Ponca/Fitting>
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -121,7 +115,7 @@ template <typename Scalar>
 void Helper<3>::testRestrictedFits()
 {
     using Point      = PointPositionNormal<Scalar, 3>;
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightFunc = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using PlaneFit   = BasketDiff<Basket<Point, WeightFunc, CovariancePlaneFit>, FitScaleSpaceDer, CovariancePlaneDer>;
 
     for (int k = 0; k < kmax; ++k)
@@ -137,7 +131,7 @@ void _testAdimensionalFits()
     cout << "Test in dimension " << Dim << std::endl;
 
     using Point      = PointPositionNormal<Scalar, Dim>;
-    using WeightFunc = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
+    using WeightFunc = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
     using SphereFit  = BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer>;
     using MlsSphereFit =
         BasketDiff<Basket<Point, WeightFunc, OrientedSphereFit>, FitScaleSpaceDer, OrientedSphereDer, MlsSphereFitDer>;

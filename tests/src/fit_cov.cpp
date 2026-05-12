@@ -14,13 +14,7 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/defines.h>
-#include <Ponca/src/Fitting/mean.h>
-#include <Ponca/src/Fitting/covarianceFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;
@@ -28,17 +22,10 @@ using namespace Ponca;
 
 /// Class that perform the covariance fit using standard two-passes procedure
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesMeanPosition<T>
 class CovarianceFitTwoPassesBase : public T
 {
     PONCA_FITTING_DECLARE_DEFAULT_TYPES
-
-protected:
-    enum
-    {
-        Check = Base::PROVIDES_MEAN_POSITION,
-        PROVIDES_POSITION_COVARIANCE
-    };
-
 public:
     using MatrixType = typename DataPoint::MatrixType; /*!< \brief Alias to matrix type*/
     /*! \brief Solver used to analyse the covariance matrix*/
@@ -61,6 +48,7 @@ public:
 };
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesMeanPosition<T>
 void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -71,6 +59,7 @@ void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesMeanPosition<T>
 void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                                           const DataPoint& attributes)
 {
@@ -87,6 +76,7 @@ void CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires ProvidesMeanPosition<T>
 FIT_RESULT CovarianceFitTwoPassesBase<DataPoint, _NFilter, T>::finalize()
 {
     if (!m_barycenterReady)
@@ -171,9 +161,9 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         };
 
         // check we get the same decomposition
-        checkVectors(fit.covarianceFit().solver().eigenvalues(), ref.covarianceFitTwoPasses().solver().eigenvalues());
+        checkVectors(fit.covarianceBase().solver().eigenvalues(), ref.covarianceFitTwoPasses().solver().eigenvalues());
         for (int d = 0; d != 3; ++d)
-            checkVectors(fit.covarianceFit().solver().eigenvectors().col(d),
+            checkVectors(fit.covarianceBase().solver().eigenvectors().col(d),
                          ref.covarianceFitTwoPasses().solver().eigenvectors().col(d));
     }
 }
@@ -183,14 +173,14 @@ void callSubTests()
 {
     using Point = PointPositionNormal<Scalar, Dim>;
 
-    using WeightSmoothFunc   = DistWeightFunc<Point, SmoothWeightKernel<Scalar>>;
-    using WeightConstantFunc = DistWeightFunc<Point, ConstantWeightKernel<Scalar>>;
+    using WeightSmoothFunc   = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
+    using WeightConstantFunc = DistWeightFilter<Point, ConstantWeightKernel<Scalar>>;
 
-    using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitBase>;
-    using CovFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitBase>;
+    using CovFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceBase>;
+    using CovFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceBase>;
 
-    using RefFitSmooth   = Basket<Point, WeightSmoothFunc, PrimitiveBase, MeanPosition, CovarianceFitTwoPassesBase>;
-    using RefFitConstant = Basket<Point, WeightConstantFunc, PrimitiveBase, MeanPosition, CovarianceFitTwoPassesBase>;
+    using RefFitSmooth   = Basket<Point, WeightSmoothFunc, MeanPosition, CovarianceFitTwoPassesBase>;
+    using RefFitConstant = Basket<Point, WeightConstantFunc, MeanPosition, CovarianceFitTwoPassesBase>;
 
     cout << "Testing with data sampling a perfect plane..." << endl;
     for (int i = 0; i < g_repeat; ++i)

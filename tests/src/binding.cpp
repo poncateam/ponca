@@ -14,12 +14,7 @@
 
 #include "../split_test_helper.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-
+#include <Ponca/Fitting>
 #include <vector>
 
 using namespace std;
@@ -151,7 +146,7 @@ void compareFitOverPointTypes(SpatialStruct1& spatialStruct1, SpatialStruct2& sp
 
 //! \brief Smooth weight neighbor filter class templated over the point data type.
 template <typename DataPoint>
-using NeighborFilter = DistWeightFunc<DataPoint, SmoothWeightKernel<typename DataPoint::Scalar>>;
+using NeighborFilter = DistWeightFilter<DataPoint, SmoothWeightKernel<typename DataPoint::Scalar>>;
 //! \brief Fitting templated over the point data type.
 template <typename DataPoint>
 using TestSphereFit = Basket<DataPoint, NeighborFilter<DataPoint>, OrientedSphereFit>;
