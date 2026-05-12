@@ -7,13 +7,12 @@
 #pragma once
 
 #include "../../indexSquaredDistance.h"
-#include <cstddef>
 
 namespace Ponca
 {
 
     /*!
-     *  \brief Input iterator to read the `KnnGraphKNearestQueryBase` object.
+     *  \brief Base iterator class for NeighborGraphBase.
      *
      *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
      *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator
@@ -23,11 +22,9 @@ namespace Ponca
      * data : The copy of this iterator would still point to the same KnnGraph reference. So, if the increment operator
      * is used on the iterator, the duplicate will also have its state updated. If we then call the increment operator
      * on the duplicate, the result will be an incorrect value.
-     *
-     *  \see KnnGraphKNearestQueryBase
      */
     template <typename ContainerPtr, typename Index>
-    class KnnGraphKNearestIterator
+    class NeighborGraphKNearestIterator
     {
     public:
         using iterator_category = std::input_iterator_tag;
@@ -35,20 +32,20 @@ namespace Ponca
         using value_type        = Index;
         using pointer           = ContainerPtr;
         using reference         = const Index&;
-        using Self              = KnnGraphKNearestIterator<ContainerPtr, Index>;
+        using Self              = NeighborGraphKNearestIterator<ContainerPtr, Index>;
 
-        PONCA_MULTIARCH KnnGraphKNearestIterator(ContainerPtr data) : m_data(data) {}
+        PONCA_MULTIARCH NeighborGraphKNearestIterator(ContainerPtr data) : m_data(data) {}
 
-        PONCA_MULTIARCH KnnGraphKNearestIterator(ContainerPtr data, Index i) : m_data(data), m_i(i) {}
+        PONCA_MULTIARCH NeighborGraphKNearestIterator(ContainerPtr data, Index i) : m_data(data), m_i(i) {}
 
         /// \brief Inequality operand
-        PONCA_MULTIARCH bool operator!=(const KnnGraphKNearestIterator& other) const { return m_i != other.m_i; }
+        PONCA_MULTIARCH bool operator!=(const NeighborGraphKNearestIterator& other) const { return m_i != other.m_i; }
 
         /// \brief Equality operand
-        PONCA_MULTIARCH bool operator==(const KnnGraphKNearestIterator& other) const { return m_i == other.m_i; }
+        PONCA_MULTIARCH bool operator==(const NeighborGraphKNearestIterator& other) const { return m_i == other.m_i; }
 
         /// \brief Equality operand
-        PONCA_MULTIARCH KnnGraphKNearestIterator& operator++()
+        PONCA_MULTIARCH NeighborGraphKNearestIterator& operator++()
         {
             ++m_i;
             return *this;

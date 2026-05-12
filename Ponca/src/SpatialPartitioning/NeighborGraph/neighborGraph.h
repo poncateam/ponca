@@ -42,7 +42,7 @@ namespace Ponca
      * \tparam BufferType Type of buffer used in the Graph. Must inherit NeighborGraphBufferBase and be templated by
      * _Traits
      */
-    template <typename _Traits, template <typename> typename BufferType>
+    template <typename _Traits, template <typename> typename BufferType, typename _KNearestIndexQuery>
     class NeighborGraphBase
     {
     public:
@@ -53,7 +53,8 @@ namespace Ponca
         using IndexType      = typename Traits::IndexType;      /*!< Type used to index points into the PointContainer*/
         using PointContainer = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree  */
         using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree    */
-        using IndexContainerRef = typename Traits::IndexContainerRef; /*!< Ref type to index container */
+        using IndexContainerRef  = typename Traits::IndexContainerRef; /*!< Ref type to index container */
+        using KNearestIndexQuery = _KNearestIndexQuery;
 
         using Buffers = BufferType<Traits>;
         static_assert(std::is_base_of_v<NeighborGraphBufferBase<Traits>, Buffers>,
@@ -87,6 +88,40 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline IndexContainer samples() const { return m_bufs.indices; };
         //! \brief Get access to the internal buffer, for instance to prepare GPU binding
         PONCA_MULTIARCH [[nodiscard]] inline const Buffers& buffers() const { return m_bufs; }
+
+        // Query -------------------------------------------------------------------
+
+        /// \brief Computes a Query object to iterate over the k-nearest neighbors of a point.
+        ///
+        /// Here, k is defined by the number of neighbors of the current point in the graph, hence it doesn't need to be
+        /// provided.
+        ///
+        /// The returned object can be reset and reused with the () operator, to compute a new result
+        /// (also takes an index as parameter).
+        ///
+        /// \param index Index of the point that the query evaluates
+        /// \return The \ref KNearestIndexQuery mutable object to iterate over the search results.
+        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighbors(int index) const
+        {
+            return KNearestIndexQuery(static_cast<const typename KNearestIndexQuery::NeighborGraph*>(this), index);
+        }
+
+        /// \brief Convenience function that provides a k-nearest neighbors Query object.
+        ///
+        /// Same as `KnnGraphBase::kNearestNeighbors (0)`.
+        ///
+        /// \warning Unlike `KdTreeBase::kNearestNeighborsIndexQuery`, this function doesn't really return an empty
+        /// query. This is due to the fact that the `KnnGraphBase::kNearestNeighbors` query can't set the `k` value to
+        /// zero, as it is a value that is managed by the KnnGraphBase structure. Therefore, this function returns the
+        /// k-nearest neighbors query made with the evaluation point set to 0.
+        ///
+        /// \return The \ref KNearestIndexQuery mutable object that can be called with the operator ()
+        /// with an index as argument, to fetch the k-nearest neighbors of a point.
+        /// \see #kNearestNeighbors
+        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
+        {
+            return KNearestIndexQuery(static_cast<const typename KNearestIndexQuery::NeighborGraph*>(this), 0);
+        }
 
     protected:          // for friends relations
         Buffers m_bufs; ///< Buffers used to store the KnnGraph

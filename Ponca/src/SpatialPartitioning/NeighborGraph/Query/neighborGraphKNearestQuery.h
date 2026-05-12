@@ -7,16 +7,13 @@
 #pragma once
 
 #include "../../query.h"
-#include "../Iterator/knnGraphKNearestIterator.h"
+#include "../Iterator/neighborGraphKNearestIterator.h"
 
 namespace Ponca
 {
 
-    template <typename Traits>
-    class StaticKnnGraphBase; // Need forward declaration to avoid mutual inclusion
-
 #ifndef PARSED_WITH_DOXYGEN
-    struct KnnGraphQueryOutputType : public QueryOutputBase
+    struct NeighborGraphQueryOutputType : public QueryOutputBase
     {
         using OutputParameter = typename QueryOutputBase::DummyOutputParameter;
     };
@@ -30,26 +27,28 @@ namespace Ponca
      *
      *  \see KnnGraphBase
      */
-    template <typename Traits>
-    class KnnGraphKNearestQuery
+    template <typename _NeighborGraph>
+    class NeighborGraphKNearestQuery
 #ifdef PARSED_WITH_DOXYGEN
-        : public KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
+        : public KNearestIndexQuery<typename NeighborGraph::Traits::IndexType, typename Traits::DataPoint::Scalar>
 #else
         // we skip output because we don't need it: k is static, and already stored in the index array
-        : public Query<QueryInputIsIndex<typename Traits::IndexType>, KnnGraphQueryOutputType>
+        : public Query<QueryInputIsIndex<typename _NeighborGraph::Traits::IndexType>, NeighborGraphQueryOutputType>
 #endif
     {
     public:
-        using Iterator = KnnGraphKNearestIterator<const typename Traits::IndexType*, typename Traits::IndexType>;
+        using NeighborGraph = _NeighborGraph;
+        using Traits        = typename NeighborGraph::Traits;
+        using Iterator = NeighborGraphKNearestIterator<const typename Traits::IndexType*, typename Traits::IndexType>;
 #ifdef PARSED_WITH_DOXYGEN
         using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
 #else
-        using QueryType = Query<QueryInputIsIndex<typename Traits::IndexType>, KnnGraphQueryOutputType>;
+        using QueryType = Query<QueryInputIsIndex<typename Traits::IndexType>, NeighborGraphQueryOutputType>;
 #endif
-        using Self = KnnGraphKNearestQuery<Traits>;
+        using Self = NeighborGraphKNearestQuery<NeighborGraph>;
 
     public:
-        PONCA_MULTIARCH inline KnnGraphKNearestQuery(const StaticKnnGraphBase<Traits>* graph, int index)
+        PONCA_MULTIARCH inline NeighborGraphKNearestQuery(const NeighborGraph* graph, int index)
             : QueryType(index), m_graph(graph)
         {
         }
@@ -59,17 +58,17 @@ namespace Ponca
         /// \brief Returns an iterator to the beginning of the k-nearest neighbors query.
         PONCA_MULTIARCH [[nodiscard]] inline Iterator begin() const
         {
-            return Iterator(m_graph->getIndexPtr()) + QueryType::input() * m_graph->k();
+            return Iterator(m_graph->getIndexPtr()) + m_graph->beginId(QueryType::input());
         }
 
         /// \brief Returns an iterator to the end of the k-nearest neighbors query.
         PONCA_MULTIARCH [[nodiscard]] inline Iterator end() const
         {
-            return Iterator(m_graph->getIndexPtr()) + (QueryType::input() + 1) * m_graph->k();
+            return Iterator(m_graph->getIndexPtr()) + m_graph->endId(QueryType::input());
         }
 
     protected:
-        const StaticKnnGraphBase<Traits>* m_graph{nullptr};
+        const NeighborGraph* m_graph{nullptr};
     };
 
 } // namespace Ponca

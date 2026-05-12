@@ -8,7 +8,7 @@
 
 #include "../NeighborGraph/neighborGraph.h"
 
-#include "Query/knnGraphKNearestQuery.h"
+#include "../NeighborGraph/Query/neighborGraphKNearestQuery.h"
 #include "Query/knnGraphRangeQuery.h"
 
 #include "../KdTree/kdTree.h"
@@ -72,18 +72,19 @@ namespace Ponca
      *
      */
     template <typename _Traits>
-    class StaticKnnGraphBase : public NeighborGraphBase<_Traits, KnnGraphBuffers>
+    class StaticKnnGraphBase
+        : public NeighborGraphBase<_Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<_Traits>>>
     {
     public:
         WRITE_TRAITS
 
-        using KNearestIndexQuery = KnnGraphKNearestQuery<Traits>;
-        using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
-        friend class KnnGraphKNearestQuery<Traits>; /*!< This type must be equal to KnnGraphBase::KNearestIndexQuery
-                                                       \see KnnGraphKNearestQuery */
-        friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see
-                                                       KnnGraphRangeQuery */
-        using Base    = NeighborGraphBase<Traits, KnnGraphBuffers>;
+        using RangeIndexQuery = KnnGraphRangeQuery<Traits>;
+        friend class NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>; /*!< This type must be equal to
+                                                       KnnGraphBase::KNearestIndexQuery
+                                                       \see NeighborGraphKNearestQuery */
+        friend class KnnGraphRangeQuery<Traits>; /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see
+                                                    KnnGraphRangeQuery */
+        using Base = NeighborGraphBase<Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>>;
         using Buffers = typename Base::Buffers;
 
         PONCA_MULTIARCH inline StaticKnnGraphBase<Traits>(Buffers& _bufs) : Base(_bufs) {}
@@ -91,22 +92,7 @@ namespace Ponca
     protected:
         PONCA_MULTIARCH inline StaticKnnGraphBase(PointContainer _points, const int _k) : Base(Buffers(_points, _k)) {}
 
-        // Query -------------------------------------------------------------------
     public:
-        /// \brief Computes a Query object to iterate over the k-nearest neighbors of a point.
-        ///
-        /// As k was set during the construction of the \ref KnnGraphBase, it doesn't need to be provided.
-        ///
-        /// The returned object can be reset and reused with the () operator, to compute a new result
-        /// (also takes an index as parameter).
-        ///
-        /// \param index Index of the point that the query evaluates
-        /// \return The \ref KNearestIndexQuery mutable object to iterate over the search results.
-        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighbors(int index) const
-        {
-            return KNearestIndexQuery(this, index);
-        }
-
         /// \brief Computes a Query object to iterate over the neighbors that are inside a given radius.
         ///
         /// The returned object can be reset and reused with the () operator, to compute a new result
@@ -118,23 +104,6 @@ namespace Ponca
         PONCA_MULTIARCH inline RangeIndexQuery rangeNeighbors(int index, Scalar r) const
         {
             return RangeIndexQuery(this, r, index);
-        }
-
-        /// \brief Convenience function that provides a k-nearest neighbors Query object.
-        ///
-        /// Same as `KnnGraphBase::kNearestNeighbors (0)`.
-        ///
-        /// \warning Unlike `KdTreeBase::kNearestNeighborsIndexQuery`, this function doesn't really return an empty
-        /// query. This is due to the fact that the `KnnGraphBase::kNearestNeighbors` query can't set the `k` value to
-        /// zero, as it is a value that is managed by the KnnGraphBase structure. Therefore, this function returns the
-        /// k-nearest neighbors query made with the evaluation point set to 0.
-        ///
-        /// \return The \ref KNearestIndexQuery mutable object that can be called with the operator ()
-        /// with an index as argument, to fetch the k-nearest neighbors of a point.
-        /// \see #kNearestNeighbors
-        PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
-        {
-            return KNearestIndexQuery(this, 0);
         }
 
         /// \brief Convenience function that provides an empty range neighbors Query object.
@@ -153,6 +122,10 @@ namespace Ponca
         /// \brief Number of neighbor per vertex for a given element (in the KnnGraph, all points have the same number
         /// of neighbors.
         PONCA_MULTIARCH [[nodiscard]] inline int k(int /*index*/ = 0) const { return Base::buffers().k; }
+        /// Index of the beginning of the neighborhood range
+        PONCA_MULTIARCH [[nodiscard]] inline int beginId(int vId) const { return vId * k(); }
+        /// Index of the end of the neighborhood range
+        PONCA_MULTIARCH [[nodiscard]] inline int endId(int vId) const { return (vId + 1) * k(); }
     };
 
     template <typename _Traits>
