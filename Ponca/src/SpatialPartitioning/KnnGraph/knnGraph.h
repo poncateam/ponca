@@ -33,66 +33,64 @@ namespace Ponca
     template <typename DataPoint>
     using KnnGraph = KnnGraphBase<KnnGraphDefaultTraits<DataPoint>>;
 
-    /*!
-     * \brief Customizable base class for KnnGraph datastructure
+    /// \brief Internal structure storing the buffers used by a neighbor graph
+    template <typename _Traits>
+    struct NeighborGraphBufferBase
+    {
+        using Traits         = _Traits;
+        using PointContainer = typename Traits::PointContainer;
+        using IndexContainer = typename Traits::IndexContainer;
+
+        PointContainer points;  ///< Buffer storing the input points (read only)
+        IndexContainer indices; ///< Buffer storing the indices associating the input points to the nodes
+
+        size_t points_size{0};
+        size_t indices_size{0};
+
+        PONCA_MULTIARCH inline NeighborGraphBufferBase() = default;
+        PONCA_MULTIARCH inline NeighborGraphBufferBase(PointContainer _points) : points(_points) {}
+
+        PONCA_MULTIARCH inline NeighborGraphBufferBase(PointContainer _points,
+                                                       typename Traits::IndexContainerRef _indices,
+                                                       const size_t _points_size, const size_t _indices_size)
+            : points(_points), indices(_indices), points_size(_points_size), indices_size(_indices_size)
+        {
+        }
+    };
+
+    /*! \brief Base class for neighbor classes
      *
-     * \see Ponca::KnnGraph
-     *
-     * \tparam Traits Traits type providing the types and constants used by the KnnGraph. Must have the
+     * \tparam _Traits Traits type providing the types and constants used by the KnnGraph. Must have the
      * same interface as the default traits type.
-     *
-     * \see KnnGraphDefaultTraits for the trait interface documentation.
-     *
+     * \tparam BufferType Type of buffer used in the Graph. Must inherit NeighborGraphBufferBase and be templated by
+     * _Traits
      */
-    template <typename Traits>
-    class StaticKnnGraphBase
+    template <typename _Traits, template <typename> typename BufferType>
+    class NeighborGraphBase
     {
     public:
-#define WRITE_TRAITS                                                                                                 \
-    using DataPoint      = typename Traits::DataPoint;      /*!< DataPoint given by user via Traits               */ \
-    using Scalar         = typename DataPoint::Scalar;      /*!< Scalar given by user via DataPoint               */ \
-    using VectorType     = typename DataPoint::VectorType;  /*!< VectorType given by user via DataPoint           */ \
-    using IndexType      = typename Traits::IndexType;      /*!< Type used to index points into the PointContainer*/ \
-    using PointContainer = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree   */ \
-    using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree     */
+#define WRITE_TRAITS                                                                                                    \
+    using Traits            = _Traits;                        /*!< Alias to the Traits type                         */  \
+    using DataPoint         = typename Traits::DataPoint;     /*!< DataPoint given by user via Traits               */  \
+    using Scalar            = typename DataPoint::Scalar;     /*!< Scalar given by user via DataPoint               */  \
+    using VectorType        = typename DataPoint::VectorType; /*!< VectorType given by user via DataPoint           */  \
+    using IndexType         = typename Traits::IndexType;     /*!< Type used to index points into the PointContainer*/  \
+    using PointContainer    = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree   */ \
+    using IndexContainer    = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree     */ \
+    using IndexContainerRef = typename Traits::IndexContainerRef; /*!< Ref type to index container                */
         WRITE_TRAITS
 
-        using KNearestIndexQuery = KnnGraphKNearestQuery<Traits>;
-        using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
-        friend class KnnGraphKNearestQuery<Traits>; /*!< This type must be equal to KnnGraphBase::KNearestIndexQuery
-                                                       \see KnnGraphKNearestQuery */
-        friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see
-                                                       KnnGraphRangeQuery */
+        using Buffers = BufferType<Traits>;
+        static_assert(std::is_base_of_v<NeighborGraphBufferBase<Traits>, Buffers>,
+                      "BufferType must inherit NeighborGraphBufferBase");
 
     protected:
         PONCA_MULTIARCH inline const IndexType* getIndexPtr() const { return Traits::getIndexRawPtr(m_bufs.indices); }
         PONCA_MULTIARCH inline IndexType* getIndexPtr() { return Traits::getIndexRawPtr(m_bufs.indices); }
 
     public:
-        /// \brief Internal structure storing all the buffers used by the KdTree
-        struct Buffers
-        {
-            PointContainer points;  ///< Buffer storing the input points (read only)
-            IndexContainer indices; ///< Buffer storing the indices associating the input points to the nodes
+        // Data --------------------------------------------------------------------
 
-            size_t points_size{0};
-            size_t indices_size{0};
-            int k{0};
-
-            PONCA_MULTIARCH inline Buffers() = default;
-            PONCA_MULTIARCH inline Buffers(PointContainer _points, const int _k) : points(_points), k(_k) {}
-
-            PONCA_MULTIARCH inline Buffers(PointContainer _points, typename Traits::IndexContainerRef _indices,
-                                           const size_t _points_size, const size_t _indices_size, const int _k)
-                : points(_points), indices(_indices), points_size(_points_size), indices_size(_indices_size), k(_k)
-            {
-            }
-        };
-
-    protected:
-        PONCA_MULTIARCH inline StaticKnnGraphBase(PointContainer _points, const int _k) : m_bufs(_points, _k) {}
-
-    public:
         /*! \brief Constructor that allows the use of prebuilt KnnGraph containers.
          *
          * Each internal values of a KnnGraph can be extracted using \ref `KnnGraph::buffers()`
@@ -102,7 +100,73 @@ namespace Ponca
          *
          * \param _bufs Internal buffers of the KnnGraph
          */
-        PONCA_MULTIARCH inline StaticKnnGraphBase(Buffers& _bufs) : m_bufs(_bufs) {}
+        PONCA_MULTIARCH inline NeighborGraphBase(const Buffers& _bufs) : m_bufs(_bufs) {}
+
+        //! \brief Get the number of indices
+        PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const { return (IndexType)m_bufs.indices_size; }
+        //! \brief Get the number of points
+        PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const { return (IndexType)m_bufs.points_size; }
+        //! \brief Get the internal point container
+        PONCA_MULTIARCH [[nodiscard]] inline PointContainer points() const { return m_bufs.points; };
+        //! \brief Get the internal index container
+        PONCA_MULTIARCH [[nodiscard]] inline IndexContainer samples() const { return m_bufs.indices; };
+        //! \brief Get access to the internal buffer, for instance to prepare GPU binding
+        PONCA_MULTIARCH [[nodiscard]] inline const Buffers& buffers() const { return m_bufs; }
+
+    protected:          // for friends relations
+        Buffers m_bufs; ///< Buffers used to store the KnnGraph
+    };
+
+    /// \brief Buffer class for StaticKnnGraphBase.
+    ///
+    /// Extends the NeighborGraphBufferBase with a constant neighborhood size k
+    template <typename _Traits>
+    struct KnnGraphBuffers : public NeighborGraphBufferBase<_Traits>
+    {
+        WRITE_TRAITS
+        using Base = NeighborGraphBufferBase<_Traits>;
+
+        int k{0};
+
+        PONCA_MULTIARCH inline KnnGraphBuffers() = default;
+        PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, const int _k) : Base(_points), k(_k) {}
+        PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, typename Traits::IndexContainerRef _indices,
+                                               const size_t _points_size, const size_t _indices_size, const int _k)
+            : Base(_points, _indices, _points_size, _indices_size), k(_k)
+        {
+        }
+    };
+
+    /*!
+     * \brief Customizable base class for KnnGraph datastructure
+     *
+     * \see Ponca::KnnGraph, Ponca::NeighborGraphBase
+     *
+     * \tparam _Traits Traits type providing the types and constants used by the KnnGraph. Must have the
+     * same interface as the default traits type.
+     *
+     * \see KnnGraphDefaultTraits for the trait interface documentation.
+     *
+     */
+    template <typename _Traits>
+    class StaticKnnGraphBase : public NeighborGraphBase<_Traits, KnnGraphBuffers>
+    {
+    public:
+        WRITE_TRAITS
+
+        using KNearestIndexQuery = KnnGraphKNearestQuery<Traits>;
+        using RangeIndexQuery    = KnnGraphRangeQuery<Traits>;
+        friend class KnnGraphKNearestQuery<Traits>; /*!< This type must be equal to KnnGraphBase::KNearestIndexQuery
+                                                       \see KnnGraphKNearestQuery */
+        friend class KnnGraphRangeQuery<Traits>;    /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see
+                                                       KnnGraphRangeQuery */
+        using Base    = NeighborGraphBase<Traits, KnnGraphBuffers>;
+        using Buffers = typename Base::Buffers;
+
+        PONCA_MULTIARCH inline StaticKnnGraphBase<Traits>(Buffers& _bufs) : Base(_bufs) {}
+
+    protected:
+        PONCA_MULTIARCH inline StaticKnnGraphBase(PointContainer _points, const int _k) : Base(Buffers(_points, _k)) {}
 
         // Query -------------------------------------------------------------------
     public:
@@ -163,32 +227,19 @@ namespace Ponca
 
         // Accessors ---------------------------------------------------------------
     public:
-        /// \brief Number of neighbor per vertex
-        PONCA_MULTIARCH [[nodiscard]] inline int k() const { return m_bufs.k; }
-        //! \brief Get the number of indices
-        PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const { return (IndexType)m_bufs.indices_size; }
-        //! \brief Get the number of points
-        PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const { return (IndexType)m_bufs.points_size; }
-        //! \brief Get the internal point container
-        PONCA_MULTIARCH [[nodiscard]] inline PointContainer points() const { return m_bufs.points; };
-        //! \brief Get the internal index container
-        PONCA_MULTIARCH [[nodiscard]] inline IndexContainer samples() const { return m_bufs.indices; };
-        //! \brief Get access to the internal buffer, for instance to prepare GPU binding
-        PONCA_MULTIARCH [[nodiscard]] inline const Buffers& buffers() const { return m_bufs; }
-
-        // Data --------------------------------------------------------------------
-    protected:          // for friends relations
-        Buffers m_bufs; ///< Buffers used to store the KnnGraph
+        /// \brief Number of neighbor per vertex for a given element (in the KnnGraph, all points have the same number
+        /// of neighbors.
+        PONCA_MULTIARCH [[nodiscard]] inline int k(int /*index*/ = 0) const { return Base::buffers().k; }
     };
 
-    template <typename Traits>
-    class KnnGraphBase : public StaticKnnGraphBase<Traits>
+    template <typename _Traits>
+    class KnnGraphBase : public StaticKnnGraphBase<_Traits>
     {
     public:
         WRITE_TRAITS
     private:
         using Base    = StaticKnnGraphBase<Traits>;
-        using Buffers = typename StaticKnnGraphBase<Traits>::Buffers;
+        using Buffers = typename Base::Buffers;
         // knnGraph ----------------------------------------------------------------
     public:
         /// \brief Build a KnnGraph from a KdTreeDense
