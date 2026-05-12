@@ -70,7 +70,7 @@ struct KnnGraphRangeFunctor
 {
     static __device__ inline auto query(KnnGraphGPU<DataPoint>& d_knngraph, int i,
                                         typename DataPoint::Scalar analysisScale)
-        -> Ponca::KnnGraphRangeQuery<Ponca::NeighborGraphPointerTraits<DataPoint>>
+        -> Ponca::NeighborGraphRangeQuery<Ponca::NeighborGraphPointerTraits<DataPoint>>
     {
         //! [Use KnnGraph.rangeNeighbors on the GPU]
         return d_knngraph.rangeNeighbors(i, analysisScale);

@@ -42,7 +42,8 @@ namespace Ponca
      * \tparam BufferType Type of buffer used in the Graph. Must inherit NeighborGraphBufferBase and be templated by
      * _Traits
      */
-    template <typename _Traits, template <typename> typename BufferType, typename _KNearestIndexQuery>
+    template <typename _Traits, template <typename> typename BufferType, typename _KNearestIndexQuery,
+              typename _RangeIndexQuery>
     class NeighborGraphBase
     {
     public:
@@ -55,6 +56,7 @@ namespace Ponca
         using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree    */
         using IndexContainerRef  = typename Traits::IndexContainerRef; /*!< Ref type to index container */
         using KNearestIndexQuery = _KNearestIndexQuery;
+        using RangeIndexQuery    = _RangeIndexQuery;
 
         using Buffers = BufferType<Traits>;
         static_assert(std::is_base_of_v<NeighborGraphBufferBase<Traits>, Buffers>,
@@ -121,6 +123,33 @@ namespace Ponca
         PONCA_MULTIARCH inline KNearestIndexQuery kNearestNeighborsIndexQuery() const
         {
             return KNearestIndexQuery(static_cast<const typename KNearestIndexQuery::NeighborGraph*>(this), 0);
+        }
+
+        /// \brief Computes a Query object to iterate over the neighbors that are inside a given radius.
+        ///
+        /// The returned object can be reset and reused with the () operator, to compute a new result
+        /// (also takes an index and a radius as parameters).
+        ///
+        /// \param index Index of the point that the query evaluates
+        /// \param r Radius around where to search the neighbors
+        /// \return The \ref RangeIndexQuery mutable object to iterate over the search results.
+        PONCA_MULTIARCH inline RangeIndexQuery rangeNeighbors(int index, Scalar r) const
+        {
+            return RangeIndexQuery(static_cast<const typename RangeIndexQuery::NeighborGraph*>(this), r, index);
+        }
+
+        /// \brief Convenience function that provides an empty range neighbors Query object.
+        ///
+        /// The returned object can be called with the arguments `(i, r)` to fetch the neighbors
+        /// that are in range `r` of the point of index `i`.
+        ///
+        /// Same as `KnnGraphBase::rangeNeighbors (0, 0)`.
+        ///
+        /// \return The empty \ref KNearestIndexQuery mutable object to iterate over the search results.
+        /// \see #rangeNeighbors
+        PONCA_MULTIARCH inline RangeIndexQuery rangeNeighborsIndexQuery() const
+        {
+            return RangeIndexQuery(static_cast<const typename RangeIndexQuery::NeighborGraph*>(this), 0, 0);
         }
 
     protected:          // for friends relations

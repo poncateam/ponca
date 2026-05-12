@@ -54,11 +54,11 @@ namespace Ponca
         /// \brief Type to be used to send the index container as function parameter
         using IndexContainerRef = IndexContainer&;
 
-        /*! \brief A Set dynamic in memory, used by KnnGraphRangeQuery
+        /*! \brief A Set dynamic in memory, used by NeighborGraphRangeQuery
          *  \warning Not compatible with CUDA
          */
         using KnnGraphRangeSet = std::set<int>;
-        /*! \brief A Stack dynamic in memory, used by KnnGraphRangeQuery
+        /*! \brief A Stack dynamic in memory, used by NeighborGraphRangeQuery
          *  \warning Not compatible with CUDA
          */
         using KnnGraphRangeStack = std::stack<int>;
@@ -112,9 +112,9 @@ namespace Ponca
         /// \brief Type to be used to send the index container as function parameter
         using IndexContainerRef = IndexContainer;
 
-        //! \brief A static Set used by KnnGraphRangeQuery
+        //! \brief A static Set used by NeighborGraphRangeQuery
         using KnnGraphRangeSet = HashSet<K_MAX_NN>;
-        //! \brief A static Stack used by KnnGraphRangeQuery
+        //! \brief A static Stack used by NeighborGraphRangeQuery
         using KnnGraphRangeStack = Stack<int, K_MAX_NN>;
 
         /// \brief Provides access to the raw pointer where indices are stored

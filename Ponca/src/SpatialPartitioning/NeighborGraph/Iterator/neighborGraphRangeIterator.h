@@ -6,15 +6,13 @@
 
 #pragma once
 
-#include <cstddef>
-
 namespace Ponca
 {
     template <typename Traits>
-    class KnnGraphRangeQuery;
+    class NeighborGraphRangeQuery;
 
     /*!
-     *  \brief Input iterator to read the `KnnGraphRangeQuery` object.
+     *  \brief Input iterator to read the `NeighborGraphRangeQuery` object.
      *
      *  As this is an input iterator, we don't guarantee anything other than reading the values with it.
      *  If you need to operate on the values of this iterator with algorithms that relies on forward iterator
@@ -25,13 +23,15 @@ namespace Ponca
      * is used on the iterator, the duplicate will also have its state updated. If we then call the increment operator
      * on the duplicate, the result will be an incorrect value.
      *
-     *  \see KnnGraphRangeQuery
+     *  \see NeighborGraphRangeQuery
      */
-    template <typename Traits>
-    class KnnGraphRangeIterator
+    template <typename _NeighborGraph>
+    class NeighborGraphRangeIterator
     {
     protected:
-        friend class KnnGraphRangeQuery<Traits>;
+        using NeighborGraph = _NeighborGraph;
+        using Traits        = typename NeighborGraph::Traits;
+        friend class NeighborGraphRangeQuery<NeighborGraph>;
         using Index = typename Traits::IndexType;
 
     public:
@@ -43,20 +43,27 @@ namespace Ponca
         using pointer           = Index*;
         using reference         = const Index&;
 
-        PONCA_MULTIARCH inline KnnGraphRangeIterator(KnnGraphRangeQuery<Traits>* query, Index index = Index(-1))
+        PONCA_MULTIARCH inline NeighborGraphRangeIterator(NeighborGraphRangeQuery<NeighborGraph>* query,
+                                                          Index index = Index(-1))
             : m_query(query), m_index(index)
         {
         }
 
     public:
         /// \brief Inequality operand
-        PONCA_MULTIARCH bool operator!=(const KnnGraphRangeIterator& other) const { return m_index != other.m_index; }
+        PONCA_MULTIARCH bool operator!=(const NeighborGraphRangeIterator& other) const
+        {
+            return m_index != other.m_index;
+        }
 
         /// \brief Equality operand
-        PONCA_MULTIARCH bool operator==(const KnnGraphRangeIterator& other) const { return m_index == other.m_index; }
+        PONCA_MULTIARCH bool operator==(const NeighborGraphRangeIterator& other) const
+        {
+            return m_index == other.m_index;
+        }
 
         /// Prefix increment
-        PONCA_MULTIARCH inline KnnGraphRangeIterator& operator++()
+        PONCA_MULTIARCH inline NeighborGraphRangeIterator& operator++()
         {
             m_query->advance(*this);
             return *this;
@@ -69,7 +76,7 @@ namespace Ponca
         PONCA_MULTIARCH inline reference operator*() const { return const_cast<reference>(m_index); }
 
     protected:
-        KnnGraphRangeQuery<Traits>* m_query{nullptr};
+        NeighborGraphRangeQuery<NeighborGraph>* m_query{nullptr};
         value_type m_index{-1};
     };
 

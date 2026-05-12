@@ -200,7 +200,7 @@ fit.computeWithIds( myDataStructure.rangeNeighbors(fitInitPos, scale), vectorPoi
   \snippet examples/cpp/ponca_neighbor_search.cpp KnnGraph range neighbors index mutable search
 
   Two types of queries are provided (see KnnGraphBase for related method list):
-   - KnnGraphRangeQuery
+   - NeighborGraphRangeQuery
    - NeighborGraphKNearestQuery: the number of neighbors is defined at construction-time: a k-neighbor graph gives access to
    k-neighborhoods only.
    \note The query KnnGraphNearestQuery does not need to exist explicitly as it boils down to NeighborGraphKNearestQuery

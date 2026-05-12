@@ -9,7 +9,7 @@
 #include "../NeighborGraph/neighborGraph.h"
 
 #include "../NeighborGraph/Query/neighborGraphKNearestQuery.h"
-#include "Query/knnGraphRangeQuery.h"
+#include "../NeighborGraph/Query/neighborGraphRangeQuery.h"
 
 #include "../KdTree/kdTree.h"
 #include "../../Common/Assert.h"
@@ -73,49 +73,25 @@ namespace Ponca
      */
     template <typename _Traits>
     class StaticKnnGraphBase
-        : public NeighborGraphBase<_Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<_Traits>>>
+        : public NeighborGraphBase<_Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<_Traits>>,
+                                   NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>
     {
     public:
         WRITE_TRAITS
 
-        using RangeIndexQuery = KnnGraphRangeQuery<Traits>;
         friend class NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>; /*!< This type must be equal to
                                                        KnnGraphBase::KNearestIndexQuery
                                                        \see NeighborGraphKNearestQuery */
-        friend class KnnGraphRangeQuery<Traits>; /*!< This type must be equal to KnnGraphBase::RangeIndexQuery \see
-                                                    KnnGraphRangeQuery */
-        using Base = NeighborGraphBase<Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>>;
+        friend class NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>;   /*!< This type must be equal to
+                                                      KnnGraphBase::RangeIndexQuery \see   NeighborGraphRangeQuery */
+        using Base = NeighborGraphBase<Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>,
+                                       NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>;
         using Buffers = typename Base::Buffers;
 
         PONCA_MULTIARCH inline StaticKnnGraphBase<Traits>(Buffers& _bufs) : Base(_bufs) {}
 
     protected:
         PONCA_MULTIARCH inline StaticKnnGraphBase(PointContainer _points, const int _k) : Base(Buffers(_points, _k)) {}
-
-    public:
-        /// \brief Computes a Query object to iterate over the neighbors that are inside a given radius.
-        ///
-        /// The returned object can be reset and reused with the () operator, to compute a new result
-        /// (also takes an index and a radius as parameters).
-        ///
-        /// \param index Index of the point that the query evaluates
-        /// \param r Radius around where to search the neighbors
-        /// \return The \ref RangeIndexQuery mutable object to iterate over the search results.
-        PONCA_MULTIARCH inline RangeIndexQuery rangeNeighbors(int index, Scalar r) const
-        {
-            return RangeIndexQuery(this, r, index);
-        }
-
-        /// \brief Convenience function that provides an empty range neighbors Query object.
-        ///
-        /// The returned object can be called with the arguments `(i, r)` to fetch the neighbors
-        /// that are in range `r` of the point of index `i`.
-        ///
-        /// Same as `KnnGraphBase::rangeNeighbors (0, 0)`.
-        ///
-        /// \return The empty \ref KNearestIndexQuery mutable object to iterate over the search results.
-        /// \see #rangeNeighbors
-        PONCA_MULTIARCH inline RangeIndexQuery rangeNeighborsIndexQuery() const { return RangeIndexQuery(this, 0, 0); }
 
         // Accessors ---------------------------------------------------------------
     public:
