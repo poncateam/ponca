@@ -110,7 +110,7 @@ void buildAndTestKnnGraph(KdTree& kdtree, std::vector<int>& sampleDense, const s
     cout << "  (ok)" << endl;
 
     // Test the KnnGraph with raw memory pointers
-    using KnnGraphPointerStatic = StaticKnnGraphBase<KnnGraphPointerTraits<P>>;
+    using KnnGraphPointerStatic = StaticKnnGraphBase<NeighborGraphPointerTraits<P>>;
     auto knngraphBuffers        = knnGraph.buffers(); // Buffer that use STL-like containers
     // Convert previous KnnGraph to pointers
     P* pts = new P[points.size()];

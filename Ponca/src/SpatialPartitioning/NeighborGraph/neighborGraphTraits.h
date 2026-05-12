@@ -20,7 +20,7 @@ namespace Ponca
      * \brief The default traits type used by the kd-tree.
      */
     template <typename _DataPoint>
-    struct KnnGraphDefaultTraits
+    struct NeighborGraphDefaultTraits
     {
         /*!
          * \brief The type used to store point data.
@@ -73,7 +73,7 @@ namespace Ponca
      * container.
      */
     template <typename _DataPoint>
-    struct KnnGraphPointerTraits
+    struct NeighborGraphPointerTraits
     {
         enum
         {

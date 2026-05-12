@@ -25,12 +25,12 @@ namespace Ponca
      * algorithm. Can either be :
      *
      * - `Traits::KnnGraphRangeSet = std::set<int>` for dynamic memory, which is not compatible with CUDA. (Used by
-     * `KnnGraphDefaultTraits`)
+     * `NeighborGraphDefaultTraits`)
      *
      * -`Traits::KnnGraphRangeSet = HashSet<K_MAX_NN>` : Stores the index in a HashMap-like structure.
      * The Best case complexity for insertion and search is O(1) and worst case is O(N), depending on the given dataset
      * and on the chosen hashing function (Sparser hashing results will lead to a reduce look-up time). (Used by
-     * `KnnGraphPointerTraits`)
+     * `NeighborGraphPointerTraits`)
      * \see HashSet
      *
      * - `Traits::KnnGraphRangeSet = BitSet<MAX_POINT_CLOUD_SIZE>` : Stores the index in a set of bits by allocating a
@@ -46,11 +46,11 @@ namespace Ponca
      * `Traits::KnnGraphRangeStack` The stack type storing the next neighbor to visit. Can either be :
      *
      * - `Traits::KnnGraphRangeStack = std::set<int>` A stack that dynamically allocates memory (Used by
-     * `KnnGraphDefaultTraits`)
+     * `NeighborGraphDefaultTraits`)
      *
      * - `Traits::KnnGraphRangeStack = Stack<int, K_MAX_NN>` : Has a limited amount of storage. Will throw out of bound
      * exception in debug mode if elements are inserted above the maximum capacity of the stack. (Used by
-     * `KnnGraphPointerTraits`)
+     * `NeighborGraphPointerTraits`)
      */
     template <typename Traits>
     class KnnGraphRangeQuery : public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
