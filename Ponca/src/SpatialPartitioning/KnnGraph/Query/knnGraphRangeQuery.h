@@ -93,7 +93,7 @@ namespace Ponca
         }
 
         /// \brief Returns an iterator to the end of the range neighbors query.
-        PONCA_MULTIARCH inline Iterator end() { return Iterator(this, static_cast<int>(m_graph->size())); }
+        PONCA_MULTIARCH inline Iterator end() { return Iterator(this, static_cast<int>(m_graph->pointCount())); }
 
     protected:
         PONCA_MULTIARCH inline void initialize(Iterator& iterator)

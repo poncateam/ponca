@@ -165,11 +165,6 @@ namespace Ponca
     public:
         /// \brief Number of neighbor per vertex
         PONCA_MULTIARCH [[nodiscard]] inline int k() const { return m_bufs.k; }
-        /// \brief Number of vertices in the neighborhood graph
-        PONCA_MULTIARCH [[nodiscard]] inline size_t size() const
-        {
-            return m_bufs.indices_size / static_cast<size_t>(m_bufs.k);
-        }
         //! \brief Get the number of indices
         PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const { return (IndexType)m_bufs.indices_size; }
         //! \brief Get the number of points
