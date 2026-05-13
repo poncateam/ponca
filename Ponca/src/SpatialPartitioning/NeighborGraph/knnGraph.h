@@ -6,30 +6,16 @@
 
 #pragma once
 
-#include "../NeighborGraph/neighborGraph.h"
+#include "neighborGraph.h"
 
-#include "../NeighborGraph/Query/neighborGraphKNearestQuery.h"
-#include "../NeighborGraph/Query/neighborGraphRangeQuery.h"
+#include "Query/neighborGraphKNearestQuery.h"
+#include "Query/neighborGraphRangeQuery.h"
 
 #include "../KdTree/kdTree.h"
 #include "../../Common/Assert.h"
 
 namespace Ponca
 {
-
-    template <typename Traits>
-    class KnnGraphBase;
-
-    /*!
-     * \brief Public interface for KnnGraph datastructure.
-     *
-     * Provides default implementation of the KnnGraph
-     *
-     * \see NeighborGraphDefaultTraits for the default trait interface documentation.
-     * \see KnnGraphBase for complete API
-     */
-    template <typename DataPoint>
-    using KnnGraph = KnnGraphBase<NeighborGraphDefaultTraits<DataPoint>>;
 
     /// \brief Buffer class for StaticKnnGraphBase.
     ///
@@ -164,6 +150,17 @@ namespace Ponca
             }
         }
     };
+
+    /*!
+     * \brief Public interface for KnnGraph datastructure.
+     *
+     * Provides default implementation of the KnnGraph
+     *
+     * \see NeighborGraphDefaultTraits for the default trait interface documentation.
+     * \see KnnGraphBase for complete API
+     */
+    template <typename DataPoint>
+    using KnnGraph = KnnGraphBase<NeighborGraphDefaultTraits<DataPoint>>;
 
 } // namespace Ponca
 

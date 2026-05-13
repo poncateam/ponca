@@ -13,7 +13,7 @@
 #pragma once
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
+#include <Ponca/src/SpatialPartitioning/NeighborGraph/knnGraph.h>
 
 #define CUDA_CHECK(err)                                                                                               \
     if (err != cudaSuccess)                                                                                           \

@@ -18,7 +18,7 @@
 #include <Ponca/src/Common/pointGeneration.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTreeTraits.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
+#include <Ponca/src/SpatialPartitioning/NeighborGraph/knnGraph.h>
 #include <iostream>
 
 #include "cuda_utils.cu"
