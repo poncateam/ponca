@@ -44,7 +44,7 @@ namespace Ponca
      */
     template <typename _Traits, template <typename> typename BufferType, typename _KNearestIndexQuery,
               typename _RangeIndexQuery>
-    class NeighborGraphBase
+    class AbstractNeighborGraph
     {
     public:
         using Traits         = _Traits;                         /*!< Alias to the Traits type                         */
@@ -78,7 +78,7 @@ namespace Ponca
          *
          * \param _bufs Internal buffers of the KnnGraph
          */
-        PONCA_MULTIARCH inline NeighborGraphBase(const Buffers& _bufs) : m_bufs(_bufs) {}
+        PONCA_MULTIARCH inline AbstractNeighborGraph(const Buffers& _bufs) : m_bufs(_bufs) {}
 
         //! \brief Get the number of indices
         PONCA_MULTIARCH [[nodiscard]] inline IndexType sampleCount() const { return (IndexType)m_bufs.indices_size; }
