@@ -14,6 +14,8 @@
 #include "../KdTree/kdTree.h"
 #include "../../Common/Assert.h"
 
+#define DEFAULT_K_IN_KNN_GRAPH 6
+
 namespace Ponca
 {
 
@@ -35,10 +37,13 @@ namespace Ponca
         WRITE_TRAITS
         using Base = NeighborGraphBufferBase<_Traits>;
 
-        int k{0};
+        int k{DEFAULT_K_IN_KNN_GRAPH};
 
         PONCA_MULTIARCH inline KnnGraphBuffers() = default;
-        PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, const int _k) : Base(_points), k(_k) {}
+        PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, const int _k = DEFAULT_K_IN_KNN_GRAPH)
+            : Base(_points), k(_k)
+        {
+        }
         PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, typename Traits::IndexContainerRef _indices,
                                                const size_t _points_size, const size_t _indices_size, const int _k)
             : Base(_points, _indices, _points_size, _indices_size), k(_k)
@@ -58,9 +63,9 @@ namespace Ponca
      *
      */
     template <typename _Traits>
-    class StaticKnnGraphBase
-        : public NeighborGraphBase<_Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<_Traits>>,
-                                   NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>
+    class StaticKnnGraphBase : public AbstractNeighborGraph<_Traits, KnnGraphBuffers,
+                                                            NeighborGraphKNearestQuery<StaticKnnGraphBase<_Traits>>,
+                                                            NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>
     {
     public:
         WRITE_TRAITS
@@ -70,8 +75,9 @@ namespace Ponca
                                                        \see NeighborGraphKNearestQuery */
         friend class NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>;   /*!< This type must be equal to
                                                       KnnGraphBase::RangeIndexQuery \see   NeighborGraphRangeQuery */
-        using Base = NeighborGraphBase<Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>,
-                                       NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>;
+        using Base =
+            AbstractNeighborGraph<Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>,
+                                  NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>;
         using Buffers = typename Base::Buffers;
 
         PONCA_MULTIARCH inline StaticKnnGraphBase<Traits>(Buffers& _bufs) : Base(_bufs) {}
@@ -109,7 +115,8 @@ namespace Ponca
         /// \warning Stores a const reference to kdtree.point_data()
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
-        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree, const int _k = 6)
+        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree,
+                                                 const int _k = DEFAULT_K_IN_KNN_GRAPH)
             : Base(_kdtree.points(), std::min(_k, _kdtree.sampleCount() - 1))
         {
             Base::m_bufs.points_size = _kdtree.pointCount();
@@ -165,3 +172,4 @@ namespace Ponca
 } // namespace Ponca
 
 #undef WRITE_TRAITS
+#undef DEFAULT_K_IN_KNN_GRAPH
