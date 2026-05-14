@@ -133,7 +133,7 @@ namespace Ponca
 
                 iterator.m_index = idx_current;
 
-                for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
+                for (int idx_nei : m_graph->oneConnectedNeighbors(idx_current))
                 {
                     PONCA_DEBUG_ASSERT(idx_nei >= 0);
                     // Add into the search stack only if :

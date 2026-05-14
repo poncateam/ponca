@@ -7,48 +7,39 @@
 #pragma once
 
 #include "../../query.h"
-#include "../Iterator/neighborGraphKNearestIterator.h"
+#include "../Iterator/neighborGraphOneConnectedIterator.h"
 
 namespace Ponca
 {
-
-#ifndef PARSED_WITH_DOXYGEN
+    /// \brief Output type of the NeighborGraphOneConnectedQuery
     struct NeighborGraphQueryOutputType : public QueryOutputBase
     {
         using OutputParameter = typename QueryOutputBase::DummyOutputParameter;
     };
-#endif
 
     /*!
-     * \brief Extension of the Query class that allows to read the result of a k-nearest neighbors search on the
-     * KnnGraph.
+     * \brief Extension of the Query class that allows to read the neighbors that are directly connected to the query
+     * point in the neighbor graph.
      *
-     *  Output result of a `KnnGraph::kNearestNeighbors` query request.
+     *  Output result of a `KnnGraph::oneConnectedNeighbors` query request.
      *
      *  \see KnnGraphBase
      */
     template <typename _NeighborGraph>
-    class NeighborGraphKNearestQuery
-#ifdef PARSED_WITH_DOXYGEN
-        : public KNearestIndexQuery<typename NeighborGraph::Traits::IndexType, typename Traits::DataPoint::Scalar>
-#else
-        // we skip output because we don't need it: k is static, and already stored in the index array
+    class NeighborGraphOneConnectedQuery
         : public Query<QueryInputIsIndex<typename _NeighborGraph::Traits::IndexType>, NeighborGraphQueryOutputType>
-#endif
     {
     public:
         using NeighborGraph = _NeighborGraph;
         using Traits        = typename NeighborGraph::Traits;
-        using Iterator = NeighborGraphKNearestIterator<const typename Traits::IndexType*, typename Traits::IndexType>;
-#ifdef PARSED_WITH_DOXYGEN
-        using QueryType = KNearestIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
-#else
+        using Iterator =
+            NeighborGraphOneConnectedIterator<const typename Traits::IndexType*, typename Traits::IndexType>;
         using QueryType = Query<QueryInputIsIndex<typename Traits::IndexType>, NeighborGraphQueryOutputType>;
-#endif
-        using Self = NeighborGraphKNearestQuery<NeighborGraph>;
+
+        using Self = NeighborGraphOneConnectedQuery<NeighborGraph>;
 
     public:
-        PONCA_MULTIARCH inline NeighborGraphKNearestQuery(const NeighborGraph* graph, int index)
+        PONCA_MULTIARCH inline NeighborGraphOneConnectedQuery(const NeighborGraph* graph, int index)
             : QueryType(index), m_graph(graph)
         {
         }

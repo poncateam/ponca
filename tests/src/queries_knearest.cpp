@@ -23,7 +23,7 @@
 
 using namespace Ponca;
 
-//! Test kNearestNeighbors query
+//! Test oneConnectedNeighbors query
 template <bool doIndexQuery, typename AcceleratingStructure, typename PointContainer>
 auto testKNearestNeighbors(AcceleratingStructure& structure, PointContainer& points, std::vector<int>& sample,
                            const int k)
@@ -49,7 +49,7 @@ auto testKNearestNeighbors(AcceleratingStructure& structure, PointContainer& poi
         g_repeat, k);
 }
 
-//! \brief Test kNearestNeighbors query without the k argument. The size of the iterator depends on the acceleration
+//! \brief Test oneConnectedNeighbors query without the k argument. The size of the iterator depends on the acceleration
 //! structure (e.g. when using the knnGraph(kdtreeDense, k))
 template <typename AcceleratingStructure, typename PointContainer>
 auto testKNearestNeighborsEntirePointSet(AcceleratingStructure& structure, PointContainer& points, const int k)

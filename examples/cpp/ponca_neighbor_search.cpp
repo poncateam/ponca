@@ -94,7 +94,7 @@ int main()
 
     /// [KnnGraph k-nearest neighbors index search]
     std::cout << "The nearest neighbors of the point at index " << query_idx << " are at indices: ";
-    for (int neighbor_idx : knnGraph.kNearestNeighbors(query_idx))
+    for (int neighbor_idx : knnGraph.oneConnectedNeighbors(query_idx))
     {
         std::cout << neighbor_idx << ", ";
     }

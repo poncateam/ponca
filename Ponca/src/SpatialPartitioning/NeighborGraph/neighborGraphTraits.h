@@ -17,7 +17,7 @@ namespace Ponca
 {
 
     /*!
-     * \brief The default traits type used by the kd-tree.
+     * \brief The default traits type used by the neighbor graph.
      */
     template <typename _DataPoint>
     struct NeighborGraphDefaultTraits
@@ -47,9 +47,9 @@ namespace Ponca
 
         // Containers
         using IndexType = int;
-        /// \brief Type used to store the external Point container in the KnnGraph::Buffer
+        /// \brief Type used to store the external Point container in AbstractNeighborGraph::Buffers
         using PointContainer = const std::vector<DataPoint>&;
-        /// \brief Type used to store the index container in the KnnGraph::Buffer
+        /// \brief Type used to store the index container in the AbstractNeighborGraph::Buffers
         using IndexContainer = std::vector<IndexType>;
         /// \brief Type to be used to send the index container as function parameter
         using IndexContainerRef = IndexContainer&;
@@ -69,7 +69,7 @@ namespace Ponca
         PONCA_MULTIARCH static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx.data(); }
     };
     /*!
-     * \brief Variant to the KnnGraph Traits type that uses pointers as internal storage instead of an STL-like
+     * \brief Variant to the NeighborGraphDefaultTraits that uses pointers as internal storage instead of an STL-like
      * container.
      */
     template <typename _DataPoint>
@@ -104,10 +104,10 @@ namespace Ponca
 
         // Containers
         using IndexType = int;
-        /// \brief Type used to store the external Point container in the KnnGraph::Buffer
-        /// Non-const to allow KnnGraph::Buffers copy and writing to other devices
+        /// \brief Type used to store the external Point container in AbstractNeighborGraph::Buffers
+        /// Non-const to allow AbstractNeighborGraph::Buffers copy and writing to other devices
         using PointContainer = DataPoint*;
-        /// \brief Type used to store the index container in the KnnGraph::Buffer
+        /// \brief Type used to store the index container in the AbstractNeighborGraph::Buffers
         using IndexContainer = IndexType*;
         /// \brief Type to be used to send the index container as function parameter
         using IndexContainerRef = IndexContainer;

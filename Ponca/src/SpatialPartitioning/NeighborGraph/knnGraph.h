@@ -6,9 +6,8 @@
 
 #pragma once
 
-#include "neighborGraph.h"
-
-#include "Query/neighborGraphKNearestQuery.h"
+#include "abstractNeighborGraph.h"
+#include "Query/neighborGraphOneConnectedQuery.h"
 #include "Query/neighborGraphRangeQuery.h"
 
 #include "../KdTree/kdTree.h"
@@ -64,19 +63,19 @@ namespace Ponca
      */
     template <typename _Traits>
     class StaticKnnGraphBase : public AbstractNeighborGraph<_Traits, KnnGraphBuffers,
-                                                            NeighborGraphKNearestQuery<StaticKnnGraphBase<_Traits>>,
+                                                            NeighborGraphOneConnectedQuery<StaticKnnGraphBase<_Traits>>,
                                                             NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>
     {
     public:
         WRITE_TRAITS
 
-        friend class NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>; /*!< This type must be equal to
+        friend class NeighborGraphOneConnectedQuery<StaticKnnGraphBase<Traits>>; /*!< This type must be equal to
                                                        KnnGraphBase::KNearestIndexQuery
                                                        \see NeighborGraphKNearestQuery */
-        friend class NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>;   /*!< This type must be equal to
-                                                      KnnGraphBase::RangeIndexQuery \see   NeighborGraphRangeQuery */
+        friend class NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>;       /*!< This type must be equal to
+                                                          KnnGraphBase::RangeIndexQuery \see   NeighborGraphRangeQuery */
         using Base =
-            AbstractNeighborGraph<Traits, KnnGraphBuffers, NeighborGraphKNearestQuery<StaticKnnGraphBase<Traits>>,
+            AbstractNeighborGraph<Traits, KnnGraphBuffers, NeighborGraphOneConnectedQuery<StaticKnnGraphBase<Traits>>,
                                   NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>;
         using Buffers = typename Base::Buffers;
 
@@ -94,6 +93,20 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline int beginId(int vId) const { return vId * k(); }
         /// Index of the end of the neighborhood range
         PONCA_MULTIARCH [[nodiscard]] inline int endId(int vId) const { return (vId + 1) * k(); }
+
+        /// \copybrief KdTreeBase::kNearestNeighborsQuery
+        /// \copydetails StaticKdTreeBase::kNearestNeighborsIndexQuery
+        PONCA_MULTIARCH [[nodiscard]] inline typename Base::OneConnectedIndexQuery kNearestNeighbors(int index) const
+        {
+            return Base::oneConnectedNeighbors(index);
+        }
+
+        /// \copybrief KdTreeBase::kNearestNeighborsQuery
+        /// \copydetails StaticKdTreeBase::kNearestNeighborsIndexQuery
+        PONCA_MULTIARCH [[nodiscard]] inline typename Base::OneConnectedIndexQuery kNearestNeighborsIndexQuery() const
+        {
+            return Base::oneConnectedNeighbors();
+        }
     };
 
     template <typename _Traits>
@@ -159,12 +172,12 @@ namespace Ponca
     };
 
     /*!
-     * \brief Public interface for KnnGraph datastructure.
+     * \brief Public interface for the KnnGraph datastructure.
      *
      * Provides default implementation of the KnnGraph
      *
      * \see NeighborGraphDefaultTraits for the default trait interface documentation.
-     * \see KnnGraphBase for complete API
+     * \see KnnGraphBase, AbstractNeighborGraph for complete API
      */
     template <typename DataPoint>
     using KnnGraph = KnnGraphBase<NeighborGraphDefaultTraits<DataPoint>>;
