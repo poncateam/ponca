@@ -129,15 +129,16 @@ namespace Ponca
      * \see KdTreeBase to build a kdtree
      * \see rangeNeighbors, kNearestNeighbors, nearestNeighbor for the query calls
      *
-     * \tparam Traits Traits type providing the types and constants used by the kd-tree. Must have the
+     * \tparam _Traits Traits type providing the types and constants used by the kd-tree. Must have the
      * same interface as the default traits type.
      * \see KdTreeDefaultTraits for the trait interface documentation.
      */
-    template <typename Traits>
+    template <typename _Traits>
     class StaticKdTreeBase
     {
     public:
 #define WRITE_TRAITS                                                                                                   \
+    using Traits         = _Traits;                       /*!< Traits of the KdTree                                */  \
     using DataPoint      = typename Traits::DataPoint;    /*!< DataPoint given by user via Traits                  */  \
     using IndexType      = typename Traits::IndexType;    /*!< Type used to index points into the PointContainer   */  \
     using LeafSizeType   = typename Traits::LeafSizeType; /*!< Type used to store the size of leaf nodes           */  \
@@ -451,11 +452,11 @@ namespace Ponca
      * same interface as the default traits type.
      * \see KdTreeDefaultTraits for the trait interface documentation.
      */
-    template <typename Traits>
-    class KdTreeBase : public StaticKdTreeBase<Traits>
+    template <typename _Traits>
+    class KdTreeBase : public StaticKdTreeBase<_Traits>
     {
     public:
-        using Base = StaticKdTreeBase<Traits>;
+        using Base = StaticKdTreeBase<_Traits>;
         WRITE_TRAITS
         /// Generate a tree from a custom contained type converted using the specified converter
         /// \tparam PointUserContainer Input point container, transformed to PointContainer
