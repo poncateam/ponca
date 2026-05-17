@@ -54,8 +54,8 @@ FIT_RESULT MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>::finalize()
     {
         // we use BDCSVD as the matrix size is 36
         // http://eigen.tuxfamily.org/dox/classEigen_1_1BDCSVD.html
-        Base::quadraticHeightField().setQuadric(
-            m_A.bdcSvd(Eigen::ComputeThinU | Eigen::ComputeThinV | Eigen::NoQRPreconditioner).solve(m_b));
+        Eigen::BDCSVD<SampleMatrix> solver(m_A, Eigen::ComputeThinU | Eigen::ComputeThinV | Eigen::NoQRPreconditioner);
+        Base::quadraticHeightField().setQuadric(solver.solve(m_b));
 
         return Base::m_eCurrentState = STABLE;
     }

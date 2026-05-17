@@ -63,6 +63,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "../Common/Assert.h"
 #include <Eigen/Dense>
+#include "../Common/Assert.h"
 
 namespace Ponca::internal
 {
