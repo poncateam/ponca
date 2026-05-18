@@ -30,6 +30,12 @@ if( CMAKE_CUDA_COMPILER )
     target_compile_options(cuda_fit_plane_kdtree PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
     target_link_libraries(cuda_fit_plane_kdtree PUBLIC Ponca::Instantiate Eigen3::Eigen)
 
+    add_executable(cuda_fit_plane_knngraph "ponca_fit_knngraph.cu")
+    target_include_directories(cuda_fit_plane_knngraph PRIVATE ${PONCA_src_ROOT})
+    add_dependencies(ponca-examples cuda_fit_plane_knngraph)
+    set_property(TARGET cuda_fit_plane_knngraph PROPERTY CUDA_ARCHITECTURES OFF)
+    target_link_libraries(cuda_fit_plane_knngraph PUBLIC Eigen3::Eigen)
+
     add_subdirectory(ssgls)
 else()
     message(INFO "Cuda not found, skipping Ponca_Examples_cuda")

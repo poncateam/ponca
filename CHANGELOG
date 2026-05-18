@@ -8,6 +8,11 @@ This release will introduce a refactoring of the requirement library using cpp20
 - API
     - [fitting] MLS is now a separate class from Basket (#298)
     - [fitting] projectDescent is now a separate class from Basket (#298)
+    - [spatialPartitioning] Rework KnnGraph API for compilation and query on the GPU (#301,#325)
+    - [spatialPartitioning] Replace KnnGraph query containers with custom Stack and HashSet structure (#301,#325)
+    - [spatialPartitioning] Fix a bug when re-building an existing KdTree (#320)
+    - [common] Rename LimitedPriorityQueue, and update to work in CUDA (#301)
+    - [common] Added Bitset and Hashset data-structures (also CUDA-compatible) (#301,#325)
 
 - Bug-fixes and code improvements
     - [fitting] Fix warnings introduced when bumping to cxx20 (#303)
@@ -16,6 +21,10 @@ This release will introduce a refactoring of the requirement library using cpp20
     - [common] Fix PONCA_ASSERT macro on MSVC and clang (#309)
     - [common] Adapt PONCA_ASSERT macro to CUDA (#311)
 
+- Tests
+    - [spatialPartitioning] Update KnnGraph test suite (#301)
+    - [common] Add unit test for BitSet and HashSet (#301)
+
 - Cmake
     - [all] Eigen is now always for transitive linking (#302)
 
@@ -23,8 +32,12 @@ This release will introduce a refactoring of the requirement library using cpp20
     - [ci] Fix Issue with Eigen build in buildAsSubmodule (#299)
     - [ci] New github action for checking CPM installation (#302)
 
+- Examples
+    - [spatialPartitioning] Add a cuda example with the KnnGraph (#301, #323)
+
 - Docs
     - [doc] Add documentation about CPM installation for ponca (#302)
+    - [doc] Update contributors (#326)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha2

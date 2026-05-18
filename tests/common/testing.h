@@ -26,7 +26,7 @@
 #    define DEFAULT_REPEAT 10
 #endif
 
-static bool QUICK_TESTS =
+constexpr bool QUICK_TESTS =
 #ifdef PONCA_COVERAGE_ENABLED
     true;
 #else
