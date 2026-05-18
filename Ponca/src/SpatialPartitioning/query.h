@@ -15,49 +15,6 @@
 
 namespace Ponca
 {
-
-/// \internal
-/// \brief Macro generating code of the Query base classes inhering QueryInputIsIndex.
-/// \note For internal use only
-#define DECLARE_INDEX_QUERY_CLASS(OUT_TYPE)                                                                           \
-    /*! \brief Base Query class combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##. */                         \
-    /*! `IndexQuery` objects acts as a `Range` that can be iterated over. */                                          \
-    /*! They are used as the return type for the index searches */                                                    \
-    /*! and they allow easy access to the result outputs. */                                                          \
-    /*! This specialization of the `IndexQuery` concept is used to iterate over the neighbors of a given point index, \
-     */                                                                                                               \
-    /*! using a ##OUT_TYPE## Index Query request. */                                                                  \
-    template <typename Index, typename Scalar>                                                                        \
-    struct OUT_TYPE##IndexQuery : Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>             \
-    {                                                                                                                 \
-        /*! \brief Alias to the inherited base Query  */                                                              \
-        using Base = Query<QueryInputIsIndex<Index>, QueryOutputIs##OUT_TYPE<Index, Scalar>>;                         \
-        /*! \brief Inherited default constructor  */                                                                  \
-        using Base::Base;                                                                                             \
-    };
-
-/// \internal
-/// \brief Macro generating code of the Query base classes inhering QueryInputIsPosition.
-/// \note For internal use only
-#define DECLARE_POINT_QUERY_CLASS(OUT_TYPE)                                                                     \
-    /*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##. */                \
-    /*! `PointQuery` objects acts as a `Range` that can be iterated over. */                                    \
-    /*! They are used as the return type for the index searches */                                              \
-    /*! and they allow easy access to the result outputs. */                                                    \
-    /*! This specialization of the `PointQuery` concept is used to iterate over the neighbors of a given point  \
-     * position,*/                                                                                              \
-    /*! using a ##OUT_TYPE## Point Query request. */                                                            \
-    template <typename Index, typename DataPoint>                                                               \
-    struct OUT_TYPE##PointQuery                                                                                 \
-        : Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>    \
-    {                                                                                                           \
-        /*! \brief Alias to the inherited base Query  */                                                        \
-        using Base =                                                                                            \
-            Query<QueryInputIsPosition<DataPoint>, QueryOutputIs##OUT_TYPE<Index, typename DataPoint::Scalar>>; \
-        /*! \brief Inherited default constructor  */                                                            \
-        using Base::Base;                                                                                       \
-    };
-
     /// \addtogroup spatialpartitioning
     /// \{
 
@@ -293,24 +250,25 @@ namespace Ponca
      *
      *  Stores internally the neighbors collection of the knn request and the Distance threshold (for tree descent).
      *  \see QueryOutputBase
+     *
+     *  \tparam MAX_KNN_SIZE Maximum size of the K-neighborhood
      */
-    template <typename Index, typename Scalar>
+    template <typename Index, typename Scalar, int MAX_KNN_SIZE>
     struct QueryOutputIsKNearest : public QueryOutputBase
     {
         /// \brief Alias to Output type
         using OutputParameter = Index;
+        /// \brief Alias to LimitedPriorityQueue
+        using Queue = LimitedPriorityQueue<IndexSquaredDistance<Index, Scalar>, MAX_KNN_SIZE>;
 
         /// \brief Default constructor that initialize the output parameter value
         PONCA_MULTIARCH inline QueryOutputIsKNearest(OutputParameter k = 0) : m_queue(k) {}
 
         /// \brief Access operator that resets the output parameter
-        PONCA_MULTIARCH inline void operator()(OutputParameter k)
-        {
-            m_queue = limited_priority_queue<IndexSquaredDistance<Index, Scalar>>(k);
-        }
+        PONCA_MULTIARCH inline void operator()(OutputParameter k) { m_queue = Queue(k); }
 
         /// \brief Access to the priority queue storing the neighbors
-        PONCA_MULTIARCH inline limited_priority_queue<IndexSquaredDistance<Index, Scalar>>& queue() { return m_queue; }
+        PONCA_MULTIARCH inline Queue& queue() { return m_queue; }
 
     protected:
         /// \brief Reset Query for a new search
@@ -322,7 +280,7 @@ namespace Ponca
         /// \brief Distance threshold used during tree descent to select nodes to explore
         PONCA_MULTIARCH inline Scalar descentDistanceThreshold() const { return m_queue.bottom().squared_distance; }
         /// \brief Queue storing the neighbors
-        limited_priority_queue<IndexSquaredDistance<Index, Scalar>> m_queue;
+        Queue m_queue;
     };
 
     /*!
@@ -372,15 +330,47 @@ namespace Ponca
         }
     };
 
-    DECLARE_INDEX_QUERY_CLASS(KNearest) // KNearestIndexQuery
-    DECLARE_INDEX_QUERY_CLASS(Nearest)  // NearestIndexQuery
-    DECLARE_INDEX_QUERY_CLASS(Range)    // RangeIndexQuery
-    DECLARE_POINT_QUERY_CLASS(KNearest) // KNearestPointQuery
-    DECLARE_POINT_QUERY_CLASS(Nearest)  // NearestPointQuery
-    DECLARE_POINT_QUERY_CLASS(Range)    // RangePointQuery
+#define POINT_QUERY_DOC(OUT_TYPE)
+    /*! \brief Base Query class combining QueryInputIsPosition and QueryOutputIs##OUT_TYPE##. */                      \
+    /*! `PointQuery` objects acts as a `Range` that can be iterated over. */                                          \
+    /*! They are used as the return type for the index searches */                                                    \
+    /*! and they allow easy access to the result outputs. */                                                          \
+    /*! This specialization of the `PointQuery` concept is used to iterate over the neighbors of a given point        \
+     * position, using a ##OUT_TYPE## Point Query request. */
 
+#define INDEX_QUERY_DOC(OUT_TYPE)
+    /*! \brief Base Query alias combining QueryInputIsIndex and QueryOutputIs##OUT_TYPE##. */                         \
+    /*! `IndexQuery` objects acts as a `Range` that can be iterated over. */                                          \
+    /*! They are used as the return type for the index searches */                                                    \
+    /*! and they allow easy access to the result outputs. */                                                          \
+    /*! This specialization of the `IndexQuery` concept is used to iterate over the neighbors of a given point index, \
+     *  using a ##OUT_TYPE## Index Query request. */
+
+    POINT_QUERY_DOC(KNearest)
+    /*! \tparam MAX_KNN_SIZE Maximum size of the K-neighborhood */
+    template <typename Index, typename DataPoint, int MAX_KNN_SIZE>
+    using KNearestPointQuery =
+        Query<QueryInputIsPosition<DataPoint>, QueryOutputIsKNearest<Index, typename DataPoint::Scalar, MAX_KNN_SIZE>>;
+    POINT_QUERY_DOC(Nearest)
+    template <typename Index, typename DataPoint>
+    using NearestPointQuery =
+        Query<QueryInputIsPosition<DataPoint>, QueryOutputIsNearest<Index, typename DataPoint::Scalar>>;
+    POINT_QUERY_DOC(Range)
+    template <typename Index, typename DataPoint>
+    using RangePointQuery =
+        Query<QueryInputIsPosition<DataPoint>, QueryOutputIsRange<Index, typename DataPoint::Scalar>>;
+
+    INDEX_QUERY_DOC(KNearest)
+    template <typename Index, typename Scalar, int MAX_KNN_SIZE>
+    using KNearestIndexQuery = Query<QueryInputIsIndex<Index>, QueryOutputIsKNearest<Index, Scalar, MAX_KNN_SIZE>>;
+    INDEX_QUERY_DOC(Nearest)
+    template <typename Index, typename Scalar>
+    using NearestIndexQuery = Query<QueryInputIsIndex<Index>, QueryOutputIsNearest<Index, Scalar>>;
+    INDEX_QUERY_DOC(Range)
+    template <typename Index, typename Scalar>
+    using RangeIndexQuery = Query<QueryInputIsIndex<Index>, QueryOutputIsRange<Index, Scalar>>;
     /// \}
 
-#undef DECLARE_INDEX_QUERY_CLASS
-#undef DECLARE_POINT_QUERY_CLASS
+#undef POINT_QUERY_DOC
+#undef INDEX_QUERY_DOC
 } // namespace Ponca

@@ -11,7 +11,6 @@
  */
 
 #include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
 #include <Ponca/src/Fitting/meanPlaneFit.h>
 #include <Ponca/src/Fitting/weightFunc.h>
 #include <Ponca/src/Fitting/weightKernel.h>
@@ -19,20 +18,21 @@
 #include <Ponca/src/Common/pointGeneration.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTreeTraits.h>
+#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
 #include <iostream>
 
 #include "cuda_utils.cu"
 
-/*! \brief Use the KdTree to do a MeanPlaneFit over a plane with the CUDA kernel
+/*! \brief Use the KnnGraph to do a MeanPlaneFit over a plane with the CUDA kernel
  *
  * \tparam Scalar The scalar type (e.g. double, float or long double...)
  * \tparam Dim The number of dimension that the VectorType will have.
- * \tparam KdTreeFunctor The Functor making the KdTree Query in the kernel (must take DataPoint as a template param)
+ * \tparam KnnGraphFunctor The Functor making the KnnGraph Query in the kernel (must take DataPoint as a template param)
  * \param _bUnoriented Generates an unoriented point cloud.
  * \param _bAddPositionNoise Determines if we add a randomly generated offset to the position.
  * \param _bAddNormalNoise Determines if we add a randomly generated offset to the normal.
  */
-template <typename Scalar, int Dim, template <typename> typename KdTreeFunctor>
+template <typename Scalar, int Dim, template <typename> typename KnnGraphFunctor>
 __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPositionNoise = false,
                             const bool _bAddNormalNoise = false)
 {
@@ -49,6 +49,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const Scalar centerScale    = Eigen::internal::random<Scalar>(1, 10000);
     const VectorType center     = VectorType::Random() * centerScale;
     const VectorType direction  = VectorType::Random().normalized();
+    const Scalar kNearestAmount = 40;
 
     // Generate the point cloud
     std::vector<DataPoint> points(nbPoints);
@@ -58,9 +59,10 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
                                                       _bUnoriented);
     }
 
-    //! [Build KdTree on CPU]
+    //! [Build KnnGraph for CPU]
     Ponca::KdTreeDense<DataPoint> kdtree(points);
-    //! [Build KdTree on CPU]
+    Ponca::KnnGraph<DataPoint> knngraph(kdtree, kNearestAmount);
+    //! [Build KnnGraph for CPU]
 
     std::cout << "Number of nodes in the KdTree : " << kdtree.nodeCount() << std::endl;
 
@@ -68,14 +70,14 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const unsigned long scalarBufferSize = nbPoints * sizeof(Scalar);
     const unsigned long vectorBufferSize = scalarBufferSize * Dim;
 
-    //! [Copy KdTree on GPU]
-    using BuffersGPU = typename KdTreeGPU<DataPoint>::Buffers;
-    BuffersGPU* kdtreeBuffersDevice;
-    CUDA_CHECK(cudaMalloc(&kdtreeBuffersDevice, sizeof(BuffersGPU)));
+    //! [Copy KnnGraph on GPU]
+    using BuffersGPU = typename KnnGraphGPU<DataPoint>::Buffers;
+    BuffersGPU* knnGraphBuffersDevice;
+    CUDA_CHECK(cudaMalloc(&knnGraphBuffersDevice, sizeof(BuffersGPU)));
     BuffersGPU hostBuffersHoldingDevicePointers; // Host Buffers referencing data on the device, used to free memory
-    deepCopyKdTreeBuffersToDevice<Ponca::KdTreePointerTraits<DataPoint>>(
-        kdtree.buffers(), hostBuffersHoldingDevicePointers, kdtreeBuffersDevice);
-    //! [Copy KdTree on GPU]
+    deepCopyKnnGraphBuffersToDevice<Ponca::KnnGraphPointerTraits<DataPoint>>(
+        knngraph.buffers(), hostBuffersHoldingDevicePointers, knnGraphBuffersDevice);
+    //! [Copy KnnGraph on GPU]
 
     // Prepare output buffers
     auto* const potentialResults = new Scalar[nbPoints];
@@ -90,10 +92,11 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     const unsigned int gridSize      = (nbPoints + blockSize - 1) / blockSize;
 
     // Compute the fitting in the kernel
-    spatialPartitioningFitPotentialAndGradientKernel<KdTreeGPU<DataPoint>, MeanFitSmooth, KdTreeFunctor<DataPoint>>
-        <<<gridSize, blockSize>>>(kdtreeBuffersDevice, analysisScale,           // Inputs
+    spatialPartitioningFitPotentialAndGradientKernel<KnnGraphGPU<DataPoint>, MeanFitSmooth, KnnGraphFunctor<DataPoint>>
+        <<<gridSize, blockSize>>>(knnGraphBuffersDevice, analysisScale,         // Inputs
                                   potentialResultsDevice, gradientResultsDevice // Outputs
         );
+
     CUDA_CHECK(cudaGetLastError()); // Catch kernel launch errors
     CUDA_CHECK(cudaDeviceSynchronize());
 
@@ -104,10 +107,10 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
     // Free CUDA memory
     CUDA_CHECK(cudaFree(potentialResultsDevice));
     CUDA_CHECK(cudaFree(gradientResultsDevice));
-    //! [Free KdTree from memory on GPU]
-    freeKdTreeBuffersOnDevice(hostBuffersHoldingDevicePointers);
-    CUDA_CHECK(cudaFree(kdtreeBuffersDevice));
-    //! [Free KdTree from memory on GPU]
+    //! [Free KnnGraph from memory on GPU]
+    freeKnnGraphBuffersOnDevice(hostBuffersHoldingDevicePointers);
+    CUDA_CHECK(cudaFree(knnGraphBuffersDevice));
+    //! [Free KnnGraph from memory on GPU]
 
     // Validate results
     const auto epsilon = Scalar(0.001);
@@ -131,9 +134,9 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
 
 __host__ int main(const int /*argc*/, char** /*argv*/)
 {
-    std::cout << "Example plane fitting using KdTree on CUDA..." << std::endl;
+    std::cout << "Example plane fitting using KnnGraph on CUDA..." << std::endl;
     std::cout << "Using k-nearest neighbors query :" << std::endl;
-    testPlaneCuda<float, 3, KdTreeKNearestNeighborsFunctor>();
+    testPlaneCuda<float, 3, KnnGraphKNearestFunctor>();
     std::cout << "Using range neighbors query :" << std::endl;
-    testPlaneCuda<float, 3, KdTreeRangeNeighborsFunctor>();
+    testPlaneCuda<float, 3, KnnGraphRangeFunctor>(); // TOFIX : Provokes an illegal memory access
 }

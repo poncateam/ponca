@@ -458,13 +458,13 @@ namespace Ponca
             \warning t > 0
         */
         PONCA_MULTIARCH inline NeighborFilterStoreNormal(const VectorType& _evalPos    = VectorType::Zero(),
-                                                         const Scalar& _t              = Scalar(0),
+                                                         const Scalar& _t              = Scalar(1.),
                                                          const VectorType& _evalNormal = VectorType::Zero())
             : Base(_evalPos, _t), m_n(_evalNormal)
         {
         }
 
-        PONCA_MULTIARCH inline NeighborFilterStoreNormal(const DataPoint& _evalPoint, const Scalar& _t = Scalar(0))
+        PONCA_MULTIARCH inline NeighborFilterStoreNormal(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1.))
             : Base(_evalPoint.pos(), _t), m_n(_evalPoint.normal())
         {
         }

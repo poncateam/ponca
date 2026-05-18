@@ -167,7 +167,7 @@ __host__ void testPlaneCuda(
 }
 
 __host__ int main(const int /*argc*/, char** /*argv*/) {
-    std::cout << "Test plane fitting on CUDA..." << std::endl;
+    std::cout << "Example plane fitting on CUDA..." << std::endl;
     testPlaneCuda<float, 3>();
     std::cout << "(ok)" << std::endl;
 }

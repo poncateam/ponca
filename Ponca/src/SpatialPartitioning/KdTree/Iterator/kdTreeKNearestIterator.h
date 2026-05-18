@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "../../indexSquaredDistance.h"
+#include "../../../Common/Containers/limitedPriorityQueue.h"
 #include <cstddef>
 
 namespace Ponca
@@ -21,8 +23,10 @@ namespace Ponca
      *  \note This iterator object can be duplicated with no issues.
      *
      *  \see KdTreeKNearestQueryBase
+     *
+     *  \tparam MAX_KNN_SIZE Maximum size of the K-neighborhood
      */
-    template <typename Index, typename DataPoint>
+    template <typename Index, typename DataPoint, int MAX_KNN_SIZE>
     class KdTreeKNearestIterator
     {
     public:
@@ -33,7 +37,7 @@ namespace Ponca
         using reference         = const Index&;
 
         using Scalar   = typename DataPoint::Scalar;
-        using Iterator = typename limited_priority_queue<IndexSquaredDistance<Index, Scalar>>::iterator;
+        using Iterator = typename LimitedPriorityQueue<IndexSquaredDistance<Index, Scalar>, MAX_KNN_SIZE>::iterator;
 
         PONCA_MULTIARCH inline KdTreeKNearestIterator() = default;
         PONCA_MULTIARCH inline KdTreeKNearestIterator(const Iterator& iterator) : m_iterator(iterator) {}
