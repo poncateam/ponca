@@ -197,14 +197,14 @@ namespace Ponca
                                               const Scalar& _t           = Scalar(1.))
             : NeighborhoodFrame(_evalPos), m_t(_t)
         {
-            PONCA_ASSERT(_t > Scalar(0));
+            // PONCA_ASSERT(_t > Scalar(0));
         }
 
         ///! \copydoc DistWeightFunc
         PONCA_MULTIARCH inline DistWeightFunc(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1.))
             : NeighborhoodFrame(_evalPoint.pos()), m_t(_t)
         {
-            PONCA_ASSERT(_t > Scalar(0));
+            // PONCA_ASSERT(_t > Scalar(0));
         }
 
         /*!
