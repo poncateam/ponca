@@ -24,16 +24,7 @@ namespace Ponca
     template <typename _Traits>
     struct KnnGraphBuffers : public NeighborGraphBufferBase<_Traits>
     {
-#define WRITE_TRAITS                                                                                                    \
-    using Traits            = _Traits;                    /*!< Alias to the Traits type                          */     \
-    using DataPoint         = typename Traits::DataPoint; /*!< DataPoint given by user via Traits                */     \
-    using Scalar            = typename DataPoint::Scalar; /*!< Scalar given by user via DataPoint                */     \
-    using VectorType        = typename DataPoint::VectorType; /*!< VectorType given by user via DataPoint            */ \
-    using IndexType         = typename Traits::IndexType; /*!< Type used to index points into the PointContainer */     \
-    using PointContainer    = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree   */ \
-    using IndexContainer    = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree     */ \
-    using IndexContainerRef = typename Traits::IndexContainerRef; /*!< Ref type to index container */
-        WRITE_TRAITS
+        WRITE_NEIGHBOR_GRAPH_ALIASES
         using Base = NeighborGraphBufferBase<_Traits>;
 
         int k{DEFAULT_K_IN_KNN_GRAPH};
@@ -67,7 +58,7 @@ namespace Ponca
                                                             NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>
     {
     public:
-        WRITE_TRAITS
+        WRITE_NEIGHBOR_GRAPH_ALIASES
 
         friend class NeighborGraphOneConnectedQuery<StaticKnnGraphBase<Traits>>; /*!< This type must be equal to
                                                        KnnGraphBase::KNearestIndexQuery
@@ -113,7 +104,8 @@ namespace Ponca
     class KnnGraphBase : public StaticKnnGraphBase<_Traits>
     {
     public:
-        WRITE_TRAITS
+        WRITE_NEIGHBOR_GRAPH_ALIASES
+
     private:
         using Base    = StaticKnnGraphBase<Traits>;
         using Buffers = typename Base::Buffers;

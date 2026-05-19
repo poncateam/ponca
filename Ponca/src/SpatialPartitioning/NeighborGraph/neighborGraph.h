@@ -24,16 +24,7 @@ namespace Ponca
     template <typename _Traits>
     struct NeighborGraphBuffer : public NeighborGraphBufferBase<_Traits>
     {
-#define WRITE_TRAITS                                                                                                    \
-    using Traits            = _Traits;                    /*!< Alias to the Traits type                          */     \
-    using DataPoint         = typename Traits::DataPoint; /*!< DataPoint given by user via Traits                */     \
-    using Scalar            = typename DataPoint::Scalar; /*!< Scalar given by user via DataPoint                */     \
-    using VectorType        = typename DataPoint::VectorType; /*!< VectorType given by user via DataPoint            */ \
-    using IndexType         = typename Traits::IndexType; /*!< Type used to index points into the PointContainer */     \
-    using PointContainer    = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree   */ \
-    using IndexContainer    = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree     */ \
-    using IndexContainerRef = typename Traits::IndexContainerRef; /*!< Ref type to index container */
-        WRITE_TRAITS
+        WRITE_NEIGHBOR_GRAPH_ALIASES
         using Base = NeighborGraphBufferBase<_Traits>;
 
         IndexContainer ranges;
@@ -65,14 +56,7 @@ namespace Ponca
                                        NeighborGraphRangeQuery<StaticNeighborGraphBase<_Traits>>>
     {
     public:
-        using Traits         = _Traits;                         /*!< Alias to the Traits type                         */
-        using DataPoint      = typename Traits::DataPoint;      /*!< DataPoint given by user via Traits               */
-        using Scalar         = typename DataPoint::Scalar;      /*!< Scalar given by user via DataPoint               */
-        using VectorType     = typename DataPoint::VectorType;  /*!< VectorType given by user via DataPoint           */
-        using IndexType      = typename Traits::IndexType;      /*!< Type used to index points into the PointContainer*/
-        using PointContainer = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree  */
-        using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree    */
-        using IndexContainerRef = typename Traits::IndexContainerRef; /*!< Ref type to index container */
+        WRITE_NEIGHBOR_GRAPH_ALIASES
 
         /// This type must be equal to AbstractNeighborGraph::OneConnectedIndexQuery \see NeighborGraphKNearestQuery
         friend class NeighborGraphOneConnectedQuery<StaticNeighborGraphBase<Traits>>;
@@ -100,7 +84,8 @@ namespace Ponca
     class NeighborGraphBase : public StaticNeighborGraphBase<_Traits>
     {
     public:
-        WRITE_TRAITS
+        WRITE_NEIGHBOR_GRAPH_ALIASES
+
     private:
         using Base    = StaticNeighborGraphBase<Traits>;
         using Buffers = typename Base::Buffers;

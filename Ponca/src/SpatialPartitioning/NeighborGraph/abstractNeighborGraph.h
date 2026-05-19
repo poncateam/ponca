@@ -10,6 +10,16 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 #include <cstddef> // size_t
 
+#define WRITE_NEIGHBOR_GRAPH_ALIASES                                                                                    \
+    using Traits            = _Traits;                    /*!< Alias to the Traits type                          */     \
+    using DataPoint         = typename Traits::DataPoint; /*!< DataPoint given by user via Traits                */     \
+    using Scalar            = typename DataPoint::Scalar; /*!< Scalar given by user via DataPoint                */     \
+    using VectorType        = typename DataPoint::VectorType; /*!< VectorType given by user via DataPoint            */ \
+    using IndexType         = typename Traits::IndexType; /*!< Type used to index points into the PointContainer */     \
+    using PointContainer    = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree   */ \
+    using IndexContainer    = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree     */ \
+    using IndexContainerRef = typename Traits::IndexContainerRef; /*!< Ref type to index container */
+
 namespace Ponca
 {
     /// \brief Internal structure storing the buffers used by a neighbor graph
@@ -69,14 +79,7 @@ namespace Ponca
     class AbstractNeighborGraph
     {
     public:
-        using Traits         = _Traits;                         /*!< Alias to the Traits type                         */
-        using DataPoint      = typename Traits::DataPoint;      /*!< DataPoint given by user via Traits               */
-        using Scalar         = typename DataPoint::Scalar;      /*!< Scalar given by user via DataPoint               */
-        using VectorType     = typename DataPoint::VectorType;  /*!< VectorType given by user via DataPoint           */
-        using IndexType      = typename Traits::IndexType;      /*!< Type used to index points into the PointContainer*/
-        using PointContainer = typename Traits::PointContainer; /*!< Container for DataPoint used inside the KdTree  */
-        using IndexContainer = typename Traits::IndexContainer; /*!< Container for indices used inside the KdTree    */
-        using IndexContainerRef      = typename Traits::IndexContainerRef; /*!< Ref type to index container */
+        WRITE_NEIGHBOR_GRAPH_ALIASES
         using OneConnectedIndexQuery = _OneConnectedIndexQuery;
         using RangeIndexQuery        = _RangeIndexQuery;
 
