@@ -16,14 +16,14 @@
 #include "../split_test_helper.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
+#include <Ponca/src/SpatialPartitioning/NeighborGraph/knnGraph.h>
 #include <Ponca/src/Common/pointTypes.h>
 
 #define PRINT_TIMING
 
 using namespace Ponca;
 
-//! Test kNearestNeighbors query
+//! Test oneConnectedNeighbors query
 template <bool doIndexQuery, typename AcceleratingStructure, typename PointContainer>
 auto testKNearestNeighbors(AcceleratingStructure& structure, PointContainer& points, std::vector<int>& sample,
                            const int k)
@@ -49,7 +49,7 @@ auto testKNearestNeighbors(AcceleratingStructure& structure, PointContainer& poi
         g_repeat, k);
 }
 
-//! \brief Test kNearestNeighbors query without the k argument. The size of the iterator depends on the acceleration
+//! \brief Test oneConnectedNeighbors query without the k argument. The size of the iterator depends on the acceleration
 //! structure (e.g. when using the knnGraph(kdtreeDense, k))
 template <typename AcceleratingStructure, typename PointContainer>
 auto testKNearestNeighborsEntirePointSet(AcceleratingStructure& structure, PointContainer& points, const int k)
@@ -125,7 +125,7 @@ void buildAndTestKnnGraph(KdTree& kdtree, const int k, const std::string& name =
 #endif
 
     // Test the KnnGraph with raw memory pointers
-    using KnnGraphPointerStatic = StaticKnnGraphBase<KnnGraphPointerTraits<P>>;
+    using KnnGraphPointerStatic = StaticKnnGraphBase<NeighborGraphPointerTraits<P>>;
     auto knngraphBuffers        = knnGraph.buffers(); // Buffer that use STL-like containers
     // Convert previous KnnGraph to pointers
     P* pts = new P[points.size()];

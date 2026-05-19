@@ -1,0 +1,181 @@
+/*
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+#pragma once
+
+#include "abstractNeighborGraph.h"
+#include "Query/neighborGraphOneConnectedQuery.h"
+#include "Query/neighborGraphRangeQuery.h"
+
+#include "../KdTree/kdTree.h"
+#include "../../Common/Assert.h"
+
+namespace Ponca
+{
+
+    /// \brief Buffer class for StaticKnnGraphBase.
+    ///
+    /// Extends the NeighborGraphBufferBase with a constant neighborhood size k
+    template <typename _Traits>
+    struct KnnGraphBuffers : public NeighborGraphBufferBase<_Traits>
+    {
+        WRITE_NEIGHBOR_GRAPH_ALIASES
+        using Base = NeighborGraphBufferBase<_Traits>;
+
+        /// \brief Helper variable defining the default number of neighbors in Knn graphs
+        static constexpr int DefaultKInKnnGraph = 6;
+
+        /// \brief Number of neighbors used to build the graph
+        const int k{DefaultKInKnnGraph};
+
+        PONCA_MULTIARCH inline KnnGraphBuffers() = default;
+        PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, const int _k = DefaultKInKnnGraph)
+            : Base(_points), k(_k)
+        {
+        }
+        PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, typename Traits::IndexContainerRef _indices,
+                                               const size_t _points_size, const size_t _indices_size, const int _k)
+            : Base(_points, _indices, _points_size, _indices_size), k(_k)
+        {
+        }
+    };
+
+    /*!
+     * \brief Customizable base class for KnnGraph datastructure
+     *
+     * \see Ponca::KnnGraph, Ponca::NeighborGraphBase
+     *
+     * \tparam _Traits Traits type providing the types and constants used by the KnnGraph. Must have the
+     * same interface as the default traits type.
+     *
+     * \see NeighborGraphDefaultTraits for the trait interface documentation.
+     *
+     */
+    template <typename _Traits>
+    class StaticKnnGraphBase : public AbstractNeighborGraph<_Traits, KnnGraphBuffers,
+                                                            NeighborGraphOneConnectedQuery<StaticKnnGraphBase<_Traits>>,
+                                                            NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>
+    {
+    public:
+        WRITE_NEIGHBOR_GRAPH_ALIASES
+
+        friend class NeighborGraphOneConnectedQuery<StaticKnnGraphBase<Traits>>; /*!< This type must be equal to
+                                                       KnnGraphBase::KNearestIndexQuery
+                                                       \see NeighborGraphKNearestQuery */
+        friend class NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>;       /*!< This type must be equal to
+                                                          KnnGraphBase::RangeIndexQuery \see   NeighborGraphRangeQuery */
+        using Base =
+            AbstractNeighborGraph<Traits, KnnGraphBuffers, NeighborGraphOneConnectedQuery<StaticKnnGraphBase<Traits>>,
+                                  NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>;
+        using Buffers = typename Base::Buffers;
+
+        PONCA_MULTIARCH inline StaticKnnGraphBase<Traits>(Buffers& _bufs) : Base(_bufs) {}
+
+    protected:
+        PONCA_MULTIARCH inline StaticKnnGraphBase(PointContainer _points, const int _k) : Base(Buffers(_points, _k)) {}
+
+        // Accessors ---------------------------------------------------------------
+    public:
+        /// \brief Number of neighbor per vertex for a given element (in the KnnGraph, all points have the same number
+        /// of neighbors.
+        PONCA_MULTIARCH [[nodiscard]] inline int k(int /*index*/ = 0) const { return Base::buffers().k; }
+        /// Index of the beginning of the neighborhood range
+        PONCA_MULTIARCH [[nodiscard]] inline int beginId(int vId) const { return vId * k(); }
+        /// Index of the end of the neighborhood range
+        PONCA_MULTIARCH [[nodiscard]] inline int endId(int vId) const { return (vId + 1) * k(); }
+
+        /// \copybrief KdTreeBase::kNearestNeighborsQuery
+        /// \copydetails StaticKdTreeBase::kNearestNeighborsIndexQuery
+        PONCA_MULTIARCH [[nodiscard]] inline typename Base::OneConnectedIndexQuery kNearestNeighbors(int index) const
+        {
+            return Base::oneConnectedNeighbors(index);
+        }
+
+        /// \copybrief KdTreeBase::kNearestNeighborsQuery
+        /// \copydetails StaticKdTreeBase::kNearestNeighborsIndexQuery
+        PONCA_MULTIARCH [[nodiscard]] inline typename Base::OneConnectedIndexQuery kNearestNeighborsIndexQuery() const
+        {
+            return Base::oneConnectedNeighbors();
+        }
+    };
+
+    template <typename _Traits>
+    class KnnGraphBase : public StaticKnnGraphBase<_Traits>
+    {
+    public:
+        WRITE_NEIGHBOR_GRAPH_ALIASES
+
+    private:
+        using Base    = StaticKnnGraphBase<Traits>;
+        using Buffers = typename Base::Buffers;
+        // knnGraph ----------------------------------------------------------------
+    public:
+        /// \brief Build a KnnGraph from a KdTreeDense
+        ///
+        /// \param _kdtree Reference to the KdTree
+        /// \param _k Number of requested neighbors. Might be reduced if k is larger than the kdtree size - 1
+        ///          (query point is not included in query output, thus -1)
+        ///
+        /// \warning Stores a const reference to kdtree.point_data()
+        /// \warning KdTreeTraits compatibility is checked with static assertion
+        template <typename KdTreeTraits>
+        PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree,
+                                                 const int _k = Base::DefaultKInKnnGraph)
+            : Base(_kdtree.points(), std::min(_k, _kdtree.sampleCount() - 1))
+        {
+            Base::m_bufs.points_size = _kdtree.pointCount();
+#define CHECK_TRAITS_TYPENAME_COMPAT(A, B)                                                            \
+    static_assert(std::is_same_v<A, B> || std::is_convertible_v<A, B> || std::is_convertible_v<B, A>, \
+                  "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
+
+            static_assert(std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
+                          "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
+
+            CHECK_TRAITS_TYPENAME_COMPAT(typename Traits::PointContainer, typename KdTreeTraits::PointContainer)
+            CHECK_TRAITS_TYPENAME_COMPAT(typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer)
+
+#undef CHECK_TRAITS_TYPENAME_COMPAT
+
+            // We need to account for the entire point set, irrespectively of the sampling. This is because the kdtree
+            // (kNearestNeighbors) return ids of the entire point set, not it sub-sampled list of ids.
+            // \fixme Update API to properly handle kdtree subsampling
+            const int cloudSize = _kdtree.pointCount();
+            {
+                const int samplesSize = _kdtree.sampleCount();
+                PONCA_ASSERT(cloudSize == samplesSize);
+            }
+
+            Base::m_bufs.indices_size = cloudSize * Base::m_bufs.k;
+            Base::m_bufs.indices.resize(Base::m_bufs.indices_size, -1);
+
+#pragma omp parallel for shared(_kdtree, cloudSize) default(none)
+            for (int i = 0; i < cloudSize; ++i)
+            {
+                int j = 0;
+                for (auto n : _kdtree.kNearestNeighbors(typename KdTreeTraits::IndexType(i),
+                                                        typename KdTreeTraits::IndexType(Base::m_bufs.k)))
+                {
+                    Base::m_bufs.indices[i * Base::m_bufs.k + j] = n;
+                    ++j;
+                }
+            }
+        }
+    };
+
+    /*!
+     * \brief Public interface for the KnnGraph datastructure.
+     *
+     * Provides default implementation of the KnnGraph
+     *
+     * \see NeighborGraphDefaultTraits for the default trait interface documentation.
+     * \see KnnGraphBase, AbstractNeighborGraph for complete API
+     */
+    template <typename DataPoint>
+    using KnnGraph = KnnGraphBase<NeighborGraphDefaultTraits<DataPoint>>;
+
+} // namespace Ponca
+
+#undef WRITE_TRAITS

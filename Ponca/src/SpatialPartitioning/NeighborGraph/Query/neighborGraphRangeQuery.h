@@ -7,12 +7,10 @@
 #pragma once
 
 #include "../../query.h"
-#include "../Iterator/knnGraphRangeIterator.h"
+#include "../Iterator/neighborGraphRangeIterator.h"
 
 namespace Ponca
 {
-    template <typename Traits>
-    class StaticKnnGraphBase;
 
     /*! \brief Extension of the Query class that allows to read the result of a range neighbor search on the KnnGraph.
      *
@@ -25,12 +23,12 @@ namespace Ponca
      * algorithm. Can either be :
      *
      * - `Traits::KnnGraphRangeSet = std::set<int>` for dynamic memory, which is not compatible with CUDA. (Used by
-     * `KnnGraphDefaultTraits`)
+     * `NeighborGraphDefaultTraits`)
      *
      * -`Traits::KnnGraphRangeSet = HashSet<K_MAX_NN>` : Stores the index in a HashMap-like structure.
      * The Best case complexity for insertion and search is O(1) and worst case is O(N), depending on the given dataset
      * and on the chosen hashing function (Sparser hashing results will lead to a reduce look-up time). (Used by
-     * `KnnGraphPointerTraits`)
+     * `NeighborGraphPointerTraits`)
      * \see HashSet
      *
      * - `Traits::KnnGraphRangeSet = BitSet<MAX_POINT_CLOUD_SIZE>` : Stores the index in a set of bits by allocating a
@@ -40,35 +38,40 @@ namespace Ponca
      * indicate if the index was stored or not, the memory use of this BitSet type is dependant of the total size of
      * the point cloud.
      * Extensively big point clouds can therefore provoke memory allocation problems if we have a memory limit (e.g. if
-     * we are instantiating the `KnnGraphRangeQuery` inside local memory, in a CUDA kernel).
+     * we are instantiating the `NeighborGraphRangeQuery` inside local memory, in a CUDA kernel).
      * \see BitSet for more detailed information about the memory usage.
      *
      * `Traits::KnnGraphRangeStack` The stack type storing the next neighbor to visit. Can either be :
      *
      * - `Traits::KnnGraphRangeStack = std::set<int>` A stack that dynamically allocates memory (Used by
-     * `KnnGraphDefaultTraits`)
+     * `NeighborGraphDefaultTraits`)
      *
      * - `Traits::KnnGraphRangeStack = Stack<int, K_MAX_NN>` : Has a limited amount of storage. Will throw out of bound
      * exception in debug mode if elements are inserted above the maximum capacity of the stack. (Used by
-     * `KnnGraphPointerTraits`)
+     * `NeighborGraphPointerTraits`)
      */
-    template <typename Traits>
-    class KnnGraphRangeQuery : public RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>
+    template <typename _NeighborGraph>
+    class NeighborGraphRangeQuery : public RangeIndexQuery<typename _NeighborGraph::Traits::IndexType,
+                                                           typename _NeighborGraph::Traits::DataPoint::Scalar>
     {
+
+    public:
+        using NeighborGraph = _NeighborGraph;
+        using Traits        = typename NeighborGraph::Traits;
+        using QueryType     = RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
+        using DataPoint     = typename Traits::DataPoint;
+        using IndexType     = typename Traits::IndexType;
+        using Scalar        = typename DataPoint::Scalar;
+        using VectorType    = typename DataPoint::VectorType;
+        using Iterator      = NeighborGraphRangeIterator<NeighborGraph>;
+        using Self          = NeighborGraphRangeQuery<NeighborGraph>;
+
     protected:
-        using QueryType = RangeIndexQuery<typename Traits::IndexType, typename Traits::DataPoint::Scalar>;
-        friend class KnnGraphRangeIterator<Traits>; // This type must be equal to KnnGraphRangeQuery::Iterator
+        friend class NeighborGraphRangeIterator<NeighborGraph>; // This type must be equal to
+                                                                // NeighborGraphRangeQuery::Iterator
 
     public:
-        using DataPoint  = typename Traits::DataPoint;
-        using IndexType  = typename Traits::IndexType;
-        using Scalar     = typename DataPoint::Scalar;
-        using VectorType = typename DataPoint::VectorType;
-        using Iterator   = KnnGraphRangeIterator<Traits>;
-        using Self       = KnnGraphRangeQuery<Traits>;
-
-    public:
-        PONCA_MULTIARCH inline KnnGraphRangeQuery(const StaticKnnGraphBase<Traits>* graph, Scalar radius, int index)
+        PONCA_MULTIARCH inline NeighborGraphRangeQuery(const NeighborGraph* graph, Scalar radius, int index)
             : QueryType(radius, index), m_graph(graph), m_flag(), m_stack()
         {
         }
@@ -93,7 +96,7 @@ namespace Ponca
         }
 
         /// \brief Returns an iterator to the end of the range neighbors query.
-        PONCA_MULTIARCH inline Iterator end() { return Iterator(this, static_cast<int>(m_graph->size())); }
+        PONCA_MULTIARCH inline Iterator end() { return Iterator(this, static_cast<int>(m_graph->pointCount())); }
 
     protected:
         PONCA_MULTIARCH inline void initialize(Iterator& iterator)
@@ -107,11 +110,10 @@ namespace Ponca
             iterator.m_index = -1;
         }
 
-        /*! \brief Helper function for the KnnGraphRangeIterator that advances the range neighbors search using the
-         * k-nearest neighbors known by the KnnGraph
+        /*! \brief Helper function for the NeighborGraphRangeIterator that advances the range neighbors search using the
+         * k-nearest neighbors known by the NeighborGraphBase
          *
-         * \param iterator The KnnGraphRangeIterator from where the advance request is made
-         * \see KnnGraphRangeIterator
+         * \param iterator The NeighborGraphRangeIterator from where the advance request is made
          */
         PONCA_MULTIARCH inline void advance(Iterator& iterator)
         {
@@ -131,7 +133,7 @@ namespace Ponca
 
                 iterator.m_index = idx_current;
 
-                for (int idx_nei : m_graph->kNearestNeighbors(idx_current))
+                for (int idx_nei : m_graph->oneConnectedNeighbors(idx_current))
                 {
                     PONCA_DEBUG_ASSERT(idx_nei >= 0);
                     // Add into the search stack only if :
@@ -161,7 +163,7 @@ namespace Ponca
         }
 
     protected:
-        const StaticKnnGraphBase<Traits>* m_graph{nullptr};
+        const NeighborGraph* m_graph{nullptr};
         typename Traits::KnnGraphRangeSet m_flag;    ///< Stores every visited neighbor ids
         typename Traits::KnnGraphRangeStack m_stack; ///< Holds the next ids the Query should visit
     };

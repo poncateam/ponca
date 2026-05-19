@@ -15,7 +15,8 @@
 #include "../split_test_helper.h"
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
+#include <Ponca/src/SpatialPartitioning/NeighborGraph/knnGraph.h>
+#include <Ponca/src/SpatialPartitioning/NeighborGraph/neighborGraph.h>
 #include <Ponca/src/Common/pointTypes.h>
 
 #define PRINT_TIMING
@@ -23,12 +24,14 @@
 using namespace Ponca;
 
 template <bool doIndexQuery, typename AcceleratingStructure, typename PointContainer>
-auto testRangeNeighbors(AcceleratingStructure& structure, PointContainer& points, std::vector<int>& sample)
+auto testRangeNeighbors(AcceleratingStructure& structure, PointContainer& points, std::vector<int>& sample,
+                        typename AcceleratingStructure::DataPoint::Scalar r =
+                            Eigen::internal::random<typename AcceleratingStructure::DataPoint::Scalar>(
+                                typename AcceleratingStructure::DataPoint::Scalar(0.01),
+                                typename AcceleratingStructure::DataPoint::Scalar(0.5)))
 {
     using DataPoint = typename AcceleratingStructure::DataPoint;
     using Scalar    = typename DataPoint::Scalar;
-
-    const Scalar r = Eigen::internal::random<Scalar>(Scalar(0.01), Scalar(0.5));
 
     return testQuery<doIndexQuery, DataPoint>(
         points,
@@ -110,7 +113,7 @@ void buildAndTestKnnGraph(KdTree& kdtree, std::vector<int>& sampleDense, const s
     cout << "  (ok)" << endl;
 
     // Test the KnnGraph with raw memory pointers
-    using KnnGraphPointerStatic = StaticKnnGraphBase<KnnGraphPointerTraits<P>>;
+    using KnnGraphPointerStatic = StaticKnnGraphBase<NeighborGraphPointerTraits<P>>;
     auto knngraphBuffers        = knnGraph.buffers(); // Buffer that use STL-like containers
     // Convert previous KnnGraph to pointers
     P* pts = new P[points.size()];
@@ -119,6 +122,45 @@ void buildAndTestKnnGraph(KdTree& kdtree, std::vector<int>& sampleDense, const s
         pts, knngraphBuffers.indices.data(), knngraphBuffers.points_size, knngraphBuffers.indices_size, k};
     KnnGraphPointerStatic knnGraphStatic(knnGraphStaticBuffers);
     timing = testRangeNeighbors<true>(knnGraphStatic, points, sampleDense); // Index query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " (with pointers) index query : " << timing.count() << "ms" << endl;
+#endif
+    cout << "  (ok)" << endl;
+    delete[] pts;
+}
+
+//! \brief Build a NeighborGraph and test the Neighbor query with default container type and raw memory pointers
+template <typename P, typename KdTree>
+void buildAndTestNeighborGraph(KdTree& kdtree, std::vector<int>& sampleDense,
+                               const std::string& name = "Range Neighbor Graph")
+{
+    using Scalar = typename KdTree::Scalar;
+    auto points  = kdtree.points();
+
+    const Scalar range = Eigen::internal::random<Scalar>(Scalar(0.01), Scalar(0.5));
+
+    NeighborGraph<P> neighborGraph(kdtree, range); /* We need a large graph, otherwise we might miss some points
+                                        (which is the goal of the graph: to replace full Euclidean
+                                        collection by geodesic-like region growing bounded by
+                                        the Euclidean ball). */
+    std::chrono::milliseconds timing =
+        testRangeNeighbors<true>(neighborGraph, points, sampleDense, range); // Index query test
+#ifdef PRINT_TIMING
+    cout << "    Compute Time " << name << " index query : " << timing.count() << "ms" << endl;
+#endif
+    cout << "  (ok)" << endl;
+
+    // Test the KnnGraph with raw memory pointers
+    using NeighborGraphPointerStatic = StaticNeighborGraphBase<NeighborGraphPointerTraits<P>>;
+    auto neighborGraphBuffers        = neighborGraph.buffers(); // Buffer that use STL-like containers
+    // Convert previous KnnGraph to pointers
+    P* pts = new P[points.size()];
+    std::copy(points.begin(), points.end(), pts);
+    typename NeighborGraphPointerStatic::Buffers neighborGraphStaticBuffers{
+        pts, neighborGraphBuffers.indices.data(), neighborGraphBuffers.points_size, neighborGraphBuffers.indices_size,
+        neighborGraphBuffers.ranges.data()};
+    NeighborGraphPointerStatic neighborGraphStatic(neighborGraphStaticBuffers);
+    timing = testRangeNeighbors<true>(neighborGraphStatic, points, sampleDense, range); // Index query test
 #ifdef PRINT_TIMING
     cout << "    Compute Time " << name << " (with pointers) index query : " << timing.count() << "ms" << endl;
 #endif
@@ -146,6 +188,7 @@ void testRangeNeighborsForAllStructures(const bool quick = QUICK_TESTS)
 
     ////////// Test KnnGraph
     buildAndTestKnnGraph<P>(kdtreeDense, sampleDense);
+    buildAndTestNeighborGraph<P>(kdtreeDense, sampleDense);
 }
 
 int main(const int argc, char** argv)

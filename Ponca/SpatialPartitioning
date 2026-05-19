@@ -13,5 +13,5 @@
 #include "src/SpatialPartitioning/query.h"
 #include "src/SpatialPartitioning/KdTree/kdTree.h"
 #include "src/SpatialPartitioning/KdTree/kdTreeTraits.h"
-#include "src/SpatialPartitioning/KnnGraph/knnGraph.h"
-#include "src/SpatialPartitioning/KnnGraph/knnGraphTraits.h"
+#include "src/SpatialPartitioning/NeighborGraph/neighborGraph.h"
+#include "src/SpatialPartitioning/NeighborGraph/knnGraph.h"

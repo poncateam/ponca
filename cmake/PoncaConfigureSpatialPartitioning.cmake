@@ -13,12 +13,14 @@ set(ponca_SpatialPartitioning_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Iterator/kdTreeKNearestIterator.h"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Iterator/kdTreeNearestIterator.h"
     "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KdTree/Iterator/kdTreeRangeIterator.h"
-    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h"
-    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/knnGraphTraits.h"
-    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/Query/knnGraphKNearestQuery.h"
-    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/Query/knnGraphRangeQuery.h"
-    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/Iterator/knnGraphRangeIterator.h"
-    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/KnnGraph/Iterator/knnGraphKNearestIterator.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/NeighborGraph/abstractNeighborGraph.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/NeighborGraph/neighborGraphTraits.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/NeighborGraph/Iterator/neighborGraphOneConnectedIterator.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/NeighborGraph/Query/neighborGraphOneConnectedQuery.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/NeighborGraph/Query/neighborGraphRangeQuery.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/NeighborGraph/Iterator/neighborGraphRangeIterator.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/NeighborGraph/knnGraph.h"
+    "${PONCA_src_ROOT}/Ponca/src/SpatialPartitioning/NeighborGraph/neighborGraph.h"
     )
 
 add_library(SpatialPartitioning INTERFACE)

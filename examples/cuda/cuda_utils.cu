@@ -13,7 +13,7 @@
 #pragma once
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
+#include <Ponca/src/SpatialPartitioning/NeighborGraph/knnGraph.h>
 
 #define CUDA_CHECK(err)                                                                                               \
     if (err != cudaSuccess)                                                                                           \
@@ -37,7 +37,7 @@ using KdTreeGPU = Ponca::StaticKdTreeBase<Ponca::KdTreePointerTraits<DataPoint>>
 /*! \brief A KnnGraph Type that can be run on the GPU
  */
 template <typename DataPoint>
-using KnnGraphGPU = Ponca::StaticKnnGraphBase<Ponca::KnnGraphPointerTraits<DataPoint>>;
+using KnnGraphGPU = Ponca::StaticKnnGraphBase<Ponca::NeighborGraphPointerTraits<DataPoint>>;
 //! [Definition KnnGraphGPU]
 
 template <typename DataPoint>
@@ -70,7 +70,7 @@ struct KnnGraphRangeFunctor
 {
     static __device__ inline auto query(KnnGraphGPU<DataPoint>& d_knngraph, int i,
                                         typename DataPoint::Scalar analysisScale)
-        -> Ponca::KnnGraphRangeQuery<Ponca::KnnGraphPointerTraits<DataPoint>>
+        -> Ponca::NeighborGraphRangeQuery<Ponca::NeighborGraphPointerTraits<DataPoint>>
     {
         //! [Use KnnGraph.rangeNeighbors on the GPU]
         return d_knngraph.rangeNeighbors(i, analysisScale);
@@ -83,7 +83,7 @@ struct KnnGraphKNearestFunctor
 {
     static __device__ inline auto query(KnnGraphGPU<DataPoint>& d_knngraph, int i,
                                         typename DataPoint::Scalar analysisScale)
-        -> Ponca::KnnGraphKNearestQuery<Ponca::KnnGraphPointerTraits<DataPoint>>
+        -> Ponca::NeighborGraphKNearestQuery<Ponca::NeighborGraphPointerTraits<DataPoint>>
     {
         //! [Use KnnGraph.kNearestNeighbors on the GPU]
         return d_knngraph.kNearestNeighbors(i);

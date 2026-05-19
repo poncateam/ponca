@@ -3,7 +3,7 @@
 #include <cassert>
 
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-#include <Ponca/src/SpatialPartitioning/KnnGraph/knnGraph.h>
+#include <Ponca/src/SpatialPartitioning/NeighborGraph/knnGraph.h>
 #include <chrono>
 #include <random>
 #include <iterator>

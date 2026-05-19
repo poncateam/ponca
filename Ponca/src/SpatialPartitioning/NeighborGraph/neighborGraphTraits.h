@@ -17,10 +17,10 @@ namespace Ponca
 {
 
     /*!
-     * \brief The default traits type used by the kd-tree.
+     * \brief The default traits type used by the neighbor graph.
      */
     template <typename _DataPoint>
-    struct KnnGraphDefaultTraits
+    struct NeighborGraphDefaultTraits
     {
         /*!
          * \brief The type used to store point data.
@@ -47,18 +47,18 @@ namespace Ponca
 
         // Containers
         using IndexType = int;
-        /// \brief Type used to store the external Point container in the KnnGraph::Buffer
+        /// \brief Type used to store the external Point container in AbstractNeighborGraph::Buffers
         using PointContainer = const std::vector<DataPoint>&;
-        /// \brief Type used to store the index container in the KnnGraph::Buffer
+        /// \brief Type used to store the index container in the AbstractNeighborGraph::Buffers
         using IndexContainer = std::vector<IndexType>;
         /// \brief Type to be used to send the index container as function parameter
         using IndexContainerRef = IndexContainer&;
 
-        /*! \brief A Set dynamic in memory, used by KnnGraphRangeQuery
+        /*! \brief A Set dynamic in memory, used by NeighborGraphRangeQuery
          *  \warning Not compatible with CUDA
          */
         using KnnGraphRangeSet = std::set<int>;
-        /*! \brief A Stack dynamic in memory, used by KnnGraphRangeQuery
+        /*! \brief A Stack dynamic in memory, used by NeighborGraphRangeQuery
          *  \warning Not compatible with CUDA
          */
         using KnnGraphRangeStack = std::stack<int>;
@@ -69,11 +69,11 @@ namespace Ponca
         PONCA_MULTIARCH static const IndexType* getIndexRawPtr(const IndexContainer& idx) { return idx.data(); }
     };
     /*!
-     * \brief Variant to the KnnGraph Traits type that uses pointers as internal storage instead of an STL-like
+     * \brief Variant to the NeighborGraphDefaultTraits that uses pointers as internal storage instead of an STL-like
      * container.
      */
     template <typename _DataPoint>
-    struct KnnGraphPointerTraits
+    struct NeighborGraphPointerTraits
     {
         enum
         {
@@ -104,17 +104,17 @@ namespace Ponca
 
         // Containers
         using IndexType = int;
-        /// \brief Type used to store the external Point container in the KnnGraph::Buffer
-        /// Non-const to allow KnnGraph::Buffers copy and writing to other devices
+        /// \brief Type used to store the external Point container in AbstractNeighborGraph::Buffers
+        /// Non-const to allow AbstractNeighborGraph::Buffers copy and writing to other devices
         using PointContainer = DataPoint*;
-        /// \brief Type used to store the index container in the KnnGraph::Buffer
+        /// \brief Type used to store the index container in the AbstractNeighborGraph::Buffers
         using IndexContainer = IndexType*;
         /// \brief Type to be used to send the index container as function parameter
         using IndexContainerRef = IndexContainer;
 
-        //! \brief A static Set used by KnnGraphRangeQuery
+        //! \brief A static Set used by NeighborGraphRangeQuery
         using KnnGraphRangeSet = HashSet<K_MAX_NN>;
-        //! \brief A static Stack used by KnnGraphRangeQuery
+        //! \brief A static Stack used by NeighborGraphRangeQuery
         using KnnGraphRangeStack = Stack<int, K_MAX_NN>;
 
         /// \brief Provides access to the raw pointer where indices are stored
