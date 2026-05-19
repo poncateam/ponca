@@ -65,9 +65,6 @@ void testPlaneSycl(sycl::device device, const bool _bUnoriented = false, const b
     //! [Build KdTree on CPU]
 
     auto queue = sycl::queue(device);
-    // The size of the data we send between Host and Device
-    const unsigned long scalarBufferSize = nbPoints * sizeof(Scalar);
-    const unsigned long vectorBufferSize = scalarBufferSize * Dim;
 
     //! [Copy KdTree on GPU]
     using BuffersGPU = typename KdTreeGPU<DataPoint>::Buffers;
