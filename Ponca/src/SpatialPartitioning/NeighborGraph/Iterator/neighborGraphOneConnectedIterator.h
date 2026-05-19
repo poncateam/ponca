@@ -19,9 +19,8 @@ namespace Ponca
      * functionalities, you should copy the index values in an STL-like container.
      *
      *  \warning This iterator object should never be duplicated, as it is a proxy that holds a reference to the actual
-     * data : The copy of this iterator would still point to the same NeighborGraph reference. So, if the increment
-     * operator is used on the iterator, the duplicate will also have its state updated. If we then call the increment
-     * operator on the duplicate, the result will be an incorrect value.
+     * data : the copy of this iterator would still point to the same NeighborGraph reference. So, modifying one will
+     * modify the others and can result in incorrect values.
      */
     template <typename ContainerPtr, typename Index>
     class NeighborGraphOneConnectedIterator
