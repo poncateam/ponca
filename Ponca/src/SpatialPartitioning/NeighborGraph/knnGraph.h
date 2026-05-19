@@ -13,8 +13,6 @@
 #include "../KdTree/kdTree.h"
 #include "../../Common/Assert.h"
 
-#define DEFAULT_K_IN_KNN_GRAPH 6
-
 namespace Ponca
 {
 
@@ -27,10 +25,14 @@ namespace Ponca
         WRITE_NEIGHBOR_GRAPH_ALIASES
         using Base = NeighborGraphBufferBase<_Traits>;
 
-        int k{DEFAULT_K_IN_KNN_GRAPH};
+        /// \brief Helper variable defining the default number of neighbors in Knn graphs
+        static constexpr int DefaultKInKnnGraph = 6;
+
+        /// \brief Number of neighbors used to build the graph
+        const int k{DefaultKInKnnGraph};
 
         PONCA_MULTIARCH inline KnnGraphBuffers() = default;
-        PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, const int _k = DEFAULT_K_IN_KNN_GRAPH)
+        PONCA_MULTIARCH inline KnnGraphBuffers(PointContainer _points, const int _k = DefaultKInKnnGraph)
             : Base(_points), k(_k)
         {
         }
@@ -121,7 +123,7 @@ namespace Ponca
         /// \warning KdTreeTraits compatibility is checked with static assertion
         template <typename KdTreeTraits>
         PONCA_MULTIARCH_HOST inline KnnGraphBase(const KdTreeBase<KdTreeTraits>& _kdtree,
-                                                 const int _k = DEFAULT_K_IN_KNN_GRAPH)
+                                                 const int _k = Base::DefaultKInKnnGraph)
             : Base(_kdtree.points(), std::min(_k, _kdtree.sampleCount() - 1))
         {
             Base::m_bufs.points_size = _kdtree.pointCount();
@@ -177,4 +179,3 @@ namespace Ponca
 } // namespace Ponca
 
 #undef WRITE_TRAITS
-#undef DEFAULT_K_IN_KNN_GRAPH
