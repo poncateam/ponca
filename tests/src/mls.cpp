@@ -14,12 +14,8 @@
 
 #include "../split_test_helper.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/mlsEvaluationScheme.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/covariancePlaneFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 #include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
 
 #include <vector>

@@ -13,14 +13,10 @@
 #include <cmath>
 #include <algorithm>
 #include <iostream>
-
-#include <Ponca/Fitting>
-#include <Ponca/src/Common/pointTypes.h>
-#include <Ponca/src/Common/pointGeneration.h>
-
-#include "Eigen/Eigen"
-
 #include <vector>
+
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 using namespace std;
 using namespace Ponca;

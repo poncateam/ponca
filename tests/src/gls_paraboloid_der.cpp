@@ -18,14 +18,8 @@
 
 #include <fstream>
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/curvature.h>
-#include <Ponca/src/Fitting/weingarten.h>
-#include <Ponca/src/Fitting/orientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-
-#include <Ponca/Common>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 #include <vector>
 

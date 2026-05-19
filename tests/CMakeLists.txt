@@ -105,7 +105,7 @@ macro(add_multi_test filename)
       if(OpenMP_CXX_FOUND)
         target_link_libraries(${testname}_${suffix} PUBLIC OpenMP::OpenMP_CXX)
       endif(OpenMP_CXX_FOUND)
-      target_link_libraries(${testname}_${suffix} PUBLIC Eigen3::Eigen)
+      target_link_libraries(${testname}_${suffix} PUBLIC Ponca::Instantiate Eigen3::Eigen)
 
       ponca_configure_compiler_flags(${testname}_${suffix})
 
@@ -121,6 +121,7 @@ macro(add_multi_test filename)
       target_link_libraries(${testname} PUBLIC OpenMP::OpenMP_CXX)
     endif(OpenMP_CXX_FOUND)
     target_link_libraries(${testname} PUBLIC Eigen3::Eigen)
+    target_link_libraries(${testname} PUBLIC Ponca::Instantiate Eigen3::Eigen)
 
     ponca_configure_compiler_flags(${testname})
 

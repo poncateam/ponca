@@ -12,13 +12,8 @@
 #include "../common/testing.h"
 #include "../common/testUtils.h"
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/gls.h>
-#include <Ponca/src/Fitting/unorientedSphereFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Fitting/curvature.h>
-#include <Ponca/src/Fitting/weingarten.h>
+#include <Ponca/Instantiate>
+#include <Ponca/Ponca>
 
 #include <vector>
 
@@ -136,7 +131,7 @@ void callSubTests()
     typedef Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam> FitSmoothUnoriented;
     typedef Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam> FitConstantUnoriented;
 
-    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, CurvatureEstimatorDer,
+    typedef BasketDiff<FitSmoothUnoriented, FitScaleSpaceDer, UnorientedSphereDer, GLSDer, CurvatureEstimatorDer,
                        NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>
         FitSmoothUnorientedDiff;
 
