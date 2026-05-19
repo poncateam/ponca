@@ -25,7 +25,7 @@
 #   endif
 #else 
 #   ifdef _MSC_VER
-#      define _PONCA_EXPORT __declspec(dllimport)
+#      define _PONCA_EXPORT
 #   else
 #      define _PONCA_EXPORT
 #   endif
