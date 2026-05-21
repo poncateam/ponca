@@ -1,25 +1,32 @@
 <map id="Ponca::KdTreeKNearestQueryBase&lt; Traits, IteratorType, QueryType &gt;" name="Ponca::KdTreeKNearestQueryBase&lt; Traits, IteratorType, QueryType &gt;">
-<area shape="rect" id="Node000001" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kd..." alt="" coords="238,1321,451,1516"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho..." alt="" coords="205,1152,349,1272"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="303,1284,315,1320,310,1322,298,1286"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1Stack.html" title=" " alt="" coords="189,820,365,1089"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,1090,279,1135,274,1135,274,1090"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="121,345,312,440"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="224,440,263,804,258,804,219,441"/>
-<area shape="rect" id="Node000005" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="5,168,212,268"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="103,268,104,295,112,320,120,332,116,334,108,322,99,296,97,269"/>
-<area shape="rect" id="Node000006" href="$structPonca_1_1IndexSquaredDistance.html" title="Associates an index with a distance." alt="" coords="5,5,212,105"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="111,119,111,168,106,168,106,119"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="379,185,494,251"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="366,227,330,235,292,248,258,267,229,294,218,318,214,346,209,345,213,317,225,290,255,263,290,243,328,230,365,222"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="395,360,527,425"/>
-<area shape="poly" id="edge11_Node000010_Node000007" title=" " alt="" coords="446,264,459,360,454,360,440,265"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="481,23,504,88"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="483,72,465,98,449,130,440,170,435,169,443,128,460,95,479,69"/>
-<area shape="poly" id="edge10_Node000010_Node000008" title=" " alt="" coords="507,76,518,101,526,128,528,135,531,137,542,134,556,127,569,123,574,126,576,134,572,165,554,225,519,322,505,348,500,346,514,320,549,223,567,164,571,135,570,130,568,128,558,132,544,139,530,142,524,138,521,130,513,103,502,79"/>
-<area shape="rect" id="Node000009" href="$classPonca_1_1Stack.html" title="Stack with fixed&#45;size storage." alt="" coords="364,503,517,728"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="383,742,344,821,339,819,378,739"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="460,426,455,486,450,486,455,425"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="373,1179,455,1245"/>
-<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="401,1258,380,1322,375,1320,396,1257"/>
+<area shape="rect" id="Node000001" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kd..." alt="" coords="261,1732,474,1927"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho..." alt="" coords="227,1563,371,1683"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="326,1695,338,1731,333,1733,321,1697"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1StaticKdTreeBase.html" title=" " alt="" coords="94,1100,294,1500"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="262,1500,277,1546,272,1548,257,1501"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1StaticKdTreeBase_1_1Buffers.html" title="Internal structure storing all the buffers used by the KdTree." alt="" coords="5,345,180,545"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="67,546,55,608,41,721,32,809,35,897,55,1007,70,1059,90,1109,85,1111,65,1060,50,1009,30,898,27,809,35,720,50,608,62,545"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="129,608,329,1008"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="133,545,150,592,145,594,128,546"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="216,1022,211,1100,205,1100,211,1021"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1Stack.html" title=" " alt="" coords="318,1165,494,1435"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="385,1436,371,1488,352,1540,348,1549,343,1547,348,1538,366,1487,380,1434"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="268,398,459,493"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="368,493,401,1149,396,1149,363,493"/>
+<area shape="rect" id="Node000008" href="$structPonca_1_1IndexSquaredDistance.html" title=" " alt="" coords="152,168,359,268"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="252,268,253,295,259,320,277,354,300,384,296,387,272,357,254,322,248,295,247,268"/>
+<area shape="rect" id="Node000009" href="$structPonca_1_1IndexSquaredDistance.html" title="Associates an index with a distance." alt="" coords="152,5,359,105"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="258,119,258,168,253,168,253,119"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="526,185,641,251"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="513,226,475,234,437,247,402,266,373,294,361,317,355,344,356,398,351,398,349,344,356,316,369,290,399,262,435,242,474,229,512,221"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="541,413,673,478"/>
+<area shape="poly" id="edge15_Node000013_Node000010" title=" " alt="" coords="591,264,607,412,601,413,586,265"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="627,23,649,88"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="629,72,611,98,595,130,587,170,582,169,590,128,606,96,624,69"/>
+<area shape="poly" id="edge14_Node000013_Node000011" title=" " alt="" coords="652,76,664,100,672,128,674,132,675,131,684,118,703,84,708,82,711,89,706,122,662,322,650,362,634,399,629,397,645,360,657,321,701,121,705,89,706,87,707,88,688,121,678,135,671,137,668,130,659,102,647,78"/>
+<area shape="rect" id="Node000012" href="$classPonca_1_1Stack.html" title="Stack with fixed&#45;size storage." alt="" coords="511,695,664,921"/>
+<area shape="poly" id="edge12_Node000006_Node000012" title=" " alt="" coords="544,934,458,1166,453,1164,539,933"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="608,479,597,679,592,679,603,478"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="395,1590,478,1655"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="424,1669,403,1732,398,1731,419,1667"/>
 </map>

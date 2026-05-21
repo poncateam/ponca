@@ -11,9 +11,9 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structPonca_1_1KdTreePointerTraits.html" target="_top" xlink:title="Variant to the KdTree Traits type that uses pointers as internal storage instead of an STL&#45;like conta...">
+<g id="a_Node000000"><a xlink:href="structPonca_1_1KdTreeDefaultTraits.html" target="_top" xlink:title="The default traits type used by the kd&#45;tree.">
 <polygon fill="white" stroke="#666666" points="152,-30 0,-30 0,0 152,0 152,-30"/>
-<text text-anchor="start" x="8" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreePointerTraits</text>
+<text text-anchor="start" x="8" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::KdTreeDefaultTraits</text>
 <text text-anchor="middle" x="76" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _DataPoint, _NodeType &gt;</text>
 </a>
 </g>

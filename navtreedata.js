@@ -188,10 +188,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1GLSDer.html#a9da016ce90ec70c9c3ed6c09e83e055b",
-"classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a07860bb980bc95706f31fe15a25f42a0",
-"classPonca_1_1StaticKdTreeBase.html#abcc85cc97d1bf9dcc775cb0e6cc2c13d",
-"index.html#ponca_credits_subsection_crew"
+"classPonca_1_1FundamentalFormWeingartenEstimator.html",
+"classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a313b41060f885066c43a513176f10b23",
+"classPonca_1_1Stack.html#acd2f90bb550b5048db6b1c20780b1777",
+"functions_func_p.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

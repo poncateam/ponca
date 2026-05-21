@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leafsizetype_0',['leafsizetype',['../classPonca_1_1StaticKdTreeBase.html#a891f884a68f34b8702a5ab08c5fece7a',1,'Ponca::StaticKdTreeBase::LeafSizeType'],['../classPonca_1_1KdTreeBase.html#ae5a3bb1b5aaab27bad9968f98afdc169',1,'Ponca::KdTreeBase::LeafSizeType']]]
+  ['leafsizetype_0',['leafsizetype',['../classPonca_1_1StaticKdTreeBase.html#a7c56fc53631c1268075da373c60f8c85',1,'Ponca::StaticKdTreeBase::LeafSizeType'],['../classPonca_1_1KdTreeBase.html#abfef5313a6b2ed3bbb43f2786cff57ee',1,'Ponca::KdTreeBase::LeafSizeType']]]
 ];

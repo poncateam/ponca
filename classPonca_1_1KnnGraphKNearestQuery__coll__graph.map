@@ -1,9 +1,0 @@
-<map id="Ponca::KnnGraphKNearestQuery&lt; Traits &gt;" name="Ponca::KnnGraphKNearestQuery&lt; Traits &gt;">
-<area shape="rect" id="Node000001" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kn..." alt="" coords="5,321,229,461"/>
-<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type." alt="" coords="23,119,211,273"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,287,120,321,115,321,115,287"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="49,5,103,71"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,83,100,118,94,119,85,85"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="127,5,193,71"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="150,85,141,119,136,118,145,83"/>
-</map>

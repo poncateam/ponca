@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['samplecount_0',['samplecount',['../classPonca_1_1StaticKnnGraphBase.html#a5c72f0ba2db31b0a6178a1d1c05abf54',1,'Ponca::StaticKnnGraphBase::sampleCount()'],['../classPonca_1_1StaticKdTreeBase.html#aea2983cd1331b13fda17b37b16f9c9c1',1,'Ponca::StaticKdTreeBase::sampleCount()']]],
-  ['samples_1',['samples',['../classPonca_1_1StaticKnnGraphBase.html#a2e6cc89b52dd7a0271fba261e980bd71',1,'Ponca::StaticKnnGraphBase::samples()'],['../classPonca_1_1StaticKdTreeBase.html#a2ac29b44c8dbcb174a9d70f7b7a9b74a',1,'Ponca::StaticKdTreeBase::samples()']]],
-  ['scaled2w_2',['scaled2w',['../classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d',1,'Ponca::DistWeightFunc::scaled2w()'],['../classPonca_1_1internal_1_1NoWeightFuncBase.html#a7caaa6fdcf64b24183dfef3e4e1d823b',1,'Ponca::internal::NoWeightFuncBase::scaled2w()']]],
+  ['samplecount_0',['sampleCount',['../classPonca_1_1StaticKdTreeBase.html#a6f89e5f3429dc7a71943186f1a4ff546',1,'Ponca::StaticKdTreeBase']]],
+  ['samples_1',['samples',['../classPonca_1_1StaticKdTreeBase.html#ab47e5f1e09e3d443a80a2be207739eec',1,'Ponca::StaticKdTreeBase']]],
+  ['scaled2w_2',['scaled2w',['../classPonca_1_1internal_1_1NoWeightFuncBase.html#a7caaa6fdcf64b24183dfef3e4e1d823b',1,'Ponca::internal::NoWeightFuncBase::scaled2w()'],['../classPonca_1_1DistWeightFunc.html#a1ccbacac342ed1e66ef0423fdaf9c00d',1,'Ponca::DistWeightFunc::scaled2w(const VectorType &amp;_q, const DataPoint &amp;) const']]],
   ['scaledw_3',['scaledw',['../classPonca_1_1DistWeightFunc.html#a182289b2f19a436381af1c94a7bfb0f5',1,'Ponca::DistWeightFunc::scaledw()'],['../classPonca_1_1internal_1_1NoWeightFuncBase.html#a853ede0669f5087c689998f16faac090',1,'Ponca::internal::NoWeightFuncBase::scaledw()']]],
   ['scalespaced2w_4',['scalespaced2w',['../classPonca_1_1DistWeightFunc.html#a26332be7b205ec289253c4b366c46110',1,'Ponca::DistWeightFunc::scaleSpaced2w()'],['../classPonca_1_1internal_1_1NoWeightFuncBase.html#a402adbbc90e9842b6fceae56bb1df799',1,'Ponca::internal::NoWeightFuncBase::scaleSpaced2w()']]],
   ['search_5',['search',['../classPonca_1_1HashSet.html#ad515a1e8c4004cda9b65a6dcecfd2dde',1,'Ponca::HashSet']]],
@@ -11,13 +11,13 @@ var searchData=
   ['setcurvaturevalues_8',['setCurvatureValues',['../classPonca_1_1internal_1_1CurvatureEstimatorBase.html#a39ce0fe4a9e0d6136cd9152240bf0e46',1,'Ponca::internal::CurvatureEstimatorBase']]],
   ['setinput_9',['setInput',['../group__spatialpartitioning.html#af4bdaa38719ee26bb98b8484bc04ada8',1,'Ponca::QueryInput']]],
   ['setline_10',['setLine',['../classPonca_1_1Line.html#ac9ae7707a0909cc91b000c7f078810fe',1,'Ponca::Line']]],
-  ['setmincellsize_11',['setMinCellSize',['../classPonca_1_1StaticKdTreeBase.html#a9d259830e37171a801c1b562c8f90ee2',1,'Ponca::StaticKdTreeBase']]],
+  ['setmincellsize_11',['setMinCellSize',['../classPonca_1_1StaticKdTreeBase.html#a78f174dd8f9ec8e55212b647dfda11d5',1,'Ponca::StaticKdTreeBase']]],
   ['setneighborfilter_12',['setneighborfilter',['../classPonca_1_1CNC.html#a10f3cafec7811461546574a880484be7',1,'Ponca::CNC::setNeighborFilter()'],['../classPonca_1_1PrimitiveBase.html#a1994d3443a2f5c77b2c89ada956795f2',1,'Ponca::PrimitiveBase::setNeighborFilter()']]],
   ['setquadric_13',['setquadric',['../classPonca_1_1RestrictedQuadraticHeightField.html#a2a72a83af71920854db66e2c230f2bab',1,'Ponca::RestrictedQuadraticHeightField::setQuadric()'],['../classPonca_1_1QuadraticHeightField.html#a0c5082fd5e3c31991adeb6f9cfd88978',1,'Ponca::QuadraticHeightField::setQuadric()']]],
   ['setradius_14',['setRadius',['../group__spatialpartitioning.html#a8b97f565c582a6f3f5face546adc6792',1,'Ponca::QueryOutputIsRange']]],
   ['setsquaredradius_15',['setSquaredRadius',['../group__spatialpartitioning.html#a7748dee4889e5d725f4aa94c38b238ca',1,'Ponca::QueryOutputIsRange']]],
   ['setvalue_16',['setValue',['../classPonca_1_1ConstantWeightKernel.html#abfdd7c48d31e98cb1f566724dccf06c0',1,'Ponca::ConstantWeightKernel']]],
-  ['size_17',['size',['../classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d',1,'Ponca::Stack::size()'],['../classPonca_1_1StaticKnnGraphBase.html#a3ddb2bf0ed1a6cc8f46837d063ad94f5',1,'Ponca::StaticKnnGraphBase::size()']]],
+  ['size_17',['size',['../classPonca_1_1Stack.html#a394fe3f9b308bde808322121799db11d',1,'Ponca::Stack']]],
   ['skipindexfunctor_18',['skipindexfunctor',['../group__spatialpartitioning.html#a448d0bd3791241c94c41a9b20879164f',1,'Ponca::QueryInputIsIndex::skipIndexFunctor()'],['../group__spatialpartitioning.html#aea244b4f6838bbb9218d098c321b77f9',1,'Ponca::QueryInputIsPosition::skipIndexFunctor()']]],
   ['solver_19',['solver',['../classPonca_1_1CovarianceFitBase.html#a20e4e162d9b2dcd2b28837e1a302d68d',1,'Ponca::CovarianceFitBase']]],
   ['spaced2w_20',['spaced2w',['../classPonca_1_1internal_1_1NoWeightFuncBase.html#a014cd2a3bc2203e9f0b5ea391c873a5f',1,'Ponca::internal::NoWeightFuncBase::spaced2w()'],['../classPonca_1_1DistWeightFunc.html#a303ff5053abe6961771053c9647688c4',1,'Ponca::DistWeightFunc::spaced2w(const VectorType &amp;_q, const DataPoint &amp;) const']]],
@@ -26,7 +26,6 @@ var searchData=
   ['sphericity_23',['sphericity',['../classPonca_1_1CovarianceFitBase.html#a39d21a82282a185319520a36bd90150c',1,'Ponca::CovarianceFitBase']]],
   ['squaredradius_24',['squaredRadius',['../group__spatialpartitioning.html#a0c3968bb6e2a53fc07fac1054183ba8d',1,'Ponca::QueryOutputIsRange']]],
   ['startnewpass_25',['startNewPass',['../classPonca_1_1PrimitiveBase.html#a0f5e08aa7d8b194a70bfe6ad29faf183',1,'Ponca::PrimitiveBase']]],
-  ['statickdtreebase_26',['StaticKdTreeBase',['../classPonca_1_1StaticKdTreeBase.html#a3f18af330eb36b7b89c2f4f23b6496ab',1,'Ponca::StaticKdTreeBase']]],
-  ['staticknngraphbase_27',['StaticKnnGraphBase',['../classPonca_1_1StaticKnnGraphBase.html#a0699741add3696ed0beb884521d7326a',1,'Ponca::StaticKnnGraphBase']]],
-  ['surfacevariation_28',['surfaceVariation',['../classPonca_1_1CovarianceFitBase.html#a51531362ba02d442e2ca815e26436485',1,'Ponca::CovarianceFitBase']]]
+  ['statickdtreebase_26',['StaticKdTreeBase',['../classPonca_1_1StaticKdTreeBase.html#a2fd00b48f678d805a32d0107f6d94820',1,'Ponca::StaticKdTreeBase']]],
+  ['surfacevariation_27',['surfaceVariation',['../classPonca_1_1CovarianceFitBase.html#a51531362ba02d442e2ca815e26436485',1,'Ponca::CovarianceFitBase']]]
 ];

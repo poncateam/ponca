@@ -1,11 +1,16 @@
 <map id="Ponca::Query&lt; Input_, Output_ &gt;" name="Ponca::Query&lt; Input_, Output_ &gt;">
-<area shape="rect" id="Node000001" title="Composes the Query object depending on an input type and output type." alt="" coords="162,119,310,259"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1KnnGraphKNearestQuery.html" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kn..." alt="" coords="5,357,229,497"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="198,272,154,358,150,355,193,270"/>
-<area shape="rect" id="Node000005" href="$classPonca_1_1KnnGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap..." alt="" coords="253,307,459,547"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="279,269,298,305,293,308,275,272"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="167,5,222,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,83,219,118,214,119,205,85"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="246,5,311,71"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,85,258,119,253,117,263,83"/>
+<area shape="rect" id="Node000001" title="Composes the Query object depending on an input type and output type." alt="" coords="123,120,271,260"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1NeighborGraphRangeQuery.html" title=" " alt="" coords="5,669,223,909"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="129,273,99,318,78,368,68,405,63,444,61,523,68,599,82,669,76,670,63,600,56,523,57,443,63,404,73,366,95,316,124,270"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1NeighborGraphRangeQuery.html" title="Extension of the Query class that allows to read the result of a range neighbor search on the KnnGrap..." alt="" coords="88,367,305,607"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="199,274,199,366,194,366,194,274"/>
+<area shape="rect" id="Node000006" href="$group__spatialpartitioning.html" title=" " alt="" coords="330,402,543,571"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="264,269,370,400,366,403,260,273"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="128,5,183,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,83,180,119,175,120,165,85"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="207,5,272,71"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="229,85,219,120,214,119,224,83"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="163,621,149,670,144,668,158,619"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1NeighborGraphOneConnectedQuery.html" title="Extension of the Query class that allows to read the neighbors that are directly connected to the que..." alt="" coords="309,712,564,867"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="439,585,439,712,434,712,434,585"/>
 </map>

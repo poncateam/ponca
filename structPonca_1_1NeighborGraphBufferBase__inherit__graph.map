@@ -1,0 +1,15 @@
+<map id="Ponca::NeighborGraphBufferBase&lt; _Traits &gt;" name="Ponca::NeighborGraphBufferBase&lt; _Traits &gt;">
+<area shape="rect" id="Node000001" title="Internal structure storing the buffers used by a neighbor graph." alt="" coords="162,5,370,185"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1KnnGraphBuffers.html" title=" " alt="" coords="19,491,191,631"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,199,246,262,230,331,207,401,176,468,162,492,157,489,172,465,202,399,225,330,241,261,252,199"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1NeighborGraphBuffer.html" title=" " alt="" coords="217,501,416,621"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,199,280,309,293,428,306,500,300,501,287,428,275,310,267,199"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1KnnGraphBuffers.html" title="Buffer class for StaticKnnGraphBase." alt="" coords="5,268,177,408"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="196,198,144,269,139,266,191,195"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1NeighborGraphBuffer.html" title="Buffer class for StaticNeighborGraphBase." alt="" coords="303,278,501,398"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="325,196,371,277,366,279,321,198"/>
+<area shape="rect" id="Node000006" href="$structPonca_1_1NeighborGraphBufferBase.html" title=" " alt="" coords="526,248,734,428"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="383,162,514,246,527,255,524,259,511,250,380,167"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="99,422,103,490,98,491,94,422"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="377,412,342,502,337,500,372,410"/>
+</map>

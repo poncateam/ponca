@@ -1,10 +1,13 @@
 var classPonca_1_1KnnGraphBase =
 [
-    [ "DataPoint", "classPonca_1_1KnnGraphBase.html#a6cd904aa2d5ea8f9703c4dded72793d6", null ],
-    [ "IndexContainer", "classPonca_1_1KnnGraphBase.html#acfbc89127579d2db8e6b927738dc9562", null ],
-    [ "IndexType", "classPonca_1_1KnnGraphBase.html#a42b8c01097197577ec186861ba48dbea", null ],
-    [ "PointContainer", "classPonca_1_1KnnGraphBase.html#a0c1974309b84d76d58291be618262ef4", null ],
-    [ "Scalar", "classPonca_1_1KnnGraphBase.html#a875c06700bd61355caff251e61be62e0", null ],
-    [ "VectorType", "classPonca_1_1KnnGraphBase.html#af7ff8745c3f2dc2ab3f0d313c08fde4a", null ],
-    [ "KnnGraphBase", "classPonca_1_1KnnGraphBase.html#a1413c15aea7671e0b09e7bbd7296c38d", null ]
+    [ "DataPoint", "classPonca_1_1KnnGraphBase.html#a07702b66322566bc1d6a0b12c108ce2d", null ],
+    [ "IndexContainer", "classPonca_1_1KnnGraphBase.html#af9a98ba40a5bf8ade4c30e7f4febf440", null ],
+    [ "IndexContainerRef", "classPonca_1_1KnnGraphBase.html#a4e8facfc639a340b5f39d7fa337b2474", null ],
+    [ "IndexType", "classPonca_1_1KnnGraphBase.html#abe086b9419908410c44159f2d88a1b0c", null ],
+    [ "PointContainer", "classPonca_1_1KnnGraphBase.html#a7f944f336a2075c923ad81e31316e094", null ],
+    [ "PointContainerConstRef", "classPonca_1_1KnnGraphBase.html#aa59498a0df0a3927d58c0182c9d2fd3c", null ],
+    [ "Scalar", "classPonca_1_1KnnGraphBase.html#a6ccdf406c5c2f8cc5f73ee4509c08072", null ],
+    [ "Traits", "classPonca_1_1KnnGraphBase.html#a360dba0749bab6ad7dc630ef17e8782c", null ],
+    [ "VectorType", "classPonca_1_1KnnGraphBase.html#ab121fc1cdb83a754be7897125af4b6ab", null ],
+    [ "KnnGraphBase", "classPonca_1_1KnnGraphBase.html#aafdcdf8c1cae07e905c6ffdecb547e87", null ]
 ];

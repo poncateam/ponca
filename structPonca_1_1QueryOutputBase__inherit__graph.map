@@ -1,9 +1,15 @@
 <map id="Ponca::QueryOutputBase" name="Ponca::QueryOutputBase">
-<area shape="rect" id="Node000001" title="Base class for queries output types." alt="" coords="286,5,462,71"/>
-<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Class to construct the knearest queries." alt="" coords="5,149,244,309"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="316,80,258,121,220,151,217,146,255,117,312,76"/>
-<area shape="rect" id="Node000003" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" title="Class to construct the nearest query output." alt="" coords="269,139,479,319"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="377,84,377,139,371,139,371,84"/>
-<area shape="rect" id="Node000004" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Class to construct the range query output." alt="" coords="503,119,714,339"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="437,76,493,117,505,126,501,130,490,121,434,81"/>
+<area shape="rect" id="Node000001" title="Base class for queries output types." alt="" coords="411,5,587,71"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1NeighborGraphQueryOutputType.html" title="Output type of the NeighborGraphOneConnectedQuery." alt="" coords="33,189,232,269"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="398,62,321,86,283,102,246,121,203,154,166,190,163,187,199,150,243,116,280,97,319,81,397,57"/>
+<area shape="rect" id="Node000005" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest" title="Class to construct the knearest queries." alt="" coords="256,149,495,309"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="473,84,430,150,425,147,469,81"/>
+<area shape="rect" id="Node000006" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest" title="Class to construct the nearest query output." alt="" coords="519,139,730,319"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="530,80,568,137,563,140,526,83"/>
+<area shape="rect" id="Node000007" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange" title="Class to construct the range query output." alt="" coords="754,119,965,339"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="601,59,673,83,743,116,755,124,752,128,741,121,671,88,600,64"/>
+<area shape="rect" id="Node000003" href="$group__spatialpartitioning.html" title=" " alt="" coords="26,387,239,556"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="135,282,135,387,130,387,130,282"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1NeighborGraphOneConnectedQuery.html" title="Extension of the Query class that allows to read the neighbors that are directly connected to the que..." alt="" coords="5,604,260,759"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="135,570,135,604,130,604,130,570"/>
 </map>

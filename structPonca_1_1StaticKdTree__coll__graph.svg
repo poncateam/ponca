@@ -134,7 +134,7 @@ var sectionId = 'dynsection-1';
 <g id="a_Node000003"><a xlink:href="structPonca_1_1StaticKdTreeBase_1_1Buffers.html" target="_top" xlink:title="Internal structure storing all the buffers used by the KdTree.">
 <polygon fill="white" stroke="transparent" points="140.5,-963 9.5,-963 9.5,-813 140.5,-813 140.5,-963"/>
 <text text-anchor="start" x="15" y="-951" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::StaticKdTreeBase</text>
-<text text-anchor="start" x="30.5" y="-940" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;::Buffers</text>
+<text text-anchor="start" x="28" y="-940" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Traits &gt;::Buffers</text>
 <text text-anchor="start" x="26.5" y="-925" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="52" y="-925" font-family="Helvetica,sans-Serif" font-size="10.00">points</text>
 <text text-anchor="start" x="26.5" y="-910" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -174,7 +174,7 @@ var sectionId = 'dynsection-1';
 <g id="a_Node000004"><a xlink:href="classPonca_1_1StaticKdTreeBase.html" target="_top" xlink:title="Customizable static base class for KdTree datastructure implementations.">
 <polygon fill="white" stroke="transparent" points="275,-766 125,-766 125,-466 275,-466 275,-766"/>
 <text text-anchor="start" x="139.5" y="-754" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::StaticKdTreeBase</text>
-<text text-anchor="start" x="175.5" y="-743" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>
+<text text-anchor="start" x="172.5" y="-743" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Traits &gt;</text>
 <text text-anchor="start" x="129" y="-728" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="142" y="-728" font-family="Helvetica,sans-Serif" font-size="10.00">MAX_NODE_COUNT</text>
 <text text-anchor="start" x="129" y="-713" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

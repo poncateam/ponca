@@ -1,0 +1,17 @@
+<map id="Ponca::NeighborGraphBase&lt; _Traits &gt;" name="Ponca::NeighborGraphBase&lt; _Traits &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="161,1471,351,1551"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1StaticNeighborGraphBase.html" title="Static generic neighbor graph (does not include build functions)" alt="" coords="153,1281,359,1421"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,1435,259,1470,253,1470,253,1435"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1AbstractNeighborGraph.html" title=" " alt="" coords="85,893,427,1232"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="259,1246,259,1281,253,1281,253,1246"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1NeighborGraphBuffer.html" title=" " alt="" coords="31,565,230,685"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="150,684,206,877,200,878,145,685"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1NeighborGraphBufferBase.html" title="Internal structure storing the buffers used by a neighbor graph." alt="" coords="5,235,213,415"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="119,428,129,564,124,565,114,429"/>
+<area shape="rect" id="Node000006" href="$structPonca_1_1NeighborGraphBuffer.html" title="Buffer class for StaticNeighborGraphBase." alt="" coords="238,265,437,385"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="291,398,174,566,170,563,286,395"/>
+<area shape="rect" id="Node000007" href="$structPonca_1_1NeighborGraphBufferBase.html" title="Internal structure storing the buffers used by a neighbor graph." alt="" coords="233,5,441,185"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="340,199,340,265,335,265,335,199"/>
+<area shape="rect" id="Node000008" href="$classPonca_1_1AbstractNeighborGraph.html" title="Base class for neighbor graphs." alt="" coords="253,477,512,772"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="339,786,308,894,302,892,334,784"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Ponca::NeighborGraphBase&lt; _Traits &gt;" name="Ponca::NeighborGraphBase&lt; _Traits &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="81,999,271,1079"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1StaticNeighborGraphBase.html" title="Static generic neighbor graph (does not include build functions)" alt="" coords="73,809,279,949"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,963,179,998,173,998,173,963"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1AbstractNeighborGraph.html" title=" " alt="" coords="5,421,347,760"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="179,774,179,809,173,809,173,774"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1AbstractNeighborGraph.html" title="Base class for neighbor graphs." alt="" coords="47,5,305,300"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="179,314,179,421,173,421,173,314"/>
+</map>

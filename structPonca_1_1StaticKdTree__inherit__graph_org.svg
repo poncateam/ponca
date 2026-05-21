@@ -90,7 +90,7 @@
 <g id="a_Node000003"><a xlink:href="classPonca_1_1StaticKdTreeBase.html" target="_top" xlink:title="Customizable static base class for KdTree datastructure implementations.">
 <polygon fill="white" stroke="transparent" points="150,-796 0,-796 0,-481 150,-481 150,-796"/>
 <text text-anchor="start" x="14.5" y="-783.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::StaticKdTreeBase</text>
-<text text-anchor="start" x="50.5" y="-772.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; Traits &gt;</text>
+<text text-anchor="start" x="47.5" y="-772.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Traits &gt;</text>
 <text text-anchor="start" x="4" y="-757.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-757.5" font-family="Helvetica,sans-Serif" font-size="10.00">MAX_NODE_COUNT</text>
 <text text-anchor="start" x="4" y="-742.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

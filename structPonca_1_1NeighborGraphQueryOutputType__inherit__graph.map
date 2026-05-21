@@ -1,0 +1,9 @@
+<map id="Ponca::NeighborGraphQueryOutputType" name="Ponca::NeighborGraphQueryOutputType">
+<area shape="rect" id="Node000001" title="Output type of the NeighborGraphOneConnectedQuery." alt="" coords="33,119,232,199"/>
+<area shape="rect" id="Node000003" href="$group__spatialpartitioning.html" title=" " alt="" coords="26,247,239,416"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="135,213,135,246,130,246,130,213"/>
+<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types." alt="" coords="45,5,221,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,85,135,118,130,118,130,85"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1NeighborGraphOneConnectedQuery.html" title="Extension of the Query class that allows to read the neighbors that are directly connected to the que..." alt="" coords="5,464,260,619"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="135,430,135,464,130,464,130,430"/>
+</map>

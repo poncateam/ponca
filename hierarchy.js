@@ -6,9 +6,19 @@ var hierarchy =
     [ "_NeighborhoodFrame", null, [
       [ "Ponca::internal::NoWeightFuncBase< DataPoint, _NeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", null ]
     ] ],
+    [ "Ponca::AbstractNeighborGraph< _Traits, BufferType, _OneConnectedIndexQuery, _RangeIndexQuery >", "classPonca_1_1AbstractNeighborGraph.html", null ],
+    [ "Ponca::AbstractNeighborGraph< _Traits, KnnGraphBuffers, NeighborGraphOneConnectedQuery< StaticKnnGraphBase< _Traits > >, NeighborGraphRangeQuery< StaticKnnGraphBase< _Traits > > >", "classPonca_1_1AbstractNeighborGraph.html", [
+      [ "Ponca::StaticKnnGraphBase< _Traits >", "classPonca_1_1StaticKnnGraphBase.html", [
+        [ "Ponca::KnnGraphBase< _Traits >", "classPonca_1_1KnnGraphBase.html", null ]
+      ] ]
+    ] ],
+    [ "Ponca::AbstractNeighborGraph< _Traits, NeighborGraphBuffer, NeighborGraphOneConnectedQuery< StaticNeighborGraphBase< _Traits > >, NeighborGraphRangeQuery< StaticNeighborGraphBase< _Traits > > >", "classPonca_1_1AbstractNeighborGraph.html", [
+      [ "Ponca::StaticNeighborGraphBase< _Traits >", "classPonca_1_1StaticNeighborGraphBase.html", [
+        [ "Ponca::NeighborGraphBase< _Traits >", "classPonca_1_1NeighborGraphBase.html", null ]
+      ] ]
+    ] ],
     [ "Ponca::BitSet< N, T >", "classPonca_1_1BitSet.html", null ],
-    [ "Ponca::StaticKdTreeBase< Traits >::Buffers", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html", null ],
-    [ "Ponca::StaticKnnGraphBase< Traits >::Buffers", "structPonca_1_1StaticKnnGraphBase_1_1Buffers.html", null ],
+    [ "Ponca::StaticKdTreeBase< _Traits >::Buffers", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html", null ],
     [ "internal::CenteredNeighborhoodFrame", null, [
       [ "Ponca::internal::NoWeightFuncBase< DataPoint, internal::CenteredNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", [
         [ "Ponca::NoWeightFunc< DataPoint >", "structPonca_1_1NoWeightFunc.html", null ]
@@ -36,7 +46,7 @@ var hierarchy =
     [ "Ponca::ComputeObject< Basket< P, NF, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::ComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::ComputeObject< CNC< P, UniformGeneration > >", "structPonca_1_1ComputeObject.html", null ],
-    [ "Ponca::KdTreeBase< Traits >::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
+    [ "Ponca::KdTreeBase< _Traits >::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
     [ "Ponca::DirectProjectionOperator", "structPonca_1_1DirectProjectionOperator.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],
     [ "std::false_type", null, [
@@ -84,8 +94,8 @@ var hierarchy =
     [ "Ponca::IndexSquaredDistance< IndexType, Scalar >", "structPonca_1_1IndexSquaredDistance.html", null ],
     [ "Input_", null, [
       [ "Ponca::Query< Input_, Output_ >", "group__spatialpartitioning.html#structPonca_1_1Query", [
-        [ "Ponca::KnnGraphKNearestQuery< Traits >", "classPonca_1_1KnnGraphKNearestQuery.html", null ],
-        [ "Ponca::KnnGraphRangeQuery< Traits >", "classPonca_1_1KnnGraphRangeQuery.html", null ]
+        [ "Ponca::NeighborGraphRangeQuery< NeighborGraph >", "classPonca_1_1NeighborGraphRangeQuery.html", null ],
+        [ "Ponca::NeighborGraphRangeQuery< _NeighborGraph >", "classPonca_1_1NeighborGraphRangeQuery.html", null ]
       ] ]
     ] ],
     [ "Ponca::KdTreeCustomizableNode< Index, NodeIndex, DataPoint, LeafSize, _InnerNodeType, _LeafNodeType >", "classPonca_1_1KdTreeCustomizableNode.html", [
@@ -104,16 +114,23 @@ var hierarchy =
       [ "Ponca::KdTreeRangeQueryBase< Traits, IteratorType, QueryType >", "classPonca_1_1KdTreeRangeQueryBase.html", null ]
     ] ],
     [ "Ponca::KdTreeRangeIterator< Index, DataPoint, QueryT_ >", "classPonca_1_1KdTreeRangeIterator.html", null ],
-    [ "Ponca::KnnGraphDefaultTraits< _DataPoint >", "structPonca_1_1KnnGraphDefaultTraits.html", null ],
-    [ "Ponca::KnnGraphKNearestIterator< ContainerPtr, Index >", "classPonca_1_1KnnGraphKNearestIterator.html", null ],
-    [ "Ponca::KnnGraphPointerTraits< _DataPoint >", "structPonca_1_1KnnGraphPointerTraits.html", null ],
-    [ "Ponca::KnnGraphRangeIterator< Traits >", "classPonca_1_1KnnGraphRangeIterator.html", null ],
     [ "Ponca::LimitedPriorityQueue< T, N, CompareT >", "classPonca_1_1LimitedPriorityQueue.html", null ],
     [ "Ponca::LimitedPriorityQueue< IndexSquaredDistance< Index, Scalar >, MAX_KNN_SIZE >", "classPonca_1_1LimitedPriorityQueue.html", null ],
     [ "Ponca::MLSEvaluationScheme< Scalar >", "structPonca_1_1MLSEvaluationScheme.html", null ],
     [ "NeighborFilter", null, [
       [ "Ponca::NeighborFilterStoreNormal< DataPoint, NeighborFilter >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
     ] ],
+    [ "Ponca::NeighborGraphBufferBase< _Traits >", "structPonca_1_1NeighborGraphBufferBase.html", [
+      [ "Ponca::KnnGraphBuffers< Traits >", "structPonca_1_1KnnGraphBuffers.html", null ],
+      [ "Ponca::NeighborGraphBuffer< Traits >", "structPonca_1_1NeighborGraphBuffer.html", null ],
+      [ "Ponca::KnnGraphBuffers< _Traits >", "structPonca_1_1KnnGraphBuffers.html", null ],
+      [ "Ponca::NeighborGraphBuffer< _Traits >", "structPonca_1_1NeighborGraphBuffer.html", null ]
+    ] ],
+    [ "Ponca::NeighborGraphBufferBase< Traits >", "structPonca_1_1NeighborGraphBufferBase.html", null ],
+    [ "Ponca::NeighborGraphDefaultTraits< _DataPoint >", "structPonca_1_1NeighborGraphDefaultTraits.html", null ],
+    [ "Ponca::NeighborGraphOneConnectedIterator< ContainerPtr, Index >", "classPonca_1_1NeighborGraphOneConnectedIterator.html", null ],
+    [ "Ponca::NeighborGraphPointerTraits< _DataPoint >", "structPonca_1_1NeighborGraphPointerTraits.html", null ],
+    [ "Ponca::NeighborGraphRangeIterator< _NeighborGraph >", "classPonca_1_1NeighborGraphRangeIterator.html", null ],
     [ "Output_", null, [
       [ "Ponca::Query< Input_, Output_ >", "group__spatialpartitioning.html#structPonca_1_1Query", null ]
     ] ],
@@ -126,15 +143,25 @@ var hierarchy =
     [ "Ponca::PointPositionNormalLazyBinding< _Scalar, _Dim >", "classPonca_1_1PointPositionNormalLazyBinding.html", null ],
     [ "Ponca::PrimitiveBase< DataPoint, _NFilter, T >", "classPonca_1_1PrimitiveBase.html", null ],
     [ "Ponca::QueryInputBase", "group__spatialpartitioning.html#structPonca_1_1QueryInputBase", [
+      [ "Ponca::QueryInput< _NeighborGraph::Traits::IndexType >", "group__spatialpartitioning.html", null ],
       [ "Ponca::QueryInput< Index >", "group__spatialpartitioning.html", [
         [ "Ponca::QueryInputIsIndex< Index >", "group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex", null ]
       ] ],
       [ "Ponca::QueryInput< DataPoint::VectorType >", "group__spatialpartitioning.html", [
         [ "Ponca::QueryInputIsPosition< DataPoint >", "group__spatialpartitioning.html#structPonca_1_1QueryInputIsPosition", null ]
       ] ],
-      [ "Ponca::QueryInput< InputType_ >", "group__spatialpartitioning.html#structPonca_1_1QueryInput", null ]
+      [ "Ponca::QueryInput< InputType_ >", "group__spatialpartitioning.html#structPonca_1_1QueryInput", [
+        [ "Ponca::QueryInputIsIndex< _NeighborGraph::Traits::IndexType >", "group__spatialpartitioning.html", [
+          [ "Ponca::Query< QueryInputIsIndex< _NeighborGraph::Traits::IndexType >, NeighborGraphQueryOutputType >", "group__spatialpartitioning.html", [
+            [ "Ponca::NeighborGraphOneConnectedQuery< _NeighborGraph >", "classPonca_1_1NeighborGraphOneConnectedQuery.html", null ]
+          ] ]
+        ] ]
+      ] ]
     ] ],
     [ "Ponca::QueryOutputBase", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase", [
+      [ "Ponca::NeighborGraphQueryOutputType", "structPonca_1_1NeighborGraphQueryOutputType.html", [
+        [ "Ponca::Query< QueryInputIsIndex< _NeighborGraph::Traits::IndexType >, NeighborGraphQueryOutputType >", "group__spatialpartitioning.html", null ]
+      ] ],
       [ "Ponca::QueryOutputIsKNearest< Index, Scalar, MAX_KNN_SIZE >", "group__spatialpartitioning.html#structPonca_1_1QueryOutputIsKNearest", null ],
       [ "Ponca::QueryOutputIsNearest< Index, Scalar >", "group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest", null ],
       [ "Ponca::QueryOutputIsRange< Index, Scalar >", "group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange", null ]
@@ -148,27 +175,27 @@ var hierarchy =
     [ "Ponca::internal::CNCEigen< DataPoint >::SphericalTriangle", "structPonca_1_1internal_1_1CNCEigen_1_1SphericalTriangle.html", null ],
     [ "Ponca::Stack< T, N >", "classPonca_1_1Stack.html", null ],
     [ "Ponca::Stack< Ponca::IndexSquaredDistance< IndexType, Scalar >, 2 *Traits::MAX_DEPTH >", "classPonca_1_1Stack.html", null ],
-    [ "Ponca::StaticKdTreeBase< Traits >", "classPonca_1_1StaticKdTreeBase.html", [
+    [ "Ponca::StaticKdTreeBase< _Traits >", "classPonca_1_1StaticKdTreeBase.html", [
       [ "Ponca::KdTreeBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeBase.html", [
         [ "Ponca::KdTree< DataPoint >", "structPonca_1_1KdTree.html", null ]
       ] ],
       [ "Ponca::KdTreeBase< Traits >", "classPonca_1_1KdTreeBase.html", [
+        [ "Ponca::KdTreeDenseBase< Traits >", "classPonca_1_1KdTreeDenseBase.html", null ],
+        [ "Ponca::KdTreeSparseBase< Traits >", "classPonca_1_1KdTreeSparseBase.html", null ]
+      ] ],
+      [ "Ponca::KdTreeBase< _Traits >", "classPonca_1_1KdTreeBase.html", [
         [ "Ponca::KdTreeDenseBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeDenseBase.html", [
           [ "Ponca::KdTreeDense< DataPoint >", "structPonca_1_1KdTreeDense.html", null ]
         ] ],
         [ "Ponca::KdTreeSparseBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1KdTreeSparseBase.html", [
           [ "Ponca::KdTreeSparse< DataPoint >", "structPonca_1_1KdTreeSparse.html", null ]
-        ] ],
-        [ "Ponca::KdTreeDenseBase< Traits >", "classPonca_1_1KdTreeDenseBase.html", null ],
-        [ "Ponca::KdTreeSparseBase< Traits >", "classPonca_1_1KdTreeSparseBase.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "Ponca::StaticKdTreeBase< KdTreeDefaultTraits< DataPoint > >", "classPonca_1_1StaticKdTreeBase.html", [
       [ "Ponca::StaticKdTree< DataPoint >", "structPonca_1_1StaticKdTree.html", null ]
     ] ],
-    [ "Ponca::StaticKnnGraphBase< Traits >", "classPonca_1_1StaticKnnGraphBase.html", [
-      [ "Ponca::KnnGraphBase< Traits >", "classPonca_1_1KnnGraphBase.html", null ]
-    ] ],
+    [ "Ponca::StaticKdTreeBase< Traits >", "classPonca_1_1StaticKdTreeBase.html", null ],
     [ "T", null, [
       [ "MeanNormal< DataPoint, _NFilter, T >", "classMeanNormal.html", null ],
       [ "MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classMeanNormalDer.html", null ],

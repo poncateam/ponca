@@ -1,0 +1,29 @@
+<map id="Ponca::NeighborGraphOneConnectedQuery&lt; _NeighborGraph &gt;" name="Ponca::NeighborGraphOneConnectedQuery&lt; _NeighborGraph &gt;">
+<area shape="rect" id="Node000001" title="Extension of the Query class that allows to read the neighbors that are directly connected to the que..." alt="" coords="286,1275,541,1429"/>
+<area shape="rect" id="Node000002" href="$group__spatialpartitioning.html" title=" " alt="" coords="307,1056,520,1225"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="416,1239,416,1274,411,1274,411,1239"/>
+<area shape="rect" id="Node000003" href="$group__spatialpartitioning.html" title=" " alt="" coords="110,795,290,949"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="272,959,348,1054,344,1057,268,962"/>
+<area shape="rect" id="Node000004" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type." alt="" coords="5,264,149,384"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="74,398,72,466,75,547,85,633,105,716,122,756,143,793,139,796,117,758,100,718,80,634,70,547,67,466,69,397"/>
+<area shape="rect" id="Node000005" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputBase" title="Base class for queries input type." alt="" coords="87,5,252,71"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="157,84,153,95,99,264,94,263,148,94,152,83"/>
+<area shape="rect" id="Node000007" href="$group__spatialpartitioning.html" title=" " alt="" coords="133,408,277,528"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="176,84,203,408,198,408,170,85"/>
+<area shape="rect" id="Node000008" href="$group__spatialpartitioning.html#structPonca_1_1QueryInput" title="Base class for Query input type." alt="" coords="207,120,351,240"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="205,80,235,118,230,121,200,83"/>
+<area shape="rect" id="Node000006" href="$group__spatialpartitioning.html#structPonca_1_1QueryInputIsIndex" title="Extension of QueryInput that handles an index based search, in a partitioning structure." alt="" coords="115,577,295,717"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="206,731,204,794,199,794,201,731"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="208,542,208,577,203,577,203,542"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="263,254,223,409,218,407,258,253"/>
+<area shape="rect" id="Node000009" href="$structPonca_1_1NeighborGraphQueryOutputType.html" title="Output type of the NeighborGraphOneConnectedQuery." alt="" coords="314,832,513,912"/>
+<area shape="poly" id="edge10_Node000002_Node000009" title=" " alt="" coords="416,925,416,1056,411,1056,411,925"/>
+<area shape="rect" id="Node000010" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase" title="Base class for queries output types." alt="" coords="325,615,501,680"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="416,693,416,832,411,832,411,693"/>
+<area shape="rect" id="Node000011" href="$group__spatialpartitioning.html#structPonca_1_1Query" title="Composes the Query object depending on an input type and output type." alt="" coords="537,802,685,942"/>
+<area shape="poly" id="edge12_Node000002_Node000011" title=" " alt="" coords="554,955,478,1057,473,1054,549,951"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="554,615,609,680"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="590,693,604,801,599,802,585,694"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="633,615,698,680"/>
+<area shape="poly" id="edge14_Node000011_Node000013" title=" " alt="" coords="657,694,630,802,625,801,652,692"/>
+</map>

@@ -1,5 +1,5 @@
-<map id="Ponca::KdTreeBase&lt; Traits &gt;" name="Ponca::KdTreeBase&lt; Traits &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="25,717,186,897"/>
+<map id="Ponca::KdTreeBase&lt; _Traits &gt;" name="Ponca::KdTreeBase&lt; _Traits &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="25,717,186,857"/>
 <area shape="rect" id="Node000002" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="5,268,205,668"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,682,108,717,103,717,103,682"/>
 <area shape="rect" id="Node000003" href="$structPonca_1_1StaticKdTreeBase_1_1Buffers.html" title="Internal structure storing all the buffers used by the KdTree." alt="" coords="18,5,193,205"/>

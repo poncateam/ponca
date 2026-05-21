@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="5,5,203,60"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1AbstractNeighborGraph.html" title=" " alt="" coords="5,5,355,104"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1StaticNeighborGraphBase.html" title="Static generic neighbor graph (does not include build functions)" alt="" coords="403,35,607,75"/>
+<area shape="poly" id="edge79_Node000000_Node000001" title=" " alt="" coords="369,52,402,52,402,57,369,57"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1NeighborGraphBase.html" title=" " alt="" coords="655,35,853,75"/>
+<area shape="poly" id="edge80_Node000001_Node000002" title=" " alt="" coords="620,52,654,52,654,57,620,57"/>
 </map>

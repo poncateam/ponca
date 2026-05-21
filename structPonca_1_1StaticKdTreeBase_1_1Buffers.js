@@ -1,6 +1,6 @@
 var structPonca_1_1StaticKdTreeBase_1_1Buffers =
 [
-    [ "indices", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html#a3acf5a98dda465e35a2a9d6a727ff964", null ],
-    [ "nodes", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html#a8ece8f98bae6dd4cf0dbf5390af4d69a", null ],
-    [ "points", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html#abe8a8d8181b39ab8a2121d4854d8822d", null ]
+    [ "indices", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html#aef184e20609199a57cd7045e06e85750", null ],
+    [ "nodes", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html#a0bf78b78168ba5f42059696a404a709a", null ],
+    [ "points", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html#a9fd64542b3316bc286eef7802686844d", null ]
 ];
