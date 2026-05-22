@@ -10,6 +10,8 @@ var classPonca_1_1NormalDerivativeWeingartenEstimator =
     [ "finalize", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#afae3c5af1446fe65362f08c00645afea", null ],
     [ "normalDerivativeWeingartenEstimator", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a4cf8ebc202d9d0aa6ac0ce7f0100e8fe", null ],
     [ "normalDerivativeWeingartenEstimator", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#ab9b736acacba29503386585e4d58c048", null ],
+    [ "tangentPlaneBasis", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a45a0acfa4a5fff68ae8f55a9b6f62034", null ],
+    [ "tangentPlaneBasis", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#ab2109b62e0f27e06b41db527964674ed", null ],
     [ "tangentPlaneToWorld", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a456ca1542f1ba92e008d44077ef76509", null ],
     [ "weingartenMap", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#ae14f91099823dd3f903ad90a5a7b718f", null ],
     [ "weingartenMap", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a1252d6012438fe94ecc28f2c2d2e8219", null ],

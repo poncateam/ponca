@@ -1,5 +1,5 @@
 var structPonca_1_1DirectProjectionOperator =
 [
-    [ "operator()", "structPonca_1_1DirectProjectionOperator.html#aa00b7af31b824fe5f8ded99b55abd7e1", null ],
-    [ "project", "structPonca_1_1DirectProjectionOperator.html#a784794e7f0b239c2fa4cbba77694f80b", null ]
+    [ "operator()", "structPonca_1_1DirectProjectionOperator.html#a8f6c2b56cf14815671b5234750a95833", null ],
+    [ "project", "structPonca_1_1DirectProjectionOperator.html#a9612aa7af92be5df12958865f71ff73d", null ]
 ];

@@ -5,6 +5,10 @@ var classPonca_1_1MongePatch =
     [ "Scalar", "classPonca_1_1MongePatch.html#a129e4d4b92d31b7c001c48062259dea2", null ],
     [ "VectorType", "classPonca_1_1MongePatch.html#a0fe10f0fe65ef166d77fa081b9e4785e", null ],
     [ "MongePatch", "classPonca_1_1MongePatch.html#a92f5969ae03c0cda6a2c28b37311ea0c", null ],
+    [ "firstFondamentalFormComponent", "classPonca_1_1MongePatch.html#ad952915f3682206275bfea30d37c6a65", null ],
+    [ "firstFondamentalFormComponent", "classPonca_1_1MongePatch.html#aa45d773a449b4e39d8d87aaa646e5a24", null ],
+    [ "implicitPrimitive", "classPonca_1_1MongePatch.html#aff4a63df13c91f17047af223aa30179c", null ],
+    [ "implicitPrimitive", "classPonca_1_1MongePatch.html#ae3a42ffdfc441607de5e2e33485c5950", null ],
     [ "mongePatchPrimitive", "classPonca_1_1MongePatch.html#a6bfab6ba9c1048305b715b8339d09a41", null ],
     [ "mongePatchPrimitive", "classPonca_1_1MongePatch.html#a012247b4ab950131bdc760f0ea72ec31", null ],
     [ "potential", "classPonca_1_1MongePatch.html#aec1d61df83662110715dd7276043cf87", null ],
@@ -12,5 +16,7 @@ var classPonca_1_1MongePatch =
     [ "primitiveGradient", "classPonca_1_1MongePatch.html#a611bed14c75283d9a667c2e9a61d9fd3", null ],
     [ "primitiveGradient", "classPonca_1_1MongePatch.html#a536764b61ced31b571548cad20893b5b", null ],
     [ "primitiveGradientLocal", "classPonca_1_1MongePatch.html#a6cdb94b9cf82b34ab32c15c5fe8a9d98", null ],
-    [ "project", "classPonca_1_1MongePatch.html#a8b9a1a90a42b17bf2588989ac5bcc17c", null ]
+    [ "project", "classPonca_1_1MongePatch.html#a8b9a1a90a42b17bf2588989ac5bcc17c", null ],
+    [ "secondFondamentalFormComponent", "classPonca_1_1MongePatch.html#ad016aae028466de4ebc433f08bccd854", null ],
+    [ "secondFondamentalFormComponent", "classPonca_1_1MongePatch.html#a67e020cf90ae03180bb0e963ef2657f7", null ]
 ];

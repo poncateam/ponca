@@ -1,0 +1,26 @@
+var classPonca_1_1CovarianceBase =
+[
+    [ "Base", "classPonca_1_1CovarianceBase.html#a0dd3a2afa22bec2102d51591c4f39c13", null ],
+    [ "MatrixType", "classPonca_1_1CovarianceBase.html#a746435f75df601060cf479fecf7923b0", null ],
+    [ "NeighborFilter", "classPonca_1_1CovarianceBase.html#a7ce9f45f50e8f0a97fb03fa3c10851fa", null ],
+    [ "Scalar", "classPonca_1_1CovarianceBase.html#a8650baf88455b6802baac970bd2659d1", null ],
+    [ "Solver", "classPonca_1_1CovarianceBase.html#a29d766636244c9a696ceed2cce8c0771", null ],
+    [ "VectorType", "classPonca_1_1CovarianceBase.html#a7bff0819d8c1378cee5cbcc551c2ee92", null ],
+    [ "addLocalNeighbor", "classPonca_1_1CovarianceBase.html#a075eca35f34e4f3b6549718b59c85689", null ],
+    [ "anisotropy", "classPonca_1_1CovarianceBase.html#aaee492dc6c0f9aae50cb6cdfb9a3b87f", null ],
+    [ "covarianceBase", "classPonca_1_1CovarianceBase.html#a127fff5ed89e33d1a3c1ccf31337ca50", null ],
+    [ "covarianceBase", "classPonca_1_1CovarianceBase.html#afa16865da0e4fa5b42ddf8e5c3f8167f", null ],
+    [ "eigenentropy", "classPonca_1_1CovarianceBase.html#ae33784e4ccdec0d80dbfa941923a9f2d", null ],
+    [ "finalize", "classPonca_1_1CovarianceBase.html#afc3299deb3938a84482b7c8d3bc57e40", null ],
+    [ "init", "classPonca_1_1CovarianceBase.html#ac4a737516cf95a2db510b5a3145f38c7", null ],
+    [ "lambda_0", "classPonca_1_1CovarianceBase.html#a067a4a24921bcb5caa1fb06f8eb5e911", null ],
+    [ "lambda_1", "classPonca_1_1CovarianceBase.html#a8ede020187dff7a57342391be2172dc8", null ],
+    [ "lambda_2", "classPonca_1_1CovarianceBase.html#a295135f9af3d0acd52c4d9f712c7e738", null ],
+    [ "linearity", "classPonca_1_1CovarianceBase.html#ab5566c71ae1d9685b4d59b7888095df2", null ],
+    [ "planarity", "classPonca_1_1CovarianceBase.html#a96f37f57c813fbd5e62baefc05fee684", null ],
+    [ "solver", "classPonca_1_1CovarianceBase.html#ac4a6a5a6cee0d84fc66f0472c69e89be", null ],
+    [ "sphericity", "classPonca_1_1CovarianceBase.html#a24e497ea3654117cae1c33bcb3f70208", null ],
+    [ "surfaceVariation", "classPonca_1_1CovarianceBase.html#a6bbe719464dc5f2c92f87955524f1c3b", null ],
+    [ "m_cov", "classPonca_1_1CovarianceBase.html#a43002fad6a78e5babb5952a0bbb80725", null ],
+    [ "m_solver", "classPonca_1_1CovarianceBase.html#aa99f87dc61e37205b33175e13ac58039", null ]
+];

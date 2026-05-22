@@ -7,8 +7,8 @@ var classPonca_1_1Plane =
     [ "VectorType", "classPonca_1_1Plane.html#a3d05e7a87b12da5c4e243ecb731a391e", null ],
     [ "Plane", "classPonca_1_1Plane.html#ace6fa57a6da9aaa810e47e7aec6492b8", null ],
     [ "changeBasis", "classPonca_1_1Plane.html#ae9006b9d9d50874967926d2cb389b89b", null ],
-    [ "compactPlane", "classPonca_1_1Plane.html#abf583542c64a0c8701c3f100eacbf1e7", null ],
-    [ "compactPlane", "classPonca_1_1Plane.html#a8bfcfcb55540947d3c76558bd05f98be", null ],
+    [ "implicitPrimitive", "classPonca_1_1Plane.html#a743ec11e3d87591201d89c82ed69b7fa", null ],
+    [ "implicitPrimitive", "classPonca_1_1Plane.html#abf98a0ddf8399dea54cd4cc76e36135a", null ],
     [ "init", "classPonca_1_1Plane.html#af5880efdca15a073d6fa7869dfac15b2", null ],
     [ "isValid", "classPonca_1_1Plane.html#a38f025cd193aea2cc836cac838a3e750", null ],
     [ "operator!=", "classPonca_1_1Plane.html#ab80eae3b028a0735aeb7f63c78f2e9cd", null ],
@@ -20,5 +20,7 @@ var classPonca_1_1Plane =
     [ "primitiveGradient", "classPonca_1_1Plane.html#ad9392b14876d342f504a0d74ce057217", null ],
     [ "primitiveGradient", "classPonca_1_1Plane.html#a906579a839c036bed91336213dfae71d", null ],
     [ "primitiveGradientLocal", "classPonca_1_1Plane.html#a3e83a2e11b5fa0c55a4353396cb12c2d", null ],
-    [ "project", "classPonca_1_1Plane.html#a29b652b27321dd185acb93f53cc6c127", null ]
+    [ "project", "classPonca_1_1Plane.html#a29b652b27321dd185acb93f53cc6c127", null ],
+    [ "projectionOperator", "classPonca_1_1Plane.html#a5cf8fa0a0dac37e01780aece66aa36c2", null ],
+    [ "projectionOperator", "classPonca_1_1Plane.html#a001f891fdf8dc8abebf5142d583d4d71", null ]
 ];

@@ -4,7 +4,7 @@ var hierarchy =
       [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
     [ "_NeighborhoodFrame", null, [
-      [ "Ponca::internal::NoWeightFuncBase< DataPoint, _NeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", null ]
+      [ "Ponca::internal::NoWeightFilterBase< _DataPoint, _NeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFilterBase.html", null ]
     ] ],
     [ "Ponca::AbstractNeighborGraph< _Traits, BufferType, _OneConnectedIndexQuery, _RangeIndexQuery >", "classPonca_1_1AbstractNeighborGraph.html", null ],
     [ "Ponca::AbstractNeighborGraph< _Traits, KnnGraphBuffers, NeighborGraphOneConnectedQuery< StaticKnnGraphBase< _Traits > >, NeighborGraphRangeQuery< StaticKnnGraphBase< _Traits > > >", "classPonca_1_1AbstractNeighborGraph.html", [
@@ -17,18 +17,21 @@ var hierarchy =
         [ "Ponca::NeighborGraphBase< _Traits >", "classPonca_1_1NeighborGraphBase.html", null ]
       ] ]
     ] ],
+    [ "Ponca::BasketUnitBase< DataPoint, _NFilter, T >", "classPonca_1_1BasketUnitBase.html", null ],
     [ "Ponca::BitSet< N, T >", "classPonca_1_1BitSet.html", null ],
     [ "Ponca::StaticKdTreeBase< _Traits >::Buffers", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html", null ],
-    [ "internal::CenteredNeighborhoodFrame", null, [
-      [ "Ponca::internal::NoWeightFuncBase< DataPoint, internal::CenteredNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", [
-        [ "Ponca::NoWeightFunc< DataPoint >", "structPonca_1_1NoWeightFunc.html", null ]
+    [ "CenteredNeighborhoodFrame", null, [
+      [ "Ponca::internal::NoWeightFilterBase< DataPoint, CenteredNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFilterBase.html", [
+        [ "Ponca::NoWeightFilter< DataPoint >", "structPonca_1_1NoWeightFilter.html", null ]
       ] ]
     ] ],
-    [ "Ponca::internal::CenteredNeighborhoodFrame< DataPoint >", "classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html", [
-      [ "Ponca::DistWeightFunc< DataPoint, ConstantWeightKernel< Scalar > >", "classPonca_1_1DistWeightFunc.html", [
-        [ "Ponca::NeighborFilterStoreNormal< DataPoint, DistWeightFunc< DataPoint, ConstantWeightKernel< Scalar > > >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
-      ] ],
-      [ "Ponca::DistWeightFunc< DataPoint, WeightKernel >", "classPonca_1_1DistWeightFunc.html", null ]
+    [ "Ponca::CenteredNeighborhoodFrame< DataPoint >", "classPonca_1_1CenteredNeighborhoodFrame.html", [
+      [ "Ponca::DistWeightFilter< DataPoint, ConstantWeightKernel< Scalar > >", "classPonca_1_1DistWeightFilter.html", [
+        [ "Ponca::FilterWithAttributes< DataPoint, VectorType, DistWeightFilter< DataPoint, ConstantWeightKernel< Scalar > >, internal::ConvertDataPointToNormal< DataPoint > >", "classPonca_1_1FilterWithAttributes.html", null ]
+      ] ]
+    ] ],
+    [ "Ponca::CenteredNeighborhoodFrame< _DataPoint >", "classPonca_1_1CenteredNeighborhoodFrame.html", [
+      [ "Ponca::DistWeightFilter< _DataPoint, WeightKernel >", "classPonca_1_1DistWeightFilter.html", null ]
     ] ],
     [ "Ponca::internal::CNCEigen< DataPoint >", "structPonca_1_1internal_1_1CNCEigen.html", null ],
     [ "Ponca::ComputeObject< Derived >", "structPonca_1_1ComputeObject.html", [
@@ -50,22 +53,20 @@ var hierarchy =
     [ "Ponca::DirectProjectionOperator", "structPonca_1_1DirectProjectionOperator.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],
     [ "std::false_type", null, [
-      [ "Ponca::hasFirstFundamentalForm< T, typename >", "structPonca_1_1hasFirstFundamentalForm.html", null ],
-      [ "Ponca::hasNormal< T, typename >", "structPonca_1_1hasNormal.html", null ]
+      [ "Ponca::hasFirstFundamentalForm< T, typename >", "structPonca_1_1hasFirstFundamentalForm.html", null ]
     ] ],
     [ "Concept::FittingExtensionConcept", null, [
-      [ "Ponca::CovarianceFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceFitDer.html", null ],
+      [ "Ponca::CovarianceDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceDer.html", null ],
       [ "Ponca::CovariancePlaneDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
       [ "Ponca::GLSDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1GLSDer.html", null ],
       [ "Ponca::GLSParam< DataPoint, _NFilter, T >", "classPonca_1_1GLSParam.html", null ],
-      [ "Ponca::MlsSphereFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
-      [ "Ponca::PrimitiveDer< DataPoint, _NFilter, Type, T >", "classPonca_1_1PrimitiveDer.html", null ]
+      [ "Ponca::MlsSphereFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ]
     ] ],
     [ "Concept::FittingProcedureConcept", null, [
       [ "MeanNormal< DataPoint, _NFilter, T >", "classMeanNormal.html", null ],
       [ "MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classMeanNormalDer.html", null ],
       [ "MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classMeanPositionDer.html", null ],
-      [ "Ponca::CovarianceFitBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceFitBase.html", null ],
+      [ "Ponca::CovarianceBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceBase.html", null ],
       [ "Ponca::CovarianceLineFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
       [ "Ponca::CovariancePlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
       [ "Ponca::MeanPlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MeanPlaneFitImpl.html", null ],
@@ -74,12 +75,12 @@ var hierarchy =
       [ "Ponca::SphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1SphereFitImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ]
     ] ],
-    [ "internal::GlobalNeighborhoodFrame", null, [
-      [ "Ponca::internal::NoWeightFuncBase< DataPoint, internal::GlobalNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFuncBase.html", [
-        [ "Ponca::NoWeightFuncGlobal< DataPoint >", "structPonca_1_1NoWeightFuncGlobal.html", null ]
+    [ "GlobalNeighborhoodFrame", null, [
+      [ "Ponca::internal::NoWeightFilterBase< DataPoint, GlobalNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFilterBase.html", [
+        [ "Ponca::NoWeightFilterGlobal< DataPoint >", "structPonca_1_1NoWeightFilterGlobal.html", null ]
       ] ]
     ] ],
-    [ "Ponca::internal::GlobalNeighborhoodFrame< DataPoint >", "classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html", null ],
+    [ "Ponca::GlobalNeighborhoodFrame< DataPoint >", "classPonca_1_1GlobalNeighborhoodFrame.html", null ],
     [ "Ponca::GradientDescentProjectionOperator", "structPonca_1_1GradientDescentProjectionOperator.html", null ],
     [ "Ponca::HashDefaultFunctor< N, T >", "structPonca_1_1HashDefaultFunctor.html", null ],
     [ "Ponca::HashSet< N, T, _HashFunctor, OFFSET >", "classPonca_1_1HashSet.html", null ],
@@ -118,7 +119,7 @@ var hierarchy =
     [ "Ponca::LimitedPriorityQueue< IndexSquaredDistance< Index, Scalar >, MAX_KNN_SIZE >", "classPonca_1_1LimitedPriorityQueue.html", null ],
     [ "Ponca::MLSEvaluationScheme< Scalar >", "structPonca_1_1MLSEvaluationScheme.html", null ],
     [ "NeighborFilter", null, [
-      [ "Ponca::NeighborFilterStoreNormal< DataPoint, NeighborFilter >", "classPonca_1_1NeighborFilterStoreNormal.html", null ]
+      [ "Ponca::FilterWithAttributes< _DataPoint, DataType, NeighborFilter, DataConverter >", "classPonca_1_1FilterWithAttributes.html", null ]
     ] ],
     [ "Ponca::NeighborGraphBufferBase< _Traits >", "structPonca_1_1NeighborGraphBufferBase.html", [
       [ "Ponca::KnnGraphBuffers< Traits >", "structPonca_1_1KnnGraphBuffers.html", null ],
@@ -141,7 +142,6 @@ var hierarchy =
     [ "Ponca::PointPositionNormal< _Scalar, _Dim >", "classPonca_1_1PointPositionNormal.html", null ],
     [ "Ponca::PointPositionNormalBinding< _Scalar, _Dim >", "classPonca_1_1PointPositionNormalBinding.html", null ],
     [ "Ponca::PointPositionNormalLazyBinding< _Scalar, _Dim >", "classPonca_1_1PointPositionNormalLazyBinding.html", null ],
-    [ "Ponca::PrimitiveBase< DataPoint, _NFilter, T >", "classPonca_1_1PrimitiveBase.html", null ],
     [ "Ponca::QueryInputBase", "group__spatialpartitioning.html#structPonca_1_1QueryInputBase", [
       [ "Ponca::QueryInput< _NeighborGraph::Traits::IndexType >", "group__spatialpartitioning.html", null ],
       [ "Ponca::QueryInput< Index >", "group__spatialpartitioning.html", [
@@ -201,8 +201,9 @@ var hierarchy =
       [ "MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classMeanNormalDer.html", null ],
       [ "MeanPositionDer< DataPoint, _NFilter, DiffType, T >", "classMeanPositionDer.html", null ],
       [ "Ponca::AlgebraicSphere< DataPoint, _NFilter, T >", "classPonca_1_1AlgebraicSphere.html", null ],
-      [ "Ponca::CovarianceFitBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceFitBase.html", null ],
-      [ "Ponca::CovarianceFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceFitDer.html", null ],
+      [ "Ponca::BasketDiffUnitBase< DataPoint, _NFilter, Type, T >", "classPonca_1_1BasketDiffUnitBase.html", null ],
+      [ "Ponca::CovarianceBase< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceBase.html", null ],
+      [ "Ponca::CovarianceDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceDer.html", null ],
       [ "Ponca::CovarianceLineFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovarianceLineFitImpl.html", null ],
       [ "Ponca::CovariancePlaneDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
       [ "Ponca::CovariancePlaneFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1CovariancePlaneFitImpl.html", null ],
@@ -222,16 +223,11 @@ var hierarchy =
       [ "Ponca::OrientedSphereDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1OrientedSphereDerImpl.html", null ],
       [ "Ponca::OrientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],
       [ "Ponca::Plane< DataPoint, _NFilter, T >", "classPonca_1_1Plane.html", null ],
-      [ "Ponca::PrimitiveDer< DataPoint, _NFilter, Type, T >", "classPonca_1_1PrimitiveDer.html", null ],
       [ "Ponca::QuadraticHeightField< DataPoint, _NFilter, T >", "classPonca_1_1QuadraticHeightField.html", null ],
       [ "Ponca::RestrictedQuadraticHeightField< DataPoint, _NFilter, T >", "classPonca_1_1RestrictedQuadraticHeightField.html", null ],
       [ "Ponca::SphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1SphereFitImpl.html", null ],
       [ "Ponca::UnorientedSphereDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1UnorientedSphereDerImpl.html", null ],
       [ "Ponca::UnorientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1UnorientedSphereFitImpl.html", null ],
-      [ "Ponca::internal::CurvatureEstimatorBase< DataPoint, _NFilter, T >", "classPonca_1_1internal_1_1CurvatureEstimatorBase.html", [
-        [ "Ponca::CurvatureEstimator< DataPoint, _NFilter, T >", "classPonca_1_1CurvatureEstimator.html", null ],
-        [ "Ponca::CurvatureEstimatorDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CurvatureEstimatorDer.html", null ]
-      ] ],
       [ "Ponca::internal::WeingartenCurvatureEstimatorBase< DataPoint, _NFilter, T >", "classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html", [
         [ "Ponca::WeingartenCurvatureEstimator< DataPoint, _NFilter, T >", "structPonca_1_1WeingartenCurvatureEstimator.html", null ],
         [ "Ponca::WeingartenCurvatureEstimatorDer< DataPoint, _NFilter, DiffType, T >", "structPonca_1_1WeingartenCurvatureEstimatorDer.html", null ]
@@ -242,8 +238,7 @@ var hierarchy =
     [ "Ponca::internal::TriangleGenerator< IndependentGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01IndependentGeneration_00_01P_01_4.html", null ],
     [ "Ponca::internal::TriangleGenerator< UniformGeneration, P >", "structPonca_1_1internal_1_1TriangleGenerator_3_01UniformGeneration_00_01P_01_4.html", null ],
     [ "std::true_type", null, [
-      [ "Ponca::hasFirstFundamentalForm< T, std::void_t< decltype(std::declval< T >().firstFundamentalForm())> >", "structPonca_1_1hasFirstFundamentalForm_3_01T_00_01std_1_1void__t_3_01decltype_07std_1_1declval_3c934b077c941f2ac88d2ec4e8e15ad41.html", null ],
-      [ "Ponca::hasNormal< T, std::void_t< decltype(std::declval< T >().normal())> >", "structPonca_1_1hasNormal_3_01T_00_01std_1_1void__t_3_01decltype_07std_1_1declval_3_01T_01_4_07_08_8normal_07_08_08_4_01_4.html", null ]
+      [ "Ponca::hasFirstFundamentalForm< T, std::void_t< decltype(std::declval< T >().firstFundamentalForm())> >", "structPonca_1_1hasFirstFundamentalForm_3_01T_00_01std_1_1void__t_3_01decltype_07std_1_1declval_3c934b077c941f2ac88d2ec4e8e15ad41.html", null ]
     ] ],
     [ "internal::BasketAggregate::type", null, [
       [ "Ponca::BasketComputeObject< Basket< P, NF, Ext0, Exts... >, internal::BasketAggregate< P, NF, Ext0, Exts... >::type >", "structPonca_1_1BasketComputeObject.html", null ]

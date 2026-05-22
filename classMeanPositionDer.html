@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -171,19 +171,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5e9a4c02b23274e9e664b8e0dc61cf38" id="r_a5e9a4c02b23274e9e664b8e0dc61cf38"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMeanPositionDer.html">MeanPositionDer</a>&lt; DataPoint, _NFilter, DiffType, T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanPositionDer.html#a5e9a4c02b23274e9e664b8e0dc61cf38">meanPositionDer</a> () const</td></tr>
 <tr class="memdesc:a5e9a4c02b23274e9e664b8e0dc61cf38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit conversion to <a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a> , to access methods potentially hidden by heritage.  <br /></td></tr>
 <tr class="separator:a5e9a4c02b23274e9e664b8e0dc61cf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a262224eee16296556f43a192381c3ee8" id="r_a262224eee16296556f43a192381c3ee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanPositionDer.html#a262224eee16296556f43a192381c3ee8">init</a> ()</td></tr>
-<tr class="memdesc:a262224eee16296556f43a192381c3ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
-<tr class="separator:a262224eee16296556f43a192381c3ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a6558018f0cc38baba3f8ca7959d006" id="r_a2a6558018f0cc38baba3f8ca7959d006"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanPositionDer.html#a2a6558018f0cc38baba3f8ca7959d006">addLocalNeighbor</a> (<a class="el" href="classMeanPositionDer.html#a771acee7765ddabc9be70ee6df3e61ce">Scalar</a> w, const <a class="el" href="classMeanPositionDer.html#a18e7c3a2f86ed87807401aa31eaf8795">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classMeanPositionDer.html#aec06423fb08bcd03aadea3cc19fadf5f">ScalarArray</a> &amp;dw)</td></tr>
-<tr class="memdesc:a2a6558018f0cc38baba3f8ca7959d006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
-<tr class="separator:a2a6558018f0cc38baba3f8ca7959d006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac56df025e6ca889f5311d8f21b2afaee" id="r_ac56df025e6ca889f5311d8f21b2afaee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanPositionDer.html#ac56df025e6ca889f5311d8f21b2afaee">init</a> ()</td></tr>
+<tr class="memdesc:ac56df025e6ca889f5311d8f21b2afaee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the evaluation position and reset the internal states.  <br /></td></tr>
+<tr class="separator:ac56df025e6ca889f5311d8f21b2afaee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6fd5b78d68a3273fe087a7918dc624a" id="r_af6fd5b78d68a3273fe087a7918dc624a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanPositionDer.html#af6fd5b78d68a3273fe087a7918dc624a">addLocalNeighbor</a> (<a class="el" href="classMeanPositionDer.html#a771acee7765ddabc9be70ee6df3e61ce">Scalar</a> w, const <a class="el" href="classMeanPositionDer.html#a18e7c3a2f86ed87807401aa31eaf8795">VectorType</a> &amp;localQ, const DataPoint &amp;attributes, <a class="el" href="classMeanPositionDer.html#aec06423fb08bcd03aadea3cc19fadf5f">ScalarArray</a> &amp;dw)</td></tr>
+<tr class="memdesc:af6fd5b78d68a3273fe087a7918dc624a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
+<tr class="separator:af6fd5b78d68a3273fe087a7918dc624a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:ab8b34725b506d30c464957fdcd4bc5ad" id="r_ab8b34725b506d30c464957fdcd4bc5ad"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_PRIMITIVE_DERIVATIVE &amp;&amp; Base::PROVIDES_MEAN_POSITION
-, <a class="el" href="classMeanPositionDer.html#ab8b34725b506d30c464957fdcd4bc5adaf68f506ab1995eb59fc6cafcea21eed1">PROVIDES_MEAN_POSITION_DERIVATIVE</a>
- }</td></tr>
-<tr class="separator:ab8b34725b506d30c464957fdcd4bc5ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09bd73b1890ad26a58655a6c3db239b6" id="r_a09bd73b1890ad26a58655a6c3db239b6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeanPositionDer.html#a09bd73b1890ad26a58655a6c3db239b6">Base</a> = T</td></tr>
 <tr class="memdesc:a09bd73b1890ad26a58655a6c3db239b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:a09bd73b1890ad26a58655a6c3db239b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,10 +192,11 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt;<br />
+requires ProvidesBasketDiffUnitBase&lt;T&gt;&amp;&amp; ProvidesMeanPosition&lt;T&gt;<br />
 class MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt;</div><p>Compute the derivatives of the input points barycenter. </p>
-<p>This primitive requires: </p><pre class="fragment">PROVIDES_PRIMITIVE_DERIVATIVE, PROVIDES_MEAN_POSITION</pre><p>This primitive provides: </p><pre class="fragment">PROVIDES_MEAN_POSITION_DERIVATIVE </pre><dl class="section see"><dt>See also</dt><dd><a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> </dd></dl>
+<p>This primitive requires: </p><pre class="fragment">ProvidePrimitiveDerivative, ProvidesMeanPosition</pre><p>This primitive provides: </p><pre class="fragment">ProvidesMeanPositionDerivative </pre><dl class="section see"><dt>See also</dt><dd><a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00126">126</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00120">120</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a09bd73b1890ad26a58655a6c3db239b6" name="a09bd73b1890ad26a58655a6c3db239b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a09bd73b1890ad26a58655a6c3db239b6">&#9670;&#160;</a></span>Base</h2>
@@ -225,7 +222,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00128">128</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00122">122</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -245,7 +242,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00128">128</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00122">122</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -265,7 +262,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00128">128</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00122">122</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -285,7 +282,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to scalar derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00129">129</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00123">123</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -305,7 +302,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to vector derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00129">129</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00123">123</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -325,49 +322,19 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00128">128</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="ab8b34725b506d30c464957fdcd4bc5ad" name="ab8b34725b506d30c464957fdcd4bc5ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8b34725b506d30c464957fdcd4bc5ad">&#9670;&#160;</a></span>anonymous enum</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">anonymous enum</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab8b34725b506d30c464957fdcd4bc5adaf68f506ab1995eb59fc6cafcea21eed1" name="ab8b34725b506d30c464957fdcd4bc5adaf68f506ab1995eb59fc6cafcea21eed1"></a>PROVIDES_MEAN_POSITION_DERIVATIVE&#160;</td><td class="fielddoc"><p>Provides derivative of the mean position. </p>
-</td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00132">132</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00122">122</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2a6558018f0cc38baba3f8ca7959d006" name="a2a6558018f0cc38baba3f8ca7959d006"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a6558018f0cc38baba3f8ca7959d006">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
+<a id="af6fd5b78d68a3273fe087a7918dc624a" name="af6fd5b78d68a3273fe087a7918dc624a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6fd5b78d68a3273fe087a7918dc624a">&#9670;&#160;</a></span>addLocalNeighbor()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; <br />
+requires MEAN_POSITION_DER_REQUIREMENTS</div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -411,17 +378,18 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Add a neighbor to perform the fit. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00048">48</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00050">50</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
 
 </div>
 </div>
-<a id="a262224eee16296556f43a192381c3ee8" name="a262224eee16296556f43a192381c3ee8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a262224eee16296556f43a192381c3ee8">&#9670;&#160;</a></span>init()</h2>
+<a id="ac56df025e6ca889f5311d8f21b2afaee" name="ac56df025e6ca889f5311d8f21b2afaee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac56df025e6ca889f5311d8f21b2afaee">&#9670;&#160;</a></span>init()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </div>
+template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; <br />
+requires MEAN_POSITION_DER_REQUIREMENTS</div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -443,7 +411,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <p>Set the evaluation position and reset the internal states. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any computation (but * after #setNeighborFilter) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00041">41</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8hpp_source.html#l00042">42</a> of file <a class="el" href="mean_8hpp_source.html">mean.hpp</a>.</p>
 
 </div>
 </div>
@@ -474,7 +442,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Explicit conversion to <a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00142">142</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00130">130</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -505,7 +473,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Explicit conversion to <a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00142">142</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00130">130</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -534,7 +502,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 
 <p>Derivatives of the input points vectors. </p>
 
-<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00139">139</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mean_8h_source.html#l00127">127</a> of file <a class="el" href="mean_8h_source.html">mean.h</a>.</p>
 
 </div>
 </div>
@@ -544,7 +512,7 @@ template&lt;class DataPoint , class _NFilter , int DiffType, typename T &gt; </d
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classMeanPositionDer.html">MeanPositionDer</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

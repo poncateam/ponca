@@ -1,19 +1,93 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,237,228,262"/>
-<area shape="rect" id="Node000001" href="$classPonca_1_1ConstantWeightKernel.html" title=" " alt="" coords="288,5,501,45"/>
-<area shape="poly" id="edge60_Node000000_Node000001" title=" " alt="" coords="129,223,152,186,185,140,226,94,275,55,298,43,300,48,277,60,230,98,189,144,157,189,134,226"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1CompactExpWeightKernel.html" title="Compact Exponential WeightKernel defined in ." alt="" coords="276,69,513,109"/>
-<area shape="poly" id="edge61_Node000000_Node000002" title=" " alt="" coords="138,225,196,172,234,143,275,119,303,107,305,112,277,124,237,148,200,176,141,229"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1ConstantWeightKernel.html" title="Concept::WeightKernelConcept returning a constant value." alt="" coords="288,133,501,173"/>
-<area shape="poly" id="edge62_Node000000_Node000003" title=" " alt="" coords="158,229,275,183,314,171,315,176,277,188,160,234"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1GaussianWeightKernel.html" title="Non&#45;compact Gaussian WeightKernel." alt="" coords="287,197,502,237"/>
-<area shape="poly" id="edge63_Node000000_Node000004" title=" " alt="" coords="240,232,287,227,287,232,241,238"/>
-<area shape="rect" id="Node000005" href="$classPonca_1_1PolynomialSmoothWeightKernel.html" title="Compact generalised version of SmoothWeightKernel with arbitrary degrees : ." alt="" coords="276,261,513,301"/>
-<area shape="poly" id="edge64_Node000000_Node000005" title=" " alt="" coords="241,261,276,265,275,270,240,266"/>
-<area shape="rect" id="Node000006" href="$classPonca_1_1SingularWeightKernel.html" title="Compact singular WeightKernel defined in ." alt="" coords="291,325,499,365"/>
-<area shape="poly" id="edge65_Node000000_Node000006" title=" " alt="" coords="160,265,277,311,315,323,314,328,275,316,158,270"/>
-<area shape="rect" id="Node000007" href="$classPonca_1_1SmoothWeightKernel.html" title="Compact smooth WeightKernel of 2nd degree, defined in &#160;Special case of PolynomialSmoothWeightKernel&lt;S..." alt="" coords="292,389,497,429"/>
-<area shape="poly" id="edge66_Node000000_Node000007" title=" " alt="" coords="141,270,200,323,237,351,277,375,305,387,303,392,275,380,234,355,196,327,138,274"/>
-<area shape="rect" id="Node000008" href="$classPonca_1_1WendlandWeightKernel.html" title="Compact Wendland WeightKernel defined in ." alt="" coords="285,453,504,493"/>
-<area shape="poly" id="edge67_Node000000_Node000008" title=" " alt="" coords="134,273,157,310,189,355,230,401,277,439,300,451,298,456,275,444,226,404,185,358,152,313,129,276"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="6,156,194,196"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1CovarianceDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by covarianceBase." alt="" coords="291,149,456,203"/>
+<area shape="poly" id="edge6_Node000000_Node000001" title=" " alt="" coords="208,173,291,173,291,179,208,179"/>
+<area shape="rect" id="Node000017" href="$classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]" alt="" coords="273,227,474,282"/>
+<area shape="poly" id="edge7_Node000000_Node000017" title=" " alt="" coords="184,197,278,225,277,230,183,202"/>
+<area shape="rect" id="Node000020" href="$classPonca_1_1GLSDer.html" title="Differentiation of GLSParam." alt="" coords="273,307,473,347"/>
+<area shape="poly" id="edge8_Node000000_Node000020" title=" " alt="" coords="131,204,181,249,212,272,244,291,276,304,274,309,241,296,209,276,178,253,128,208"/>
+<area shape="rect" id="Node000021" href="$classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit." alt="" coords="264,5,483,45"/>
+<area shape="poly" id="edge9_Node000000_Node000021" title=" " alt="" coords="127,144,177,98,208,75,241,55,270,43,272,48,244,60,211,79,181,102,131,148"/>
+<area shape="rect" id="Node000025" href="$classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface." alt="" coords="285,70,461,125"/>
+<area shape="poly" id="edge10_Node000000_Node000025" title=" " alt="" coords="183,150,284,120,286,125,184,155"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,691,195,731"/>
+<area shape="rect" id="Node000003" href="$classMeanNormal.html" title="Compute the mean normal of the input points." alt="" coords="279,563,468,603"/>
+<area shape="poly" id="edge11_Node000004_Node000003" title=" " alt="" coords="134,680,183,645,242,612,278,599,279,604,244,617,186,649,137,684"/>
+<area shape="rect" id="Node000005" href="$classMeanNormalDer.html" title="Compute the derivatives of the input points mean normal." alt="" coords="267,627,479,667"/>
+<area shape="poly" id="edge12_Node000004_Node000005" title=" " alt="" coords="199,685,287,664,288,669,200,690"/>
+<area shape="rect" id="Node000006" href="$classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter." alt="" coords="265,691,481,731"/>
+<area shape="poly" id="edge13_Node000004_Node000006" title=" " alt="" coords="208,708,265,708,265,713,208,713"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1CovarianceBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions." alt="" coords="278,755,469,795"/>
+<area shape="poly" id="edge14_Node000004_Node000007" title=" " alt="" coords="200,731,288,752,287,757,199,736"/>
+<area shape="rect" id="Node000008" href="$classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="264,819,483,859"/>
+<area shape="poly" id="edge15_Node000004_Node000008" title=" " alt="" coords="137,737,186,772,244,804,276,816,274,821,242,809,183,777,134,741"/>
+<area shape="rect" id="Node000009" href="$classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position." alt="" coords="264,883,483,923"/>
+<area shape="poly" id="edge16_Node000004_Node000009" title=" " alt="" coords="123,741,173,806,206,840,244,868,268,880,266,885,241,873,203,844,169,810,119,744"/>
+<area shape="rect" id="Node000010" href="$classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points." alt="" coords="278,947,469,987"/>
+<area shape="poly" id="edge17_Node000004_Node000010" title=" " alt="" coords="115,742,134,786,162,838,198,889,220,912,244,932,279,950,277,955,241,937,217,916,194,893,157,841,129,788,110,744"/>
+<area shape="rect" id="Node000011" href="$classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points." alt="" coords="278,1011,469,1051"/>
+<area shape="poly" id="edge18_Node000004_Node000011" title=" " alt="" coords="111,743,126,799,152,868,191,938,216,969,244,997,279,1015,276,1020,241,1001,212,973,186,941,147,870,121,801,105,745"/>
+<area shape="rect" id="Node000012" href="$classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="264,371,483,411"/>
+<area shape="poly" id="edge19_Node000004_Node000012" title=" " alt="" coords="105,677,121,621,147,551,186,481,212,449,241,421,263,407,265,412,244,425,216,452,191,484,152,554,126,622,111,678"/>
+<area shape="rect" id="Node000013" href="$classPonca_1_1SphereFitImpl.html" title="Algebraic Sphere fitting procedure on point set without normals." alt="" coords="278,435,469,475"/>
+<area shape="poly" id="edge20_Node000004_Node000013" title=" " alt="" coords="110,677,129,633,157,581,194,529,217,505,241,484,277,466,279,471,244,489,220,509,198,532,162,584,134,635,115,679"/>
+<area shape="rect" id="Node000014" href="$classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non&#45;oriented normals." alt="" coords="264,499,483,539"/>
+<area shape="poly" id="edge21_Node000004_Node000014" title=" " alt="" coords="119,677,169,612,203,577,241,548,266,536,268,541,244,553,206,581,173,615,123,681"/>
+<area shape="rect" id="Node000032" title=" " alt="" coords="29,2085,171,2110"/>
+<area shape="rect" id="Node000031" href="$classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector ." alt="" coords="279,2077,467,2117"/>
+<area shape="poly" id="edge22_Node000032_Node000031" title=" " alt="" coords="184,2095,279,2095,279,2100,184,2100"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="11,2149,189,2174"/>
+<area shape="rect" id="Node000023" href="$classPonca_1_1Line.html" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="284,2141,463,2181"/>
+<area shape="poly" id="edge23_Node000024_Node000023" title=" " alt="" coords="203,2159,284,2159,284,2164,203,2164"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="81,1050,119,1075"/>
+<area shape="poly" id="edge30_Node000002_Node000001" title=" " alt="" coords="108,1036,149,911,173,828,192,742,197,690,198,624,196,469,198,391,204,319,218,258,228,233,241,213,263,194,289,182,292,187,266,199,245,216,232,236,223,260,209,320,203,391,202,469,204,624,203,691,197,743,178,829,154,912,113,1038"/>
+<area shape="poly" id="edge32_Node000002_Node000017" title=" " alt="" coords="108,1036,149,911,172,827,192,742,197,698,199,642,199,511,202,444,208,383,221,331,241,293,255,280,271,270,274,274,258,284,245,296,226,333,214,384,207,445,205,511,204,642,202,699,197,743,177,829,154,912,113,1038"/>
+<area shape="poly" id="edge36_Node000002_Node000020" title=" " alt="" coords="108,1036,148,910,172,827,192,742,197,704,199,656,201,543,204,486,211,433,222,389,241,357,255,344,272,335,274,340,258,349,245,360,227,391,216,434,210,486,206,543,204,656,202,705,197,743,177,829,153,912,113,1038"/>
+<area shape="poly" id="edge37_Node000002_Node000021" title=" " alt="" coords="108,1036,150,911,173,828,192,742,198,612,203,394,214,178,224,100,232,73,241,56,262,38,266,42,245,59,237,75,230,101,219,179,208,394,204,612,197,743,178,829,155,912,113,1038"/>
+<area shape="poly" id="edge42_Node000002_Node000025" title=" " alt="" coords="108,1036,150,911,173,828,192,742,198,683,198,607,193,429,194,339,200,256,215,186,226,157,241,134,260,117,284,106,286,110,263,121,245,138,231,160,220,188,205,257,199,339,199,429,203,607,203,683,197,743,178,829,155,912,113,1038"/>
+<area shape="poly" id="edge24_Node000002_Node000003" title=" " alt="" coords="106,1036,177,796,216,673,241,613,258,600,277,591,280,596,261,605,245,616,221,675,182,797,111,1038"/>
+<area shape="poly" id="edge25_Node000002_Node000005" title=" " alt="" coords="105,1036,126,954,159,847,198,744,219,704,241,677,266,661,269,665,244,681,224,707,203,746,164,848,131,956,110,1037"/>
+<area shape="poly" id="edge26_Node000002_Node000006" title=" " alt="" coords="102,1036,115,975,140,895,158,853,181,812,208,774,241,741,264,726,266,731,244,745,212,777,185,815,163,855,145,897,120,976,108,1037"/>
+<area shape="poly" id="edge29_Node000002_Node000007" title=" " alt="" coords="106,1036,122,986,149,923,188,859,213,830,241,804,276,786,279,791,244,809,217,834,193,862,154,926,127,988,111,1037"/>
+<area shape="poly" id="edge31_Node000002_Node000008" title=" " alt="" coords="110,1036,130,999,159,953,196,907,241,868,264,856,266,861,244,873,200,911,163,956,135,1001,115,1039"/>
+<area shape="poly" id="edge33_Node000002_Node000009" title=" " alt="" coords="118,1038,170,984,204,956,241,932,269,920,271,925,244,937,207,960,174,988,122,1041"/>
+<area shape="poly" id="edge40_Node000002_Node000010" title=" " alt="" coords="131,1044,182,1020,242,996,281,984,283,989,244,1001,184,1025,133,1049"/>
+<area shape="poly" id="edge41_Node000002_Node000011" title=" " alt="" coords="133,1056,277,1039,278,1044,133,1062"/>
+<area shape="poly" id="edge48_Node000002_Node000012" title=" " alt="" coords="108,1036,148,910,192,742,199,670,204,576,214,485,225,448,241,421,262,404,265,408,245,424,230,450,220,486,209,576,205,671,197,743,153,912,113,1037"/>
+<area shape="poly" id="edge52_Node000002_Node000013" title=" " alt="" coords="107,1036,146,910,192,742,199,703,200,667,196,604,197,575,203,546,217,516,241,485,257,471,276,462,279,467,260,476,245,489,221,519,208,547,202,575,202,604,205,667,204,703,197,743,151,912,112,1038"/>
+<area shape="poly" id="edge54_Node000002_Node000014" title=" " alt="" coords="107,1036,192,742,200,685,201,638,204,616,210,594,221,572,241,549,262,533,265,537,244,553,226,575,215,596,209,617,207,638,206,686,197,743,112,1038"/>
+<area shape="poly" id="edge49_Node000002_Node000031" title=" " alt="" coords="104,1089,107,1281,113,1421,124,1575,141,1728,166,1869,182,1931,200,1985,221,2030,245,2064,261,2077,280,2086,278,2091,258,2081,241,2067,217,2033,195,1987,177,1933,161,1870,136,1729,119,1575,108,1422,102,1281,99,1089"/>
+<area shape="poly" id="edge39_Node000002_Node000023" title=" " alt="" coords="104,1089,105,1292,110,1442,120,1605,137,1769,163,1920,179,1986,198,2044,220,2092,245,2128,263,2142,285,2152,282,2157,260,2147,241,2131,215,2094,193,2046,174,1988,157,1921,132,1770,115,1605,105,1442,100,1292,98,1089"/>
+<area shape="rect" id="Node000015" href="$classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive." alt="" coords="278,1933,469,1973"/>
+<area shape="poly" id="edge27_Node000002_Node000015" title=" " alt="" coords="105,1089,112,1257,120,1377,133,1507,151,1637,175,1756,206,1854,224,1891,245,1920,260,1932,279,1942,277,1946,257,1937,241,1923,220,1894,201,1856,170,1757,145,1638,127,1507,115,1377,106,1257,99,1089"/>
+<area shape="rect" id="Node000016" href="$classPonca_1_1BasketDiffUnitBase.html" title="Base class of any computation unit of a BasketDiff." alt="" coords="276,1998,471,2053"/>
+<area shape="poly" id="edge28_Node000002_Node000016" title=" " alt="" coords="104,1089,111,1266,118,1395,131,1535,148,1676,173,1805,188,1862,205,1911,224,1952,245,1984,259,1997,277,2007,274,2011,256,2001,241,1987,219,1955,200,1913,183,1863,168,1806,143,1676,125,1536,113,1395,105,1267,99,1089"/>
+<area shape="rect" id="Node000018" href="$classPonca_1_1DryFit.html" title="Empty fitting object doing no computation." alt="" coords="278,1075,469,1115"/>
+<area shape="poly" id="edge34_Node000002_Node000018" title=" " alt="" coords="133,1064,278,1081,277,1086,133,1069"/>
+<area shape="rect" id="Node000019" href="$classPonca_1_1FundamentalFormWeingartenEstimator.html" title="Compute a Weingarten map from fundamental forms." alt="" coords="243,1139,504,1179"/>
+<area shape="poly" id="edge35_Node000002_Node000019" title=" " alt="" coords="133,1076,184,1100,244,1124,283,1136,281,1141,242,1129,182,1105,131,1081"/>
+<area shape="rect" id="Node000022" href="$classPonca_1_1HeightField.html" title="Internal base classe for height fields." alt="" coords="278,1203,469,1243"/>
+<area shape="poly" id="edge38_Node000002_Node000022" title=" " alt="" coords="122,1084,174,1137,207,1165,244,1188,279,1203,277,1208,241,1193,204,1169,170,1141,118,1088"/>
+<area shape="rect" id="Node000026" href="$classPonca_1_1MongePatch.html" title="Monge Patch primitive, defined as , with &#160;defined by a Base class." alt="" coords="284,1267,463,1307"/>
+<area shape="poly" id="edge43_Node000002_Node000026" title=" " alt="" coords="115,1086,135,1124,163,1169,200,1214,244,1252,285,1271,283,1276,241,1257,196,1218,159,1172,130,1127,110,1089"/>
+<area shape="rect" id="Node000027" href="$classPonca_1_1MongePatchQuadraticFitImpl.html" title="Extension to compute the best fit quadric on 3d points expressed as ." alt="" coords="256,1331,491,1371"/>
+<area shape="poly" id="edge44_Node000002_Node000027" title=" " alt="" coords="111,1088,127,1137,154,1200,193,1263,217,1292,244,1317,263,1328,260,1333,241,1321,213,1295,188,1266,149,1202,122,1139,106,1090"/>
+<area shape="rect" id="Node000028" href="$classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html" title="Extension to compute the best fit restricted quadric on 3d points expressed as ." alt="" coords="266,1395,481,1450"/>
+<area shape="poly" id="edge45_Node000002_Node000028" title=" " alt="" coords="108,1089,121,1149,146,1228,164,1269,187,1310,213,1348,244,1381,267,1396,264,1401,241,1385,209,1351,182,1313,160,1272,141,1229,116,1150,103,1090"/>
+<area shape="rect" id="Node000029" href="$classPonca_1_1NormalDerivativeWeingartenEstimator.html" title="Compute a Weingarten map from the spatial derivatives of the normal field ." alt="" coords="244,1474,503,1529"/>
+<area shape="poly" id="edge46_Node000002_Node000029" title=" " alt="" coords="105,1089,114,1162,136,1261,154,1315,178,1367,208,1416,245,1459,261,1472,257,1476,241,1463,203,1420,173,1370,149,1317,131,1263,109,1163,100,1089"/>
+<area shape="rect" id="Node000030" href="$classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]" alt="" coords="277,1553,470,1607"/>
+<area shape="poly" id="edge47_Node000002_Node000030" title=" " alt="" coords="104,1089,108,1175,115,1232,126,1295,144,1361,169,1425,202,1485,245,1538,260,1550,277,1560,275,1565,257,1555,241,1542,198,1488,164,1427,139,1362,121,1296,110,1233,103,1175,98,1089"/>
+<area shape="rect" id="Node000033" href="$classPonca_1_1QuadraticHeightField.html" title="Quadratic height field defined as ." alt="" coords="270,1632,477,1672"/>
+<area shape="poly" id="edge50_Node000002_Node000033" title=" " alt="" coords="107,1089,123,1202,152,1362,171,1443,193,1516,217,1577,245,1617,271,1635,268,1639,241,1621,213,1579,188,1518,166,1444,147,1363,118,1203,102,1089"/>
+<area shape="rect" id="Node000034" href="$classPonca_1_1RestrictedQuadraticHeightField.html" title="Quadratic height field defined as ." alt="" coords="274,1697,473,1751"/>
+<area shape="poly" id="edge51_Node000002_Node000034" title=" " alt="" coords="107,1089,121,1214,149,1393,168,1484,190,1567,216,1636,230,1662,245,1682,275,1704,272,1708,241,1686,225,1665,211,1638,185,1569,162,1485,143,1393,116,1215,101,1089"/>
+<area shape="rect" id="Node000035" href="$classPonca_1_1UnorientedSphereDerImpl.html" title=" " alt="" coords="269,1775,478,1830"/>
+<area shape="poly" id="edge53_Node000002_Node000035" title=" " alt="" coords="106,1089,118,1228,144,1430,163,1534,185,1630,213,1708,228,1738,245,1761,270,1780,267,1784,241,1765,224,1741,208,1710,180,1631,157,1535,139,1431,113,1229,100,1089"/>
+<area shape="rect" id="Node000036" href="$classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="273,1854,474,1909"/>
+<area shape="poly" id="edge55_Node000002_Node000036" title=" " alt="" coords="105,1089,115,1242,139,1468,158,1585,181,1692,210,1780,227,1814,245,1839,274,1861,271,1865,241,1843,222,1817,205,1782,176,1693,152,1586,134,1468,110,1243,100,1089"/>
+<area shape="rect" id="Node000037" href="$structPonca_1_1WeingartenCurvatureEstimator.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="552,1815,759,1870"/>
+<area shape="poly" id="edge56_Node000036_Node000037" title=" " alt="" coords="488,1863,551,1854,552,1859,488,1868"/>
+<area shape="rect" id="Node000038" href="$structPonca_1_1WeingartenCurvatureEstimatorDer.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="552,1894,759,1949"/>
+<area shape="poly" id="edge57_Node000036_Node000038" title=" " alt="" coords="488,1895,552,1904,551,1909,488,1900"/>
 </map>

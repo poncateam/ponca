@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -176,19 +176,17 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a2b81ed492396dfbea5ae26d549e7a379" id="r_a2b81ed492396dfbea5ae26d549e7a379"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>Check</b> = Base::PROVIDES_MEAN_POSITION &amp;&amp; Base::PROVIDES_MEAN_NORMAL &amp;&amp; Base::PROVIDES_PLANE
- }</td></tr>
-<tr class="separator:a2b81ed492396dfbea5ae26d549e7a379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef8da0eccf2bdda1434dc3599c81cea3" id="r_aef8da0eccf2bdda1434dc3599c81cea3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html#aef8da0eccf2bdda1434dc3599c81cea3">Base</a> = T</td></tr>
 <tr class="memdesc:aef8da0eccf2bdda1434dc3599c81cea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:aef8da0eccf2bdda1434dc3599c81cea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint, <a class="el" href="classPonca_1_1Basket.html">class</a> <a class="el" href="classPonca_1_1Basket.html">_NFilter</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> T&gt;<br />
+requires ProvidesMeanPosition&lt;T&gt;&amp;&amp; ProvidesMeanNormal&lt;T&gt;&amp;&amp; ProvidesPlane&lt;T&gt;<br />
 class Ponca::MeanPlaneFitImpl&lt; DataPoint, _NFilter, T &gt;</div><p><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> fitting procedure computing the mean position and orientation from oriented points. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00028">28</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00033">33</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aef8da0eccf2bdda1434dc3599c81cea3" name="aef8da0eccf2bdda1434dc3599c81cea3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef8da0eccf2bdda1434dc3599c81cea3">&#9670;&#160;</a></span>Base</h2>
@@ -214,7 +212,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00030">30</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00035">35</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -234,7 +232,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to matrix type. </p>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00031">31</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00036">36</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -254,7 +252,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00030">30</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00035">35</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +272,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00030">30</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00035">35</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -294,34 +292,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00030">30</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a2b81ed492396dfbea5ae26d549e7a379" name="a2b81ed492396dfbea5ae26d549e7a379"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b81ed492396dfbea5ae26d549e7a379">&#9670;&#160;</a></span>anonymous enum</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint , <a class="el" href="classPonca_1_1Basket.html">class</a> <a class="el" href="classPonca_1_1Basket.html">_NFilter</a> , <a class="el" href="classPonca_1_1Basket.html">typename</a> T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">anonymous</a> <a class="el" href="classPonca_1_1Basket.html">enum</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00034">34</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00035">35</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -355,7 +326,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00043">43</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00041">41</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +358,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <p>Is scalar field signed. </p>
 <p>If not, the method the sign of <code>potential()</code> must be ignored </p>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00054">54</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00052">52</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -418,7 +389,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00040">40</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00038">38</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -449,7 +420,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00040">40</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="meanPlaneFit_8h_source.html#l00038">38</a> of file <a class="el" href="meanPlaneFit_8h_source.html">meanPlaneFit.h</a>.</p>
 
 </div>
 </div>
@@ -459,7 +430,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1MeanPlaneFitImpl.html">MeanPlaneFitImpl</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:42 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

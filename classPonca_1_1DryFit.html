@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -189,9 +189,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:aa09cfa9e05dd66105f79a2419adbf8a1" id="r_aa09cfa9e05dd66105f79a2419adbf8a1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>check</b> = Base::PROVIDES_PRIMITIVE_BASE
- }</td></tr>
-<tr class="separator:aa09cfa9e05dd66105f79a2419adbf8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca7f905a945e0f41ba7df0eff168aced" id="r_aca7f905a945e0f41ba7df0eff168aced"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1DryFit.html#aca7f905a945e0f41ba7df0eff168aced">Base</a> = T</td></tr>
 <tr class="memdesc:aca7f905a945e0f41ba7df0eff168aced"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:aca7f905a945e0f41ba7df0eff168aced"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -207,9 +204,10 @@ Protected Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint, <a class="el" href="classPonca_1_1Basket.html">class</a> <a class="el" href="classPonca_1_1Basket.html">_NFilter</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> T&gt;<br />
+requires ProvidesBasketUnitBase&lt;T&gt;<br />
 class Ponca::DryFit&lt; DataPoint, _NFilter, T &gt;</div><p>Empty fitting object doing no computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00023">23</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00026">26</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aca7f905a945e0f41ba7df0eff168aced" name="aca7f905a945e0f41ba7df0eff168aced"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aca7f905a945e0f41ba7df0eff168aced">&#9670;&#160;</a></span>Base</h2>
@@ -235,7 +233,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00025">25</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00028">28</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -255,7 +253,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00025">25</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00028">28</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -275,7 +273,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00025">25</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00028">28</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -294,33 +292,6 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 </div><div class="memdoc">
 
 <p>Alias to vector type. </p>
-
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00025">25</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="aa09cfa9e05dd66105f79a2419adbf8a1" name="aa09cfa9e05dd66105f79a2419adbf8a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa09cfa9e05dd66105f79a2419adbf8a1">&#9670;&#160;</a></span>anonymous enum</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint , <a class="el" href="classPonca_1_1Basket.html">class</a> <a class="el" href="classPonca_1_1Basket.html">_NFilter</a> , <a class="el" href="classPonca_1_1Basket.html">typename</a> T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">anonymous</a> <a class="el" href="classPonca_1_1Basket.html">enum</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00028">28</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
@@ -371,7 +342,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Add a neighbor to perform the fit. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00037">37</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00033">33</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -402,7 +373,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1DryFit.html" title="Empty fitting object doing no computation.">DryFit</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00034">34</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00030">30</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -433,7 +404,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1DryFit.html" title="Empty fitting object doing no computation.">DryFit</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00034">34</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00030">30</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +437,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00043">43</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00039">39</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -497,7 +468,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Simulate Scalar field computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00046">46</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00042">42</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -529,7 +500,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Simulate Scalar field computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00049">49</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00045">45</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -561,7 +532,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Simulate Scalar field computation.   </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00065">65</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00061">61</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -592,7 +563,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Simulate gradient direction computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00055">55</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00051">51</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -624,7 +595,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Simulate gradient direction computation. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00058">58</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00054">54</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -656,7 +627,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Simulate gradient direction computation.   </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00070">70</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00066">66</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -688,7 +659,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Simulate point projection. </p>
 
-<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00052">52</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dryFit_8h_source.html#l00048">48</a> of file <a class="el" href="dryFit_8h_source.html">dryFit.h</a>.</p>
 
 </div>
 </div>
@@ -698,7 +669,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1DryFit.html">DryFit</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -162,174 +162,165 @@ Define fitting data structure</h2>
 <div class="fragment"><div class="line">class MyPoint</div>
 <div class="line">{</div>
 <div class="line">public:</div>
-<div class="line">    enum {Dim = 3};</div>
+<div class="line">    enum</div>
+<div class="line">    {</div>
+<div class="line">        Dim = 3</div>
+<div class="line">    };</div>
 <div class="line">    using Scalar           = float;</div>
 <div class="line">    using VectorType       = Eigen::Matrix&lt;Scalar, Dim, 1&gt;;</div>
 <div class="line">    using MatrixType       = Eigen::Matrix&lt;Scalar, Dim, Dim&gt;;</div>
 <div class="line">    using ScreenVectorType = Eigen::Matrix&lt;Scalar, 2, 1&gt;;</div>
 <div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH inline MyPoint(</div>
-<div class="line">        const VectorType&amp; _pos        = VectorType::Zero(),</div>
-<div class="line">        const VectorType&amp; _normal     = VectorType::Zero(),</div>
-<div class="line">        const ScreenVectorType&amp; _spos = ScreenVectorType::Zero(),</div>
-<div class="line">        const Scalar _dz              = 0.f</div>
-<div class="line">    ) : m_pos(_pos), m_normal(_normal), m_spos(_spos), m_dz(_dz){}</div>
+<div class="line">    PONCA_MULTIARCH inline MyPoint(const VectorType&amp; _pos        = VectorType::Zero(),</div>
+<div class="line">                                   const VectorType&amp; _normal     = VectorType::Zero(),</div>
+<div class="line">                                   const ScreenVectorType&amp; _spos = ScreenVectorType::Zero(), const Scalar _dz = 0.f)</div>
+<div class="line">        : m_pos(_pos), m_normal(_normal), m_spos(_spos), m_dz(_dz)</div>
+<div class="line">    {</div>
+<div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH inline const VectorType&amp; pos()  const { return m_pos; }</div>
-<div class="line">    PONCA_MULTIARCH inline const VectorType&amp; normal()   const { return m_normal; }</div>
+<div class="line">    PONCA_MULTIARCH inline const VectorType&amp; pos() const { return m_pos; }</div>
+<div class="line">    PONCA_MULTIARCH inline const VectorType&amp; normal() const { return m_normal; }</div>
 <div class="line">    PONCA_MULTIARCH inline const ScreenVectorType&amp; spos() const { return m_spos; }</div>
-<div class="line">    PONCA_MULTIARCH inline const float &amp; dz()   const { return m_dz; }</div>
+<div class="line">    PONCA_MULTIARCH inline const float&amp; dz() const { return m_dz; }</div>
 <div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH inline VectorType&amp; pos()     { return m_pos; }</div>
-<div class="line">    PONCA_MULTIARCH inline VectorType&amp; normal()  { return m_normal; }</div>
+<div class="line">    PONCA_MULTIARCH inline VectorType&amp; pos() { return m_pos; }</div>
+<div class="line">    PONCA_MULTIARCH inline VectorType&amp; normal() { return m_normal; }</div>
 <div class="line">    PONCA_MULTIARCH inline ScreenVectorType&amp; spos() { return m_spos; }</div>
-<div class="line">    PONCA_MULTIARCH inline float&amp; dz()   { return m_dz; }</div>
+<div class="line">    PONCA_MULTIARCH inline float&amp; dz() { return m_dz; }</div>
 <div class="line"> </div>
 <div class="line">private:</div>
 <div class="line">    ScreenVectorType m_spos;</div>
-<div class="line">    VectorType  m_pos, m_normal;</div>
+<div class="line">    VectorType m_pos, m_normal;</div>
 <div class="line">    float m_dz; // depth threshold</div>
 <div class="line">};</div>
 </div><!-- fragment --><h2><a class="anchor" id="pyssgl_cuda_weight_sec"></a>
 Define weighting functions</h2>
-<div class="fragment"><div class="line">class ProjectWeightFunc: public Ponca::DistWeightFunc&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;</div>
+<div class="fragment"><div class="line">class ProjectWeightFunc : public Ponca::DistWeightFilter&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;</div>
 <div class="line">{</div>
 <div class="line">public:</div>
 <div class="line">    using Scalar     = MyPoint::Scalar;</div>
 <div class="line">    using VectorType = MyPoint::VectorType;</div>
-<div class="line">    using Base       = Ponca::DistWeightFunc&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt; &gt;;</div>
+<div class="line">    using Base       = Ponca::DistWeightFilter&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
 <div class="line"> </div>
 <div class="line">    /*</div>
 <div class="line">    Default constructor (needed by Ponca). Note that the screenspace</div>
 <div class="line">    evaluation position is specified as parameter</div>
 <div class="line">    */</div>
-<div class="line">    PONCA_MULTIARCH inline ProjectWeightFunc(</div>
-<div class="line">        const VectorType&amp; _refPos = VectorType::Zero(),</div>
-<div class="line">        const ScreenVectorType&amp; _refScreenPos = ScreenVectorType::Zero(),</div>
-<div class="line">        const Scalar&amp; _t                = Scalar(1.f),</div>
-<div class="line">        const Scalar&amp; _dz               = Scalar(0.f)</div>
-<div class="line">    ) : Base(_refPos, _t), m_refScreenPos(_refScreenPos), m_dz(_dz) {}</div>
-<div class="line"> </div>
-<div class="line">    PONCA_MULTIARCH inline Scalar w(const VectorType&amp; _q, const MyPoint&amp;  _attributes) const</div>
+<div class="line">    PONCA_MULTIARCH inline ProjectWeightFunc(const VectorType&amp; _refPos             = VectorType::Zero(),</div>
+<div class="line">                                             const ScreenVectorType&amp; _refScreenPos = ScreenVectorType::Zero(),</div>
+<div class="line">                                             const Scalar&amp; _t = Scalar(1.f), const Scalar&amp; _dz = Scalar(0.f))</div>
+<div class="line">        : Base(_refPos, _t), m_refScreenPos(_refScreenPos), m_dz(_dz)</div>
 <div class="line">    {</div>
-<div class="line">        Scalar d = (_attributes.spos()-m_refScreenPos).norm();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    PONCA_MULTIARCH inline Scalar w(const VectorType&amp; _q, const MyPoint&amp; _attributes) const</div>
+<div class="line">    {</div>
+<div class="line">        Scalar d        = (_attributes.spos() - m_refScreenPos).norm();</div>
 <div class="line">        const Scalar dz = _attributes.dz();</div>
 <div class="line"> </div>
 <div class="line">        if (d &gt; m_t || dz &gt; m_dz)</div>
 <div class="line">            return Scalar(0.);</div>
 <div class="line"> </div>
-<div class="line">        return m_wk.f(d/m_t);</div>
+<div class="line">        return m_wk.f(d / m_t);</div>
 <div class="line">    }</div>
+<div class="line"> </div>
 <div class="line">private:</div>
 <div class="line">    ScreenVectorType m_refScreenPos;</div>
 <div class="line">    float m_dz;</div>
 <div class="line">};</div>
 </div><!-- fragment --><h2><a class="anchor" id="pyssgl_cuda_fit_sec"></a>
 Define fitting primitive</h2>
-<div class="fragment"><div class="line">using Gls = Ponca::Basket&lt;MyPoint,ProjectWeightFunc, Ponca::OrientedSphereFit, Ponca::GLSParam&gt;;</div>
+<div class="fragment"><div class="line">using Gls = Ponca::Basket&lt;MyPoint, ProjectWeightFunc, Ponca::OrientedSphereFit, Ponca::GLSParam&gt;;</div>
 </div><!-- fragment --><h2><a class="anchor" id="pyssgl_cuda_kernel_sec"></a>
 Kernel</h2>
-<div class="fragment"><div class="line">extern &quot;C&quot; { </div>
-<div class="line">__global__ void doGLS_kernel(const int* _params, //[w, h, scale]</div>
-<div class="line">                             const float* _positions,</div>
-<div class="line">                             const float* _normals,</div>
-<div class="line">                             float* const _result)</div>
+<div class="fragment"><div class="line">extern &quot;C&quot;</div>
 <div class="line">{</div>
-<div class="line">    </div>
-<div class="line">    const int x = int((blockIdx.x * blockDim.x) + threadIdx.x);</div>
-<div class="line">    const int y = int((blockIdx.y * blockDim.y) + threadIdx.y);</div>
-<div class="line">    </div>
-<div class="line">    const int &amp;width     = _params[0];</div>
-<div class="line">    const int &amp;height    = _params[1];</div>
-<div class="line"> </div>
-<div class="line">    if (x &lt; width &amp;&amp; y &lt; height)</div>
+<div class="line">    __global__ void doGLS_kernel(const int* _params, //[w, h, scale]</div>
+<div class="line">                                 const float* _positions, const float* _normals, float* const _result)</div>
 <div class="line">    {</div>
-<div class="line">        const int &amp;scale = _params[2];</div>
 <div class="line"> </div>
-<div class="line">        ScreenVectorType refScreenPos;</div>
-<div class="line">        refScreenPos &lt;&lt; Scalar(x), Scalar(y);</div>
+<div class="line">        const int x = int((blockIdx.x * blockDim.x) + threadIdx.x);</div>
+<div class="line">        const int y = int((blockIdx.y * blockDim.y) + threadIdx.y);</div>
 <div class="line"> </div>
-<div class="line">        int dx, dy; // neighbor offset ids</div>
-<div class="line">        int nx, ny; // neighbor ids</div>
+<div class="line">        const int&amp; width  = _params[0];</div>
+<div class="line">        const int&amp; height = _params[1];</div>
 <div class="line"> </div>
-<div class="line">        Gls gls;</div>
-<div class="line">        gls.init();</div>
-<div class="line">        gls.setNeighborFilter({getVector(x, y, width, height, _positions), refScreenPos, Scalar(scale)});</div>
-<div class="line"> </div>
-<div class="line">        if (getVector(x, y, width, height, _normals).squaredNorm() == 0.f )</div>
+<div class="line">        if (x &lt; width &amp;&amp; y &lt; height)</div>
 <div class="line">        {</div>
-<div class="line">            _result[getId(x, y, width, height, 0, 1)] = -1.0;</div>
-<div class="line">        }</div>
-<div class="line">        else</div>
-<div class="line">        {</div>
-<div class="line">            //_result[getId(x,y,width,height,0,1)] = getVector(x,y,width,height,_normals)(0);</div>
-<div class="line">            VectorType n;</div>
+<div class="line">            const int&amp; scale = _params[2];</div>
 <div class="line"> </div>
-<div class="line">            // collect neighborhood</div>
-<div class="line">            const VectorType one = VectorType::Ones();</div>
+<div class="line">            ScreenVectorType refScreenPos;</div>
+<div class="line">            refScreenPos &lt;&lt; Scalar(x), Scalar(y);</div>
 <div class="line"> </div>
-<div class="line">            for(dy = -scale; dy != scale; dy++)</div>
+<div class="line">            int dx, dy; // neighbor offset ids</div>
+<div class="line">            int nx, ny; // neighbor ids</div>
+<div class="line"> </div>
+<div class="line">            Gls gls;</div>
+<div class="line">            gls.init();</div>
+<div class="line">            gls.setNeighborFilter({getVector(x, y, width, height, _positions), refScreenPos, Scalar(scale)});</div>
+<div class="line"> </div>
+<div class="line">            if (getVector(x, y, width, height, _normals).squaredNorm() == 0.f)</div>
 <div class="line">            {</div>
-<div class="line">                for(dx = -scale; dx != scale; dx++)</div>
+<div class="line">                _result[getId(x, y, width, height, 0, 1)] = -1.0;</div>
+<div class="line">            }</div>
+<div class="line">            else</div>
+<div class="line">            {</div>
+<div class="line">                //_result[getId(x,y,width,height,0,1)] = getVector(x,y,width,height,_normals)(0);</div>
+<div class="line">                VectorType n;</div>
+<div class="line"> </div>
+<div class="line">                // collect neighborhood</div>
+<div class="line">                const VectorType one = VectorType::Ones();</div>
+<div class="line"> </div>
+<div class="line">                for (dy = -scale; dy != scale; dy++)</div>
 <div class="line">                {</div>
-<div class="line">                    nx = x+dx;</div>
-<div class="line">                    ny = y+dy;</div>
-<div class="line"> </div>
-<div class="line">                    // Check image boundaries</div>
-<div class="line">                    if (nx &gt;= 0 &amp;&amp; ny &gt;= 0 &amp;&amp; nx &lt; width &amp;&amp; ny &lt; height)</div>
+<div class="line">                    for (dx = -scale; dx != scale; dx++)</div>
 <div class="line">                    {</div>
-<div class="line">                        n = getVector(nx,ny,width,height,_normals);</div>
+<div class="line">                        nx = x + dx;</div>
+<div class="line">                        ny = y + dy;</div>
 <div class="line"> </div>
-<div class="line">                        // add nei only when the _normal is properly defined</div>
-<div class="line">                        // need to use an explicit floating point comparison with pycuda</div>
-<div class="line">                        if (n.squaredNorm() != 0.f )</div>
+<div class="line">                        // Check image boundaries</div>
+<div class="line">                        if (nx &gt;= 0 &amp;&amp; ny &gt;= 0 &amp;&amp; nx &lt; width &amp;&amp; ny &lt; height)</div>
 <div class="line">                        {</div>
+<div class="line">                            n = getVector(nx, ny, width, height, _normals);</div>
 <div class="line"> </div>
-<div class="line">                            // RGB to XYZ remapping</div>
-<div class="line">                            n = Scalar(2.f) * n - one;</div>
-<div class="line">                            n.normalize();</div>
+<div class="line">                            // add nei only when the _normal is properly defined</div>
+<div class="line">                            // need to use an explicit floating point comparison with pycuda</div>
+<div class="line">                            if (n.squaredNorm() != 0.f)</div>
+<div class="line">                            {</div>
 <div class="line"> </div>
-<div class="line">                            // GLS computation</div>
-<div class="line">                            gls.addNeighbor(MyPoint(getVector(nx,ny,width,height,_positions),</div>
-<div class="line">                                n,</div>
-<div class="line">                                ScreenVectorType(nx,ny)));</div>
+<div class="line">                                // RGB to XYZ remapping</div>
+<div class="line">                                n = Scalar(2.f) * n - one;</div>
+<div class="line">                                n.normalize();</div>
+<div class="line"> </div>
+<div class="line">                                // GLS computation</div>
+<div class="line">                                gls.addNeighbor(</div>
+<div class="line">                                    MyPoint(getVector(nx, ny, width, height, _positions), n, ScreenVectorType(nx, ny)));</div>
+<div class="line">                            }</div>
 <div class="line">                        }</div>
 <div class="line">                    }</div>
 <div class="line">                }</div>
+<div class="line">                // closed form minimization</div>
+<div class="line">                gls.finalize();</div>
+<div class="line">                _result[getId(x, y, width, height, 0, 1)] = gls.kappa();</div>
 <div class="line">            }</div>
-<div class="line">            // closed form minimization</div>
-<div class="line">            gls.finalize();</div>
-<div class="line">            _result[getId(x,y,width,height,0,1)] = gls.kappa();</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-<div class="line"> </div>
-<div class="line">}</div>
 </div><!-- fragment --><h2><a class="anchor" id="pyssgl_cuda_access_sec"></a>
 Memory access</h2>
-<p>We use numpy to format the input data, filled by dimension (in object space) and then by the screen-space coordinates: </p><div class="fragment"><div class="line">__device__ int getId(const int _x,</div>
-<div class="line">                     const int _y,</div>
-<div class="line">                     const int _width,</div>
-<div class="line">                     const int _height,</div>
-<div class="line">                     const int _component,</div>
+<p>We use numpy to format the input data, filled by dimension (in object space) and then by the screen-space coordinates: </p><div class="fragment"><div class="line">__device__ int getId(const int _x, const int _y, const int _width, const int _height, const int _component,</div>
 <div class="line">                     const int _nbComponent)</div>
 <div class="line">{</div>
-<div class="line">    return (_component) + _nbComponent*(_x + _y * _width);</div>
+<div class="line">    return (_component) + _nbComponent * (_x + _y * _width);</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line">__device__ VectorType getVector(const int _x,</div>
-<div class="line">                                const int _y,</div>
-<div class="line">                                const int _width,</div>
-<div class="line">                                const int _height,</div>
-<div class="line">                                const float* _buffer)</div>
+<div class="line">__device__ VectorType getVector(const int _x, const int _y, const int _width, const int _height, const float* _buffer)</div>
 <div class="line">{</div>
 <div class="line">    VectorType r;</div>
-<div class="line">    r &lt;&lt; Scalar(_buffer[getId(_x,_y,_width,_height,0,3)]),</div>
-<div class="line">        Scalar(_buffer[getId(_x,_y,_width,_height,1,3)]),</div>
-<div class="line">        Scalar(_buffer[getId(_x,_y,_width,_height,2,3)]);</div>
+<div class="line">    r &lt;&lt; Scalar(_buffer[getId(_x, _y, _width, _height, 0, 3)]), Scalar(_buffer[getId(_x, _y, _width, _height, 1, 3)]),</div>
+<div class="line">        Scalar(_buffer[getId(_x, _y, _width, _height, 2, 3)]);</div>
 <div class="line">    return r;</div>
 <div class="line">}</div>
-<div class="line"> </div>
 <div class="line"> </div>
 </div><!-- fragment --><h1><a class="anchor" id="pyssgl_python_sec"></a>
 Python script</h1>
@@ -511,7 +502,7 @@ Python script</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

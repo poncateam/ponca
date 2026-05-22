@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -176,22 +176,20 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr class="memitem:a34167d182547c9471e2c89ad4dbe3797" id="r_a34167d182547c9471e2c89ad4dbe3797"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>check</b> = Base::PROVIDES_LINE &amp;&amp; Base::PROVIDES_POSITION_COVARIANCE
- }</td></tr>
-<tr class="separator:a34167d182547c9471e2c89ad4dbe3797"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3ee25d3a90caa4510e691d2d83bf943" id="r_ab3ee25d3a90caa4510e691d2d83bf943"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CovarianceLineFitImpl.html#ab3ee25d3a90caa4510e691d2d83bf943">Base</a> = T</td></tr>
 <tr class="memdesc:ab3ee25d3a90caa4510e691d2d83bf943"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of the procedure.  <br /></td></tr>
 <tr class="separator:ab3ee25d3a90caa4510e691d2d83bf943"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint, <a class="el" href="classPonca_1_1Basket.html">class</a> <a class="el" href="classPonca_1_1Basket.html">_NFilter</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> T&gt;<br />
+requires ProvidesPositionCovariance&lt;T&gt;&amp;&amp; ProvidesLine&lt;T&gt;<br />
 class Ponca::CovarianceLineFitImpl&lt; DataPoint, _NFilter, T &gt;</div><p><a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> fitting procedure that minimize the orthogonal distance between the samples and the fitted primitive. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1Line.html" title="A parametrized line is defined by an origin point  and a unit direction vector  such that the line co...">Line</a> </dd>
 <dd>
-<a class="el" href="namespacePonca.html#a15eab752943e89b21e9451c1310b009f" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
+<a class="el" href="namespacePonca.html#a00fa14f5c6725ec3b4048310870a9913" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">CovariancePlaneFit</a> which use a similar approach for <a class="el" href="classPonca_1_1Plane.html" title="Implicit hyperplane defined by an homogeneous vector .">Plane</a> estimation</dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>This class is valid only in 3D. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00034">34</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00039">39</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ab3ee25d3a90caa4510e691d2d83bf943" name="ab3ee25d3a90caa4510e691d2d83bf943"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab3ee25d3a90caa4510e691d2d83bf943">&#9670;&#160;</a></span>Base</h2>
@@ -217,7 +215,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00036">36</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00041">41</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -237,7 +235,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to matrix type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00037">37</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00042">42</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -257,7 +255,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00036">36</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00041">41</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -277,7 +275,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00036">36</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00041">41</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -297,34 +295,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00036">36</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
-<a id="a34167d182547c9471e2c89ad4dbe3797" name="a34167d182547c9471e2c89ad4dbe3797"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34167d182547c9471e2c89ad4dbe3797">&#9670;&#160;</a></span>anonymous enum</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint , <a class="el" href="classPonca_1_1Basket.html">class</a> <a class="el" href="classPonca_1_1Basket.html">_NFilter</a> , <a class="el" href="classPonca_1_1Basket.html">typename</a> T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">anonymous</a> <a class="el" href="classPonca_1_1Basket.html">enum</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00040">40</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00041">41</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -356,7 +327,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00046">46</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00044">44</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +358,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFitImpl</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00046">46</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00044">44</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -420,7 +391,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00049">49</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00047">47</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -452,7 +423,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <p>Is scalar field signed. </p>
 <p>If not, the method the sign of <code>potential()</code> must be ignored </p>
 
-<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00061">61</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="covarianceLineFit_8h_source.html#l00059">59</a> of file <a class="el" href="covarianceLineFit_8h_source.html">covarianceLineFit.h</a>.</p>
 
 </div>
 </div>
@@ -462,7 +433,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CovarianceLineFitImpl.html">CovarianceLineFitImpl</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

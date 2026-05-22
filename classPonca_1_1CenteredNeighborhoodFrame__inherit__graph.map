@@ -1,0 +1,12 @@
+<map id="Ponca::CenteredNeighborhoodFrame&lt; DataPoint &gt;" name="Ponca::CenteredNeighborhoodFrame&lt; DataPoint &gt;">
+<area shape="rect" id="Node000001" title="NeighborhoodFrame that express 3d points relatively to a prescribed center." alt="" coords="34,5,263,205"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1DistWeightFilter.html" title=" " alt="" coords="26,915,271,1249"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,219,151,914,146,914,146,219"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1CenteredNeighborhoodFrame.html" title=" " alt="" coords="165,268,394,468"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="207,217,232,267,227,269,202,219"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1FilterWithAttributes.html" title=" " alt="" coords="5,1299,292,1477"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="151,1263,151,1299,146,1299,146,1263"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1DistWeightFilter.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position." alt="" coords="169,517,379,837"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="280,482,279,517,274,517,275,481"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="223,851,203,915,198,914,218,850"/>
+</map>

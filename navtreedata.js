@@ -188,10 +188,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1FundamentalFormWeingartenEstimator.html",
-"classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a313b41060f885066c43a513176f10b23",
-"classPonca_1_1Stack.html#acd2f90bb550b5048db6b1c20780b1777",
-"functions_func_p.html"
+"classPonca_1_1CovariancePlaneFitImpl.html#ab8211d460df9c0f5c7ab7d8f9237ba60",
+"classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e",
+"classPonca_1_1RestrictedQuadraticHeightField.html#a08a8cfc7c7a211c5e3e266ce2e33b26f",
+"fitting.html#fitting_newestimator",
+"structPonca_1_1internal_1_1Triangle.html#afb97ad8f9f91855e946e93c1025c1e3e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

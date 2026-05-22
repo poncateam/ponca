@@ -1,7 +1,7 @@
 <map id="Ponca::MlsSphereFitDer&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::MlsSphereFitDer&lt; DataPoint, _NFilter, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title="Extension performing derivation of the mls surface." alt="" coords="74,133,242,508"/>
+<area shape="rect" id="Node000001" title="Extension performing derivation of the mls surface." alt="" coords="73,133,243,548"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,185,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,98,118,132,113,134,105,99"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,98,116,132,111,134,104,99"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="209,13,232,78"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,92,203,134,198,133,208,91"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,92,205,134,200,133,208,91"/>
 </map>

@@ -6,6 +6,8 @@ var classPonca_1_1Line =
     [ "Scalar", "classPonca_1_1Line.html#ae00f6f75436df9d0da2c36d8ce447208", null ],
     [ "VectorType", "classPonca_1_1Line.html#aec54c6433366eff8756c27b77ecf84b5", null ],
     [ "changeBasis", "classPonca_1_1Line.html#a4017ff9b7457b13dfa0db5b5711de006", null ],
+    [ "implicitPrimitive", "classPonca_1_1Line.html#aaa9cf5ad1ea8525bf85dbb2d972f1af1", null ],
+    [ "implicitPrimitive", "classPonca_1_1Line.html#a1b7e59a2a42f860fcf80c5437159d306", null ],
     [ "init", "classPonca_1_1Line.html#a530a074b63a29de7f5d56a494c828f96", null ],
     [ "isValid", "classPonca_1_1Line.html#aff2d28ccac91b77a32c5d6474a3e0a89", null ],
     [ "line", "classPonca_1_1Line.html#a0a34f30faff441111fb2f9815f86b1d4", null ],
@@ -15,6 +17,10 @@ var classPonca_1_1Line =
     [ "potential", "classPonca_1_1Line.html#a364d22dedcab53da0c833d107cfae1e5", null ],
     [ "potential", "classPonca_1_1Line.html#ac88245e122ea4618a10298b9d6881268", null ],
     [ "potentialLocal", "classPonca_1_1Line.html#a32f2e9a3ebbda61074e537d80058aa8b", null ],
+    [ "primitiveGradient", "classPonca_1_1Line.html#a02520da58d8a05513222eab24653f09d", null ],
+    [ "primitiveGradient", "classPonca_1_1Line.html#a767e80cb44c1362e17553f2ab4d420ee", null ],
     [ "project", "classPonca_1_1Line.html#ab5c66daf09bbd8d142952872a4c3c59e", null ],
+    [ "projectionOperator", "classPonca_1_1Line.html#a32dc2d30f0f8aada7fb4826b66ec9217", null ],
+    [ "projectionOperator", "classPonca_1_1Line.html#aeab6841b8a07a4ffed25f4cd65de18f6", null ],
     [ "setLine", "classPonca_1_1Line.html#ac9ae7707a0909cc91b000c7f078810fe", null ]
 ];

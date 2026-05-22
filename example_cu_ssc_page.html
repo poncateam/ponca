@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -176,12 +176,12 @@ Define fitting data structure</h2>
 <div class="line">};</div>
 </div><!-- fragment --><h2><a class="anchor" id="cu_ssgl_cuda_weight_sec"></a>
 Define weighting functions</h2>
-<div class="fragment"><div class="line">class ProjectedWeightFunc : public Ponca::DistWeightFunc&lt;ScreenSpacePoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;</div>
+<div class="fragment"><div class="line">class ProjectedWeightFunc : public Ponca::DistWeightFilter&lt;ScreenSpacePoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;</div>
 <div class="line">{</div>
 <div class="line">public:</div>
 <div class="line">    using Scalar     = ScreenSpacePoint::Scalar;</div>
 <div class="line">    using VectorType = ScreenSpacePoint::VectorType;</div>
-<div class="line">    using Base       = Ponca::DistWeightFunc&lt;ScreenSpacePoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
+<div class="line">    using Base       = Ponca::DistWeightFilter&lt;ScreenSpacePoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
 <div class="line"> </div>
 <div class="line">    PONCA_MULTIARCH inline ProjectedWeightFunc(const VectorType&amp; _evalPos = VectorType::Zero(),</div>
 <div class="line">                                               const Scalar&amp; _t = Scalar(1.), const Scalar _dz = 0.f)</div>
@@ -328,11 +328,7 @@ The whole code</h1>
 <div class="line"> </div>
 <div class="line">#define EIGEN_DEFAULT_DENSE_INDEX_TYPE int</div>
 <div class="line"> </div>
-<div class="line">#include &lt;Ponca/src/Fitting/basket.h&gt;</div>
-<div class="line">#include &lt;Ponca/src/Fitting/gls.h&gt;</div>
-<div class="line">#include &lt;Ponca/src/Fitting/orientedSphereFit.h&gt;</div>
-<div class="line">#include &lt;Ponca/src/Fitting/weightFunc.h&gt;</div>
-<div class="line">#include &lt;Ponca/src/Fitting/weightKernel.h&gt;</div>
+<div class="line">#include &lt;Ponca/Fitting&gt;</div>
 <div class="line"> </div>
 <div class="line">/**************************************************************************************************/</div>
 <div class="line">/* IO (source: http://zarb.org/~gc/html/libpng.html )                                             */</div>
@@ -554,12 +550,12 @@ The whole code</h1>
 <div class="line">using ScreenVectorType = ScreenSpacePoint::ScreenVectorType;</div>
 <div class="line"> </div>
 <div class="line">//! [w_def]</div>
-<div class="line">class ProjectedWeightFunc : public Ponca::DistWeightFunc&lt;ScreenSpacePoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;</div>
+<div class="line">class ProjectedWeightFunc : public Ponca::DistWeightFilter&lt;ScreenSpacePoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;</div>
 <div class="line">{</div>
 <div class="line">public:</div>
 <div class="line">    using Scalar     = ScreenSpacePoint::Scalar;</div>
 <div class="line">    using VectorType = ScreenSpacePoint::VectorType;</div>
-<div class="line">    using Base       = Ponca::DistWeightFunc&lt;ScreenSpacePoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
+<div class="line">    using Base       = Ponca::DistWeightFilter&lt;ScreenSpacePoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
 <div class="line"> </div>
 <div class="line">    PONCA_MULTIARCH inline ProjectedWeightFunc(const VectorType&amp; _evalPos = VectorType::Zero(),</div>
 <div class="line">                                               const Scalar&amp; _t = Scalar(1.), const Scalar _dz = 0.f)</div>
@@ -944,7 +940,7 @@ The whole code</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

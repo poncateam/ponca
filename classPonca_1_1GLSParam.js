@@ -7,7 +7,7 @@ var classPonca_1_1GLSParam =
     [ "compareTo", "classPonca_1_1GLSParam.html#a6cd559fb8ddb1ede6c71b6ce5554af49", null ],
     [ "eta", "classPonca_1_1GLSParam.html#a010b4dc71b2ffa98db8832c14ff6f9bd", null ],
     [ "eta_normalized", "classPonca_1_1GLSParam.html#a5196bfeed8dae0803113b5cfa62926b0", null ],
-    [ "finalize", "classPonca_1_1GLSParam.html#ac66ebd8b0af2bbf23af6594b4792ecbd", null ],
+    [ "finalize", "classPonca_1_1GLSParam.html#ac8591d80dc3228ecbf50702aaa614c04", null ],
     [ "fitness", "classPonca_1_1GLSParam.html#ae4efb6d68be2ad8b53cadccf38934094", null ],
     [ "glsParam", "classPonca_1_1GLSParam.html#a0ba0d1471c3c824ee9d07da56368ff87", null ],
     [ "glsParam", "classPonca_1_1GLSParam.html#a2e060936f008c88f912d7548353dd325", null ],

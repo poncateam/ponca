@@ -1,5 +1,5 @@
 var structPonca_1_1GradientDescentProjectionOperator =
 [
-    [ "operator()", "structPonca_1_1GradientDescentProjectionOperator.html#a3afb8644ca0e20fef54dd0defc50d663", null ],
-    [ "project", "structPonca_1_1GradientDescentProjectionOperator.html#adc8c5e39f0bb95ff6ed490accb6a6a5d", null ]
+    [ "operator()", "structPonca_1_1GradientDescentProjectionOperator.html#a78f4658068061af916a342ed306fd788", null ],
+    [ "project", "structPonca_1_1GradientDescentProjectionOperator.html#a030a9d6bdaf50160352a19f1c716c350", null ]
 ];

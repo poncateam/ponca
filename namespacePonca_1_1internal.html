@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -128,22 +128,13 @@ $(document).ready(function(){initNavTree('namespacePonca_1_1internal.html',''); 
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html">CenteredNeighborhoodFrame</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">NeighborhoodFrame that express 3d points relatively to a prescribed center.  <a href="classPonca_1_1internal_1_1CenteredNeighborhoodFrame.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1CNCEigen.html">CNCEigen</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class contains some stand-alone CorrectedNormalCurrent formulas for triangles, using eigen as linear algebra backend.  <a href="structPonca_1_1internal_1_1CNCEigen.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for any 3d curvature estimator: holds \(k_{\min}\), \(k_{\max}\) and associated vectors, such that \( k_{\min} &lt;= k_{\max} \).  <a href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html">GlobalNeighborhoodFrame</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">NeighborhoodFrame that keep points in the global frame without applying any transformation This class is useful to compute direct fits in the embedding space, without paying the cost to express neighbors relatively to an evaluation point.  <a href="classPonca_1_1internal_1_1GlobalNeighborhoodFrame.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1HexagramBase.html">HexagramBase</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1NoWeightFuncBase.html">NoWeightFuncBase</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weighting function that set uniform weight to all samples.  <a href="classPonca_1_1internal_1_1NoWeightFuncBase.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1NoWeightFilterBase.html">NoWeightFilterBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Weighting function that set uniform weight to all samples.  <a href="classPonca_1_1internal_1_1NoWeightFilterBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1Triangle.html">Triangle</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the three points and normals of the triangles and provides access to Corrected Normal Current formula.  <a href="structPonca_1_1internal_1_1Triangle.html#details">More...</a><br /></td></tr>
@@ -188,17 +179,47 @@ Functions</h2></td></tr>
 <tr class="memitem:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memTemplItemLeft" align="right" valign="top">VectorType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a1a4eb90ed7b9be1c6d97a51afc2c7552">getParaboloidNormal</a> (<a class="el" href="classPonca_1_1Basket.html">const</a> VectorType &amp;<a class="el" href="classPonca_1_1Basket.html">in</a>, <a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="classPonca_1_1Basket.html">typename</a> VectorType::Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, <a class="el" href="classPonca_1_1Basket.html">const</a> <a class="el" href="classPonca_1_1Basket.html">typename</a> VectorType::Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>)</td></tr>
 <tr class="memdesc:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate z value using the equation z = ax^2 + by^2.  <br /></td></tr>
 <tr class="separator:a1a4eb90ed7b9be1c6d97a51afc2c7552"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf83851db4531c564d9dc305dd4818e1" id="r_adf83851db4531c564d9dc305dd4818e1"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </td></tr>
-<tr class="memitem:adf83851db4531c564d9dc305dd4818e1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, <a class="el" href="classPonca_1_1Basket.html">void</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#adf83851db4531c564d9dc305dd4818e1">getParaboloidNormal</a> (DataPoint &amp;<a class="el" href="classPonca_1_1Basket.html">in</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_c</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_d</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_e</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_f</a>)</td></tr>
-<tr class="separator:adf83851db4531c564d9dc305dd4818e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa300959ee3fce898d4bac03a27b3bb88" id="r_aa300959ee3fce898d4bac03a27b3bb88"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </td></tr>
-<tr class="memitem:aa300959ee3fce898d4bac03a27b3bb88"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, <a class="el" href="classPonca_1_1Basket.html">void</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#aa300959ee3fce898d4bac03a27b3bb88">getParaboloidNormal</a> (DataPoint &amp;<a class="el" href="classPonca_1_1Basket.html">in</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_c</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_d</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_e</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_f</a>)</td></tr>
-<tr class="separator:aa300959ee3fce898d4bac03a27b3bb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0721e6dd8578466e1cfb2b18de4be2a" id="r_ae0721e6dd8578466e1cfb2b18de4be2a"><td class="memTemplParams" colspan="2">template&lt;IsPointNormal DataPoint&gt; </td></tr>
+<tr class="memitem:ae0721e6dd8578466e1cfb2b18de4be2a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#ae0721e6dd8578466e1cfb2b18de4be2a">getParaboloidNormal</a> (DataPoint &amp;<a class="el" href="classPonca_1_1Basket.html">in</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_a</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_b</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_c</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_d</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_e</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar <a class="el" href="classPonca_1_1Basket.html">_f</a>)</td></tr>
+<tr class="separator:ae0721e6dd8578466e1cfb2b18de4be2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3710efa696ac7a4fdc05629e74a4ff5d" id="r_a3710efa696ac7a4fdc05629e74a4ff5d"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </td></tr>
+<tr class="memitem:a3710efa696ac7a4fdc05629e74a4ff5d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classPonca_1_1Basket.html">constexpr</a> DataPoint::VectorType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacePonca_1_1internal.html#a3710efa696ac7a4fdc05629e74a4ff5d">ConvertDataPointToNormal</a> (<a class="el" href="classPonca_1_1Basket.html">const</a> DataPoint &amp;<a class="el" href="classPonca_1_1Basket.html">pt</a>)</td></tr>
+<tr class="separator:a3710efa696ac7a4fdc05629e74a4ff5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Copyright (c) 2022 Jacques-Olivier Lachaud (<code><a href="#" onclick="location.href='mai'+'lto:'+'jac'+'qu'+'es-'+'ol'+'ivi'+'er'+'.la'+'ch'+'aud'+'@u'+'niv'+'-s'+'avo'+'ie'+'.fr'; return false;">jacqu<span class="obfuscator">.nosp@m.</span>es-o<span class="obfuscator">.nosp@m.</span>livie<span class="obfuscator">.nosp@m.</span>r.la<span class="obfuscator">.nosp@m.</span>chaud<span class="obfuscator">.nosp@m.</span>@uni<span class="obfuscator">.nosp@m.</span>v-sav<span class="obfuscator">.nosp@m.</span>oie.<span class="obfuscator">.nosp@m.</span>fr</a></code>) Laboratory of Mathematics (CNRS, UMR 5807), University of Savoie, France,. </p>
 <p>All rights reserved. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a3710efa696ac7a4fdc05629e74a4ff5d" name="a3710efa696ac7a4fdc05629e74a4ff5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3710efa696ac7a4fdc05629e74a4ff5d">&#9670;&#160;</a></span>ConvertDataPointToNormal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">constexpr</a> DataPoint::VectorType Ponca::internal::ConvertDataPointToNormal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">const</a> DataPoint &amp;&#160;</td>
+          <td class="paramname"><em>pt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">constexpr</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="weightFilter_8h_source.html#l00303">303</a> of file <a class="el" href="weightFilter_8h_source.html">weightFilter.h</a>.</p>
+
+</div>
+</div>
 <a id="a92c153e91fc2d16e5679ee716b757a1a" name="a92c153e91fc2d16e5679ee716b757a1a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a92c153e91fc2d16e5679ee716b757a1a">&#9670;&#160;</a></span>copyBackward()</h2>
 
@@ -315,7 +336,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> <a class="e
 </div>
 </div>
 <a id="a1a4eb90ed7b9be1c6d97a51afc2c7552" name="a1a4eb90ed7b9be1c6d97a51afc2c7552"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a4eb90ed7b9be1c6d97a51afc2c7552">&#9670;&#160;</a></span>getParaboloidNormal() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a4eb90ed7b9be1c6d97a51afc2c7552">&#9670;&#160;</a></span>getParaboloidNormal() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,23 +379,23 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> VectorTy
 
 <p>Generate z value using the equation z = ax^2 + by^2. </p>
 
-<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00184">184</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00185">185</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
 
 </div>
 </div>
-<a id="adf83851db4531c564d9dc305dd4818e1" name="adf83851db4531c564d9dc305dd4818e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf83851db4531c564d9dc305dd4818e1">&#9670;&#160;</a></span>getParaboloidNormal() <span class="overload">[2/3]</span></h2>
+<a id="ae0721e6dd8578466e1cfb2b18de4be2a" name="ae0721e6dd8578466e1cfb2b18de4be2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0721e6dd8578466e1cfb2b18de4be2a">&#9670;&#160;</a></span>getParaboloidNormal() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </div>
+template&lt;IsPointNormal DataPoint&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt; <a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, <a class="el" href="classPonca_1_1Basket.html">void</a> &gt;::type Ponca::internal::getParaboloidNormal </td>
+          <td class="memname"><a class="el" href="classPonca_1_1Basket.html">void</a> Ponca::internal::getParaboloidNormal </td>
           <td>(</td>
           <td class="paramtype">DataPoint &amp;&#160;</td>
           <td class="paramname"><em>in</em>, </td>
@@ -428,77 +449,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoin
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00191">191</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
-
-</div>
-</div>
-<a id="aa300959ee3fce898d4bac03a27b3bb88" name="aa300959ee3fce898d4bac03a27b3bb88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa300959ee3fce898d4bac03a27b3bb88">&#9670;&#160;</a></span>getParaboloidNormal() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::enable_if&lt;!<a class="el" href="structPonca_1_1hasNormal.html">Ponca::hasNormal</a>&lt; DataPoint &gt;::value, <a class="el" href="classPonca_1_1Basket.html">void</a> &gt;::type Ponca::internal::getParaboloidNormal </td>
-          <td>(</td>
-          <td class="paramtype">DataPoint &amp;&#160;</td>
-          <td class="paramname"><em>in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
-          <td class="paramname"><em>_a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
-          <td class="paramname"><em>_b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
-          <td class="paramname"><em>_c</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
-          <td class="paramname"><em>_d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
-          <td class="paramname"><em>_e</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classPonca_1_1Basket.html">typename</a> DataPoint::Scalar&#160;</td>
-          <td class="paramname"><em>_f</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00203">203</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00192">192</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
 
 </div>
 </div>
@@ -552,7 +503,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &
 
 <p>Generate z value using the equation z = ax^2 + by^2. </p>
 
-<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00169">169</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00170">170</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
 
 </div>
 </div>
@@ -630,7 +581,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &
 
 <p>Generate z value using the equation z = ax^2 + by^2 + cxy + dx + ey + f. </p>
 
-<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00176">176</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00177">177</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
 
 </div>
 </div>
@@ -704,7 +655,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> <a class="e
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="namespacePonca_1_1internal.html">internal</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:42 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:28 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

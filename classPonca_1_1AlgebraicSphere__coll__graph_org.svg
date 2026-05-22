@@ -28,22 +28,22 @@
 <text text-anchor="start" x="4.5" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17.5" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">algebraicSphere()</text>
 <text text-anchor="start" x="4.5" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17.5" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
+<text text-anchor="start" x="17.5" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">implicitPrimitive()</text>
 <text text-anchor="start" x="4.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">isValid()</text>
+<text text-anchor="start" x="17.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">implicitPrimitive()</text>
 <text text-anchor="start" x="4.5" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17.5" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
+<text text-anchor="start" x="17.5" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">projectionOperator()</text>
 <text text-anchor="start" x="4.5" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17.5" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">isApprox()</text>
+<text text-anchor="start" x="17.5" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">projectionOperator()</text>
 <text text-anchor="start" x="4.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
+<text text-anchor="start" x="17.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
 <text text-anchor="start" x="4.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">changeBasis()</text>
+<text text-anchor="start" x="17.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">isValid()</text>
 <text text-anchor="start" x="4.5" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17.5" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">prattNorm()</text>
+<text text-anchor="start" x="17.5" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
 <text text-anchor="start" x="4.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="17.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">prattNorm2()</text>
-<text text-anchor="start" x="17.5" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 10 more...</text>
+<text text-anchor="start" x="17.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">isApprox()</text>
+<text text-anchor="start" x="17.5" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 14 more...</text>
 <text text-anchor="start" x="4.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="17.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">potentialLocal()</text>
 <text text-anchor="start" x="4.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>

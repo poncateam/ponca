@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -130,7 +130,7 @@ $(document).ready(function(){initNavTree('fittingreference.html',''); initResiza
 <div class="textblock"><p>This page provides a detailed list of what the Fitting module has to offers.</p>
 <h1><a class="anchor" id="fittingreference_primitiveoverview"></a>
 Fitting techniques Overview</h1>
-<p>We provide various approaches to approximate, analyze or characterize the geometric properties of local neighborhoods. In most situations, all these tools are based on the estimation of a geometric <a class="el" href="classPonca_1_1PrimitiveBase.html">Primitive</a> approximating the neighborhood, on top of which we provide more advanced computations. The table below summarizes the <a class="el" href="classPonca_1_1PrimitiveBase.html">Primitives</a> available in the library, as well as the associated fitting techniques:</p>
+<p>We provide various approaches to approximate, analyze or characterize the geometric properties of local neighborhoods. In most situations, all these tools are based on the estimation of a geometric Primitive approximating the neighborhood, on top of which we provide more advanced computations. The table below summarizes the Primitives available in the library, as well as the associated fitting techniques:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Computed primitive   </th><th class="markdownTableHeadNone">Required Input   </th><th class="markdownTableHeadNone">Fitting techniques    </th></tr>
@@ -158,7 +158,7 @@ Fitting techniques Overview</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Normal Vector   </td><td class="markdownTableBodyNone">Oriented points   </td><td class="markdownTableBodyNone"><a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> (nD, co-dimension 1)    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Covariance Matrix   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> (nD)    </td></tr>
+<td class="markdownTableBodyNone">Covariance Matrix   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1CovarianceBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions.">CovarianceBase</a> (nD)    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Weingarten Map   </td><td class="markdownTableBodyNone">Points only   </td><td class="markdownTableBodyNone"><a class="el" href="classPonca_1_1FundamentalFormWeingartenEstimator.html" title="Compute a Weingarten map from fundamental forms.">FundamentalFormWeingartenEstimator</a> (3D) via <a class="el" href="classPonca_1_1MongePatch.html" title="Monge Patch primitive, defined as , with  defined by a Base class.">MongePatch</a>    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -177,7 +177,7 @@ Capabilities of Fitting tools</h1>
  Mean of the input points vectors  </td><td><a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a> </td><td><a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a><br  />
 <a class="el" href="classPonca_1_1MeanPlaneFitImpl.html" title="Plane fitting procedure computing the mean position and orientation from oriented points.">MeanPlaneFitImpl</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a><br  />
-<a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a><br  />
+<a class="el" href="classPonca_1_1CovarianceBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions.">CovarianceBase</a><br  />
 <a class="el" href="classPonca_1_1UnorientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on point sets with non-oriented normals.">UnorientedSphereFitImpl</a> </td><td><p class="starttd"><a class="el" href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee" title="where  are all the point samples in &#39;s neighborhood">barycenter()</a><br  />
 <a class="el" href="namespacePonca.html#aba001afd38a86be95320b216a5d25964" title="The distance between the barycenter and the basis center.">barycenterDistance()</a><br  />
 barycenterLocal() </p>
@@ -185,7 +185,7 @@ barycenterLocal() </p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_MEAN_POSITION_DERIVATIVE</b><br  />
- Provides derivative of the mean position  </td><td><a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a> </td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
+ Provides derivative of the mean position  </td><td><a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a> </td><td><a class="el" href="classPonca_1_1CovarianceDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by covarianceBase.">CovarianceDer</a><br  />
 <a class="el" href="classPonca_1_1OrientedSphereDerImpl.html" title="[OrientedSphereFit Definition]">OrientedSphereDerImpl</a><br  />
 <a class="el" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a> </td><td><p class="starttd">barycenterDerivatives() </p>
 <p class="endtd"></p>
@@ -203,7 +203,7 @@ barycenterLocal() </p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_PRIMITIVE_BASE</b><br  />
- Provides base API for primitives  </td><td><a class="el" href="classPonca_1_1PrimitiveBase.html" title="Primitive base class.">PrimitiveBase</a> </td><td><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a><br  />
+ Provides base API for primitives  </td><td>PrimitiveBase </td><td>PrimitiveDer<br  />
 <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> </td><td><p class="starttd">getWeightSum()<br  />
 setNeighborFilter()<br  />
 getNeighborFilter()<br  />
@@ -215,8 +215,8 @@ isStable() </p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_PRIMITIVE_DERIVATIVE</b><br  />
- Provides base API for primitive derivatives  </td><td><a class="el" href="classPonca_1_1PrimitiveDer.html" title="Generic class performing the Fit derivation.">PrimitiveDer</a> </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a><br  />
-<a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
+ Provides base API for primitive derivatives  </td><td>PrimitiveDer </td><td><a class="el" href="classPonca_1_1GLSDer.html" title="Differentiation of GLSParam.">GLSDer</a><br  />
+<a class="el" href="classPonca_1_1CovarianceDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by covarianceBase.">CovarianceDer</a><br  />
 <a class="el" href="classMeanPositionDer.html" title="Compute the derivatives of the input points barycenter.">MeanPositionDer</a><br  />
 <a class="el" href="classMeanNormalDer.html" title="Compute the derivatives of the input points mean normal.">MeanNormalDer</a><br  />
 <a class="el" href="classPonca_1_1MlsSphereFitDer.html" title="Extension performing derivation of the mls surface.">MlsSphereFitDer</a><br  />
@@ -298,7 +298,7 @@ isNormalized() </p>
 </td></tr>
 <tr>
 <td><b>PROVIDES_POSITION_COVARIANCE</b><br  />
- Provides the covariance matrix  </td><td><a class="el" href="classPonca_1_1CovarianceFitBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions in .">CovarianceFitBase</a> </td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a><br  />
+ Provides the covariance matrix  </td><td><a class="el" href="classPonca_1_1CovarianceBase.html" title="Procedure that compute and decompose the covariance matrix of the neighbors positions.">CovarianceBase</a> </td><td><a class="el" href="classPonca_1_1CovarianceDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by covarianceBase.">CovarianceDer</a><br  />
 <a class="el" href="classPonca_1_1CovarianceLineFitImpl.html" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi...">CovarianceLineFitImpl</a><br  />
 <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a> </td><td><p class="starttd">solver() </p>
 <p class="endtd"></p>
@@ -307,7 +307,7 @@ isNormalized() </p>
 <td><p class="starttd"><b>PROVIDES_POSITION_COVARIANCE_DERIVATIVE</b><br  />
 </p>
 <p class="endtd"></p>
-</td><td><a class="el" href="classPonca_1_1CovarianceFitDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by CovarianceFitBase.">CovarianceFitDer</a> </td><td><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> </td><td><p class="starttd">- </p>
+</td><td><a class="el" href="classPonca_1_1CovarianceDer.html" title="Internal generic class computing the derivatives of covariance matrix computed by covarianceBase.">CovarianceDer</a> </td><td><a class="el" href="classPonca_1_1CovariancePlaneDerImpl.html" title="[CovariancePlaneFit Definition]">CovariancePlaneDerImpl</a> </td><td><p class="starttd">- </p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
@@ -338,32 +338,31 @@ Computing Curvatures</h1>
 <td class="markdownTableBodyNone">Distance to PCA plane <a class="el" href="citelist.html#CITEREF_Digne:2011:scalespacemeshing">[7]</a>   </td><td class="markdownTableBodyNone">Mean curvature   </td><td class="markdownTableBodyNone">Method <a class="el" href="classPonca_1_1Plane.html#aa15c2d321a4f611f3a4634c01b9215af">potential()</a> <div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothNormalCovariance = Basket&lt;Point, WeightSmoothFunc, CovariancePlaneFit&gt;;</div>
 </div><!-- fragment -->   </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Surface Variation <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[15]</a>   </td><td class="markdownTableBodyNone">Mean curvature   </td><td class="markdownTableBodyNone">Method <a class="el" href="classPonca_1_1CovarianceFitBase.html#a51531362ba02d442e2ca815e26436485">surfaceVariation()</a> <div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothNormalCovariance = Basket&lt;Point, WeightSmoothFunc, CovariancePlaneFit&gt;;</div>
+<td class="markdownTableBodyNone">Surface Variation <a class="el" href="citelist.html#CITEREF_Pauly:2002:PSSimplification">[15]</a>   </td><td class="markdownTableBodyNone">Mean curvature   </td><td class="markdownTableBodyNone">Method <a class="el" href="classPonca_1_1CovarianceBase.html#a6bbe719464dc5f2c92f87955524f1c3b">surfaceVariation()</a> <div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothNormalCovariance = Basket&lt;Point, WeightSmoothFunc, CovariancePlaneFit&gt;;</div>
 </div><!-- fragment -->   </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Growing Least Squares <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[13]</a>   </td><td class="markdownTableBodyNone">Mean curvature   </td><td class="markdownTableBodyNone"><code><a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>&lt;P,W,OrientedSphereFit,<a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a>&gt; // method kappa()</code>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Point Set Surfaces (PSS) <a class="el" href="citelist.html#CITEREF_Alexa:2001:Pss">[3]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a> : <div class="fragment"><div class="line">    <span class="keyword">using </span>EstimatorSmoothNormalCovariance = BasketDiff&lt;FitSmoothNormalCovariance, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#a6014ce2cef09fce4c39c46ca99069c19">CovariancePlaneDer</a>,</div>
-<div class="line">                                                       CurvatureEstimatorDer, NormalDerivativeWeingartenEstimator&gt;;</div>
-<div class="ttc" id="anamespacePonca_html_a6014ce2cef09fce4c39c46ca99069c19"><div class="ttname"><a href="namespacePonca.html#a6014ce2cef09fce4c39c46ca99069c19">Ponca::CovariancePlaneDer</a></div><div class="ttdeci">CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, CovarianceFitDer&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; &gt; CovariancePlaneDer</div><div class="ttdoc">Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl.</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00141">covariancePlaneFit.h:143</a></div></div>
+<td class="markdownTableBodyNone">Point Set Surfaces (PSS) <a class="el" href="citelist.html#CITEREF_Alexa:2001:Pss">[3]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of CurvatureEstimatorBase : <div class="fragment"><div class="line">    <span class="keyword">using </span>EstimatorSmoothNormalCovariance =</div>
+<div class="line">        BasketDiff&lt;FitSmoothNormalCovariance, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#adc3e80f6945b8f4a53d7163706a1caa5">CovariancePlaneDer</a>, NormalDerivativeWeingartenEstimator,</div>
+<div class="line">                   WeingartenCurvatureEstimatorDer&gt;;</div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">Ponca::FitSpaceDer</a></div><div class="ttdeci">@ FitSpaceDer</div><div class="ttdoc">Flag indicating a space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00036">enums.h:36</a></div></div>
+<div class="ttc" id="anamespacePonca_html_adc3e80f6945b8f4a53d7163706a1caa5"><div class="ttname"><a href="namespacePonca.html#adc3e80f6945b8f4a53d7163706a1caa5">Ponca::CovariancePlaneDer</a></div><div class="ttdeci">CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, CovarianceDer&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; &gt; CovariancePlaneDer</div><div class="ttdoc">Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl.</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00124">covariancePlaneFit.h:126</a></div></div>
 </div><!-- fragment -->   </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Monge Patch fitting (comparable to jets fitting<a class="el" href="citelist.html#CITEREF_Cazals:2005:Jets">[4]</a> )   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a> using a <a class="el" href="classPonca_1_1QuadraticHeightField.html" title="Quadratic height field defined as .">QuadraticHeightField</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitMongeSmooth = Basket&lt;Point, WeightSmoothFunc, MongePatchQuadraticFit&gt;;</div>
+<td class="markdownTableBodyNone">Monge Patch fitting (comparable to jets fitting<a class="el" href="citelist.html#CITEREF_Cazals:2005:Jets">[4]</a> )   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of CurvatureEstimatorBase using a <a class="el" href="classPonca_1_1QuadraticHeightField.html" title="Quadratic height field defined as .">QuadraticHeightField</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitMongeSmooth = Basket&lt;Point, WeightSmoothFunc, MongePatchQuadraticFit&gt;;</div>
 </div><!-- fragment -->   </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Monge Patch fitting (comparable to jets fitting<a class="el" href="citelist.html#CITEREF_Cazals:2005:Jets">[4]</a> )   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a> using a <a class="el" href="classPonca_1_1RestrictedQuadraticHeightField.html" title="Quadratic height field defined as .">RestrictedQuadraticHeightField</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitMongeRestrictedSmooth = Basket&lt;Point, WeightSmoothFunc, MongePatchRestrictedQuadraticFit&gt;;</div>
+<td class="markdownTableBodyNone">Monge Patch fitting (comparable to jets fitting<a class="el" href="citelist.html#CITEREF_Cazals:2005:Jets">[4]</a> )   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of CurvatureEstimatorBase using a <a class="el" href="classPonca_1_1RestrictedQuadraticHeightField.html" title="Quadratic height field defined as .">RestrictedQuadraticHeightField</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitMongeRestrictedSmooth = Basket&lt;Point, WeightSmoothFunc, MongePatchRestrictedQuadraticFit&gt;;</div>
 </div><!-- fragment -->   </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Algebraic Point Set Surfaces (APSS) <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[8]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothOrientedSpatial =</div>
-<div class="line">        BasketDiff&lt;FitSmoothOriented, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">OrientedSphereDer</a>, CurvatureEstimatorDer,</div>
-<div class="line">                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer&gt;;</div>
-<div class="ttc" id="anamespacePonca_html_aacb141e87654384b457c2874ac11e19d"><div class="ttname"><a href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">Ponca::OrientedSphereDer</a></div><div class="ttdeci">OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; OrientedSphereDer</div><div class="ttdoc">Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereDerImpl.</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00137">orientedSphereFit.h:138</a></div></div>
+<td class="markdownTableBodyNone">Algebraic Point Set Surfaces (APSS) <a class="el" href="citelist.html#CITEREF_Guennebaud:2007:APSS">[8]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of CurvatureEstimatorBase: <div class="fragment"><div class="line">    <span class="keyword">using </span>FitSmoothOrientedSpatial = BasketDiff&lt;FitSmoothOriented, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">OrientedSphereDer</a>,</div>
+<div class="line">                                                NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer&gt;;</div>
+<div class="ttc" id="anamespacePonca_html_aacb141e87654384b457c2874ac11e19d"><div class="ttname"><a href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">Ponca::OrientedSphereDer</a></div><div class="ttdeci">OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; OrientedSphereDer</div><div class="ttdoc">Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereDerImpl.</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00134">orientedSphereFit.h:135</a></div></div>
 </div><!-- fragment -->   </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Algebraic Shape Operator (ASO) <a class="el" href="citelist.html#CITEREF_Lejemble:2021:stable">[11]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of <a class="el" href="classPonca_1_1internal_1_1CurvatureEstimatorBase.html">CurvatureEstimatorBase</a>: <div class="fragment"><div class="line">    <span class="keyword">using </span>ASOSmooth =</div>
-<div class="line">        BasketDiff&lt;FitSmoothOriented, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">OrientedSphereDer</a>, MlsSphereFitDer, CurvatureEstimatorDer,</div>
-<div class="line">                   NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer&gt;;</div>
+<td class="markdownTableBodyNone">Algebraic Shape Operator (ASO) <a class="el" href="citelist.html#CITEREF_Lejemble:2021:stable">[11]</a>   </td><td class="markdownTableBodyNone">Curvature Tensor   </td><td class="markdownTableBodyNone">API of CurvatureEstimatorBase: <div class="fragment"><div class="line">    <span class="keyword">using </span>ASOSmooth = BasketDiff&lt;FitSmoothOriented, <a class="code hl_enumvalue" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">FitSpaceDer</a>, <a class="code hl_typedef" href="namespacePonca.html#aacb141e87654384b457c2874ac11e19d">OrientedSphereDer</a>, MlsSphereFitDer,</div>
+<div class="line">                                 NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer&gt;;</div>
 </div><!-- fragment -->  </td></tr>
 </table>
 <div class="image">
@@ -376,13 +375,13 @@ Available filters</h1>
 <tr>
 <th>Class name </th><th>Parameters </th><th>Documentation  </th></tr>
 <tr>
-<td><a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFunc</a> </td><td>Eval location: p, Radius: t </td><td>Filter points further than t, and weigh them according to kernel (<a class="el" href="fittingreference.html#fitting_kernel">Available Weighting kernel</a>)   </td></tr>
+<td><a class="el" href="classPonca_1_1DistWeightFilter.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFilter</a> </td><td>Eval location: p, Radius: t </td><td>Filter points further than t, and weigh them according to kernel (<a class="el" href="fittingreference.html#fitting_kernel">Available Weighting kernel</a>)   </td></tr>
 <tr>
-<td><a class="el" href="structPonca_1_1NoWeightFunc.html" title="Weighting function that set uniform weight to all samples, but transform neighbors coordinates to loc...">NoWeightFunc</a> </td><td>Eval location: p </td><td>Constant kernel for every point. Does not check for radius unlike <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFunc</a> with contant kernel. Transform neighbors to local frame.  </td></tr>
+<td><a class="el" href="structPonca_1_1NoWeightFilter.html" title="Weighting function that set uniform weight to all samples, but transform neighbors coordinates to loc...">NoWeightFilter</a> </td><td>Eval location: p </td><td>Constant kernel for every point. Does not check for radius unlike <a class="el" href="classPonca_1_1DistWeightFilter.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFilter</a> with contant kernel. Transform neighbors to local frame.  </td></tr>
 <tr>
-<td><a class="el" href="structPonca_1_1NoWeightFuncGlobal.html" title="Weighting function that set uniform weight to all samples and keep neighbors coordinates in global fr...">NoWeightFuncGlobal</a> </td><td>Eval location: p </td><td>Constant kernel for every point. Does not check for radius unlike <a class="el" href="classPonca_1_1DistWeightFunc.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFunc</a> with contant kernel. Keep neighbors coordinates in global frame  </td></tr>
+<td><a class="el" href="structPonca_1_1NoWeightFilterGlobal.html" title="Weighting function that set uniform weight to all samples and keep neighbors coordinates in global fr...">NoWeightFilterGlobal</a> </td><td>Eval location: p </td><td>Constant kernel for every point. Does not check for radius unlike <a class="el" href="classPonca_1_1DistWeightFilter.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFilter</a> with contant kernel. Keep neighbors coordinates in global frame  </td></tr>
 <tr>
-<td><a class="el" href="classPonca_1_1NeighborFilterStoreNormal.html" title="This class extends a NeighborFilter class to also store the normal of the evaluation point,...">NeighborFilterStoreNormal</a> </td><td>Eval location: p, Radius: t, Normal: n </td><td>Stores normal. It extends another filter as template param  </td></tr>
+<td>NeighborFilterStoreNormal </td><td>Eval location: p, Radius: t, Normal: n </td><td>Stores normal. It extends another filter as template param  </td></tr>
 </table>
 <h1><a class="anchor" id="fitting_kernel"></a>
 Available Weighting kernel</h1>
@@ -414,7 +413,7 @@ Available Weighting kernel</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

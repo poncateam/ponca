@@ -10,6 +10,8 @@ var classPonca_1_1QuadraticHeightField =
     [ "dh_du", "classPonca_1_1QuadraticHeightField.html#a83751aeceb7c1779aa672b6f66915fec", null ],
     [ "dh_dv", "classPonca_1_1QuadraticHeightField.html#a854f10adda141979e8569913727a0412", null ],
     [ "height", "classPonca_1_1QuadraticHeightField.html#aa2eb67fdb497f55a5d13a31e5cb4a8d1", null ],
+    [ "heightField", "classPonca_1_1QuadraticHeightField.html#a0a5c13aebbb0a2dd690e8e760c8d9e0c", null ],
+    [ "heightField", "classPonca_1_1QuadraticHeightField.html#ab3a88a57a9ede537f7675679f62662d0", null ],
     [ "init", "classPonca_1_1QuadraticHeightField.html#a646d63fc201cab223fae28dc6952ad4b", null ],
     [ "isValid", "classPonca_1_1QuadraticHeightField.html#a659c9b7eaf0d543d39a379fc366e137e", null ],
     [ "operator!=", "classPonca_1_1QuadraticHeightField.html#a9f663a56cbf0a701c1860ce95aa610f7", null ],

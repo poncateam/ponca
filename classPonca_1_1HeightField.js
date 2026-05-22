@@ -9,5 +9,7 @@ var classPonca_1_1HeightField =
     [ "getUFromLocalCoordinates", "classPonca_1_1HeightField.html#ae982eba68a1c9c16eb12a918cc6d59f7", null ],
     [ "getUFromLocalCoordinates", "classPonca_1_1HeightField.html#a87a43b70f6b55228c3680089327490a4", null ],
     [ "getVFromLocalCoordinates", "classPonca_1_1HeightField.html#a6065f7f0901398cf921456a3faa759e5", null ],
-    [ "getVFromLocalCoordinates", "classPonca_1_1HeightField.html#a39dce20001ecaacd70ffc933ddeda73b", null ]
+    [ "getVFromLocalCoordinates", "classPonca_1_1HeightField.html#a39dce20001ecaacd70ffc933ddeda73b", null ],
+    [ "heightFieldBase", "classPonca_1_1HeightField.html#a1445d79b668f66c4cf13b1116286888a", null ],
+    [ "heightFieldBase", "classPonca_1_1HeightField.html#aaba18bfb72e9d2e9fb447b80bbd41dd1", null ]
 ];

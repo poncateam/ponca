@@ -11,5 +11,7 @@ var classPonca_1_1CovariancePlaneDerImpl =
     [ "covariancePlaneDer", "classPonca_1_1CovariancePlaneDerImpl.html#a3c88c535318a240700d7366a2195b9c8", null ],
     [ "dNormal", "classPonca_1_1CovariancePlaneDerImpl.html#acc4d4a5c3a647a3e4bdb3374b2bd078b", null ],
     [ "dPotential", "classPonca_1_1CovariancePlaneDerImpl.html#a766169def99d3378bed13abc4e4d4060", null ],
-    [ "finalize", "classPonca_1_1CovariancePlaneDerImpl.html#a1e38de1b017aa2834a6ffab388d27b5d", null ]
+    [ "finalize", "classPonca_1_1CovariancePlaneDerImpl.html#ac3cb6d808aed5fc21ccd817c9a201449", null ],
+    [ "implicitPrimitiveDer", "classPonca_1_1CovariancePlaneDerImpl.html#a349033b9eeb6d6ee30897aa9f08a872a", null ],
+    [ "implicitPrimitiveDer", "classPonca_1_1CovariancePlaneDerImpl.html#ac05e28f733b55d45d9665457ca08edc6", null ]
 ];

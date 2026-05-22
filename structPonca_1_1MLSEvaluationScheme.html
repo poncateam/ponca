@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -176,7 +176,7 @@ Static Public Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar&gt;<br />
 struct Ponca::MLSEvaluationScheme&lt; Scalar &gt;</div><p>Computes the fit using the Moving Least Squares approach. </p>
 <p>The projection operator can be customized, see <a class="el" href="citelist.html#CITEREF_Alexa:2004:projection">[1]</a>.</p>
-<p>The position of the projected point is outputted within getNeighborFilter().evalPos()</p>
+<p>The position of the projected point is outputted within getNeighborFrame().center()</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Scalar</td><td>scalar type </td></tr>
@@ -184,7 +184,7 @@ struct Ponca::MLSEvaluationScheme&lt; Scalar &gt;</div><p>Computes the fit using
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00026">26</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00029">29</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a030445b8aaaaa023d78062defbd7c2c5" name="a030445b8aaaaa023d78062defbd7c2c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a030445b8aaaaa023d78062defbd7c2c5">&#9670;&#160;</a></span>MLSEvaluationScheme()</h2>
@@ -222,7 +222,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00028">28</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00031">31</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 
 </div>
 </div>
@@ -278,7 +278,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 </div><div class="memdoc">
 
 <p>Computes the fit using the MLS iteration process.   </p>
-<p>The position of the projected point is outputted within getNeighborFilter().evalPos()</p>
+<p>The position of the projected point is outputted within getNeighborFrame().center()</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname"><a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a></td><td>The fitting type </td></tr>
@@ -316,7 +316,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the fit </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00046">46</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00049">49</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 
 </div>
 </div>
@@ -365,7 +365,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 </div><div class="memdoc">
 
 <p>Computes the fit using the MLS iteration process.   </p>
-<p>The position of the projected point is outputted within getNeighborFilter().evalPos()</p>
+<p>The position of the projected point is outputted within getNeighborFrame().center()</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname"><a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a></td><td>The fitting type </td></tr>
@@ -401,7 +401,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the fit </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00066">66</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00069">69</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 
 </div>
 </div>
@@ -456,7 +456,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 </div><div class="memdoc">
 
 <p>Computes the fit using the MLS iteration process.   </p>
-<p>The position of the projected point is outputted within getNeighborFilter().evalPos()</p>
+<p>The position of the projected point is outputted within getNeighborFrame().center()</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname"><a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a></td><td>The fitting type </td></tr>
@@ -494,7 +494,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> <a class
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of the fit </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00089">89</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00092">92</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 
 </div>
 </div>
@@ -515,7 +515,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &
 
 <p>Epsilon value for stopping MLS iterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00101">101</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00104">104</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +543,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &
 
 <p>Default epsilon value for stopping MLS iterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00097">97</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00100">100</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 
 </div>
 </div>
@@ -563,7 +563,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &
 
 <p>Maximum number of MLS iterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00103">103</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00106">106</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 
 </div>
 </div>
@@ -591,7 +591,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &
 
 <p>Default maximum number of MLS iterations. </p>
 
-<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00099">99</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsEvaluationScheme_8h_source.html#l00102">102</a> of file <a class="el" href="mlsEvaluationScheme_8h_source.html">mlsEvaluationScheme.h</a>.</p>
 
 </div>
 </div>
@@ -601,7 +601,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">typename</a> Scalar &
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="structPonca_1_1MLSEvaluationScheme.html">MLSEvaluationScheme</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:42 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

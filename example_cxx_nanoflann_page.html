@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">412f7faa14187525b9cc396992fdb6ed45d82c87</span>
+   &#160;<span id="projectnumber">4d2a58fa5c6375adef5c4b208f4d47e016cecd6d</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -154,7 +154,7 @@ API comparisons</h1>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can't use it for valid results.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00022">enums.h:22</a></div></div>
 </div><!-- fragment -->  </td></tr>
 </table>
-<p>The fitting object is a <a class="el" href="classPonca_1_1DryFit.html" title="Empty fitting object doing no computation.">Ponca::DryFit</a>, an object that filter the neighbors according to their weight (out of scale points are not counted), but do not perform any other computation: </p><div class="fragment"><div class="line"><span class="keyword">using </span>NeighborFilter = DistWeightFunc&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
+<p>The fitting object is a <a class="el" href="classPonca_1_1DryFit.html" title="Empty fitting object doing no computation.">Ponca::DryFit</a>, an object that filter the neighbors according to their weight (out of scale points are not counted), but do not perform any other computation: </p><div class="fragment"><div class="line"><span class="keyword">using </span>NeighborFilter = DistWeightFilter&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;&gt;;</div>
 <div class="line"><span class="keyword">using </span>FitType        = Basket&lt;MyPoint, NeighborFilter, Ponca::DryFit&gt;; <span class="comment">// build a fitting object that does nothing</span></div>
 </div><!-- fragment --><h1><a class="anchor" id="nanoflann_timings_sec"></a>
 Timings</h1>
@@ -166,7 +166,7 @@ Timings</h1>
 <div class="line">Raw :       950618</div>
 <div class="line"><a class="code hl_namespace" href="namespacePonca.html">Ponca</a> :     950618</div>
 <div class="line">Nanoflann : 950618</div>
-<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="bitset_8h_source.html#l00016">bitset.h:17</a></div></div>
+<div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="nanoflann_sourcecode_sec"></a>
 Example source code</h1>
 <p>Source file: <code>ponca_nanoflann.cpp</code> </p><div class="fragment"><div class="line"><span class="comment">/*</span></div>
@@ -215,7 +215,7 @@ Example source code</h1>
 <div class="line"><span class="keyword">using </span>Scalar     = MyPoint::Scalar;</div>
 <div class="line"><span class="keyword">using </span>VectorType = MyPoint::VectorType;</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">using </span>NeighborFilter = <a class="code hl_class" href="classPonca_1_1Basket.html">DistWeightFunc&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;</a>&gt;;</div>
+<div class="line"><span class="keyword">using </span>NeighborFilter = <a class="code hl_class" href="classPonca_1_1Basket.html">DistWeightFilter&lt;MyPoint, Ponca::SmoothWeightKernel&lt;Scalar&gt;</a>&gt;;</div>
 <div class="line"><span class="keyword">using </span><a class="code hl_class" href="classPonca_1_1Basket.html">FitType</a>        = <a class="code hl_class" href="classPonca_1_1Basket.html">Basket&lt;MyPoint, NeighborFilter, Ponca::DryFit&gt;</a>; <span class="comment">// build a fitting object that does nothing</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">struct </span><a class="code hl_class" href="classPonca_1_1Basket.html">NFPointCloud</a></div>
@@ -361,10 +361,10 @@ Example source code</h1>
 <div class="line">              &lt;&lt; <span class="stringliteral">&quot;Ponca :     &quot;</span> &lt;&lt; <a class="code hl_class" href="classPonca_1_1Basket.html">neiPonca</a> &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
 <div class="line">              &lt;&lt; <span class="stringliteral">&quot;Nanoflann : &quot;</span> &lt;&lt; <a class="code hl_class" href="classPonca_1_1Basket.html">neiFlann</a> &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00255">basket.h:257</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_ad5132ec839c56fdd21e875825d21465a"><div class="ttname"><a href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00280">basket.h:280</a></div></div>
-<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_a5124e70f1b87118dea332a16228cbefa"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa">Ponca::BasketComputeObject::computeWithIds</a></div><div class="ttdeci">FIT_RESULT computeWithIds(IndexRange ids, const PointContainer &amp;points)</div><div class="ttdoc">Convenience function to iterate over a subset of samples in a PointContainer Add neighbors stored in ...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00179">basket.h:179</a></div></div>
-<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_ab740adc434a6d1ecb4cf4943c1ff2a84"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">Ponca::BasketComputeObject::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00153">basket.h:153</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00258">basket.h:260</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_ad5132ec839c56fdd21e875825d21465a"><div class="ttname"><a href="classPonca_1_1Basket.html#ad5132ec839c56fdd21e875825d21465a">Ponca::Basket::addNeighbor</a></div><div class="ttdeci">bool addNeighbor(const DataPoint &amp;_nei)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00283">basket.h:283</a></div></div>
+<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_a5124e70f1b87118dea332a16228cbefa"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#a5124e70f1b87118dea332a16228cbefa">Ponca::BasketComputeObject::computeWithIds</a></div><div class="ttdeci">FIT_RESULT computeWithIds(IndexRange ids, const PointContainer &amp;points)</div><div class="ttdoc">Convenience function to iterate over a subset of samples in a PointContainer Add neighbors stored in ...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00181">basket.h:181</a></div></div>
+<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_ab740adc434a6d1ecb4cf4943c1ff2a84"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">Ponca::BasketComputeObject::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00155">basket.h:155</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -372,7 +372,7 @@ Example source code</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Fri May 22 2026 13:49:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Fri May 22 2026 19:42:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

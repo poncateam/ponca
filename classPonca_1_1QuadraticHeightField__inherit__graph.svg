@@ -30,24 +30,24 @@
 <text text-anchor="start" x="8.5" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="25.5" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">QuadraticHeightField()</text>
 <text text-anchor="start" x="8.5" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">quadraticHeightField()</text>
+<text text-anchor="start" x="25.5" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">heightField()</text>
 <text text-anchor="start" x="8.5" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">quadraticHeightField()</text>
+<text text-anchor="start" x="25.5" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">heightField()</text>
 <text text-anchor="start" x="8.5" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">setQuadric()</text>
+<text text-anchor="start" x="25.5" y="-112" font-family="Helvetica,sans-Serif" font-size="10.00">quadraticHeightField()</text>
 <text text-anchor="start" x="8.5" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">coeffs()</text>
+<text text-anchor="start" x="25.5" y="-97" font-family="Helvetica,sans-Serif" font-size="10.00">quadraticHeightField()</text>
 <text text-anchor="start" x="8.5" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
+<text text-anchor="start" x="25.5" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">setQuadric()</text>
 <text text-anchor="start" x="8.5" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">isValid()</text>
+<text text-anchor="start" x="25.5" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">coeffs()</text>
 <text text-anchor="start" x="8.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
+<text text-anchor="start" x="25.5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
 <text text-anchor="start" x="8.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
+<text text-anchor="start" x="25.5" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00">isValid()</text>
 <text text-anchor="start" x="8.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="25.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">height()</text>
-<text text-anchor="start" x="25.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">and 10 more...</text>
+<text text-anchor="start" x="25.5" y="-22" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
+<text text-anchor="start" x="25.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">and 12 more...</text>
 <polygon fill="#666666" stroke="#666666" points="0.5,-182 0.5,-182 149.5,-182 149.5,-182 0.5,-182"/>
 <polygon fill="#666666" stroke="#666666" points="0.5,-167 0.5,-167 23.5,-167 23.5,-167 0.5,-167"/>
 <polygon fill="#666666" stroke="#666666" points="23.5,-167 23.5,-167 149.5,-167 149.5,-167 23.5,-167"/>
