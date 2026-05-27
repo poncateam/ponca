@@ -17,6 +17,7 @@
 #include <random>
 #include <set>
 #include <vector>
+#include <cassert>
 #include <numeric>
 
 #include "Ponca/src/Common/Containers/limitedPriorityQueue.h"
