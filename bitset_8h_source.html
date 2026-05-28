@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">03745f3c84c0c8d40cec269af63efe7d3cf77f30</span>
+   &#160;<span id="projectnumber">a6685bea814e743eaa6c9284aa218d7d97a6527c</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -145,11 +145,11 @@ $(document).ready(function(){initNavTree('bitset_8h_source.html',''); initResiza
 <div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classPonca_1_1BitSet.html">   42</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classPonca_1_1BitSet.html">BitSet</a></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">static_assert</span>(<a class="code hl_class" href="classPonca_1_1Basket.html">N</a> &gt; 0, <span class="stringliteral">&quot;The capacity must be strictly positive&quot;</span>);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keyword">static_assert</span>(N &gt; 0, <span class="stringliteral">&quot;The capacity must be strictly positive&quot;</span>);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">size_t</span> BIT_SIZE   = <span class="keyword">sizeof</span>(T) * 8; </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">size_t</span> ARRAY_SIZE = (<a class="code hl_class" href="classPonca_1_1Basket.html">N</a> + BIT_SIZE - 1) / BIT_SIZE; </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">size_t</span> ARRAY_SIZE = (N + BIT_SIZE - 1) / BIT_SIZE; </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">using </span>container_type = std::array&lt;T, N&gt;;</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">using </span>iterator       = <span class="keyword">typename</span> container_type::iterator;</div>
@@ -157,19 +157,19 @@ $(document).ready(function(){initNavTree('bitset_8h_source.html',''); initResiza
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        PONCA_MULTIARCH <a class="code hl_class" href="classPonca_1_1BitSet.html">BitSet</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        PONCA_MULTIARCH <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1BitSet.html#a580180378d3deb115a62a1376883ed9d">flip</a>(<span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">i</a>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        PONCA_MULTIARCH <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1BitSet.html#a580180378d3deb115a62a1376883ed9d">flip</a>(<span class="keywordtype">int</span> i);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        PONCA_MULTIARCH <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1BitSet.html#a6e5a94f447499d4e2458b5489af2cfb6">erase</a>(<span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">value</a>);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        PONCA_MULTIARCH <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1BitSet.html#a6e5a94f447499d4e2458b5489af2cfb6">erase</a>(<span class="keywordtype">int</span> value);</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        PONCA_MULTIARCH std::pair&lt;iterator, bool&gt; <a class="code hl_function" href="classPonca_1_1BitSet.html#a167fbf02347a6d61689ddf1c328cca52">insert</a>(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">value</a>);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        PONCA_MULTIARCH std::pair&lt;iterator, bool&gt; <a class="code hl_function" href="classPonca_1_1BitSet.html#a167fbf02347a6d61689ddf1c328cca52">insert</a>(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; value);</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        PONCA_MULTIARCH [[<a class="code hl_class" href="classPonca_1_1Basket.html">nodiscard</a>]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1BitSet.html#addeea0758ea9164d6cfd7bf96501c919">contains</a>(<span class="keywordtype">int</span> <a class="code hl_class" href="classPonca_1_1Basket.html">value</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        PONCA_MULTIARCH [[nodiscard]] <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1BitSet.html#addeea0758ea9164d6cfd7bf96501c919">contains</a>(<span class="keywordtype">int</span> value) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        PONCA_MULTIARCH <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1BitSet.html#a181d1730f5fe2aa4b78f79849916fa15">clear</a>();</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        PONCA_MULTIARCH [[<a class="code hl_class" href="classPonca_1_1Basket.html">nodiscard</a>]] iterator begin();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        PONCA_MULTIARCH [[nodiscard]] iterator begin();</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        PONCA_MULTIARCH [[<a class="code hl_class" href="classPonca_1_1Basket.html">nodiscard</a>]] iterator end();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        PONCA_MULTIARCH [[nodiscard]] iterator end();</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classPonca_1_1BitSet.html#a574a5ce1942668a02fbd65f5af05d9cd">   98</a></span>        container_type <a class="code hl_variable" href="classPonca_1_1BitSet.html#a574a5ce1942668a02fbd65f5af05d9cd">m_data</a> = {}; </div>
@@ -178,7 +178,6 @@ $(document).ready(function(){initNavTree('bitset_8h_source.html',''); initResiza
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>} <span class="comment">// namespace Ponca</span></div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#include &quot;bitset.hpp&quot;</span></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00281">basket.h:283</a></div></div>
 <div class="ttc" id="aclassPonca_1_1BitSet_html"><div class="ttname"><a href="classPonca_1_1BitSet.html">Ponca::BitSet</a></div><div class="ttdoc">A simple BitSet implementation that mimics a set of indices.</div><div class="ttdef"><b>Definition</b> <a href="bitset_8h_source.html#l00042">bitset.h:43</a></div></div>
 <div class="ttc" id="aclassPonca_1_1BitSet_html_a167fbf02347a6d61689ddf1c328cca52"><div class="ttname"><a href="classPonca_1_1BitSet.html#a167fbf02347a6d61689ddf1c328cca52">Ponca::BitSet::insert</a></div><div class="ttdeci">std::pair&lt; iterator, bool &gt; insert(const int &amp;value)</div><div class="ttdoc">Tries to insert a value in the set.</div><div class="ttdef"><b>Definition</b> <a href="bitset_8hpp_source.html#l00047">bitset.hpp:47</a></div></div>
 <div class="ttc" id="aclassPonca_1_1BitSet_html_a181d1730f5fe2aa4b78f79849916fa15"><div class="ttname"><a href="classPonca_1_1BitSet.html#a181d1730f5fe2aa4b78f79849916fa15">Ponca::BitSet::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Sets all the bits to EMPTY.</div><div class="ttdef"><b>Definition</b> <a href="bitset_8hpp_source.html#l00028">bitset.hpp:28</a></div></div>
@@ -193,7 +192,7 @@ $(document).ready(function(){initNavTree('bitset_8h_source.html',''); initResiza
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_c4018c4157a9bf1e0ca20e9cb22f3b7c.html">Common</a></li><li class="navelem"><a class="el" href="dir_a0c2bd8a89d5f8f9b7ea9ff292edbc60.html">Containers</a></li><li class="navelem"><b>bitset.h</b></li>
-    <li class="footer">Generated on Thu May 28 2026 18:26:15 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 19:25:36 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

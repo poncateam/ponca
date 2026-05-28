@@ -19,7 +19,7 @@ var searchData=
   ['fitscaleder_16',['FitScaleDer',['../namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aad5783c67f35bea36742f02b599df3190',1,'Ponca']]],
   ['fitscalespaceder_17',['FitScaleSpaceDer',['../namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2',1,'Ponca']]],
   ['fitspaceder_18',['FitSpaceDer',['../namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff',1,'Ponca']]],
-  ['fitting_20data_20structure_19',['fitting data structure',['../example_cu_ssc_page.html#cu_ssgl_cuda_mypoint_sec',1,'Define fitting data structure'],['../example_python_ssc_page.html#pyssgl_cuda_mypoint_sec',1,'Define fitting data structure']]],
+  ['fitting_20data_20structure_19',['fitting data structure',['../example_python_ssc_page.html#pyssgl_cuda_mypoint_sec',1,'Define fitting data structure'],['../example_cu_ssc_page.html#cu_ssgl_cuda_mypoint_sec',1,'Define fitting data structure']]],
   ['fitting_20module_20',['Fitting module',['../group__fitting.html',1,'']]],
   ['fitting_20module_3a_20reference_20manual_21',['Fitting Module: Reference Manual',['../fittingreference.html',1,'user_manual_page']]],
   ['fitting_20module_3a_20user_20manual_22',['Fitting Module: User Manual',['../fitting.html',1,'user_manual_page']]],
@@ -29,8 +29,9 @@ var searchData=
   ['fitting_20status_26',['Check fitting status',['../fitting.html#fitting_Checkstatus',1,'']]],
   ['fitting_20techniques_20overview_27',['Fitting techniques Overview',['../fittingreference.html#fittingreference_primitiveoverview',1,'']]],
   ['fitting_20tools_28',['Capabilities of Fitting tools',['../fittingreference.html#fittingreference_outputandcapabilities',1,'']]],
-  ['flip_29',['flip',['../classPonca_1_1BitSet.html#a580180378d3deb115a62a1376883ed9d',1,'Ponca::BitSet']]],
-  ['from_20the_20barycenter_20definition_30',['from the barycenter definition',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md1',1,'Step-by-step derivation from the barycenter definition'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md2',1,'Step-by-step derivation from the barycenter definition']]],
-  ['functions_31',['functions',['../example_python_ssc_page.html#pyssgl_cuda_weight_sec',1,'Define weighting functions'],['../example_cu_ssc_page.html#cu_ssgl_cuda_weight_sec',1,'Define weighting functions'],['../ponca_points.html#points_utility',1,'Utility classes and functions']]],
-  ['fundamentalformweingartenestimator_32',['fundamentalformweingartenestimator',['../classPonca_1_1FundamentalFormWeingartenEstimator.html#a75d3527e2e26a4e484f70777646dbb1f',1,'Ponca::FundamentalFormWeingartenEstimator::fundamentalFormWeingartenEstimator()'],['../classPonca_1_1FundamentalFormWeingartenEstimator.html#afac92dc5cc79484a9d9fff7128e9317b',1,'Ponca::FundamentalFormWeingartenEstimator::fundamentalFormWeingartenEstimator() const'],['../classPonca_1_1FundamentalFormWeingartenEstimator.html',1,'Ponca::FundamentalFormWeingartenEstimator&lt; DataPoint, _NFilter, T &gt;']]]
+  ['fitting_20with_20multiple_20primitives_29',['Fitting with multiple primitives',['../fitting.html#fitting_multiprimitive',1,'']]],
+  ['flip_30',['flip',['../classPonca_1_1BitSet.html#a580180378d3deb115a62a1376883ed9d',1,'Ponca::BitSet']]],
+  ['from_20the_20barycenter_20definition_31',['from the barycenter definition',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md1',1,'Step-by-step derivation from the barycenter definition'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md2',1,'Step-by-step derivation from the barycenter definition']]],
+  ['functions_32',['functions',['../example_python_ssc_page.html#pyssgl_cuda_weight_sec',1,'Define weighting functions'],['../example_cu_ssc_page.html#cu_ssgl_cuda_weight_sec',1,'Define weighting functions'],['../ponca_points.html#points_utility',1,'Utility classes and functions']]],
+  ['fundamentalformweingartenestimator_33',['fundamentalformweingartenestimator',['../classPonca_1_1FundamentalFormWeingartenEstimator.html#a75d3527e2e26a4e484f70777646dbb1f',1,'Ponca::FundamentalFormWeingartenEstimator::fundamentalFormWeingartenEstimator()'],['../classPonca_1_1FundamentalFormWeingartenEstimator.html#afac92dc5cc79484a9d9fff7128e9317b',1,'Ponca::FundamentalFormWeingartenEstimator::fundamentalFormWeingartenEstimator() const'],['../classPonca_1_1FundamentalFormWeingartenEstimator.html',1,'Ponca::FundamentalFormWeingartenEstimator&lt; DataPoint, _NFilter, T &gt;']]]
 ];

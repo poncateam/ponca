@@ -1,5 +1,9 @@
 var NAVTREEINDEX5 =
 {
+"structPonca_1_1WeingartenCurvatureEstimator.html#a3bad468d5a46196630506dd90370f98e":[9,0,0,108,0],
+"structPonca_1_1WeingartenCurvatureEstimator.html#a50330688818d8492d55fcd2712c20299":[9,0,0,108,5],
+"structPonca_1_1WeingartenCurvatureEstimator.html#a50f8b268cd4b052da7eb0f4e2f59baf4":[9,0,0,108,3],
+"structPonca_1_1WeingartenCurvatureEstimator.html#ae8d09f3b9d79667e31d65f5f2bdf620c":[9,0,0,108,2],
 "structPonca_1_1WeingartenCurvatureEstimatorDer.html":[9,0,0,109],
 "structPonca_1_1WeingartenCurvatureEstimatorDer.html#a22eabf89cd602518ccf3a5ba53003ebd":[9,0,0,109,9],
 "structPonca_1_1WeingartenCurvatureEstimatorDer.html#a502acd155bdd76cca05b093921aa303b":[9,0,0,109,2],

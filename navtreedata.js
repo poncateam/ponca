@@ -133,9 +133,14 @@ var NAVTREE =
           [ "Estimator API", "fitting.html#fitting_newestim", [
             [ "Minimal requirements", "fitting.html#fitting_newestimbase", null ],
             [ "Computational objets capabilities and requirements", "fitting.html#fitting_newcapabilities", null ],
-            [ "Providing cast operations", "fitting.html#fitting_cast", null ]
+            [ "Providing cast operations", "fitting.html#fitting_cast", null ],
+            [ "New primitive differentiation (BasketDiff API)", "fitting.html#fitting_newdiff", null ]
           ] ]
-        ] ]
+        ] ],
+        [ "Advanced usage", "fitting.html#fitting_advanced", [
+          [ "Fitting with multiple primitives", "fitting.html#fitting_multiprimitive", null ]
+        ] ],
+        [ "Cuda", "fitting.html#fitting_cuda", null ]
       ] ],
       [ "Fitting Module: Reference Manual", "fittingreference.html", [
         [ "Fitting techniques Overview", "fittingreference.html#fittingreference_primitiveoverview", null ],
@@ -195,7 +200,7 @@ var NAVTREEINDEX =
 "classPonca_1_1Line.html#aeab6841b8a07a4ffed25f4cd65de18f6",
 "classPonca_1_1QuadraticHeightField.html#a854f10adda141979e8569913727a0412",
 "example_python_ssc_page.html#pyssgl_python_sec",
-"structPonca_1_1WeingartenCurvatureEstimatorDer.html"
+"structPonca_1_1WeingartenCurvatureEstimator.html#a3bad468d5a46196630506dd90370f98e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">03745f3c84c0c8d40cec269af63efe7d3cf77f30</span>
+   &#160;<span id="projectnumber">a6685bea814e743eaa6c9284aa218d7d97a6527c</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -209,7 +209,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint, <a class="el" href="classPonca_1_1Basket.html">class</a> <a class="el" href="classPonca_1_1Basket.html">_NFilter</a>, <a class="el" href="classPonca_1_1Basket.html">typename</a> T&gt;<br />
 requires ProvidesAlgebraicSphere&lt;T&gt;<br />
 class Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt;</div><p>Growing Least Squares reparametrization of the OrientedSphereFit. </p>
-<p>Method published in <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[13]</a></p>
+<p>Method published in <a class="el" href="citelist.html#CITEREF_Mellado:2012:GLS">[14]</a></p>
 <p>This class assumes that the WeightFunc defines the accessor </p><div class="fragment"><div class="line"><a class="code hl_class" href="classPonca_1_1Basket.html">w</a>.evalScale();</div>
 <div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00281">basket.h:283</a></div></div>
 </div><!-- fragment --><p> in order to access to the evaluation scale, needed to compute the scale invariant GLS reparametrization (all *_normalized methods).</p>
@@ -217,8 +217,9 @@ class Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt;</div><p>Growing Least Squa
 <li><a class="el" href="classPonca_1_1GLSParam.html#a58bde96d8c934db95dc6fb3cc3ba0397" title="Compute and return .">tau()</a>, <a class="el" href="classPonca_1_1GLSParam.html#a010b4dc71b2ffa98db8832c14ff6f9bd" title="Compute and return .">eta()</a> and <a class="el" href="classPonca_1_1GLSParam.html#a3967bba6e1b7cab5a9c7f7f8c0232ec8" title="Compute and return .">kappa()</a>: the GLS descriptor \( \left[ \tau \; \eta \; \kappa \right]\)</li>
 <li><a class="el" href="classPonca_1_1GLSParam.html#a3fd57343f62b0f1689e7d77431184679" title="Compute and return .">tau_normalized()</a>, <a class="el" href="classPonca_1_1GLSParam.html#a5196bfeed8dae0803113b5cfa62926b0" title="Compute and return .">eta_normalized()</a> and <a class="el" href="classPonca_1_1GLSParam.html#a5bb1c9ad3d34f76a2d634abd4da428df" title="Compute and return .">kappa_normalized()</a>: the scale invariant GLS descriptor \( \left[ \frac{\tau}{t} \; \eta \; t\kappa \right]\)</li>
 </ul>
-<p>Requirements: </p><pre class="fragment">ProvidesAlgebraicSphere </pre><p> Respects: </p><pre class="fragment">ProvidesGLSParam </pre> 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00045">45</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p>Requirements: </p><pre class="fragment">ProvidesAlgebraicSphere </pre><p> Respects: </p><pre class="fragment">ProvidesGLSParam </pre><p> [example_requirements_usage] [example_requirements_usage] </p>
+
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00049">49</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ada5abf3fce882e3197759973042836c5" name="ada5abf3fce882e3197759973042836c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada5abf3fce882e3197759973042836c5">&#9670;&#160;</a></span>Base</h2>
@@ -244,7 +245,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Base class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00047">47</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00052">52</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -264,7 +265,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00047">47</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00052">52</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -284,7 +285,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00047">47</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00052">52</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -304,7 +305,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00047">47</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00052">52</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -349,7 +350,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <dl class="section return"><dt>Returns</dt><dd>a distance between two fits (0 correspond to two similar fits) </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Use the same scale to have a useful comparison (normalized value are used) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00096">96</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00101">101</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -380,7 +381,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Compute and return \( \eta \). </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00065">65</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00070">70</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -411,7 +412,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Compute and return \( \eta \). </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00080">80</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00085">85</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -476,7 +477,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <p>Return the fitness, e.g. </p>
 <p>the pratt norm of the initial scalar field </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00089">89</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00094">94</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -507,7 +508,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00052">52</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00057">57</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -538,7 +539,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Explicit conversion to <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a> , to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00052">52</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00057">57</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -569,7 +570,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Compute and return \( \kappa \). </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00068">68</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00073">73</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -600,7 +601,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Compute and return \( t \kappa \). </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00083">83</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00088">88</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -631,7 +632,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Compute and return \( \tau \). </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00059">59</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00064">64</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -662,7 +663,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Compute and return \( \frac{\tau}{t} \). </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00074">74</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00079">79</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -691,7 +692,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 
 <p>Save the fitness value to avoid side effect with Pratt normalization. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00049">49</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00054">54</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -701,7 +702,7 @@ template&lt;<a class="el" href="classPonca_1_1Basket.html">class</a> DataPoint ,
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1GLSParam.html">GLSParam</a></li>
-    <li class="footer">Generated on Thu May 28 2026 18:26:16 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 19:25:37 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
