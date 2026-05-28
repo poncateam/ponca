@@ -10,8 +10,8 @@
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="178,159,178,208,173,208,173,159"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="281,245,334,311"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="292,324,263,398,258,396,287,322"/>
-<area shape="rect" id="Node000006" href="$classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="33,819,192,899"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="33,819,192,979"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="115,769,115,819,110,819,110,769"/>
-<area shape="rect" id="Node000008" href="$classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="283,812,454,907"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="371,777,371,812,366,812,366,777"/>
+<area shape="rect" id="Node000008" href="$classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="283,812,454,987"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="371,776,371,812,366,812,366,776"/>
 </map>

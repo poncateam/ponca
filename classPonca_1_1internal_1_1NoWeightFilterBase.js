@@ -7,6 +7,7 @@ var classPonca_1_1internal_1_1NoWeightFilterBase =
     [ "WeightReturnType", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a09970934bfd0e2be58e6d1cada54121f", null ],
     [ "NoWeightFilterBase", "classPonca_1_1internal_1_1NoWeightFilterBase.html#ae1e0d20adb278b99d0c0209fe7821aab", null ],
     [ "NoWeightFilterBase", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a43caa02f1fe9ffa1fa8fbed5abd94c84", null ],
+    [ "evalScale", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a754b12523cf2e6a3de6e7d23094f79dd", null ],
     [ "operator()", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a5585f7a3875de1246e6ca61315a41873", null ],
     [ "scaled2w", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a02b73cb015b99ab3cf8a13fea8c9f142", null ],
     [ "scaledw", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a1aa6443b029bf2416ccb063134371103", null ],

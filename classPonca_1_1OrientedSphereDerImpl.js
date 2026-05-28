@@ -12,7 +12,7 @@ var classPonca_1_1OrientedSphereDerImpl =
     [ "applyPrattNorm", "classPonca_1_1OrientedSphereDerImpl.html#abd6fce4645d808009197dd0ac2545062", null ],
     [ "dNormal", "classPonca_1_1OrientedSphereDerImpl.html#a86c484452fbfd396dbf4399d7ca44f37", null ],
     [ "dPotential", "classPonca_1_1OrientedSphereDerImpl.html#a184175d5eafe0d6f8e5d446545f9c8d0", null ],
-    [ "dprattNorm", "classPonca_1_1OrientedSphereDerImpl.html#ae85afe3a65d613dc56560ffa796284f7", null ],
+    [ "dprattNorm", "classPonca_1_1OrientedSphereDerImpl.html#a76925d85d1ffe450d5cd35bf907aaafb", null ],
     [ "dprattNorm", "classPonca_1_1OrientedSphereDerImpl.html#af5db87c9a12dd09a544e806e2d7446ab", null ],
     [ "dprattNorm2", "classPonca_1_1OrientedSphereDerImpl.html#a711c36440b601d4fbb539bcb5128727d", null ],
     [ "dprattNorm2", "classPonca_1_1OrientedSphereDerImpl.html#a46853fa6cdae56b9701dba1f60e1bc82", null ],

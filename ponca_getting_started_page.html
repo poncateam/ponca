@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">6f9f1b59d7c8c4654a710cfcef7342f4f5c79ba1</span>
+   &#160;<span id="projectnumber">03745f3c84c0c8d40cec269af63efe7d3cf77f30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -130,38 +130,16 @@ Download</h1>
 </div><!-- fragment --><h1><a class="anchor" id="getting_started_installation_sec"></a>
 Installation</h1>
 <p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is an header-only library. It could not be easier to install: the only thing you have to do is to include the main header in your code. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Ponca/Ponca&gt;</span></div>
-</div><!-- fragment --><p> To speed-up compilation, you may only use the header corresponding to the module you are interested in. For example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Ponca/Fitting&gt;</span></div>
 </div><!-- fragment --><h2><a class="anchor" id="getting_started_installation_cmakesubdirectory_subsec"></a>
 Use as cmake subdirectory</h2>
-<p>Since version 0.2, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> can be included in existing cmake projects using <code>add_subdirectory</code>, as demonstrated at <a href="https://github.com/poncateam/ci-submodule-helper">https://github.com/poncateam/ci-submodule-helper</a>. In this example, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is included as a git submodule, and included in the main <code>CMakeLists.txt</code> as follow: </p><div class="fragment"><div class="line">find_package(Eigen3 QUIET)</div>
+<p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> can be included in existing cmake projects using <code>add_subdirectory</code>, as demonstrated at <a href="https://github.com/poncateam/ci-submodule-helper">https://github.com/poncateam/ci-submodule-helper</a>. In this example, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> is included as a git submodule, and included in the main <code>CMakeLists.txt</code> as follow: </p><div class="fragment"><div class="line">find_package(Eigen3 QUIET)</div>
 <div class="line"> </div>
 <div class="line">add_subdirectory(ponca)</div>
 <div class="line"> </div>
 <div class="line">add_executable(test main.cpp)</div>
 <div class="line">target_link_libraries(test <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::Fitting</a>)</div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00258">basket.h:260</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="getting_started_installation_compilation_subsec"></a>
-Compilation</h2>
-<p>If you want to see <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, you will have to use <code>cmake</code>, e.g.: </p><div class="fragment"><div class="line">cmake . -B build  # Creates build folder and run cmake in it</div>
-</div><!-- fragment --><p>Available cmake options:  </p><div class="fragment"><div class="line"><span class="preprocessor">## USER OPTIONS</span></div>
-<div class="line"><span class="preprocessor">##</span></div>
-<div class="line"> </div>
-<div class="line">OPTION( PONCA_CONFIGURE_EXAMPLES   <span class="stringliteral">&quot;Include compilation rules for built-in examples&quot;</span>      ON)</div>
-<div class="line">OPTION( PONCA_CONFIGURE_DOC        <span class="stringliteral">&quot;Include compilation rules for built-in documentation&quot;</span> ON)</div>
-<div class="line">OPTION( PONCA_CONFIGURE_TESTS      <span class="stringliteral">&quot;Include compilation rules for built-in tests&quot;</span>         ON)</div>
-<div class="line">OPTION( PONCA_GENERATE_IDE_TARGETS <span class="stringliteral">&quot;Generate targets to show source files in IDEs&quot;</span>        ON)</div>
-<div class="line"> </div>
-<div class="line"><span class="preprocessor">##</span></div>
-<div class="line"><span class="preprocessor">## END USER OPTIONS</span></div>
-</div><!-- fragment --><p> Then compile using </p><div class="fragment"><div class="line">cmake --build . --target TARGET</div>
-</div><!-- fragment --><p> with <code>TARGET</code> equals to:</p><ul>
-<li><code>ponca-doc</code>: generate documentation using Doxygen (requires <code>PONCA_CONFIGURE_DOC</code>)</li>
-<li><code>ponca-examples</code>: compile examples (requires <code>PONCA_CONFIGURE_EXAMPLES</code>)</li>
-<li><code>install</code>: generate relocable cmake package and install to <code>CMAKE_INSTALL_PREFIX</code>. Also install the documentation if previously compiled.</li>
-<li><code>buildtests</code>: compile tests (requires <code>PONCA_CONFIGURE_TESTS</code>)</li>
-<li><code>test</code>: run tests (you may also use <code>ctest</code> directly</li>
-</ul>
-<h2><a class="anchor" id="getting_started_installation_cmake_subsec"></a>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00281">basket.h:283</a></div></div>
+</div><!-- fragment --><h2><a class="anchor" id="getting_started_installation_cmake_subsec"></a>
 Cmake package</h2>
 <p>We also provide a relocatable <code>cmake</code> package, generated by the <code>install</code> target. Example of file <code>CMakeLists.txt</code> using <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a>'s cmake package: </p><div class="fragment"><div class="line">cmake_minimum_required(VERSION 3.11)</div>
 <div class="line"> </div>
@@ -184,7 +162,53 @@ CPM</h2>
 <div class="line">add_executable(test main.cpp)</div>
 <div class="line">target_link_libraries(test PRIVATE <a class="code hl_class" href="classPonca_1_1Basket.html">Ponca::Fitting</a>) <span class="preprocessor"># Or any other Ponca defined modules</span></div>
 </div><!-- fragment --><p>You may also specify other branches, tags or commit and options within the <code>CPMAddPackage</code> call. See <a href="https://github.com/cpm-cmake/cpm.cmake">CPM documentation </a> for more information.</p>
-<p>That said, the (quite heavy) use of templates in some modules may increase compilation times. Precompiled headers are recommended if this becomes a source of frustration. You will also have to pre-compile <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> using nvcc if you want to use CUDA versions. This is explained in more details in related examples.</p>
+<h2><a class="anchor" id="getting_started_installation_compilation_subsec"></a>
+Compilation</h2>
+<p>If you want to see <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> in action, you will of course have to compile examples. And the same is true if you want to get the latest version of the documentation you are presently reading (well, not the exact same documentation, unless you've already compiled it, but then why are you reading this?). In both cases, you will have to use <code>cmake</code>, e.g.: </p><div class="fragment"><div class="line">cmake . -B build  # Creates build folder and run cmake in it</div>
+</div><!-- fragment --><p>Available cmake options:  </p><div class="fragment"><div class="line"><span class="preprocessor">## USER OPTIONS</span></div>
+<div class="line"><span class="preprocessor">##</span></div>
+<div class="line"> </div>
+<div class="line">OPTION( PONCA_CONFIGURE_EXAMPLES   <span class="stringliteral">&quot;Include compilation rules for built-in examples&quot;</span>      ON)</div>
+<div class="line">OPTION( PONCA_CONFIGURE_DOC        <span class="stringliteral">&quot;Include compilation rules for built-in documentation&quot;</span> ON)</div>
+<div class="line">OPTION( PONCA_CONFIGURE_TESTS      <span class="stringliteral">&quot;Include compilation rules for built-in tests&quot;</span>         ON)</div>
+<div class="line">OPTION( PONCA_GENERATE_IDE_TARGETS <span class="stringliteral">&quot;Generate targets to show source files in IDEs&quot;</span>        ON)</div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">##</span></div>
+<div class="line"><span class="preprocessor">## END USER OPTIONS</span></div>
+</div><!-- fragment --><p> Then compile using </p><div class="fragment"><div class="line">cmake --build . --target TARGET</div>
+</div><!-- fragment --><p> with <code>TARGET</code> equals to:</p><ul>
+<li><code>ponca-doc</code>: generate documentation using Doxygen (requires <code>PONCA_CONFIGURE_DOC</code>)</li>
+<li><code>ponca-examples</code>: compile examples (requires <code>PONCA_CONFIGURE_EXAMPLES</code>)</li>
+<li><code>install</code>: generate relocable cmake package and install to <code>CMAKE_INSTALL_PREFIX</code>. Also install the documentation if previously compiled.</li>
+<li><code>buildtests</code>: compile tests (requires <code>PONCA_CONFIGURE_TESTS</code>)</li>
+<li><code>test</code>: run tests (you may also use <code>ctest</code> directly</li>
+</ul>
+<h2><a class="anchor" id="getting_started_installation_compilation_instantiate"></a>
+Reducing compile time</h2>
+<dl class="section note"><dt>Note</dt><dd>This section is not available for MSVC (windows default compiler). If MSVC is detected, the <code>Instantiate</code> target will become an empty library hence CMake code remains valid.</dd></dl>
+<p>The (quite heavy) use of templates in some modules may increase compilation times. In order to alleviate the burden, we provide a shared library that pre-instantiate what we believe to be classical usage of the library. This shift most of the compilation burder to the shared library instead of a more frequently compiled code.</p>
+<p>In order to benefit from using the library the only step necessary is to link with <code>Ponca::Instantiate</code> <br  />
+</p>
+<p><code>target_link_libraries(your_target PUBLIC Ponca::Instantiate)</code></p>
+<p>CMake will automatically build the <code>Instantiate</code> library the first time required. Depending on the option, this can be quite long.</p>
+<h3><a class="anchor" id="getting_started_installation_compilation_instantiate_params"></a>
+Instantiation parameters</h3>
+<p>By default, the <code>Instantiate</code> library will compile every use case we thought of: 2D, 3D, float, double, with and without normal... Each parameters typically double the compilation time of the library without a target needed it. Fortunately, multiple flags can be passed in order to select more carefully what is needed:</p>
+<ul>
+<li>PONCA_INSTANTIATE_ALL [On by default, should be turned off. Has priority over every other flags]</li>
+<li>PONCA_INSTANTIATE_DOUBLE</li>
+<li>PONCA_INSTANTIATE_FLOAT</li>
+<li>PONCA_INSTANTIATE_2D</li>
+<li>PONCA_INSTANTIATE_3D</li>
+<li>PONCA_INSTANTIATE_POINTPOSITION</li>
+<li>PONCA_INSTANTIATE_POINTPOSITIONNORMAL</li>
+<li>PONCA_INSTANTIATE_SMOOTHWEIGHT</li>
+<li>PONCA_INSTANTIATE_CONSTANTWEIGHT</li>
+<li>PONCA_INSTANTIATE_NOWEIGHT</li>
+<li>PONCA_INSTANTIATE_SPACEDER</li>
+<li>PONCA_INSTANTIATE_SCALESPACEDER</li>
+</ul>
+<p>Each flag can be turned on/off. In order for anything to be compiled, you need to select at least a dimension, a scalar type, a point type, a filter and, for derivatives, a derivative type.</p>
 <h1><a class="anchor" id="getting_started_first_step_sec"></a>
 First steps</h1>
 <p>You're now ready to play with Ponca! Checkout the user manual here: <a class="el" href="user_manual_page.html">User Manual</a>.</p>
@@ -195,7 +219,7 @@ First steps</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 27 2026 13:05:51 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 18:26:15 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

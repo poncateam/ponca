@@ -1,5 +1,14 @@
 var NAVTREEINDEX1 =
 {
+"classPonca_1_1CovariancePlaneFitImpl.html#a18635760d587df7b3958acc01a4abb15":[9,0,0,18,5],
+"classPonca_1_1CovariancePlaneFitImpl.html#a3a891428f3c0ec185ee0f10f2edb475d":[9,0,0,18,9],
+"classPonca_1_1CovariancePlaneFitImpl.html#a434acdeaed07c076df2cb36a4d04493e":[9,0,0,18,6],
+"classPonca_1_1CovariancePlaneFitImpl.html#a61024b2cb210c0a2d076dfabb4d25349":[9,0,0,18,8],
+"classPonca_1_1CovariancePlaneFitImpl.html#a63c4124d2f9de4edd020184e2356abe0":[9,0,0,18,3],
+"classPonca_1_1CovariancePlaneFitImpl.html#a7c38af748a9af988ce5b4252a4591234":[9,0,0,18,7],
+"classPonca_1_1CovariancePlaneFitImpl.html#a9b5f99b06d37c101ef0d376d346ca488":[9,0,0,18,2],
+"classPonca_1_1CovariancePlaneFitImpl.html#aa5ecf1c4b5d330163cdfaf8e6cc292f3":[9,0,0,18,11],
+"classPonca_1_1CovariancePlaneFitImpl.html#aa988c3254abe5d89f9f830ab99e120a5":[9,0,0,18,10],
 "classPonca_1_1CovariancePlaneFitImpl.html#ab8211d460df9c0f5c7ab7d8f9237ba60":[9,0,0,18,12],
 "classPonca_1_1CovariancePlaneFitImpl.html#ada7741884b53ab51789396bd44b6658e":[9,0,0,18,1],
 "classPonca_1_1CovariancePlaneFitImpl.html#ae4edaa010e615870b19775b8665ae281":[9,0,0,18,0],
@@ -240,14 +249,5 @@ var NAVTREEINDEX1 =
 "classPonca_1_1Line.html#ad74fc56588b54b5546e09a8f4e9deeea":[9,0,0,57,1],
 "classPonca_1_1Line.html#ae00f6f75436df9d0da2c36d8ce447208":[9,0,0,57,3],
 "classPonca_1_1Line.html#ae1b49c4778d74c964e70b5a8dd24102e":[9,0,0,57,0],
-"classPonca_1_1Line.html#ae7179e684e87f56f4070a6d74672ccd4":[9,0,0,57,12],
-"classPonca_1_1Line.html#aeab6841b8a07a4ffed25f4cd65de18f6":[9,0,0,57,21],
-"classPonca_1_1Line.html#aec54c6433366eff8756c27b77ecf84b5":[9,0,0,57,4],
-"classPonca_1_1Line.html#aff2d28ccac91b77a32c5d6474a3e0a89":[9,0,0,57,9],
-"classPonca_1_1MeanPlaneFitImpl.html":[9,0,0,58],
-"classPonca_1_1MeanPlaneFitImpl.html#a193b478b3a7e96e9f9ee1335c2813878":[9,0,0,58,1],
-"classPonca_1_1MeanPlaneFitImpl.html#a34f2220988801d879ec511f1315cbdeb":[9,0,0,58,8],
-"classPonca_1_1MeanPlaneFitImpl.html#a7d84efafc1edd6d882fc1f6baec1fd08":[9,0,0,58,6],
-"classPonca_1_1MeanPlaneFitImpl.html#ab58add65da59ebf592c2d267ff46b097":[9,0,0,58,4],
-"classPonca_1_1MeanPlaneFitImpl.html#ac79362913414c389d2318a38f316c1b3":[9,0,0,58,3]
+"classPonca_1_1Line.html#ae7179e684e87f56f4070a6d74672ccd4":[9,0,0,57,12]
 };

@@ -1,11 +1,11 @@
 <map id="Ponca::NoWeightFilterGlobal&lt; DataPoint &gt;" name="Ponca::NoWeightFilterGlobal&lt; DataPoint &gt;">
-<area shape="rect" id="Node000001" title="Weighting function that set uniform weight to all samples and keep neighbors coordinates in global fr..." alt="" coords="63,811,261,891"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title=" " alt="" coords="59,487,265,761"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,775,165,810,159,810,159,775"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,232,193,312"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,325,140,486,135,487,106,326"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title="Weighting function that set uniform weight to all samples." alt="" coords="217,135,400,409"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="249,423,222,487,217,485,244,421"/>
+<area shape="rect" id="Node000001" title="Weighting function that set uniform weight to all samples and keep neighbors coordinates in global fr..." alt="" coords="63,851,261,931"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title=" " alt="" coords="59,507,265,801"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,815,165,851,159,851,159,815"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,242,193,322"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,335,140,506,135,507,106,336"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title="Weighting function that set uniform weight to all samples." alt="" coords="217,135,400,429"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="248,443,223,507,218,505,243,441"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="232,5,385,85"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="311,99,311,135,306,135,306,99"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="311,99,311,134,306,134,306,99"/>
 </map>

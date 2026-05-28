@@ -1,7 +1,7 @@
 <map id="Ponca::BasketDiff&lt; BasketType, Type, Ext0, Exts &gt;" name="Ponca::BasketDiff&lt; BasketType, Type, Ext0, Exts &gt;">
-<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="211,852,381,947"/>
+<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="211,852,381,1027"/>
 <area shape="rect" id="Node000002" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="171,659,421,803"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="299,817,299,852,293,852,293,817"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="299,816,299,852,293,852,293,816"/>
 <area shape="rect" id="Node000003" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="5,397,168,537"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="153,547,241,657,237,660,148,550"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="193,420,399,515"/>

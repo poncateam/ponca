@@ -14,10 +14,10 @@
 <area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="623,103,675,130,700,147,722,168,758,216,786,271,807,326,821,377,816,378,802,328,781,273,754,219,718,171,697,152,673,135,621,108"/>
 <area shape="rect" id="Node000011" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="952,385,1194,525"/>
 <area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="623,74,695,81,775,97,855,124,893,144,928,167,953,190,975,215,1012,272,1039,330,1058,384,1053,386,1034,332,1007,274,971,218,949,193,925,171,891,148,853,129,774,102,695,86,623,80"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="63,1159,222,1239"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="63,1159,222,1319"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="145,1109,145,1159,140,1159,140,1109"/>
-<area shape="rect" id="Node000005" href="$classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="360,1152,530,1247"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="448,1117,448,1152,442,1152,442,1117"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="360,1152,530,1327"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="448,1116,448,1152,442,1152,442,1116"/>
 <area shape="rect" id="Node000009" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="99,737,306,837"/>
 <area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="188,539,202,737,196,737,183,539"/>
 <area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="190,851,161,966,156,965,184,850"/>

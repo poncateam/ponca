@@ -98,9 +98,12 @@ var NAVTREE =
       [ "Download", "ponca_getting_started_page.html#getting_started_download_sec", null ],
       [ "Installation", "ponca_getting_started_page.html#getting_started_installation_sec", [
         [ "Use as cmake subdirectory", "ponca_getting_started_page.html#getting_started_installation_cmakesubdirectory_subsec", null ],
-        [ "Compilation", "ponca_getting_started_page.html#getting_started_installation_compilation_subsec", null ],
         [ "Cmake package", "ponca_getting_started_page.html#getting_started_installation_cmake_subsec", null ],
-        [ "CPM", "ponca_getting_started_page.html#getting_started_installation_cmake_cpm", null ]
+        [ "CPM", "ponca_getting_started_page.html#getting_started_installation_cmake_cpm", null ],
+        [ "Compilation", "ponca_getting_started_page.html#getting_started_installation_compilation_subsec", null ],
+        [ "Reducing compile time", "ponca_getting_started_page.html#getting_started_installation_compilation_instantiate", [
+          [ "Instantiation parameters", "ponca_getting_started_page.html#getting_started_installation_compilation_instantiate_params", null ]
+        ] ]
       ] ],
       [ "First steps", "ponca_getting_started_page.html#getting_started_first_step_sec", null ]
     ] ],
@@ -188,11 +191,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1CovariancePlaneFitImpl.html#ab8211d460df9c0f5c7ab7d8f9237ba60",
-"classPonca_1_1MeanPlaneFitImpl.html#aca0b67091f0add95008f5072857d915e",
-"classPonca_1_1RestrictedQuadraticHeightField.html#a08a8cfc7c7a211c5e3e266ce2e33b26f",
-"fitting.html#fitting_newestimator",
-"structPonca_1_1internal_1_1Triangle.html#afb97ad8f9f91855e946e93c1025c1e3e"
+"classPonca_1_1CovariancePlaneFitImpl.html#a18635760d587df7b3958acc01a4abb15",
+"classPonca_1_1Line.html#aeab6841b8a07a4ffed25f4cd65de18f6",
+"classPonca_1_1QuadraticHeightField.html#a854f10adda141979e8569913727a0412",
+"example_python_ssc_page.html#pyssgl_python_sec",
+"structPonca_1_1WeingartenCurvatureEstimatorDer.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

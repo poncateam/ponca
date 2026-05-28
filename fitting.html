@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">6f9f1b59d7c8c4654a710cfcef7342f4f5c79ba1</span>
+   &#160;<span id="projectnumber">03745f3c84c0c8d40cec269af63efe7d3cf77f30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -220,7 +220,7 @@ Evaluation schemes and projection</h1>
 <div class="line"><span class="keyword">        </span>{</div>
 <div class="line">            <span class="keywordflow">return</span> co.<a class="code hl_function" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">compute</a>(begin, end);</div>
 <div class="line">        };</div>
-<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_ab740adc434a6d1ecb4cf4943c1ff2a84"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">Ponca::BasketComputeObject::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00155">basket.h:155</a></div></div>
+<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_ab740adc434a6d1ecb4cf4943c1ff2a84"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">Ponca::BasketComputeObject::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00157">basket.h:157</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="fitting_derivatives"></a>
 Computing derivatives</h1>
 <p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, a class to extend an existing <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> with differentiation tools. Given a specialized type <code>TestPlane</code> that performs covariance plane fitting (using <a class="el" href="namespacePonca.html#a00fa14f5c6725ec3b4048310870a9913" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">Ponca::CovariancePlaneFit</a>), and defined as follows:</p>
@@ -320,7 +320,7 @@ Minimal requirements</h3>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Reset the internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called before any computation</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> init();</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Basket.html#af5a9b391abd11595a1590fefd7486bce">init</a>();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">/* Computations                                                           */</span></div>
@@ -330,13 +330,16 @@ Minimal requirements</h3>
 <div class="line">            <span class="comment">// \param lQ Local coordinates of the point (e.g.: the difference between the point and the eval position)</span></div>
 <div class="line">            <span class="comment">// \param pt The point as defined by the user</span></div>
 <div class="line">            <span class="comment">// \return false if param nei is not a valid neighbour (weight = 0)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar w, <span class="keyword">const</span> VectorType&amp; lQ, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; pt);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1Basket.html#a4203f58fe2c64b0a38a6e4a9c0b4d627">addLocalNeighbor</a>(Scalar w, <span class="keyword">const</span> VectorType&amp; lQ, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; pt);</div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="classPonca_1_1Basket.html#acb18f130523d8118ea0fdcc5ab4f2119">finalize</a>();</div>
 <div class="line">        }; <span class="comment">// class ComputationalObjectConcept</span></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_a4e7ea1fd0f8d760217e60c1feaabf7b0"><div class="ttname"><a href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">Ponca::Basket::DataPoint</a></div><div class="ttdeci">P DataPoint</div><div class="ttdoc">Point type used for computation.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00271">basket.h:271</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_ab08e85c1c9d83a892d6dc3beeb593e2d"><div class="ttname"><a href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">Ponca::Basket::Scalar</a></div><div class="ttdeci">typename P::Scalar Scalar</div><div class="ttdoc">Scalar type used for computation, as defined from template parameter P</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00268">basket.h:268</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_a4203f58fe2c64b0a38a6e4a9c0b4d627"><div class="ttname"><a href="classPonca_1_1Basket.html#a4203f58fe2c64b0a38a6e4a9c0b4d627">Ponca::Basket::addLocalNeighbor</a></div><div class="ttdeci">void addLocalNeighbor(typename P::Scalar _w, const typename P::VectorType &amp;_localQ, const P &amp;_nei)</div><div class="ttdoc">Add a local neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8hpp_source.html#l00100">basket.hpp:100</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_a4e7ea1fd0f8d760217e60c1feaabf7b0"><div class="ttname"><a href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">Ponca::Basket::DataPoint</a></div><div class="ttdeci">P DataPoint</div><div class="ttdoc">Point type used for computation.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00294">basket.h:294</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_ab08e85c1c9d83a892d6dc3beeb593e2d"><div class="ttname"><a href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">Ponca::Basket::Scalar</a></div><div class="ttdeci">typename P::Scalar Scalar</div><div class="ttdoc">Scalar type used for computation, as defined from template parameter P</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00291">basket.h:291</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_acb18f130523d8118ea0fdcc5ab4f2119"><div class="ttname"><a href="classPonca_1_1Basket.html#acb18f130523d8118ea0fdcc5ab4f2119">Ponca::Basket::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the fitting procedure.</div><div class="ttdef"><b>Definition</b> <a href="basket_8hpp_source.html#l00076">basket.hpp:76</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html_af5a9b391abd11595a1590fefd7486bce"><div class="ttname"><a href="classPonca_1_1Basket.html#af5a9b391abd11595a1590fefd7486bce">Ponca::Basket::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Initialize the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8hpp_source.html#l00060">basket.hpp:60</a></div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The macro PONCA_FITTING_DECLARE_DEFAULT_TYPES defines the <code>Base</code> type (alias for T) as well as <code>Scalar</code>, <code>VectorType</code> and <code>NeighborFilter</code> for manipulation of related data. This macro is defined within &lt;<a class="el" href="Fitting_2defines_8h_source.html">Fitting/defines.h</a>&gt; </dd>
 <dd>
 If the estimator is expected to be the upmost parent of the hierarchy, do not inherit from T and default it to be void. </dd></dl>
@@ -445,7 +448,7 @@ Providing cast operations</h3>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Wed May 27 2026 13:05:51 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 18:26:15 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

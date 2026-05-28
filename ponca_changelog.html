@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">6f9f1b59d7c8c4654a710cfcef7342f4f5c79ba1</span>
+   &#160;<span id="projectnumber">03745f3c84c0c8d40cec269af63efe7d3cf77f30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -133,6 +133,7 @@ This release will introduce a refactoring of the requirement library using cpp20
     - [all] refactoring of the requirement library using cpp20::concepts (#293)
     - [fitting] MLS is now a separate class from Basket (#298)
     - [fitting] projectDescent is now a separate class from Basket (#298)
+    - [fitting] Add prattNorm derivatives in UnorientedSphereFit (#304)
     - [spatialPartitioning] Rework KnnGraph API for compilation and query on the GPU (#301,#325)
     - [spatialPartitioning] Replace KnnGraph query containers with custom Stack and HashSet structure (#301,#325)
     - [spatialPartitioning] Fix a bug when re-building an existing KdTree (#320)
@@ -142,9 +143,12 @@ This release will introduce a refactoring of the requirement library using cpp20
 - Bug-fixes and code improvements
     - [fitting] Fix warnings introduced when bumping to cxx20 (#303)
     - [fitting] Fix CNC not using the DistWeightFunc (#316)
+    - [fitting] Fix compilation error in HeighField::operator==() (#304)
+    - [fitting] Fix compilation error in NoWeightFilterBase (#304)
     - [spatialPartitioning] Fix regression introduced by the CUDA kdtree update (#306)
     - [common] Fix PONCA_ASSERT macro on MSVC and clang (#309)
     - [common] Adapt PONCA_ASSERT macro to CUDA (#311)
+    - [all] New Instantiate module for pre-instantiating library and reduce compile time (#304)
 
 - Tests
     - [spatialPartitioning] Update KnnGraph test suite (#301)
@@ -153,6 +157,7 @@ This release will introduce a refactoring of the requirement library using cpp20
 - Cmake
     - [all] Eigen is now always for transitive linking (#302)
     - [all] Update cmake_minimum_requirement to 3.12 for project (#328)
+    - [all] Add new Ponca::Instantiate target (#304)
 
 - CI/Actions
     - [ci] Fix Issue with Eigen build in buildAsSubmodule (#299)
@@ -698,7 +703,7 @@ V0.1.2
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 27 2026 13:05:51 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 18:26:15 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

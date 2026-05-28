@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">6f9f1b59d7c8c4654a710cfcef7342f4f5c79ba1</span>
+   &#160;<span id="projectnumber">03745f3c84c0c8d40cec269af63efe7d3cf77f30</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -236,7 +236,7 @@ $(document).ready(function(){initNavTree('heightField_8h_source.html',''); initR
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        PONCA_MULTIARCH [[<a class="code hl_class" href="classPonca_1_1Basket.html">nodiscard</a>]] <span class="keyword">inline</span> <span class="keywordtype">bool</span> operator==(</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1Basket.html">QuadraticHeightField&lt;DataPoint, _NFilter, T&gt;</a>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">other</a>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classPonca_1_1QuadraticHeightField.html#a6e2233e52bf83f84a2b6c3db13f9d8fd">m_coeffs</a>.isApprox(<a class="code hl_class" href="classPonca_1_1Basket.html">other</a>.m_params);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classPonca_1_1QuadraticHeightField.html#a6e2233e52bf83f84a2b6c3db13f9d8fd">m_coeffs</a>.isApprox(<a class="code hl_class" href="classPonca_1_1Basket.html">other</a>.m_coeffs);</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        }</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
 <div class="foldopen" id="foldopen00126" data-start="{" data-end="}">
@@ -347,7 +347,7 @@ $(document).ready(function(){initNavTree('heightField_8h_source.html',''); initR
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        PONCA_MULTIARCH [[<a class="code hl_class" href="classPonca_1_1Basket.html">nodiscard</a>]] <span class="keyword">inline</span> <span class="keywordtype">bool</span> operator==(</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>            <span class="keyword">const</span> <a class="code hl_class" href="classPonca_1_1Basket.html">RestrictedQuadraticHeightField&lt;DataPoint, _NFilter, T&gt;</a>&amp; <a class="code hl_class" href="classPonca_1_1Basket.html">other</a>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classPonca_1_1RestrictedQuadraticHeightField.html#af01c241f5df32da11dd08251e07534c1">m_coeffs</a>.isApprox(<a class="code hl_class" href="classPonca_1_1Basket.html">other</a>.m_params);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classPonca_1_1RestrictedQuadraticHeightField.html#af01c241f5df32da11dd08251e07534c1">m_coeffs</a>.isApprox(<a class="code hl_class" href="classPonca_1_1Basket.html">other</a>.m_coeffs);</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        }</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
 <div class="foldopen" id="foldopen00247" data-start="{" data-end="}">
@@ -428,7 +428,7 @@ $(document).ready(function(){initNavTree('heightField_8h_source.html',''); initR
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>} <span class="comment">// namespace Ponca</span></div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00258">basket.h:260</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00281">basket.h:283</a></div></div>
 <div class="ttc" id="aclassPonca_1_1HeightField_html"><div class="ttname"><a href="classPonca_1_1HeightField.html">Ponca::HeightField</a></div><div class="ttdoc">Internal base classe for height fields.</div><div class="ttdef"><b>Definition</b> <a href="heightField_8h_source.html#l00029">heightField.h:30</a></div></div>
 <div class="ttc" id="aclassPonca_1_1HeightField_html_a1445d79b668f66c4cf13b1116286888a"><div class="ttname"><a href="classPonca_1_1HeightField.html#a1445d79b668f66c4cf13b1116286888a">Ponca::HeightField::heightFieldBase</a></div><div class="ttdeci">HeightField&lt; DataPoint, _NFilter, T &gt; &amp; heightFieldBase()</div><div class="ttdoc">Explicit conversion to HeightField , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="heightField_8h_source.html#l00033">heightField.h:33</a></div></div>
 <div class="ttc" id="aclassPonca_1_1HeightField_html_a39dce20001ecaacd70ffc933ddeda73b"><div class="ttname"><a href="classPonca_1_1HeightField.html#a39dce20001ecaacd70ffc933ddeda73b">Ponca::HeightField::getVFromLocalCoordinates</a></div><div class="ttdeci">Scalar &amp; getVFromLocalCoordinates(VectorType &amp;_lq)</div><div class="ttdoc">get access to v from local coordinate vector</div><div class="ttdef"><b>Definition</b> <a href="heightField_8h_source.html#l00066">heightField.h:66</a></div></div>
@@ -481,7 +481,7 @@ $(document).ready(function(){initNavTree('heightField_8h_source.html',''); initR
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><a class="el" href="dir_858c3b8a587d8a99dc19a90d01a3c99e.html">Basket</a></li><li class="navelem"><a class="el" href="dir_7de5a1b9d7a4564796c166aa3105c231.html">extensions</a></li><li class="navelem"><b>heightField.h</b></li>
-    <li class="footer">Generated on Wed May 27 2026 13:05:51 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 18:26:15 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
