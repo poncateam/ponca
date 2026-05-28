@@ -333,4 +333,64 @@ namespace Ponca
         static constexpr bool isDDValid = true;
     }; // class GaussianWeightKernel
 
+    /*!
+     * \brief Varifold Weight Kernel
+     *
+     * \warning Since rho' is negative and the basket ignores negative weights,
+     * VarifoldWeightKernel::f() returns the opposite (positive) weight
+     * and Varifold::addLocalNeighbor() takes the opposite back.
+     *
+     * \see VarifoldWeightKernel::f
+     */
+    template <class _Scalar>
+    class VarifoldWeightKernel
+    {
+    public:
+        using Scalar                    = _Scalar;
+        static constexpr bool isCompact = true;
+
+        /*!
+         * \brief Defines the varifolds weighting function
+         *
+         * \warning rho prime is negative but the basket ignores negative weights
+         * (\see Basket::addNeighbor()), so the opposite is returned here
+         * and VarifoldsImpl::addLocalNeighbor() takes the opposite again
+         */
+        PONCA_MULTIARCH Scalar f(const Scalar& _x) const
+        {
+            PONCA_MULTIARCH_STD_MATH(exp);
+            const Scalar y = Scalar(1) / (Scalar(1) - _x * _x);
+            return Scalar(2) * _x * y * y * exp(-y);
+        }
+
+        /*!
+         * \brief Defines the varifolds weighting function first order derivative  \f$\frac{2 e^{x^2-1} \left(2 x^4-5
+         * x^2-1\right)}{\left(x^2-1\right)^3} \f$
+         */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar df(const Scalar& _x) const
+        {
+            PONCA_MULTIARCH_STD_MATH(exp);
+            const Scalar xSqrd         = _x * _x;
+            const Scalar xSqrdMinusOne = (xSqrd - Scalar(1));
+            return (Scalar(2) * exp(xSqrd - Scalar(1)) * (Scalar(2) * xSqrd * xSqrd - Scalar(5) * xSqrd - Scalar(1))) /
+                   xSqrdMinusOne * xSqrdMinusOne * xSqrdMinusOne;
+        }
+
+        /*!
+         * \brief Defines the varifolds weighting function second order derivative  \f$4 e^{x^2-1} x \left(2 x^6-x^4-10
+         * x^2+5\right) \f$
+         */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar ddf(const Scalar& _x) const
+        {
+            PONCA_MULTIARCH_STD_MATH(exp);
+            const Scalar xSqrd = _x * _x;
+            return Scalar(4) * exp(xSqrd - Scalar(1)) * _x *
+                   (Scalar(2) * xSqrd * xSqrd * xSqrd - xSqrd * xSqrd - Scalar(10) * xSqrd + Scalar(5));
+        }
+
+        //! \brief #df is defined and valid on the definition interval
+        static constexpr bool isDValid = true;
+        //! \brief #ddf is defined and valid on the definition interval
+        static constexpr bool isDDValid = true;
+    };
 } // namespace Ponca
