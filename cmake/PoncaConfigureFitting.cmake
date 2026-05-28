@@ -72,7 +72,7 @@ set_target_properties(Fitting PROPERTIES
   INTERFACE_COMPILE_FEATURES cxx_std_11
 )
 
-target_link_libraries(Fitting PUBLIC INTERFACE Eigen3::Eigen)
+target_link_libraries(Fitting PUBLIC INTERFACE Eigen5::Eigen)
 
 install(TARGETS Fitting
     EXPORT FittingTargets

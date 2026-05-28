@@ -63,8 +63,8 @@ endif()
 ## Dependencies
 ################################################################################
 
-find_package(Eigen3 3.4 QUIET)
-if( NOT Eigen3_FOUND )
+find_package(Eigen3 5.0.1 QUIET)
+if( NOT Eigen5_FOUND )
     message(STATUS "Cannot find Eigen, use submodule")
     
     get_directory_property(hasParent PARENT_DIRECTORY)
