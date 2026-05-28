@@ -9,5 +9,6 @@ var searchData=
   ['spatial_20partitioning_3a_20user_20manual_6',['Spatial Partitioning: User Manual',['../spatialpartitioning.html',1,'user_manual_page']]],
   ['started_7',['Getting started',['../ponca_getting_started_page.html',1,'']]],
   ['structure_20binding_8',['Ponca data-structure binding',['../example_cxx_binding_page.html',1,'example_page']]],
-  ['surface_20curvature_20in_20pcl_9',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]]
+  ['surface_20curvature_20in_20pcl_9',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]],
+  ['sycl_20kernels_10',['sycl kernels',['../example_sycl_basic_page.html',1,'Fitting in SYCL kernels'],['../example_sycl_kdtree_page.html',1,'Using KdTree in SYCL kernels']]]
 ];

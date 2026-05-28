@@ -8,7 +8,7 @@ var searchData=
   ['unorientedspherefitimpl_5',['UnorientedSphereFitImpl',['../classPonca_1_1UnorientedSphereFitImpl.html',1,'Ponca']]],
   ['unstable_6',['UNSTABLE',['../namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39',1,'Ponca']]],
   ['upperbound_7',['upperBound',['../namespacePonca_1_1internal.html#ae3107b2d0b5d0b7f84a2d4d29470cf37',1,'Ponca::internal']]],
-  ['usage_8',['usage',['../fitting.html#fitting_advanced',1,'Advanced usage'],['../spatialpartitioning.html#spatialpartitioning_kdtree_usage',1,'Basic usage'],['../spatialpartitioning.html#spatialpartitioning_knngraph_usage',1,'Basic usage'],['../example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec',1,'Installation and usage'],['../example_cu_ssc_page.html#cu_ssgl_sec_dep_subsec',1,'Installation and usage'],['../example_cxx_pcl_page.html#pcl_usage_sec',1,'Usage']]],
+  ['usage_8',['usage',['../fitting.html#fitting_advanced',1,'Advanced usage'],['../spatialpartitioning.html#spatialpartitioning_knngraph_usage',1,'Basic usage'],['../spatialpartitioning.html#spatialpartitioning_kdtree_usage',1,'Basic usage'],['../example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec',1,'Installation and usage'],['../example_cu_ssc_page.html#cu_ssgl_sec_dep_subsec',1,'Installation and usage'],['../example_cxx_pcl_page.html#pcl_usage_sec',1,'Usage']]],
   ['usage_20in_20cuda_20kernels_9',['Usage in Cuda kernels',['../spatialpartitioning.html#spatialpartitioning_kdtree_cuda',1,'']]],
   ['usage_20of_20the_20convenience_20classes_20kdtree_20and_20kdtreebase_10',['Usage of the convenience classes KdTree and KdTreeBase',['../spatialpartitioning.html#spatialpartitioning_kdtree_usage_which_class',1,'']]],
   ['use_20as_20cmake_20subdirectory_11',['Use as cmake subdirectory',['../ponca_getting_started_page.html#getting_started_installation_cmakesubdirectory_subsec',1,'']]],
@@ -17,7 +17,8 @@ var searchData=
   ['using_20cuda_20and_20python_14',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
   ['using_20cuda_20c_15',['Screen Space Curvature using Cuda/C++',['../example_cu_ssc_page.html',1,'example_page']]],
   ['using_20cuda_20c_20and_20kdtree_20queries_16',['Object-space Curvature using Cuda/C++ and KdTree queries',['../example_cu_kdtree_page.html',1,'example_page']]],
-  ['using_20ponca_20to_20compute_20surface_20curvature_20in_20pcl_17',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]],
-  ['using_20tt_20traits_20tt_18',['Customizing the KdTree using &lt;tt&gt;Traits&lt;/tt&gt;',['../spatialpartitioning.html#spatialpartitioning_kdtree_extending',1,'']]],
-  ['utility_20classes_20and_20functions_19',['Utility classes and functions',['../ponca_points.html#points_utility',1,'']]]
+  ['using_20kdtree_20in_20sycl_20kernels_17',['Using KdTree in SYCL kernels',['../example_sycl_kdtree_page.html',1,'example_page']]],
+  ['using_20ponca_20to_20compute_20surface_20curvature_20in_20pcl_18',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]],
+  ['using_20tt_20traits_20tt_19',['Customizing the KdTree using &lt;tt&gt;Traits&lt;/tt&gt;',['../spatialpartitioning.html#spatialpartitioning_kdtree_extending',1,'']]],
+  ['utility_20classes_20and_20functions_20',['Utility classes and functions',['../ponca_points.html#points_utility',1,'']]]
 ];

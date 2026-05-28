@@ -62,10 +62,6 @@ var NAVTREE =
         ] ],
         [ "The whole code", "example_cu_ssc_page.html#cu_ssgl_sec", null ]
       ] ],
-      [ "Object-space Curvature using Cuda/C++ and KdTree queries", "example_cu_kdtree_page.html", [
-        [ "Introduction", "example_cu_kdtree_page.html#cu_kdtree_intro_sec", null ],
-        [ "Source code", "example_cu_kdtree_page.html#cu_kdtree_code", null ]
-      ] ],
       [ "Screen Space Curvature using Cuda and Python", "example_python_ssc_page.html", [
         [ "Introduction", "example_python_ssc_page.html#pyssgl_intro_sec", [
           [ "Installation and usage", "example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec", null ]
@@ -79,6 +75,7 @@ var NAVTREE =
         ] ],
         [ "Python script", "example_python_ssc_page.html#pyssgl_python_sec", null ]
       ] ],
+      [ "Fitting in SYCL kernels", "example_sycl_basic_page.html", null ],
       [ "Ponca::KdTree neighbor searches", "example_cxx_neighbor_search.html", null ],
       [ "Comparison between Nanoflann and Ponca KdTree APIs", "example_cxx_nanoflann_page.html", [
         [ "Introduction", "example_cxx_nanoflann_page.html#nanoflann_intro_sec", [
@@ -87,7 +84,12 @@ var NAVTREE =
         [ "API comparisons", "example_cxx_nanoflann_page.html#nanoflann_comparison_sec", null ],
         [ "Timings", "example_cxx_nanoflann_page.html#nanoflann_timings_sec", null ],
         [ "Example source code", "example_cxx_nanoflann_page.html#nanoflann_sourcecode_sec", null ]
-      ] ]
+      ] ],
+      [ "Object-space Curvature using Cuda/C++ and KdTree queries", "example_cu_kdtree_page.html", [
+        [ "Introduction", "example_cu_kdtree_page.html#cu_kdtree_intro_sec", null ],
+        [ "Source code", "example_cu_kdtree_page.html#cu_kdtree_code", null ]
+      ] ],
+      [ "Using KdTree in SYCL kernels", "example_sycl_kdtree_page.html", null ]
     ] ],
     [ "Releases overview", "ponca_changelog.html", [
       [ "Complete Changelog", "ponca_changelog.html#ponca_changelog_sec", null ]
@@ -140,7 +142,7 @@ var NAVTREE =
         [ "Advanced usage", "fitting.html#fitting_advanced", [
           [ "Fitting with multiple primitives", "fitting.html#fitting_multiprimitive", null ]
         ] ],
-        [ "Cuda", "fitting.html#fitting_cuda", null ]
+        [ "Cuda and SYCL", "fitting.html#fitting_cuda", null ]
       ] ],
       [ "Fitting Module: Reference Manual", "fittingreference.html", [
         [ "Fitting techniques Overview", "fittingreference.html#fittingreference_primitiveoverview", null ],
@@ -200,7 +202,7 @@ var NAVTREEINDEX =
 "classPonca_1_1Line.html#aeab6841b8a07a4ffed25f4cd65de18f6",
 "classPonca_1_1QuadraticHeightField.html#a854f10adda141979e8569913727a0412",
 "example_python_ssc_page.html#pyssgl_python_sec",
-"structPonca_1_1WeingartenCurvatureEstimator.html#a3bad468d5a46196630506dd90370f98e"
+"structPonca_1_1WeingartenCurvatureEstimator.html#a2d9726557fb3dd0430a843277a87d4e0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

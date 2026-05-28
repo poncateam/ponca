@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a6685bea814e743eaa6c9284aa218d7d97a6527c</span>
+   &#160;<span id="projectnumber">10681f3956490a282a0fd1ab1a18ec3563d740c1</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -147,7 +147,7 @@ $(document).ready(function(){initNavTree('fitting.html',''); initResizable(); })
 <li class="level1"><a href="#fitting_advanced">Advanced usage</a><ul><li class="level2"><a href="#fitting_multiprimitive">Fitting with multiple primitives</a></li>
 </ul>
 </li>
-<li class="level1"><a href="#fitting_cuda">Cuda</a></li>
+<li class="level1"><a href="#fitting_cuda">Cuda and SYCL</a></li>
 </ul>
 </div>
 <div class="textblock"><center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> <center>[Go to concept page]</center><h1><a class="anchor" id="fitting_intro"></a>
@@ -494,9 +494,9 @@ Fitting with multiple primitives</h2>
 <div class="line">                          CovarianceBase, CovariancePlaneFitImpl&gt;;       <span class="comment">// plane fitting</span></div>
 </div><!-- fragment --><p>After fitting, this object provides access to both the plane and the sphere, through the respective cast operators <a class="el" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef" title="Explicit conversion to AlgebraicSphere , to access methods potentially hidden by heritage.">AlgebraicSphere::algebraicSphere()</a> and <a class="el" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb" title="Explicit conversion to Plane , to access methods potentially hidden by heritage.">Plane::plane()</a>.</p>
 <h1><a class="anchor" id="fitting_cuda"></a>
-Cuda</h1>
+Cuda and SYCL</h1>
 <p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> can be used directly on GPU, thanks to several mechanisms:</p><ul>
-<li>Eigen Cuda capabilities, see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html" target="_blank">Eigen documentation</a> for more details. You <em>need</em> to use a consistent <code>Eigen::Index</code> on both CPU and GPU if you plan to transfer memory between the computing units. That's why we recommend to set the following preprocessor variable when compiling your project: <div class="fragment"><div class="line">-DEIGEN_DEFAULT_DENSE_INDEX_TYPE=<span class="keywordtype">int</span></div>
+<li>Eigen capabilities, see <a href="http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html" target="_blank">Eigen documentation</a> for more details. You <em>need</em> to use a consistent <code>Eigen::Index</code> on both CPU and GPU if you plan to transfer memory between the computing units. That's why we recommend to set the following preprocessor variable when compiling your project: <div class="fragment"><div class="line">-DEIGEN_DEFAULT_DENSE_INDEX_TYPE=<span class="keywordtype">int</span></div>
 </div><!-- fragment --> You might also need to define the <code>--expt-relaxed-constexpr</code> preprocessor option for <code>NVCC</code>. Example of working cmake file (see <a class="el" href="example_cu_ssc_page.html">Screen Space Curvature using Cuda/C++</a>): <div class="fragment"><div class="line">enable_language(CUDA)</div>
 <div class="line">add_executable(ponca_ssgls <span class="stringliteral">&quot;ponca_ssgls.cu&quot;</span>)</div>
 <div class="line">target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-<span class="keyword">constexpr</span>)</div>
@@ -504,7 +504,7 @@ Cuda</h1>
 <li>Automatic CPU/GPU compilation qualifiers. We use the macro <div class="fragment"><div class="line">PONCA_MULTIARCH <span class="keywordtype">void</span> function();</div>
 </div><!-- fragment --> to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.</li>
 </ul>
-<p>Check the <a class="el" href="example_cu_ssc_page.html#cu_ssgl_intro_sec">C++/Cuda</a> and <a class="el" href="example_python_ssc_page.html">Python/Cuda</a> (using PyCuda) examples for more details and how-to.</p>
+<p>Check the <a class="el" href="example_cu_ssc_page.html#cu_ssgl_intro_sec">C++/Cuda</a>, the <a class="el" href="example_python_ssc_page.html">Python/Cuda</a> (using PyCuda), example_sycl_basic and example_sycl_kdtree examples for more details and how-to.</p>
 <hr  />
  <center>[Go to concept page]</center> <center>[<a class="el" href="user_manual_page.html">Go back to user manual</a>]</center> </div></div><!-- contents -->
 </div><!-- PageDoc -->
@@ -513,7 +513,7 @@ Cuda</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Thu May 28 2026 19:25:36 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 20:47:21 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

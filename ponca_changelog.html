@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a6685bea814e743eaa6c9284aa218d7d97a6527c</span>
+   &#160;<span id="projectnumber">10681f3956490a282a0fd1ab1a18ec3563d740c1</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -131,6 +131,7 @@ This release will introduce a refactoring of the requirement library using cpp20
 
 - API
     - [all] refactoring of the requirement library using cpp20::concepts (#293)
+    - [sycl] demonstrate the use of the library in SYCL kernels (#312)
     - [fitting] MLS is now a separate class from Basket (#298)
     - [fitting] projectDescent is now a separate class from Basket (#298)
     - [fitting] Add prattNorm derivatives in UnorientedSphereFit (#304)
@@ -145,6 +146,7 @@ This release will introduce a refactoring of the requirement library using cpp20
     - [fitting] Fix CNC not using the DistWeightFunc (#316)
     - [fitting] Fix compilation error in HeighField::operator==() (#304)
     - [fitting] Fix compilation error in NoWeightFilterBase (#304)
+    - [fitting] Remove virtual inheritance for BasketComputeObject (#312)
     - [spatialPartitioning] Fix regression introduced by the CUDA kdtree update (#306)
     - [common] Fix PONCA_ASSERT macro on MSVC and clang (#309)
     - [common] Adapt PONCA_ASSERT macro to CUDA (#311)
@@ -163,10 +165,12 @@ This release will introduce a refactoring of the requirement library using cpp20
     - [ci] Fix Issue with Eigen build in buildAsSubmodule (#299)
     - [ci] New github action for checking CPM installation (#302)
     - [ci] Formatter now checks for cuda files (#332, #315)
+    - [sycl] add AdaptiveCPP in CI to compile examples (#312)
 
 - Examples
     - [spatialPartitioning] Add a cuda example with the KnnGraph (#301, #323)
     - [cuda] Update cmake_minimum_requirement to 3.18 for cuda examples (#328)
+    - [sycl] add SYCL example (#312)
 
 - Docs
     - [doc] Add documentation about CPM installation for ponca (#302)
@@ -704,7 +708,7 @@ V0.1.2
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu May 28 2026 19:25:36 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 20:47:21 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">a6685bea814e743eaa6c9284aa218d7d97a6527c</span>
+   &#160;<span id="projectnumber">10681f3956490a282a0fd1ab1a18ec3563d740c1</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -252,9 +252,9 @@ $(document).ready(function(){initNavTree('ponca__module__fitting_8mdoc_source.ht
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>  After fitting, this object provides access to both the plane and the sphere, through the respective cast operators #<a class="code hl_function" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef">AlgebraicSphere::algebraicSphere</a>() and #<a class="code hl_function" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb">Plane::plane</a>().</div>
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>  \section fitting_cuda Cuda</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>  \section fitting_cuda Cuda and SYCL</div>
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>  <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> can be used directly on GPU, thanks to several mechanisms:</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>   - Eigen Cuda capabilities, see &lt;a href=&quot;http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html&quot;  target=&quot;_blank&quot;&gt;Eigen documentation&lt;/a&gt; for more details.</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>   - Eigen capabilities, see &lt;a href=&quot;http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html&quot;  target=&quot;_blank&quot;&gt;Eigen documentation&lt;/a&gt; for more details.</div>
 <div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>   You *need* to use a consistent `Eigen::Index` on both CPU and GPU if you plan to transfer memory between the computing units.</div>
 <div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>   That&#39;s why we recommend to set the following preprocessor variable when compiling your project:</div>
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>   \code -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endcode</div>
@@ -271,7 +271,7 @@ $(document).ready(function(){initNavTree('ponca__module__fitting_8mdoc_source.ht
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>  \endcode</div>
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>  to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.</div>
 <div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>  Check the \ref cu_ssgl_intro_sec &quot;C++/Cuda&quot; and \ref example_python_ssc_page &quot;Python/Cuda&quot; (using PyCuda) examples for more details and how-to.</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>  Check the \ref cu_ssgl_intro_sec &quot;C++/Cuda&quot;, the \ref example_python_ssc_page &quot;Python/Cuda&quot; (using PyCuda), \ref example_sycl_basic and \ref example_sycl_kdtree examples for more details and how-to.</div>
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
 <div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>  &lt;hr&gt;</div>
 <div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>  &lt;center&gt;[\ref fitting_concepts &quot;Go to concept page&quot;]&lt;/center&gt;</div>
@@ -294,7 +294,7 @@ $(document).ready(function(){initNavTree('ponca__module__fitting_8mdoc_source.ht
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_659facb5ea1bf65b3deecf95a0be0132.html">doc</a></li><li class="navelem"><a class="el" href="dir_4faad1dcd81a1ed46fbffce7dc36364d.html">src</a></li><li class="navelem"><b>ponca_module_fitting.mdoc</b></li>
-    <li class="footer">Generated on Thu May 28 2026 19:25:36 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu May 28 2026 20:47:21 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

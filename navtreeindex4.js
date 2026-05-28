@@ -1,6 +1,8 @@
 var NAVTREEINDEX4 =
 {
-"example_python_ssc_page.html#pyssgl_python_sec":[3,7,2],
+"example_python_ssc_page.html#pyssgl_python_sec":[3,6,2],
+"example_sycl_basic_page.html":[3,7],
+"example_sycl_kdtree_page.html":[3,11],
 "fitting.html":[7,1],
 "fitting.html#crtpestimator":[7,1,6,0],
 "fitting.html#evaluation_schemes":[7,1,2],
@@ -39,8 +41,8 @@ var NAVTREEINDEX4 =
 "functions_e.html":[9,3,0,4],
 "functions_eval.html":[9,3,4],
 "functions_f.html":[9,3,0,5],
-"functions_func.html":[9,3,1],
 "functions_func.html":[9,3,1,0],
+"functions_func.html":[9,3,1],
 "functions_func_b.html":[9,3,1,1],
 "functions_func_c.html":[9,3,1,2],
 "functions_func_d.html":[9,3,1,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX4 =
 "structPonca_1_1StaticKdTreeBase_1_1Buffers.html#aef184e20609199a57cd7045e06e85750":[9,0,0,103,0,0],
 "structPonca_1_1WeingartenCurvatureEstimator.html":[9,0,0,108],
 "structPonca_1_1WeingartenCurvatureEstimator.html#a10384e926b6b6035ec864a8a5e6c42d8":[9,0,0,108,6],
-"structPonca_1_1WeingartenCurvatureEstimator.html#a20a3591daed80b1153da42c415cd3b33":[9,0,0,108,1],
-"structPonca_1_1WeingartenCurvatureEstimator.html#a2d9726557fb3dd0430a843277a87d4e0":[9,0,0,108,7],
-"structPonca_1_1WeingartenCurvatureEstimator.html#a350f4dc77eeebc28fcbb6a8cbab4aafb":[9,0,0,108,4]
+"structPonca_1_1WeingartenCurvatureEstimator.html#a20a3591daed80b1153da42c415cd3b33":[9,0,0,108,1]
 };
