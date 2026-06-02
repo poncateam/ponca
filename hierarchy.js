@@ -217,8 +217,10 @@ var hierarchy =
       [ "Ponca::MeanPosition< DataPoint, _NFilter, T >", "classPonca_1_1MeanPosition.html", null ],
       [ "Ponca::MlsSphereFitDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1MlsSphereFitDer.html", null ],
       [ "Ponca::MongePatch< DataPoint, _NFilter, T >", "classPonca_1_1MongePatch.html", null ],
-      [ "Ponca::MongePatchQuadraticFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MongePatchQuadraticFitImpl.html", null ],
-      [ "Ponca::MongePatchRestrictedQuadraticFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html", null ],
+      [ "Ponca::MultipassStatus< DataPoint, _NFilter, T >", "classPonca_1_1MultipassStatus.html", [
+        [ "Ponca::MongePatchQuadraticFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MongePatchQuadraticFitImpl.html", null ],
+        [ "Ponca::MongePatchRestrictedQuadraticFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html", null ]
+      ] ],
       [ "Ponca::NormalDerivativeWeingartenEstimator< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1NormalDerivativeWeingartenEstimator.html", null ],
       [ "Ponca::OrientedSphereDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1OrientedSphereDerImpl.html", null ],
       [ "Ponca::OrientedSphereFitImpl< DataPoint, _NFilter, T >", "classPonca_1_1OrientedSphereFitImpl.html", null ],

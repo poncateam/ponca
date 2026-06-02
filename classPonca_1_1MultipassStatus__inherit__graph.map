@@ -1,0 +1,9 @@
+<map id="Ponca::MultipassStatus&lt; DataPoint, _NFilter, T &gt;" name="Ponca::MultipassStatus&lt; DataPoint, _NFilter, T &gt;">
+<area shape="rect" id="Node000001" title="Helper class to check for status of required extensions." alt="" coords="147,119,330,259"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1MongePatchQuadraticFitImpl.html" title="Extension to compute the best fit quadric on 3d points expressed as ." alt="" coords="5,314,232,494"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,272,171,315,166,312,191,269"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html" title="Extension to compute the best fit restricted quadric on 3d points expressed as ." alt="" coords="257,307,463,501"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="287,270,307,305,303,308,283,272"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="227,5,250,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,84,241,118,236,118,236,84"/>
+</map>

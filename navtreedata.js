@@ -200,9 +200,9 @@ var NAVTREEINDEX =
 "annotated.html",
 "classPonca_1_1CovariancePlaneFitImpl.html#a18635760d587df7b3958acc01a4abb15",
 "classPonca_1_1Line.html#aeab6841b8a07a4ffed25f4cd65de18f6",
-"classPonca_1_1QuadraticHeightField.html#a854f10adda141979e8569913727a0412",
-"example_python_ssc_page.html#pyssgl_python_sec",
-"structPonca_1_1WeingartenCurvatureEstimator.html#a2d9726557fb3dd0430a843277a87d4e0"
+"classPonca_1_1QuadraticHeightField.html#a768ecf29239d53ac4fe03f4a7eebc1c1",
+"example_python_ssc_page.html#pyssgl_cuda_weight_sec",
+"structPonca_1_1WeingartenCurvatureEstimator.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

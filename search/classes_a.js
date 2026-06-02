@@ -9,5 +9,6 @@ var searchData=
   ['mlsspherefitder_6',['MlsSphereFitDer',['../classPonca_1_1MlsSphereFitDer.html',1,'Ponca']]],
   ['mongepatch_7',['MongePatch',['../classPonca_1_1MongePatch.html',1,'Ponca']]],
   ['mongepatchquadraticfitimpl_8',['MongePatchQuadraticFitImpl',['../classPonca_1_1MongePatchQuadraticFitImpl.html',1,'Ponca']]],
-  ['mongepatchrestrictedquadraticfitimpl_9',['MongePatchRestrictedQuadraticFitImpl',['../classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html',1,'Ponca']]]
+  ['mongepatchrestrictedquadraticfitimpl_9',['MongePatchRestrictedQuadraticFitImpl',['../classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html',1,'Ponca']]],
+  ['multipassstatus_10',['MultipassStatus',['../classPonca_1_1MultipassStatus.html',1,'Ponca']]]
 ];

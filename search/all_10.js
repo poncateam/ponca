@@ -18,5 +18,5 @@ var searchData=
   ['queryoutputisnearest_15',['queryoutputisnearest',['../group__spatialpartitioning.html#a90c27675efb1cf5e3d3350805bae7d36',1,'Ponca::QueryOutputIsNearest::QueryOutputIsNearest()'],['../group__spatialpartitioning.html#structPonca_1_1QueryOutputIsNearest',1,'Ponca::QueryOutputIsNearest&lt; Index, Scalar &gt;']]],
   ['queryoutputisrange_16',['queryoutputisrange',['../group__spatialpartitioning.html#a38f2eff46a5a58623d4208aa5a7d3d2c',1,'Ponca::QueryOutputIsRange::QueryOutputIsRange()'],['../group__spatialpartitioning.html#structPonca_1_1QueryOutputIsRange',1,'Ponca::QueryOutputIsRange&lt; Index, Scalar &gt;']]],
   ['queryouttype_17',['QueryOutType',['../group__spatialpartitioning.html#a96da2b09ce5746acad33e35c46c5d035',1,'Ponca::Query']]],
-  ['queue_18',['queue',['../group__spatialpartitioning.html#ae5af90d3ef429ec3b77ba2ebbd39078a',1,'Ponca::QueryOutputIsKNearest::queue()'],['../group__spatialpartitioning.html#a4e8e59f71edf835cd2c8abba02a5c8f1',1,'Ponca::QueryOutputIsKNearest::Queue']]]
+  ['queue_18',['queue',['../group__spatialpartitioning.html#a4e8e59f71edf835cd2c8abba02a5c8f1',1,'Ponca::QueryOutputIsKNearest::Queue'],['../group__spatialpartitioning.html#ae5af90d3ef429ec3b77ba2ebbd39078a',1,'Ponca::QueryOutputIsKNearest::queue()']]]
 ];

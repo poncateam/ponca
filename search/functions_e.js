@@ -1,7 +1,7 @@
 var searchData=
 [
   ['planarity_0',['planarity',['../classPonca_1_1CovarianceBase.html#a96f37f57c813fbd5e62baefc05fee684',1,'Ponca::CovarianceBase']]],
-  ['plane_1',['plane',['../classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb',1,'Ponca::Plane::plane()'],['../classPonca_1_1Plane.html#ac9952a7f449d76c77af194abdb66a561',1,'Ponca::Plane::plane() const'],['../classPonca_1_1Plane.html#ace6fa57a6da9aaa810e47e7aec6492b8',1,'Ponca::Plane::Plane()']]],
+  ['plane_1',['plane',['../classPonca_1_1Plane.html#ace6fa57a6da9aaa810e47e7aec6492b8',1,'Ponca::Plane::Plane()'],['../classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb',1,'Ponca::Plane::plane()'],['../classPonca_1_1Plane.html#ac9952a7f449d76c77af194abdb66a561',1,'Ponca::Plane::plane() const']]],
   ['pointcount_2',['pointcount',['../classPonca_1_1StaticKdTreeBase.html#a285759b99c7bf98304cdcd6543dff246',1,'Ponca::StaticKdTreeBase::pointCount()'],['../classPonca_1_1AbstractNeighborGraph.html#a0bbd42ba4ef431fa8219a9ce88dba131',1,'Ponca::AbstractNeighborGraph::pointCount()']]],
   ['pointdatafromsample_3',['pointdatafromsample',['../classPonca_1_1StaticKdTreeBase.html#ae2c7ac6a86a71e1c7d04aa4cf677f8ce',1,'Ponca::StaticKdTreeBase::pointDataFromSample(IndexType sample_index)'],['../classPonca_1_1StaticKdTreeBase.html#ae34eddd037b7cf70e598b806507ba426',1,'Ponca::StaticKdTreeBase::pointDataFromSample(IndexType sample_index) const']]],
   ['pointfromsample_4',['pointFromSample',['../classPonca_1_1StaticKdTreeBase.html#a31b237d432172e4f283429fc90aa9820',1,'Ponca::StaticKdTreeBase']]],

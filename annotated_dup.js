@@ -77,6 +77,7 @@ var annotated_dup =
       [ "MongePatch", "classPonca_1_1MongePatch.html", "classPonca_1_1MongePatch" ],
       [ "MongePatchQuadraticFitImpl", "classPonca_1_1MongePatchQuadraticFitImpl.html", "classPonca_1_1MongePatchQuadraticFitImpl" ],
       [ "MongePatchRestrictedQuadraticFitImpl", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html", "classPonca_1_1MongePatchRestrictedQuadraticFitImpl" ],
+      [ "MultipassStatus", "classPonca_1_1MultipassStatus.html", null ],
       [ "NeighborGraphBase", "classPonca_1_1NeighborGraphBase.html", "classPonca_1_1NeighborGraphBase" ],
       [ "NeighborGraphBuffer", "structPonca_1_1NeighborGraphBuffer.html", "structPonca_1_1NeighborGraphBuffer" ],
       [ "NeighborGraphBufferBase", "structPonca_1_1NeighborGraphBufferBase.html", "structPonca_1_1NeighborGraphBufferBase" ],
