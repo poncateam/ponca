@@ -366,6 +366,22 @@ ponca/Ponca/src/Fitting/Basket/basket.h:53:19: note: constraints not satisfied
 
   \section fitting_advanced Advanced usage
 
+  \subsection fitting_factory Iterating over common Baskets
+
+  In many cases, one may want to compare multiple Baskets or extensions. The classical solution is to write a function that accepts a template type (which would be your Basket) and then call the function manually for each type. For this reason, Ponca provides a Factory that abstracts away the iteration over compute objects for the most common types.
+
+  \snippet ponca_factory.cpp FactoryBasicForeach
+
+  The Factory module also provides the ability to filter by concept. Most Ponca fitting concepts have a corresponding filter. For a concept named "ProvidesXXX", Ponca creates two filters: "XXXProvider" and "NotXXXProvider", which can be used for filtering.
+
+  \snippet ponca_factory.cpp FactoryFilterPersistent
+
+  Classical literature methods can also be obtained through the Factory. For a complete list, see the `Ponca::Method` enumeration.
+
+  \snippet ponca_factory.cpp FactoryClassicalMethods
+
+  \warning Factories may contain different compute objects depending on the given point, filter, or derivative types. For example, Monge Patch fitting is currently only available in 3D; therefore, the Factory will include the corresponding classes only when provided with 3D points.
+
   \subsection fitting_multiprimitive Fitting with multiple primitives
   In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by Ponca for fitting, e.g. CovariancePlaneFitImpl, OrientedSphereFitImpl.
   However, Ponca also allows to combine multiple primitives, for instance to share intermediate computation results.
