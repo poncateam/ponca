@@ -92,9 +92,12 @@ namespace Ponca
     >;
 
     template<typename P, typename NF, int DerType>
-    using Factory3DList = std::tuple<
-        FactoryEntry<"MongePatchQuadratic"          , Basket<P, NF, MongePatchQuadraticFit>>, 
-        FactoryEntry<"MongePatchRestrictedQuadratic", Basket<P, NF, MongePatchRestrictedQuadraticFit>>
+    using Factory3DList = internal::Factory::tuple_cat_t<
+        FactoryGenericList<P, NF, DerType>, 
+        std::tuple<
+            FactoryEntry<"MongePatchQuadratic"          , Basket<P, NF, MongePatchQuadraticFit>>, 
+            FactoryEntry<"MongePatchRestrictedQuadratic", Basket<P, NF, MongePatchRestrictedQuadraticFit>>
+        >
     >;
     // clang-format on
 } // namespace Ponca
