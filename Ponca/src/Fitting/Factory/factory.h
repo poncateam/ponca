@@ -172,9 +172,7 @@ namespace Ponca
      */
     template <typename P, typename NF, int DerType>
         requires Is3D<P>
-    struct Factory<P, NF, DerType>
-        : public internal::FactoryBase<
-              internal::Factory::tuple_cat_t<FactoryGenericList<P, NF, DerType>, Factory3DList<P, NF, DerType>>>
+    struct Factory<P, NF, DerType> : public internal::FactoryBase<Factory3DList<P, NF, DerType>>
     {
     };
 } // namespace Ponca
