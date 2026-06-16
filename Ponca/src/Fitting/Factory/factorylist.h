@@ -14,13 +14,19 @@ namespace Ponca
 // List of concept that can be filtered by the factory
 // We can not template on concept. Here, we trick this
 // by creating a class that extract the boolean from the
-// given concept
-#define DECLARE_FACTORY_CONCEPT_FULL(_conceptname, _newname)             \
-    template <typename T>                                                \
-    struct _newname : std::bool_constant<_conceptname<typename T::type>> \
-    {                                                                    \
+// given concept. We also create a not counterpart
+#define DECLARE_FACTORY_CONCEPT_FULL(_conceptname, _newname, _notnewname)    \
+    template <typename T>                                                    \
+    struct _newname : std::bool_constant<_conceptname<typename T::type>>     \
+    {                                                                        \
+    };                                                                       \
+    template <typename T>                                                    \
+    struct _notnewname : std::bool_constant<!_conceptname<typename T::type>> \
+    {                                                                        \
     };
-#define DECLARE_FACTORY_CONCEPT(_name) DECLARE_FACTORY_CONCEPT_FULL(Provides##_name, _name##Provider)
+
+#define DECLARE_FACTORY_CONCEPT(_name) \
+    DECLARE_FACTORY_CONCEPT_FULL(Provides##_name, _name##Provider, Not##_name##Provider)
 
     /**
      * \brief Class to check for if an entry has a corresponding Id
@@ -49,6 +55,7 @@ namespace Ponca
         };
     };
 
+    DECLARE_FACTORY_CONCEPT(Derivatives)
     DECLARE_FACTORY_CONCEPT(ProjectionOperator)
     DECLARE_FACTORY_CONCEPT(ImplicitPrimitive)
     DECLARE_FACTORY_CONCEPT(AlgebraicSphere)
