@@ -53,3 +53,5 @@
 #include "src/Fitting/Basket/extensions/weingarten.h"
 #include "src/Fitting/Basket/extensions/gls.h"
 
+// Factory
+#include "src/Fitting/Factory/factory.h"

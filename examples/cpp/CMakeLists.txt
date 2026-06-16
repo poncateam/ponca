@@ -44,5 +44,13 @@ add_executable(ponca_customize_kdtree ${ponca_customize_kdtree_SRCS})
 add_dependencies(ponca-examples ponca_customize_kdtree)
 target_link_libraries(ponca_customize_kdtree PUBLIC Ponca::Instantiate Eigen3::Eigen)
 
+set(ponca_factory_SRCS
+        ponca_factory.cpp
+)
+add_executable(ponca_factory ${ponca_factory_SRCS})
+add_dependencies(ponca-examples ponca_factory)
+target_link_libraries(ponca_factory PUBLIC Ponca::Instantiate Eigen3::Eigen)
+
+
 add_subdirectory(pcl)
 add_subdirectory(nanoflann)
