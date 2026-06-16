@@ -18,9 +18,10 @@ int main(int argc, char** argv)
 
     F::foreach ([](const auto& x) { std::cout << x.name << std::endl; });
 
-    auto spheres = F::Filter<AlgebraicSphereProvider>();
-    spheres.foreach ([](const auto& x) { std::cout << x.object.isPlane() << std::endl; });
+    std::cout << "---" << std::endl;
+    auto spheres = F::Filter<NotDerivativesProvider>();
+    spheres.foreach ([](const auto& x) { std::cout << x.name << std::endl; });
 
-    auto m = spheres.GetMethod<Method::APSS>();
-    std::cout << m.name << std::endl;
+    // auto m = spheres.GetMethod<Method::APSS>();
+    // std::cout << m.name << std::endl;
 }
