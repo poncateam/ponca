@@ -156,7 +156,7 @@ namespace Ponca
      * \tparam NF NeighborFilter
      * \tparam DerType Derivative Type
      */
-    template <typename P, typename NF, int DerType>
+    template <typename P, typename NF, DiffType DerType>
     struct Factory : public internal::FactoryBase<FactoryGenericList<P, NF, DerType>>
     {
     };
@@ -170,9 +170,24 @@ namespace Ponca
      * \tparam NF NeighborFilter
      * \tparam DerType Derivative Type
      */
-    template <typename P, typename NF, int DerType>
+    template <typename P, typename NF, DiffType DerType>
         requires Is3D<P>
     struct Factory<P, NF, DerType> : public internal::FactoryBase<Factory3DList<P, NF, DerType>>
+    {
+    };
+
+    /**
+     * \brief Default factory templated on Point, Filter and Derivative
+     *
+     * This version is specialized for 3D points
+     *
+     * \tparam P Point
+     * \tparam NF NeighborFilter
+     * \tparam DerType Derivative Type
+     */
+    template <typename P, typename NF, DiffType DerType>
+        requires ProvidesSpaceDerivatives<P>
+    struct Factory<P, NF, DerType> : public internal::FactoryBase<FactorySpaceDerivatives<P, NF, DerType>>
     {
     };
 } // namespace Ponca

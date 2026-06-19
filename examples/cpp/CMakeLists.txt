@@ -49,7 +49,7 @@ set(ponca_factory_SRCS
 )
 add_executable(ponca_factory ${ponca_factory_SRCS})
 add_dependencies(ponca-examples ponca_factory)
-target_link_libraries(ponca_factory PUBLIC Ponca::Instantiate Eigen3::Eigen)
+target_link_libraries(ponca_factory PUBLIC Ponca::Fitting Eigen3::Eigen)
 
 
 add_subdirectory(pcl)
