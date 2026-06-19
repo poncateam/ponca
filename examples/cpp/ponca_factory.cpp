@@ -11,7 +11,7 @@ using Point      = PointPositionNormal<double, 3>;
 using Scalar     = typename Point::Scalar;
 using VectorType = typename Point::VectorType;
 using NF         = DistWeightFilter<Point, SmoothWeightKernel<Scalar>>;
-using MyFactory  = Factory<Point, NF, 0>;
+using MyFactory  = Factory<Point, NF, Ponca::FitSpaceDer>;
 
 int main(int argc, char** argv)
 {
