@@ -79,24 +79,41 @@ namespace Ponca
     {
         UNNAMED = 0, // 0 is considered as an unnamed, and is the default
         APSS,
+        ASO,
     };
 
     // We disable format here in order to better align lists items
     // clang-format off
     template<typename P, typename NF, int DerType>
     using FactoryGenericList = std::tuple<
-        FactoryEntry<"CovariancePlaneFit", Basket<P, NF, CovariancePlaneFit>>, 
+        FactoryEntry<"DryFit"            , Basket<P, NF, DryFit>>,
+        FactoryEntry<"MeanPosition"      , Basket<P, NF, MeanPosition>>,
+        FactoryEntry<"MeanNormal"        , Basket<P, NF, MeanPosition>>,
+        FactoryEntry<"CovarianceLineFit" , Basket<P, NF, CovarianceLineFit>>,
+        FactoryEntry<"CovariancePlaneFit", Basket<P, NF, CovariancePlaneFit>>,
         FactoryEntry<"SphereFit"         , Basket<P, NF, SphereFit>>, 
-        FactoryEntry<"MeanPlaneFit"      , Basket<P, NF, MeanPlaneFit>>, 
-        FactoryEntry<"APSS"              , Basket<P, NF, OrientedSphereFit, GLSParam>, (unsigned int)Method::APSS>
+        FactoryEntry<"MeanPlaneFit"      , Basket<P, NF, MeanPlaneFit>>,
+        FactoryEntry<"APSS"              , Basket<P, NF, OrientedSphereFit, GLSParam>, (unsigned int)Method::APSS>,
+        FactoryEntry<"Unoriented APSS"   , Basket<P, NF, UnorientedSphereFit, GLSParam>>
     >;
 
     template<typename P, typename NF, int DerType>
     using Factory3DList = internal::Factory::tuple_cat_t<
-        FactoryGenericList<P, NF, DerType>, 
+        FactoryGenericList<P, NF, DerType>,
         std::tuple<
-            FactoryEntry<"MongePatchQuadratic"          , Basket<P, NF, MongePatchQuadraticFit>>, 
+            FactoryEntry<"MongePatchQuadratic"          , Basket<P, NF, MongePatchQuadraticFit>>,
             FactoryEntry<"MongePatchRestrictedQuadratic", Basket<P, NF, MongePatchRestrictedQuadraticFit>>
+        >
+    >;
+
+    template<typename P, typename NF, int DerType>
+    using FactorySpaceDerivatives = internal::Factory::tuple_cat_t<
+        FactoryGenericList<P, NF, DerType>,
+        std::tuple<
+            FactoryEntry<"ASO"               , BasketDiff<Basket<P, NF, OrientedSphereFit, GLSParam>,DerType,
+                                                OrientedSphereDer, MlsSphereFitDer,
+                                                NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>,
+                                              (unsigned int)Method::ASO>
         >
     >;
     // clang-format on
