@@ -8,6 +8,7 @@
 #pragma once
 
 #include "../defines.h"
+#include "concepts.h"
 #include "./iteratorUtils.h"
 #include <utility>
 
@@ -53,9 +54,9 @@ namespace Ponca
      */
     template <int N, typename T = int, template <int, typename> typename _HashFunctor = HashDefaultFunctor,
               T OFFSET = T(1)>
+        requires ValidCapacity<N>
     class HashSet
     {
-        static_assert(N > 0, "The capacity must be strictly positive");
         using HashFunctor    = _HashFunctor<N, T>;
         using container_type = std::array<T, N>;
         using iterator       = typename container_type::iterator;

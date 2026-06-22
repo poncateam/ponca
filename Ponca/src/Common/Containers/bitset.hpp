@@ -11,12 +11,14 @@ namespace Ponca
     ////////////////////////////// Iterator Methods ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     template <int N, typename T>
+        requires ValidCapacity<N>
     typename BitSet<N, T>::iterator BitSet<N, T>::begin()
     {
         return m_data.begin();
     }
 
     template <int N, typename T>
+        requires ValidCapacity<N>
     typename BitSet<N, T>::iterator BitSet<N, T>::end()
     {
         return m_data.begin() + N;
@@ -25,12 +27,14 @@ namespace Ponca
     ////////////////////////////// Set like methods ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     template <int N, typename T>
+        requires ValidCapacity<N>
     void BitSet<N, T>::clear()
     {
         Ponca::internal::fill(m_data.begin(), m_data.begin() + ARRAY_SIZE, T(0));
     }
 
     template <int N, typename T>
+        requires ValidCapacity<N>
     bool BitSet<N, T>::erase(const int value)
     {
         PONCA_ASSERT_MSG(value >= 0 && value < N,
@@ -44,6 +48,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
+        requires ValidCapacity<N>
     std::pair<typename BitSet<N, T>::iterator, bool> BitSet<N, T>::insert(const int& value)
     {
         PONCA_ASSERT_MSG(value >= 0 && value < N, "Inserted value is outside the scope of the BitSet");
@@ -56,6 +61,7 @@ namespace Ponca
     }
 
     template <int N, typename T>
+        requires ValidCapacity<N>
     bool BitSet<N, T>::contains(const int value) const
     {
         PONCA_ASSERT_MSG(value >= 0 && value < N, "Searched value is outside the scope of the BitSet");
@@ -68,6 +74,7 @@ namespace Ponca
     //////////////////////////// BitSet like methods ///////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     template <int N, typename T>
+        requires ValidCapacity<N>
     void BitSet<N, T>::flip(const int i)
     {
         PONCA_ASSERT_MSG(i >= 0 && i < N, "Flipped value is outside the scope of the BitSet");

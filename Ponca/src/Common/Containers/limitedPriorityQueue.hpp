@@ -11,36 +11,42 @@ namespace Ponca
     // Iterator --------------------------------------------------------------------
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     typename LimitedPriorityQueue<T, N, Cmp>::iterator LimitedPriorityQueue<T, N, Cmp>::begin()
     {
         return m_data.begin();
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::begin() const
     {
         return m_data.begin();
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::cbegin() const
     {
         return m_data.cbegin();
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     typename LimitedPriorityQueue<T, N, Cmp>::iterator LimitedPriorityQueue<T, N, Cmp>::end()
     {
         return m_data.begin() + m_size;
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::end() const
     {
         return m_data.begin() + m_size;
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     typename LimitedPriorityQueue<T, N, Cmp>::const_iterator LimitedPriorityQueue<T, N, Cmp>::cend() const
     {
         return m_data.cbegin() + m_size;
@@ -49,24 +55,28 @@ namespace Ponca
     // Element access --------------------------------------------------------------
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     const T& LimitedPriorityQueue<T, N, Cmp>::top() const
     {
         return m_data[0];
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     const T& LimitedPriorityQueue<T, N, Cmp>::bottom() const
     {
         return m_data[m_size - 1];
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     T& LimitedPriorityQueue<T, N, Cmp>::top()
     {
         return m_data[0];
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     T& LimitedPriorityQueue<T, N, Cmp>::bottom()
     {
         return m_data[m_size - 1];
@@ -75,24 +85,28 @@ namespace Ponca
     // Capacity --------------------------------------------------------------------
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     bool LimitedPriorityQueue<T, N, Cmp>::empty() const
     {
         return m_size == 0;
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     bool LimitedPriorityQueue<T, N, Cmp>::full() const
     {
         return m_size == capacity();
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     size_t LimitedPriorityQueue<T, N, Cmp>::size() const
     {
         return m_size;
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     size_t LimitedPriorityQueue<T, N, Cmp>::capacity() const
     {
         return m_capacity;
@@ -100,6 +114,7 @@ namespace Ponca
 
     // Modifiers -------------------------------------------------------------------
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     bool LimitedPriorityQueue<T, N, Cmp>::pushImpl(const T& _value, T** _addr)
     {
         if (empty())
@@ -138,6 +153,7 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     bool LimitedPriorityQueue<T, N, Cmp>::push(T&& _value)
     {
         T* addr;
@@ -150,6 +166,7 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     bool LimitedPriorityQueue<T, N, Cmp>::push(const T& _value)
     {
         T* addr;
@@ -162,12 +179,14 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     void LimitedPriorityQueue<T, N, Cmp>::pop()
     {
         --m_size;
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     void LimitedPriorityQueue<T, N, Cmp>::reserve(const int _capacity)
     {
         PONCA_ASSERT(_capacity >= 0);
@@ -178,6 +197,7 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     void LimitedPriorityQueue<T, N, Cmp>::clear()
     {
         m_size = 0;
@@ -186,6 +206,7 @@ namespace Ponca
     // Data ------------------------------------------------------------------------
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     const typename LimitedPriorityQueue<T, N, Cmp>::container_type& LimitedPriorityQueue<T, N, Cmp>::container() const
     {
         return m_data;
