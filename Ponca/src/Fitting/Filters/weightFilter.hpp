@@ -21,8 +21,8 @@ typename DistWeightFilter<DataPoint, WeightKernel>::WeightReturnType DistWeightF
 template <class DataPoint, class WeightKernel>
 typename DistWeightFilter<DataPoint, WeightKernel>::VectorType DistWeightFilter<DataPoint, WeightKernel>::spacedw(
     const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesFirstOrderDerivative<WeightKernel>
 {
-    static_assert(WeightKernel::isDValid, "First order derivatives are required");
     VectorType result = VectorType::Zero();
     const auto q      = NeighborhoodFrame::convertToLocalBasis(_q);
     Scalar d          = q.norm();
@@ -35,8 +35,8 @@ typename DistWeightFilter<DataPoint, WeightKernel>::VectorType DistWeightFilter<
 template <class DataPoint, class WeightKernel>
 typename DistWeightFilter<DataPoint, WeightKernel>::MatrixType DistWeightFilter<DataPoint, WeightKernel>::spaced2w(
     const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
 {
-    static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     MatrixType result = MatrixType::Zero();
     const auto q      = NeighborhoodFrame::convertToLocalBasis(_q);
     Scalar d          = q.norm();
@@ -53,8 +53,8 @@ typename DistWeightFilter<DataPoint, WeightKernel>::MatrixType DistWeightFilter<
 template <class DataPoint, class WeightKernel>
 typename DistWeightFilter<DataPoint, WeightKernel>::Scalar DistWeightFilter<DataPoint, WeightKernel>::scaledw(
     const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesFirstOrderDerivative<WeightKernel>
 {
-    static_assert(WeightKernel::isDValid, "First order derivatives are required");
     Scalar d = NeighborhoodFrame::convertToLocalBasis(_q).norm();
     return ((!isCompact) || (d <= m_t)) ? Scalar(-d * m_wk.df(d / m_t) / (m_t * m_t)) : Scalar(0.);
 }
@@ -62,8 +62,8 @@ typename DistWeightFilter<DataPoint, WeightKernel>::Scalar DistWeightFilter<Data
 template <class DataPoint, class WeightKernel>
 typename DistWeightFilter<DataPoint, WeightKernel>::Scalar DistWeightFilter<DataPoint, WeightKernel>::scaled2w(
     const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
 {
-    static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     Scalar d = NeighborhoodFrame::convertToLocalBasis(_q).norm();
     return ((!isCompact) || (d <= m_t)) ? Scalar(Scalar(2.) * d / (m_t * m_t * m_t) * m_wk.df(d / m_t) +
                                                  d * d / (m_t * m_t * m_t * m_t) * m_wk.ddf(d / m_t))
@@ -73,8 +73,8 @@ typename DistWeightFilter<DataPoint, WeightKernel>::Scalar DistWeightFilter<Data
 template <class DataPoint, class WeightKernel>
 typename DistWeightFilter<DataPoint, WeightKernel>::VectorType DistWeightFilter<DataPoint, WeightKernel>::scaleSpaced2w(
     const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
 {
-    static_assert(WeightKernel::isDDValid, "Second order derivatives are required");
     VectorType result = VectorType::Zero();
     const auto q      = NeighborhoodFrame::convertToLocalBasis(_q);
     Scalar d          = q.norm();

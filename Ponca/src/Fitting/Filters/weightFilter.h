@@ -98,7 +98,8 @@ namespace Ponca
             \warning Requires \f$\nabla w(x)\f$ to be valid
         */
         PONCA_MULTIARCH [[nodiscard]] inline VectorType spacedw(const VectorType& _q,
-                                                                const DataPoint& /*attributes*/) const;
+                                                                const DataPoint& /*attributes*/) const
+            requires KernelProvidesFirstOrderDerivative<WeightKernel>;
 
         /*!
             \brief Second order derivative in space (for each spatial dimension \f$\mathsf{x})\f$
@@ -122,7 +123,8 @@ namespace Ponca
             \warning Requires \f$\nabla^2 w(x)\f$ to be valid
         */
         PONCA_MULTIARCH [[nodiscard]] inline MatrixType spaced2w(const VectorType& _q,
-                                                                 const DataPoint& /*attributes*/) const;
+                                                                 const DataPoint& /*attributes*/) const
+            requires KernelProvidesSecondOrderDerivative<WeightKernel>;
 
         /*!
             \brief First order derivative in scale  \f$t\f$
@@ -138,8 +140,8 @@ namespace Ponca
 
             \warning Requires \f$\nabla w(x)\f$ to be valid
         */
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar scaledw(const VectorType& _q,
-                                                            const DataPoint& /*attributes*/) const;
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar scaledw(const VectorType& _q, const DataPoint& /*attributes*/) const
+            requires KernelProvidesFirstOrderDerivative<WeightKernel>;
 
         /*!
             \brief Second order derivative in scale  \f$t\f$
@@ -160,8 +162,8 @@ namespace Ponca
             \warning Requires \f$\nabla^2 w(x)\f$ to be valid
         */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar scaled2w(const VectorType& _q,
-                                                             const DataPoint& /*attributes*/) const;
-
+                                                             const DataPoint& /*attributes*/) const
+            requires KernelProvidesSecondOrderDerivative<WeightKernel>;
         /*!
             \brief Cross derivative in scale \f$t\f$ and in space (for each spatial dimension \f$\mathsf{x})\f$
 
@@ -182,7 +184,8 @@ namespace Ponca
             \warning Requires \f$\nabla^2 w(x)\f$ to be valid
         */
         PONCA_MULTIARCH [[nodiscard]] inline VectorType scaleSpaced2w(const VectorType& _q,
-                                                                      const DataPoint& /*attributes*/) const;
+                                                                      const DataPoint& /*attributes*/) const
+            requires KernelProvidesSecondOrderDerivative<WeightKernel>;
 
         /*! \brief Access to the evaluation scale set during the initialization */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar evalScale() const { return m_t; }
