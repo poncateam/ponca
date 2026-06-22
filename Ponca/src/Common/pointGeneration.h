@@ -37,14 +37,14 @@ namespace Ponca
         {
             vPosition = vPosition + VectorType::Random().normalized() *
                                         Eigen::internal::random<Scalar>(Scalar(0.), Scalar(1. - MIN_NOISE));
-            vNormal   = (vPosition - _vCenter).normalized();
+            vNormal = (vPosition - _vCenter).normalized();
         }
 
         if (_bAddNormalNoise)
         {
             VectorType vTempPos = vPosition + VectorType::Random().normalized() *
                                                   Eigen::internal::random<Scalar>(Scalar(0.), Scalar(1. - MIN_NOISE));
-            vNormal             = (vTempPos - _vCenter).normalized();
+            vNormal = (vTempPos - _vCenter).normalized();
         }
         if (_bReverseNormals)
         {
