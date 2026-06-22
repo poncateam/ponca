@@ -11,7 +11,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #include "../primitive/algebraicSphere.h" // used to define OrientedSphereFit
 #include "../tools/mean.h"                // used to define OrientedSphereFit
 
-#define ORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>
+#define ORIENTED_SPHERE_FIT_REQUIREMENTS \
+    ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>&& ProvidesMeanNormal<T>&& ProvidesNormal<DataPoint>
 #define ORIENTED_SPHERE_DER_REQUIREMENTS \
     ProvidesBasketDiffUnitBase<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
 

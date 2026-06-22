@@ -10,10 +10,13 @@ All rights reserved.
 #pragma once
 
 #include "../defines.h"
+#include "../concepts"
 #include "cncFormulaEigen.h"
 
 #include "../Filters/weightFilter.h"
 #include "../Filters/weightKernel.h"
+
+#define CNC_REQUIREMENTS ProvidesNormal<P>
 
 namespace Ponca
 {
@@ -104,6 +107,7 @@ namespace Ponca
      * \see ProvidesPrincipalCurvatures
      */
     template <class P, TriangleGenerationMethod _method = UniformGeneration>
+        requires CNC_REQUIREMENTS
     class CNC : ComputeObject<CNC<P, _method>>
     {
     public:

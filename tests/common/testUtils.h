@@ -42,7 +42,7 @@ inline long double testEpsilon<long double>()
     return 1e-5;
 }
 
-template <Ponca::IsPointNormal DataPoint>
+template <Ponca::ProvidesNormal DataPoint>
 void reverseNormals(std::vector<DataPoint>& _dest, const std::vector<DataPoint>& _src, bool _bRandom = true)
 {
     using VectorType = typename DataPoint::VectorType;
