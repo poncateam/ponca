@@ -57,7 +57,5 @@ namespace Ponca
     };
 
     template <typename T>
-    concept ProvidesSpaceDerivatives = ProvidesCommonTypes<T> && requires(const T ct) {
-        { ct.isSpaceDer() } -> std::integral_constant<bool, true>;
-    };
+    concept ProvidesSpaceDerivatives = T::isSpaceDer() && ProvidesCommonTypes<T>;
 } // namespace Ponca
