@@ -44,7 +44,7 @@ namespace Ponca
      * Any instance of this class stores an instance of the associated
      * type.
      */
-    template <internal::Factory::StringLiteral _Name, class Type, unsigned int _Id = 0>
+    template <internal::Factory::StringLiteral _Name, class Type, unsigned int _MethodId = 0>
     struct FactoryEntry
     {
         using type = Type;
@@ -53,9 +53,17 @@ namespace Ponca
         static constexpr internal::Factory::StringLiteral _name = _Name;
 
     public:
-        static constexpr unsigned int Id  = _Id;
+        static constexpr size_t MethodId  = _MethodId;
         static constexpr const char* name = _name.value;
 
+        FactoryEntry(size_t i) : idx(i) {}
+
+        // This index (which is the index within the list) is not part of the type
+        // because this would make the code horrendous. The factory specification
+        // would need to wait for the list to be complete and hence store "to be templated classes".
+        // Filling this index can be done in 3 lines and will work flawlessly without
+        // any runtime cost (most of it will be at compile time) and the cost of an int in memory...
+        const size_t idx;
         Type object;
     };
 
