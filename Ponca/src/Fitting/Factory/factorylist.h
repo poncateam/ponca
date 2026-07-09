@@ -41,7 +41,7 @@ namespace Ponca
     struct MethodProvider
     {
         template <typename T>
-        static constexpr bool value = (Id == T::Id);
+        static constexpr bool value = (Id == T::MethodId);
 
         /**
          * \brief A type that behaves as value
@@ -50,7 +50,7 @@ namespace Ponca
          * templated types on the type.
          */
         template <typename T>
-        struct pred : std::bool_constant<(Id == T::Id)>
+        struct pred : std::bool_constant<(Id == T::MethodId)>
         {
         };
     };
