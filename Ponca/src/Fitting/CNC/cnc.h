@@ -152,6 +152,24 @@ namespace Ponca
         FIT_RESULT m_eCurrentState{UNDEFINED};
 
     public:
+        PONCA_MULTIARCH inline CNC<P, _method>& meanCurvature()
+        {
+            return *static_cast<CNC<P, _method>*>(this);
+        }
+        /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */
+        PONCA_MULTIARCH inline const CNC<P, _method>& meanCurvature() const
+        {
+            return *static_cast<const CNC<P, _method>*>(this);
+        }
+        PONCA_MULTIARCH inline CNC<P, _method>& curvatureTensor()
+        {
+            return *static_cast<CNC<P, _method>*>(this);
+        }
+        /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */
+        PONCA_MULTIARCH inline const CNC<P, _method>& curvatureTensor() const
+        {
+            return *static_cast<const CNC<P, _method>*>(this);
+        }
         PONCA_FITTING_DECLARE_FINALIZE
 
         //! \brief Set the scalar field values to 0 and reset the isNormalized() status
@@ -177,7 +195,7 @@ namespace Ponca
         PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end);
 
         /*!
-         * \brief Compute function for STL-like containers.
+         * \brief Compute function that iterates over a subset of sampled points from an STL-Like container.
          * \tparam PointContainer An STL-like container storing the points
          */
         template <typename PointContainer>
