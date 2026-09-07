@@ -102,7 +102,8 @@ namespace Ponca
         FactoryGenericList<P, NF, DerType>,
         std::tuple<
             FactoryEntry<"MongePatchQuadratic"          , Basket<P, NF, MongePatchQuadraticFit>>,
-            FactoryEntry<"MongePatchRestrictedQuadratic", Basket<P, NF, MongePatchRestrictedQuadraticFit>>
+            FactoryEntry<"MongePatchRestrictedQuadratic", Basket<P, NF, MongePatchRestrictedQuadraticFit>>,
+            FactoryEntry<"CNC"                          , CNC<P>>
         >
     >;
 
