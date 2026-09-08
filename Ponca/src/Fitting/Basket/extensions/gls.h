@@ -54,7 +54,7 @@ namespace Ponca
         Scalar m_fitness{0}; /*!< \brief Save the fitness value to avoid side effect with Pratt normalization*/
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(GLSParam, glsParam)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(GLSParam, glsParam)
         PONCA_FITTING_DECLARE_FINALIZE
 
         /**************************************************************************/
@@ -123,8 +123,8 @@ namespace Ponca
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, glsDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(GLSDer, geomVar)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(GLSDer, glsDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(GLSDer, geomVar)
 
         PONCA_MULTIARCH inline ScalarArray dtau() const;   /*!< \brief Compute and return \f$ \tau \f$ derivatives */
         PONCA_MULTIARCH inline VectorArray deta() const;   /*!< \brief Compute and return \f$ \eta \f$ derivatives */

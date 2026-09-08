@@ -59,10 +59,10 @@ namespace Ponca
         VectorType m_ul{VectorType::Zero()}; /*!< \brief Linear parameter of the Algebraic hyper-sphere */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, algebraicSphere)
-        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, implicitPrimitive)
-        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, projectionOperator)
-        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, meanCurvature)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(AlgebraicSphere, algebraicSphere)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(AlgebraicSphere, implicitPrimitive)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(AlgebraicSphere, projectionOperator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(AlgebraicSphere, meanCurvature)
 
         /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 

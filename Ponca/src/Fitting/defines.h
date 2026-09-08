@@ -18,31 +18,26 @@
  */
 #include "../Common/defines.h"
 
-#define PONCA_EXPLICIT_CAST_OPERATORS(CLASSNAME, CONVERTER)                                          \
+#define PONCA_EXPLICIT_CAST_OPERATOR(CONVERTER, ...)                                           \
     /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */ \
-    PONCA_MULTIARCH inline CLASSNAME<DataPoint, _NFilter, T>& CONVERTER()                            \
+    PONCA_MULTIARCH inline __VA_ARGS__& CONVERTER()                                                    \
     {                                                                                                \
-        return *static_cast<CLASSNAME<DataPoint, _NFilter, T>*>(this);                               \
+        return *static_cast<__VA_ARGS__*>(this);                                                       \
     }                                                                                                \
     /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */ \
-    PONCA_MULTIARCH inline const CLASSNAME<DataPoint, _NFilter, T>& CONVERTER() const                \
+    PONCA_MULTIARCH inline const __VA_ARGS__& CONVERTER() const                                        \
     {                                                                                                \
-        return *static_cast<const CLASSNAME<DataPoint, _NFilter, T>*>(this);                         \
+        return *static_cast<const __VA_ARGS__*>(this);                                                 \
     }
+
+
+#define PONCA_EXPLICIT_BASKET_CAST_OPERATORS(CLASSNAME, CONVERTER) \
+    PONCA_EXPLICIT_CAST_OPERATOR(CONVERTER, CLASSNAME<DataPoint, _NFilter, T>)
 
 // CAST OPERATORS
 
-#define PONCA_EXPLICIT_CAST_OPERATORS_DER(CLASSNAME, CONVERTER)                                      \
-    /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */ \
-    PONCA_MULTIARCH inline CLASSNAME<DataPoint, _NFilter, DiffType, T>& CONVERTER()                  \
-    {                                                                                                \
-        return *static_cast<CLASSNAME<DataPoint, _NFilter, DiffType, T>*>(this);                     \
-    }                                                                                                \
-    /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */ \
-    PONCA_MULTIARCH inline const CLASSNAME<DataPoint, _NFilter, DiffType, T>& CONVERTER() const      \
-    {                                                                                                \
-        return *static_cast<const CLASSNAME<DataPoint, _NFilter, DiffType, T>*>(this);               \
-    }
+#define PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CLASSNAME, CONVERTER) \
+    PONCA_EXPLICIT_CAST_OPERATOR(CONVERTER, CLASSNAME<DataPoint, _NFilter, DiffType, T>)
 
 // FIT DEFAULT TYPES
 
@@ -77,15 +72,15 @@ public:                                                                         
     using VectorArray = typename Base::VectorArray; /*!< \brief Alias to vector derivatives array */
 
 // FIT API DOCUMENTATION
-#define PONCA_FITTING_APIDOC_SETWFUNC                                                                                 \
+#define PONCA_FITTING_APIDOC_SETWFUNC
 /*! Init the WeightFunc, without changing the other internal states. Calls #startNewPass internally. \warning Must be \
  * called be for any computation (and before #init). \see getWeightFunc */
-#define PONCA_FITTING_APIDOC_INIT                                                                                  \
+#define PONCA_FITTING_APIDOC_INIT
 /*! Set the evaluation position and reset the internal states. \warning Must be called be for any computation (but \
  * after #setNeighborFilter) */
 #define PONCA_FITTING_APIDOC_ADDNEIGHBOR     /*! Add a neighbor to perform the fit */
 #define PONCA_FITTING_APIDOC_ADDNEIGHBOR_DER /*! Add a neighbor to perform the fit */
-#define PONCA_FITTING_APIDOC_FINALIZE \
+#define PONCA_FITTING_APIDOC_FINALIZE
 /*! Finalize the procedure \return Fitting Status \warning Must be called be for any use of the fitting output */
 
 // FIT API DECLARATION
