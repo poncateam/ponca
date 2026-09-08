@@ -152,24 +152,9 @@ namespace Ponca
         FIT_RESULT m_eCurrentState{UNDEFINED};
 
     public:
-        PONCA_MULTIARCH inline CNC<P, _method>& meanCurvature()
-        {
-            return *static_cast<CNC<P, _method>*>(this);
-        }
-        /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */
-        PONCA_MULTIARCH inline const CNC<P, _method>& meanCurvature() const
-        {
-            return *static_cast<const CNC<P, _method>*>(this);
-        }
-        PONCA_MULTIARCH inline CNC<P, _method>& curvatureTensor()
-        {
-            return *static_cast<CNC<P, _method>*>(this);
-        }
-        /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */
-        PONCA_MULTIARCH inline const CNC<P, _method>& curvatureTensor() const
-        {
-            return *static_cast<const CNC<P, _method>*>(this);
-        }
+        PONCA_EXPLICIT_CAST_OPERATOR(meanCurvature  , CNC<P, _method>)
+        PONCA_EXPLICIT_CAST_OPERATOR(curvatureTensor, CNC<P, _method>)
+        
         PONCA_FITTING_DECLARE_FINALIZE
 
         //! \brief Set the scalar field values to 0 and reset the isNormalized() status
