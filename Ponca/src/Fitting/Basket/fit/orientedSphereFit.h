@@ -41,7 +41,7 @@ namespace Ponca
             m_deno{0};        /*!< \brief Denominator of the quadratic parameter (excluding the 0.5 coefficient) */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(OrientedSphereFitImpl, orientedSphereFit)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(OrientedSphereFitImpl, orientedSphereFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
         PONCA_FITTING_IS_SIGNED(true)
     }; // class OrientedSphereFitImpl
@@ -81,9 +81,9 @@ namespace Ponca
         VectorArray m_dUl{VectorArray::Zero()}; /*!< \brief Derivatives of the hyper-sphere linear term    */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, orientedSphereDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, algebraicSphereDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(OrientedSphereDerImpl, implicitPrimitiveDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(OrientedSphereDerImpl, orientedSphereDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(OrientedSphereDerImpl, algebraicSphereDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(OrientedSphereDerImpl, implicitPrimitiveDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 

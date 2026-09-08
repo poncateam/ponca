@@ -70,7 +70,7 @@ namespace Ponca
         Solver m_solver;
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(UnorientedSphereFitImpl, unorientedSphereFit)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(UnorientedSphereFitImpl, unorientedSphereFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
         PONCA_FITTING_IS_SIGNED(false)
 
@@ -105,9 +105,9 @@ namespace Ponca
         ScalarArray m_dUq{ScalarArray::Zero()};
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, unorientedSphereDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, algebraicSphereDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(UnorientedSphereDerImpl, implicitPrimitiveDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, unorientedSphereDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, algebraicSphereDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, implicitPrimitiveDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 

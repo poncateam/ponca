@@ -32,7 +32,7 @@ namespace Ponca
         VectorType m_sumP{VectorType::Zero()}; /*!< \brief Sum of the input points vectors */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(MeanPosition, meanPosition)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MeanPosition, meanPosition)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
 
@@ -86,7 +86,7 @@ namespace Ponca
         VectorType m_sumN{VectorType::Zero()}; /*!< \brief Sum of the normal vectors */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(MeanNormal, meanNormal)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MeanNormal, meanNormal)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR
 
@@ -127,7 +127,7 @@ namespace Ponca
         VectorArray m_dSumP{VectorArray::Zero()};
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanPositionDer, meanPositionDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(MeanPositionDer, meanPositionDer)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
 
@@ -188,7 +188,7 @@ namespace Ponca
         VectorArray m_dSumN{VectorArray::Zero()};
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(MeanNormalDer, meanNormalDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(MeanNormalDer, meanNormalDer)
         PONCA_FITTING_DECLARE_INIT
         PONCA_FITTING_DECLARE_ADDNEIGHBOR_DER
 

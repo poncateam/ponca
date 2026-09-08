@@ -351,21 +351,6 @@ namespace Ponca::internal
 namespace Ponca
 {
     template <class P, TriangleGenerationMethod M>
-    template <typename PointContainer>
-    FIT_RESULT CNC<P, M>::compute(const PointContainer& points)
-    {
-        init();
-        std::vector<unsigned int> indicesSample(points.size());
-        std::iota(indicesSample.begin(), indicesSample.end(), 0);
-
-        m_eCurrentState = internal::TriangleGenerator<M, P>::generate(indicesSample, points, m_nFilter, m_triangles);
-        if (m_eCurrentState != STABLE)
-            return m_eCurrentState;
-        m_nb_vt = int(m_triangles.size());
-        return finalize();
-    }
-
-    template <class P, TriangleGenerationMethod M>
     template <typename IndexRange, typename PointContainer>
     FIT_RESULT CNC<P, M>::computeWithIds(const IndexRange& ids, const PointContainer& points)
     {

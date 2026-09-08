@@ -148,6 +148,9 @@ namespace Ponca
         FIT_RESULT m_eCurrentState{UNDEFINED};
 
     public:
+        PONCA_EXPLICIT_CAST_OPERATOR(meanCurvature  , CNC<P, _method>)
+        PONCA_EXPLICIT_CAST_OPERATOR(curvatureTensor, CNC<P, _method>)
+        
         PONCA_FITTING_DECLARE_FINALIZE
 
         //! \brief Set the scalar field values to 0 and reset the isNormalized() status
@@ -165,11 +168,13 @@ namespace Ponca
         }
 
         /*!
-         * \brief Compute function for STL-like containers.
-         * \tparam PointContainer An STL-like container storing the points
+         * \brief Convenience function for STL-like iterators
+         * Add neighbors stored in a container using STL-like iterators, and call finalize at the end.
+         * The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)
+         * \see addNeighbor()
          */
-        template <typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const PointContainer& points);
+        template <typename IteratorBegin, typename IteratorEnd>
+        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end);
 
         /*!
          * \brief Compute function that iterates over a subset of sampled points from an STL-Like container.

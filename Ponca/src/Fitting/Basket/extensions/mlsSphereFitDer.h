@@ -86,8 +86,8 @@ namespace Ponca
         MatrixArray m_d2Ul; /*!< \brief Second derivative of the hyper-sphere linear term    */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, mlsSphereFitDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(MlsSphereFitDer, implicitPrimitiveDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(MlsSphereFitDer, mlsSphereFitDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(MlsSphereFitDer, implicitPrimitiveDer)
 
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
 

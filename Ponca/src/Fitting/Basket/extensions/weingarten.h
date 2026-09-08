@@ -43,9 +43,9 @@ namespace Ponca
         static_assert(DataPoint::Dim == 3, "FundamentalFormWeingartenEstimator is only valid in 3D");
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormWeingartenEstimator, fundamentalFormWeingartenEstimator)
-        PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormWeingartenEstimator, firstFondamentalFormComponent)
-        PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormWeingartenEstimator, secondFondamentalFormComponent)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(FundamentalFormWeingartenEstimator, fundamentalFormWeingartenEstimator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(FundamentalFormWeingartenEstimator, firstFondamentalFormComponent)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(FundamentalFormWeingartenEstimator, secondFondamentalFormComponent)
 
         /// \brief Assembles and returns the first fundamental form from the base class
         ///
@@ -118,8 +118,8 @@ namespace Ponca
         MatrixType m_tangentBasis{MatrixType::Zero()};
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, normalDerivativeWeingartenEstimator)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, tangentPlaneBasis)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, normalDerivativeWeingartenEstimator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, tangentPlaneBasis)
         PONCA_FITTING_DECLARE_FINALIZE
 
         //! \brief Returns the Weingarten Map
@@ -214,8 +214,8 @@ namespace Ponca
     struct WeingartenCurvatureEstimator : public internal::WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
-        PONCA_EXPLICIT_CAST_OPERATORS(WeingartenCurvatureEstimator, meanCurvature)
-        PONCA_EXPLICIT_CAST_OPERATORS(WeingartenCurvatureEstimator, curvatureTensor)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(WeingartenCurvatureEstimator, meanCurvature)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(WeingartenCurvatureEstimator, curvatureTensor)
     };
 
     /// \copydoc internal::WeingartenCurvatureEstimatorBase
@@ -224,8 +224,8 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(WeingartenCurvatureEstimatorDer, meanCurvature)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(WeingartenCurvatureEstimatorDer, curvatureTensor)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(WeingartenCurvatureEstimatorDer, meanCurvature)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(WeingartenCurvatureEstimatorDer, curvatureTensor)
     };
 
 } // namespace Ponca

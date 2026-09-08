@@ -30,7 +30,7 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
 
-        PONCA_EXPLICIT_CAST_OPERATORS(HeightField, heightFieldBase)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(HeightField, heightFieldBase)
 
         /// \brief get access to height from local coordinate vector
         PONCA_MULTIARCH [[nodiscard]] inline const Scalar& getHFromLocalCoordinates(const VectorType& _lq) const
@@ -93,8 +93,8 @@ namespace Ponca
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline QuadraticHeightField() : Base() { init(); }
 
-        PONCA_EXPLICIT_CAST_OPERATORS(QuadraticHeightField, heightField)
-        PONCA_EXPLICIT_CAST_OPERATORS(QuadraticHeightField, quadraticHeightField)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(QuadraticHeightField, heightField)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(QuadraticHeightField, quadraticHeightField)
 
         /// \brief Set the scalar field values
         PONCA_MULTIARCH inline void setQuadric(const HeightFieldCoefficients& coeffs) { m_coeffs = coeffs; }
@@ -214,8 +214,8 @@ namespace Ponca
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline RestrictedQuadraticHeightField() : Base() { init(); }
 
-        PONCA_EXPLICIT_CAST_OPERATORS(QuadraticHeightField, heightField)
-        PONCA_EXPLICIT_CAST_OPERATORS(RestrictedQuadraticHeightField, quadraticHeightField)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(QuadraticHeightField, heightField)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(RestrictedQuadraticHeightField, quadraticHeightField)
 
         /// \brief Set the scalar field values
         PONCA_MULTIARCH inline void setQuadric(const HeightFieldCoefficients& coeffs) { m_coeffs = coeffs; }

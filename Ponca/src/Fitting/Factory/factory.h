@@ -23,7 +23,15 @@ namespace Ponca
         template <typename _FactoryEntries>
         struct ComputeObjectList
         {
-            using FactoryEntries = _FactoryEntries;
+            using FactoryEntries      = _FactoryEntries;
+            static constexpr size_t N = std::tuple_size_v<FactoryEntries>;
+
+            constexpr ComputeObjectList()
+                : m_entries([]<std::size_t... Is>(std::index_sequence<Is...>) {
+                      return FactoryEntries{std::tuple_element_t<Is, FactoryEntries>{Is}...};
+                  }(std::make_index_sequence<std::tuple_size_v<FactoryEntries>>{}))
+            {
+            }
 
             /**
              * \brief Returns a new object that is a filtered version of the current one
@@ -58,14 +66,14 @@ namespace Ponca
              *
              * \tparam id The id of the method
              */
-            // template <Method id>
-            // static decltype(auto) GetMethod()
-            // {
-            //     using MethodList = decltype(Filter<MethodProvider<(unsigned int)id>::template pred>());
-            // 
-            //     static_assert(std::tuple_size_v<typename MethodList::FactoryEntries> == 1);
-            //     return std::get<0>(typename MethodList::FactoryEntries{}).object;
-            // }
+            template <Method id>
+            static decltype(auto) GetMethod()
+            {
+                using MethodList = decltype(Filter<MethodProvider<(unsigned int)id>::template pred>());
+
+                static_assert(std::tuple_size_v<typename MethodList::FactoryEntries> == 1);
+                return std::get<0>(typename MethodList::FactoryEntries{0}).object;
+            }
 
             /**
              * \brief Applies a function to each entry of the list
@@ -91,6 +99,45 @@ namespace Ponca
             void foreach (Func&& fun)
             {
                 std::apply([&](auto&&... xs) { (fun(xs), ...); }, m_entries);
+            }
+
+            template <typename Func>
+            void ApplyAt(size_t index, Func&& fun)
+            {
+                // Instead of foreach we could add some runtime helper to get the i-th element.
+                // However, this adds utility and compile time generated function for the same
+                // results and is not deemed worthwile at the time of writting this.
+                this->foreach ([&](auto& x) {
+                    if (x.id == index)
+                        fun(x);
+                });
+            }
+
+            template <typename Func>
+            void ApplyAt(const char* name, Func&& fun)
+            {
+                // Instead of foreach we could add some runtime helper to get the i-th element.
+                // However, this adds utility and compile time generated function for the same
+                // results and is not deemed worthwile at the time of writting this.
+                this->foreach ([&](auto& x) {
+                    if (strcmp(name, x.name) == 0)
+                        fun(x);
+                });
+            }
+
+            /**
+             * \brief Return the number of object held within the object
+             */
+            constexpr static size_t size() { return N; }
+
+            /**
+             * \brief Return the names of the currently held objects
+             */
+            constexpr static decltype(auto) GetNames()
+            {
+                return []<std::size_t... Is>(std::index_sequence<Is...>) {
+                    return std::array{std::tuple_element_t<Is, FactoryEntries>::name...};
+                }(std::make_index_sequence<std::tuple_size_v<FactoryEntries>>{});
             }
 
         private:
@@ -144,8 +191,18 @@ namespace Ponca
             template <typename Func>
             static void foreach (Func&& fun)
             {
-                FullComputeObjectList{}.foreach (fun);
+                FullComputeObjectList{}.foreach (std::forward<Func>(fun));
             }
+
+            /**
+             * \brief Return the number of object held within the Factory
+             */
+            constexpr static size_t size() { return FullComputeObjectList::N; }
+
+            /**
+             * \brief Return the names of the currently held objects
+             */
+            constexpr static decltype(auto) GetNames() { return FullComputeObjectList::GetNames(); }
         };
     } // namespace internal
 
