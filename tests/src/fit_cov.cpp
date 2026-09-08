@@ -40,7 +40,7 @@ protected:
     Scalar sumW;
 
 public:
-    PONCA_EXPLICIT_CAST_OPERATORS(CovarianceFitTwoPassesBase, covarianceFitTwoPasses)
+    PONCA_EXPLICIT_BASKET_CAST_OPERATORS(CovarianceFitTwoPassesBase, covarianceFitTwoPasses)
     PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
     /*! \brief Reading access to the Solver used to analyse the covariance matrix */

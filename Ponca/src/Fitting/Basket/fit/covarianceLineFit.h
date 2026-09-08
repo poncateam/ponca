@@ -41,7 +41,7 @@ namespace Ponca
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(CovarianceLineFitImpl, covarianceLineFit)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(CovarianceLineFitImpl, covarianceLineFit)
 
         PONCA_FITTING_APIDOC_FINALIZE
         PONCA_MULTIARCH inline FIT_RESULT finalize()

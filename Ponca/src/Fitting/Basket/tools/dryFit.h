@@ -27,7 +27,7 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(DryFit, dryfit)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(DryFit, dryfit)
 
         PONCA_FITTING_APIDOC_ADDNEIGHBOR
         PONCA_MULTIARCH inline void addLocalNeighbor(Scalar w, const VectorType& localQ, const DataPoint& attributes)

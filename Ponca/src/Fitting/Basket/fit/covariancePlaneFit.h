@@ -40,8 +40,8 @@ namespace Ponca
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl, covariancePlaneFit)
-        PONCA_EXPLICIT_CAST_OPERATORS(CovariancePlaneFitImpl, tangentPlaneBasis)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(CovariancePlaneFitImpl, covariancePlaneFit)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(CovariancePlaneFitImpl, tangentPlaneBasis)
         PONCA_FITTING_DECLARE_FINALIZE
         PONCA_FITTING_IS_SIGNED(false)
 
@@ -100,8 +100,8 @@ namespace Ponca
         ScalarArray m_dDist{ScalarArray::Zero()};   /*!< \brief Derivatives of the MLS scalar field */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, covariancePlaneDer)
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovariancePlaneDerImpl, implicitPrimitiveDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovariancePlaneDerImpl, covariancePlaneDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovariancePlaneDerImpl, implicitPrimitiveDer)
 
         /*! \see Concept::FittingProcedureConcept::finalize() */
         PONCA_MULTIARCH FIT_RESULT finalize();

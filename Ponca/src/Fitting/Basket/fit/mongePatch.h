@@ -45,10 +45,10 @@ namespace Ponca
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline MongePatch() : Base() { Base::init(); }
 
-        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, mongePatchPrimitive)
-        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, implicitPrimitive)
-        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, firstFondamentalFormComponent)
-        PONCA_EXPLICIT_CAST_OPERATORS(MongePatch, secondFondamentalFormComponent)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatch, mongePatchPrimitive)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatch, implicitPrimitive)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatch, firstFondamentalFormComponent)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatch, secondFondamentalFormComponent)
 
         //! \brief Value of the scalar field at the evaluation point
         //! \see method `#isSigned` of the fit to check if the sign is reliable
@@ -146,7 +146,7 @@ namespace Ponca
         SampleMatrix m_A; /*!< \brief Quadric input samples */
         QuadraticHeightFieldCoefficients m_b{QuadraticHeightFieldCoefficients::Zero()}; /*!< \brief Observations */
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(MongePatchQuadraticFitImpl, mongePatchQuadraticFit)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatchQuadraticFitImpl, mongePatchQuadraticFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
     }; // MongePatchQuadraticFitImpl
     /*!
@@ -171,7 +171,7 @@ namespace Ponca
         SampleMatrix m_A; /*!< \brief Quadric input samples */
         QuadraticHeightFieldCoefficients m_b{QuadraticHeightFieldCoefficients::Zero()}; /*!< \brief Observations */
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(MongePatchRestrictedQuadraticFitImpl, mongePatchQuadraticFit)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatchRestrictedQuadraticFitImpl, mongePatchQuadraticFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
     }; // MongePatchRestrictedQuadraticFitImpl
 
