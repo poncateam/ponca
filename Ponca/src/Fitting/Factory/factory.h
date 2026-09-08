@@ -26,7 +26,7 @@ namespace Ponca
             using FactoryEntries      = _FactoryEntries;
             static constexpr size_t N = std::tuple_size_v<FactoryEntries>;
 
-            ComputeObjectList()
+            constexpr ComputeObjectList()
                 : m_entries([]<std::size_t... Is>(std::index_sequence<Is...>) {
                       return FactoryEntries{std::tuple_element_t<Is, FactoryEntries>{Is}...};
                   }(std::make_index_sequence<std::tuple_size_v<FactoryEntries>>{}))
@@ -99,6 +99,30 @@ namespace Ponca
             void foreach (Func&& fun)
             {
                 std::apply([&](auto&&... xs) { (fun(xs), ...); }, m_entries);
+            }
+
+            template <typename Func>
+            void ApplyAt(size_t index, Func&& fun)
+            {
+                // Instead of foreach we could add some runtime helper to get the i-th element.
+                // However, this adds utility and compile time generated function for the same
+                // results and is not deemed worthwile at the time of writting this.
+                this->foreach ([&](auto& x) {
+                    if (x.id == index)
+                        fun(x);
+                });
+            }
+
+            template <typename Func>
+            void ApplyAt(const char* name, Func&& fun)
+            {
+                // Instead of foreach we could add some runtime helper to get the i-th element.
+                // However, this adds utility and compile time generated function for the same
+                // results and is not deemed worthwile at the time of writting this.
+                this->foreach ([&](auto& x) {
+                    if (strcmp(name, x.name) == 0)
+                        fun(x);
+                });
             }
 
             /**
