@@ -41,9 +41,9 @@ namespace Ponca
         using EigenBase = Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim>;
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(Line, line)
-        PONCA_EXPLICIT_CAST_OPERATORS(Line, implicitPrimitive)
-        PONCA_EXPLICIT_CAST_OPERATORS(Line, projectionOperator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Line, line)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Line, implicitPrimitive)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Line, projectionOperator)
 
         /*!
          * \brief Set the scalar field values to 0 and reset the distance() and origin() status

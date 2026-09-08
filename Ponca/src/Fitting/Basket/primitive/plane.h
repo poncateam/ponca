@@ -47,9 +47,9 @@ namespace Ponca
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline Plane() : Base(), EigenBase() { init(); }
 
-        PONCA_EXPLICIT_CAST_OPERATORS(Plane, plane)
-        PONCA_EXPLICIT_CAST_OPERATORS(Plane, implicitPrimitive)
-        PONCA_EXPLICIT_CAST_OPERATORS(Plane, projectionOperator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Plane, plane)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Plane, implicitPrimitive)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Plane, projectionOperator)
 
         /// \brief Set the scalar field values to 0
         PONCA_MULTIARCH inline void init()
