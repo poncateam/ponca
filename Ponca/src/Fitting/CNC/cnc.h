@@ -10,7 +10,7 @@ All rights reserved.
 #pragma once
 
 #include "../defines.h"
-#include "../concepts"
+#include "../concepts.h"
 #include "cncFormulaEigen.h"
 
 #include "../Filters/weightFilter.h"
