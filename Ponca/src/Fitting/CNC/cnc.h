@@ -169,6 +169,17 @@ namespace Ponca
         }
 
         /*!
+         * \brief Compute function from iterators.
+         *
+         * While this function supports any kind of iterator, performance will suffer
+         * when using non-contiguous iterators.
+         *
+         * \tparam PointContainer An STL-like container storing the points
+         */
+        template <typename PointIt>
+        PONCA_MULTIARCH inline FIT_RESULT compute(const PointIt& begin, const PointIt& end);
+
+        /*!
          * \brief Compute function for STL-like containers.
          * \tparam PointContainer An STL-like container storing the points
          */
