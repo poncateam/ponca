@@ -9,7 +9,8 @@
 #include "../../defines.h"
 #include "../concepts.h"
 
-#define MLS_SPHERE_FIT_DER_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesImplicitPrimitiveDerivative<T>
+#define MLS_SPHERE_FIT_DER_REQUIREMENTS \
+    ProvidesAlgebraicSphere<T>&& ProvidesImplicitPrimitiveDerivative<T>&& ProvidesNormal<DataPoint>
 
 namespace Ponca
 {

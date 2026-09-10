@@ -4,6 +4,17 @@
 
 namespace Ponca
 {
+    template <typename T>
+    concept ProvidesScaleDerivative = T::isScaleDer();
+
+    template <typename T>
+    concept ProvidesSpaceDerivative = T::isSpaceDer();
+
+    template <typename K>
+    concept KernelProvidesFirstOrderDerivative = K::isDValid;
+
+    template <typename K>
+    concept KernelProvidesSecondOrderDerivative = K::isDDValid;
     /// \brief This concept if currently only used a base concept for ProvidesBasketUnitBase
     ///
     /// \fixme Find a way to make the methods getCurrentState, isStable and isReady accessible outside of the Basket.

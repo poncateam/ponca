@@ -23,6 +23,7 @@ void MeanPosition<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const Vect
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires MEAN_NORMAL_REQUIREMENTS
 void MeanNormal<DataPoint, _NFilter, T>::init()
 {
     Base::init();
@@ -30,6 +31,7 @@ void MeanNormal<DataPoint, _NFilter, T>::init()
 }
 
 template <class DataPoint, class _NFilter, typename T>
+    requires MEAN_NORMAL_REQUIREMENTS
 void MeanNormal<DataPoint, _NFilter, T>::addLocalNeighbor(Scalar w, const VectorType& localQ,
                                                           const DataPoint& attributes)
 {

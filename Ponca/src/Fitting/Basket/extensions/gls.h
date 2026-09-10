@@ -152,7 +152,8 @@ namespace Ponca
            \return
          */
         PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau = Scalar(1), Scalar weta = Scalar(1),
-                                              Scalar wkappa = Scalar(1)) const;
+                                              Scalar wkappa = Scalar(1)) const
+            requires ProvidesScaleDerivative<T>;
     }; // class GLSScaleDer
 
 #include "gls.hpp"

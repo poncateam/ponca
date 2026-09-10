@@ -12,7 +12,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #include <Eigen/Dense>
 
 #define HEIGHT_FIELD_REQUIREMENTS Is3D<DataPoint>
-#define QUADRATIC_HEIGHT_FIELD_REQUIREMENTS ProvidesHeightFieldBase<T>
+#define QUADRATIC_HEIGHT_FIELD_REQUIREMENTS ProvidesHeightFieldBase<T>&& Is3D<DataPoint>
 
 namespace Ponca
 {
@@ -83,7 +83,6 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         using HeightFieldCoefficients = Eigen::Matrix<Scalar, 6, 1>;
-        static_assert(DataPoint::Dim == 3, "QuadraticHeightField is only valid in 3D");
 
     protected:
         /// \brief Quadric parameters, stored as \f$[h_uu, h_vv, h_uv, h_u, h_v, h_c]\f$
@@ -204,7 +203,6 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         using HeightFieldCoefficients = Eigen::Matrix<Scalar, 4, 1>;
-        static_assert(DataPoint::Dim == 3, "QuadraticHeightField is only valid in 3D");
 
     protected:
         /// \brief Quadric parameters, stored as \f$[h_uu, h_vv, h_uv]\f$
