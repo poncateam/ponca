@@ -3,6 +3,13 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.2.0.alpha4 RC)
 
+- API
+    - [common] rename concept isNormal to ProvidesNormal (#343)
+    - [common] add capacity concept for containers (#343)
+    - [fitting] enforce normal requirement in several classes (#343)
+    - [fitting] add concept for derivatives (#343)
+    - [fitting] restrict height fields to 3d (#343)
+
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
 
