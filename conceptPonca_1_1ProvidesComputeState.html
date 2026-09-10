@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ffe971c98842bcc9a253942467b44661c4a9b6eb</span>
+   &#160;<span id="projectnumber">82fc77e8c6294111c6f00670e92ec58a24e2ecf2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -128,24 +128,23 @@ $(document).ready(function(){initNavTree('conceptPonca_1_1ProvidesComputeState.h
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesComputeState.html">Ponca::ProvidesComputeState</a> =  <a class="code hl_concept" href="conceptPonca_1_1ProvidesCommonTypes.html">ProvidesCommonTypes&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(T t, <span class="keyword">const</span> T ct) {</div>
 <div class="line">        { ct.isStable() } -&gt; std::same_as&lt;bool&gt;;</div>
-<div class="line">        { <a class="code hl_class" href="classPonca_1_1Basket.html">ct</a>.isReady() } -&gt; std::same_as&lt;bool&gt;;</div>
+<div class="line">        { ct.isReady() } -&gt; std::same_as&lt;bool&gt;;</div>
 <div class="line">        { ct.getCurrentState() } -&gt; std::same_as&lt;FIT_RESULT&gt;;</div>
 <div class="line">    }</div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00292">basket.h:294</a></div></div>
 <div class="ttc" id="aconceptPonca_1_1ProvidesCommonTypes_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesCommonTypes.html">Ponca::ProvidesCommonTypes</a></div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00013">concepts.h:13</a></div></div>
-<div class="ttc" id="aconceptPonca_1_1ProvidesComputeState_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesComputeState.html">Ponca::ProvidesComputeState</a></div><div class="ttdoc">This concept if currently only used a base concept for ProvidesBasketUnitBase.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00018">concepts.h:18</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesComputeState_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesComputeState.html">Ponca::ProvidesComputeState</a></div><div class="ttdoc">This concept if currently only used a base concept for ProvidesBasketUnitBase.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00029">concepts.h:29</a></div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This concept if currently only used a base concept for ProvidesBasketUnitBase. </p>
 <p>\fixme Find a way to make the methods getCurrentState, isStable and isReady accessible outside of the Basket. This could be done by moving their definition to ComputeObject, unfortunately there is a design flaw that prevent to do it currently: both the Basket and BasketDiff inherit from ComputeObject, and so any virtual function (e.g. getCurrentState is virtual and the other are in ComputeObject only) are found in multiple base classes of different types by the compiler. \fixme For the same reason as abobe, this concept cannot be tested out of the Basket hierarchy (e.g. as a requirement of MLSEvaluationScheme::computeMLSImpl (which would make sense as we need access to isStable in the MLS iterations) </p>
 
-<p class="definition">Definition at line <a class="el" href="Fitting_2Basket_2concepts_8h_source.html#l00018">18</a> of file <a class="el" href="Fitting_2Basket_2concepts_8h_source.html">concepts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Fitting_2Basket_2concepts_8h_source.html#l00029">29</a> of file <a class="el" href="Fitting_2Basket_2concepts_8h_source.html">concepts.h</a>.</p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="conceptPonca_1_1ProvidesComputeState.html">ProvidesComputeState</a></li>
-    <li class="footer">Generated on Tue Sep 8 2026 13:26:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Sep 10 2026 11:45:14 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

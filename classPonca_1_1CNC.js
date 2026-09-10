@@ -1,8 +1,8 @@
 var classPonca_1_1CNC =
 [
-    [ "compute", "classPonca_1_1CNC.html#aee35731295fbe2ba84ba3e05ad72b421", null ],
-    [ "computeWithIds", "classPonca_1_1CNC.html#af36605ecae04674dd464026acc3923b9", null ],
-    [ "finalize", "classPonca_1_1CNC.html#ab43994d5f7f9ee6a1b4f8a5661800726", null ],
+    [ "compute", "classPonca_1_1CNC.html#ae294183bf51f4ae589abd2621820e2b7", null ],
+    [ "computeWithIds", "classPonca_1_1CNC.html#a21eca469f0d634391ea6c2a7461ad78b", null ],
+    [ "finalize", "classPonca_1_1CNC.html#a093863125a39f21a70a5164c7ac7fefb", null ],
     [ "GaussianCurvature", "classPonca_1_1CNC.html#a3ce4ef2d725b0e2199c32b0aa43ac1a3", null ],
     [ "getNumTriangles", "classPonca_1_1CNC.html#a247d665ba7bc25d4bbfa6dda04745eab", null ],
     [ "getTriangles", "classPonca_1_1CNC.html#aec6c5cd93eaa4ad7ffe41155874b80c9", null ],

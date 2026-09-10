@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ffe971c98842bcc9a253942467b44661c4a9b6eb</span>
+   &#160;<span id="projectnumber">82fc77e8c6294111c6f00670e92ec58a24e2ecf2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -130,40 +130,55 @@ $(document).ready(function(){initNavTree('Fitting_2Basket_2concepts_8h_source.ht
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca.html">Ponca</a></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesComputeState.html">   18</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesComputeState.html">ProvidesComputeState</a> = <a class="code hl_concept" href="conceptPonca_1_1ProvidesCommonTypes.html">ProvidesCommonTypes&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(T t, <span class="keyword">const</span> T ct) {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        { ct.isStable() } -&gt; std::same_as&lt;bool&gt;;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        { ct.isReady() } -&gt; std::same_as&lt;bool&gt;;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        { ct.getCurrentState() } -&gt; std::same_as&lt;FIT_RESULT&gt;;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    };</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesScaleDerivative.html">    8</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesScaleDerivative.html">ProvidesScaleDerivative</a> = T::isScaleDer();</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesSpaceDerivative.html">   11</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesSpaceDerivative.html">ProvidesSpaceDerivative</a> = T::isSpaceDer();</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> K&gt;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="conceptPonca_1_1KernelProvidesFirstOrderDerivative.html">   14</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1KernelProvidesFirstOrderDerivative.html">KernelProvidesFirstOrderDerivative</a> = K::isDValid;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> K&gt;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="conceptPonca_1_1KernelProvidesSecondOrderDerivative.html">   17</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1KernelProvidesSecondOrderDerivative.html">KernelProvidesSecondOrderDerivative</a> = K::isDDValid;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesComputeState.html">   29</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesComputeState.html">ProvidesComputeState</a> = <a class="code hl_concept" href="conceptPonca_1_1ProvidesCommonTypes.html">ProvidesCommonTypes&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(T t, <span class="keyword">const</span> T ct) {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        { ct.isStable() } -&gt; std::same_as&lt;bool&gt;;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        { ct.isReady() } -&gt; std::same_as&lt;bool&gt;;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        { ct.getCurrentState() } -&gt; std::same_as&lt;FIT_RESULT&gt;;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    };</div>
 </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesBasketUnitBase.html">   27</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesBasketUnitBase.html">ProvidesBasketUnitBase</a> = <a class="code hl_concept" href="conceptPonca_1_1ProvidesCommonTypes.html">ProvidesCommonTypes&lt;T&gt;</a> &amp;&amp; <a class="code hl_concept" href="conceptPonca_1_1ProvidesComputeState.html">ProvidesComputeState&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(T t, <span class="keyword">const</span> T ct) {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">typename</span> T::NeighborFilter;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        t.setNeighborFilter(<span class="keyword">typename</span> T::NeighborFilter{});</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        { ct.getNeighborFilter() } -&gt; std::convertible_to&lt;typename T::NeighborFilter&gt;;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        { ct.getWeightSum() } -&gt; std::same_as&lt;typename T::Scalar&gt;;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        { ct.getNumNeighbors() } -&gt; std::integral;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    };</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesBasketUnitBase.html">   38</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesBasketUnitBase.html">ProvidesBasketUnitBase</a> = <a class="code hl_concept" href="conceptPonca_1_1ProvidesCommonTypes.html">ProvidesCommonTypes&lt;T&gt;</a> &amp;&amp; <a class="code hl_concept" href="conceptPonca_1_1ProvidesComputeState.html">ProvidesComputeState&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(T t, <span class="keyword">const</span> T ct) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">typename</span> T::NeighborFilter;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        t.setNeighborFilter(<span class="keyword">typename</span> T::NeighborFilter{});</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        { ct.getNeighborFilter() } -&gt; std::convertible_to&lt;typename T::NeighborFilter&gt;;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        { ct.getWeightSum() } -&gt; std::same_as&lt;typename T::Scalar&gt;;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        { ct.getNumNeighbors() } -&gt; std::integral;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    };</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">   40</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">ProvidesBasketDiffUnitBase</a> = <a class="code hl_concept" href="conceptPonca_1_1ProvidesBasketUnitBase.html">ProvidesBasketUnitBase&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(T t, <span class="keyword">const</span> T ct) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        { ct.isScaleDer() } -&gt; std::same_as&lt;bool&gt;;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        { ct.isSpaceDer() } -&gt; std::same_as&lt;bool&gt;;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        { ct.derDimension() } -&gt; std::integral;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    };</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="}">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">   51</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">ProvidesBasketDiffUnitBase</a> = <a class="code hl_concept" href="conceptPonca_1_1ProvidesBasketUnitBase.html">ProvidesBasketUnitBase&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(T t, <span class="keyword">const</span> T ct) {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        { ct.isScaleDer() } -&gt; std::same_as&lt;bool&gt;;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        { ct.isSpaceDer() } -&gt; std::same_as&lt;bool&gt;;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        { ct.derDimension() } -&gt; std::integral;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    };</div>
 </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <span class="comment">// namespace Ponca</span></div>
-<div class="ttc" id="aconceptPonca_1_1ProvidesBasketDiffUnitBase_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">Ponca::ProvidesBasketDiffUnitBase</a></div><div class="ttdoc">This concept ensures that the default types and accessors in a BasketDiff are well-formed.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00040">concepts.h:40</a></div></div>
-<div class="ttc" id="aconceptPonca_1_1ProvidesBasketUnitBase_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesBasketUnitBase.html">Ponca::ProvidesBasketUnitBase</a></div><div class="ttdoc">This concept ensures that the default types and accessors in a Basket are well-formed.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00027">concepts.h:27</a></div></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>} <span class="comment">// namespace Ponca</span></div>
+<div class="ttc" id="aconceptPonca_1_1KernelProvidesFirstOrderDerivative_html"><div class="ttname"><a href="conceptPonca_1_1KernelProvidesFirstOrderDerivative.html">Ponca::KernelProvidesFirstOrderDerivative</a></div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00014">concepts.h:14</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1KernelProvidesSecondOrderDerivative_html"><div class="ttname"><a href="conceptPonca_1_1KernelProvidesSecondOrderDerivative.html">Ponca::KernelProvidesSecondOrderDerivative</a></div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00017">concepts.h:17</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesBasketDiffUnitBase_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">Ponca::ProvidesBasketDiffUnitBase</a></div><div class="ttdoc">This concept ensures that the default types and accessors in a BasketDiff are well-formed.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00051">concepts.h:51</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesBasketUnitBase_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesBasketUnitBase.html">Ponca::ProvidesBasketUnitBase</a></div><div class="ttdoc">This concept ensures that the default types and accessors in a Basket are well-formed.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00038">concepts.h:38</a></div></div>
 <div class="ttc" id="aconceptPonca_1_1ProvidesCommonTypes_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesCommonTypes.html">Ponca::ProvidesCommonTypes</a></div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00013">concepts.h:13</a></div></div>
-<div class="ttc" id="aconceptPonca_1_1ProvidesComputeState_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesComputeState.html">Ponca::ProvidesComputeState</a></div><div class="ttdoc">This concept if currently only used a base concept for ProvidesBasketUnitBase.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00018">concepts.h:18</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesComputeState_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesComputeState.html">Ponca::ProvidesComputeState</a></div><div class="ttdoc">This concept if currently only used a base concept for ProvidesBasketUnitBase.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00029">concepts.h:29</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesScaleDerivative_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesScaleDerivative.html">Ponca::ProvidesScaleDerivative</a></div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00008">concepts.h:8</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesSpaceDerivative_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesSpaceDerivative.html">Ponca::ProvidesSpaceDerivative</a></div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00011">concepts.h:11</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -171,7 +186,7 @@ $(document).ready(function(){initNavTree('Fitting_2Basket_2concepts_8h_source.ht
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><a class="el" href="dir_858c3b8a587d8a99dc19a90d01a3c99e.html">Basket</a></li><li class="navelem"><b>concepts.h</b></li>
-    <li class="footer">Generated on Tue Sep 8 2026 13:26:40 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Sep 10 2026 11:45:13 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

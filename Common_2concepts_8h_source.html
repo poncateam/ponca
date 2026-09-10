@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ffe971c98842bcc9a253942467b44661c4a9b6eb</span>
+   &#160;<span id="projectnumber">82fc77e8c6294111c6f00670e92ec58a24e2ecf2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -148,16 +148,16 @@ $(document).ready(function(){initNavTree('Common_2concepts_8h_source.html',''); 
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="conceptPonca_1_1IsPoint.html">   19</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1IsPoint.html">IsPoint</a> = <a class="code hl_concept" href="conceptPonca_1_1ProvidesCommonTypes.html">ProvidesCommonTypes&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(<span class="keyword">const</span> T ct) { ct.pos(); };</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="conceptPonca_1_1IsPointNormal.html">   22</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1IsPointNormal.html">IsPointNormal</a> = <a class="code hl_concept" href="conceptPonca_1_1IsPoint.html">IsPoint&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(<span class="keyword">const</span> T ct) { ct.normal(); };</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="conceptPonca_1_1ProvidesNormal.html">   22</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesNormal.html">ProvidesNormal</a> = <a class="code hl_concept" href="conceptPonca_1_1IsPoint.html">IsPoint&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(<span class="keyword">const</span> T ct) { ct.normal(); };</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="conceptPonca_1_1Is3D.html">   25</a></span>    <span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1Is3D.html">Is3D</a> = (T::Dim == 3);</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}; <span class="comment">// namespace Ponca</span></div>
 </div>
 <div class="ttc" id="aconceptPonca_1_1Is3D_html"><div class="ttname"><a href="conceptPonca_1_1Is3D.html">Ponca::Is3D</a></div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00025">concepts.h:25</a></div></div>
-<div class="ttc" id="aconceptPonca_1_1IsPointNormal_html"><div class="ttname"><a href="conceptPonca_1_1IsPointNormal.html">Ponca::IsPointNormal</a></div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00022">concepts.h:22</a></div></div>
 <div class="ttc" id="aconceptPonca_1_1IsPoint_html"><div class="ttname"><a href="conceptPonca_1_1IsPoint.html">Ponca::IsPoint</a></div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00019">concepts.h:19</a></div></div>
 <div class="ttc" id="aconceptPonca_1_1ProvidesCommonTypes_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesCommonTypes.html">Ponca::ProvidesCommonTypes</a></div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00013">concepts.h:13</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesNormal_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesNormal.html">Ponca::ProvidesNormal</a></div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00022">concepts.h:22</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -165,7 +165,7 @@ $(document).ready(function(){initNavTree('Common_2concepts_8h_source.html',''); 
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_c4018c4157a9bf1e0ca20e9cb22f3b7c.html">Common</a></li><li class="navelem"><b>concepts.h</b></li>
-    <li class="footer">Generated on Tue Sep 8 2026 13:26:40 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Sep 10 2026 11:45:13 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

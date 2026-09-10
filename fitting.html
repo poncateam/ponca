@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ffe971c98842bcc9a253942467b44661c4a9b6eb</span>
+   &#160;<span id="projectnumber">82fc77e8c6294111c6f00670e92ec58a24e2ecf2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -223,9 +223,8 @@ Evaluation schemes and projection</h1>
 <div class="line">        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> compute(ComputeObject&amp; co, <span class="keyword">const</span> IteratorBegin&amp; begin,</div>
 <div class="line">                                                  <span class="keyword">const</span> IteratorEnd&amp; end)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">        </span>{</div>
-<div class="line">            <span class="keywordflow">return</span> co.<a class="code hl_function" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">compute</a>(begin, end);</div>
+<div class="line">            <span class="keywordflow">return</span> co.compute(begin, end);</div>
 <div class="line">        };</div>
-<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_ab740adc434a6d1ecb4cf4943c1ff2a84"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">Ponca::BasketComputeObject::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00157">basket.h:157</a></div></div>
 </div><!-- fragment --><h1><a class="anchor" id="fitting_derivatives"></a>
 Computing derivatives</h1>
 <p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a>, a class to extend an existing <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> with differentiation tools. Given a specialized type <code>TestPlane</code> that performs covariance plane fitting (using <a class="el" href="namespacePonca.html#a00fa14f5c6725ec3b4048310870a9913" title="Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl [CovariancePlaneFit Definiti...">Ponca::CovariancePlaneFit</a>), and defined as follows:</p>
@@ -272,7 +271,7 @@ Defining a new distance kernel</h2>
 <div class="line">            <span class="comment">// \brief Apply the second derivative of the weighting kernel to the scalar value f&#39;&#39;(x)</span></div>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar ddf(<span class="keyword">const</span> Scalar&amp; x)<span class="keyword"> const </span>{}</div>
 <div class="line">        }; <span class="comment">// class WeightKernelConcept</span></div>
-</div><!-- fragment --><p><a class="el" href="classPonca_1_1DistWeightFilter.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFilter</a> also provides computation of the first and second order derivatives of the weight, both in scale (<a class="el" href="classPonca_1_1DistWeightFilter.html#a6ecd3f5f021fc8f5fec7c7c5e313c729">DistWeightFilter::scaledw()</a>, <a class="el" href="classPonca_1_1DistWeightFilter.html#ac0948d7876557033b26a9e05e2b6721b">DistWeightFilter::scaled2w()</a>) and space (<a class="el" href="classPonca_1_1DistWeightFilter.html#aee0e6906827b21221393cd92ad841b05">DistWeightFilter::spacedw()</a>, <a class="el" href="classPonca_1_1DistWeightFilter.html#ac5fb3e59279f871beccd1f6d75d5b217">DistWeightFilter::spaced2w()</a>), and their cross derivatives (<a class="el" href="classPonca_1_1DistWeightFilter.html#ae59779586cf2b558c62bd3095dc2bca4">DistWeightFilter::scaleSpaced2w()</a>). Theses methods check if the weight kernels provides the appropriate derivatives.</p>
+</div><!-- fragment --><p><a class="el" href="classPonca_1_1DistWeightFilter.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position.">DistWeightFilter</a> also provides computation of the first and second order derivatives of the weight, both in scale (<a class="el" href="classPonca_1_1DistWeightFilter.html#a165bd44a06720c15d1ff82fc6aba713e">DistWeightFilter::scaledw()</a>, <a class="el" href="classPonca_1_1DistWeightFilter.html#a492204a1f632fe024c7f389797cd3bec">DistWeightFilter::scaled2w()</a>) and space (<a class="el" href="classPonca_1_1DistWeightFilter.html#a578616d04b9e209a7ff6c42b3235b24d">DistWeightFilter::spacedw()</a>, <a class="el" href="classPonca_1_1DistWeightFilter.html#a1cc32d5c5377f281ea098ccf3bf21bbe">DistWeightFilter::spaced2w()</a>), and their cross derivatives (<a class="el" href="classPonca_1_1DistWeightFilter.html#a94813b2533ae05cc4e80f8ab09d66708">DistWeightFilter::scaleSpaced2w()</a>). Theses methods check if the weight kernels provides the appropriate derivatives.</p>
 <h2><a class="anchor" id="fitting_newfilterapi"></a>
 Filter API</h2>
 <p>It is also possible to define new filter that could take into account any other desired parameter. The general API is:</p>
@@ -283,7 +282,7 @@ Filter API</h2>
 <div class="line">        <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>&gt;</div>
 <div class="line">        <span class="keyword">class </span>NeighborFilterConcept : <span class="keyword">public</span> CenteredNeighborhoodFrame&lt;DataPoint&gt; <span class="comment">// Or GlobalNeighborhoodFrame</span></div>
 <div class="line">        {</div>
-<div class="line">            <span class="keyword">using </span>Scalar = <span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">DataPoint::Scalar</a>;</div>
+<div class="line">            <span class="keyword">using </span>Scalar = <span class="keyword">typename</span> DataPoint::Scalar;</div>
 <div class="line">            <span class="keyword">using </span>VectorType = <span class="keyword">typename</span> DataPoint::VectorType;</div>
 <div class="line">            <span class="keyword">using </span>MatrixType = <span class="keyword">typename</span> DataPoint::MatrixType;</div>
 <div class="line"> </div>
@@ -293,20 +292,18 @@ Filter API</h2>
 <div class="line">            <span class="comment">// \param v The evaluation location</span></div>
 <div class="line">            <span class="comment">// \param t The radius</span></div>
 <div class="line">            NeighborFilterConcept(<span class="keyword">const</span> VectorType&amp; v = VectorType::Zero(), Scalar_ t = 0);</div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> WeightReturnType operator()(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; _q) <span class="keyword">const</span>;</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> WeightReturnType operator()(<span class="keyword">const</span> DataPoint&amp; _q) <span class="keyword">const</span>;</div>
 <div class="line"> </div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> VectorType spacedw(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; _attributes);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> VectorType spacedw(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> DataPoint&amp; _attributes);</div>
 <div class="line"> </div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> MatrixType spaced2w(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; _attributes) <span class="keyword">const</span>;</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> MatrixType spaced2w(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> DataPoint&amp; _attributes) <span class="keyword">const</span>;</div>
 <div class="line"> </div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar scaledw(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; _attributes) <span class="keyword">const</span>;</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar scaledw(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> DataPoint&amp; _attributes) <span class="keyword">const</span>;</div>
 <div class="line"> </div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar scaled2w(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; _attributes) <span class="keyword">const</span>;</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> Scalar scaled2w(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> DataPoint&amp; _attributes) <span class="keyword">const</span>;</div>
 <div class="line"> </div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> VectorType scaleSpaced2w(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; _attributes) <span class="keyword">const</span>;</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> VectorType scaleSpaced2w(<span class="keyword">const</span> VectorType&amp; _q, <span class="keyword">const</span> DataPoint&amp; _attributes) <span class="keyword">const</span>;</div>
 <div class="line">        };</div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_a4e7ea1fd0f8d760217e60c1feaabf7b0"><div class="ttname"><a href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">Ponca::Basket::DataPoint</a></div><div class="ttdeci">P DataPoint</div><div class="ttdoc">Point type used for computation.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00305">basket.h:305</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_ab08e85c1c9d83a892d6dc3beeb593e2d"><div class="ttname"><a href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">Ponca::Basket::Scalar</a></div><div class="ttdeci">typename P::Scalar Scalar</div><div class="ttdoc">Scalar type used for computation, as defined from template parameter P</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00302">basket.h:302</a></div></div>
 </div><!-- fragment --><p>The filter should extend either <a class="el" href="classPonca_1_1CenteredNeighborhoodFrame.html" title="NeighborhoodFrame that express 3d points relatively to a prescribed center.">CenteredNeighborhoodFrame</a> or <a class="el" href="classPonca_1_1GlobalNeighborhoodFrame.html" title="NeighborhoodFrame that keep points in the global frame without applying any transformation This class...">GlobalNeighborhoodFrame</a>. They help to express points in local coordinates, often relative to the evaluation location. <a class="el" href="classPonca_1_1CenteredNeighborhoodFrame.html" title="NeighborhoodFrame that express 3d points relatively to a prescribed center.">CenteredNeighborhoodFrame</a> helps with translation invariant filters. Its conversion function is simply \(x - p\), where \(X\) is the query point and \(p\) the evaluation location. <br  />
  <a class="el" href="classPonca_1_1GlobalNeighborhoodFrame.html" title="NeighborhoodFrame that keep points in the global frame without applying any transformation This class...">GlobalNeighborhoodFrame</a> does not affect coordinates and points remains in the global domain. <br  />
 </p>
@@ -338,7 +335,7 @@ Understanding CRTP in Ponca</h2>
 <p>In order to target more directly a Fitting method, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides cast operation. For example, the <a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> class provide the <code><a class="el" href="classMeanNormal.html#a94366f068e09d92d2a38129b1fee87f6" title="Explicit conversion to MeanNormal , to access methods potentially hidden by heritage.">MeanNormal::meanNormal</a></code> function that returns a pointer to the implicit instance.</p>
 <div class="fragment"><div class="line"><span class="comment">/* const */</span> <a class="code hl_class" href="classMeanNormal.html">MeanNormal</a>* meanNormal = fit.meanNormal();</div>
 <div class="line"><span class="comment">// Do whatever you want with a &#39;MeanNormal&#39; instance</span></div>
-<div class="ttc" id="aclassMeanNormal_html"><div class="ttname"><a href="classMeanNormal.html">MeanNormal</a></div><div class="ttdoc">Compute the mean normal of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00081">mean.h:82</a></div></div>
+<div class="ttc" id="aclassMeanNormal_html"><div class="ttname"><a href="classMeanNormal.html">MeanNormal</a></div><div class="ttdoc">Compute the mean normal of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00083">mean.h:84</a></div></div>
 </div><!-- fragment --><h2><a class="anchor" id="fitting_newestim"></a>
 Estimator API</h2>
 <h3><a class="anchor" id="fitting_newestimbase"></a>
@@ -352,7 +349,7 @@ Minimal requirements</h3>
 <div class="line">            PONCA_FITTING_DECLARE_DEFAULT_TYPES</div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">public</span>:</div>
-<div class="line">            <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">DataPoint::Scalar</a>;     <span class="comment">//&lt; Inherited scalar type</span></div>
+<div class="line">            <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> DataPoint::Scalar;     <span class="comment">//&lt; Inherited scalar type</span></div>
 <div class="line">            <span class="keyword">using </span>VectorType     = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
 <div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                       <span class="comment">//&lt; Filter applied on the neighbors</span></div>
 <div class="line">        <span class="keyword">public</span>:</div>
@@ -365,7 +362,7 @@ Minimal requirements</h3>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Reset the internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called before any computation</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Basket.html#af5a9b391abd11595a1590fefd7486bce">init</a>();</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> init();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">/* Computations                                                           */</span></div>
@@ -375,14 +372,11 @@ Minimal requirements</h3>
 <div class="line">            <span class="comment">// \param lQ Local coordinates of the point (e.g.: the difference between the point and the eval position)</span></div>
 <div class="line">            <span class="comment">// \param pt The point as defined by the user</span></div>
 <div class="line">            <span class="comment">// \return false if param nei is not a valid neighbour (weight = 0)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1Basket.html#a4203f58fe2c64b0a38a6e4a9c0b4d627">addLocalNeighbor</a>(Scalar w, <span class="keyword">const</span> VectorType&amp; lQ, <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; pt);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar w, <span class="keyword">const</span> VectorType&amp; lQ, <span class="keyword">const</span> DataPoint&amp; pt);</div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="classPonca_1_1Basket.html#acb18f130523d8118ea0fdcc5ab4f2119">finalize</a>();</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> FIT_RESULT finalize();</div>
 <div class="line">        }; <span class="comment">// class ComputationalObjectConcept</span></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_a4203f58fe2c64b0a38a6e4a9c0b4d627"><div class="ttname"><a href="classPonca_1_1Basket.html#a4203f58fe2c64b0a38a6e4a9c0b4d627">Ponca::Basket::addLocalNeighbor</a></div><div class="ttdeci">void addLocalNeighbor(typename P::Scalar _w, const typename P::VectorType &amp;_localQ, const P &amp;_nei)</div><div class="ttdoc">Add a local neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8hpp_source.html#l00100">basket.hpp:100</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_acb18f130523d8118ea0fdcc5ab4f2119"><div class="ttname"><a href="classPonca_1_1Basket.html#acb18f130523d8118ea0fdcc5ab4f2119">Ponca::Basket::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the fitting procedure.</div><div class="ttdef"><b>Definition</b> <a href="basket_8hpp_source.html#l00076">basket.hpp:76</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Basket_html_af5a9b391abd11595a1590fefd7486bce"><div class="ttname"><a href="classPonca_1_1Basket.html#af5a9b391abd11595a1590fefd7486bce">Ponca::Basket::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Initialize the fit.</div><div class="ttdef"><b>Definition</b> <a href="basket_8hpp_source.html#l00060">basket.hpp:60</a></div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The macro PONCA_FITTING_DECLARE_DEFAULT_TYPES defines the <code>Base</code> type (alias for T) as well as <code>Scalar</code>, <code>VectorType</code> and <code>NeighborFilter</code> for manipulation of related data. This macro is defined within &lt;<a class="el" href="Fitting_2defines_8h_source.html">Fitting/defines.h</a>&gt; </dd>
 <dd>
 If the estimator is expected to be the upmost parent of the hierarchy, do not inherit from T and default it to be void. </dd></dl>
@@ -426,7 +420,7 @@ New primitive differentiation (BasketDiff API)</h3>
 <div class="line">            PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES</div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">public</span>:</div>
-<div class="line">            <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#ab08e85c1c9d83a892d6dc3beeb593e2d">DataPoint::Scalar</a>;     <span class="comment">//&lt; Inherited scalar type</span></div>
+<div class="line">            <span class="keyword">using </span>Scalar         = <span class="keyword">typename</span> DataPoint::Scalar;     <span class="comment">//&lt; Inherited scalar type</span></div>
 <div class="line">            <span class="keyword">using </span>VectorType     = <span class="keyword">typename</span> DataPoint::VectorType; <span class="comment">//&lt; Inherited vector type</span></div>
 <div class="line">            <span class="keyword">using </span>NeighborFilter = _NFilter;                       <span class="comment">//&lt; Filter applied on the neighbors</span></div>
 <div class="line">            <span class="comment">// Static array of scalars with a size adapted to the differentiation type</span></div>
@@ -444,7 +438,7 @@ New primitive differentiation (BasketDiff API)</h3>
 <div class="line"> </div>
 <div class="line">            <span class="comment">// Set the evaluation position and reset the internal states.</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any computation</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1Basket.html#af5a9b391abd11595a1590fefd7486bce">init</a>();</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">void</span> init();</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">            /**************************************************************************/</span></div>
 <div class="line">            <span class="comment">/* Computations                                                           */</span></div>
@@ -456,12 +450,12 @@ New primitive differentiation (BasketDiff API)</h3>
 <div class="line">            <span class="comment">// \param attributes The point as defined by the user</span></div>
 <div class="line">            <span class="comment">// \param dw The derivatives of the weight function w.r.t prescirbed parameter</span></div>
 <div class="line">            <span class="comment">// \return false if param nei is not a valid neighbour (weight = 0)</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1Basket.html#a4203f58fe2c64b0a38a6e4a9c0b4d627">addLocalNeighbor</a>(Scalar w, <span class="keyword">const</span> VectorType&amp; localQ,</div>
-<div class="line">                                                         <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1Basket.html#a4e7ea1fd0f8d760217e60c1feaabf7b0">DataPoint</a>&amp; attributes, ScalarArray&amp; dw);</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar w, <span class="keyword">const</span> VectorType&amp; localQ,</div>
+<div class="line">                                                         <span class="keyword">const</span> DataPoint&amp; attributes, ScalarArray&amp; dw);</div>
 <div class="line">            <span class="comment">// Finalize the fitting procedure. This function is called after all neighbors have been processed.</span></div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="classPonca_1_1Basket.html#acb18f130523d8118ea0fdcc5ab4f2119">finalize</a>();</div>
+<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> FIT_RESULT finalize();</div>
 <div class="line">        }; <span class="comment">// class ComputationalDerivativesConcept</span></div>
 <div class="line"> </div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>PrimitiveDer is the default entry point to most classes used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a></dd></dl>
@@ -513,7 +507,7 @@ Cuda and SYCL</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Tue Sep 8 2026 13:26:40 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Sep 10 2026 11:45:13 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">ffe971c98842bcc9a253942467b44661c4a9b6eb</span>
+   &#160;<span id="projectnumber">82fc77e8c6294111c6f00670e92ec58a24e2ecf2</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -128,24 +128,23 @@ $(document).ready(function(){initNavTree('conceptPonca_1_1ProvidesBasketDiffUnit
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">Ponca::ProvidesBasketDiffUnitBase</a> =  <a class="code hl_concept" href="conceptPonca_1_1ProvidesBasketUnitBase.html">ProvidesBasketUnitBase&lt;T&gt;</a> &amp;&amp; <span class="keyword">requires</span>(T t, <span class="keyword">const</span> T ct) {</div>
 <div class="line">        { ct.isScaleDer() } -&gt; std::same_as&lt;bool&gt;;</div>
-<div class="line">        { <a class="code hl_class" href="classPonca_1_1Basket.html">ct</a>.isSpaceDer() } -&gt; std::same_as&lt;bool&gt;;</div>
+<div class="line">        { ct.isSpaceDer() } -&gt; std::same_as&lt;bool&gt;;</div>
 <div class="line">        { ct.derDimension() } -&gt; std::integral;</div>
 <div class="line">    }</div>
-<div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00292">basket.h:294</a></div></div>
-<div class="ttc" id="aconceptPonca_1_1ProvidesBasketDiffUnitBase_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">Ponca::ProvidesBasketDiffUnitBase</a></div><div class="ttdoc">This concept ensures that the default types and accessors in a BasketDiff are well-formed.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00040">concepts.h:40</a></div></div>
-<div class="ttc" id="aconceptPonca_1_1ProvidesBasketUnitBase_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesBasketUnitBase.html">Ponca::ProvidesBasketUnitBase</a></div><div class="ttdoc">This concept ensures that the default types and accessors in a Basket are well-formed.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00027">concepts.h:27</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesBasketDiffUnitBase_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">Ponca::ProvidesBasketDiffUnitBase</a></div><div class="ttdoc">This concept ensures that the default types and accessors in a BasketDiff are well-formed.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00051">concepts.h:51</a></div></div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesBasketUnitBase_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesBasketUnitBase.html">Ponca::ProvidesBasketUnitBase</a></div><div class="ttdoc">This concept ensures that the default types and accessors in a Basket are well-formed.</div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00038">concepts.h:38</a></div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This concept ensures that the default types and accessors in a BasketDiff are well-formed. </p>
 <p>This concept is implemented by BasketDiffUnitBase, which is set by default in the BasketDiff. </p>
 
-<p class="definition">Definition at line <a class="el" href="Fitting_2Basket_2concepts_8h_source.html#l00040">40</a> of file <a class="el" href="Fitting_2Basket_2concepts_8h_source.html">concepts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Fitting_2Basket_2concepts_8h_source.html#l00051">51</a> of file <a class="el" href="Fitting_2Basket_2concepts_8h_source.html">concepts.h</a>.</p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="conceptPonca_1_1ProvidesBasketDiffUnitBase.html">ProvidesBasketDiffUnitBase</a></li>
-    <li class="footer">Generated on Tue Sep 8 2026 13:26:41 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Thu Sep 10 2026 11:45:14 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>
