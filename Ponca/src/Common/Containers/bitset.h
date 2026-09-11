@@ -12,6 +12,7 @@
 #include <utility>
 #include "./iteratorUtils.h"
 #include "../../Common/Assert.h"
+#include "concepts.h"
 
 namespace Ponca
 {
@@ -39,10 +40,9 @@ namespace Ponca
      * bits inside the BitSet.
      */
     template <int N, typename T = unsigned long long>
+        requires ValidCapacity<N>
     class BitSet
     {
-        static_assert(N > 0, "The capacity must be strictly positive");
-
     private:
         static constexpr size_t BIT_SIZE   = sizeof(T) * 8; //! The number of bits in one element of the array
         static constexpr size_t ARRAY_SIZE = (N + BIT_SIZE - 1) / BIT_SIZE; //!< The array size

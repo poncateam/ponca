@@ -188,7 +188,7 @@ namespace Ponca
             return VectorType((_a * in.x()), (_b * in.y()), -1.).normalized();
             ;
         }
-        template <IsPointNormal DataPoint>
+        template <ProvidesNormal DataPoint>
         inline void getParaboloidNormal(DataPoint& in, typename DataPoint::Scalar _a, typename DataPoint::Scalar _b,
                                         typename DataPoint::Scalar _c, typename DataPoint::Scalar _d,
                                         typename DataPoint::Scalar _e, typename DataPoint::Scalar _f)

@@ -84,6 +84,7 @@ namespace Ponca
 
     ///////// NormalDerivativeWeingartenEstimator
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     typename NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::Matrix2
     NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::weingartenMap() const
     {
@@ -93,6 +94,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     FIT_RESULT NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::finalize()
     {
 
@@ -127,6 +129,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     template <typename Matrix2Derived>
     void NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::weingartenMap(Matrix2Derived& W) const
     {
@@ -164,6 +167,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     typename NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::VectorType
     NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::worldToTangentPlane(
         const VectorType& _q, bool _isPositionVector) const
@@ -173,6 +177,7 @@ namespace Ponca
     }
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     typename NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::VectorType
     NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>::tangentPlaneToWorld(
         const VectorType& _lq, bool _isPositionVector) const

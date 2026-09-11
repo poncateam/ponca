@@ -425,6 +425,7 @@ namespace Ponca
     }
 
     template <class P, TriangleGenerationMethod M>
+        requires CNC_REQUIREMENTS
     template <typename IndexRange, typename PointContainer>
     FIT_RESULT CNC<P, M>::computeWithIds(const IndexRange& ids, const PointContainer& points)
     {
@@ -437,6 +438,7 @@ namespace Ponca
     }
 
     template <class P, TriangleGenerationMethod M>
+        requires CNC_REQUIREMENTS
     FIT_RESULT CNC<P, M>::finalize()
     {
         m_A = Scalar(0);

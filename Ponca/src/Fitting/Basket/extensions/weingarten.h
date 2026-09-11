@@ -10,8 +10,10 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #include "../concepts.h"
 
 #define FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS \
-    ProvidesFirstFondamentalFormComponents<T>&& ProvidesSecondFondamentalFormComponents<T>
-#define WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS ProvidesTangentPlaneBasis<T>&& ProvidesWeingartenMap<T>
+    ProvidesFirstFondamentalFormComponents<T>&& ProvidesSecondFondamentalFormComponents<T>&& Is3D<DataPoint>
+#define NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS Is3D<DataPoint>&& ProvidesSpaceDerivative<T>
+#define WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS \
+    ProvidesTangentPlaneBasis<T>&& ProvidesWeingartenMap<T>&& Is3D<DataPoint>
 
 namespace Ponca
 {
@@ -40,7 +42,6 @@ namespace Ponca
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
-        static_assert(DataPoint::Dim == 3, "FundamentalFormWeingartenEstimator is only valid in 3D");
 
     public:
         PONCA_EXPLICIT_CAST_OPERATORS(FundamentalFormWeingartenEstimator, fundamentalFormWeingartenEstimator)
@@ -105,14 +106,13 @@ namespace Ponca
         \verbatim ProvidesNormalDerivative \endverbatim
         */
     template <class DataPoint, class _NFilter, int DiffType, typename T>
+        requires NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS
     class NormalDerivativeWeingartenEstimator : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
         PONCA_FITTING_DECLARE_MATRIX_TYPE
         PONCA_FITTING_DECLARE_DEFAULT_DER_TYPES
         using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
-        static_assert(DataPoint::Dim == 3, "NormalDerivativeWeingartenEstimator is only valid in 3D");
-        static_assert(Base::isSpaceDer(), "NormalDerivativeWeingartenEstimator requires spatial derivation");
 
     private:
         MatrixType m_tangentBasis{MatrixType::Zero()};
@@ -167,7 +167,6 @@ namespace Ponca
         {
             PONCA_FITTING_DECLARE_DEFAULT_TYPES
             using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
-            static_assert(DataPoint::Dim == 3, "WeingartenCurvatureEstimator is only valid in 3D");
 
         private:
             Eigen::SelfAdjointEigenSolver<Matrix2> m_solver;

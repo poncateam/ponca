@@ -51,6 +51,21 @@ jobs:
       - name: make install
         run: cd build && cmake --build . --target install
 
+  check-changelog:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Detech changes in CHANGELOG
+        id: changed-changelog-file
+        uses: tj-actions/changed-files@v47.0.6
+        with:      
+          files: CHANGELOG
+      - name: Fails if CHANGELOG is not modified
+        if: steps.changed-changelog-file.outputs.any_changed == 'false'
+        run: exit 1
+
+
   prep-sycl-container:
     runs-on: "ubuntu-latest"
     permissions:

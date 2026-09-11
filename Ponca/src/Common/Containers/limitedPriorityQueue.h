@@ -15,6 +15,7 @@
 #include "../defines.h"
 #include "./iteratorUtils.h"
 #include "../Assert.h"
+#include "concepts.h"
 
 namespace Ponca
 {
@@ -81,10 +82,9 @@ namespace Ponca
     //! \tparam N The maximum capacity of the queue
     //! \tparam CompareT A binary predicate used to sort the queue. Default to less
     template <class T, int N, class CompareT = std::less<T>>
+        requires ValidCapacity<N>
     class LimitedPriorityQueue
     {
-        static_assert(N > 0, "The capacity must be strictly positive");
-
     public:
         using value_type     = T;
         using container_type = std::array<T, N>;
@@ -160,12 +160,14 @@ namespace Ponca
     // LimitedPriorityQueue ------------------------------------------------------
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue() : m_comp()
     {
         PONCA_ASSERT((m_capacity <= N));
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const Self& other)
         : m_data(other.m_data), m_comp(other.m_comp), m_size(other.m_size), m_capacity(other.m_capacity)
     {
@@ -173,6 +175,7 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const int capacity)
         : m_comp(), m_capacity(capacity)
     {
@@ -181,6 +184,7 @@ namespace Ponca
     }
 
     template <class T, int N, class Cmp>
+        requires ValidCapacity<N>
     template <class InputIt>
     PONCA_MULTIARCH LimitedPriorityQueue<T, N, Cmp>::LimitedPriorityQueue(const int capacity, InputIt first,
                                                                           InputIt last)

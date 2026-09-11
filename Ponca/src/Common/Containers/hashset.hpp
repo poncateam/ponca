@@ -9,24 +9,28 @@ namespace Ponca
 {
     // Iterators --------------------------------------------------------------------
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+        requires ValidCapacity<N>
     typename HashSet<N, T, HF, OFFSET>::const_iterator HashSet<N, T, HF, OFFSET>::cbegin() const
     {
         return m_data.begin();
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+        requires ValidCapacity<N>
     typename HashSet<N, T, HF, OFFSET>::const_iterator HashSet<N, T, HF, OFFSET>::cend() const
     {
         return m_data.begin() + N;
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+        requires ValidCapacity<N>
     typename HashSet<N, T, HF, OFFSET>::iterator HashSet<N, T, HF, OFFSET>::begin()
     {
         return m_data.begin();
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+        requires ValidCapacity<N>
     typename HashSet<N, T, HF, OFFSET>::iterator HashSet<N, T, HF, OFFSET>::end()
     {
         return m_data.begin() + N;
@@ -34,12 +38,14 @@ namespace Ponca
 
     // Set-like methods --------------------------------------------------------------------
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+        requires ValidCapacity<N>
     void HashSet<N, T, HF, OFFSET>::clear()
     {
         Ponca::internal::fill(m_data.begin(), m_data.begin() + N, 0);
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+        requires ValidCapacity<N>
     bool HashSet<N, T, HF, OFFSET>::search(const T _value, T& _searchedIdx) const
     {
         const int h = HashFunctor::hash(_value);
@@ -67,6 +73,7 @@ namespace Ponca
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+        requires ValidCapacity<N>
     std::pair<typename HashSet<N, T, HF, OFFSET>::iterator, bool> HashSet<N, T, HF, OFFSET>::insert(const T& _value)
     {
         PONCA_ASSERT_MSG(_value != -OFFSET, "Illegal value was inserted into the HashSet");
@@ -88,6 +95,7 @@ namespace Ponca
     }
 
     template <int N, typename T, template <int, typename> typename HF, T OFFSET>
+        requires ValidCapacity<N>
     bool HashSet<N, T, HF, OFFSET>::contains(T _value) const
     {
         PONCA_DEBUG_ASSERT_MSG(_value != -OFFSET, "Illegal value was searched from the HashSet");

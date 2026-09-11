@@ -15,7 +15,8 @@
 
 #include <Eigen/Dense>
 
-#define UNORIENTED_SPHERE_FIT_REQUIREMENTS ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>
+#define UNORIENTED_SPHERE_FIT_REQUIREMENTS \
+    ProvidesAlgebraicSphere<T>&& ProvidesMeanPosition<T>&& ProvidesNormal<DataPoint>
 #define UNORIENTED_SPHERE_DER_REQUIREMENTS \
     ProvidesBasketDiffUnitBase<T>&& ProvidesAlgebraicSphere<T>&& ProvidesMeanPositionDerivative<T>
 

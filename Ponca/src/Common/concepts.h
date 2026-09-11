@@ -19,7 +19,7 @@ namespace Ponca
     concept IsPoint = ProvidesCommonTypes<T> && requires(const T ct) { ct.pos(); };
 
     template <typename T>
-    concept IsPointNormal = IsPoint<T> && requires(const T ct) { ct.normal(); };
+    concept ProvidesNormal = IsPoint<T> && requires(const T ct) { ct.normal(); };
 
     template <typename T>
     concept Is3D = (T::Dim == 3);

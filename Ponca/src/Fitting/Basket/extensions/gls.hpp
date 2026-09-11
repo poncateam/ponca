@@ -84,8 +84,8 @@ template <class DataPoint, class _NFilter, int DiffType, typename T>
     requires GLS_DER_REQUIREMENTS
 typename GLSDer<DataPoint, _NFilter, DiffType, T>::Scalar GLSDer<DataPoint, _NFilter, DiffType, T>::geomVar(
     Scalar wtau, Scalar weta, Scalar wkappa) const
+    requires Ponca::ProvidesScaleDerivative<T>
 {
-    static_assert(bool(DiffType & FitScaleDer), "Scale derivatives are required to compute Geometric Variation");
     Scalar dtau   = dtau_normalized().col(0)(0);
     Scalar deta   = deta_normalized().col(0).norm();
     Scalar dkappa = dkappa_normalized().col(0)(0);

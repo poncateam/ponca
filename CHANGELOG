@@ -3,9 +3,18 @@ Ponca changelog
 --------------------------------------------------------------------------------
 Current head (v.2.0.alpha4 RC)
 
+- API
+    - [common] rename concept isNormal to ProvidesNormal (#343)
+    - [common] add capacity concept for containers (#343)
+    - [fitting] enforce normal requirement in several classes (#343)
+    - [fitting] add concept for derivatives (#343)
+    - [fitting] restrict height fields to 3d (#343)
+
+- CI/Actions
+    - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
 
 --------------------------------------------------------------------------------
-Current head (v.2.0.alpha3 RC)
+v.2.0.alpha3
 This release introduces major technical refactorings: modification of the requirement library using cpp20::concepts,
 new build-chain to instantiate the most common types of the library, an explicit support for SYCL, a generalization of
 the kNNGraphs to NeighborGraphs, and several bug-fixes and other improvements.

@@ -8,6 +8,7 @@
 #include "../../defines.h"
 #include "../concepts.h"
 
+#define MEAN_NORMAL_REQUIREMENTS ProvidesNormal<DataPoint>
 #define MEAN_POSITION_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesMeanPosition<T>
 #define MEAN_NORMAL_DER_REQUIREMENTS ProvidesBasketDiffUnitBase<T>&& ProvidesMeanNormal<T>
 
@@ -78,6 +79,7 @@ namespace Ponca
         \see MeanNormalDer
     */
     template <class DataPoint, class _NFilter, typename T>
+        requires MEAN_NORMAL_REQUIREMENTS
     class MeanNormal : public T
     {
         PONCA_FITTING_DECLARE_DEFAULT_TYPES
