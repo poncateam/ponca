@@ -7,12 +7,13 @@
 
 #include <nanobind/nanobind.h>
 #include <nanobind/ndarray.h>
+#include <nanobind/stl/string.h>
 #include <type_traits>
 #include <string>
 
 /**
  * \brief Mangles a Scalar
- * 
+ *
  * \tparam T Scalar type
  */
 template <typename T>
@@ -27,11 +28,11 @@ inline std::string MangleType()
 
 /**
  * \brief Mangles an nb::ndarray::dtype
- * 
- * This function is templated so that no constraints is 
- * imposed on the actual nb::ndarray type. 
- * 
- * \tparam ArrType a nb::ndarray instance. 
+ *
+ * This function is templated so that no constraints is
+ * imposed on the actual nb::ndarray type.
+ *
+ * \tparam ArrType a nb::ndarray instance.
  */
 template <typename ArrType>
 inline std::string MangleDType(const ArrType& arr)
@@ -47,11 +48,11 @@ inline std::string MangleDType(const ArrType& arr)
 
 /**
  * \brief Mangles an nb::ndarray
- * 
- * This function is templated so that no constraints is 
- * imposed on the actual nb::ndarray type. 
- * 
- * \tparam ArrType a nb::ndarray instance. 
+ *
+ * This function is templated so that no constraints is
+ * imposed on the actual nb::ndarray type.
+ *
+ * \tparam ArrType a nb::ndarray instance.
  */
 template <typename ArrType>
 inline std::string MangleArray(const ArrType& arr)
@@ -68,7 +69,7 @@ inline std::string MangleArray(const ArrType& arr)
 
 /**
  * \brief Mangles a Ponca Point
- * 
+ *
  * \tparam P Point type
  */
 template <typename P>
@@ -76,3 +77,4 @@ inline std::string ManglePoint()
 {
     return std::to_string(P::Dim) + MangleType<typename P::Scalar>();
 }
+

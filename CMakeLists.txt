@@ -10,7 +10,7 @@ OPTION( PONCA_CONFIGURE_EXAMPLES   "Include compilation rules for built-in examp
 OPTION( PONCA_CONFIGURE_DOC        "Include compilation rules for built-in documentation" ON)
 OPTION( PONCA_CONFIGURE_TESTS      "Include compilation rules for built-in tests"         ON)
 OPTION( PONCA_GENERATE_IDE_TARGETS "Generate targets to show source files in IDEs"        ON)
-OPTION( PONCA_CONFIGURE_PYPONCA    "Include compilation rules for building python module" ON)
+OPTION( PONCA_CONFIGURE_PYPONCA    "Include compilation rules for building python module" OFF)
 ##
 ## END USER OPTIONS
 ####################################################################################################
@@ -202,6 +202,10 @@ if (PONCA_CONFIGURE_PYPONCA)
     endif()
 
     add_subdirectory(${NANOBIND_SUBMODULE_ROOT_PATH})
-    add_subdirectory(PyPonca2)
+    add_subdirectory(PyPonca)
+
+    if (PONCA_CONFIGURE_TESTING)
+        add_subdirectory(PyPonca/tests)
+    endif()
 endif()
 

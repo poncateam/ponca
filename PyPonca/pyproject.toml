@@ -13,3 +13,8 @@ requires-python = ">=3.9"
 
 [tool.scikit-build]
 cmake.source-dir=".."
+cmake.build-type = "Release"
+
+[tool.scikit-build.cmake.define]
+PONCA_CONFIGURE_PYPONCA = "ON"
+PONCA_INSTANTIATE_ALL = "OFF"

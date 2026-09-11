@@ -35,7 +35,7 @@ namespace Ponca
         static constexpr StringLiteral _name = _Name;
 
     public:
-        static constexpr size_t MethodId  = _MethodId;
+        static constexpr size_t MethodId  = _Id;
         static constexpr const char* name = _name.value;
 
         FactoryEntry(size_t i) : idx(i) {}

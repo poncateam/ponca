@@ -70,9 +70,9 @@ namespace Ponca
             static decltype(auto) GetMethod()
             {
                 using MethodList = decltype(Filter<MethodProvider<(unsigned int)id>::template pred>());
-
-                static_assert(std::tuple_size_v<typename MethodList::FactoryEntries> == 1);
-                return std::get<0>(typename MethodList::FactoryEntries{0}).object;
+            
+                static_assert(MethodList::N == 1);
+                return std::get<0>(MethodList{}.m_entries).object;
             }
 
             /**

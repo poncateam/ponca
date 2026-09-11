@@ -6,7 +6,6 @@
 from . import _pyponca
 from enum import StrEnum
 
-
 # Dispatcher for point cloud
 class PointCloud:
     """
@@ -43,7 +42,6 @@ class PointCloud:
         self._mangledName = mangledArray + _pyponca.internal._PointName
         return self._cls(*args)
 
-# TODO In C++ Binding !
 class KDTree:
     """
         Main kdtree object that serves as a dispatch
@@ -135,17 +133,12 @@ def __dispatchSetNeighborFilter(self, pos, radius, nf = Filters.SMOOTH_WEIGHT):
     self._pos = pos
     self._radius = radius
 
-def __dispatchAddComputation(self, id, input = None):
-    self._computationList.append((id, input))
 
-def __dispatchgetattr(self, name):
+def __dispatchAddComputation(self, id, input = None):
     """
-        Dynamic way to handle capability-specific functions. 
-        When a method is required, it is fowarded to the 
-        corresponding object
+        Adds a computation to the object
     """
-    print("Looking for: ", name)
-    return getattr(self.object, name)
+    self._computationList.append((id, input))
 
 # Dynamically create object based on what was exposed by the binding. 
 for co in _pyponca.ComputeObjectList:
@@ -155,7 +148,7 @@ for co in _pyponca.ComputeObjectList:
         "setNeighborFilter": __dispatchSetNeighborFilter,
         "addComputation": __dispatchAddComputation,
         # Dynamically find the function within the subobject
-        "__getattr__": __dispatchgetattr
+        # "__getattr__": __dispatchgetattr
     })
 
     # Register the new class within the pyponca namespace

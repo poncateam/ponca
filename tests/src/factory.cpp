@@ -12,9 +12,9 @@ int main(int argc, char** argv)
     }
     
     using namespace Ponca;
-    using Point = PointPosition<double, 3>;
+    using Point = PointPositionNormal<double, 3>;
     using NF = DistWeightFilter<Point, SmoothWeightKernel<double>>;
-    using F = Factory<Point, NF, 0>;
+    using F = Factory<Point, NF, Ponca::DiffType::FitSpaceDer>;
 
     F::foreach([](const auto& x) 
     {
@@ -28,5 +28,5 @@ int main(int argc, char** argv)
     });
 
     auto m = spheres.GetMethod<Method::APSS>();
-    std::cout << m.name << std::endl;
+    std::cout << m.isPlane() << std::endl;
 }

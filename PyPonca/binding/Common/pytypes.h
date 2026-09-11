@@ -19,28 +19,28 @@ template <typename Point>
 using PyScalarArray = nb::ndarray<typename Point::Scalar, nb::shape<-1>>;
 
 /**
- * \brief Equivalent to typename Point::VectorType 
+ * \brief Equivalent to typename Point::VectorType
  */
 template <typename Point>
 using PyVector = nb::ndarray<typename Point::Scalar, nb::shape<Point::Dim>>;
 
 /**
- * \brief Equivalent to an array of typename Point::VectorType 
+ * \brief Equivalent to an array of typename Point::VectorType
  */
 template <typename Point>
 using PyVectorArray = nb::ndarray<typename Point::Scalar, nb::shape<-1, Point::Dim>>;
 
 /**
- * \brief Equivalent to an array of arrays of typename Point::VectorType 
+ * \brief Equivalent to an array of arrays of typename Point::VectorType
  */
-template<typename Point>
+template <typename Point>
 using PyVectorVectorArray = nb::ndarray<typename Point::Scalar, nb::shape<-1, -1, Point::Dim>>;
 
 /**
  * \brief Convert a Vector from python to typename Point::VectorType
- * 
+ *
  * \tparam Point Point type
- * 
+ *
  * \param vector A python view over a vector
  */
 template <typename Point>
@@ -50,14 +50,13 @@ inline typename Point::VectorType PyVectorToVector(const PyVector<Point>& vector
     return Map(vector.data(), Point::Dim, 1);
 }
 
-
 /**
  * \brief Index into a Scalar array
- * 
+ *
  * This function does not perform bound checking
- * 
+ *
  * \tparam Point Point type
- * 
+ *
  * \param array A python view over the array
  * \param idx The index
  */
@@ -69,11 +68,11 @@ inline typename Point::Scalar PyScalarArrayIndex(const PyScalarArray<Point>& arr
 
 /**
  * \brief Index into an array of vectors
- * 
+ *
  * This function does not perform bound checking
- * 
+ *
  * \tparam Point Point type
- * 
+ *
  * \param array A python view over the array
  * \param idx The index
  */
@@ -84,14 +83,13 @@ inline auto PyVectorArrayIndex(const PyVectorArray<Point>& array, unsigned int i
     return Map(array.data() + idx * array.stride(0), Point::Dim, 1);
 }
 
-
 /**
  * \brief Index into an array of arrays of vectors
- * 
+ *
  * This function does not perform bound checking
- * 
+ *
  * \tparam Point Point type
- * 
+ *
  * \param array A python view over the array
  * \param i First index
  * \param j Second index
@@ -123,14 +121,14 @@ inline nb::capsule PyArrayDeleter(T* p)
 
 /**
  * \brief Broadcast an array to a desired shape
- * 
+ *
  * This function does not check if the broadcast can be valid !
  * THe returned array shares the data and no copies are performed.
- * 
+ *
  * \tparam T Scalar type (not used, here for compatibility)
  * \tparam N Number of dimensions
  * \tparam Array Array type
- * 
+ *
  * \param array The array to boradcast
  * \param targetShape The target shape
  */
@@ -143,10 +141,10 @@ auto broadcastArrayTo(const Array& array, const std::array<size_t, N>& targetSha
         throw std::runtime_error("Cannot broadcast to fewer dimensions");
 
     std::array<std::int64_t, N> strides{};
-    for (size_t i = 0; i < ndim; ++i) 
+    for (size_t i = 0; i < ndim; ++i)
     {
         size_t src = ndim - 1 - i;
-        size_t dst = N    - 1 - i;
+        size_t dst = N - 1 - i;
 
         auto srcExtent = array.shape(src);
         auto dstExtent = targetShape[dst];
@@ -154,25 +152,18 @@ auto broadcastArrayTo(const Array& array, const std::array<size_t, N>& targetSha
         strides[dst] = (srcExtent == dstExtent) * array.stride(src);
     }
 
-    return nb::ndarray<T>(
-        array.data(),
-        N,
-        targetShape.data(),
-        const_cast<Array&>(array).cast(), // .cast() is not a const method...
-        strides.data(),
-        array.dtype(),
-        array.device_type(),
-        array.device_id()
-    );
+    return nb::ndarray<T>(array.data(), N, targetShape.data(),
+                          const_cast<Array&>(array).cast(), // .cast() is not a const method...
+                          strides.data(), array.dtype(), array.device_type(), array.device_id());
 }
 /**
  * \brief Broadcast a scalar to an array of the desired shape
- * 
- * This function allocates a new single scalar. 
- * 
+ *
+ * This function allocates a new single scalar.
+ *
  * \tparam T Scalar type (not used, here for compatibility)
  * \tparam N Number of dimensions
- * 
+ *
  * \param t The scalar to boradcast
  * \param targetShape The target shape
  */
@@ -180,13 +171,7 @@ template <typename T, size_t N>
 auto broadcastTo(const T& t, const std::array<size_t, N>& targetShape)
 {
     T* newdata = new T(t);
-    return nb::ndarray<T>(
-        newdata, 
-        N, 
-        targetShape.data(), 
-        PyStandardDeleter(newdata),
-        std::array<std::int64_t, N>{}.data(), 
-        nb::dtype<T>(), 
-        nb::device::cpu()
-    );
+    return nb::ndarray<T>(newdata, N, targetShape.data(), PyStandardDeleter(newdata),
+                          std::array<std::int64_t, N>{}.data(), nb::dtype<T>(), nb::device::cpu());
 }
+

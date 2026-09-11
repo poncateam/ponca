@@ -13,6 +13,7 @@
 #include "ComputeObject.h"
 #include "Filters.h"
 
+
 /**
  * \brief Helper function to compute the output dimension of a computation
  * 
@@ -32,30 +33,37 @@
 template<typename Point, typename _Result>
 inline std::vector<size_t> ComputeVectorDim(const nb::ndarray<>& array)
 {
-    const size_t N = array.shape(0);
-
     using Result = std::remove_cv_t<_Result>;
+
     if constexpr (std::is_floating_point_v<Result>)
     {
-        if (array.data() == nullptr || array.ndim() == 1 || array.shape(1) == 1) return { N };
-        return { N, array.shape(1) };
+        if (array.data() == nullptr) return { 0 };
+        if (array.ndim() == 1 || array.shape(1) == 1) return { array.shape(0) };
+        return { array.shape(0), array.shape(1) };
     }
     else 
     {  
         static_assert(Result::ColsAtCompileTime > 0 && Result::RowsAtCompileTime > 0, "ComputeVectorDim only accepts fixed size matrices");
         
-        if (array.data() == nullptr || array.ndim() == 1 || array.shape(1) == 1)
+        if (array.data() == nullptr)
         {
             if constexpr (Result::ColsAtCompileTime == 1)
-                return { N, Result::RowsAtCompileTime };
-            return { N, Result::RowsAtCompileTime, Result::ColsAtCompileTime };
+                return { 0, Result::RowsAtCompileTime };
+            return { 0, Result::RowsAtCompileTime, Result::ColsAtCompileTime };
+        }
+
+        if (array.ndim() == 1 || array.shape(1) == 1)
+        {
+            if constexpr (Result::ColsAtCompileTime == 1)
+                return { array.shape(0), Result::RowsAtCompileTime };
+            return { array.shape(0), Result::RowsAtCompileTime, Result::ColsAtCompileTime };
         }
 
         // Assume this is an Eigen vector with fixed dimension (which is the case for 
         // Ponca classical return type)
         if constexpr (Result::ColsAtCompileTime == 1)
-            return { N, array.shape(1), Result::RowsAtCompileTime };
-        return { N, array.shape(1), Result::RowsAtCompileTime, Result::ColsAtCompileTime };
+            return { array.shape(0), array.shape(1), Result::RowsAtCompileTime };
+        return { array.shape(0), array.shape(1), Result::RowsAtCompileTime, Result::ColsAtCompileTime };
     }
 }
 
@@ -113,8 +121,7 @@ PONCA_MULTIARCH void RunVectorMethod(CO& object, Func&& f, const DeviceArrayView
     
     // An array of inputs
     if (in.N == 2 && in.shape[1] == Point::Dim)
-    {
-        
+    {   
         for (size_t j = 0; j < in.shape[0]; ++j)
         {
             Write(out, idx * out.stride[0] + j * out.stride[1], f(object, in.template GetVector<Point>(j)));

@@ -30,11 +30,19 @@ jobs:
       - name: Add msbuild to PATH
         uses: seanmiddleditch/gha-setup-vsdevenv@master
         if: runner.os == 'Windows'
+      
       - name: Checkout remote head
         uses: actions/checkout@master
         with:
           path: src
+
       - name: Installing library
-        run: cd src/PyPonca && pip install -v . 
-      - name: Running test
-        run: python -m unittest discover -s tests/ -p "*.py"
+        working-directory: src/PyPonca
+        run: CMAKE_ARGS="-DPONCA_CONFIGURE_TESTING=ON" pip install -v . --config-settings=build-dir=build
+      
+      - name: Verifying install
+        run: python -c "import pyponca"
+      
+      - name: Running tests
+        working-directory: src/PyPonca/build
+        run: ctest -L pyponca
