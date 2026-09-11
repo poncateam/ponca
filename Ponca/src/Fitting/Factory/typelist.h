@@ -9,28 +9,10 @@
 #include <cstddef>
 #include <algorithm>
 
+#include <Ponca/src/Common/typeutils.h>
+
 namespace Ponca
 {
-    namespace internal
-    {
-        // Another namespace layer to avoid future potential conflicts in the name choices
-        namespace Factory
-        {
-            /**
-             * \brief StringLiteral as template parameters
-             *
-             * We use the C++20 NTTP extension to allow to template by string literals.
-             * This class will be used to provide a name to FactoryEntries
-             */
-            template <size_t N>
-            struct StringLiteral
-            {
-                char value[N];
-                constexpr StringLiteral(const char (&str)[N]) { std::copy_n(str, N, value); }
-            };
-        } // namespace Factory
-    } // namespace internal
-
     // We leave this in the Ponca namespace as it can be used by user
 
     /**
@@ -44,13 +26,13 @@ namespace Ponca
      * Any instance of this class stores an instance of the associated
      * type.
      */
-    template <internal::Factory::StringLiteral _Name, class Type, unsigned int _MethodId = 0>
+    template <Ponca::StringLiteral _Name, class Type, unsigned int _MethodId = 0>
     struct FactoryEntry
     {
         using type = Type;
 
     private:
-        static constexpr internal::Factory::StringLiteral _name = _Name;
+        static constexpr Ponca::StringLiteral _name = _Name;
 
     public:
         static constexpr size_t MethodId  = _MethodId;
