@@ -60,7 +60,11 @@ namespace Ponca
         /// \return false when called straight after #init. Should be true after fitting
         PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const
         {
-            static const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
+
+#ifndef __CUDACC__
+            static
+#endif
+            const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
             return !(EigenBase::origin().isApprox(zeros) && EigenBase::direction().isApprox(zeros));
         }
 

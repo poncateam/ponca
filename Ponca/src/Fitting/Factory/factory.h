@@ -71,8 +71,14 @@ namespace Ponca
             {
                 using MethodList = decltype(Filter<MethodProvider<Name>::template pred>());
 
-                static_assert(std::tuple_size_v<typename MethodList::FactoryEntries> == 1);
-                return std::get<0>(typename MethodList::FactoryEntries{0}).object;
+            FactoryEntries& entries()
+            {
+                return m_entries;
+            }
+
+            const FactoryEntries& entries() const
+            {
+                return m_entries;
             }
 
             /**
