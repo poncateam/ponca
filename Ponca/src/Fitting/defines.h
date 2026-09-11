@@ -18,18 +18,11 @@
  */
 #include "../Common/defines.h"
 
-#define PONCA_EXPLICIT_CAST_OPERATOR(CONVERTER, ...)                                           \
+#define PONCA_EXPLICIT_CAST_OPERATOR(CONVERTER, ...)                                                 \
     /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */ \
-    PONCA_MULTIARCH inline __VA_ARGS__& CONVERTER()                                                    \
-    {                                                                                                \
-        return *static_cast<__VA_ARGS__*>(this);                                                       \
-    }                                                                                                \
+    PONCA_MULTIARCH inline __VA_ARGS__& CONVERTER() { return *static_cast<__VA_ARGS__*>(this); }     \
     /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */ \
-    PONCA_MULTIARCH inline const __VA_ARGS__& CONVERTER() const                                        \
-    {                                                                                                \
-        return *static_cast<const __VA_ARGS__*>(this);                                                 \
-    }
-
+    PONCA_MULTIARCH inline const __VA_ARGS__& CONVERTER() const { return *static_cast<const __VA_ARGS__*>(this); }
 
 #define PONCA_EXPLICIT_BASKET_CAST_OPERATORS(CLASSNAME, CONVERTER) \
     PONCA_EXPLICIT_CAST_OPERATOR(CONVERTER, CLASSNAME<DataPoint, _NFilter, T>)

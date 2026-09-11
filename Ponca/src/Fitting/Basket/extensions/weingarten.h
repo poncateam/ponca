@@ -118,7 +118,8 @@ namespace Ponca
         MatrixType m_tangentBasis{MatrixType::Zero()};
 
     public:
-        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, normalDerivativeWeingartenEstimator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator,
+                                                 normalDerivativeWeingartenEstimator)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, tangentPlaneBasis)
         PONCA_FITTING_DECLARE_FINALIZE
 
