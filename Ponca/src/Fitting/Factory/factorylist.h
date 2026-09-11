@@ -103,7 +103,10 @@ namespace Ponca
         std::tuple<
             FactoryEntry<"MongePatchQuadratic"          , Basket<P, NF, MongePatchQuadraticFit>>,
             FactoryEntry<"MongePatchRestrictedQuadratic", Basket<P, NF, MongePatchRestrictedQuadraticFit>>,
-            FactoryEntry<"CNC"                          , CNC<P>>
+            FactoryEntry<"CNCUniform"                   , CNC<P, Ponca::TriangleGenerationMethod::UniformGeneration>>,
+            FactoryEntry<"CNCIndependent"               , CNC<P, Ponca::TriangleGenerationMethod::IndependentGeneration>>,
+            FactoryEntry<"CNCHexagram"                  , CNC<P, Ponca::TriangleGenerationMethod::HexagramGeneration>>,
+            FactoryEntry<"CNCAvgHexagram"               , CNC<P, Ponca::TriangleGenerationMethod::AvgHexagramGeneration>>
         >
     >;
 
