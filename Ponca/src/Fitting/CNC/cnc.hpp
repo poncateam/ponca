@@ -31,9 +31,9 @@ namespace Ponca::internal
     {
         using VectorType = typename P::VectorType;
 
-        template <typename IndexRange, typename PointIterator, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& /*ids*/, const PointIterator& /*begin*/,
-                                   const PointIterator& /*end*/, const NeighborFilter& /*w*/,
+        template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& /*ids*/, const IteratorBegin& /*begin*/,
+                                   const IteratorEnd& /*end*/, const NeighborFilter& /*w*/,
                                    std::vector<Triangle<P>>& /*triangles*/
         )
         {
@@ -63,8 +63,8 @@ namespace Ponca::internal
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointIterator, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointIterator& begin, const PointIterator& end,
+        template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
                                    const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             // Makes a new array
@@ -117,8 +117,8 @@ namespace Ponca::internal
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointIterator, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointIterator& begin, const PointIterator& end,
+        template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
                                    const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             // Makes a new array to shuffle
@@ -177,8 +177,8 @@ namespace Ponca::internal
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointIterator, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointIterator& begin, const PointIterator& end,
+        template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
                                    const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             PONCA_MULTIARCH_STD_MATH(abs);
@@ -237,7 +237,7 @@ namespace Ponca::internal
             // Compute closest points.
             for (int index : ids)
             {
-                auto pt = std::next(begin, index);
+                auto pt = *std::next(begin, index);
 
                 // Skip the points that are outside the kernel radius
                 if (w(pt).first == Scalar(0.))
@@ -263,6 +263,7 @@ namespace Ponca::internal
                                                       {normals[0], normals[2], normals[4]}));
             triangles.push_back(internal::Triangle<P>({positions[1], positions[3], positions[5]},
                                                       {normals[1], normals[3], normals[5]}));
+            return STABLE;
         }
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
@@ -394,8 +395,8 @@ namespace Ponca::internal
 namespace Ponca
 {
     template <class P, TriangleGenerationMethod M>
-    template <typename PointIt>
-    FIT_RESULT CNC<P, M>::compute(const PointIt& begin, const PointIt& end)
+    template <typename IteratorBegin, typename IteratorEnd>
+    FIT_RESULT CNC<P, M>::compute(const IteratorBegin& begin, const IteratorEnd& end)
     {
         init();
         std::vector<unsigned int> indicesSample(std::distance(begin, end));
