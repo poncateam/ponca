@@ -1,0 +1,20 @@
+[build-system]
+requires = [
+    "scikit-build-core>=0.10",
+    "nanobind>=2"
+]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "pyponca"
+version = "0.1.0"
+description = "Ponca python library"
+requires-python = ">=3.9"
+
+[tool.scikit-build]
+cmake.source-dir=".."
+cmake.build-type = "Release"
+
+[tool.scikit-build.cmake.define]
+PONCA_CONFIGURE_PYPONCA = "ON"
+PONCA_INSTANTIATE_ALL = "OFF"

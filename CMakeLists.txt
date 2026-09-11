@@ -10,7 +10,7 @@ OPTION( PONCA_CONFIGURE_EXAMPLES   "Include compilation rules for built-in examp
 OPTION( PONCA_CONFIGURE_DOC        "Include compilation rules for built-in documentation" ON)
 OPTION( PONCA_CONFIGURE_TESTS      "Include compilation rules for built-in tests"         ON)
 OPTION( PONCA_GENERATE_IDE_TARGETS "Generate targets to show source files in IDEs"        ON)
-
+OPTION( PONCA_CONFIGURE_PYPONCA    "Include compilation rules for building python module" OFF)
 ##
 ## END USER OPTIONS
 ####################################################################################################
@@ -180,3 +180,32 @@ add_custom_target(ponca-ci SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/.github/workflows/deployDoc.yml
     ${CMAKE_CURRENT_SOURCE_DIR}/.github/workflows/testAsSubmodule.yml
     ${CMAKE_CURRENT_SOURCE_DIR}/.github/workflows/Coverage.yml)
+
+
+################################################################################
+# Python module                                                                #
+################################################################################
+if (PONCA_CONFIGURE_PYPONCA)
+    set(NANOBIND_SUBMODULE_ROOT_PATH external/nanobind)
+    if (CMAKE_VERSION VERSION_LESS 3.18)
+        set(PYDEV_MODULE Development)
+    else()
+        set(PYDEV_MODULE Development.Module)
+    endif()
+
+    find_package(Python 3.9 COMPONENTS Interpreter ${PYDEV_MODULE} REQUIRED)
+    
+    # This is the method used by nanobind 2.3 to check for recursive call
+    if (NOT IS_DIRECTORY "${NANOBIND_SUBMODULE_ROOT_PATH}/ext/robin_map/include")
+        execute_process(COMMAND git submodule update --init --recursive ${NANOBIND_SUBMODULE_ROOT_PATH}
+                WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    endif()
+
+    add_subdirectory(${NANOBIND_SUBMODULE_ROOT_PATH})
+    add_subdirectory(PyPonca)
+
+    if (PONCA_CONFIGURE_TESTING)
+        add_subdirectory(PyPonca/tests)
+    endif()
+endif()
+
