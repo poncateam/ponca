@@ -395,6 +395,7 @@ namespace Ponca::internal
 namespace Ponca
 {
     template <class P, TriangleGenerationMethod M>
+        requires CNC_REQUIREMENTS
     template <typename IteratorBegin, typename IteratorEnd>
     FIT_RESULT CNC<P, M>::compute(const IteratorBegin& begin, const IteratorEnd& end)
     {
@@ -411,6 +412,7 @@ namespace Ponca
     }
 
     template <class P, TriangleGenerationMethod M>
+        requires CNC_REQUIREMENTS
     template <typename PointContainer>
     FIT_RESULT CNC<P, M>::compute(const PointContainer& points)
     {
