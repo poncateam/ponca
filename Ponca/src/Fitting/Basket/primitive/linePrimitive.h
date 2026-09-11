@@ -41,9 +41,9 @@ namespace Ponca
         using EigenBase = Eigen::ParametrizedLine<typename DataPoint::Scalar, DataPoint::Dim>;
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(Line, line)
-        PONCA_EXPLICIT_CAST_OPERATORS(Line, implicitPrimitive)
-        PONCA_EXPLICIT_CAST_OPERATORS(Line, projectionOperator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Line, line)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Line, implicitPrimitive)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(Line, projectionOperator)
 
         /*!
          * \brief Set the scalar field values to 0 and reset the distance() and origin() status
@@ -60,7 +60,11 @@ namespace Ponca
         /// \return false when called straight after #init. Should be true after fitting
         PONCA_MULTIARCH [[nodiscard]] inline bool isValid() const
         {
-            static const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
+
+#ifndef __CUDACC__
+            static
+#endif
+            const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
             return !(EigenBase::origin().isApprox(zeros) && EigenBase::direction().isApprox(zeros));
         }
 

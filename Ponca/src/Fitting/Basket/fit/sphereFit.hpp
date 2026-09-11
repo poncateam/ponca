@@ -63,11 +63,7 @@ FIT_RESULT SphereFitImpl<DataPoint, _NFilter, T>::finalize()
     //   C^{-1}A is not symmetric
     //   calling Eigen::GeneralizedEigenSolver on (A,C) and Eigen::EigenSolver on C^{-1}A is equivalent
     //   C is not positive definite so Eigen::GeneralizedSelfAdjointEigenSolver cannot be used
-#ifdef __CUDACC__
-    m_solver.computeDirect(invCpratt * m_matA);
-#else
     m_solver.compute(invCpratt * m_matA);
-#endif
     VectorA eivals = m_solver.eigenvalues().real();
     int minId      = -1;
     for (int i = 0; i < DataPoint::Dim + 2; ++i)

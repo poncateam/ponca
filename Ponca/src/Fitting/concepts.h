@@ -5,6 +5,12 @@
 
 namespace Ponca
 {
+    // We can not check if we inherit from BasketDiffUnit because it requires knowledge
+    // of the Basket... Instead we check that the function defines in it exists and
+    // return something that is coherent for derivatives to exists.
+    template <typename T>
+    concept ProvidesDerivatives = (T::isScaleDer() || T::isSpaceDer()) && (T::derDimension() > 0);
+
     template <typename T>
     concept ProvidesProjectionOperator = requires(T t, const T ct, typename T::VectorType v, typename T::Scalar s) {
         ct.projectionOperator();

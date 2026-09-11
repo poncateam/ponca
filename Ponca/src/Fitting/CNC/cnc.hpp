@@ -30,6 +30,16 @@ namespace Ponca::internal
     struct TriangleGenerator
     {
         using VectorType = typename P::VectorType;
+
+        template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& /*ids*/, const IteratorBegin& /*begin*/,
+                                   const IteratorEnd& /*end*/, const NeighborFilter& /*w*/,
+                                   std::vector<Triangle<P>>& /*triangles*/
+        )
+        {
+            throw std::invalid_argument("Triangle generation method not implemented!");
+        }
+
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
         static FIT_RESULT generate(const IndexRange& /*ids*/, const PointContainer& /*points*/,
                                    const NeighborFilter& /*w*/, std::vector<Triangle<P>>& /*triangles*/
@@ -53,16 +63,16 @@ namespace Ponca::internal
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
-                                   std::vector<Triangle<P>>& triangles)
+        template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
+                                   const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             // Makes a new array
             std::vector<int> indices;
             for (int index : ids)
             {
                 // Skip the points that are outside the kernel radius
-                if (w(points[index]).first == Scalar(0.))
+                if (w(*std::next(begin, index)).first == Scalar(0.))
                     continue;
                 indices.push_back(index);
             }
@@ -79,9 +89,17 @@ namespace Ponca::internal
                 if (i1 == i2 || i1 == i3 || i2 == i3)
                     continue;
 
-                triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
+                triangles.push_back(
+                    internal::Triangle<P>(*std::next(begin, i1), *std::next(begin, i2), *std::next(begin, i3)));
             }
             return STABLE;
+        }
+
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
+                                   std::vector<Triangle<P>>& triangles)
+        {
+            return generate(ids, std::begin(points), std::end(points), w, triangles);
         }
     };
 
@@ -99,16 +117,16 @@ namespace Ponca::internal
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
-                                   std::vector<Triangle<P>>& triangles)
+        template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
+                                   const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             // Makes a new array to shuffle
             std::vector<int> indices;
             for (int index : ids)
             {
                 // Skip the points that are outside the kernel radius
-                if (w(points[index]).first == Scalar(0.))
+                if (w(*std::next(begin, index)).first == Scalar(0.))
                     continue;
                 indices.push_back(index);
             }
@@ -128,9 +146,17 @@ namespace Ponca::internal
                 int i1 = indices[nb_vt];
                 int i2 = indices[nb_vt + 1];
                 int i3 = indices[nb_vt + 2];
-                triangles.push_back(internal::Triangle<P>(points[i1], points[i2], points[i3]));
+                triangles.push_back(
+                    internal::Triangle<P>(*std::next(begin, i1), *std::next(begin, i2), *std::next(begin, i3)));
             }
             return STABLE;
+        }
+
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
+                                   std::vector<Triangle<P>>& triangles)
+        {
+            return generate(ids, std::begin(points), std::end(points), w, triangles);
         }
     };
 
@@ -151,9 +177,9 @@ namespace Ponca::internal
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
 
-        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
-                                   std::vector<Triangle<P>>& triangles)
+        template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
+                                   const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             PONCA_MULTIARCH_STD_MATH(abs);
             // Compute normal and maximum distance.
@@ -166,10 +192,12 @@ namespace Ponca::internal
             int valid_points_count = 0;
             for (int index : ids)
             {
+                auto p = *std::next(begin, index);
+
                 // Skip the points that are outside the kernel radius
-                if (w(points[index]).first == Scalar(0.))
+                if (w(p).first == Scalar(0.))
                     continue;
-                auto p = points[index];
+
                 avg_d += (p.pos() - c).norm();
                 a += p.normal();
                 isUndefined = false;
@@ -209,11 +237,13 @@ namespace Ponca::internal
             // Compute closest points.
             for (int index : ids)
             {
+                auto pt = *std::next(begin, index);
+
                 // Skip the points that are outside the kernel radius
-                if (w(points[index]).first == Scalar(0.))
+                if (w(pt).first == Scalar(0.))
                     continue;
 
-                VectorType p = points[index].pos();
+                VectorType p = pt.pos();
                 if (p == c)
                     continue; // Skip the eval point
                 const VectorType d = p - c;
@@ -225,7 +255,7 @@ namespace Ponca::internal
                     {
                         distance2[j] = d2;
                         positions[j] = p;
-                        normals[j]   = points[index].normal();
+                        normals[j]   = pt.normal();
                     }
                 }
             }
@@ -233,8 +263,14 @@ namespace Ponca::internal
                                                       {normals[0], normals[2], normals[4]}));
             triangles.push_back(internal::Triangle<P>({positions[1], positions[3], positions[5]},
                                                       {normals[1], normals[3], normals[5]}));
-
             return STABLE;
+        }
+
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
+                                   std::vector<Triangle<P>>& triangles)
+        {
+            return generate(ids, std::begin(points), std::end(points), w, triangles);
         }
     };
 
@@ -247,10 +283,9 @@ namespace Ponca::internal
     {
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
-
-        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
-                                   std::vector<Triangle<P>>& triangles)
+        template <typename IndexRange, typename PointIterator, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const PointIterator& begin, const PointIterator& end,
+                                   const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             // Compute normal and maximum distance.
             VectorType c = w.center();
@@ -265,10 +300,11 @@ namespace Ponca::internal
             int valid_points_count = 0;
             for (int index : ids)
             {
-                if (w(points[index]).first == Scalar(0.))
+                auto p = *std::next(begin, index);
+                if (w(p).first == Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
-                a += points[index].normal();
-                avg_d += (points[index].pos() - c).norm();
+                a += p.normal();
+                avg_d += (p.pos() - c).norm();
                 isUndefined = false;
                 valid_points_count++;
             }
@@ -304,9 +340,10 @@ namespace Ponca::internal
             // Compute closest points.
             for (int index : ids)
             {
-                if (w(points[index]).first == Scalar(0.))
+                auto pt = *std::next(begin, index);
+                if (w(pt).first == Scalar(0.))
                     continue; // Skip the points that are outside the kernel radius
-                VectorType p   = points[index].pos() - c;
+                VectorType p   = pt.pos() - c;
                 int best_k     = 0;
                 Scalar best_d2 = (p - targets[0]).squaredNorm();
                 for (int k = 1; k < 6; k++)
@@ -318,8 +355,8 @@ namespace Ponca::internal
                         best_d2 = d2;
                     }
                 }
-                array_avg_normals[best_k] += points[index].normal();
-                array_avg_pos[best_k] += points[index].pos();
+                array_avg_normals[best_k] += pt.normal();
+                array_avg_pos[best_k] += pt.pos();
                 array_nb[best_k] += 1;
             }
 
@@ -345,11 +382,35 @@ namespace Ponca::internal
                                       {array_avg_normals[1], array_avg_normals[3], array_avg_normals[5]}));
             return STABLE;
         }
+
+        template <typename IndexRange, typename PointContainer, typename NeighborFilter>
+        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
+                                   std::vector<Triangle<P>>& triangles)
+        {
+            return generate(ids, std::begin(points), std::end(points), w, triangles);
+        }
     };
 } // namespace Ponca::internal
 
 namespace Ponca
 {
+    template <class P, TriangleGenerationMethod M>
+        requires CNC_REQUIREMENTS
+    template <typename IteratorBegin, typename IteratorEnd>
+    FIT_RESULT CNC<P, M>::compute(const IteratorBegin& begin, const IteratorEnd& end)
+    {
+        init();
+        std::vector<unsigned int> indicesSample(std::distance(begin, end));
+        std::iota(indicesSample.begin(), indicesSample.end(), 0);
+
+        m_eCurrentState =
+            internal::TriangleGenerator<M, P>::generate(indicesSample, begin, end, m_nFilter, m_triangles);
+        if (m_eCurrentState != STABLE)
+            return m_eCurrentState;
+        m_nb_vt = int(m_triangles.size());
+        return finalize();
+    }
+
     template <class P, TriangleGenerationMethod M>
         requires CNC_REQUIREMENTS
     template <typename PointContainer>
