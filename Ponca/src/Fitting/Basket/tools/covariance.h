@@ -76,7 +76,7 @@ namespace Ponca
         Solver m_solver;                      /*!<\brief Solver used to analyse the covariance matrix */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(CovarianceBase, covarianceBase)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(CovarianceBase, covarianceBase)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
 
         /*! \brief Implements \cite Pauly:2002:PSSimplification surface variation.
@@ -153,7 +153,7 @@ namespace Ponca
         MatrixType m_dCov[Base::NbDerivatives];
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS_DER(CovarianceDer, covarianceDer)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovarianceDer, covarianceDer)
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
     }; // class CovarianceDer
 

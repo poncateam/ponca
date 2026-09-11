@@ -55,6 +55,10 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/sphereFit.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/unorientedSphereFit.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/fit/unorientedSphereFit.hpp"
+
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Factory/factory.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Factory/factorylist.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Factory/typelist.h"
     )
 
 add_library(Fitting INTERFACE)
