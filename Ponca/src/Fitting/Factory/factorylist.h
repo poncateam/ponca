@@ -78,13 +78,14 @@ namespace Ponca
     using FactoryGenericList = std::tuple<
         FactoryEntry<"DryFit"            , Basket<P, NF, DryFit>>,
         FactoryEntry<"MeanPosition"      , Basket<P, NF, MeanPosition>>,
-        FactoryEntry<"MeanNormal"        , Basket<P, NF, MeanPosition>>,
+        FactoryEntry<"MeanNormal"        , Basket<P, NF, MeanNormal>>,
         FactoryEntry<"CovarianceLineFit" , Basket<P, NF, CovarianceLineFit>>,
         FactoryEntry<"CovariancePlaneFit", Basket<P, NF, CovariancePlaneFit>>,
         FactoryEntry<"SphereFit"         , Basket<P, NF, SphereFit>>, 
         FactoryEntry<"MeanPlaneFit"      , Basket<P, NF, MeanPlaneFit>>,
         FactoryEntry<"APSS"              , Basket<P, NF, OrientedSphereFit, GLSParam>>,
         FactoryEntry<"Unoriented APSS"   , Basket<P, NF, UnorientedSphereFit, GLSParam>>
+#endif
     >;
 
     template<typename P, typename NF, int DerType>
