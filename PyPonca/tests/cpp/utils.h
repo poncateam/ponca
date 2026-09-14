@@ -10,8 +10,8 @@
 template <typename Point>
 std::vector<Point> ReadFile(const std::string& fileName)
 {
-    int N          = 0;
-    int D          = 0;
+    int N         = 0;
+    int D         = 0;
     int hasNormal = false;
 
     std::ifstream file(fileName);
@@ -95,7 +95,7 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<typenam
     if (values.empty())
         return;
 
-    file << '"' << name << "\":{\"N\":" << values.size() << ",\"D\":" << Point::Dim << ",\"data\":["    ;
+    file << '"' << name << "\":{\"N\":" << values.size() << ",\"D\":" << Point::Dim << ",\"data\":[";
     WriteVector(file, values[0]);
     for (unsigned int i = 1; i < values.size(); ++i)
     {
@@ -105,7 +105,6 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<typenam
     file << "]}";
 }
 
-
 template <typename Point, bool Normals>
 void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>& points)
 {
@@ -113,10 +112,11 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>&
     {
         file << "\"pos\": [";
         for (size_t i = 0; i < points.size(); ++i)
-        {   
+        {
             for (size_t j = 0; j < Point::Dim; ++j)
             {
-                if (i != 0 || j != 0) file << ",";
+                if (i != 0 || j != 0)
+                    file << ",";
                 file << points[i].pos()[j];
             }
         }
@@ -127,10 +127,11 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>&
     {
         file << ",\"normals\": [";
         for (size_t i = 0; i < points.size(); ++i)
-        {   
+        {
             for (size_t j = 0; j < Point::Dim; ++j)
             {
-                if (i != 0 || j != 0) file << ",";
+                if (i != 0 || j != 0)
+                    file << ",";
                 file << points[i].normal()[j];
             }
         }
@@ -139,8 +140,9 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>&
     file << "}";
 }
 
-template<typename Point, typename Input, typename Output>
-void WriteResult(std::ofstream& file, const char* method, const char* function, const std::vector<Input>& inputs, const std::vector<Output>& outputs)
+template <typename Point, typename Input, typename Output>
+void WriteResult(std::ofstream& file, const char* method, const char* function, const std::vector<Input>& inputs,
+                 const std::vector<Output>& outputs)
 {
     file << "{\"method\":\"" << method << "\",";
     file << "\"function\":\"" << function << "\",";
