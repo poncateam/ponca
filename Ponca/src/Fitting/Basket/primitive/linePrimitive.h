@@ -64,7 +64,7 @@ namespace Ponca
 #ifndef __CUDACC__
             static
 #endif
-            const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
+                const typename EigenBase::VectorType zeros = EigenBase::VectorType::Zero();
             return !(EigenBase::origin().isApprox(zeros) && EigenBase::direction().isApprox(zeros));
         }
 

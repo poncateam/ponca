@@ -9,7 +9,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 /**
  * \brief Register class, functions and enums for the common module
- * 
+ *
  * \param m The main module
  * \param internal An internal module reserved for the library
  */

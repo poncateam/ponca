@@ -134,7 +134,7 @@ struct PyPointCloud
      */
     struct iterator
     {
-        using value_type = Point;
+        using value_type        = Point;
         using difference_type   = std::ptrdiff_t;
         using pointer           = value_type;
         using reference         = value_type;
@@ -186,7 +186,7 @@ struct PyPointCloud
             ++m_index;
             return *this;
         }
-        
+
         /**
          * \brief Postfix decrement
          */
@@ -199,7 +199,7 @@ struct PyPointCloud
 
         /**
          * \brief General increment
-         * 
+         *
          * \param n Increment amount
          */
         iterator& operator+=(difference_type n)
@@ -207,10 +207,10 @@ struct PyPointCloud
             m_index += n;
             return *this;
         }
-        
+
         /**
          * \brief General decrement
-         * 
+         *
          * \param n Decrement amount
          */
         iterator& operator-=(difference_type n)
@@ -219,11 +219,8 @@ struct PyPointCloud
             return *this;
         }
 
-        difference_type operator-(const iterator& other) const
-        {
-            return m_index - other.m_index;
-        }
-        
+        difference_type operator-(const iterator& other) const { return m_index - other.m_index; }
+
         /**
          * \brief Point access
          */
@@ -232,7 +229,8 @@ struct PyPointCloud
         /**
          * \brief Point access
          */
-        Point operator->() const { return m_cloud->operator[](m_index); } 
+        Point operator->() const { return m_cloud->operator[](m_index); }
+
     private:
         // TODO: Evaluate if storing two pointers + two strides is faster !
         const PyPointCloud* m_cloud;

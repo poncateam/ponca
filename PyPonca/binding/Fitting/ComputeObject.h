@@ -195,10 +195,10 @@ private:
 
             inputsView.emplace_back(m_descriptors[i].inputData);
             resultView.emplace_back(nb::ndarray<Scalar>(computationResult.resultData));
-                
+
             result.push_back(computationResult);
         }
-        
+
         for (unsigned int i = 0; i < m_filterCenters.shape(0); ++i)
         {
             ComputeObject computeObject;
