@@ -157,4 +157,3 @@ for co in ComputeObjectList:
 
     # Register the new class within the pyponca namespace
     globals()[co] = newco
-
