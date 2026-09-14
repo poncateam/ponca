@@ -76,10 +76,7 @@ struct PyKDTree
             f(std::get<SparseIndex>(data));
     }
 
-    auto device_type() const
-    {
-        return nb::device::cpu::value;
-    }
+    auto device_type() const { return nb::device::cpu::value; }
 
     // Should be const but copy operator makes it impossible...
     bool isDense;

@@ -21,8 +21,8 @@
  *
  * The main purpose of this function is to fill the outputDimension
  * which the PyCo can not do (it only sees the id);
- * 
- * This function may throw if the computation is not supported by the object. 
+ *
+ * This function may throw if the computation is not supported by the object.
  *
  * \param self The instance of the object
  * \param id The computation to be performed
@@ -35,16 +35,16 @@ void addComputation(PyCo& self, Computation id, nb::ndarray<typename PyCo::Scala
     descriptor.id         = static_cast<size_t>(id);
     descriptor.outputDims = ComputeOutputDimension<PyCo>(id, nb::ndarray<>(data));
     descriptor.inputData  = data;
-    
+
     self.addComputation(std::move(descriptor));
 }
 
 /**
  * \brief Perform the compute method on a point cloud
- * 
+ *
  * \tparam Co The compute obejct to perform the compute method on
  * \tparam Cloud Pointcloud type
- * 
+ *
  * \param co The compute object
  * \param i Index into the filter list
  * \param loc Filter center
@@ -59,10 +59,10 @@ void PerformRawCloudComputation(Co& co, const Cloud& cloud, unsigned int i, type
 
 /**
  * \brief Perform the compute method on a KDTree
- * 
+ *
  * \tparam Co The compute obejct to perform the compute method on
  * \tparam Cloud Pointcloud type
- * 
+ *
  * \param co The compute object
  * \param i Index into the filter list
  * \param loc Filter center
@@ -123,44 +123,44 @@ void RegisterComputeObjects(nb::module_& m, std::set<std::string>& list)
     using Factory = Ponca::Factory<P, NF, Diff>;
 
     // Compute mangling informations
-    const std::string mangledName = PointCloud::PointName + _NF::name;
-    const std::vector<std::string> nonTemplatedFilterTypes = { "CNC" };
+    const std::string mangledName                          = PointCloud::PointName + _NF::name;
+    const std::vector<std::string> nonTemplatedFilterTypes = {"CNC"};
 
     // General properties
     Factory::foreach ([&](const auto& x) {
-        using T                   = decltype(x.object);
-        using PyCo                = PyComputeObject<T>;
-        
+        using T    = decltype(x.object);
+        using PyCo = PyComputeObject<T>;
+
         std::string basename = x.name;
         basename.erase(std::remove(basename.begin(), basename.end(), ' '), basename.end());
 
         // Check for existing types. It turns out some of the type within the factory
         // may not be templated on _NF, which leads to duplicates.
-        // For now, this is handled here:  
+        // For now, this is handled here:
         nb::handle existing = nb::type<PyCo>();
         if (existing.is_valid())
         {
             bool found = false;
             for (const auto& mark : nonTemplatedFilterTypes)
                 found = found || (basename.find(mark) != std::string::npos);
-            
-            // Let's hope that code whose code goes into the if-statement never reaches 
-            // master branch and the user :) 
+
+            // Let's hope that code whose code goes into the if-statement never reaches
+            // master branch and the user :)
             if (!found)
-                throw std::runtime_error("Type for " + basename + " algready registerd (" + std::string(typeid(T).name()) + ")");
+                throw std::runtime_error("Type for " + basename + " algready registerd (" +
+                                         std::string(typeid(T).name()) + ")");
             else
                 return; // Return early to avoid registering the new type again
         }
-        
 
         const std::string newname = basename + mangledName;
-        auto pyco = nb::class_<PyCo>(m, newname.c_str());
+        auto pyco                 = nb::class_<PyCo>(m, newname.c_str());
         pyco.def(nb::init<>());
         pyco.def("setNeighborFilter", &PyCo::setNeighborFilter);
         pyco.def("addComputation", &addComputation<PyCo>, nb::arg("id"), nb::arg("data").none());
         pyco.def("compute", &computeRawPointCloud<PyCo, PointCloud>);
         pyco.def("compute", &computeKDTree<PyCo, PyKDTree<PointCloud>>);
-        
+
         list.insert(basename);
     });
 }

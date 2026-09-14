@@ -20,7 +20,7 @@ enum class Computation
 
 /**
  * \brief Register the computation enumeration defined above
- * 
+ *
  * \param m Nanobind module
  */
 void RegisterComputations(nanobind::module_& m)
@@ -93,7 +93,7 @@ inline std::vector<size_t> ComputeOutputDimension(Computation id, const nb::ndar
  */
 template <typename CO, typename Scalar = typename CO::Scalar>
 inline void ExtractComputation(size_t id, CO& object, size_t i, const DeviceArrayView<Scalar>& in,
-                                               DeviceArrayView<Scalar>& out)
+                               DeviceArrayView<Scalar>& out)
 {
     Computation computation = static_cast<Computation>(id);
     switch (computation)
