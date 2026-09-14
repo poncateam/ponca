@@ -1,0 +1,48 @@
+name: Build and run tests for PyPonca
+
+defaults:
+  run:
+    shell: bash
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { name: "Windows MSVC", os: windows-latest, cc: "cl.exe", cxx: "cl.exe", icon: "Windows"}
+          - { name: "Ubuntu gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", icon: "Linux" }
+          - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", icon: "Apple" }
+    steps:
+      - uses: seanmiddleditch/gha-setup-ninja@master
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Add msbuild to PATH
+        uses: seanmiddleditch/gha-setup-vsdevenv@master
+        if: runner.os == 'Windows'
+      
+      - name: Checkout remote head
+        uses: actions/checkout@master
+        with:
+          path: src
+
+      - name: Installing library
+        working-directory: src/PyPonca
+        run: CMAKE_ARGS="-DPONCA_CONFIGURE_TESTING=ON" pip install -v . --config-settings=build-dir=build
+      
+      - name: Verifying install
+        run: python -c "import pyponca"
+      
+      - name: Running tests
+        working-directory: src/PyPonca/build
+        run: ctest -L pyponca
