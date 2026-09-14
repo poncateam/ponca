@@ -29,10 +29,10 @@ class TestAccuracy(unittest.TestCase):
             self.expected = json.load(file)
 
         # Load main pointclouds
-        N = self.expected["pointcloud"]["N"]
-        D = self.expected["pointcloud"]["D"]
-        self.pos     = np.array(self.expected["pointcloud"]["pos"]    ).reshape((N, D))
-        self.normals = np.array(self.expected["pointcloud"]["normals"]).reshape((N, D))
+        N = self.expected["pointcloud"]["pos"]["N"]
+        D = self.expected["pointcloud"]["pos"]["D"]
+        self.pos     = np.array(self.expected["pointcloud"]["pos"]["data"]    ).reshape((N, D))
+        self.normals = np.array(self.expected["pointcloud"]["normals"]["data"]).reshape((N, D))
         self.points  = pyponca.PointCloud(self.pos, self.normals)
 
         M = self.expected["analysisLocation"]["N"]
