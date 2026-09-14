@@ -9,6 +9,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] enforce normal requirement in several classes (#343)
     - [fitting] add concept for derivatives (#343)
     - [fitting] restrict height fields to 3d (#343)
+    - [fitting] CNC compute now supports iterator over point cloud (#344)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
@@ -26,7 +27,6 @@ the kNNGraphs to NeighborGraphs, and several bug-fixes and other improvements.
     - [fitting] projectDescent is now a separate class from Basket (#298)
     - [fitting] Add prattNorm derivatives in UnorientedSphereFit (#304)
     - [fitting] Add MultipassStatus class to ease check status of required extensions (#339)
-    - [fitting] CNC compute now supports iterator over point cloud (#344)
     - [spatialPartitioning] Rework KnnGraph API for compilation and query on the GPU (#301,#325)
     - [spatialPartitioning] Replace KnnGraph query containers with custom Stack and HashSet structure (#301,#325)
     - [spatialPartitioning] Introduce NeighborGraphs as a generalization of the KnnGraphs (#327,#341)
