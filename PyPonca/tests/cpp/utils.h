@@ -108,9 +108,9 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<typenam
 template <typename Point, bool Normals>
 void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>& points)
 {
-    file << "\"" << name << "\":{\"N\":" << points.size() << ",\"D\":" << Point::Dim << ",";
+    file << "\"" << name << "\":{\"pos\":{\"N\":" << points.size() << ",\"D\":" << Point::Dim << ",";
     {
-        file << "\"pos\": [";
+        file << "\"data\": [";
         for (size_t i = 0; i < points.size(); ++i)
         {
             for (size_t j = 0; j < Point::Dim; ++j)
@@ -120,12 +120,12 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>&
                 file << points[i].pos()[j];
             }
         }
-        file << "]";
+        file << "]}";
     }
 
     if constexpr (Normals)
     {
-        file << ",\"normals\": [";
+        file << ",\"normals\":{\"N\":" << points.size() << ",\"D\":" << Point::Dim << ",\"data\":[";
         for (size_t i = 0; i < points.size(); ++i)
         {
             for (size_t j = 0; j < Point::Dim; ++j)
@@ -135,7 +135,7 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>&
                 file << points[i].normal()[j];
             }
         }
-        file << "]";
+        file << "]}";
     }
     file << "}";
 }
