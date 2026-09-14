@@ -19,9 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          # - { name: "Windows MSVC", os: windows-latest, cc: "cl.exe", cxx: "cl.exe", icon: "Windows"}
+          - { name: "Windows MSVC", os: windows-latest, cc: "cl.exe", cxx: "cl.exe", icon: "Windows"}
           - { name: "Ubuntu gcc", os: ubuntu-latest, cc: "gcc", cxx: "g++", icon: "Linux" }
-          # - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", icon: "Apple" }
+          - { name: "MacOS clang", os: macos-latest, cc: "clang", cxx: "clang++", icon: "Apple" }
     steps:
       - uses: seanmiddleditch/gha-setup-ninja@master
       - uses: actions/setup-python@v6
@@ -43,6 +43,9 @@ jobs:
       - name: Verifying install
         run: python -c "import pyponca"
       
+      - name: Installing dependencies for test
+        run: pip install numpy 
+
       - name: Running tests
         working-directory: src/PyPonca/build
         run: ctest -L pyponca --output-on-failure
