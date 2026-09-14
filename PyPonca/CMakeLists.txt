@@ -14,6 +14,7 @@ set(PYPONCA_SRC
 )
 
 nanobind_add_module(_pyponca ${PYPONCA_SRC})
+target_link_libraries(_pyponca PUBLIC Common Fitting)
 
 find_package(OpenMP)
 if(OpenMP_CXX_FOUND)
@@ -26,10 +27,6 @@ if ( CMAKE_CUDA_COMPILER )
     target_compile_options(_pyponca PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--expt-relaxed-constexpr>)
     target_compile_options(_pyponca PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--extended-lambda>)
 endif()
-
-# We link here manually with stdc++. Nanobind seems to think this 
-# is C-code when linking with our interface module...???
-target_link_libraries(_pyponca PUBLIC Common Fitting stdc++)
 
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     # Nanobind hides the internal symbols of its code. This causes a lot
