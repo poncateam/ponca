@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classPonca_1_1CovariancePlaneFitImpl.html":[9,0,0,18],
 "classPonca_1_1CovariancePlaneFitImpl.html#a18635760d587df7b3958acc01a4abb15":[9,0,0,18,5],
 "classPonca_1_1CovariancePlaneFitImpl.html#a3a891428f3c0ec185ee0f10f2edb475d":[9,0,0,18,9],
 "classPonca_1_1CovariancePlaneFitImpl.html#a434acdeaed07c076df2cb36a4d04493e":[9,0,0,18,6],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classPonca_1_1Line.html#ac9ae7707a0909cc91b000c7f078810fe":[9,0,0,57,22],
 "classPonca_1_1Line.html#ad74fc56588b54b5546e09a8f4e9deeea":[9,0,0,57,1],
 "classPonca_1_1Line.html#ae00f6f75436df9d0da2c36d8ce447208":[9,0,0,57,3],
-"classPonca_1_1Line.html#ae1b49c4778d74c964e70b5a8dd24102e":[9,0,0,57,0],
-"classPonca_1_1Line.html#ae7179e684e87f56f4070a6d74672ccd4":[9,0,0,57,12]
+"classPonca_1_1Line.html#ae1b49c4778d74c964e70b5a8dd24102e":[9,0,0,57,0]
 };

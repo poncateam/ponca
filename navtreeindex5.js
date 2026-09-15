@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"structPonca_1_1StaticKdTreeBase_1_1Buffers.html#aef184e20609199a57cd7045e06e85750":[9,0,0,104,0,0],
 "structPonca_1_1WeingartenCurvatureEstimator.html":[9,0,0,109],
 "structPonca_1_1WeingartenCurvatureEstimator.html#a10384e926b6b6035ec864a8a5e6c42d8":[9,0,0,109,6],
 "structPonca_1_1WeingartenCurvatureEstimator.html#a20a3591daed80b1153da42c415cd3b33":[9,0,0,109,1],

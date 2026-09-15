@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">82fc77e8c6294111c6f00670e92ec58a24e2ecf2</span>
+   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -169,6 +169,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1b88e1350ecf2bb3ea4a0118065eb784" id="r_a1b88e1350ecf2bb3ea4a0118065eb784"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#a1b88e1350ecf2bb3ea4a0118065eb784">init</a> ()</td></tr>
 <tr class="memdesc:a1b88e1350ecf2bb3ea4a0118065eb784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the scalar field values to 0 and reset the isNormalized() status.  <br /></td></tr>
 <tr class="separator:a1b88e1350ecf2bb3ea4a0118065eb784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea7ca2e7489c29ae9adbf0f5623b2fe2" id="r_aea7ca2e7489c29ae9adbf0f5623b2fe2"><td class="memTemplParams" colspan="2">template&lt;typename IteratorBegin , typename IteratorEnd &gt; <br />
+requires CNC_REQUIREMENTS</td></tr>
+<tr class="memitem:aea7ca2e7489c29ae9adbf0f5623b2fe2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#aea7ca2e7489c29ae9adbf0f5623b2fe2">compute</a> (const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</td></tr>
+<tr class="memdesc:aea7ca2e7489c29ae9adbf0f5623b2fe2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterators, and call finalize at the end.  <br /></td></tr>
+<tr class="separator:aea7ca2e7489c29ae9adbf0f5623b2fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae294183bf51f4ae589abd2621820e2b7" id="r_ae294183bf51f4ae589abd2621820e2b7"><td class="memTemplParams" colspan="2">template&lt;typename PointContainer &gt; <br />
 requires CNC_REQUIREMENTS</td></tr>
 <tr class="memitem:ae294183bf51f4ae589abd2621820e2b7"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classPonca_1_1CNC.html#ae294183bf51f4ae589abd2621820e2b7">compute</a> (const PointContainer &amp;points)</td></tr>
@@ -396,8 +401,55 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aea7ca2e7489c29ae9adbf0f5623b2fe2" name="aea7ca2e7489c29ae9adbf0f5623b2fe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea7ca2e7489c29ae9adbf0f5623b2fe2">&#9670;&#160;</a></span>compute() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd046b70da4dc69a2a">TriangleGenerationMethod</a> M&gt; <br />
+requires CNC_REQUIREMENTS</div>
+<div class="memtemplate">
+template&lt;typename IteratorBegin , typename IteratorEnd &gt; <br />
+requires CNC_REQUIREMENTS</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="el" href="classPonca_1_1CNC.html">Ponca::CNC</a>&lt; P, M &gt;::compute </td>
+          <td>(</td>
+          <td class="paramtype">const IteratorBegin &amp;&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const IteratorEnd &amp;&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterators, and call finalize at the end. </p>
+<p>The fit is evaluated multiple time if needed (see <a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a0d50cd1855fec459b2c5756ec38d4a17" title="The fitting procedure needs to analyse the neighborhood another time.">NEED_OTHER_PASS</a>) </p>
+
+<p class="definition">Definition at line <a class="el" href="cnc_8hpp_source.html#l00400">400</a> of file <a class="el" href="cnc_8hpp_source.html">cnc.hpp</a>.</p>
+
+</div>
+</div>
 <a id="ae294183bf51f4ae589abd2621820e2b7" name="ae294183bf51f4ae589abd2621820e2b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae294183bf51f4ae589abd2621820e2b7">&#9670;&#160;</a></span>compute()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae294183bf51f4ae589abd2621820e2b7">&#9670;&#160;</a></span>compute() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -434,7 +486,7 @@ requires CNC_REQUIREMENTS</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8hpp_source.html#l00356">356</a> of file <a class="el" href="cnc_8hpp_source.html">cnc.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8hpp_source.html#l00417">417</a> of file <a class="el" href="cnc_8hpp_source.html">cnc.hpp</a>.</p>
 
 </div>
 </div>
@@ -487,7 +539,7 @@ requires CNC_REQUIREMENTS</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8hpp_source.html#l00372">372</a> of file <a class="el" href="cnc_8hpp_source.html">cnc.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8hpp_source.html#l00433">433</a> of file <a class="el" href="cnc_8hpp_source.html">cnc.hpp</a>.</p>
 
 </div>
 </div>
@@ -521,7 +573,7 @@ requires CNC_REQUIREMENTS</div>
 <dl class="section return"><dt>Returns</dt><dd>Fitting Status </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Must be called be for any use of the fitting output </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8hpp_source.html#l00384">384</a> of file <a class="el" href="cnc_8hpp_source.html">cnc.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8hpp_source.html#l00445">445</a> of file <a class="el" href="cnc_8hpp_source.html">cnc.hpp</a>.</p>
 
 </div>
 </div>
@@ -552,7 +604,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Returns an estimate of the Gaussian curvature. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00251">251</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00259">259</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -583,9 +635,9 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Get the number of triangles that were generated with the compute method. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns the number of triangles </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1CNC.html#ae294183bf51f4ae589abd2621820e2b7" title="Compute function for STL-like containers.">CNC::compute</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classPonca_1_1CNC.html#aea7ca2e7489c29ae9adbf0f5623b2fe2" title="Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...">CNC::compute</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00191">191</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00199">199</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -617,7 +669,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 <p>Returns the triangles. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the array of triangle that was generated during the <a class="el" href="classPonca_1_1CNC.html" title="Corrected Normal Current Fit type.">CNC</a> Fit </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00201">201</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00209">209</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -690,7 +742,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Approximate operator. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00222">222</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00230">230</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -721,7 +773,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Is the fitted primitive ready to use (finalize has been called and the result is stable) </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00233">233</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00241">241</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -752,7 +804,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Returns an estimate of the maximal principal curvature value. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00239">239</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00247">247</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -783,7 +835,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Returns an estimate of the maximal principal curvature direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00245">245</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00253">253</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -814,7 +866,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Returns an estimate of the mean curvature. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00248">248</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00256">256</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -845,7 +897,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Returns an estimate of the minimal principal curvature value. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00236">236</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00244">244</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -876,7 +928,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Returns an estimate of the minimal principal curvature direction. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00242">242</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00250">250</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -908,7 +960,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Comparison operator, convenience function. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00215">215</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00223">223</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -940,7 +992,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 
 <p>Comparison operator. </p>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00204">204</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00212">212</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -974,7 +1026,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 <p>Calls #startNewPass internally. </p><dl class="section warning"><dt>Warning</dt><dd>Must be * called be for any computation (and before <a class="el" href="classPonca_1_1CNC.html#a1b88e1350ecf2bb3ea4a0118065eb784" title="Set the scalar field values to 0 and reset the isNormalized() status.">init</a>). </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>getWeightFunc </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00194">194</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cnc_8h_source.html#l00202">202</a> of file <a class="el" href="cnc_8h_source.html">cnc.h</a>.</p>
 
 </div>
 </div>
@@ -1429,7 +1481,7 @@ template&lt;class P , <a class="el" href="namespacePonca.html#a9934430d447bf9cd0
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="classPonca_1_1CNC.html">CNC</a></li>
-    <li class="footer">Generated on Thu Sep 10 2026 11:45:13 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Tue Sep 15 2026 12:02:28 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

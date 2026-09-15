@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classPonca_1_1QuadraticHeightField.html#a6e2233e52bf83f84a2b6c3db13f9d8fd":[9,0,0,87,18],
 "classPonca_1_1QuadraticHeightField.html#a768ecf29239d53ac4fe03f4a7eebc1c1":[9,0,0,87,4],
 "classPonca_1_1QuadraticHeightField.html#a83751aeceb7c1779aa672b6f66915fec":[9,0,0,87,7],
 "classPonca_1_1QuadraticHeightField.html#a83a31e9520f28471565b154b3ebe0e88":[9,0,0,87,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "example_python_ssc_page.html#pyssgl_cuda_access_sec":[3,6,1,4],
 "example_python_ssc_page.html#pyssgl_cuda_fit_sec":[3,6,1,2],
 "example_python_ssc_page.html#pyssgl_cuda_kernel_sec":[3,6,1,3],
-"example_python_ssc_page.html#pyssgl_cuda_mypoint_sec":[3,6,1,0],
-"example_python_ssc_page.html#pyssgl_cuda_sec":[3,6,1]
+"example_python_ssc_page.html#pyssgl_cuda_mypoint_sec":[3,6,1,0]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"example_python_ssc_page.html#pyssgl_cuda_sec":[3,6,1],
 "example_python_ssc_page.html#pyssgl_cuda_weight_sec":[3,6,1,1],
 "example_python_ssc_page.html#pyssgl_intro_sec":[3,6,0],
 "example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec":[3,6,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "structPonca_1_1StaticKdTree.html":[9,0,0,103],
 "structPonca_1_1StaticKdTreeBase_1_1Buffers.html":[9,0,0,104,0],
 "structPonca_1_1StaticKdTreeBase_1_1Buffers.html#a0bf78b78168ba5f42059696a404a709a":[9,0,0,104,0,1],
-"structPonca_1_1StaticKdTreeBase_1_1Buffers.html#a9fd64542b3316bc286eef7802686844d":[9,0,0,104,0,2],
-"structPonca_1_1StaticKdTreeBase_1_1Buffers.html#aef184e20609199a57cd7045e06e85750":[9,0,0,104,0,0]
+"structPonca_1_1StaticKdTreeBase_1_1Buffers.html#a9fd64542b3316bc286eef7802686844d":[9,0,0,104,0,2]
 };

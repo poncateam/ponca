@@ -198,11 +198,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1CovariancePlaneFitImpl.html#a18635760d587df7b3958acc01a4abb15",
-"classPonca_1_1Line.html#aeab6841b8a07a4ffed25f4cd65de18f6",
-"classPonca_1_1QuadraticHeightField.html#a768ecf29239d53ac4fe03f4a7eebc1c1",
-"example_python_ssc_page.html#pyssgl_cuda_weight_sec",
-"structPonca_1_1WeingartenCurvatureEstimator.html"
+"classPonca_1_1CovariancePlaneFitImpl.html",
+"classPonca_1_1Line.html#ae7179e684e87f56f4070a6d74672ccd4",
+"classPonca_1_1QuadraticHeightField.html#a6e2233e52bf83f84a2b6c3db13f9d8fd",
+"example_python_ssc_page.html#pyssgl_cuda_sec",
+"structPonca_1_1StaticKdTreeBase_1_1Buffers.html#aef184e20609199a57cd7045e06e85750"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

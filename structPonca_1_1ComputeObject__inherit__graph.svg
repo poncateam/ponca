@@ -169,20 +169,20 @@ var sectionId = 'dynsection-0';
 <text text-anchor="start" x="221.35" y="-605.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="241.85" y="-605.5" font-family="Helvetica,sans-Serif" font-size="10.00">compute()</text>
 <text text-anchor="start" x="221.35" y="-590.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="241.85" y="-590.5" font-family="Helvetica,sans-Serif" font-size="10.00">computeWithIds()</text>
+<text text-anchor="start" x="241.85" y="-590.5" font-family="Helvetica,sans-Serif" font-size="10.00">compute()</text>
 <text text-anchor="start" x="221.35" y="-575.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="241.85" y="-575.5" font-family="Helvetica,sans-Serif" font-size="10.00">getNumTriangles()</text>
+<text text-anchor="start" x="241.85" y="-575.5" font-family="Helvetica,sans-Serif" font-size="10.00">computeWithIds()</text>
 <text text-anchor="start" x="221.35" y="-560.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="241.85" y="-560.5" font-family="Helvetica,sans-Serif" font-size="10.00">setNeighborFilter()</text>
+<text text-anchor="start" x="241.85" y="-560.5" font-family="Helvetica,sans-Serif" font-size="10.00">getNumTriangles()</text>
 <text text-anchor="start" x="221.35" y="-545.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="241.85" y="-545.5" font-family="Helvetica,sans-Serif" font-size="10.00">getTriangles()</text>
+<text text-anchor="start" x="241.85" y="-545.5" font-family="Helvetica,sans-Serif" font-size="10.00">setNeighborFilter()</text>
 <text text-anchor="start" x="221.35" y="-530.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="241.85" y="-530.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
+<text text-anchor="start" x="241.85" y="-530.5" font-family="Helvetica,sans-Serif" font-size="10.00">getTriangles()</text>
 <text text-anchor="start" x="221.35" y="-515.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="241.85" y="-515.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
+<text text-anchor="start" x="241.85" y="-515.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
 <text text-anchor="start" x="221.35" y="-500.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="241.85" y="-500.5" font-family="Helvetica,sans-Serif" font-size="10.00">isApprox()</text>
-<text text-anchor="start" x="241.85" y="-485.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 7 more...</text>
+<text text-anchor="start" x="241.85" y="-500.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
+<text text-anchor="start" x="241.85" y="-485.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 8 more...</text>
 <polygon fill="#666666" stroke="#666666" points="209.85,-810.5 209.85,-810.5 353.85,-810.5 353.85,-810.5 209.85,-810.5"/>
 <polygon fill="#666666" stroke="#666666" points="209.85,-645.5 209.85,-645.5 239.85,-645.5 239.85,-645.5 209.85,-645.5"/>
 <polygon fill="#666666" stroke="#666666" points="239.85,-645.5 239.85,-645.5 353.85,-645.5 353.85,-645.5 239.85,-645.5"/>

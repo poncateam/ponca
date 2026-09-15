@@ -1,5 +1,6 @@
 var classPonca_1_1CNC =
 [
+    [ "compute", "classPonca_1_1CNC.html#aea7ca2e7489c29ae9adbf0f5623b2fe2", null ],
     [ "compute", "classPonca_1_1CNC.html#ae294183bf51f4ae589abd2621820e2b7", null ],
     [ "computeWithIds", "classPonca_1_1CNC.html#a21eca469f0d634391ea6c2a7461ad78b", null ],
     [ "finalize", "classPonca_1_1CNC.html#a093863125a39f21a70a5164c7ac7fefb", null ],

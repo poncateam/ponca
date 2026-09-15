@@ -42,20 +42,20 @@
 <text text-anchor="start" x="11.5" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="32" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">compute()</text>
 <text text-anchor="start" x="11.5" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="32" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">computeWithIds()</text>
+<text text-anchor="start" x="32" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">compute()</text>
 <text text-anchor="start" x="11.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="32" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">getNumTriangles()</text>
+<text text-anchor="start" x="32" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">computeWithIds()</text>
 <text text-anchor="start" x="11.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="32" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">setNeighborFilter()</text>
+<text text-anchor="start" x="32" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">getNumTriangles()</text>
 <text text-anchor="start" x="11.5" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="32" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">getTriangles()</text>
+<text text-anchor="start" x="32" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">setNeighborFilter()</text>
 <text text-anchor="start" x="11.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="32" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
+<text text-anchor="start" x="32" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">getTriangles()</text>
 <text text-anchor="start" x="11.5" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="32" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
+<text text-anchor="start" x="32" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
 <text text-anchor="start" x="11.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="32" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">isApprox()</text>
-<text text-anchor="start" x="32" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 7 more...</text>
+<text text-anchor="start" x="32" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
+<text text-anchor="start" x="32" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 8 more...</text>
 <polygon fill="#666666" stroke="#666666" points="0,-331.5 0,-331.5 144,-331.5 144,-331.5 0,-331.5"/>
 <polygon fill="#666666" stroke="#666666" points="0,-166.5 0,-166.5 30,-166.5 30,-166.5 0,-166.5"/>
 <polygon fill="#666666" stroke="#666666" points="30,-166.5 30,-166.5 144,-166.5 144,-166.5 30,-166.5"/>
