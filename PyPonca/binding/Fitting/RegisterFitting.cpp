@@ -122,8 +122,7 @@ void RegisterComputeObjects(nb::module_& m, std::set<std::string>& list)
     using NF      = typename _NF::NF;
     using Factory = Ponca::Factory<P, NF, Diff>;
 
-    // Compute mangling informations
-    const std::string mangledName                          = PointCloud::PointName + _NF::name;
+    // List of types that are not directly templated on filters
     const std::vector<std::string> nonTemplatedFilterTypes = {"CNC"};
 
     // General properties
@@ -134,16 +133,17 @@ void RegisterComputeObjects(nb::module_& m, std::set<std::string>& list)
         std::string basename = x.name;
         basename.erase(std::remove(basename.begin(), basename.end(), ' '), basename.end());
 
+        // Search if the current type is "not templated on filter".
+        bool found = false;
+        for (const auto& mark : nonTemplatedFilterTypes)
+            found = found || (basename.find(mark) != std::string::npos);
+
         // Check for existing types. It turns out some of the type within the factory
         // may not be templated on _NF, which leads to duplicates.
         // For now, this is handled here:
         nb::handle existing = nb::type<PyCo>();
         if (existing.is_valid())
         {
-            bool found = false;
-            for (const auto& mark : nonTemplatedFilterTypes)
-                found = found || (basename.find(mark) != std::string::npos);
-
             // Let's hope that code whose code goes into the if-statement never reaches
             // master branch and the user :)
             if (!found)
@@ -153,7 +153,7 @@ void RegisterComputeObjects(nb::module_& m, std::set<std::string>& list)
                 return; // Return early to avoid registering the new type again
         }
 
-        const std::string newname = basename + mangledName;
+        const std::string newname = basename + PointCloud::PointName + (found ?  "" : _NF::name);
         auto pyco                 = nb::class_<PyCo>(m, newname.c_str());
         pyco.def(nb::init<>());
         pyco.def("setNeighborFilter", &PyCo::setNeighborFilter);

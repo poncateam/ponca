@@ -26,13 +26,12 @@ namespace nb = nanobind;
 template <typename Scalar>
 inline nb::ndarray<Scalar, nb::array_api> CreateDeviceArray(const std::vector<size_t>& shape, int device)
 {
-    std::vector<int64_t> strides(shape.size());
+    if (shape.size() == 0)
+        throw std::runtime_error("Array with shape of size 0 requested.");
 
-    strides[strides.size() - 1] = 1;
-    for (int64_t i = strides.size() - 2; i >= 0; --i)
-        strides[i] = strides[i - 1] * shape[i - 1];
-
-    const size_t elementCount = strides[0] * shape[0];
+    size_t elementCount = 1;
+    for (unsigned int i = 0; i < shape.size(); ++i)
+        elementCount *= shape[i];
 
     switch (device)
     {
@@ -40,7 +39,7 @@ inline nb::ndarray<Scalar, nb::array_api> CreateDeviceArray(const std::vector<si
         Scalar* data = new Scalar[elementCount];
         auto deleter = nb::capsule(data, [](void* p) noexcept { delete[] reinterpret_cast<Scalar*>(p); });
 
-        return nb::ndarray<Scalar, nb::array_api>(data, shape.size(), shape.data(), deleter, strides.data(),
+        return nb::ndarray<Scalar, nb::array_api>(data, shape.size(), shape.data(), deleter, nullptr,
                                                   nb::dtype<Scalar>(), device);
     }
 #ifdef __CUDACC__
@@ -49,7 +48,7 @@ inline nb::ndarray<Scalar, nb::array_api> CreateDeviceArray(const std::vector<si
         cudaMalloc(&data, elementCount * sizeof(data));
         auto deleter = nb::capsule(data, [](void* p) noexcept { cudaFree(p); });
 
-        return nb::ndarray<Scalar, nb::array_api>(data, shape.size(), shape.data(), deleter, strides.data(),
+        return nb::ndarray<Scalar, nb::array_api>(data, shape.size(), shape.data(), deleter, nullptr,
                                                   nb::dtype<Scalar>(), device);
     }
 #endif
@@ -202,7 +201,7 @@ private:
      */
     void Free()
     {
-        if (data == nullptr)
+        if (shape == nullptr || stride == nullptr)
             return;
 
         switch (device)
@@ -239,6 +238,8 @@ private:
         // Note: We could pack shape and stride into a single memory calls
         // but for now this is simpler :)
         Free();
+        if (data == nullptr)
+            return; 
 
         if (srcshape == nullptr && srcstride == nullptr)
             return;
