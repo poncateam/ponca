@@ -59,6 +59,7 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Factory/factory.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Factory/factorylist.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Factory/typelist.h"
+    "${PONCA_src_ROOT}/Ponca/src/Fitting/Fit/hrbf.h"
     )
 
 add_library(Fitting INTERFACE)

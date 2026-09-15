@@ -333,4 +333,36 @@ namespace Ponca
         static constexpr bool isDDValid = true;
     }; // class GaussianWeightKernel
 
+    /*!
+        \brief Non-compact interpolation kernel used by interpolary surface reconstruction schemes (e.g. RBF)
+
+        \note This is not a decreasing weight function, thus the kernel should not be used to weight neighbors in
+        standard Basket fitting, e.g. using DistWeightFunc.
+
+        \inherit Concept::WeightKernelConcept
+    */
+    template <typename _Scalar>
+    class Pow3WeightKernel
+    {
+    public:
+        /*! \brief Scalar type defined outside the class*/
+        using Scalar = _Scalar;
+
+        /// \brief The kernel is not compact and can be evaluated outside of the scale bounds.
+        static constexpr bool isCompact = false;
+
+        /// \brief Defines the \f$x^3\f$ weighting function.
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar f(const Scalar& x) { return x * x * x; }
+
+        /// \brief Defines the first order derivative \f$3x^2\f$.
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar df(const Scalar& x) { return Scalar(3) * x * x; }
+
+        /// \brief Defines the second order derivative \f$6x\f$.
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar ddf(const Scalar& x) { return Scalar(6) * x; }
+        //! \brief #df is defined and valid on the definition interval
+        static constexpr bool isDValid = true;
+        //! \brief #ddf is defined and valid on the definition interval
+        static constexpr bool isDDValid = true;
+    };
+
 } // namespace Ponca
