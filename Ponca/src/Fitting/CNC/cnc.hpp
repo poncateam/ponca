@@ -140,7 +140,7 @@ namespace Ponca::internal
 
             // Compute the triangles
             triangles.clear();
-            const int max_triangles = std::min(maxTriangles, int(ids.size() / 3));
+            const int max_triangles = std::min(maxTriangles, int(indices.size() / 3));
             for (int nb_vt = 0; nb_vt < max_triangles - 2; nb_vt++)
             {
                 int i1 = indices[nb_vt];
