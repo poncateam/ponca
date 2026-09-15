@@ -49,7 +49,7 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
             else
                 file << ",";
 
-            WriteResult<Point>(file, x.name, "POTENTIAL", std::vector<Scalar>{}, potentials);
+            WriteResult<Point>(file, x.name, "POTENTIAL", x.object.isSigned(), std::vector<Scalar>{}, potentials);
         });
     }
     file << "]";
