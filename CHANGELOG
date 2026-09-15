@@ -11,6 +11,9 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] restrict height fields to 3d (#343)
     - [fitting] CNC compute now supports iterator over point cloud (#344)
 
+- Bug-fixes and code improvements
+    - [fitting] Fix out-of-bound SegFault in CNC (#344)
+
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
 
