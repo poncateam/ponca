@@ -96,7 +96,11 @@ def __createComputeObject(self, data):
     """
     clsname = self.name + data._mangledName + str(self.nf)
     if clsname not in _pyponca.__dict__:
-        raise NotImplementedError(f"Compute object {self.name} do not have a specialization for {data._mangledName + str(self.nf)} point clouds")
+        # With filter failed, try without:
+        clsname = self.name + data._mangledName
+        if clsname not in _pyponca.__dict__:
+            raise NotImplementedError(f"Compute object {self.name} do not have a specialization for {data._mangledName + str(self.nf)} point clouds")
+
     return _pyponca.__dict__[clsname]()
     
 def __dispatchCompute(self, data):

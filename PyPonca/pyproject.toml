@@ -17,4 +17,7 @@ cmake.build-type = "Release"
 
 [tool.scikit-build.cmake.define]
 PONCA_CONFIGURE_PYPONCA = "ON"
+PONCA_CONFIGURE_EXAMPLES = "OFF"
+PONCA_CONFIGURE_DOC = "OFF"
+PONCA_CONFIGURE_TESTS = "OFF"
 PONCA_INSTANTIATE_ALL = "OFF"

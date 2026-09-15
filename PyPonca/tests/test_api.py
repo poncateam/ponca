@@ -66,10 +66,6 @@ class TestAPI(unittest.TestCase):
             Test that we can attach pointclouds and filter to a compute object
         """
         for co in pyponca.ComputeObjectList:
-            # TODO: Remove this line by fixing the CNC binding
-            if "CNC" in co:
-                continue
-
             for pc in self.pcs:
                 for flt in pyponca.Filters:
                     try:
@@ -88,10 +84,6 @@ class TestAPI(unittest.TestCase):
             Test for potential memory errors and settings in a classical loop
         """
         for co in pyponca.ComputeObjectList:
-            # TODO: Remove this line by fixing the CNC binding
-            if "CNC" in co:
-                continue
-
             for pc in [self.pc3d, self.pc3f]:
                 ts = self.randomtensor((self.N), pc.dtype)
 
