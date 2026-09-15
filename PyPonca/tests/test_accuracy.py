@@ -39,7 +39,7 @@ class TestAccuracy(unittest.TestCase):
         self.analysisLocation = np.array(self.expected["analysisLocation"]["data"]).reshape((M, D))
         self.analysisScale    = np.array(self.expected["analysisScale"]   ["data"]).reshape((M))
 
-    def runtestcase(self, pointcloud, method, function, input, result):
+    def runtestcase(self, pointcloud, method, function, input, signed, result):
         """
             Run a testcase using the provided inputs and expected results
         """
@@ -54,7 +54,10 @@ class TestAccuracy(unittest.TestCase):
 
                 # The abs here is for signed / unsigned distances. This is sufficient, but we
                 # might want to check from the class whether this is necessary
-                np.testing.assert_allclose(np.abs(pyresult), np.abs(result), err_msg=method)    
+                if signed:
+                    np.testing.assert_allclose(pyresult, result, err_msg=method)    
+                else:
+                    np.testing.assert_allclose(np.abs(pyresult), np.abs(result), err_msg=method)    
             else:
                 warnings.warn(f"Function not found: {function}")
         else:
@@ -69,8 +72,9 @@ class TestAccuracy(unittest.TestCase):
             function = run["function"]
             result   = run["result"]["data"]
             input    = np.array(run["input"]) if "input" in run else None
+            sign     = bool(run["signed"]) if "signed" in run else False
 
-            self.runtestcase(self.points, method, function, input, result)
+            self.runtestcase(self.points, method, function, input, sign, result)
 
     def test_pointcloud_strided(self):
         """
@@ -83,6 +87,7 @@ class TestAccuracy(unittest.TestCase):
             function = run["function"]
             result   = run["result"]["data"]
             input    = np.array(run["input"]) if "input" in run else None
+            sign     = bool(run["signed"]) if "signed" in run else False
 
             N = self.pos.shape[0]
             newpos     = stridearray(self.pos)[3*(N-1)::-3, :]
@@ -93,19 +98,42 @@ class TestAccuracy(unittest.TestCase):
             if input is not None:
                 input = input[::-1].ascontiguousarray()[::-1]
 
-            self.runtestcase(newpoints, method, function, input, result)
+            self.runtestcase(newpoints, method, function, input, sign, result)
 
-    # def test_kdtree(self):
-    #     """
-    #         Test that the binding returns the correct results with a kdtree
-    #     """
-    #     for run in self.expected["runs"]:
-    #         method   = run["method"]
-    #         function = run["function"]
-    #         result   = run["result"]["data"]
-    #         input    = np.array(run["input"]) if "input" in run else None
-    # 
-    #         self.runtestcase(pyponca.KDTree(self.points), method, function, input, result)
+    def test_kdtree(self):
+        """
+            Test that the binding returns the correct results with a kdtree
+        """
+        for run in self.expected["runs"]:
+            method   = run["method"]
+            function = run["function"]
+            result   = run["result"]["data"]
+            input    = np.array(run["input"]) if "input" in run else None
+            sign     = bool(run["signed"]) if "signed" in run else False
+    
+            self.runtestcase(pyponca.KDTree(self.points), method, function, input, sign, result)
+
+    def test_kdtree_strided(self):
+        """
+            Test that the binding returns the correct results with a kdtree
+        """
+        for run in self.expected["runs"]:
+            method   = run["method"]
+            function = run["function"]
+            result   = run["result"]["data"]
+            input    = np.array(run["input"]) if "input" in run else None
+            sign     = bool(run["signed"]) if "signed" in run else False
+
+            N = self.pos.shape[0]
+            newpos     = stridearray(self.pos)[3*(N-1)::-3, :]
+            newnormals = stridearray(self.normals)[3*(N-1)::-3, :]
+            newpoints  = pyponca.PointCloud(newpos, newnormals)
+
+            # Simpler stride here: simply a reverse
+            if input is not None:
+                input = input[::-1].ascontiguousarray()[::-1]
+    
+            self.runtestcase(pyponca.KDTree(newpoints), method, function, input, sign, result)
 
 
 if __name__ == "__main__":

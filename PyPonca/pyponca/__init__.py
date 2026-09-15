@@ -55,13 +55,18 @@ class KDTree:
         self._mangledName = "unknown"
         self._cls = object
 
-        mangledArray = _pyponca.internal._mangleArray(pc)
-        clsname = "KdTree" + mangledArray + _pyponca.internal._PointName
+        if not isinstance(pc, PointCloud):
+            mangledArray = _pyponca.internal._mangleArray(pc)
+            clsname = "KdTree" + mangledArray + _pyponca.internal._PointName
+            self._mangledName = mangledArray + _pyponca.internal._PointName
+        else:
+            clsname = pc._mangledName
+            self._mangledName = pc._mangledName
+
         if clsname not in _pyponca.__dict__:
             raise NotImplementedError(f"PointCloud does not have specialization for {pc[0].dtype} arrays")
-        
+
         self._cls = _pyponca.__dict__[clsname]
-        self._mangledName = mangledArray + _pyponca.internal._PointName
         self.object = self._cls(pc, isSparse)
 
     def __getattr__(self, name):

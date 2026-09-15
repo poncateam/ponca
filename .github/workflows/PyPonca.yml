@@ -38,7 +38,7 @@ jobs:
 
       - name: Installing library
         working-directory: src/PyPonca
-        run: CMAKE_ARGS="-DPONCA_CONFIGURE_TESTING=ON" pip install -v . --config-settings=build-dir=build
+        run: CMAKE_ARGS="-DPONCA_CONFIGURE_TESTS=ON" pip install -v . --config-settings=build-dir=build
       
       - name: Verifying install
         run: python -c "import pyponca"
