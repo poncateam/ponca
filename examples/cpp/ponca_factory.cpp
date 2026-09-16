@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 
     //! [FactoryClassicalMethods]
     // Some classical methods can also be obtained by name.
-    auto apss = MyFactory::GetMethod<Method::APSS>();
+    auto apss = MyFactory::GetMethod<"APSS">();
     apss.setNeighborFilter({_p, tmax});
     apss.init();
     apss.compute(vecs.begin(), vecs.end());
