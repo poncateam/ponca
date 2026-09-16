@@ -152,9 +152,9 @@ namespace Ponca
         FIT_RESULT m_eCurrentState{UNDEFINED};
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATOR(meanCurvature  , CNC<P, _method>)
+        PONCA_EXPLICIT_CAST_OPERATOR(meanCurvature, CNC<P, _method>)
         PONCA_EXPLICIT_CAST_OPERATOR(curvatureTensor, CNC<P, _method>)
-        
+
         PONCA_FITTING_DECLARE_FINALIZE
 
         //! \brief Set the scalar field values to 0 and reset the isNormalized() status
