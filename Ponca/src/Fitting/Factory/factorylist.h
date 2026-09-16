@@ -83,8 +83,9 @@ namespace Ponca
         FactoryEntry<"CovariancePlaneFit", Basket<P, NF, CovariancePlaneFit>>,
         FactoryEntry<"SphereFit"         , Basket<P, NF, SphereFit>>, 
         FactoryEntry<"MeanPlaneFit"      , Basket<P, NF, MeanPlaneFit>>,
-        FactoryEntry<"APSS"              , Basket<P, NF, OrientedSphereFit, GLSParam>>,
-        FactoryEntry<"Unoriented APSS"   , Basket<P, NF, UnorientedSphereFit, GLSParam>>
+        FactoryEntry<"APSS"              , Basket<P, NF, OrientedSphereFit, GLSParam>>
+#ifndef __CUDACC__
+        , FactoryEntry<"UnorientedAPSS"   , Basket<P, NF, UnorientedSphereFit, GLSParam>>
 #endif
     >;
 
