@@ -111,8 +111,8 @@ namespace Ponca
     >;
 
     template<typename P, typename NF, int DerType>
-    using FactorySpaceDerivatives = internal::Factory::tuple_cat_t<
-        FactoryGenericList<P, NF, DerType>,
+    using Factory3DSpaceDerivatives = internal::Factory::tuple_cat_t<
+        Factory3DList<P, NF, DerType>,
         std::tuple<
             FactoryEntry<"ASO"               , BasketDiff<Basket<P, NF, OrientedSphereFit, GLSParam>,DerType,
                                                 OrientedSphereDer, MlsSphereFitDer,
