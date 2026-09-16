@@ -243,8 +243,8 @@ namespace Ponca
      * \tparam DerType Derivative Type
      */
     template <typename P, typename NF, DiffType DerType>
-        requires ProvidesSpaceDerivatives<P>
-    struct Factory<P, NF, DerType> : public internal::FactoryBase<FactorySpaceDerivatives<P, NF, DerType>>
+        requires Is3D<P> && (bool(DerType & DiffType::FitSpaceDer))
+    struct Factory<P, NF, DerType> : public internal::FactoryBase<Factory3DSpaceDerivatives<P, NF, DerType>>
     {
     };
 } // namespace Ponca
