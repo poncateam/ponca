@@ -35,13 +35,13 @@ namespace Ponca
      * a predicated that indicates if any factory entry matches the
      * given id
      *
-     * \tparam Id The Id to check for
+     * \tparam Name The Name to check for
      */
-    template <int Id>
+    template <StringLiteral Name>
     struct MethodProvider
     {
         template <typename T>
-        static constexpr bool value = (Id == T::MethodId);
+        static constexpr bool value = strequal(Name.value, T::name);
 
         /**
          * \brief A type that behaves as value
@@ -50,7 +50,7 @@ namespace Ponca
          * templated types on the type.
          */
         template <typename T>
-        struct pred : std::bool_constant<(Id == T::MethodId)>
+        struct pred : std::bool_constant<strequal(Name.value, T::name)>
         {
         };
     };
@@ -72,16 +72,6 @@ namespace Ponca
     DECLARE_FACTORY_CONCEPT(TangentPlaneBasis)
     DECLARE_FACTORY_CONCEPT(MeanCurvature)
 
-    /**
-     * List of methods supported by the factory
-     */
-    enum class Method
-    {
-        UNNAMED = 0, // 0 is considered as an unnamed, and is the default
-        APSS,
-        ASO,
-    };
-
     // We disable format here in order to better align lists items
     // clang-format off
     template<typename P, typename NF, int DerType>
@@ -93,7 +83,7 @@ namespace Ponca
         FactoryEntry<"CovariancePlaneFit", Basket<P, NF, CovariancePlaneFit>>,
         FactoryEntry<"SphereFit"         , Basket<P, NF, SphereFit>>, 
         FactoryEntry<"MeanPlaneFit"      , Basket<P, NF, MeanPlaneFit>>,
-        FactoryEntry<"APSS"              , Basket<P, NF, OrientedSphereFit, GLSParam>, (unsigned int)Method::APSS>,
+        FactoryEntry<"APSS"              , Basket<P, NF, OrientedSphereFit, GLSParam>>,
         FactoryEntry<"Unoriented APSS"   , Basket<P, NF, UnorientedSphereFit, GLSParam>>
     >;
 
@@ -116,8 +106,7 @@ namespace Ponca
         std::tuple<
             FactoryEntry<"ASO"               , BasketDiff<Basket<P, NF, OrientedSphereFit, GLSParam>,DerType,
                                                 OrientedSphereDer, MlsSphereFitDer,
-                                                NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>,
-                                              (unsigned int)Method::ASO>
+                                                NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>>
         >
     >;
     // clang-format on

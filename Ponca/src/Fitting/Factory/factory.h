@@ -50,10 +50,10 @@ namespace Ponca
              *
              * \tparam MethodIds List of ids to filter by methods
              */
-            template <Method... MethodIds>
+            template <StringLiteral... Names>
             static decltype(auto) Filter()
             {
-                return Filter<MethodProvider<(unsigned int)MethodIds>::template pred...>();
+                return Filter<MethodProvider<Names>::template pred...>();
             }
 
             /**
@@ -66,10 +66,10 @@ namespace Ponca
              *
              * \tparam id The id of the method
              */
-            template <Method id>
+            template <StringLiteral Name>
             static decltype(auto) GetMethod()
             {
-                using MethodList = decltype(Filter<MethodProvider<(unsigned int)id>::template pred>());
+                using MethodList = decltype(Filter<MethodProvider<Name>::template pred>());
 
                 static_assert(std::tuple_size_v<typename MethodList::FactoryEntries> == 1);
                 return std::get<0>(typename MethodList::FactoryEntries{0}).object;
@@ -170,19 +170,19 @@ namespace Ponca
             /**
              * \copydoc ComputeObjectList::Filter
              */
-            template <Method... MethodIds>
+            template <StringLiteral... Names>
             static decltype(auto) Filter()
             {
-                return FullComputeObjectList::template Filter<MethodIds...>();
+                return FullComputeObjectList::template Filter<Names...>();
             }
 
             /**
              * \copydoc ComputeObjectList::GetMethod
              */
-            template <Method id>
+            template <StringLiteral Name>
             static decltype(auto) GetMethod()
             {
-                return FullComputeObjectList::template GetMethod<id>();
+                return FullComputeObjectList::template GetMethod<Name>();
             }
 
             /**
