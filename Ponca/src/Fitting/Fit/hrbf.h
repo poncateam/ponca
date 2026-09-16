@@ -34,19 +34,19 @@ namespace Ponca
      *
      * \see ProvidesPrincipalCurvatures
      */
-    template <class P, typename _WeightKernel = Pow3WeightKernel<typename P::Scalar>>
+    template <class P, typename _NeighborFilter = Pow3WeightKernel<typename P::Scalar>>
         requires HRBF_REQUIREMENTS
     class HRBF : ComputeObject<HRBF<P, _NeighborFilter>>
     {
     public:
         using DataPoint    = P;
+        using Scalar       = typename DataPoint::Scalar;
         using MatrixType   = typename DataPoint::MatrixType;
         using MatrixDX     = typename Eigen::Matrix<Scalar, DataPoint::Dim, Eigen::Dynamic>;
-        using Scalar       = typename DataPoint::Scalar;
         using VectorType   = typename DataPoint::VectorType;
-        using DenseVector  = Eigen::VectorXd;
-        using DenseMatrix  = Eigen::MatrixXd;
-        using WeightKernel = _WeightKernel;
+        using DenseVector  = Eigen::Vector<Scalar,Eigen::Dynamic>;
+        using DenseMatrix  = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic>;
+        using WeightKernel = _NeighborFilter;
 
     protected:
         // Interpolation kernel
@@ -66,9 +66,9 @@ namespace Ponca
         PONCA_MULTIARCH inline void init()
         {
             m_eCurrentState = UNDEFINED;
-            m_node_centers.clear();
-            m_alphas.clear();
-            m_betas.clear();
+            // m_node_centers.clear();
+            // m_alphas.clear();
+            // m_betas.clear();
         }
 
         /*!
@@ -99,13 +99,13 @@ namespace Ponca
             // copy the node centers
             auto it = begin;
             for (int i = 0; i < nb_points; ++i, ++it)
-                _node_centers.col(i) = (*it);
+                m_node_centers.col(i) = (*it).pos();
 
             it = begin;
             for (int i = 0; i < nb_points; ++i, ++it)
             {
-                Vector p = (*it).pos();
-                Vector n = (*it).normal();
+                const auto& p = (*it).pos();
+                const auto& n = (*it).normal();
 
                 int io                          = (DIM + 1) * i;
                 f(io)                           = 0;
@@ -150,7 +150,73 @@ namespace Ponca
          * \tparam PointContainer An STL-like container storing the points
          */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(const IndexRange& ids, const PointContainer& points);
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(const IndexRange& ids, const PointContainer& points)
+        {
+            //// FIXME : completly ignore ids to compute on the whole point cloud
+
+            constexpr int DIM       = DataPoint::Dim;
+            int nb_points           = points.size();
+            int nb_hrbf_constraints = (DIM + 1) * nb_points;
+            int nb_constraints      = nb_hrbf_constraints;
+            int nb_coeffs           = (DIM + 1) * nb_points;
+
+            m_node_centers.resize(DIM, nb_points);
+            m_betas.resize(DIM, nb_points);
+            m_alphas.resize(nb_points);
+
+            // Assemble the "design" and "value" matrix and vector
+            DenseMatrix D(nb_constraints, nb_coeffs);
+            DenseVector f(nb_constraints);
+            DenseVector x(nb_coeffs);
+
+            WeightKernel wk;
+
+            // copy the node centers
+            for (int i = 0; i < nb_points; ++i)
+                m_node_centers.col(i) = points[i].pos();
+
+            for (int i = 0; i < nb_points; ++i)
+            {
+                const auto& pp = points[i];
+                const auto& p = pp.pos();
+                const auto& n = pp.normal();
+
+                int io                          = (DIM + 1) * i;
+                f(io)                           = 0;
+                f.template segment<DIM>(io + 1) = n;
+
+                for (int j = 0; j < nb_points; ++j)
+                {
+                    int jo          = (DIM + 1) * j;
+                    VectorType diff = p - m_node_centers.col(j);
+                    Scalar l        = diff.norm();
+                    if (l == 0)
+                    {
+                        D.template block<DIM + 1, DIM + 1>(io, jo).setZero();
+                    }
+                    else
+                    {
+                        Scalar w                                   = wk.f(l);
+                        Scalar dw_l                                = wk.df(l) / l;
+                        Scalar ddw                                 = wk.ddf(l);
+                        VectorType g                               = diff * dw_l;
+                        D(io, jo)                                  = w;
+                        D.row(io).template segment<DIM>(jo + 1)    = g.transpose();
+                        D.col(jo).template segment<DIM>(io + 1)    = g;
+                        D.template block<DIM, DIM>(io + 1, jo + 1) = (ddw - dw_l) / (l * l) * (diff * diff.transpose());
+                        D.template block<DIM, DIM>(io + 1, jo + 1).diagonal().array() += dw_l;
+                    }
+                }
+            }
+
+            x = D.lu().solve(f);
+            Eigen::Map<const Eigen::Matrix<Scalar, DIM + 1, Eigen::Dynamic>> mx(x.data(), DIM + 1, nb_points);
+
+            m_alphas = mx.row(0);
+            m_betas  = mx.template bottomRows<DIM>();
+
+            return m_eCurrentState = STABLE;
+        }
 
         PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& x) const
         {
@@ -173,7 +239,7 @@ namespace Ponca
             return ret;
         }
 
-        VectorType primitiveGradient(const Vector& x) const
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient(const VectorType& x) const
         {
             VectorType grad = VectorType::Zero();
             int nb_nodes    = m_node_centers.cols();
@@ -237,9 +303,21 @@ namespace Ponca
         //! \brief Is the fitted primitive ready to use (finalize has been called and the result is stable)
         PONCA_MULTIARCH [[nodiscard]] inline bool isStable() const { return m_eCurrentState == STABLE; }
 
+        /// writing implementations of function that are required to use HRBF fitting alongside Basket)
+        ///
+        ///
+        using NeighborFilter = DistWeightFilter<DataPoint,ConstantWeightKernel<Scalar>>;
+
+        PONCA_FITTING_APIDOC_SETWFUNC
+        PONCA_MULTIARCH inline void setNeighborFilter(const NeighborFilter& ) { ; }
+
+        PONCA_MULTIARCH inline const VectorType& project(const VectorType& x) const { return x; }
+
+        PONCA_FITTING_IS_SIGNED(true)
+
+
         // TODO Add methods to respect concept ProvidesImplicitPrimitive
     }; // class CNC
 
 } // namespace Ponca
 
-#include "cnc.hpp"
