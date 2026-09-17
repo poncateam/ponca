@@ -15,11 +15,11 @@ def stridearray(x):
     """
     N, D = x.shape
 
-    y = np.empty((3 * N - 2, D), dtype=x.dtype)
-    y[3 * (N - 1)::-3] = x
+    y = np.empty((3 * N - 2, 2 * D - 1), dtype=x.dtype)
+    y[3 * (N - 1)::-3, 2 * (D - 1)::-2] = x
 
     # Check that the striding works as intented !
-    np.testing.assert_allclose(x, y[3 * (N-1)::-3, :])
+    np.testing.assert_allclose(x, y[3 * (N-1)::-3, 2 * (D - 1)::-2])
     return y
 
 
@@ -90,8 +90,9 @@ class TestAccuracy(unittest.TestCase):
             sign     = bool(run["signed"]) if "signed" in run else False
 
             N = self.pos.shape[0]
-            newpos     = stridearray(self.pos)[3*(N-1)::-3, :]
-            newnormals = stridearray(self.normals)[3*(N-1)::-3, :]
+            D = self.pos.shape[1]
+            newpos     = stridearray(self.pos)[3*(N-1)::-3, 2 * (D - 1)::-2]
+            newnormals = stridearray(self.normals)[3*(N-1)::-3, 2 * (D - 1)::-2]
             newpoints  = pyponca.PointCloud(newpos, newnormals)
 
             # Simpler stride here: simply a reverse
@@ -127,8 +128,9 @@ class TestAccuracy(unittest.TestCase):
             sign     = bool(run["signed"]) if "signed" in run else False
 
             N = self.pos.shape[0]
-            newpos     = stridearray(self.pos)[3*(N-1)::-3, :]
-            newnormals = stridearray(self.normals)[3*(N-1)::-3, :]
+            D = self.pos.shape[1]
+            newpos     = stridearray(self.pos)[3*(N-1)::-3, 2 * (D - 1)::-2]
+            newnormals = stridearray(self.normals)[3*(N-1)::-3, 2 * (D - 1)::-2]
             newpoints  = pyponca.PointCloud(newpos, newnormals)
 
             # Simpler stride here: simply a reverse
