@@ -1,10 +1,12 @@
-include(CheckLanguage)
-check_language(CUDA)
-
-if( CMAKE_CUDA_COMPILER )
-    enable_language(CUDA)
-    set(CMAKE_CUDA_ARCHITECTURES "native")
-endif()
+# For now cuda compilation is deactivated due to 
+# behaviour difference in eigen's solver (presumably)
+# include(CheckLanguage)
+# check_language(CUDA)
+# 
+# if( CMAKE_CUDA_COMPILER )
+#     enable_language(CUDA)
+#     set(CMAKE_CUDA_ARCHITECTURES "native")
+# endif()
 
 
 set(PYPONCA_SRC

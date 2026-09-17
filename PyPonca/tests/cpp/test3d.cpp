@@ -68,8 +68,8 @@ int main(int argc, char** argv)
     std::ofstream file(argv[1]);
     file << std::setprecision(20);
 
-    constexpr unsigned int N = 16; // Cloud size
-    constexpr unsigned int L = 2;  // Analysis location count
+    constexpr unsigned int N = 128; // Cloud size
+    constexpr unsigned int L = 64;  // Analysis location count
 
     file << "{";
     {
@@ -82,7 +82,7 @@ int main(int argc, char** argv)
 
         // Assumes cloud are in [-1, 1], so the vector is also within the boundary
         std::vector<VectorType> analysisLocations(L);
-        std::vector<Scalar> analysisScalars(L, (Scalar)std::numeric_limits<Scalar>::max());
+        std::vector<Scalar> analysisScalars(L, 4 * radius / 3); // Average distance of two points sampled on a sphere
         for (unsigned int i = 0; i < L; ++i)
             analysisLocations[i] = VectorType::Random();
 

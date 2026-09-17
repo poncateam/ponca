@@ -60,11 +60,12 @@ class KDTree:
             clsname = "KdTree" + mangledArray + _pyponca.internal._PointName
             self._mangledName = mangledArray + _pyponca.internal._PointName
         else:
-            clsname = pc._mangledName
+            clsname = "KdTree" + pc._mangledName
             self._mangledName = pc._mangledName
+            pc = pc.object
 
         if clsname not in _pyponca.__dict__:
-            raise NotImplementedError(f"PointCloud does not have specialization for {pc[0].dtype} arrays")
+            raise NotImplementedError(f"PointCloud does not have specialization for {self._mangledName} arrays")
 
         self._cls = _pyponca.__dict__[clsname]
         self.object = self._cls(pc, isSparse)
