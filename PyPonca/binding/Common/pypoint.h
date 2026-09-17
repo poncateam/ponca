@@ -27,18 +27,22 @@ struct PointNormalBinding
     using VectorType = Eigen::Matrix<Scalar, _Dim, 1>;
     using MatrixType = Eigen::Matrix<Scalar, _Dim, _Dim>;
 
+    using Stride = Eigen::InnerStride<Eigen::Dynamic>;
+    using Map    = Eigen::Map<const VectorType, Eigen::Unaligned, Stride>;
+
     static constexpr unsigned int Dim = _Dim;
 
-    PONCA_MULTIARCH inline PointNormalBinding(const Scalar* _pos, const Scalar* _normal)
-        : m_pos(Eigen::Map<const VectorType>(_pos)), m_normal(Eigen::Map<const VectorType>(_normal))
+    PONCA_MULTIARCH inline PointNormalBinding(const Scalar* _pos, size_t _posStride, const Scalar* _normal,
+                                              size_t _normalStride)
+        : m_pos(_pos, Stride(_posStride)), m_normal(_normal, Stride(_normalStride))
     {
     }
 
-    PONCA_MULTIARCH [[nodiscard]] inline const Eigen::Map<const VectorType>& pos() const { return m_pos; }
-    PONCA_MULTIARCH [[nodiscard]] inline const Eigen::Map<const VectorType>& normal() const { return m_normal; }
+    PONCA_MULTIARCH [[nodiscard]] inline const Map& pos() const { return m_pos; }
+    PONCA_MULTIARCH [[nodiscard]] inline const Map& normal() const { return m_normal; }
 
 private:
-    const Eigen::Map<const VectorType> m_pos, m_normal;
+    const Map m_pos, m_normal;
 };
 
 /**
@@ -80,9 +84,6 @@ struct PyPointCloud
         if (m_pos.ndim() != 2)
             throw std::runtime_error("PointCloud only supports 2D arrays");
 
-        if (_pos.stride(1) != 1)
-            throw std::runtime_error("PointCloud does not support non contiguous coordinates on second dimensions.");
-
         // We emulate normal data with an array of stride 0
         void* data = reinterpret_cast<void*>(const_cast<Scalar*>(&NoData[0]));
         m_normals  = PyVectorArray<Point>(data, {_pos.shape(0), 1}, nb::handle(), {0, sizeof(Scalar)});
@@ -99,9 +100,6 @@ struct PyPointCloud
     {
         if (m_pos.ndim() != 2 || m_normals.ndim() != 2)
             throw std::runtime_error("PointCloud only supports 2D arrays");
-
-        if (m_pos.stride(1) != 1 || m_normals.stride(1) != 1)
-            throw std::runtime_error("PointCloud does not support non contiguous coordinates on second dimensions.");
 
         if (m_pos.dtype() != m_normals.dtype())
             throw std::runtime_error("Type mismatch between position and normals.");
@@ -126,7 +124,7 @@ struct PyPointCloud
         const Scalar* pos    = m_pos.data() + i * m_pos.stride(0);
         const Scalar* normal = m_normals.data() + i * m_normals.stride(0);
 
-        return Point(pos, normal);
+        return Point(pos, m_pos.stride(1), normal, m_pos.stride(1));
     }
 
     /**
