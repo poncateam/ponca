@@ -59,9 +59,10 @@ namespace Ponca
         VectorType m_ul{VectorType::Zero()}; /*!< \brief Linear parameter of the Algebraic hyper-sphere */
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, algebraicSphere)
-        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, implicitPrimitive)
-        PONCA_EXPLICIT_CAST_OPERATORS(AlgebraicSphere, projectionOperator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(AlgebraicSphere, algebraicSphere)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(AlgebraicSphere, implicitPrimitive)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(AlgebraicSphere, projectionOperator)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(AlgebraicSphere, meanCurvature)
 
         /*! \brief Set the scalar field values to 0 and reset the isNormalized() status
 
@@ -204,6 +205,8 @@ namespace Ponca
             Scalar b = Scalar(1.) / m_uq;
             return Scalar(sqrt(((Scalar(-0.5) * b) * m_ul).squaredNorm() - m_uc * b));
         }
+
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return isPlane() ? Scalar(0) : Scalar(2) * m_uq; }
 
         /*!
             \brief return the estimated center of the sphere

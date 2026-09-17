@@ -2,6 +2,8 @@
 
 #include "../concepts.h"
 
+#include <type_traits>
+
 namespace Ponca
 {
     template <typename T>
@@ -54,4 +56,6 @@ namespace Ponca
         { ct.derDimension() } -> std::integral;
     };
 
+    template <typename T>
+    concept ProvidesSpaceDerivatives = T::isSpaceDer() && ProvidesCommonTypes<T>;
 } // namespace Ponca

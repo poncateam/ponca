@@ -76,7 +76,7 @@ namespace Ponca
         Solver m_solver;
 
     public:
-        PONCA_EXPLICIT_CAST_OPERATORS(SphereFitImpl, sphereFit)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(SphereFitImpl, sphereFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
         PONCA_FITTING_IS_SIGNED(false)
 
