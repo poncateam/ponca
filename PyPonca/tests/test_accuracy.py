@@ -110,8 +110,10 @@ class TestAccuracy(unittest.TestCase):
             result   = run["result"]["data"]
             input    = np.array(run["input"]) if "input" in run else None
             sign     = bool(run["signed"]) if "signed" in run else False
-    
-            self.runtestcase(pyponca.KDTree(self.points), method, function, input, sign, result)
+
+            # Dense then sparse
+            self.runtestcase(pyponca.KDTree(self.points, False), method, function, input, sign, result)
+            self.runtestcase(pyponca.KDTree(self.points, True) , method, function, input, sign, result)
 
     def test_kdtree_strided(self):
         """
@@ -133,7 +135,9 @@ class TestAccuracy(unittest.TestCase):
             if input is not None:
                 input = input[::-1].ascontiguousarray()[::-1]
     
-            self.runtestcase(pyponca.KDTree(newpoints), method, function, input, sign, result)
+            # Dense then sparse
+            self.runtestcase(pyponca.KDTree(newpoints, False), method, function, input, sign, result)
+            self.runtestcase(pyponca.KDTree(newpoints, True) , method, function, input, sign, result)
 
 
 if __name__ == "__main__":
