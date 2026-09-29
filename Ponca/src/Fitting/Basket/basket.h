@@ -182,20 +182,7 @@ namespace Ponca
         template <typename IndexRange, typename PointContainer>
         PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points)
         {
-            Base::init();
-            FIT_RESULT res = UNDEFINED;
-
-            do
-            {
-                derived().startNewPass();
-                for (const auto& i : ids)
-                {
-                    derived().addNeighbor(points[i]);
-                }
-                res = Base::finalize();
-            } while (res == NEED_OTHER_PASS);
-
-            return res;
+            PONCA_WRITE_COMPUTE_WITH_IDS_BODY;
         }
 
         // WARNING: Do not store anything in this class unless you know what you are doing.
