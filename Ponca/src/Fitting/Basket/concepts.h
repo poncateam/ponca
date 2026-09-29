@@ -37,7 +37,7 @@ namespace Ponca
     template <typename T>
     concept ProvidesBasketUnitBase = ProvidesCommonTypes<T> && ProvidesComputeState<T> && requires(T t, const T ct) {
         typename T::NeighborFilter;
-        t.setNeighborFilter(typename T::NeighborFilter{});
+        { t.setNeighborFilter(typename T::NeighborFilter{}) } -> std::same_as<bool>;
         { ct.getNeighborFilter() } -> std::convertible_to<typename T::NeighborFilter>;
 
         { ct.getWeightSum() } -> std::same_as<typename T::Scalar>;

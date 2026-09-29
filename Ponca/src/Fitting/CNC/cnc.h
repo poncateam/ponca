@@ -199,7 +199,11 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline size_t getNumTriangles() const { return static_cast<size_t>(m_nb_vt); }
 
         PONCA_FITTING_APIDOC_SETWFUNC
-        PONCA_MULTIARCH inline void setNeighborFilter(const NeighborFilter& _nFilter) { m_nFilter = _nFilter; }
+        PONCA_MULTIARCH inline bool setNeighborFilter(const NeighborFilter& _nFilter)
+        {
+            m_nFilter = _nFilter;
+            return true;
+        }
 
         /*!
          * \brief Returns the triangles
