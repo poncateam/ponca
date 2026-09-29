@@ -79,7 +79,8 @@ public:                                                                         
 // FIT API DOCUMENTATION
 #define PONCA_FITTING_APIDOC_SETWFUNC                                                                                 \
 /*! Init the WeightFunc, without changing the other internal states. Calls #startNewPass internally. \warning Must be \
- * called be for any computation (and before #init). \see getWeightFunc */
+ * called be for any computation (and before #init). \returns A boolean indicating param validity. \see getWeightFunc \
+ */
 #define PONCA_FITTING_APIDOC_INIT                                                                                  \
 /*! Set the evaluation position and reset the internal states. \warning Must be called be for any computation (but \
  * after #setNeighborFilter) */
