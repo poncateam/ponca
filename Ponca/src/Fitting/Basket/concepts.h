@@ -15,7 +15,6 @@ namespace Ponca
     template <typename T>
     concept ProvidesDerivatives = (ProvidesScaleDerivative<T> || ProvidesSpaceDerivative<T>);
 
-
     template <typename K>
     concept KernelProvidesFirstOrderDerivative = K::isDValid;
 
