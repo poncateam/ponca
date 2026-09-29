@@ -12,6 +12,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] CNC compute now supports iterator over point cloud (#344)
     - [fitting] New factory to iterate over types with ability to filter by compute capabilities (#347)
     - [spatialPartitioning] Make API reflects the constness of the point container access in NeighborGraph (#352)
+    - [fitting] Made setNeighborFilter return a boolean to indicates filter validity (#350)
 
 - Bug-fixes and code improvements
     - [fitting] Fix out-of-bound SegFault in CNC (#344)

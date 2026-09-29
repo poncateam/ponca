@@ -51,7 +51,11 @@ namespace Ponca
         /* Initialization                                                         */
         /**************************************************************************/
         PONCA_FITTING_APIDOC_SETWFUNC
-        PONCA_MULTIARCH inline void setNeighborFilter(const NeighborFilter& _nFilter) { m_nFilter = _nFilter; }
+        PONCA_MULTIARCH inline bool setNeighborFilter(const NeighborFilter& _nFilter)
+        {
+            m_nFilter = _nFilter;
+            return true;
+        }
 
         PONCA_FITTING_APIDOC_INIT
         PONCA_MULTIARCH inline void init()
