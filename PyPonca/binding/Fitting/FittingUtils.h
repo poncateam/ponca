@@ -38,7 +38,7 @@ inline std::vector<size_t> ComputeVectorDim(const nb::ndarray<>& array)
     {
         if (array.data() == nullptr)
             return {0};
-        if (array.ndim() == 1 || array.shape(1) == 1)
+        if (array.ndim() < 3 || array.shape(1) == 1)
             return {array.shape(0)};
         return {array.shape(0), array.shape(1)};
     }
@@ -54,7 +54,7 @@ inline std::vector<size_t> ComputeVectorDim(const nb::ndarray<>& array)
             return {0, Result::RowsAtCompileTime, Result::ColsAtCompileTime};
         }
 
-        if (array.ndim() == 1 || array.shape(1) == 1)
+        if (array.ndim() < 3 || array.shape(1) == 1)
         {
             if constexpr (Result::ColsAtCompileTime == 1)
                 return {array.shape(0), Result::RowsAtCompileTime};
@@ -80,23 +80,19 @@ inline std::vector<size_t> ComputeVectorDim(const nb::ndarray<>& array)
  * \param object The object to write
  */
 template <typename Scalar, typename T>
-PONCA_MULTIARCH void Write(DeviceArrayView<Scalar>& out, size_t shift, const T& object)
+PONCA_MULTIARCH void Write(Scalar* out, const T& object, int64_t strideX = 0, int64_t strideY = 0)
 {
-    Scalar* base = out.data + shift;
-
     // Note: There is no warp divergence here. As the result type of the computation will
     // be the same for every thread.
     if constexpr (std::is_floating_point_v<T>)
     {
-        *base = object;
+        *out = object;
     }
     else if constexpr (!std::is_floating_point_v<T>)
     {
-        int strideX = (out.N > 2) ? out.stride[2] : 0;
-        int strideY = (out.N > 3) ? out.stride[3] : 0;
         for (unsigned int k = 0; k < object.rows(); ++k)
             for (unsigned int l = 0; l < object.cols(); ++l)
-                *(base + k * strideX + l * strideY) = object(k, l);
+                *(out + k * strideX + l * strideY) = object(k, l);
     }
 }
 
@@ -120,20 +116,39 @@ PONCA_MULTIARCH void RunVectorMethod(CO& object, Func&& f, const DeviceArrayView
                                      DeviceArrayView<Scalar>& out, size_t idx)
 {
     using Point = typename CO::DataPoint;
-    // Note: there are no warp diveregence here as in is shared accross the same computation,
+    // Note: there should be no warp divergence here as in is shared accross the same computation,
     // every thread will see the same attributes.
+    // One case might be if in.shape[0] do not have the correct size, in which case the
+    // computation is ill-formed anyway and should not even run.
 
-    // An array of inputs
-    if (in.N == 2 && in.shape[1] == Point::Dim)
+    // No output...
+    if (out.data == nullptr || out.N == 0)
+        return;
+
+    if (in.data == nullptr) // No data
     {
-        for (size_t j = 0; j < in.shape[0]; ++j)
-        {
-            Write(out, idx * out.stride[0] + j * out.stride[1], f(object, in.template GetVector<Point>(j)));
-        }
+        // TODO: Extract Filter center and pass it here:
     }
-    // A single vector
-    else if (in.N == 1 && in.shape[0] == Point::Dim)
+    else if (in.N == 1 && in.shape[0] == Point::Dim) // A single vector
     {
-        Write(out, idx * out.stride[0], f(object, in.template AsVector<Point>()));
+        const int64_t matStrideY = (out.N > 1) ? out.stride[1] : 0;
+        const int64_t matStrideX = (out.N > 2) ? out.stride[2] : 0;
+        Write(out.data + idx * out.stride[0], f(object, in.template AsVector<Point>()), matStrideY, matStrideX);
+    }
+    else if (in.N == 2 && in.shape[0] > idx && in.shape[1] == Point::Dim) // in is an array of vector
+    {
+        const int64_t matStrideY = (out.N > 1) ? out.stride[1] : 0;
+        const int64_t matStrideX = (out.N > 2) ? out.stride[2] : 0;
+        Write(out.data + idx * out.stride[0], f(object, in.template GetVector<Point>(idx)), matStrideY, matStrideX);
+    }
+    else if (in.N == 3 && in.shape[0] > idx && in.shape[2] == Point::Dim && out.N > 1)
+    {
+        const int64_t matStrideY = (out.N > 2) ? out.stride[2] : 0;
+        const int64_t matStrideX = (out.N > 3) ? out.stride[3] : 0;
+        for (size_t j = 0; j < in.shape[1]; ++j)
+        {
+            Write(out.data + idx * out.stride[0] + j * out.stride[1], f(object, in.template GetVector<Point>(idx, j)),
+                  matStrideY, matStrideX);
+        }
     }
 }

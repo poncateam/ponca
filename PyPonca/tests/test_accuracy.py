@@ -22,22 +22,36 @@ def stridearray(x):
     np.testing.assert_allclose(x, y[3 * (N-1)::-3, 2 * (D - 1)::-2])
     return y
 
+def readarray(testcase, name):
+    """
+        Reads an array from the test cases
+    """
+    data = None
+    if name in testcase:
+        data = np.asarray(testcase[name]["data"])
+        data = data.reshape((testcase[name]["N"], testcase[name]["D"]))
+        data = data.squeeze()
+        data = data.astype(np.float64)
+    
+    return data
+
+
 
 class TestAccuracy(unittest.TestCase):
     def setUp(self):
         with open(os.environ["TEST_CASES"], "rt") as file:
-            self.expected = json.load(file)
+            content = file.read()
+        content = content.replace("-nan", "NaN")
+        content = content.replace("nan", "NaN")
+        self.expected = json.loads(content)
 
         # Load main pointclouds
-        N = self.expected["pointcloud"]["pos"]["N"]
-        D = self.expected["pointcloud"]["pos"]["D"]
-        self.pos     = np.array(self.expected["pointcloud"]["pos"]["data"]    ).reshape((N, D))
-        self.normals = np.array(self.expected["pointcloud"]["normals"]["data"]).reshape((N, D))
+        self.pos     = readarray(self.expected["pointcloud"], "pos")
+        self.normals = readarray(self.expected["pointcloud"], "normals")
         self.points  = pyponca.PointCloud(self.pos, self.normals)
 
-        M = self.expected["analysisLocation"]["N"]
-        self.analysisLocation = np.array(self.expected["analysisLocation"]["data"]).reshape((M, D))
-        self.analysisScale    = np.array(self.expected["analysisScale"]   ["data"]).reshape((M))
+        self.analysisLocation = readarray(self.expected, "analysisLocation")
+        self.analysisScale    = readarray(self.expected, "analysisScale")
 
     def runtestcase(self, pointcloud, method, function, input, signed, result):
         """
@@ -52,12 +66,11 @@ class TestAccuracy(unittest.TestCase):
                 object.addComputation(id, input)
                 pyresult = np.from_dlpack(object.compute(pointcloud)[0].data)
 
-                # The abs here is for signed / unsigned distances. This is sufficient, but we
-                # might want to check from the class whether this is necessary
-                if signed:
-                    np.testing.assert_allclose(pyresult, result, err_msg=method)    
-                else:
-                    np.testing.assert_allclose(np.abs(pyresult), np.abs(result), err_msg=method)    
+                if not signed:
+                    pyresult = np.abs(pyresult)
+                    result = np.abs(result)
+
+                np.testing.assert_allclose(pyresult, result, err_msg=f"Failed: {method} / {id} / {input.shape if input is not None else ""}")
             else:
                 warnings.warn(f"Function not found: {function}")
         else:
@@ -70,8 +83,8 @@ class TestAccuracy(unittest.TestCase):
         for run in self.expected["runs"]:
             method   = run["method"]
             function = run["function"]
-            result   = run["result"]["data"]
-            input    = np.array(run["input"]) if "input" in run else None
+            input    = readarray(run, "input")
+            result   = readarray(run, "result")
             sign     = bool(run["signed"]) if "signed" in run else False
 
             self.runtestcase(self.points, method, function, input, sign, result)
@@ -85,8 +98,8 @@ class TestAccuracy(unittest.TestCase):
         for run in self.expected["runs"]:
             method   = run["method"]
             function = run["function"]
-            result   = run["result"]["data"]
-            input    = np.array(run["input"]) if "input" in run else None
+            input    = readarray(run, "input")
+            result   = readarray(run, "result")
             sign     = bool(run["signed"]) if "signed" in run else False
 
             N = self.pos.shape[0]
@@ -94,10 +107,6 @@ class TestAccuracy(unittest.TestCase):
             newpos     = stridearray(self.pos)[3*(N-1)::-3, 2 * (D - 1)::-2]
             newnormals = stridearray(self.normals)[3*(N-1)::-3, 2 * (D - 1)::-2]
             newpoints  = pyponca.PointCloud(newpos, newnormals)
-
-            # Simpler stride here: simply a reverse
-            if input is not None:
-                input = input[::-1].ascontiguousarray()[::-1]
 
             self.runtestcase(newpoints, method, function, input, sign, result)
 
@@ -108,8 +117,8 @@ class TestAccuracy(unittest.TestCase):
         for run in self.expected["runs"]:
             method   = run["method"]
             function = run["function"]
-            result   = run["result"]["data"]
-            input    = np.array(run["input"]) if "input" in run else None
+            input    = readarray(run, "input")
+            result   = readarray(run, "result")
             sign     = bool(run["signed"]) if "signed" in run else False
 
             # Dense then sparse
@@ -123,8 +132,8 @@ class TestAccuracy(unittest.TestCase):
         for run in self.expected["runs"]:
             method   = run["method"]
             function = run["function"]
-            result   = run["result"]["data"]
-            input    = np.array(run["input"]) if "input" in run else None
+            input    = readarray(run, "input")
+            result   = readarray(run, "result")
             sign     = bool(run["signed"]) if "signed" in run else False
 
             N = self.pos.shape[0]
@@ -132,10 +141,6 @@ class TestAccuracy(unittest.TestCase):
             newpos     = stridearray(self.pos)[3*(N-1)::-3, 2 * (D - 1)::-2]
             newnormals = stridearray(self.normals)[3*(N-1)::-3, 2 * (D - 1)::-2]
             newpoints  = pyponca.PointCloud(newpos, newnormals)
-
-            # Simpler stride here: simply a reverse
-            if input is not None:
-                input = input[::-1].ascontiguousarray()[::-1]
     
             # Dense then sparse
             self.runtestcase(pyponca.KDTree(newpoints, False), method, function, input, sign, result)

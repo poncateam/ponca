@@ -51,6 +51,27 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
 
             WriteResult<Point>(file, x.name, "POTENTIAL", x.object.isSigned(), std::vector<Scalar>{}, potentials);
         });
+
+        Factory::Filter<Ponca::ProjectionOperatorProvider>().foreach ([&](auto& x) {
+            std::vector<VectorType> results;
+            for (unsigned int i = 0; i < analysisLocations.size(); ++i)
+            {
+                // Copy to avoid sharing between invocations
+                auto fit = x.object;
+                fit.init();
+                fit.setNeighborFilter({analysisLocations[i], analysisScale[i]});
+                fit.compute(points);
+                
+                results.push_back(fit.project(analysisLocations[i]));
+            }
+
+            if (first)
+                first = false;
+            else
+                file << ",";
+
+            WriteResult<Point>(file, x.name, "PROJECTION", x.object.isSigned(), analysisLocations, results);
+        });
     }
     file << "]";
 }
