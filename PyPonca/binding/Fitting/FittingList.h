@@ -65,6 +65,9 @@ inline std::vector<size_t> ComputeOutputDimension(Computation id, const nb::ndar
     case Computation::PROJECTION:
         if constexpr (Ponca::ProvidesProjectionOperator<CO>)
         {
+            if (array.data() == nullptr)
+                throw std::runtime_error("PROJECTION requires an input array");
+
             using Result = std::remove_cv_t<decltype(CO{}.project({}))>;
             return ComputeVectorDim<Point, Result>(array);
         }
@@ -92,9 +95,11 @@ inline std::vector<size_t> ComputeOutputDimension(Computation id, const nb::ndar
  * \param out The output array
  */
 template <typename CO, typename Scalar = typename CO::Scalar>
-inline void ExtractComputation(size_t id, CO& object, size_t i, const DeviceArrayView<Scalar>& in,
-                               DeviceArrayView<Scalar>& out)
+PONCA_MULTIARCH inline void ExtractComputation(size_t id, CO& object, size_t i, const DeviceArrayView<Scalar>& in,
+                                               DeviceArrayView<Scalar>& out)
 {
+    // if constexprs are just here to allow code to compile. The actual guard is useless and already perfomed
+    // in the ComputeOutputDimension.
     Computation computation = static_cast<Computation>(id);
     switch (computation)
     {
@@ -106,7 +111,7 @@ inline void ExtractComputation(size_t id, CO& object, size_t i, const DeviceArra
             if (in.data != nullptr)
                 RunVectorMethod<CO>(object, MAKE_VECTOR_FUNCTION(potential), in, out, i);
             else
-                Write(out, i * out.stride[0], object.potential());
+                Write(out.data + i * out.stride[0], object.potential());
         }
         break;
     case Computation::PROJECTION:

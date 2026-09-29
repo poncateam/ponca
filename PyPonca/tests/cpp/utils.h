@@ -141,13 +141,15 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>&
 }
 
 template <typename Point, typename Input, typename Output>
-void WriteResult(std::ofstream& file, const char* method, const char* function, bool sign, const std::vector<Input>& inputs,
-                 const std::vector<Output>& outputs)
+void WriteResult(std::ofstream& file, const char* method, const char* function, bool sign,
+                 const std::vector<Input>& inputs, const std::vector<Output>& outputs)
 {
     file << "{\"method\":\"" << method << "\",";
     file << "\"function\":\"" << function << "\",";
     file << "\"signed\":" << sign << ",";
     WriteArray<Point>(file, "input", inputs);
+    if (inputs.size() != 0)
+        file << ",";
     WriteArray<Point>(file, "result", outputs);
     file << "}";
 }

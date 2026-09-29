@@ -153,7 +153,7 @@ struct DeviceArrayView
     /**
      * \brief Convert the array into a Vector
      *
-     * This function is mean for shape like (N, D) i.e. the array describes
+     * This function is meant for shape like (N, D) i.e. the array describes
      * an array of vectors. It does not check if data, stride or anything else
      * is valid. It just iterates the first available dimension, filling a vector as
      * much as possible.
@@ -169,6 +169,24 @@ struct DeviceArrayView
         typename Point::VectorType out;
         for (size_t j = 0; j < shape[1]; ++j)
             out(j) = *(data + i * stride[0] + j * stride[1]);
+        return out;
+    }
+
+    /**
+     * \brief Convert the array into a Vector
+     *
+     * This function is meant for shape like (N, K, D) i.e. the array describes
+     * an array of arrays of vectors. It does not check if data, stride or anything else
+     * is valid. It just iterates the dimensions, filling a vector as much as possible.
+     *
+     * \see GetVector
+     */
+    template <typename Point>
+    PONCA_MULTIARCH typename Point::VectorType GetVector(size_t i, size_t j) const
+    {
+        typename Point::VectorType out;
+        for (size_t k = 0; k < shape[2]; ++k)
+            out(k) = *(data + i * stride[0] + j * stride[1] + j * stride[2]);
         return out;
     }
 
@@ -239,7 +257,7 @@ private:
         // but for now this is simpler :)
         Free();
         if (data == nullptr)
-            return; 
+            return;
 
         if (srcshape == nullptr && srcstride == nullptr)
             return;
