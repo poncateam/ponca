@@ -10,14 +10,17 @@
 #include "defines.h"
 #include PONCA_MULTIARCH_INCLUDE_STD(iterator)
 
-#define PONCA_WRITE_COMPUTE_WITH_IDS_BODY                                                  \
-    {                                                                                               \
-        /* This makes sure we return a reference and not a copy of points */                        \
-        const auto transform = [&](size_t i) -> decltype(auto) {                                    \
-            return *std::next(std::begin(points), i);                                               \
-        };                                                                                          \
-        const auto view = ids | std::views::transform(transform);                                   \
-        return compute(view.begin(), view.end());                                                   \
+#define PONCA_WRITE_COMPUTE_WITH_IDS_BODY                                               \
+    {                                                                                   \
+        /* This makes sure we return a reference and not a copy of points */            \
+        const auto transform = [&](size_t i) -> decltype(auto) {                        \
+            if constexpr (std::is_pointer_v<std::remove_reference_t<decltype(points)>>) \
+                return points[i];                                                       \
+            else                                                                        \
+                return *std::next(std::begin(points), i);                               \
+        };                                                                              \
+        const auto view = ids | std::views::transform(transform);                       \
+        return compute(view.begin(), view.end());                                       \
     };
 
 namespace Ponca
