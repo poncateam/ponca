@@ -2,13 +2,18 @@
 
 #include "../concepts.h"
 
+#include <type_traits>
+
 namespace Ponca
 {
     template <typename T>
-    concept ProvidesScaleDerivative = T::isScaleDer();
+    concept ProvidesScaleDerivative = (T::isScaleDer() && T::derDimension() > 0);
 
     template <typename T>
-    concept ProvidesSpaceDerivative = T::isSpaceDer();
+    concept ProvidesSpaceDerivative = (T::isSpaceDer() && T::derDimension() > 0);
+
+    template <typename T>
+    concept ProvidesDerivatives = (ProvidesScaleDerivative<T> || ProvidesSpaceDerivative<T>);
 
     template <typename K>
     concept KernelProvidesFirstOrderDerivative = K::isDValid;
@@ -54,4 +59,6 @@ namespace Ponca
         { ct.derDimension() } -> std::integral;
     };
 
+    template <typename T>
+    concept ProvidesSpaceDerivatives = T::isSpaceDer() && ProvidesCommonTypes<T>;
 } // namespace Ponca
