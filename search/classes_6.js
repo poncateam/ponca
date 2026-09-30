@@ -5,5 +5,6 @@ var searchData=
   ['hashdefaultfunctor_2',['HashDefaultFunctor',['../structPonca_1_1HashDefaultFunctor.html',1,'Ponca']]],
   ['hashset_3',['HashSet',['../classPonca_1_1HashSet.html',1,'Ponca']]],
   ['heightfield_4',['HeightField',['../classPonca_1_1HeightField.html',1,'Ponca']]],
-  ['hexagrambase_5',['HexagramBase',['../structPonca_1_1internal_1_1HexagramBase.html',1,'Ponca::internal']]]
+  ['heightfieldprovider_5',['HeightFieldProvider',['../structPonca_1_1HeightFieldProvider.html',1,'Ponca']]],
+  ['hexagrambase_6',['HexagramBase',['../structPonca_1_1internal_1_1HexagramBase.html',1,'Ponca::internal']]]
 ];

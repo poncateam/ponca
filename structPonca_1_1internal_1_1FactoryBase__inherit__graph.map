@@ -1,0 +1,14 @@
+<map id="Ponca::internal::FactoryBase&lt; _FactoryEntries &gt;" name="Ponca::internal::FactoryBase&lt; _FactoryEntries &gt;">
+<area shape="rect" id="Node000001" title="Base class for factory." alt="" coords="211,5,386,185"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1internal_1_1FactoryBase.html" title=" " alt="" coords="5,263,187,457"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,162,177,185,154,211,138,236,125,264,121,261,134,234,150,208,173,181,199,158"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1internal_1_1FactoryBase.html" title=" " alt="" coords="211,263,387,457"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="301,199,301,262,296,262,296,199"/>
+<area shape="rect" id="Node000006" href="$structPonca_1_1internal_1_1FactoryBase.html" title=" " alt="" coords="411,263,651,457"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="398,166,441,208,480,261,476,264,437,211,395,170"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1Factory.html" title="Default factory templated on Point, Filter and Derivative." alt="" coords="29,507,163,587"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,471,99,506,93,506,93,471"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1Factory_3_01P_00_01NF_00_01DerType_01_4.html" title="Default factory templated on Point, Filter and Derivative." alt="" coords="371,507,506,587"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="382,467,411,505,407,508,378,470"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="479,471,461,507,456,505,474,468"/>
+</map>

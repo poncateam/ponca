@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
+   &#160;<span id="projectnumber">fd5150bf9079aabdb82a6f05e419b76111c1f788</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -144,7 +144,8 @@ $(document).ready(function(){initNavTree('fitting.html',''); initResizable(); })
 </li>
 </ul>
 </li>
-<li class="level1"><a href="#fitting_advanced">Advanced usage</a><ul><li class="level2"><a href="#fitting_multiprimitive">Fitting with multiple primitives</a></li>
+<li class="level1"><a href="#fitting_advanced">Advanced usage</a><ul><li class="level2"><a href="#fitting_factory">Iterating over common Baskets</a></li>
+<li class="level2"><a href="#fitting_multiprimitive">Fitting with multiple primitives</a></li>
 </ul>
 </li>
 <li class="level1"><a href="#fitting_cuda">Cuda and SYCL</a></li>
@@ -332,7 +333,7 @@ Understanding CRTP in Ponca</h2>
  <dl class="section note"><dt>Note</dt><dd>Some type are aggregates that will inject their dependancies within the class hierarchy. For example, <a class="el" href="namespacePonca.html#a1e45ae190295705c59bea1fc029605be">OrientedSphereFit</a> depends on <a class="el" href="classPonca_1_1MeanPosition.html" title="Compute the barycenter of the input points.">MeanPosition</a>, <a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> and <a class="el" href="classPonca_1_1AlgebraicSphere.html" title="Algebraic Sphere primitive.">AlgebraicSphere</a> that appears in the class list although they were not explicitly defined by the user.</dd></dl>
 <p>Because <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> inherit every types given as argument, it is easy to access any result or any set any parameter. It suffices to call the function on the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> object as-if it was an object of the computation you want to alter.</p>
 <p>The link between all these class is made through the defined <code>Base</code> type, which points to its parent class in the hierarchy. It becomes possible to access all result, all functions defined in the hierarchy through this prefix, provided there is no overriden name. Hence, in this example, refering to <code>Base::m_uc</code> within <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a> will reference the current value of <code><a class="el" href="classPonca_1_1AlgebraicSphere.html#a854b648c939a82fea16fb20783f5172e" title="Constant parameter of the Algebraic hyper-sphere.">AlgebraicSphere::m_uc</a></code>. However, refering to <code>Base::addLocalNeighbor</code> in <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a> will reference the function <code><a class="el" href="classPonca_1_1OrientedSphereFitImpl.html#ab7b7c8e439cb1b63a1b9c355f46a22d5" title="Add a neighbor to perform the fit.">OrientedSphereFitImpl::addLocalNeighbor</a></code> as this is overriden by the class.</p>
-<p>In order to target more directly a Fitting method, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides cast operation. For example, the <a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> class provide the <code><a class="el" href="classMeanNormal.html#a94366f068e09d92d2a38129b1fee87f6" title="Explicit conversion to MeanNormal , to access methods potentially hidden by heritage.">MeanNormal::meanNormal</a></code> function that returns a pointer to the implicit instance.</p>
+<p>In order to target more directly a Fitting method, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides cast operation. For example, the <a class="el" href="classMeanNormal.html" title="Compute the mean normal of the input points.">MeanNormal</a> class provide the <code><a class="el" href="classMeanNormal.html#a94366f068e09d92d2a38129b1fee87f6" title="Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage.">MeanNormal::meanNormal</a></code> function that returns a pointer to the implicit instance.</p>
 <div class="fragment"><div class="line"><span class="comment">/* const */</span> <a class="code hl_class" href="classMeanNormal.html">MeanNormal</a>* meanNormal = fit.meanNormal();</div>
 <div class="line"><span class="comment">// Do whatever you want with a &#39;MeanNormal&#39; instance</span></div>
 <div class="ttc" id="aclassMeanNormal_html"><div class="ttname"><a href="classMeanNormal.html">MeanNormal</a></div><div class="ttdoc">Compute the mean normal of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00083">mean.h:84</a></div></div>
@@ -405,7 +406,7 @@ Computational objets capabilities and requirements</h3>
 <h3><a class="anchor" id="fitting_cast"></a>
 Providing cast operations</h3>
 <p>As explained earlier, the class hierarchy can not reach every function of every through the provided <code>Base</code> type due to overloading. The mecanism <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> implements is a cast operator. Fortunately, this is quite common and a macro helps to define them. Add the following within a public section of your class:</p>
-<div class="fragment"><div class="line">PONCA_EXPLICIT_CAST_OPERATORS(ClassName, className);</div>
+<div class="fragment"><div class="line">PONCA_EXPLICIT_BASKET_CAST_OPERATORS(ClassName, className);</div>
 </div><!-- fragment --><p>Where the first parameter is the class name and the second is the name of the cast function which is, most of the time, the same as the class name excpet a first lower case letter. Note that this macro requires the template parameter to be named following ponca conventions. A class may provide multiple cast operator.</p>
 <p>In order to respects concepts, a cast operator to a common name is required. This name can be found within the concept declaration (Fitting/concepts.hpp)</p>
 <h3><a class="anchor" id="fitting_newdiff"></a>
@@ -479,6 +480,44 @@ New primitive differentiation (BasketDiff API)</h3>
 </table>
 <h1><a class="anchor" id="fitting_advanced"></a>
 Advanced usage</h1>
+<h2><a class="anchor" id="fitting_factory"></a>
+Iterating over common Baskets</h2>
+<p>In many cases, one may want to compare multiple Baskets or extensions. The classical solution is to write a function that accepts a template type (which would be your <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>) and then call the function manually for each type. For this reason, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provides a <a class="el" href="structPonca_1_1Factory.html" title="Default factory templated on Point, Filter and Derivative.">Factory</a> that abstracts away the iteration over compute objects for the most common types.</p>
+<div class="fragment"><div class="line">    <span class="comment">// Run some code for each element within the factory</span></div>
+<div class="line">    <span class="comment">// When using the Factory, state *ARE NOT persistent*</span></div>
+<div class="line">    MyFactory::foreach ([&amp;](<span class="keyword">auto</span>&amp; x) {</div>
+<div class="line">        std::cout &lt;&lt; x.name &lt;&lt; std::endl;</div>
+<div class="line">        x.object.setNeighborFilter({_p, tmax});</div>
+<div class="line">        x.object.init();</div>
+<div class="line">        x.object.compute(vecs.begin(), vecs.end());</div>
+<div class="line">    });</div>
+</div><!-- fragment --><p>The <a class="el" href="structPonca_1_1Factory.html" title="Default factory templated on Point, Filter and Derivative.">Factory</a> module also provides the ability to filter by concept. Most <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> fitting concepts have a corresponding filter. For a concept named "ProvidesXXX", <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> creates two filters: "XXXProvider" and "NotXXXProvider", which can be used for filtering.</p>
+<div class="fragment"><div class="line">    <span class="comment">// We can also filter (this is a conjunction)</span></div>
+<div class="line">    <span class="comment">// Here:</span></div>
+<div class="line">    <span class="comment">//  * Object that do not provide derivatives</span></div>
+<div class="line">    <span class="comment">//  * Builds and implicit representation of the primitive</span></div>
+<div class="line">    <span class="comment">//  * Can project any point to this primitive</span></div>
+<div class="line">    <span class="keyword">auto</span> list = MyFactory::Filter&lt;NotDerivativesProvider, ImplicitPrimitiveProvider, ProjectionOperatorProvider&gt;();</div>
+<div class="line">    list.foreach ([&amp;](<span class="keyword">auto</span>&amp; x) {</div>
+<div class="line">        x.object.setNeighborFilter({_p, tmax});</div>
+<div class="line">        x.object.init();</div>
+<div class="line">        x.object.compute(vecs.begin(), vecs.end());</div>
+<div class="line"> </div>
+<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;Potential for method &#39;&quot;</span> &lt;&lt; x.name &lt;&lt; <span class="stringliteral">&quot;&#39; is: &quot;</span> &lt;&lt; x.object.potential() &lt;&lt; std::endl;</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// For filtered list, state are persistent if *PASSED BY REFERENCE*</span></div>
+<div class="line">    <span class="comment">// (but further filter would lose the current state !):</span></div>
+<div class="line">    list.foreach ([&amp;](<span class="keyword">auto</span>&amp; x) {</div>
+<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;Projection of:\n&quot;</span> &lt;&lt; _p &lt;&lt; <span class="stringliteral">&quot;\nby &#39;&quot;</span> &lt;&lt; x.name &lt;&lt; <span class="stringliteral">&quot;&#39; is:\n&quot;</span> &lt;&lt; x.object.project(_p) &lt;&lt; std::endl;</div>
+<div class="line">    });</div>
+</div><!-- fragment --><p>Classical literature methods can also be obtained through the <a class="el" href="structPonca_1_1Factory.html" title="Default factory templated on Point, Filter and Derivative.">Factory</a>. For a complete list, see the <code>Ponca::Method</code> enumeration.</p>
+<div class="fragment"><div class="line">    <span class="comment">// Some classical methods can also be obtained by name.</span></div>
+<div class="line">    <span class="keyword">auto</span> apss = MyFactory::GetMethod&lt;<span class="stringliteral">&quot;APSS&quot;</span>&gt;();</div>
+<div class="line">    apss.setNeighborFilter({_p, tmax});</div>
+<div class="line">    apss.init();</div>
+<div class="line">    apss.compute(vecs.begin(), vecs.end());</div>
+</div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Factories may contain different compute objects depending on the given point, filter, or derivative types. For example, Monge Patch fitting is currently only available in 3D; therefore, the <a class="el" href="structPonca_1_1Factory.html" title="Default factory templated on Point, Filter and Derivative.">Factory</a> will include the corresponding classes only when provided with 3D points.</dd></dl>
 <h2><a class="anchor" id="fitting_multiprimitive"></a>
 Fitting with multiple primitives</h2>
 <p>In most cases, only one primitive is included in the <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a>, and it is recommended to use the helper classes provided by <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> for fitting, e.g. <a class="el" href="classPonca_1_1CovariancePlaneFitImpl.html" title="Plane fitting procedure using only points position.">CovariancePlaneFitImpl</a>, <a class="el" href="classPonca_1_1OrientedSphereFitImpl.html" title="Algebraic Sphere fitting procedure on oriented point sets.">OrientedSphereFitImpl</a>. However, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> also allows to combine multiple primitives, for instance to share intermediate computation results. Using this functionality requires to really understand how the different primitives and fitting techniques are working. In any case, it is recommended to explicitly define the computational arrangement, e.g.: </p><div class="fragment"><div class="line">    <span class="comment">// Create an hybrid structure fitting a plane and a sphere at the same time</span></div>
@@ -486,7 +525,7 @@ Fitting with multiple primitives</h2>
 <div class="line">                          <a class="code hl_class" href="classMeanNormal.html">MeanNormal</a>, MeanPosition,                      <span class="comment">// shared computation</span></div>
 <div class="line">                          OrientedSphereFitImpl,                         <span class="comment">// sphere fitting</span></div>
 <div class="line">                          CovarianceBase, CovariancePlaneFitImpl&gt;;       <span class="comment">// plane fitting</span></div>
-</div><!-- fragment --><p>After fitting, this object provides access to both the plane and the sphere, through the respective cast operators <a class="el" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef" title="Explicit conversion to AlgebraicSphere , to access methods potentially hidden by heritage.">AlgebraicSphere::algebraicSphere()</a> and <a class="el" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb" title="Explicit conversion to Plane , to access methods potentially hidden by heritage.">Plane::plane()</a>.</p>
+</div><!-- fragment --><p>After fitting, this object provides access to both the plane and the sphere, through the respective cast operators <a class="el" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef" title="Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage.">AlgebraicSphere::algebraicSphere()</a> and <a class="el" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb" title="Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage.">Plane::plane()</a>.</p>
 <h1><a class="anchor" id="fitting_cuda"></a>
 Cuda and SYCL</h1>
 <p><a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> can be used directly on GPU, thanks to several mechanisms:</p><ul>
@@ -507,7 +546,7 @@ Cuda and SYCL</h1>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="user_manual_page.html">User Manual</a></li>
-    <li class="footer">Generated on Tue Sep 15 2026 12:02:28 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Sep 30 2026 07:16:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

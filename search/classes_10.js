@@ -12,5 +12,6 @@ var searchData=
   ['statickdtreebase_3c_20kdtreedefaulttraits_3c_20datapoint_20_3e_20_3e_9',['StaticKdTreeBase&lt; KdTreeDefaultTraits&lt; DataPoint &gt; &gt;',['../classPonca_1_1StaticKdTreeBase.html',1,'Ponca']]],
   ['statickdtreebase_3c_20traits_20_3e_10',['StaticKdTreeBase&lt; Traits &gt;',['../classPonca_1_1StaticKdTreeBase.html',1,'Ponca']]],
   ['staticknngraphbase_11',['StaticKnnGraphBase',['../classPonca_1_1StaticKnnGraphBase.html',1,'Ponca']]],
-  ['staticneighborgraphbase_12',['StaticNeighborGraphBase',['../classPonca_1_1StaticNeighborGraphBase.html',1,'Ponca']]]
+  ['staticneighborgraphbase_12',['StaticNeighborGraphBase',['../classPonca_1_1StaticNeighborGraphBase.html',1,'Ponca']]],
+  ['stringliteral_13',['StringLiteral',['../structPonca_1_1StringLiteral.html',1,'Ponca']]]
 ];

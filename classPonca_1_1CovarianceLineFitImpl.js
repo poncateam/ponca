@@ -7,6 +7,5 @@ var classPonca_1_1CovarianceLineFitImpl =
     [ "VectorType", "classPonca_1_1CovarianceLineFitImpl.html#a1604534050d36fcd259b8934223b9dac", null ],
     [ "covarianceLineFit", "classPonca_1_1CovarianceLineFitImpl.html#ad33f6e6ecdbb4e4d4e07744103862ce4", null ],
     [ "covarianceLineFit", "classPonca_1_1CovarianceLineFitImpl.html#a287719357371e473cfb47cffe3cbb566", null ],
-    [ "finalize", "classPonca_1_1CovarianceLineFitImpl.html#a25839928fcdd2f9aefebee1cecd55954", null ],
     [ "isSigned", "classPonca_1_1CovarianceLineFitImpl.html#a3bead161093e3395695df2e3172f1e80", null ]
 ];

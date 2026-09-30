@@ -11,8 +11,6 @@ var classPonca_1_1CovarianceBase =
     [ "covarianceBase", "classPonca_1_1CovarianceBase.html#a127fff5ed89e33d1a3c1ccf31337ca50", null ],
     [ "covarianceBase", "classPonca_1_1CovarianceBase.html#afa16865da0e4fa5b42ddf8e5c3f8167f", null ],
     [ "eigenentropy", "classPonca_1_1CovarianceBase.html#ae33784e4ccdec0d80dbfa941923a9f2d", null ],
-    [ "finalize", "classPonca_1_1CovarianceBase.html#afc3299deb3938a84482b7c8d3bc57e40", null ],
-    [ "init", "classPonca_1_1CovarianceBase.html#ac4a737516cf95a2db510b5a3145f38c7", null ],
     [ "lambda_0", "classPonca_1_1CovarianceBase.html#a067a4a24921bcb5caa1fb06f8eb5e911", null ],
     [ "lambda_1", "classPonca_1_1CovarianceBase.html#a8ede020187dff7a57342391be2172dc8", null ],
     [ "lambda_2", "classPonca_1_1CovarianceBase.html#a295135f9af3d0acd52c4d9f712c7e738", null ],

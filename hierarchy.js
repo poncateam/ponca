@@ -19,6 +19,41 @@ var hierarchy =
     ] ],
     [ "Ponca::BasketUnitBase< DataPoint, _NFilter, T >", "classPonca_1_1BasketUnitBase.html", null ],
     [ "Ponca::BitSet< N, T >", "classPonca_1_1BitSet.html", null ],
+    [ "std::bool_constant", null, [
+      [ "Ponca::AlgebraicSphereProvider< T >", "structPonca_1_1AlgebraicSphereProvider.html", null ],
+      [ "Ponca::DerivativesProvider< T >", "structPonca_1_1DerivativesProvider.html", null ],
+      [ "Ponca::GLSParamProvider< T >", "structPonca_1_1GLSParamProvider.html", null ],
+      [ "Ponca::GeomVarProvider< T >", "structPonca_1_1GeomVarProvider.html", null ],
+      [ "Ponca::HeightFieldProvider< T >", "structPonca_1_1HeightFieldProvider.html", null ],
+      [ "Ponca::ImplicitPrimitiveProvider< T >", "structPonca_1_1ImplicitPrimitiveProvider.html", null ],
+      [ "Ponca::LineProvider< T >", "structPonca_1_1LineProvider.html", null ],
+      [ "Ponca::MeanCurvatureProvider< T >", "structPonca_1_1MeanCurvatureProvider.html", null ],
+      [ "Ponca::MeanNormalProvider< T >", "structPonca_1_1MeanNormalProvider.html", null ],
+      [ "Ponca::MeanPositionProvider< T >", "structPonca_1_1MeanPositionProvider.html", null ],
+      [ "Ponca::MethodProvider< Name >::pred< T >", "structPonca_1_1MethodProvider_1_1pred.html", null ],
+      [ "Ponca::MongePatchProvider< T >", "structPonca_1_1MongePatchProvider.html", null ],
+      [ "Ponca::NotAlgebraicSphereProvider< T >", "structPonca_1_1NotAlgebraicSphereProvider.html", null ],
+      [ "Ponca::NotDerivativesProvider< T >", "structPonca_1_1NotDerivativesProvider.html", null ],
+      [ "Ponca::NotGLSParamProvider< T >", "structPonca_1_1NotGLSParamProvider.html", null ],
+      [ "Ponca::NotGeomVarProvider< T >", "structPonca_1_1NotGeomVarProvider.html", null ],
+      [ "Ponca::NotHeightFieldProvider< T >", "structPonca_1_1NotHeightFieldProvider.html", null ],
+      [ "Ponca::NotImplicitPrimitiveProvider< T >", "structPonca_1_1NotImplicitPrimitiveProvider.html", null ],
+      [ "Ponca::NotLineProvider< T >", "structPonca_1_1NotLineProvider.html", null ],
+      [ "Ponca::NotMeanCurvatureProvider< T >", "structPonca_1_1NotMeanCurvatureProvider.html", null ],
+      [ "Ponca::NotMeanNormalProvider< T >", "structPonca_1_1NotMeanNormalProvider.html", null ],
+      [ "Ponca::NotMeanPositionProvider< T >", "structPonca_1_1NotMeanPositionProvider.html", null ],
+      [ "Ponca::NotMongePatchProvider< T >", "structPonca_1_1NotMongePatchProvider.html", null ],
+      [ "Ponca::NotPlaneProvider< T >", "structPonca_1_1NotPlaneProvider.html", null ],
+      [ "Ponca::NotPositionCovarianceProvider< T >", "structPonca_1_1NotPositionCovarianceProvider.html", null ],
+      [ "Ponca::NotPrincipalCurvaturesProvider< T >", "structPonca_1_1NotPrincipalCurvaturesProvider.html", null ],
+      [ "Ponca::NotProjectionOperatorProvider< T >", "structPonca_1_1NotProjectionOperatorProvider.html", null ],
+      [ "Ponca::NotTangentPlaneBasisProvider< T >", "structPonca_1_1NotTangentPlaneBasisProvider.html", null ],
+      [ "Ponca::PlaneProvider< T >", "structPonca_1_1PlaneProvider.html", null ],
+      [ "Ponca::PositionCovarianceProvider< T >", "structPonca_1_1PositionCovarianceProvider.html", null ],
+      [ "Ponca::PrincipalCurvaturesProvider< T >", "structPonca_1_1PrincipalCurvaturesProvider.html", null ],
+      [ "Ponca::ProjectionOperatorProvider< T >", "structPonca_1_1ProjectionOperatorProvider.html", null ],
+      [ "Ponca::TangentPlaneBasisProvider< T >", "structPonca_1_1TangentPlaneBasisProvider.html", null ]
+    ] ],
     [ "Ponca::StaticKdTreeBase< _Traits >::Buffers", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html", null ],
     [ "CenteredNeighborhoodFrame", null, [
       [ "Ponca::internal::NoWeightFilterBase< DataPoint, CenteredNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFilterBase.html", [
@@ -49,12 +84,32 @@ var hierarchy =
     [ "Ponca::ComputeObject< Basket< P, NF, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::ComputeObject< BasketDiff< BasketType, Type, Ext0, Exts... > >", "structPonca_1_1ComputeObject.html", null ],
     [ "Ponca::ComputeObject< CNC< P, UniformGeneration > >", "structPonca_1_1ComputeObject.html", null ],
+    [ "Ponca::internal::ComputeObjectList< _FactoryEntries >", "structPonca_1_1internal_1_1ComputeObjectList.html", null ],
+    [ "Ponca::internal::Factory::conjunction< Preds >", "structPonca_1_1internal_1_1Factory_1_1conjunction.html", null ],
     [ "Ponca::KdTreeBase< _Traits >::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
     [ "Ponca::DirectProjectionOperator", "structPonca_1_1DirectProjectionOperator.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],
+    [ "Ponca::internal::FactoryBase< _FactoryEntries >", "structPonca_1_1internal_1_1FactoryBase.html", null ],
+    [ "Ponca::internal::FactoryBase< Factory3DList< P, NF, DerType > >", "structPonca_1_1internal_1_1FactoryBase.html", [
+      [ "Ponca::Factory< P, NF, DerType >", "structPonca_1_1Factory_3_01P_00_01NF_00_01DerType_01_4.html", null ]
+    ] ],
+    [ "Ponca::internal::FactoryBase< Factory3DSpaceDerivatives< P, NF, DerType > >", "structPonca_1_1internal_1_1FactoryBase.html", [
+      [ "Ponca::Factory< P, NF, DerType >", "structPonca_1_1Factory_3_01P_00_01NF_00_01DerType_01_4.html", null ]
+    ] ],
+    [ "Ponca::internal::FactoryBase< FactoryGenericList< P, NF, DerType > >", "structPonca_1_1internal_1_1FactoryBase.html", [
+      [ "Ponca::Factory< P, NF, DerType >", "structPonca_1_1Factory.html", null ]
+    ] ],
+    [ "Ponca::FactoryEntry< _Name, Type >", "structPonca_1_1FactoryEntry.html", null ],
+    [ "Ponca::internal::Factory::FactoryEntryTypeExtractor< EntryList >", "structPonca_1_1internal_1_1Factory_1_1FactoryEntryTypeExtractor.html", null ],
+    [ "Ponca::internal::Factory::FactoryEntryTypeExtractor< std::tuple< Ts... > >", "structPonca_1_1internal_1_1Factory_1_1FactoryEntryTypeExtractor_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html", null ],
     [ "std::false_type", null, [
       [ "Ponca::hasFirstFundamentalForm< T, typename >", "structPonca_1_1hasFirstFundamentalForm.html", null ]
     ] ],
+    [ "Ponca::internal::Factory::filter< Pred, Ts >", "structPonca_1_1internal_1_1Factory_1_1filter.html", null ],
+    [ "Ponca::internal::Factory::filter< Pred >", "structPonca_1_1internal_1_1Factory_1_1filter_3_01Pred_01_4.html", null ],
+    [ "Ponca::internal::Factory::filter< Pred, T, Ts... >", "structPonca_1_1internal_1_1Factory_1_1filter_3_01Pred_00_01T_00_01Ts_8_8_8_01_4.html", null ],
+    [ "Ponca::internal::Factory::filterList< Pred, Ts >", "structPonca_1_1internal_1_1Factory_1_1filterList.html", null ],
+    [ "Ponca::internal::Factory::filterList< Pred, std::tuple< Ts... > >", "structPonca_1_1internal_1_1Factory_1_1filterList_3_01Pred_00_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html", null ],
     [ "Concept::FittingExtensionConcept", null, [
       [ "Ponca::CovarianceDer< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovarianceDer.html", null ],
       [ "Ponca::CovariancePlaneDerImpl< DataPoint, _NFilter, DiffType, T >", "classPonca_1_1CovariancePlaneDerImpl.html", null ],
@@ -117,6 +172,7 @@ var hierarchy =
     [ "Ponca::KdTreeRangeIterator< Index, DataPoint, QueryT_ >", "classPonca_1_1KdTreeRangeIterator.html", null ],
     [ "Ponca::LimitedPriorityQueue< T, N, CompareT >", "classPonca_1_1LimitedPriorityQueue.html", null ],
     [ "Ponca::LimitedPriorityQueue< IndexSquaredDistance< Index, Scalar >, MAX_KNN_SIZE >", "classPonca_1_1LimitedPriorityQueue.html", null ],
+    [ "Ponca::MethodProvider< Name >", "structPonca_1_1MethodProvider.html", null ],
     [ "Ponca::MLSEvaluationScheme< Scalar >", "structPonca_1_1MLSEvaluationScheme.html", null ],
     [ "NeighborFilter", null, [
       [ "Ponca::FilterWithAttributes< _DataPoint, DataType, NeighborFilter, DataConverter >", "classPonca_1_1FilterWithAttributes.html", null ]
@@ -196,6 +252,7 @@ var hierarchy =
       [ "Ponca::StaticKdTree< DataPoint >", "structPonca_1_1StaticKdTree.html", null ]
     ] ],
     [ "Ponca::StaticKdTreeBase< Traits >", "classPonca_1_1StaticKdTreeBase.html", null ],
+    [ "Ponca::StringLiteral< N >", "structPonca_1_1StringLiteral.html", null ],
     [ "T", null, [
       [ "MeanNormal< DataPoint, _NFilter, T >", "classMeanNormal.html", null ],
       [ "MeanNormalDer< DataPoint, _NFilter, DiffType, T >", "classMeanNormalDer.html", null ],

@@ -7,7 +7,6 @@ var classPonca_1_1DryFit =
     [ "addLocalNeighbor", "classPonca_1_1DryFit.html#ae9d531e4ec04927a6f1f7f64d8a4d803", null ],
     [ "dryfit", "classPonca_1_1DryFit.html#ae1fdd39fbc5b3ab0ef95f9653e626b87", null ],
     [ "dryfit", "classPonca_1_1DryFit.html#a82105307a7909f9cab5a1d0710f3e421", null ],
-    [ "finalize", "classPonca_1_1DryFit.html#a95b1f8292aeccd0c68c9fe920379c413", null ],
     [ "potential", "classPonca_1_1DryFit.html#a9b84d0ab5b798d9bec71c88797cd1a65", null ],
     [ "potential", "classPonca_1_1DryFit.html#ac738c76f5d649de5137a9c6cd7bbc973", null ],
     [ "potentialLocal", "classPonca_1_1DryFit.html#aec4b1c7f481f247cb84a781f30245ff7", null ],

@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classPonca_1_1KdTreeKNearestIterator.html" title="Input iterator to read the KdTreeKNearestQueryBase object." alt="" coords="5,5,276,45"/>
+<area shape="rect" id="Node000000" href="$structPonca_1_1internal_1_1FactoryBase.html" title=" " alt="" coords="37,5,221,60"/>
+<area shape="rect" id="Node000001" href="$structPonca_1_1Factory_3_01P_00_01NF_00_01DerType_01_4.html" title="Default factory templated on Point, Filter and Derivative." alt="" coords="301,53,444,93"/>
+<area shape="poly" id="edge88_Node000000_Node000001" title=" " alt="" coords="236,47,302,58,301,64,235,53"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1internal_1_1FactoryBase.html" title=" " alt="" coords="5,84,253,139"/>
+<area shape="poly" id="edge89_Node000002_Node000001" title=" " alt="" coords="266,87,300,81,301,87,267,92"/>
 </map>

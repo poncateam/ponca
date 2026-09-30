@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
+   &#160;<span id="projectnumber">fd5150bf9079aabdb82a6f05e419b76111c1f788</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -268,7 +268,7 @@ Datastructures implementation</h2>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Finalize fitting</span></div>
-<div class="line">    fit.<a class="code hl_function" href="classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html#a9d01c460f5832ba1192ffdd47be45a5c">finalize</a>();</div>
+<div class="line">    fit.finalize();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Test if the fitting ended without errors. Set curvature to qNan otherwise.</span></div>
 <div class="line">    <span class="keywordflow">if</span> (fit.isStable())</div>
@@ -286,10 +286,9 @@ Datastructures implementation</h2>
 <div class="ttc" id="aclassPonca_1_1Basket_html"><div class="ttname"><a href="classPonca_1_1Basket.html">Ponca::Basket</a></div><div class="ttdoc">Aggregator class used to declare specialized structures using CRTP.</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00292">basket.h:294</a></div></div>
 <div class="ttc" id="aclassPonca_1_1DistWeightFilter_html"><div class="ttname"><a href="classPonca_1_1DistWeightFilter.html">Ponca::DistWeightFilter</a></div><div class="ttdoc">Weight neighbors according to the Euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFilter_8h_source.html#l00033">weightFilter.h:34</a></div></div>
 <div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html">Ponca::NormalDerivativeWeingartenEstimator</a></div><div class="ttdoc">Compute a Weingarten map from the spatial derivatives of the normal field .</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00110">weingarten.h:111</a></div></div>
-<div class="ttc" id="aclassPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase_html_a9d01c460f5832ba1192ffdd47be45a5c"><div class="ttname"><a href="classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html#a9d01c460f5832ba1192ffdd47be45a5c">Ponca::internal::WeingartenCurvatureEstimatorBase::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the procedure.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8hpp_source.html#l00194">weingarten.hpp:194</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2">Ponca::FitScaleSpaceDer</a></div><div class="ttdeci">@ FitScaleSpaceDer</div><div class="ttdoc">Flag indicating a scale-space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00038">enums.h:37</a></div></div>
 <div class="ttc" id="anamespacePonca_html_adc3e80f6945b8f4a53d7163706a1caa5"><div class="ttname"><a href="namespacePonca.html#adc3e80f6945b8f4a53d7163706a1caa5">Ponca::CovariancePlaneDer</a></div><div class="ttdeci">CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, CovarianceDer&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; &gt; CovariancePlaneDer</div><div class="ttdoc">Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl.</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00124">covariancePlaneFit.h:126</a></div></div>
-<div class="ttc" id="astructPonca_1_1WeingartenCurvatureEstimatorDer_html"><div class="ttname"><a href="structPonca_1_1WeingartenCurvatureEstimatorDer.html">Ponca::WeingartenCurvatureEstimatorDer</a></div><div class="ttdoc">Compute principal curvatures from a base class providing fundamental forms.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00222">weingarten.h:223</a></div></div>
+<div class="ttc" id="astructPonca_1_1WeingartenCurvatureEstimatorDer_html"><div class="ttname"><a href="structPonca_1_1WeingartenCurvatureEstimatorDer.html">Ponca::WeingartenCurvatureEstimatorDer</a></div><div class="ttdoc">Compute principal curvatures from a base class providing fundamental forms.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00223">weingarten.h:224</a></div></div>
 </div><!-- fragment --><h2><a class="anchor" id="pcl_wrapper_sec_pcl_wrapper_sec_cpp"></a>
 Datastructures instanciation</h2>
 <p>Source file: <code>pcl_wrapper.cpp</code> </p><div class="fragment"><div class="line"><span class="comment">/*</span></div>
@@ -493,7 +492,7 @@ Main program</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="example_page.html">Examples</a></li>
-    <li class="footer">Generated on Tue Sep 15 2026 12:02:28 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Sep 30 2026 07:16:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

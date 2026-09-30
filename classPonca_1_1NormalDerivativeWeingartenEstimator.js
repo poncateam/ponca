@@ -7,7 +7,6 @@ var classPonca_1_1NormalDerivativeWeingartenEstimator =
     [ "ScalarArray", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#aeb3b7e08c9878765c13e83868b95f1f2", null ],
     [ "VectorArray", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#ae549d4ae47c3d14391e7b7af801c1ce7", null ],
     [ "VectorType", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a07c861be96a2d48d5299e3c55e9eb4ed", null ],
-    [ "finalize", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a6b58be69325c691d003bdd20cff6352b", null ],
     [ "normalDerivativeWeingartenEstimator", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a4cf8ebc202d9d0aa6ac0ce7f0100e8fe", null ],
     [ "normalDerivativeWeingartenEstimator", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#ab9b736acacba29503386585e4d58c048", null ],
     [ "tangentPlaneBasis", "classPonca_1_1NormalDerivativeWeingartenEstimator.html#a45a0acfa4a5fff68ae8f55a9b6f62034", null ],

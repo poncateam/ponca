@@ -3,7 +3,8 @@ var classPonca_1_1CNC =
     [ "compute", "classPonca_1_1CNC.html#aea7ca2e7489c29ae9adbf0f5623b2fe2", null ],
     [ "compute", "classPonca_1_1CNC.html#ae294183bf51f4ae589abd2621820e2b7", null ],
     [ "computeWithIds", "classPonca_1_1CNC.html#a21eca469f0d634391ea6c2a7461ad78b", null ],
-    [ "finalize", "classPonca_1_1CNC.html#a093863125a39f21a70a5164c7ac7fefb", null ],
+    [ "curvatureTensor", "classPonca_1_1CNC.html#a24b0efe26714e13417a3d4c708613241", null ],
+    [ "curvatureTensor", "classPonca_1_1CNC.html#ae77bc6c97f4af8493335d9ec5b008f4b", null ],
     [ "GaussianCurvature", "classPonca_1_1CNC.html#a3ce4ef2d725b0e2199c32b0aa43ac1a3", null ],
     [ "getNumTriangles", "classPonca_1_1CNC.html#a247d665ba7bc25d4bbfa6dda04745eab", null ],
     [ "getTriangles", "classPonca_1_1CNC.html#aec6c5cd93eaa4ad7ffe41155874b80c9", null ],
@@ -15,8 +16,9 @@ var classPonca_1_1CNC =
     [ "kMean", "classPonca_1_1CNC.html#ad8ca3e29a2e0768c9cc8e543e75cd634", null ],
     [ "kmin", "classPonca_1_1CNC.html#afb76fb15f21be4188d05e1a387a2c7ae", null ],
     [ "kminDirection", "classPonca_1_1CNC.html#af88271671d05fc23471c302ebeec41cc", null ],
+    [ "meanCurvature", "classPonca_1_1CNC.html#a776d232a37753908f25a7ae1fbdf2952", null ],
+    [ "meanCurvature", "classPonca_1_1CNC.html#a194f372178208252afdfd4b36837bac8", null ],
     [ "operator!=", "classPonca_1_1CNC.html#a8d2f09e8bd1b3ca180ae5a43bf313a18", null ],
     [ "operator==", "classPonca_1_1CNC.html#a31fedf77058363ed12214fee5ebfbac3", null ],
-    [ "setNeighborFilter", "classPonca_1_1CNC.html#a10f3cafec7811461546574a880484be7", null ],
     [ "m_eCurrentState", "classPonca_1_1CNC.html#a45c8b3a27ad1b136671e4e90e4aaf29a", null ]
 ];

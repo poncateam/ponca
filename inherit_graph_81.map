@@ -1,0 +1,69 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,843,147,868"/>
+<area shape="rect" id="Node000001" href="$structPonca_1_1AlgebraicSphereProvider.html" title=" " alt="" coords="203,5,470,31"/>
+<area shape="poly" id="edge129_Node000000_Node000001" title=" " alt="" coords="74,829,77,669,82,554,91,431,105,308,126,195,140,146,155,103,173,67,193,40,207,29,210,33,197,44,177,70,160,105,145,147,131,196,111,309,96,431,87,555,82,669,80,829"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1DerivativesProvider.html" title=" " alt="" coords="219,55,455,80"/>
+<area shape="poly" id="edge130_Node000000_Node000002" title=" " alt="" coords="75,829,79,677,94,455,109,339,129,234,157,148,174,115,193,89,217,73,220,77,197,93,178,117,162,150,134,235,114,340,99,455,84,678,80,829"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1GLSParamProvider.html" title=" " alt="" coords="223,104,450,129"/>
+<area shape="poly" id="edge131_Node000000_Node000003" title=" " alt="" coords="75,828,80,685,97,477,112,371,132,273,159,193,175,162,193,139,222,120,225,124,196,143,179,165,164,195,138,274,117,371,103,478,86,685,80,829"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1GeomVarProvider.html" title=" " alt="" coords="226,153,447,179"/>
+<area shape="poly" id="edge132_Node000000_Node000004" title=" " alt="" coords="75,829,82,695,100,502,115,403,135,312,161,238,176,210,193,188,208,176,225,168,227,173,211,181,197,192,180,213,166,240,141,314,121,404,106,502,88,695,81,829"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1HeightFieldProvider.html" title=" " alt="" coords="219,203,454,228"/>
+<area shape="poly" id="edge133_Node000000_Node000005" title=" " alt="" coords="76,829,84,704,104,526,119,435,139,352,163,285,177,259,193,239,218,222,221,226,196,243,182,261,168,287,144,354,124,436,109,527,90,704,81,829"/>
+<area shape="rect" id="Node000006" href="$structPonca_1_1ImplicitPrimitiveProvider.html" title=" " alt="" coords="248,253,425,293"/>
+<area shape="poly" id="edge134_Node000000_Node000006" title=" " alt="" coords="77,828,87,715,109,557,125,477,144,404,166,344,179,321,193,303,218,285,247,274,249,279,220,290,197,307,183,323,171,346,149,405,130,478,114,558,93,716,82,829"/>
+<area shape="rect" id="Node000007" href="$structPonca_1_1LineProvider.html" title=" " alt="" coords="243,317,431,343"/>
+<area shape="poly" id="edge135_Node000000_Node000007" title=" " alt="" coords="77,829,89,724,111,581,127,508,146,442,167,388,193,352,216,337,242,328,244,333,218,341,197,356,172,391,151,444,132,510,117,582,94,725,82,829"/>
+<area shape="rect" id="Node000008" href="$structPonca_1_1MeanCurvatureProvider.html" title=" " alt="" coords="206,367,467,392"/>
+<area shape="poly" id="edge136_Node000000_Node000008" title=" " alt="" coords="78,829,91,733,115,605,131,540,149,481,169,434,193,401,209,390,212,394,197,405,174,436,154,483,136,542,120,606,96,734,83,829"/>
+<area shape="rect" id="Node000009" href="$structPonca_1_1MeanNormalProvider.html" title=" " alt="" coords="214,416,459,441"/>
+<area shape="poly" id="edge137_Node000000_Node000009" title=" " alt="" coords="74,829,76,754,81,704,90,651,105,596,126,543,155,493,193,451,212,438,215,442,196,455,159,496,131,545,110,598,95,652,86,705,81,754,79,829"/>
+<area shape="rect" id="Node000010" href="$structPonca_1_1MeanPositionProvider.html" title=" " alt="" coords="212,465,461,491"/>
+<area shape="poly" id="edge138_Node000000_Node000010" title=" " alt="" coords="75,829,80,762,97,673,112,626,132,580,159,538,193,501,212,489,215,493,196,505,163,541,137,583,117,628,102,674,85,763,80,829"/>
+<area shape="rect" id="Node000011" href="$structPonca_1_1MethodProvider_1_1pred.html" title="A type that behaves as value." alt="" coords="251,515,423,555"/>
+<area shape="poly" id="edge139_Node000000_Node000011" title=" " alt="" coords="77,829,87,773,107,702,122,665,141,628,164,594,193,565,220,549,250,539,251,544,222,553,196,569,169,598,146,631,127,667,112,704,92,774,83,829"/>
+<area shape="rect" id="Node000012" href="$structPonca_1_1MongePatchProvider.html" title=" " alt="" coords="217,580,457,605"/>
+<area shape="poly" id="edge140_Node000000_Node000012" title=" " alt="" coords="80,828,92,782,114,724,147,665,168,639,193,616,215,603,218,608,196,620,172,642,151,668,118,726,97,783,85,830"/>
+<area shape="rect" id="Node000013" href="$structPonca_1_1NotAlgebraicSphereProvider.html" title=" " alt="" coords="237,630,436,670"/>
+<area shape="poly" id="edge141_Node000000_Node000013" title=" " alt="" coords="85,829,101,795,124,754,155,714,193,680,236,660,238,665,196,684,159,717,129,757,106,797,90,831"/>
+<area shape="rect" id="Node000014" href="$structPonca_1_1NotDerivativesProvider.html" title=" " alt="" coords="207,695,466,720"/>
+<area shape="poly" id="edge142_Node000000_Node000014" title=" " alt="" coords="91,829,133,778,161,751,193,729,221,718,223,722,196,734,164,755,136,781,95,833"/>
+<area shape="rect" id="Node000015" href="$structPonca_1_1NotGLSParamProvider.html" title=" " alt="" coords="211,744,462,769"/>
+<area shape="poly" id="edge143_Node000000_Node000015" title=" " alt="" coords="102,832,144,804,194,778,231,767,233,772,196,783,146,808,105,836"/>
+<area shape="rect" id="Node000016" href="$structPonca_1_1NotGeomVarProvider.html" title=" " alt="" coords="215,793,459,819"/>
+<area shape="poly" id="edge144_Node000000_Node000016" title=" " alt="" coords="147,837,194,827,257,816,258,821,195,833,148,842"/>
+<area shape="rect" id="Node000017" href="$structPonca_1_1NotHeightFieldProvider.html" title=" " alt="" coords="207,843,466,868"/>
+<area shape="poly" id="edge145_Node000000_Node000017" title=" " alt="" coords="160,853,207,853,207,858,160,858"/>
+<area shape="rect" id="Node000018" href="$structPonca_1_1NotImplicitPrimitiveProvider.html" title=" " alt="" coords="237,893,437,933"/>
+<area shape="poly" id="edge146_Node000000_Node000018" title=" " alt="" coords="149,868,246,890,245,895,147,874"/>
+<area shape="rect" id="Node000019" href="$structPonca_1_1NotLineProvider.html" title=" " alt="" coords="231,957,442,983"/>
+<area shape="poly" id="edge147_Node000000_Node000019" title=" " alt="" coords="101,875,143,911,196,942,233,955,231,960,194,947,140,915,98,879"/>
+<area shape="rect" id="Node000020" href="$structPonca_1_1NotMeanCurvatureProvider.html" title=" " alt="" coords="195,1007,479,1032"/>
+<area shape="poly" id="edge148_Node000000_Node000020" title=" " alt="" coords="93,878,134,937,163,967,196,992,224,1004,222,1009,193,996,159,971,130,940,89,881"/>
+<area shape="rect" id="Node000021" href="$structPonca_1_1NotMeanNormalProvider.html" title=" " alt="" coords="203,1056,471,1081"/>
+<area shape="poly" id="edge149_Node000000_Node000021" title=" " alt="" coords="88,880,103,917,126,962,157,1005,196,1041,220,1054,218,1058,193,1046,153,1009,121,964,98,920,83,882"/>
+<area shape="rect" id="Node000022" href="$structPonca_1_1NotMeanPositionProvider.html" title=" " alt="" coords="201,1105,473,1131"/>
+<area shape="poly" id="edge150_Node000000_Node000022" title=" " alt="" coords="85,881,97,927,118,985,151,1043,172,1068,196,1091,218,1103,215,1108,193,1095,168,1072,147,1046,114,987,92,929,80,882"/>
+<area shape="rect" id="Node000023" href="$structPonca_1_1NotMongePatchProvider.html" title=" " alt="" coords="205,1155,468,1180"/>
+<area shape="poly" id="edge151_Node000000_Node000023" title=" " alt="" coords="82,881,92,936,111,1007,126,1044,145,1079,168,1112,196,1140,216,1152,213,1157,193,1144,164,1116,140,1082,121,1046,106,1009,86,937,77,882"/>
+<area shape="rect" id="Node000024" href="$structPonca_1_1NotPlaneProvider.html" title=" " alt="" coords="227,1204,447,1229"/>
+<area shape="poly" id="edge152_Node000000_Node000024" title=" " alt="" coords="81,882,87,945,104,1029,119,1074,139,1116,164,1156,196,1189,228,1207,225,1212,193,1193,160,1159,134,1119,114,1075,99,1031,82,946,75,882"/>
+<area shape="rect" id="Node000025" href="$structPonca_1_1NotPositionCovarianceProvider.html" title=" " alt="" coords="228,1254,445,1294"/>
+<area shape="poly" id="edge153_Node000000_Node000025" title=" " alt="" coords="80,882,83,953,99,1050,114,1101,134,1152,162,1198,196,1239,229,1259,226,1264,193,1243,157,1201,130,1154,109,1103,94,1051,78,954,74,882"/>
+<area shape="rect" id="Node000026" href="$structPonca_1_1NotPrincipalCurvaturesProvider.html" title=" " alt="" coords="227,1318,446,1358"/>
+<area shape="poly" id="edge154_Node000000_Node000026" title=" " alt="" coords="83,881,97,976,121,1103,137,1167,155,1225,175,1273,197,1304,229,1324,226,1329,193,1308,170,1275,150,1227,132,1169,116,1104,92,976,78,882"/>
+<area shape="rect" id="Node000027" href="$structPonca_1_1NotProjectionOperatorProvider.html" title=" " alt="" coords="229,1382,444,1422"/>
+<area shape="poly" id="edge155_Node000000_Node000027" title=" " alt="" coords="82,882,94,988,117,1135,132,1209,151,1277,172,1332,197,1368,212,1380,230,1389,228,1394,209,1385,193,1372,168,1334,146,1278,127,1210,112,1136,89,989,77,882"/>
+<area shape="rect" id="Node000028" href="$structPonca_1_1NotTangentPlaneBasisProvider.html" title=" " alt="" coords="229,1446,444,1486"/>
+<area shape="poly" id="edge156_Node000000_Node000028" title=" " alt="" coords="82,882,92,1000,113,1166,128,1251,147,1327,170,1390,183,1414,197,1432,212,1445,230,1454,228,1458,209,1449,193,1436,178,1417,165,1392,142,1329,123,1252,107,1167,86,1001,76,882"/>
+<area shape="rect" id="Node000029" href="$structPonca_1_1PlaneProvider.html" title=" " alt="" coords="238,1511,435,1536"/>
+<area shape="poly" id="edge157_Node000000_Node000029" title=" " alt="" coords="81,882,89,1012,107,1197,123,1292,142,1379,167,1449,181,1476,197,1496,216,1510,239,1519,237,1524,213,1515,193,1500,176,1479,162,1452,137,1380,117,1293,102,1198,83,1012,76,882"/>
+<area shape="rect" id="Node000030" href="$structPonca_1_1PositionCovarianceProvider.html" title=" " alt="" coords="239,1561,434,1601"/>
+<area shape="poly" id="edge158_Node000000_Node000030" title=" " alt="" coords="81,881,87,1020,105,1220,120,1323,140,1417,166,1494,180,1523,197,1545,216,1561,240,1571,238,1576,214,1566,193,1549,176,1526,161,1496,135,1418,115,1324,100,1220,82,1020,75,882"/>
+<area shape="rect" id="Node000031" href="$structPonca_1_1PrincipalCurvaturesProvider.html" title=" " alt="" coords="239,1625,435,1665"/>
+<area shape="poly" id="edge159_Node000000_Node000031" title=" " alt="" coords="80,882,85,1031,101,1251,116,1365,136,1469,163,1554,179,1586,197,1611,216,1626,239,1636,237,1641,213,1631,193,1615,174,1589,158,1556,131,1470,111,1366,96,1252,80,1032,75,882"/>
+<area shape="rect" id="Node000032" href="$structPonca_1_1ProjectionOperatorProvider.html" title=" " alt="" coords="241,1689,432,1729"/>
+<area shape="poly" id="edge160_Node000000_Node000032" title=" " alt="" coords="80,882,83,1043,88,1158,97,1282,112,1406,132,1519,160,1612,177,1648,197,1675,217,1691,242,1701,240,1706,215,1695,193,1679,173,1651,155,1614,127,1521,106,1407,92,1282,83,1158,77,1043,75,882"/>
+<area shape="rect" id="Node000033" href="$structPonca_1_1TangentPlaneBasisProvider.html" title=" " alt="" coords="241,1753,432,1793"/>
+<area shape="poly" id="edge161_Node000000_Node000033" title=" " alt="" coords="80,882,81,1054,85,1178,93,1312,108,1447,129,1570,142,1624,158,1671,176,1710,197,1739,217,1755,242,1765,240,1770,215,1760,193,1743,171,1712,153,1673,137,1625,123,1571,102,1447,88,1313,80,1178,75,1054,74,882"/>
+</map>

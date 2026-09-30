@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
+   &#160;<span id="projectnumber">fd5150bf9079aabdb82a6f05e419b76111c1f788</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -135,15 +135,13 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <span class="keyword">requires</span> UNORIENTED_SPHERE_FIT_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classPonca_1_1UnorientedSphereFitImpl.html#aaa666786ea5a461665d2400c791345d5">   12</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1UnorientedSphereFitImpl.html#aaa666786ea5a461665d2400c791345d5">UnorientedSphereFitImpl&lt;DataPoint, _NFilter, T&gt;::init</a>()</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordtype">void</span> UnorientedSphereFitImpl&lt;DataPoint, _NFilter, T&gt;::init()</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    {</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        Base::init();</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        m_matA.setZero();</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        m_matQ.setZero();</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        m_sumDotPP = <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereFitImpl.html#af3e489fac1d117bd67c2cd35eb91c8e7">Scalar</a>(0.0);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        m_sumDotPP = Scalar(0.0);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    }</div>
-</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">requires</span> UNORIENTED_SPHERE_FIT_REQUIREMENTS</div>
@@ -162,8 +160,7 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">requires</span> UNORIENTED_SPHERE_FIT_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classPonca_1_1UnorientedSphereFitImpl.html#a4d1dcb12dbf48f5b6ec0419e6f8cc68e">   35</a></span>    <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="classPonca_1_1UnorientedSphereFitImpl.html#a4d1dcb12dbf48f5b6ec0419e6f8cc68e">UnorientedSphereFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a>()</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1UnorientedSphereFitImpl.html">UnorientedSphereFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a>()</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        PONCA_MULTIARCH_STD_MATH(sqrt);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">constexpr</span> <span class="keywordtype">int</span> Dim = DataPoint::Dim;</div>
@@ -179,7 +176,7 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            Base::m_eCurrentState = Base::getNumNeighbors() &lt; 2 * DataPoint::Dim ? <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84ab13222e506596eb607093af1a1de3e39">UNSTABLE</a> : <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">// 1. finalize sphere fitting</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereFitImpl.html#af3e489fac1d117bd67c2cd35eb91c8e7">Scalar</a> invSumW = <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereFitImpl.html#af3e489fac1d117bd67c2cd35eb91c8e7">Scalar</a>(1.) / Base::getWeightSum();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        Scalar invSumW = Scalar(1.) / Base::getWeightSum();</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        m_matQ.template topLeftCorner&lt;Dim, Dim&gt;().setIdentity();</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        m_matQ.col(Dim).template head&lt;Dim&gt;() = Base::m_sumP * invSumW;</div>
@@ -196,19 +193,17 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment">// integrate</span></div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        Base::m_ul = eivec.template head&lt;Dim&gt;();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        Base::m_uq = <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereFitImpl.html#af3e489fac1d117bd67c2cd35eb91c8e7">Scalar</a>(0.5) * eivec(Dim);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        Base::m_uq = Scalar(0.5) * eivec(Dim);</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        Base::m_uc = -invSumW * (Base::m_ul.dot(Base::m_sumP) + m_sumDotPP * Base::m_uq);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        Base::m_isNormalized = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
-</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keyword">requires</span> UNORIENTED_SPHERE_DER_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classPonca_1_1UnorientedSphereDerImpl.html#ad16c1c18a9161a5b31157285ee2b98db">   78</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1UnorientedSphereDerImpl.html#ad16c1c18a9161a5b31157285ee2b98db">UnorientedSphereDerImpl&lt;DataPoint, _NFilter, DiffType, T&gt;::init</a>()</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> UnorientedSphereDerImpl&lt;DataPoint, _NFilter, DiffType, T&gt;::init()</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        Base::init();</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> dim = 0; dim &lt; Base::NbDerivatives; ++dim)</div>
@@ -218,7 +213,6 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        m_dUl       = VectorArray::Zero();</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        m_dUq       = ScalarArray::Zero();</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
-</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keyword">requires</span> UNORIENTED_SPHERE_DER_REQUIREMENTS</div>
@@ -243,21 +237,20 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keyword">requires</span> UNORIENTED_SPHERE_DER_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classPonca_1_1UnorientedSphereDerImpl.html#ad2fc8829df2b7399c643ad494e6a2962">  110</a></span>    <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="classPonca_1_1UnorientedSphereDerImpl.html#ad2fc8829df2b7399c643ad494e6a2962">UnorientedSphereDerImpl&lt;DataPoint, _NFilter, DiffType, T&gt;::finalize</a>()</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl&lt;DataPoint, _NFilter, DiffType, T&gt;::finalize</a>()</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    {</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keyword">constexpr</span> <span class="keywordtype">int</span> Dim        = DataPoint::Dim;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keyword">constexpr</span> <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Scalar</a> epsilon = Eigen::NumTraits&lt;Scalar&gt;::dummy_precision();</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keyword">constexpr</span> Scalar epsilon = Eigen::NumTraits&lt;Scalar&gt;::dummy_precision();</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        Base::finalize();</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">if</span> (this-&gt;isReady())</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        {</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            <span class="keywordtype">int</span> i = 0;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            Base::m_solver.eigenvalues().real().maxCoeff(&amp;i);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Scalar</a> eigenval_i  = Base::m_solver.eigenvalues().real()[i];</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keyword">const</span> Scalar eigenval_i  = Base::m_solver.eigenvalues().real()[i];</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            <span class="keyword">const</span> VectorB eigenvec_i = Base::m_solver.eigenvectors().real().col(i);</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Scalar</a> invSumW = <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Scalar</a>(1) / Base::getWeightSum();</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <span class="keyword">const</span> Scalar invSumW = Scalar(1) / Base::getWeightSum();</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <span class="comment">// the derivative of (A vi = li Q vi), where A and Q are symmetric real, is</span></div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <span class="comment">//</span></div>
@@ -295,21 +288,21 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                {</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                    <span class="keywordflow">if</span> (j != i)</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                    {</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Scalar</a> eigenval_j = Base::m_solver.eigenvalues().real()[j];</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Scalar</a> eigengap =</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                        <span class="keyword">const</span> Scalar eigenval_j = Base::m_solver.eigenvalues().real()[j];</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                        <span class="keyword">const</span> Scalar eigengap =</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                            eigenval_i - eigenval_j; <span class="comment">// positive since eigenval_i is the maximal eigenvalue</span></div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                        <span class="keywordflow">if</span> (eigengap &gt; epsilon)</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                        {</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                            <span class="keyword">const</span> VectorB eigenvec_j = Base::m_solver.eigenvectors().real().col(j);</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                            deigvec += <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Scalar</a>(1) / eigengap * eigenvec_j.dot(vec) * eigenvec_j;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>                            deigvec += Scalar(1) / eigengap * eigenvec_j.dot(vec) * eigenvec_j;</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                        }</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                    }</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>                }</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                deigvec = Base::m_matQ * deigvec;</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                m_dUq[dim]     = <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Scalar</a>(.5) * deigvec[dim];</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                m_dUq[dim]     = Scalar(.5) * deigvec[dim];</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                m_dUl.col(dim) = deigvec.template head&lt;Dim&gt;();</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            }</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
@@ -322,11 +315,10 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        }</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    }</div>
-</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="keyword">requires</span> UNORIENTED_SPHERE_DER_REQUIREMENTS</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#a6c01b9744a60c595f61f86ef385cd713">UnorientedSphereDerImpl&lt;DataPoint, _NFilter, DiffType, T&gt;::ScalarArray</a> <a class="code hl_class" href="classPonca_1_1UnorientedSphereDerImpl.html">UnorientedSphereDerImpl</a>&lt;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1UnorientedSphereDerImpl.html#a6c01b9744a60c595f61f86ef385cd713">UnorientedSphereDerImpl&lt;DataPoint, _NFilter, DiffType, T&gt;::ScalarArray</a> UnorientedSphereDerImpl&lt;</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        DataPoint, _NFilter, <a class="code hl_enumeration" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T&gt;::dPotential()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="comment">// same as OrientedSphereDerImpl::dPotential()</span></div>
@@ -379,13 +371,10 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div class="ttc" id="aclassPonca_1_1UnorientedSphereDerImpl_html_a6c01b9744a60c595f61f86ef385cd713"><div class="ttname"><a href="classPonca_1_1UnorientedSphereDerImpl.html#a6c01b9744a60c595f61f86ef385cd713">Ponca::UnorientedSphereDerImpl::ScalarArray</a></div><div class="ttdeci">typename Base::ScalarArray ScalarArray</div><div class="ttdoc">Alias to scalar derivatives array.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00092">unorientedSphereFit.h:92</a></div></div>
 <div class="ttc" id="aclassPonca_1_1UnorientedSphereDerImpl_html_a93d526eae6e0499c07897e43b77e7dfc"><div class="ttname"><a href="classPonca_1_1UnorientedSphereDerImpl.html#a93d526eae6e0499c07897e43b77e7dfc">Ponca::UnorientedSphereDerImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00091">unorientedSphereFit.h:91</a></div></div>
 <div class="ttc" id="aclassPonca_1_1UnorientedSphereDerImpl_html_ac3bbdbe366ec77674bc16597049bdc53"><div class="ttname"><a href="classPonca_1_1UnorientedSphereDerImpl.html#ac3bbdbe366ec77674bc16597049bdc53">Ponca::UnorientedSphereDerImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00091">unorientedSphereFit.h:91</a></div></div>
-<div class="ttc" id="aclassPonca_1_1UnorientedSphereDerImpl_html_ad16c1c18a9161a5b31157285ee2b98db"><div class="ttname"><a href="classPonca_1_1UnorientedSphereDerImpl.html#ad16c1c18a9161a5b31157285ee2b98db">Ponca::UnorientedSphereDerImpl::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8hpp_source.html#l00078">unorientedSphereFit.hpp:78</a></div></div>
-<div class="ttc" id="aclassPonca_1_1UnorientedSphereDerImpl_html_ad2fc8829df2b7399c643ad494e6a2962"><div class="ttname"><a href="classPonca_1_1UnorientedSphereDerImpl.html#ad2fc8829df2b7399c643ad494e6a2962">Ponca::UnorientedSphereDerImpl::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the procedure.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8hpp_source.html#l00110">unorientedSphereFit.hpp:110</a></div></div>
 <div class="ttc" id="aclassPonca_1_1UnorientedSphereDerImpl_html_ad84a596c7a10f742a06952764675c863"><div class="ttname"><a href="classPonca_1_1UnorientedSphereDerImpl.html#ad84a596c7a10f742a06952764675c863">Ponca::UnorientedSphereDerImpl::VectorArray</a></div><div class="ttdeci">typename Base::VectorArray VectorArray</div><div class="ttdoc">Alias to vector derivatives array.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00092">unorientedSphereFit.h:92</a></div></div>
 <div class="ttc" id="aclassPonca_1_1UnorientedSphereDerImpl_html_af5c4b8c927a0293067cb311c571397ac"><div class="ttname"><a href="classPonca_1_1UnorientedSphereDerImpl.html#af5c4b8c927a0293067cb311c571397ac">Ponca::UnorientedSphereDerImpl::applyPrattNorm</a></div><div class="ttdeci">bool applyPrattNorm()</div><div class="ttdoc">Normalize the scalar field by the Pratt norm.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8hpp_source.html#l00217">unorientedSphereFit.hpp:217</a></div></div>
+<div class="ttc" id="aclassPonca_1_1UnorientedSphereFitImpl_html"><div class="ttname"><a href="classPonca_1_1UnorientedSphereFitImpl.html">Ponca::UnorientedSphereFitImpl</a></div><div class="ttdoc">Algebraic Sphere fitting procedure on point sets with non-oriented normals.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00056">unorientedSphereFit.h:57</a></div></div>
 <div class="ttc" id="aclassPonca_1_1UnorientedSphereFitImpl_html_a3668ad7d6ab55aff206397fbc21e195b"><div class="ttname"><a href="classPonca_1_1UnorientedSphereFitImpl.html#a3668ad7d6ab55aff206397fbc21e195b">Ponca::UnorientedSphereFitImpl::addLocalNeighbor</a></div><div class="ttdeci">void addLocalNeighbor(Scalar w, const VectorType &amp;localQ, const DataPoint &amp;attributes)</div><div class="ttdoc">Add a neighbor to perform the fit.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8hpp_source.html#l00022">unorientedSphereFit.hpp:22</a></div></div>
-<div class="ttc" id="aclassPonca_1_1UnorientedSphereFitImpl_html_a4d1dcb12dbf48f5b6ec0419e6f8cc68e"><div class="ttname"><a href="classPonca_1_1UnorientedSphereFitImpl.html#a4d1dcb12dbf48f5b6ec0419e6f8cc68e">Ponca::UnorientedSphereFitImpl::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the procedure.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8hpp_source.html#l00035">unorientedSphereFit.hpp:35</a></div></div>
-<div class="ttc" id="aclassPonca_1_1UnorientedSphereFitImpl_html_aaa666786ea5a461665d2400c791345d5"><div class="ttname"><a href="classPonca_1_1UnorientedSphereFitImpl.html#aaa666786ea5a461665d2400c791345d5">Ponca::UnorientedSphereFitImpl::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Set the evaluation position and reset the internal states.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8hpp_source.html#l00012">unorientedSphereFit.hpp:12</a></div></div>
 <div class="ttc" id="aclassPonca_1_1UnorientedSphereFitImpl_html_ab05722ec5161bf92b7383fdd547961f3"><div class="ttname"><a href="classPonca_1_1UnorientedSphereFitImpl.html#ab05722ec5161bf92b7383fdd547961f3">Ponca::UnorientedSphereFitImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00058">unorientedSphereFit.h:58</a></div></div>
 <div class="ttc" id="aclassPonca_1_1UnorientedSphereFitImpl_html_af3e489fac1d117bd67c2cd35eb91c8e7"><div class="ttname"><a href="classPonca_1_1UnorientedSphereFitImpl.html#af3e489fac1d117bd67c2cd35eb91c8e7">Ponca::UnorientedSphereFitImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00058">unorientedSphereFit.h:58</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
@@ -401,7 +390,7 @@ $(document).ready(function(){initNavTree('unorientedSphereFit_8hpp_source.html',
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><a class="el" href="dir_858c3b8a587d8a99dc19a90d01a3c99e.html">Basket</a></li><li class="navelem"><a class="el" href="dir_2e423bcf16ba06aa06a9f7683d51ad42.html">fit</a></li><li class="navelem"><b>unorientedSphereFit.hpp</b></li>
-    <li class="footer">Generated on Tue Sep 15 2026 12:02:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Sep 30 2026 07:16:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

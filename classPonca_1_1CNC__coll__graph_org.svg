@@ -14,60 +14,60 @@
 <g id="a_Node000001"><a xlink:title="Corrected Normal Current Fit type.">
 <polygon fill="#999999" stroke="transparent" points="530,-409 386,-409 386,0 530,0 530,-409"/>
 <text text-anchor="start" x="391" y="-396.5" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::CNC&lt; P, _method &gt;</text>
-<text text-anchor="start" x="397.5" y="-381.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-381.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_nb_vt</text>
-<text text-anchor="start" x="397.5" y="-366.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-366.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_A</text>
-<text text-anchor="start" x="397.5" y="-351.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-351.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_H</text>
-<text text-anchor="start" x="397.5" y="-336.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-336.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_G</text>
-<text text-anchor="start" x="397.5" y="-321.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-321.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T11</text>
-<text text-anchor="start" x="397.5" y="-306.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-306.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T12</text>
-<text text-anchor="start" x="397.5" y="-291.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-291.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T13</text>
-<text text-anchor="start" x="397.5" y="-276.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-276.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T22</text>
-<text text-anchor="start" x="397.5" y="-261.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-261.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T23</text>
-<text text-anchor="start" x="397.5" y="-246.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-246.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T33</text>
-<text text-anchor="start" x="397.5" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_k1</text>
-<text text-anchor="start" x="397.5" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_k2</text>
-<text text-anchor="start" x="397.5" y="-201.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-201.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_v1</text>
-<text text-anchor="start" x="397.5" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_v2</text>
-<text text-anchor="start" x="397.5" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text text-anchor="start" x="418" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_eCurrentState</text>
-<text text-anchor="start" x="397.5" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">finalize()</text>
-<text text-anchor="start" x="397.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
-<text text-anchor="start" x="397.5" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">compute()</text>
-<text text-anchor="start" x="397.5" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">compute()</text>
-<text text-anchor="start" x="397.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">computeWithIds()</text>
-<text text-anchor="start" x="397.5" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">getNumTriangles()</text>
-<text text-anchor="start" x="397.5" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">setNeighborFilter()</text>
-<text text-anchor="start" x="397.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">getTriangles()</text>
-<text text-anchor="start" x="397.5" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
-<text text-anchor="start" x="397.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="418" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
-<text text-anchor="start" x="418" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 8 more...</text>
+<text text-anchor="start" x="398" y="-381.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-381.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_nb_vt</text>
+<text text-anchor="start" x="398" y="-366.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-366.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_A</text>
+<text text-anchor="start" x="398" y="-351.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-351.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_H</text>
+<text text-anchor="start" x="398" y="-336.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-336.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_G</text>
+<text text-anchor="start" x="398" y="-321.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-321.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T11</text>
+<text text-anchor="start" x="398" y="-306.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-306.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T12</text>
+<text text-anchor="start" x="398" y="-291.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-291.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T13</text>
+<text text-anchor="start" x="398" y="-276.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-276.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T22</text>
+<text text-anchor="start" x="398" y="-261.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-261.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T23</text>
+<text text-anchor="start" x="398" y="-246.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-246.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_T33</text>
+<text text-anchor="start" x="398" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-231.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_k1</text>
+<text text-anchor="start" x="398" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_k2</text>
+<text text-anchor="start" x="398" y="-201.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-201.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_v1</text>
+<text text-anchor="start" x="398" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_v2</text>
+<text text-anchor="start" x="398" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="419" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_eCurrentState</text>
+<text text-anchor="start" x="398" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">meanCurvature()</text>
+<text text-anchor="start" x="398" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">meanCurvature()</text>
+<text text-anchor="start" x="398" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">curvatureTensor()</text>
+<text text-anchor="start" x="398" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">curvatureTensor()</text>
+<text text-anchor="start" x="398" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">finalize()</text>
+<text text-anchor="start" x="398" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
+<text text-anchor="start" x="398" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">compute()</text>
+<text text-anchor="start" x="398" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">compute()</text>
+<text text-anchor="start" x="398" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">computeWithIds()</text>
+<text text-anchor="start" x="398" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="419" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">getNumTriangles()</text>
+<text text-anchor="start" x="419" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">and 12 more...</text>
 <polygon fill="#666666" stroke="#666666" points="386,-391.5 386,-391.5 530,-391.5 530,-391.5 386,-391.5"/>
-<polygon fill="#666666" stroke="#666666" points="386,-166.5 386,-166.5 416,-166.5 416,-166.5 386,-166.5"/>
-<polygon fill="#666666" stroke="#666666" points="416,-166.5 416,-166.5 530,-166.5 530,-166.5 416,-166.5"/>
+<polygon fill="#666666" stroke="#666666" points="386,-166.5 386,-166.5 417,-166.5 417,-166.5 386,-166.5"/>
+<polygon fill="#666666" stroke="#666666" points="417,-166.5 417,-166.5 530,-166.5 530,-166.5 417,-166.5"/>
 <polygon fill="none" stroke="#666666" points="386,0 386,-409 530,-409 530,0 386,0"/>
 </a>
 </g>

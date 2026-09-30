@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
+   &#160;<span id="projectnumber">fd5150bf9079aabdb82a6f05e419b76111c1f788</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -189,7 +189,7 @@ $(document).ready(function(){initNavTree('ponca__module__fitting_8mdoc_source.ht
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>  within a <span class="keyword">public</span> section of your class:</div>
 <div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>  \code</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    PONCA_EXPLICIT_CAST_OPERATORS(ClassName, className);</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    PONCA_EXPLICIT_BASKET_CAST_OPERATORS(ClassName, className);</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>  \endcode</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>  Where the first parameter is the class name and the second is the name of the cast function which is, most of the time, the same as the </div>
@@ -243,45 +243,61 @@ $(document).ready(function(){initNavTree('ponca__module__fitting_8mdoc_source.ht
 <div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
 <div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>  \section fitting_advanced Advanced usage</div>
 <div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> </div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>  \subsection fitting_multiprimitive Fitting with multiple primitives</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>  In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> for fitting, e.g. CovariancePlaneFitImpl, OrientedSphereFitImpl.</div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>  However, <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> also allows to combine multiple primitives, for instance to share intermediate computation results.</div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>  Using this functionality requires to really understand how the different primitives and fitting techniques are working.</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>  In any case, it is recommended to explicitly define the computational arrangement, e.g.:</div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>  \snippet basket.cpp HybridType</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>  After fitting, this object provides access to both the plane and the sphere, through the respective cast operators #<a class="code hl_function" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef">AlgebraicSphere::algebraicSphere</a>() and #<a class="code hl_function" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb">Plane::plane</a>().</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>  \section fitting_cuda Cuda and SYCL</div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>  <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> can be used directly on GPU, thanks to several mechanisms:</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>   - Eigen capabilities, see &lt;a href=&quot;http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html&quot;  target=&quot;_blank&quot;&gt;Eigen documentation&lt;/a&gt; for more details.</div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>   You *need* to use a consistent `Eigen::Index` on both CPU and GPU if you plan to transfer memory between the computing units.</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>   That&#39;s why we recommend to set the following preprocessor variable when compiling your project:</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>   \code -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endcode</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>   You might also need to define the `--expt-relaxed-constexpr` preprocessor option for `NVCC`.</div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>   Example of working cmake file (see \ref example_cu_ssc_page):</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>   \code</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>   enable_language(CUDA)</div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>   add_executable(ponca_ssgls &quot;ponca_ssgls.cu&quot;)</div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>   target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>   \endcode</div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>   - Automatic CPU/GPU compilation qualifiers. We use the macro</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>  \code</div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>          PONCA_MULTIARCH void function();</div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>  \endcode</div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>  to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.</div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>  Check the \ref cu_ssgl_intro_sec &quot;C++/Cuda&quot;, the \ref example_python_ssc_page &quot;Python/Cuda&quot; (using PyCuda), \ref example_sycl_basic and \ref example_sycl_kdtree examples for more details and how-to.</div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span> </div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>  &lt;hr&gt;</div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>  &lt;center&gt;[\ref fitting_concepts &quot;Go to concept page&quot;]&lt;/center&gt;</div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>  &lt;center&gt;[\ref user_manual_page &quot;Go back to user manual&quot;]&lt;/center&gt;</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span> */</div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> }</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>  \subsection fitting_factory Iterating over common Baskets</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>  In many cases, one may want to compare multiple Baskets or extensions. The classical solution is to write a function that accepts a template type (which would be your Basket) and then call the function manually for each type. For this reason, <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> provides a Factory that abstracts away the iteration over compute objects for the most common types.</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>  \snippet ponca_factory.cpp FactoryBasicForeach</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  The Factory module also provides the ability to filter by concept. Most <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> fitting concepts have a corresponding filter. For a concept named &quot;ProvidesXXX&quot;, <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> creates two filters: &quot;XXXProvider&quot; and &quot;NotXXXProvider&quot;, which can be used for filtering.</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>  \snippet ponca_factory.cpp FactoryFilterPersistent</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>  Classical literature methods can also be obtained through the Factory. For a complete list, see the `Ponca::Method` enumeration.</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span> </div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>  \snippet ponca_factory.cpp FactoryClassicalMethods</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>  \warning Factories may contain different compute objects depending on the given point, filter, or derivative types. For example, Monge Patch fitting is currently only available in 3D; therefore, the Factory will include the corresponding classes only when provided with 3D points.</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>  \subsection fitting_multiprimitive Fitting with multiple primitives</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>  In most cases, only one primitive is included in the Basket, and it is recommended to use the helper classes provided by <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> for fitting, e.g. CovariancePlaneFitImpl, OrientedSphereFitImpl.</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>  However, <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> also allows to combine multiple primitives, for instance to share intermediate computation results.</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>  Using this functionality requires to really understand how the different primitives and fitting techniques are working.</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>  In any case, it is recommended to explicitly define the computational arrangement, e.g.:</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>  \snippet basket.cpp HybridType</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>  After fitting, this object provides access to both the plane and the sphere, through the respective cast operators #<a class="code hl_function" href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef">AlgebraicSphere::algebraicSphere</a>() and #<a class="code hl_function" href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb">Plane::plane</a>().</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>  \section fitting_cuda Cuda and SYCL</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>  <a class="code hl_namespace" href="namespacePonca.html">Ponca</a> can be used directly on GPU, thanks to several mechanisms:</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>   - Eigen capabilities, see &lt;a href=&quot;http://eigen.tuxfamily.org/dox-devel/TopicCUDA.html&quot;  target=&quot;_blank&quot;&gt;Eigen documentation&lt;/a&gt; for more details.</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>   You *need* to use a consistent `Eigen::Index` on both CPU and GPU if you plan to transfer memory between the computing units.</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>   That&#39;s why we recommend to set the following preprocessor variable when compiling your project:</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>   \code -DEIGEN_DEFAULT_DENSE_INDEX_TYPE=int\endcode</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>   You might also need to define the `--expt-relaxed-constexpr` preprocessor option for `NVCC`.</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>   Example of working cmake file (see \ref example_cu_ssc_page):</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>   \code</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>   enable_language(CUDA)</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>   add_executable(ponca_ssgls &quot;ponca_ssgls.cu&quot;)</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>   target_compile_options(ponca_ssgls PRIVATE --expt-relaxed-constexpr)</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>   \endcode</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>   - Automatic CPU/GPU compilation qualifiers. We use the macro</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>  \code</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>          PONCA_MULTIARCH void function();</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>  \endcode</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>  to use the same code for C++ and CUDA. It has no effect when the code is compiled with GCC or Clang, but it will force the compilation for both host and device architectures when compiling with nvcc. A similar macro system is provided for mathematical functions, to switch between STL and CUDA versions.</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span> </div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>  Check the \ref cu_ssgl_intro_sec &quot;C++/Cuda&quot;, the \ref example_python_ssc_page &quot;Python/Cuda&quot; (using PyCuda), \ref example_sycl_basic and \ref example_sycl_kdtree examples for more details and how-to.</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>  &lt;hr&gt;</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>  &lt;center&gt;[\ref fitting_concepts &quot;Go to concept page&quot;]&lt;/center&gt;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>  &lt;center&gt;[\ref user_manual_page &quot;Go back to user manual&quot;]&lt;/center&gt;</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span> */</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> }</div>
 <div class="ttc" id="aclassMeanNormal_html"><div class="ttname"><a href="classMeanNormal.html">MeanNormal</a></div><div class="ttdoc">Compute the mean normal of the input points.</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00083">mean.h:84</a></div></div>
-<div class="ttc" id="aclassPonca_1_1AlgebraicSphere_html_ab3557e66217abd4f0a178341bc49f8ef"><div class="ttname"><a href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef">Ponca::AlgebraicSphere::algebraicSphere</a></div><div class="ttdeci">AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; &amp; algebraicSphere()</div><div class="ttdoc">Explicit conversion to AlgebraicSphere , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="algebraicSphere_8h_source.html#l00062">algebraicSphere.h:62</a></div></div>
+<div class="ttc" id="aclassPonca_1_1AlgebraicSphere_html_ab3557e66217abd4f0a178341bc49f8ef"><div class="ttname"><a href="classPonca_1_1AlgebraicSphere.html#ab3557e66217abd4f0a178341bc49f8ef">Ponca::AlgebraicSphere::algebraicSphere</a></div><div class="ttdeci">AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; &amp; algebraicSphere()</div><div class="ttdoc">Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="algebraicSphere_8h_source.html#l00062">algebraicSphere.h:62</a></div></div>
 <div class="ttc" id="aclassPonca_1_1OrientedSphereFitImpl_html"><div class="ttname"><a href="classPonca_1_1OrientedSphereFitImpl.html">Ponca::OrientedSphereFitImpl</a></div><div class="ttdoc">Algebraic Sphere fitting procedure on oriented point sets.</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00033">orientedSphereFit.h:34</a></div></div>
-<div class="ttc" id="aclassPonca_1_1Plane_html_aac17b82414f82077fc573daeee10effb"><div class="ttname"><a href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb">Ponca::Plane::plane</a></div><div class="ttdeci">Plane&lt; DataPoint, _NFilter, T &gt; &amp; plane()</div><div class="ttdoc">Explicit conversion to Plane , to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="plane_8h_source.html#l00050">plane.h:50</a></div></div>
+<div class="ttc" id="aclassPonca_1_1Plane_html_aac17b82414f82077fc573daeee10effb"><div class="ttname"><a href="classPonca_1_1Plane.html#aac17b82414f82077fc573daeee10effb">Ponca::Plane::plane</a></div><div class="ttdeci">Plane&lt; DataPoint, _NFilter, T &gt; &amp; plane()</div><div class="ttdoc">Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage.</div><div class="ttdef"><b>Definition</b> <a href="plane_8h_source.html#l00050">plane.h:50</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a73a5d6377d84512434b559591d49c262"><div class="ttname"><a href="namespacePonca.html#a73a5d6377d84512434b559591d49c262">Ponca::UnorientedSphereFit</a></div><div class="ttdeci">UnorientedSphereFitImpl&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; &gt; &gt; UnorientedSphereFit</div><div class="ttdoc">Helper alias for Oriented Sphere fitting on 3D points using UnorientedSphereFitImpl.</div><div class="ttdef"><b>Definition</b> <a href="unorientedSphereFit_8h_source.html#l00082">unorientedSphereFit.h:84</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">Ponca::FitSpaceDer</a></div><div class="ttdeci">@ FitSpaceDer</div><div class="ttdoc">Flag indicating a space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00036">enums.h:36</a></div></div>
@@ -294,7 +310,7 @@ $(document).ready(function(){initNavTree('ponca__module__fitting_8mdoc_source.ht
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_659facb5ea1bf65b3deecf95a0be0132.html">doc</a></li><li class="navelem"><a class="el" href="dir_4faad1dcd81a1ed46fbffce7dc36364d.html">src</a></li><li class="navelem"><b>ponca_module_fitting.mdoc</b></li>
-    <li class="footer">Generated on Tue Sep 15 2026 12:02:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Sep 30 2026 07:16:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

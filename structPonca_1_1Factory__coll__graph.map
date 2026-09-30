@@ -1,0 +1,7 @@
+<map id="Ponca::Factory&lt; P, NF, DerType &gt;" name="Ponca::Factory&lt; P, NF, DerType &gt;">
+<area shape="rect" id="Node000001" title="Default factory templated on Point, Filter and Derivative." alt="" coords="29,507,163,587"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1internal_1_1FactoryBase.html" title=" " alt="" coords="5,263,187,457"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,471,99,506,93,506,93,471"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1internal_1_1FactoryBase.html" title="Base class for factory." alt="" coords="9,5,183,185"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,199,99,262,93,262,93,199"/>
+</map>

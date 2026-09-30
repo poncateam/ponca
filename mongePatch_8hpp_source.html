@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
+   &#160;<span id="projectnumber">fd5150bf9079aabdb82a6f05e419b76111c1f788</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -127,8 +127,7 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span>    <span class="keyword">requires</span> MONGE_PATCH_FIT_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00004" data-start="{" data-end="}">
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a14496879e4bccd6a503826ff767fac9b">    4</a></span><span class="keywordtype">void</span> <a class="code hl_class" href="classPonca_1_1MongePatchQuadraticFitImpl.html">MongePatchQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::init</a>()</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keywordtype">void</span> MongePatchQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::init()</div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    Base::init();</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
@@ -136,7 +135,6 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    m_A.setZero();</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    m_b.setZero();</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
-</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">requires</span> MONGE_PATCH_FIT_REQUIREMENTS</div>
@@ -166,8 +164,7 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">requires</span> MONGE_PATCH_FIT_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchQuadraticFitImpl.html#a70d1d139480945e308af94cbcb93c834">   39</a></span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1MongePatchQuadraticFitImpl.html">MongePatchQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a>()</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1MongePatchQuadraticFitImpl.html">MongePatchQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a>()</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// end of the fitting process, check plane is ready</span></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (!Status::ready())</div>
@@ -181,14 +178,12 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    Base::quadraticHeightField().setQuadric(</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        m_A.bdcSvd(Eigen::ComputeThinU | Eigen::ComputeThinV | Eigen::NoQRPreconditioner).solve(m_b));</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> Base::m_eCurrentState = STABLE;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
-</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">requires</span> MONGE_PATCH_FIT_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a5cd8187fc7a23587300fa28c2879f9ad">   58</a></span><span class="keywordtype">void</span> <a class="code hl_class" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html">MongePatchRestrictedQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::init</a>()</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> MongePatchRestrictedQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::init()</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    Base::init();</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
@@ -196,7 +191,6 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    m_A.setZero();</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    m_b.setZero();</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
-</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">requires</span> MONGE_PATCH_FIT_REQUIREMENTS</div>
@@ -226,8 +220,7 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keyword">requires</span> MONGE_PATCH_FIT_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00093" data-start="{" data-end="}">
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#aeb14e0eeb1f1b2ab99d2df269c8b49a4">   93</a></span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html">MongePatchRestrictedQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a>()</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html">MongePatchRestrictedQuadraticFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a>()</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>{</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">// end of the fitting process, check plane is ready</span></div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">if</span> (!Status::ready())</div>
@@ -240,9 +233,8 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    Base::quadraticHeightField().setQuadric(</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        m_A.jacobiSvd(Eigen::ComputeThinU | Eigen::ComputeThinV | Eigen::NoQRPreconditioner).solve(m_b));</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">return</span> Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordflow">return</span> Base::m_eCurrentState = STABLE;</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
-</div>
 <div class="ttc" id="aclassPonca_1_1MongePatchQuadraticFitImpl_html"><div class="ttname"><a href="classPonca_1_1MongePatchQuadraticFitImpl.html">Ponca::MongePatchQuadraticFitImpl</a></div><div class="ttdoc">Extension to compute the best fit quadric on 3d points expressed as .</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00136">mongePatch.h:137</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MongePatchQuadraticFitImpl_html_a97b79bb8968b9a97afc1052a715060df"><div class="ttname"><a href="classPonca_1_1MongePatchQuadraticFitImpl.html#a97b79bb8968b9a97afc1052a715060df">Ponca::MongePatchQuadraticFitImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00138">mongePatch.h:138</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MongePatchQuadraticFitImpl_html_aa021548b23df7b4c07b68747e93ede61"><div class="ttname"><a href="classPonca_1_1MongePatchQuadraticFitImpl.html#aa021548b23df7b4c07b68747e93ede61">Ponca::MongePatchQuadraticFitImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00138">mongePatch.h:138</a></div></div>
@@ -250,14 +242,13 @@ $(document).ready(function(){initNavTree('mongePatch_8hpp_source.html',''); init
 <div class="ttc" id="aclassPonca_1_1MongePatchRestrictedQuadraticFitImpl_html_a7ef9eba74e3b08ee17ab48474eb44bc6"><div class="ttname"><a href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a7ef9eba74e3b08ee17ab48474eb44bc6">Ponca::MongePatchRestrictedQuadraticFitImpl::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00164">mongePatch.h:164</a></div></div>
 <div class="ttc" id="aclassPonca_1_1MongePatchRestrictedQuadraticFitImpl_html_a8524b0806a31eaeca9caf1e1c8c25ef5"><div class="ttname"><a href="classPonca_1_1MongePatchRestrictedQuadraticFitImpl.html#a8524b0806a31eaeca9caf1e1c8c25ef5">Ponca::MongePatchRestrictedQuadraticFitImpl::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="mongePatch_8h_source.html#l00164">mongePatch.h:164</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns)</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
-<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><a class="el" href="dir_858c3b8a587d8a99dc19a90d01a3c99e.html">Basket</a></li><li class="navelem"><a class="el" href="dir_2e423bcf16ba06aa06a9f7683d51ad42.html">fit</a></li><li class="navelem"><b>mongePatch.hpp</b></li>
-    <li class="footer">Generated on Tue Sep 15 2026 12:02:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Sep 30 2026 07:16:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

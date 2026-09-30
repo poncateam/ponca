@@ -16,6 +16,8 @@ var classPonca_1_1AlgebraicSphere =
     [ "isNormalized", "classPonca_1_1AlgebraicSphere.html#af191c353baa849f5e51a3b0ee6ba86cd", null ],
     [ "isPlane", "classPonca_1_1AlgebraicSphere.html#ae9ef923402e0a914972e459322e6cae1", null ],
     [ "isValid", "classPonca_1_1AlgebraicSphere.html#ae7f47608549c4051d953420ef1698747", null ],
+    [ "meanCurvature", "classPonca_1_1AlgebraicSphere.html#a579e1f5fe447308f6b2a03ce82c73abd", null ],
+    [ "meanCurvature", "classPonca_1_1AlgebraicSphere.html#a15683752ed099ef2b54facc074f5e09b", null ],
     [ "operator!=", "classPonca_1_1AlgebraicSphere.html#abe50599f9750328e3a107ecb0a96c4f5", null ],
     [ "operator==", "classPonca_1_1AlgebraicSphere.html#afe8370321e95cb89ae7677f5e29ceb1c", null ],
     [ "potential", "classPonca_1_1AlgebraicSphere.html#a076781b7d0bade521bbd241dc01ffed6", null ],

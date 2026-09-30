@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
+   &#160;<span id="projectnumber">fd5150bf9079aabdb82a6f05e419b76111c1f788</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -135,10 +135,9 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">requires</span> COVARIANCE_PLANE_FIT_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classPonca_1_1CovariancePlaneFitImpl.html#a7c38af748a9af988ce5b4252a4591234">   12</a></span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize</a>()</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> CovariancePlaneFitImpl&lt;DataPoint, _NFilter, T&gt;::finalize()</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordflow">if</span> (Base::finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordflow">if</span> (Base::finalize() == STABLE)</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    {</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordflow">if</span> (Base::plane().isValid())</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            Base::m_eCurrentState = <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">CONFLICT_ERROR_FOUND</a>;</div>
@@ -147,11 +146,10 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
-</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">requires</span> COVARIANCE_PLANE_FIT_REQUIREMENTS</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">CovariancePlaneFitImpl&lt;DataPoint, _NFilter, T&gt;::VectorType</a> <a class="code hl_class" href="classPonca_1_1CovariancePlaneFitImpl.html">CovariancePlaneFitImpl</a>&lt;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">typename</span> CovariancePlaneFitImpl&lt;DataPoint, _NFilter, T&gt;::VectorType CovariancePlaneFitImpl&lt;</div>
 <div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classPonca_1_1CovariancePlaneFitImpl.html#ab8211d460df9c0f5c7ab7d8f9237ba60">   27</a></span>    DataPoint, _NFilter, T&gt;::worldToTangentPlane(<span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1CovariancePlaneFitImpl.html#ae611838d927d83a648a7fb23154bb427">VectorType</a>&amp; _q, <span class="keywordtype">bool</span> _isPositionVector)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword"></span>{</div>
@@ -236,14 +234,13 @@ $(document).ready(function(){initNavTree('covariancePlaneFit_8hpp_source.html','
 <div class="ttc" id="anamespacePonca_html_a1202518f3aeb69a7152076faf6215fee"><div class="ttname"><a href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee">Ponca::barycenter</a></div><div class="ttdeci">Ponca::MeanPosition T barycenter() const</div><div class="ttdoc">where  are all the point samples in 's neighborhood</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00206">mean.h:46</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns)</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00027">enums.h:27</a></div></div>
-<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><a class="el" href="dir_858c3b8a587d8a99dc19a90d01a3c99e.html">Basket</a></li><li class="navelem"><a class="el" href="dir_2e423bcf16ba06aa06a9f7683d51ad42.html">fit</a></li><li class="navelem"><b>covariancePlaneFit.hpp</b></li>
-    <li class="footer">Generated on Tue Sep 15 2026 12:02:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Sep 30 2026 07:16:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

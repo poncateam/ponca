@@ -11,5 +11,6 @@ var searchData=
   ['limitedpriorityqueue_3c_20indexsquareddistance_3c_20index_2c_20scalar_20_3e_2c_20max_5fknn_5fsize_20_3e_8',['LimitedPriorityQueue&lt; IndexSquaredDistance&lt; Index, Scalar &gt;, MAX_KNN_SIZE &gt;',['../classPonca_1_1LimitedPriorityQueue.html',1,'Ponca']]],
   ['line_9',['line',['../classPonca_1_1Line.html',1,'Ponca::Line&lt; DataPoint, _NFilter, T &gt;'],['../classPonca_1_1Line.html#a0a34f30faff441111fb2f9815f86b1d4',1,'Ponca::Line::line()'],['../classPonca_1_1Line.html#a8fad38789601274ff966d60b6777e8eb',1,'Ponca::Line::line() const']]],
   ['line_20fit_10',['Ponca basic line fit',['../example_cxx_fit_line_page.html',1,'example_page']]],
-  ['linearity_11',['linearity',['../classPonca_1_1CovarianceBase.html#ab5566c71ae1d9685b4d59b7888095df2',1,'Ponca::CovarianceBase']]]
+  ['linearity_11',['linearity',['../classPonca_1_1CovarianceBase.html#ab5566c71ae1d9685b4d59b7888095df2',1,'Ponca::CovarianceBase']]],
+  ['lineprovider_12',['LineProvider',['../structPonca_1_1LineProvider.html',1,'Ponca']]]
 ];

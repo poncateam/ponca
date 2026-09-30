@@ -25,6 +25,7 @@ var searchData=
   ['original_20file_20_3a_22',['Original file :',['../cncFormulaEigen_8h.html#autotoc_md5',1,'']]],
   ['outputparameter_23',['outputparameter',['../group__spatialpartitioning.html#a9c67fdda6d25cdbab708f38ff489c216',1,'Ponca::QueryOutputIsKNearest::OutputParameter'],['../group__spatialpartitioning.html#a6ec06e6e718f87ef3229a7743d0b9f2b',1,'Ponca::QueryOutputIsNearest::OutputParameter'],['../group__spatialpartitioning.html#a6c1c520d8d7bf1b882b87292e8032490',1,'Ponca::QueryOutputIsRange::OutputParameter']]],
   ['outputs_24',['Basic Outputs',['../fitting.html#fitting_outputs',1,'']]],
-  ['overview_25',['overview',['../fittingreference.html#fittingreference_primitiveoverview',1,'Fitting techniques Overview'],['../ponca_changelog.html',1,'Releases overview']]],
-  ['overview_20of_20the_20proposed_20tools_26',['Overview of the proposed tools',['../common.html#common_intro',1,'']]]
+  ['over_20common_20baskets_25',['Iterating over common Baskets',['../fitting.html#fitting_factory',1,'']]],
+  ['overview_26',['overview',['../fittingreference.html#fittingreference_primitiveoverview',1,'Fitting techniques Overview'],['../ponca_changelog.html',1,'Releases overview']]],
+  ['overview_20of_20the_20proposed_20tools_27',['Overview of the proposed tools',['../common.html#common_intro',1,'']]]
 ];

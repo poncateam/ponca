@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
+   &#160;<span id="projectnumber">fd5150bf9079aabdb82a6f05e419b76111c1f788</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -121,18 +121,18 @@ $(document).ready(function(){initNavTree('conceptPonca_1_1ProvidesSpaceDerivativ
 <div class="contents">
 <h2 class="groupheader">Concept definition</h2>
 <div class="fragment"><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesSpaceDerivative.html">Ponca::ProvidesSpaceDerivative</a> =  T::isSpaceDer()</div>
-<div class="ttc" id="aconceptPonca_1_1ProvidesSpaceDerivative_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesSpaceDerivative.html">Ponca::ProvidesSpaceDerivative</a></div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00011">concepts.h:11</a></div></div>
+<div class="line"><span class="keyword">concept </span><a class="code hl_concept" href="conceptPonca_1_1ProvidesSpaceDerivative.html">Ponca::ProvidesSpaceDerivative</a> =  (T::isSpaceDer() &amp;&amp; T::derDimension() &gt; 0)</div>
+<div class="ttc" id="aconceptPonca_1_1ProvidesSpaceDerivative_html"><div class="ttname"><a href="conceptPonca_1_1ProvidesSpaceDerivative.html">Ponca::ProvidesSpaceDerivative</a></div><div class="ttdef"><b>Definition</b> <a href="Fitting_2Basket_2concepts_8h_source.html#l00013">concepts.h:13</a></div></div>
 </div><!-- fragment --><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="Fitting_2Basket_2concepts_8h_source.html#l00011">11</a> of file <a class="el" href="Fitting_2Basket_2concepts_8h_source.html">concepts.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Fitting_2Basket_2concepts_8h_source.html#l00013">13</a> of file <a class="el" href="Fitting_2Basket_2concepts_8h_source.html">concepts.h</a>.</p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacePonca.html">Ponca</a></li><li class="navelem"><a class="el" href="conceptPonca_1_1ProvidesSpaceDerivative.html">ProvidesSpaceDerivative</a></li>
-    <li class="footer">Generated on Tue Sep 15 2026 12:02:29 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Sep 30 2026 07:16:01 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

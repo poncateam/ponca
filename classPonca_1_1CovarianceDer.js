@@ -10,7 +10,5 @@ var classPonca_1_1CovarianceDer =
     [ "addLocalNeighbor", "classPonca_1_1CovarianceDer.html#a2eacb1df5fa54acaf13386730154e057", null ],
     [ "covarianceDer", "classPonca_1_1CovarianceDer.html#a3d2a83172435ee8a56294a3165f44a28", null ],
     [ "covarianceDer", "classPonca_1_1CovarianceDer.html#ab6e9b2815428cb9fb16cd405425f2170", null ],
-    [ "finalize", "classPonca_1_1CovarianceDer.html#ab2cd3f3a5a36188176c7579238c5d78f", null ],
-    [ "init", "classPonca_1_1CovarianceDer.html#a52bd0babea59dd9ff84571ca82e2c1d0", null ],
     [ "m_dCov", "classPonca_1_1CovarianceDer.html#a5a5a4bf795d76463ddd89efc33b6cc9b", null ]
 ];

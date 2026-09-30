@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">7abd0fd82719106ad460aa0f2070dffbe375d727</span>
+   &#160;<span id="projectnumber">fd5150bf9079aabdb82a6f05e419b76111c1f788</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -550,8 +550,7 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
 <div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> P, TriangleGenerationMethod M&gt;</div>
 <div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>        <span class="keyword">requires</span> CNC_REQUIREMENTS</div>
-<div class="foldopen" id="foldopen00445" data-start="{" data-end="}">
-<div class="line"><a id="l00445" name="l00445"></a><span class="lineno"><a class="line" href="classPonca_1_1CNC.html#a093863125a39f21a70a5164c7ac7fefb">  445</a></span>    <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="classPonca_1_1CNC.html#a093863125a39f21a70a5164c7ac7fefb">CNC&lt;P, M&gt;::finalize</a>()</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>    <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_class" href="classPonca_1_1CNC.html">CNC&lt;P, M&gt;::finalize</a>()</div>
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>    {</div>
 <div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>        m_A = Scalar(0);</div>
 <div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>        m_H = Scalar(0);</div>
@@ -570,7 +569,7 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>                m_G += m_triangles[t].template mu2InterpolatedU&lt;true&gt;();</div>
 <div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>                localT += m_triangles[t].template muXYInterpolatedU&lt;true&gt;();</div>
 <div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>            }</div>
-<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tA &gt; <a class="code hl_struct" href="structPonca_1_1internal_1_1CNCEigen.html">internal::CNCEigen&lt;P&gt;::epsilon</a>)</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (tA &gt; <a class="code hl_variable" href="structPonca_1_1internal_1_1CNCEigen.html#ac20fe6fe248eceedecf6202f35d95aa5">internal::CNCEigen&lt;P&gt;::epsilon</a>)</div>
 <div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span>            {</div>
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span>                m_A += tA;</div>
 <div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span>                m_H += m_triangles[t].mu1InterpolatedU();</div>
@@ -604,9 +603,8 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span> </div>
 <div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>;</div>
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>    }</div>
-</div>
 <div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>} <span class="comment">// namespace Ponca</span></div>
-<div class="ttc" id="aclassPonca_1_1CNC_html_a093863125a39f21a70a5164c7ac7fefb"><div class="ttname"><a href="classPonca_1_1CNC.html#a093863125a39f21a70a5164c7ac7fefb">Ponca::CNC::finalize</a></div><div class="ttdeci">FIT_RESULT finalize()</div><div class="ttdoc">Finalize the procedure.</div><div class="ttdef"><b>Definition</b> <a href="cnc_8hpp_source.html#l00445">cnc.hpp:445</a></div></div>
+<div class="ttc" id="aclassPonca_1_1CNC_html"><div class="ttname"><a href="classPonca_1_1CNC.html">Ponca::CNC</a></div><div class="ttdoc">Corrected Normal Current Fit type.</div><div class="ttdef"><b>Definition</b> <a href="cnc_8h_source.html#l00111">cnc.h:112</a></div></div>
 <div class="ttc" id="aclassPonca_1_1CNC_html_a21eca469f0d634391ea6c2a7461ad78b"><div class="ttname"><a href="classPonca_1_1CNC.html#a21eca469f0d634391ea6c2a7461ad78b">Ponca::CNC::computeWithIds</a></div><div class="ttdeci">FIT_RESULT computeWithIds(const IndexRange &amp;ids, const PointContainer &amp;points)</div><div class="ttdoc">Compute function that iterates over a subset of sampled points from an STL-Like container.</div><div class="ttdef"><b>Definition</b> <a href="cnc_8hpp_source.html#l00433">cnc.hpp:433</a></div></div>
 <div class="ttc" id="aclassPonca_1_1CNC_html_aea7ca2e7489c29ae9adbf0f5623b2fe2"><div class="ttname"><a href="classPonca_1_1CNC.html#aea7ca2e7489c29ae9adbf0f5623b2fe2">Ponca::CNC::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="cnc_8hpp_source.html#l00400">cnc.hpp:400</a></div></div>
 <div class="ttc" id="anamespacePonca_1_1internal_html"><div class="ttname"><a href="namespacePonca_1_1internal.html">Ponca::internal</a></div><div class="ttdoc">Copyright (c) 2022 Jacques-Olivier Lachaud (jacques-olivier.lachaud@univ-savoie.fr) Laboratory of Mat...</div><div class="ttdef"><b>Definition</b> <a href="iteratorUtils_8h_source.html#l00016">iteratorUtils.h:17</a></div></div>
@@ -616,6 +614,7 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 <div class="ttc" id="astructPonca_1_1internal_1_1CNCEigen_html"><div class="ttname"><a href="structPonca_1_1internal_1_1CNCEigen.html">Ponca::internal::CNCEigen</a></div><div class="ttdoc">This class contains some stand-alone CorrectedNormalCurrent formulas for triangles,...</div><div class="ttdef"><b>Definition</b> <a href="cncFormulaEigen_8h_source.html#l00075">cncFormulaEigen.h:76</a></div></div>
 <div class="ttc" id="astructPonca_1_1internal_1_1CNCEigen_html_a9c6c106a9f0bf027bbd94406ac64472a"><div class="ttname"><a href="structPonca_1_1internal_1_1CNCEigen.html#a9c6c106a9f0bf027bbd94406ac64472a">Ponca::internal::CNCEigen::curvaturesFromTensor</a></div><div class="ttdeci">static std::tuple&lt; Scalar, Scalar, VectorType, VectorType &gt; curvaturesFromTensor(const MatrixType &amp;tensor, const Scalar area, const VectorType &amp;N)</div><div class="ttdoc">Computing principal curvatures k1 and k2 from tensor.</div><div class="ttdef"><b>Definition</b> <a href="cncFormulaEigen_8h_source.html#l00326">cncFormulaEigen.h:326</a></div></div>
+<div class="ttc" id="astructPonca_1_1internal_1_1CNCEigen_html_ac20fe6fe248eceedecf6202f35d95aa5"><div class="ttname"><a href="structPonca_1_1internal_1_1CNCEigen.html#ac20fe6fe248eceedecf6202f35d95aa5">Ponca::internal::CNCEigen::epsilon</a></div><div class="ttdeci">static constexpr Scalar epsilon</div><div class="ttdoc">Small constant used to approximate zero.</div><div class="ttdef"><b>Definition</b> <a href="cncFormulaEigen_8h_source.html#l00081">cncFormulaEigen.h:81</a></div></div>
 <div class="ttc" id="astructPonca_1_1internal_1_1HexagramBase_html"><div class="ttname"><a href="structPonca_1_1internal_1_1HexagramBase.html">Ponca::internal::HexagramBase</a></div><div class="ttdef"><b>Definition</b> <a href="cnc_8hpp_source.html#l00164">cnc.hpp:165</a></div></div>
 <div class="ttc" id="astructPonca_1_1internal_1_1TriangleGenerator_html"><div class="ttname"><a href="structPonca_1_1internal_1_1TriangleGenerator.html">Ponca::internal::TriangleGenerator</a></div><div class="ttdef"><b>Definition</b> <a href="cnc_8hpp_source.html#l00030">cnc.hpp:31</a></div></div>
 <div class="ttc" id="astructPonca_1_1internal_1_1Triangle_html"><div class="ttname"><a href="structPonca_1_1internal_1_1Triangle.html">Ponca::internal::Triangle</a></div><div class="ttdoc">Stores the three points and normals of the triangles and provides access to Corrected Normal Current ...</div><div class="ttdef"><b>Definition</b> <a href="cnc_8h_source.html#l00034">cnc.h:35</a></div></div>
@@ -625,7 +624,7 @@ $(document).ready(function(){initNavTree('cnc_8hpp_source.html',''); initResizab
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_695d95a8d8fbec601a248c0414764298.html">Ponca</a></li><li class="navelem"><a class="el" href="dir_ce16314fc45f8638543c5146aff64d4a.html">src</a></li><li class="navelem"><a class="el" href="dir_221133f19e4af6803e4ee7d78db21786.html">Fitting</a></li><li class="navelem"><a class="el" href="dir_1456cddd0600736bb438d26f2c5c380f.html">CNC</a></li><li class="navelem"><b>cnc.hpp</b></li>
-    <li class="footer">Generated on Tue Sep 15 2026 12:02:27 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+    <li class="footer">Generated on Wed Sep 30 2026 07:16:00 for Ponca by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
 </body>

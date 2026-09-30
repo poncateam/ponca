@@ -140,6 +140,7 @@ var NAVTREE =
           ] ]
         ] ],
         [ "Advanced usage", "fitting.html#fitting_advanced", [
+          [ "Iterating over common Baskets", "fitting.html#fitting_factory", null ],
           [ "Fitting with multiple primitives", "fitting.html#fitting_multiprimitive", null ]
         ] ],
         [ "Cuda and SYCL", "fitting.html#fitting_cuda", null ]
@@ -198,11 +199,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1CovariancePlaneFitImpl.html",
-"classPonca_1_1Line.html#ae7179e684e87f56f4070a6d74672ccd4",
-"classPonca_1_1QuadraticHeightField.html#a6e2233e52bf83f84a2b6c3db13f9d8fd",
-"example_python_ssc_page.html#pyssgl_cuda_sec",
-"structPonca_1_1StaticKdTreeBase_1_1Buffers.html#aef184e20609199a57cd7045e06e85750"
+"classPonca_1_1CovariancePlaneFitImpl.html#aa5ecf1c4b5d330163cdfaf8e6cc292f3",
+"classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4",
+"classPonca_1_1RestrictedQuadraticHeightField.html#a5c0ce9a3ee00d7880da301eaa111c6f2",
+"fitting.html#fitting_newkernel",
+"structPonca_1_1SingleEvaluationScheme.html#a1f513309c8cb40a93cacd1a182c416f6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
