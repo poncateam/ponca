@@ -53,10 +53,16 @@ else()
 
 
     # Instantiation options
-    option(PONCA_INSTANTIATE_ALL "Instantiate everything defined in Ponca/Instantiate. This options takes priority over all other options for instantiation." ON)
+    option(PONCA_INSTANTIATE_DEFAULT "Instantiate default baskets defined in Ponca/Instantiate." ON)
+    option(PONCA_INSTANTIATE_ALL "Instantiate everything defined in Ponca/Instantiate. This options takes priority over all other options for instantiation." OFF)
     if (${PONCA_INSTANTIATE_ALL})
         target_compile_definitions(Instantiate PUBLIC _PONCA_INSTANTIATE_ALL)
     endif()
+
+    if (${PONCA_INSTANTIATE_DEFAULT})
+        target_compile_definitions(Instantiate PUBLIC _PONCA_INSTANTIATE_DEFAULT)
+    endif()
+
 
     set(ponca_Instantiate_OPTIONS
         PONCA_INSTANTIATE_DOUBLE

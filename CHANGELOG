@@ -15,6 +15,7 @@ Current head (v.2.0.alpha4 RC)
 
 - Bug-fixes and code improvements
     - [fitting] Fix out-of-bound SegFault in CNC (#344)
+    - [common] Add default instantiation mode to reduce default compile time (#355)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)

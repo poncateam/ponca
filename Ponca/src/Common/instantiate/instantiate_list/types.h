@@ -3,7 +3,7 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
-#if defined(_PONCA_INSTANTIATE_FLOAT) || defined(_PONCA_INSTANTIATE_ALL)
+#if defined(_PONCA_INSTANTIATE_FLOAT) || defined(_PONCA_INSTANTIATE_ALL) || defined(_PONCA_INSTANTIATE_DEFAULT)
 #    define _S float
 #    include "dims.h"
 #    undef _S

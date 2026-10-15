@@ -9,7 +9,8 @@
 #    undef _P
 #endif
 
-#if defined(_PONCA_INSTANTIATE_POINTPOSITIONNORMAL) || defined(_PONCA_INSTANTIATE_ALL)
+#if defined(_PONCA_INSTANTIATE_POINTPOSITIONNORMAL) || defined(_PONCA_INSTANTIATE_ALL) || \
+    defined(_PONCA_INSTANTIATE_DEFAULT)
 #    define _P PointPositionNormal<_S, _D>
 #    define _Normal
 #    include "filters.h"

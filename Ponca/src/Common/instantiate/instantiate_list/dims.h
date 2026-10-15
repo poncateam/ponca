@@ -9,7 +9,7 @@
 #    undef _D
 #endif
 
-#if defined(_PONCA_INSTANTIATE_3D) || defined(_PONCA_INSTANTIATE_ALL)
+#if defined(_PONCA_INSTANTIATE_3D) || defined(_PONCA_INSTANTIATE_ALL) || defined(_PONCA_INSTANTIATE_DEFAULT)
 #    define _D 3
 #    include "points.h"
 #    undef _D
