@@ -84,7 +84,9 @@ namespace Ponca
         FactoryEntry<"SphereFit"         , Basket<P, NF, SphereFit>>, 
         FactoryEntry<"MeanPlaneFit"      , Basket<P, NF, MeanPlaneFit>>,
         FactoryEntry<"APSS"              , Basket<P, NF, OrientedSphereFit, GLSParam>>,
+#ifndef __CUDACC__
         FactoryEntry<"Unoriented APSS"   , Basket<P, NF, UnorientedSphereFit, GLSParam>>
+#endif
     >;
 
     template<typename P, typename NF, int DerType>
