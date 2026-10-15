@@ -34,7 +34,7 @@ namespace Ponca
         WRITE_NEIGHBOR_GRAPH_ALIASES
 
         /// \brief Buffer storing the input points (read only)
-        PointContainer points;
+        PointContainerConstRef points;
         /// \brief Buffer storing the indices associating the input points to the nodes
         IndexContainer indices;
 
@@ -111,7 +111,7 @@ namespace Ponca
         //! \brief Get the number of points
         PONCA_MULTIARCH [[nodiscard]] inline IndexType pointCount() const { return (IndexType)m_bufs.points_size; }
         //! \brief Get the internal point container
-        PONCA_MULTIARCH [[nodiscard]] inline PointContainer points() const { return m_bufs.points; };
+        PONCA_MULTIARCH [[nodiscard]] inline PointContainerConstRef points() const { return m_bufs.points; };
         //! \brief Get the internal index container
         PONCA_MULTIARCH [[nodiscard]] inline IndexContainer edges() const { return m_bufs.indices; };
         //! \brief Get access to the internal buffer, for instance to prepare GPU binding

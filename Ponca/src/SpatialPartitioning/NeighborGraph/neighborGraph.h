@@ -31,7 +31,8 @@ namespace Ponca
 
         PONCA_MULTIARCH inline NeighborGraphBuffer() = default;
         PONCA_MULTIARCH inline NeighborGraphBuffer(PointContainerConstRef _points) : Base(_points) {}
-        PONCA_MULTIARCH inline NeighborGraphBuffer(PointContainer _points, typename Traits::IndexContainerRef _indices,
+        PONCA_MULTIARCH inline NeighborGraphBuffer(PointContainerConstRef _points,
+                                                   typename Traits::IndexContainerRef _indices,
                                                    const size_t _points_size, const size_t _indices_size,
                                                    typename Traits::IndexContainerRef _ranges)
             : Base(_points, _indices, _points_size, _indices_size), ranges(_ranges)
@@ -114,7 +115,7 @@ namespace Ponca
             static_assert(std::is_same_v<typename Traits::DataPoint, typename KdTreeTraits::DataPoint>,
                           "KdTreeTraits::DataPoint is not equal to Traits::DataPoint");
 
-            CHECK_TRAITS_TYPENAME_COMPAT(typename Traits::PointContainer, typename KdTreeTraits::PointContainer)
+            CHECK_TRAITS_TYPENAME_COMPAT(typename Traits::PointContainerConstRef, typename KdTreeTraits::PointContainer)
             CHECK_TRAITS_TYPENAME_COMPAT(typename Traits::IndexContainer, typename KdTreeTraits::IndexContainer)
 
 #undef CHECK_TRAITS_TYPENAME_COMPAT
