@@ -38,6 +38,13 @@ if( CMAKE_CUDA_COMPILER )
     set_property(TARGET cuda_fit_plane_knngraph PROPERTY CUDA_ARCHITECTURES OFF)
     target_link_libraries(cuda_fit_plane_knngraph PUBLIC Eigen3::Eigen)
 
+    add_executable(cuda_fit_factory_potentials "ponca_fit_factory_potentials.cu")
+    target_include_directories(cuda_fit_factory_potentials PRIVATE ${PONCA_src_ROOT})
+    add_dependencies(ponca-examples cuda_fit_factory_potentials)
+    set_property(TARGET cuda_fit_factory_potentials PROPERTY CUDA_ARCHITECTURES OFF)
+    target_compile_options(cuda_fit_factory_potentials PUBLIC -extended-lambda)
+    target_link_libraries(cuda_fit_factory_potentials PUBLIC Eigen3::Eigen)
+
     add_subdirectory(ssgls)
 else()
     message(INFO "Cuda not found, skipping Ponca_Examples_cuda")
