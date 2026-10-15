@@ -17,7 +17,7 @@ var classPonca_1_1AbstractNeighborGraph =
     [ "getIndexPtr", "classPonca_1_1AbstractNeighborGraph.html#a7a4790d4c16712762c72413108f6649b", null ],
     [ "oneConnectedNeighbors", "classPonca_1_1AbstractNeighborGraph.html#a5aea350947530e473978afa63e4c20eb", null ],
     [ "pointCount", "classPonca_1_1AbstractNeighborGraph.html#a0bbd42ba4ef431fa8219a9ce88dba131", null ],
-    [ "points", "classPonca_1_1AbstractNeighborGraph.html#a02173bfb19cd1a17f9722c02de60f25d", null ],
+    [ "points", "classPonca_1_1AbstractNeighborGraph.html#aa0662253f87293ecaefa2f1b4353da78", null ],
     [ "rangeNeighbors", "classPonca_1_1AbstractNeighborGraph.html#aa2ffae736be4ad1a9054c54a29fc0cd3", null ],
     [ "rangeNeighborsIndexQuery", "classPonca_1_1AbstractNeighborGraph.html#a8353feb600cdd0029a323be09718f886", null ],
     [ "m_bufs", "classPonca_1_1AbstractNeighborGraph.html#a2a8bb91c4ad256aa0a7137a72663b86f", null ]

@@ -14,6 +14,6 @@ var structPonca_1_1NeighborGraphBufferBase =
     [ "NeighborGraphBufferBase", "structPonca_1_1NeighborGraphBufferBase.html#a5c45cd2a60b8a4b8fc82b72a1a3481df", null ],
     [ "indices", "structPonca_1_1NeighborGraphBufferBase.html#acab19b523431060a06965e63857f985c", null ],
     [ "indices_size", "structPonca_1_1NeighborGraphBufferBase.html#aaaf0704fe904f0b0e462296e8d9784a9", null ],
-    [ "points", "structPonca_1_1NeighborGraphBufferBase.html#ab5793406d425ee2619d09580a794f15f", null ],
+    [ "points", "structPonca_1_1NeighborGraphBufferBase.html#ac583df14cc6d474283555084769dfd29", null ],
     [ "points_size", "structPonca_1_1NeighborGraphBufferBase.html#a4e34bbcdcbfb7686eeb675e96b20c65d", null ]
 ];

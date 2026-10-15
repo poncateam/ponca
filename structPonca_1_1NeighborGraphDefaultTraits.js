@@ -6,6 +6,6 @@ var structPonca_1_1NeighborGraphDefaultTraits =
     [ "IndexContainerRef", "structPonca_1_1NeighborGraphDefaultTraits.html#ab4b58e1b38cff1bcb47fec119b1eb057", null ],
     [ "KnnGraphRangeSet", "structPonca_1_1NeighborGraphDefaultTraits.html#a11ffc04b17a4ea4c8a4858208077619e", null ],
     [ "KnnGraphRangeStack", "structPonca_1_1NeighborGraphDefaultTraits.html#a6de0ee986ac5aa644500947def9b07c0", null ],
-    [ "PointContainer", "structPonca_1_1NeighborGraphDefaultTraits.html#a8d73075679bb5068f344ec697866fcea", null ],
-    [ "PointContainerConstRef", "structPonca_1_1NeighborGraphDefaultTraits.html#ae73331fcb3a0ca0ea8998c17e30608c3", null ]
+    [ "PointContainer", "structPonca_1_1NeighborGraphDefaultTraits.html#a9f296643f1f8ed3e9ff1a2aebaf06031", null ],
+    [ "PointContainerConstRef", "structPonca_1_1NeighborGraphDefaultTraits.html#aac7ae79557b1c039accc3c2978032992", null ]
 ];
