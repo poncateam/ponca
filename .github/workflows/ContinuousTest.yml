@@ -27,6 +27,8 @@ jobs:
       - name: Add msbuild to PATH
         uses: seanmiddleditch/gha-setup-vsdevenv@master
         if: runner.os == 'Windows'
+      - uses: Jimver/cuda-toolkit@master
+        if: runner.os != 'macOS'
       - name: Checkout remote head
         uses: actions/checkout@master
         with:

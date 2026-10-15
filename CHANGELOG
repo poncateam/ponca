@@ -19,6 +19,7 @@ Current head (v.2.0.alpha4 RC)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
+    - [ci] CI to check cuda *compilation* (#352)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha3
