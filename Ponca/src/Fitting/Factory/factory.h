@@ -70,10 +70,15 @@ namespace Ponca
             static decltype(auto) GetMethod()
             {
                 using MethodList = decltype(Filter<MethodProvider<Name>::template pred>());
+                static_assert(MethodList::N == 1);
 
-                static_assert(std::tuple_size_v<typename MethodList::FactoryEntries> == 1);
-                return std::get<0>(typename MethodList::FactoryEntries{0}).object;
+                MethodList list;
+                return std::get<0>(list.entries()).object;
             }
+
+            FactoryEntries& entries() { return m_entries; }
+
+            const FactoryEntries& entries() const { return m_entries; }
 
             /**
              * \brief Applies a function to each entry of the list
