@@ -4,7 +4,7 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#if defined(_PONCA_INSTANTIATE_SMOOTHWEIGHT) || defined(_PONCA_INSTANTIATE_ALL)
+#if defined(_PONCA_INSTANTIATE_SMOOTHWEIGHT) || defined(_PONCA_INSTANTIATE_ALL) || defined(_PONCA_INSTANTIATE_DEFAULT)
 #    define _NF DistWeightFilter<_P, SmoothWeightKernel<_S>>
 #    include "baskets.h"
 #    undef _NF
