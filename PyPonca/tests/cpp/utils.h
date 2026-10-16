@@ -77,6 +77,17 @@ void WriteVector(std::ofstream& file, const Vector& v)
         file << "," << v[i];
 }
 
+template <typename Scalar, size_t N>
+void WriteVector(std::ofstream& file, const std::array<Scalar, N>& v)
+{
+    if (N == 0)
+        return;
+
+    file << v[0];
+    for (unsigned int i = 1; i < N; ++i)
+        file << "," << v[i];
+}
+
 template <typename Point>
 void WriteArray(std::ofstream& file, const char* name, const std::vector<typename Point::Scalar>& values)
 {
@@ -86,6 +97,22 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<typenam
     file << '"' << name << "\":{\"N\":" << values.size() << ",\"D\": 1,\"data\":[" << values[0];
     for (unsigned int i = 1; i < values.size(); ++i)
         file << ',' << values[i];
+    file << "]}";
+}
+
+template <typename Point, size_t N>
+void WriteArray(std::ofstream& file, const char* name, const std::vector<std::array<typename Point::Scalar, N>>& values)
+{
+    if (values.empty())
+        return;
+
+    file << '"' << name << "\":{\"N\":" << values.size() << ",\"D\":" << N << ",\"data\":[";
+    WriteVector(file, values[0]);
+    for (unsigned int i = 1; i < values.size(); ++i)
+    {
+        file << ',';
+        WriteVector(file, values[i]);
+    }
     file << "]}";
 }
 

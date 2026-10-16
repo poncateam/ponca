@@ -139,7 +139,7 @@ namespace Ponca
         }
 
         /*! \brief Gradient of the scalar field at the line location. As it is undefined, we set it to 0.  */
-        PONCA_MULTIARCH [[nodiscard]] inline const VectorType& primitiveGradient() const { return VectorType::Zero(); }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient() const { return VectorType::Zero(); }
 
     protected:
         /// \copydoc Line::potential

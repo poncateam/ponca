@@ -151,6 +151,22 @@ struct DeviceArrayView
     }
 
     /**
+     * \brief Fill a given array
+     *
+     * This function is mean for shape like (D, ) i.e. the array describes
+     * a single vector. It does not check if data, stride or anything else is valid.
+     * It just iterates the first available dimension, filling a vector as
+     * much as possible.
+     *
+     * \see GetVector
+     */
+    PONCA_MULTIARCH void Fill(Scalar* out) const
+    {
+        for (size_t j = 0; j < shape[0]; ++j)
+            out[j] = *(data + j * stride[0]);
+    }
+
+    /**
      * \brief Convert the array into a Vector
      *
      * This function is meant for shape like (N, D) i.e. the array describes
@@ -173,6 +189,26 @@ struct DeviceArrayView
     }
 
     /**
+     * \brief Fills an an array
+     *
+     * This function is meant for shape like (N, D) i.e. the array describes
+     * an array of vectors. It does not check if data, stride or anything else
+     * is valid. It just iterates the first available dimension, filling a vector as
+     * much as possible.
+     *
+     * As a side note, this function can not be used to convert an array of shape (D, )
+     * to a Vector as the function assumes that the shape as two components...
+     *
+     * \see GetVector
+     */
+    PONCA_MULTIARCH void Fill(Scalar* out, size_t i) const
+    {
+        for (size_t j = 0; j < shape[1]; ++j)
+            out[j] = *(data + i * stride[0] + j * stride[1]);
+    }
+
+
+    /**
      * \brief Convert the array into a Vector
      *
      * This function is meant for shape like (N, K, D) i.e. the array describes
@@ -188,6 +224,25 @@ struct DeviceArrayView
         for (size_t k = 0; k < shape[2]; ++k)
             out(k) = *(data + i * stride[0] + j * stride[1] + j * stride[2]);
         return out;
+    }
+
+    /**
+     * \brief Fills an an array
+     *
+     * This function is meant for shape like (N, D) i.e. the array describes
+     * an array of vectors. It does not check if data, stride or anything else
+     * is valid. It just iterates the first available dimension, filling a vector as
+     * much as possible.
+     *
+     * As a side note, this function can not be used to convert an array of shape (D, )
+     * to a Vector as the function assumes that the shape as two components...
+     *
+     * \see GetVector
+     */
+    PONCA_MULTIARCH void Fill(Scalar* out, size_t i, size_t j) const
+    {
+        for (size_t k = 0; k < shape[2]; ++k)
+            out[k] = *(data + i * stride[0] + j * stride[1] + j * stride[2]);
     }
 
     /**

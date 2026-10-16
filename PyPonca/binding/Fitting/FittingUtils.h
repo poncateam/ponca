@@ -70,6 +70,44 @@ inline std::vector<size_t> ComputeVectorDim(const nb::ndarray<>& array)
 }
 
 /**
+ * \brief Merge shape to provide grouped informations
+ */
+inline std::vector<size_t> mergeShapes(const std::vector<std::vector<size_t>>& shapes)
+{
+    if (shapes.empty())
+        throw std::invalid_argument("merge_shapes: no shapes given");
+
+    size_t total = 0;
+    for (size_t i = 0; i < shapes.size(); ++i) 
+    {
+        const auto& s = shapes[i];
+
+        if (s.size() != 1 && s.size() != 2)
+            throw std::invalid_argument(
+                "mergeShapes: argument " + std::to_string(i) +
+                " has rank " + std::to_string(s.size()) +
+                " (expected {N} or {N, D})");
+
+        total += (s.size() == 1) ? 1 : s[1];
+    }
+    return {0, total};
+}
+
+/**
+ * \brief Compute the vector dim of combined outputs
+ * 
+ * The goal is to return the expected shape for a group of output that should be 
+ * merged together. 
+ * 
+ * 
+ */
+template <typename Point, typename... _Results>
+inline std::vector<size_t> ComputeVectorDimGroup(const nb::ndarray<>& array)
+{
+   return mergeShapes(std::vector<std::vector<size_t>>{ ComputeVectorDim<Point, _Results>(array)... });
+}
+
+/**
  * \brief Write result to the corresponding dimension
  *
  * This is a helper function to dispatch the writting of Scalar / Vector
@@ -80,7 +118,7 @@ inline std::vector<size_t> ComputeVectorDim(const nb::ndarray<>& array)
  * \param object The object to write
  */
 template <typename Scalar, typename T>
-PONCA_MULTIARCH void Write(Scalar* out, const T& object, int64_t strideX = 0, int64_t strideY = 0)
+PONCA_MULTIARCH void Write(Scalar* out, const T& object, int64_t strideX = 1, int64_t strideY = 0)
 {
     // Note: There is no warp divergence here. As the result type of the computation will
     // be the same for every thread.
@@ -99,11 +137,37 @@ PONCA_MULTIARCH void Write(Scalar* out, const T& object, int64_t strideX = 0, in
 /**
  * \brief Alias to a lambda function whith an input vector
  */
-#define MAKE_VECTOR_FUNCTION(name) \
-    [] PONCA_MULTIARCH(CO& object, const typename CO::VectorType& in) { return object.name(in); }
+#define MAKE_VECTOR_COMPUTE_FUNCTION(name)                    \
+    [] PONCA_MULTIARCH (CO& object, typename CO::Scalar* in) { \
+        using Map = Eigen::Map<typename CO::VectorType>;      \
+        return object.name(Map(in));                          \
+    }
+
+/** 
+ * Helper functions for split params. We could bridge them with 
+ * macros tricks or variadic functions, but this is not worth 
+ * for now !
+ */
 
 /**
- * \brief Helper function to run a function that takes a vector as input
+ * \brief Alias to a lambda function whith a single scalar param
+ */
+#define MAKE_COMPUTE_FUNCTION_1(name)                         \
+    [] PONCA_MULTIARCH (CO& object, typename CO::Scalar* in) { \
+        return object.name(in[0]);                            \
+    }
+
+/**
+ * \brief Alias to a lambda function whith a single scalar param
+ */
+#define MAKE_COMPUTE_FUNCTION_2(name)                         \
+    [] PONCA_MULTIARCH (CO& object, typename CO::Scalar* in) { \
+        return object.name(in[0], in[1]);                     \
+    }
+
+    
+/**
+ * \brief Helper function to run a function that takes an array of params as input
  *
  * \param object The compute object to extract result from
  * \param f The function that will be called. The signature is (object, vector)
@@ -111,9 +175,9 @@ PONCA_MULTIARCH void Write(Scalar* out, const T& object, int64_t strideX = 0, in
  * \param out The output location
  * \param idx Current index of computation. Allows to shift out to the correct memory location.
  */
-template <typename CO, typename Func, typename Scalar = typename CO::Scalar>
-PONCA_MULTIARCH void RunVectorMethod(CO& object, Func&& f, const DeviceArrayView<Scalar>& in,
-                                     DeviceArrayView<Scalar>& out, size_t idx)
+template <size_t Expected, typename CO, typename Func, typename Scalar = typename CO::Scalar>
+PONCA_MULTIARCH void RunMethod(CO& object, Func&& f, const DeviceArrayView<Scalar>& in,
+                               DeviceArrayView<Scalar>& out, size_t idx)
 {
     using Point = typename CO::DataPoint;
     // Note: there should be no warp divergence here as in is shared accross the same computation,
@@ -125,30 +189,36 @@ PONCA_MULTIARCH void RunVectorMethod(CO& object, Func&& f, const DeviceArrayView
     if (out.data == nullptr || out.N == 0)
         return;
 
+    Scalar data[Expected];
     if (in.data == nullptr) // No data
     {
-        // TODO: Extract Filter center and pass it here:
+        // TODO: Extract Filter center and pass it here
+        // But for now the API does not exist...
     }
-    else if (in.N == 1 && in.shape[0] == Point::Dim) // A single vector
+    else if (in.N == 1 && in.shape[0] == Expected) // A single vector
     {
         const int64_t matStrideY = (out.N > 1) ? out.stride[1] : 0;
         const int64_t matStrideX = (out.N > 2) ? out.stride[2] : 0;
-        Write(out.data + idx * out.stride[0], f(object, in.template AsVector<Point>()), matStrideY, matStrideX);
+        
+        in.Fill(data);
+        Write(out.data + idx * out.stride[0], f(object, data), matStrideY, matStrideX);
     }
-    else if (in.N == 2 && in.shape[0] > idx && in.shape[1] == Point::Dim) // in is an array of vector
+    else if (in.N == 2 && in.shape[0] > idx && in.shape[1] == Expected) // in is an array of vector
     {
         const int64_t matStrideY = (out.N > 1) ? out.stride[1] : 0;
         const int64_t matStrideX = (out.N > 2) ? out.stride[2] : 0;
-        Write(out.data + idx * out.stride[0], f(object, in.template GetVector<Point>(idx)), matStrideY, matStrideX);
+
+        in.Fill(data, idx);
+        Write(out.data + idx * out.stride[0], f(object, data), matStrideY, matStrideX);
     }
-    else if (in.N == 3 && in.shape[0] > idx && in.shape[2] == Point::Dim && out.N > 1)
+    else if (in.N == 3 && in.shape[0] > idx && in.shape[2] == Expected && out.N > 1)
     {
         const int64_t matStrideY = (out.N > 2) ? out.stride[2] : 0;
         const int64_t matStrideX = (out.N > 3) ? out.stride[3] : 0;
         for (size_t j = 0; j < in.shape[1]; ++j)
         {
-            Write(out.data + idx * out.stride[0] + j * out.stride[1], f(object, in.template GetVector<Point>(idx, j)),
-                  matStrideY, matStrideX);
+            in.Fill(data, idx, j);
+            Write(out.data + idx * out.stride[0] + j * out.stride[1], f(object, data), matStrideY, matStrideX);
         }
     }
 }

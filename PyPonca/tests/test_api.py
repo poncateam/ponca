@@ -73,7 +73,7 @@ class TestAPI(unittest.TestCase):
 
                         object = pyponca.__dict__[co]()
                         object.setNeighborFilter(pc, ts, flt)
-                        object.addComputation(pyponca.Computation.DRY)
+                        object.addComputation(pyponca.Computation.NONE)
                         result = object.compute(pc)
                     except NotImplementedError:
                         # We let notimplementederror that may come from classes that only support 3d
@@ -93,7 +93,7 @@ class TestAPI(unittest.TestCase):
                 def test(data):
                     obj = cls()
                     obj.setNeighborFilter(pc, ts)
-                    obj.addComputation(pyponca.Computation.DRY)
+                    obj.addComputation(pyponca.Computation.NONE)
                     obj.compute(data)
 
                 test(pc)
