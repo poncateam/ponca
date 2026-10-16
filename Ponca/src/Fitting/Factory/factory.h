@@ -70,9 +70,11 @@ namespace Ponca
             static decltype(auto) GetMethod()
             {
                 using MethodList = decltype(Filter<MethodProvider<Name>::template pred>());
+                static_assert(MethodList::N == 1);
 
-                static_assert(std::tuple_size_v<typename MethodList::FactoryEntries> == 1);
-                return std::get<0>(typename MethodList::FactoryEntries{0}).object;
+                // Const here to force copy in entries()!
+                const MethodList list;
+                return std::get<0>(list.entries()).object;
             }
 
             /**
@@ -139,6 +141,16 @@ namespace Ponca
                     return std::array{std::tuple_element_t<Is, FactoryEntries>::name...};
                 }(std::make_index_sequence<std::tuple_size_v<FactoryEntries>>{});
             }
+
+            /**
+             * \brief Return the list of entries
+             */
+            FactoryEntries& entries() { return m_entries; }
+
+            /**
+             * \brief Return the list of entries
+             */
+            FactoryEntries entries() const { return m_entries; }
 
         private:
             FactoryEntries m_entries;

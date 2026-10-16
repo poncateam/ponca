@@ -8,7 +8,7 @@
 
 namespace Ponca
 {
-    template <typename Traits>
+    template <typename NeighborGraph>
     class NeighborGraphRangeQuery;
 
     /*!
