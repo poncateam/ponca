@@ -141,22 +141,16 @@ namespace Ponca
                     return std::array{std::tuple_element_t<Is, FactoryEntries>::name...};
                 }(std::make_index_sequence<std::tuple_size_v<FactoryEntries>>{});
             }
-            
-            /**
-             * \brief Return the list of entries
-             */
-            FactoryEntries& entries()
-            {
-                return m_entries;
-            }
 
             /**
              * \brief Return the list of entries
              */
-            FactoryEntries entries() const
-            {
-                return m_entries;
-            }
+            FactoryEntries& entries() { return m_entries; }
+
+            /**
+             * \brief Return the list of entries
+             */
+            FactoryEntries entries() const { return m_entries; }
 
         private:
             FactoryEntries m_entries;
