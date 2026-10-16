@@ -70,6 +70,44 @@ inline std::vector<size_t> ComputeVectorDim(const nb::ndarray<>& array)
 }
 
 /**
+ * \brief Merge shape to provide grouped informations
+ */
+inline std::vector<size_t> mergeShapes(const std::vector<std::vector<size_t>>& shapes)
+{
+    if (shapes.empty())
+        throw std::invalid_argument("merge_shapes: no shapes given");
+
+    size_t total = 0;
+    for (size_t i = 0; i < shapes.size(); ++i) 
+    {
+        const auto& s = shapes[i];
+
+        if (s.size() != 1 && s.size() != 2)
+            throw std::invalid_argument(
+                "mergeShapes: argument " + std::to_string(i) +
+                " has rank " + std::to_string(s.size()) +
+                " (expected {N} or {N, D})");
+
+        total += (s.size() == 1) ? 1 : s[1];
+    }
+    return {0, total};
+}
+
+/**
+ * \brief Compute the vector dim of combined outputs
+ * 
+ * The goal is to return the expected shape for a group of output that should be 
+ * merged together. 
+ * 
+ * 
+ */
+template <typename Point, typename... _Results>
+inline std::vector<size_t> ComputeVectorDimGroup(const nb::ndarray<>& array)
+{
+   return mergeShapes(std::vector<std::vector<size_t>>{ ComputeVectorDim<Point, _Results>(array)... });
+}
+
+/**
  * \brief Write result to the corresponding dimension
  *
  * This is a helper function to dispatch the writting of Scalar / Vector
