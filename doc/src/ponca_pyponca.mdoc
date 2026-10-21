@@ -1,0 +1,450 @@
+namespace Ponca
+{
+  /*!
+    \page pyponca %PyPonca: A python binding of Ponca
+
+    <center>[\ref user_manual_page "Go back to user manual"]</center>
+
+    
+    \section pyponca_intro PyPonca
+
+    Starting with version 2.0, Ponca now has a Python binding that is available within this repository. 
+    The binding is compatible with most numerical libraries (NumPy, PyTorch, TensorFlow, JAX, etc.) and retains the performance of the C++ code. 
+    It provides an interface (quite different from the C++ API, see \ref pyponca_dev for explanation) to the computation that Ponca supports. 
+
+    \subsection pyponca_install How to install
+
+    Currently, there are no pypi release and the library must be installed manually. Only a C++ compiler, cmake
+    and python development librairies are required. Once those installed, run the following commands to install
+    the library within your current python environment:
+
+    \code{.sh}
+        cd Pyponca/
+        pip install .
+    \endcode
+
+    You may test afterward the installation using the command: 
+
+    \code{.sh}
+        python -c "import pyponca"
+    \endcode
+
+    \subsection pyponca_api API and first examples
+
+    The python module exposes a small set of objects:
+     - `pyponca.PointCloud`: a lightweight, non-owning view over a position array (and optionally a normal array),
+     - `pyponca.KDTree`: a spatial partitioning structure built over a point cloud, used to speed up neighbor queries,
+     - one class per fitting method available in Ponca (e.g. `pyponca.APSS`, `pyponca.CovariancePlaneFit`, ...),
+       called *compute objects* in the following. The full list is available in `pyponca.ComputeObjectList`,
+     - `pyponca.Filters`: the neighbor filter (weighting scheme) to use,
+     - `pyponca.Computation`: the list of quantities that can be extracted from a fit,
+     - `pyponca.FitResult`: the status of a fit (`STABLE`, `UNSTABLE` or `UNDEFINED`).
+
+    Unlike the C++ API, a compute object is not fitted once and then queried. Instead, the user describes, ahead of
+    time, <b>all</b> the neighborhoods to process and <b>all</b> the quantities to extract. A single call to
+    `compute` then performs every fit and returns the requested results as arrays, along with the status of each fit.
+    This keeps loops on the C++ side (see \ref pyponca_why for the rationale). The typical workflow is:
+
+    \code{.py}
+        fit = pyponca.<Method>()                         # 1. Choose a fitting method
+        fit.setNeighborFilter(centers, radii)            # 2. Describe the neighborhoods (one fit per center)
+        fit.addComputation(pyponca.Computation.<ID>)     # 3. Describe what to extract (as many times as needed)
+        fit.addComputation(pyponca.Computation.<ID>, input)
+        output = fit.compute(points)                     # 4. Run every fit
+        output.results                                   #    One array per computation, in order
+        output.fitStatus                                 #    The pyponca.FitResult of each fit
+    \endcode
+
+    \subsubsection pyponca_api_normals Example: normal estimation with a plane fit
+
+    This example estimates a normal and a local mean position at every point of a point cloud, using a covariance plane
+    fit over a ball of radius \f$0.1\f$ centered on each point.
+
+    \snippet pyponca_normal_estimation.py normal_estimation
+
+    \subsubsection pyponca_api_apss Example: APSS projection and curvature
+
+    Oriented methods, such as APSS, require normals. Here, a sphere is fitted around a set of query locations, the
+    locations are projected onto the fitted surface, and the GLS parameters (which contain a curvature estimate) are
+    extracted.
+
+    \snippet pyponca_apss.py apss
+
+    \subsubsection pyponca_api_kdtree Example: neighbor queries
+
+    The `KDTree` can also be used on its own to perform range queries:
+
+    \snippet pyponca_kdtree_queries.py kdtree_queries
+
+    \subsubsection pyponca_api_libs Using other numerical libraries
+
+    %PyPonca relies on <a href="https://nanobind.readthedocs.io/" target="_blank">nanobind</a> and the
+    <a href="https://dmlc.github.io/dlpack/latest/" target="_blank">DLPack</a> protocol: inputs can be any array
+    exposing DLPack (NumPy, PyTorch, TensorFlow, JAX, CuPy, ...), and outputs are DLPack arrays that can be converted
+    without copy using the `from_dlpack` function of the target library.
+
+    \snippet pyponca_torch.py torch
+
+    \subsection pyponca_manual User manual
+
+    \subsubsection pyponca_manual_types Supported data
+
+    The binding is instantiated for:
+     - scalar types: `float32` and `float64`,
+     - dimensions: 2 and 3 (some methods are only available in 3D, see \ref pyponca_manual_methods).
+
+    All arrays given to the same computation (point cloud, filter centers, radii and computation inputs) are expected
+    to share the same scalar type and to live on the same device. The type of the point cloud determines which C++
+    specialization is used. Arrays do not need to be contiguous: arbitrary strides (including negative ones) are
+    supported on every dimension, and no copy is performed.
+
+    \note Only CPU arrays are currently supported. Computations on other devices raise a `RuntimeError`.
+
+    \subsubsection pyponca_manual_pointcloud Point clouds
+
+    \snippet pyponca_user_manual.py pointcloud
+
+    `pos` and `normals` must be 2D arrays of shape `(N, D)` with the same shape and dtype; no implicit conversion is
+    performed, mismatching inputs raise a `RuntimeError` or `TypeError`. A `PointCloud` does not own its data: the
+    arrays must be kept alive as long as the point cloud (or a `KDTree` built on it) is in use.
+
+    When no normals are given, they are set to the null vector. Methods that rely on normals (such as `APSS`,
+    `MeanNormal`, ...) will then return meaningless values.
+
+    Every function that accepts a `PointCloud` also accepts a raw `(N, D)` array, which is converted to a
+    `PointCloud` without normals.
+
+    \subsubsection pyponca_manual_kdtree KDTree
+
+    \snippet pyponca_user_manual.py kdtree
+
+    The second argument is forwarded to the C++ binding as its `dense` parameter: `True` (the default) builds a
+    Ponca::KdTreeDense, `False` builds a Ponca::KdTreeSparse. Both return the same results; see
+    \ref spatialpartitioning_kdtree for the difference between the two.
+
+    `rangeNeighbors` has two overloads:
+     - `rangeNeighbors(pos, radius)`, with `pos` of shape `(D,)` and `radius` a scalar: returns a 1D `int64` array
+       containing the indices of the points within the ball,
+     - `rangeNeighbors(pos, radii)`, with `pos` of shape `(M, D)` and `radii` of shape `(M,)` (or `(1,)`, broadcast to
+       every query): returns an `int64` array of shape `(M, K)`, where `K` is the largest neighborhood size. Each row
+       is padded with `-1`.
+
+    When given to `compute`, a `KDTree` restricts each fit to the points returned by `rangeNeighbors(center, radius)`.
+    With a plain `PointCloud`, every point of the cloud is visited for every fit and the neighbor filter alone decides
+    which points contribute. The `KDTree` is therefore much faster for large point clouds.
+
+    \subsubsection pyponca_manual_methods Compute objects
+
+    Each fitting method is exposed as a class in the `pyponca` namespace, named after the corresponding entry of the
+    Ponca::Factory. The following methods are available (`pyponca.ComputeObjectList` contains the list of names
+    actually compiled in the module):
+
+    | Name                                  | Dimension  | Description                                                     |
+    |---------------------------------------|------------|-----------------------------------------------------------------|
+    | `DryFit`                              | 2D, 3D     | Does nothing, mostly useful for testing                         |
+    | `MeanPosition`                        | 2D, 3D     | Weighted mean position of the neighborhood                      |
+    | `MeanNormal`                          | 2D, 3D     | Weighted mean normal of the neighborhood                        |
+    | `CovarianceLineFit`                   | 2D, 3D     | Line fitted using the covariance of positions                   |
+    | `CovariancePlaneFit`                  | 2D, 3D     | Plane fitted using the covariance of positions                  |
+    | `MeanPlaneFit`                        | 2D, 3D     | Plane defined by the mean position and mean normal              |
+    | `SphereFit`                           | 2D, 3D     | Algebraic sphere fitted to positions                            |
+    | `APSS`                                | 2D, 3D     | Algebraic sphere fitted to positions and normals                |
+    | `UnorientedAPSS`                      | 2D, 3D     | Algebraic sphere fitted to positions and unoriented normals     |
+    | `MongePatchQuadratic`                 | 3D         | Quadratic height field in the tangent plane                     |
+    | `MongePatchRestrictedQuadratic`       | 3D         | Restricted quadratic height field in the tangent plane          |
+    | `CNCUniform`, `CNCIndependent`, `CNCHexagram`, `CNCAvgHexagram` | 3D | Corrected Normal Current curvature estimators  |
+    | `ASO`                                 | 3D         | APSS with spatial derivatives, provides principal curvatures    |
+
+    See \ref fittingreference for a description of each method. Compute objects take no argument at construction.
+    The C++ specialization is only selected when `compute` is called, depending on the point cloud type and on the
+    neighbor filter. Requesting a method that is not available for the data (e.g. a 3D-only method on a 2D point
+    cloud) raises a `NotImplementedError`.
+
+    A compute object provides three methods:
+     - `setNeighborFilter(centers, radii, nf = pyponca.Filters.SMOOTH_WEIGHT, normals = None)`: sets the
+       neighborhoods, see \ref pyponca_manual_filters,
+     - `addComputation(id, input = None)`: appends a computation to perform after each fit, see
+       \ref pyponca_manual_computations,
+     - `compute(data)`: performs all fits on `data` (a `PointCloud`, a `KDTree` or a raw `(N, D)` array) and returns
+       the results along with the status of each fit, see \ref pyponca_manual_results.
+
+    Settings are kept between calls to `compute`: the same object can be run on several point clouds, or with a new
+    neighbor filter. Calls to `addComputation` accumulate.
+
+    \subsubsection pyponca_manual_filters Neighbor filters
+
+    `setNeighborFilter(centers, radii, nf, normals)` describes the set of neighborhoods to process: one independent
+    fit is performed for each center.
+     - `centers` is an array of shape `(M, D)`. `M` does not need to match the size of the point cloud.
+     - `radii` is a 1D array of shape `(M,)`, or of shape `(1,)` to use the same radius for every center. A plain
+       python scalar is not accepted: use `np.array([r])`.
+     - `nf` is the weighting scheme, among the `pyponca.Filters` listed below.
+     - `normals` is an array of shape `(M, D)` holding one normal per center. It is only used by the CNC methods,
+       see below.
+
+    | Filter                            | C++ equivalent                                                 |
+    |-----------------------------------|----------------------------------------------------------------|
+    | `Filters.SMOOTH_WEIGHT` (default) | Ponca::DistWeightFilter with a Ponca::SmoothWeightKernel       |
+    | `Filters.CONSTANT_WEIGHT`         | Ponca::DistWeightFilter with a Ponca::ConstantWeightKernel     |
+    | `Filters.NO_WEIGHT`               | Ponca::NoWeightFilter                                          |
+
+    `SMOOTH_WEIGHT` and `CONSTANT_WEIGHT` ignore points outside of the ball and express positions relative to the
+    center. `NO_WEIGHT` gives a weight of \f$1\f$ to every point it is given and keeps global coordinates: with a raw
+    `PointCloud`, all the points of the cloud are then used, while with a `KDTree` only the points within the radius
+    are.
+
+    CNC methods ignore `nf` and always use the equivalent of `CONSTANT_WEIGHT`. They also require `normals`, the
+    expected surface normal at each center, which their curvature estimation relies on. Every other method ignores
+    `normals`.
+
+    \subsubsection pyponca_manual_computations Computations
+
+    `addComputation(id, input)` requests the extraction of a quantity, identified by a value of `pyponca.Computation`,
+    after each fit. In the following, `M` is the number of filter centers and `D` the dimension of the point cloud.
+
+    | Computation                 | Input      | Output shape     | Content                                                                  |
+    |-----------------------------|------------|------------------|--------------------------------------------------------------------------|
+    | `NONE`                      | None       | `(M, 0)`         | Nothing, only performs the fits                                          |
+    | `MEAN_POSITION`             | None       | `(M, D)`         | Weighted barycenter of the neighborhood                                  |
+    | `MEAN_NORMAL`               | None       | `(M, D)`         | Weighted mean normal of the neighborhood                                 |
+    | `POTENTIAL`                 | Optional   | `(M,)`           | Value of the fitted scalar field                                         |
+    | `PRIMITIVE_GRADIENT`        | Optional   | `(M, D)`         | Gradient of the fitted scalar field (i.e. non normalized normal)         |
+    | `PROJECTION`                | Required   | `(M, D)`         | Projection of the input point onto the fitted primitive                  |
+    | `ALGEBRAIC_SPHERE`          | None       | `(M, 2 + D)`     | Radius, Pratt norm, then center of the fitted sphere                     |
+    | `GLS`                       | None       | `(M, 2 + D)`     | GLS parameters \f$\tau\f$, \f$\kappa\f$, then \f$\eta\f$                  |
+    | `GLS_NORMALIZED`            | None       | `(M, 2 + D)`     | Scale-normalized GLS parameters \f$\tau\f$, \f$\kappa\f$, then \f$\eta\f$ |
+    | `PRINCIPAL_CURVATURE`       | None       | `(M, 3 + 2D)`    | \f$k_{min}\f$, \f$k_{max}\f$, Gaussian curvature, then the directions of \f$k_{min}\f$ and \f$k_{max}\f$ |
+    | `QUADRATIC_HEIGHTFIELD_MAP` | Required   | `(M,)`           | Height of the fitted height field at the input \f$(u, v)\f$ coordinates  |
+
+    Not every computation is available for every method: for instance, `ALGEBRAIC_SPHERE` requires a sphere fit, and
+    `PRINCIPAL_CURVATURE` requires a curvature estimator (`ASO`, CNC methods, ...). Requesting an invalid combination
+    raises a `RuntimeError` (or a `ValueError` when the input is invalid) when `compute` is called. Refer to
+    \ref fittingreference_outputandcapabilities to know which capabilities each method provides.
+
+    For computations taking an input, the input must have the same dtype as the point cloud, and its last dimension
+    must be `D` (or `2` for `QUADRATIC_HEIGHTFIELD_MAP`). Several layouts are accepted:
+     - a single vector of shape `(D,)`: the same input is used for every fit, the output shape is as above,
+     - an array of shape `(M, D)`: the `i`-th row is used for the `i`-th fit, the output shape is as above,
+     - an array of shape `(M, K, D)`: `K` inputs are evaluated for each fit, and an extra dimension `K` is added to the
+       output, e.g. `(M, K, D)` for `PROJECTION` or `(M, K)` for `POTENTIAL`. When `K` is 1, this extra dimension is
+       dropped and the output shape is the same as for an `(M, D)` input.
+
+    When no input is given to `POTENTIAL` or `PRIMITIVE_GRADIENT`, the quantity is evaluated at the filter center.
+
+    \subsubsection pyponca_manual_results Results
+
+    `compute` returns a `ComputationResults` object with two attributes:
+     - `results`: a list containing one array per call to `addComputation`, in the same order,
+     - `fitStatus`: an `int32` array of shape `(M,)` holding the status of each fit, as a `pyponca.FitResult` value.
+
+    All arrays are DLPack-compatible and allocated on the same device as the point cloud:
+
+    \snippet pyponca_user_manual.py results
+
+    `pyponca.FitResult` is an integer enumeration mirroring Ponca::FIT_RESULT, so its values compare directly with
+    `fitStatus` (and `pyponca.FitResult(int(s))` gives the name of a status `s`):
+
+    | Status                | Meaning                                                               |
+    |-----------------------|-----------------------------------------------------------------------|
+    | `FitResult.STABLE`    | The fit is stable and ready to use                                    |
+    | `FitResult.UNSTABLE`  | The fit is ready to use, but considered unstable (e.g. few neighbors) |
+    | `FitResult.UNDEFINED` | The fit failed (e.g. no neighbor): its results are not meaningful     |
+
+    Results are written for every fit, whatever its status. Values computed from an `UNDEFINED` fit are not
+    meaningful (they can be `NaN`, or arbitrary), so filter them out using `fitStatus`:
+
+    \snippet pyponca_user_manual.py fit_status
+
+    \subsubsection pyponca_manual_errors Errors
+
+    The main errors raised by the binding are listed below. The arguments of a compute object are only checked when
+    `compute` is called.
+     - `NotImplementedError`: no specialization exists for the given data (unsupported dtype or dimension, or method
+       not available in this dimension),
+     - `TypeError`: an array does not match the expected dtype or shape of the selected specialization,
+     - `RuntimeError`: invalid computation for the method, missing call to `addComputation`, or device mismatch
+       between the point cloud and the other arrays,
+     - `ValueError`: invalid neighborhoods (mismatching shapes or devices between `centers`, `radii` and `normals`,
+       or missing `normals` for a CNC method), or invalid input for a computation (missing input for `PROJECTION`,
+       unexpected input for `MEAN_POSITION`, ...).
+
+    \section pyponca_dev Development documentation
+
+    This section is meant for developers of the binding. Its sources are located in `PyPonca/`:
+     - `binding/`: the C++ binding code, written with
+       <a href="https://nanobind.readthedocs.io/" target="_blank">nanobind</a>. `Common/` holds the point cloud and
+       the mangling functions, `Fitting/` the compute objects and computations, and `SpatialPartitioning/` the
+       KD-tree,
+     - `pyponca/`: the Python package, which dispatches calls to the C++ module `pyponca._pyponca`,
+     - `tests/`: the test suites, see \ref pyponca_tests.
+
+    `PyPonca/CMakeLists.txt` builds the `_pyponca` extension module, and is enabled by the `PONCA_CONFIGURE_PYPONCA`
+    option of the main CMake project. `PyPonca/pyproject.toml` builds this project with scikit-build-core when
+    running `pip install`.
+
+    \subsection pyponca_why Why a different API?
+
+    In C++, a compute object is fitted once, then queried for any quantity its capabilities provide:
+
+    \code{.cpp}
+        Fit fit;
+        fit.setNeighborFilter({location, radius});
+        fit.compute(points);
+
+        // Query the fit, knowing its capabilities
+        VectorType projection = fit.project(query);
+    \endcode
+
+    In Python, every neighborhood and every quantity to extract is described before the computation:
+
+    \code{.py}
+        fit = pyponca.Fit()
+        fit.setNeighborFilter(locations, radii)  # All the neighborhoods at once
+        fit.addComputation(id, input)            # What to extract from each fit
+        fit.addComputation(id, input)
+        output = fit.compute(points)             # Performs every fit
+    \endcode
+
+    This API keeps the loops on the C++ side. Iterating over the point cloud in Python, one fit at a time, would be
+    slow and cumbersome to parallelize. Users therefore give all the filter centers and radii at once.
+
+    Reproducing the C++ pattern on top of this is possible (and was tried), but leaves three options, each with a major
+    drawback:
+     - keep a copy of every fitted object, and extract the results from them afterwards. Memory usage is high, and
+       most of the benefits of parallelization are lost: each extraction pays again the overhead of creating threads
+       (or launching CUDA kernels),
+     - discard the fitted objects, in which case every extraction requires fitting them again,
+     - let users provide a function (e.g. a lambda) applied to each fitted object. Calling a Python function from C++
+       for every fit is slow, as each call goes back and forth between Python and C++, and is not possible on CUDA
+       devices. Avoiding this would require compiling user functions just in time along with Ponca's custom classes, 
+       which extends beyond the scope of the library.
+
+    Describing the computations before calling `compute` reconciles time and memory performance: each fit is
+    performed once, its results are extracted right away, then the fitted object is discarded. The price is a loss of
+    control: users are restricted to the operations listed in `pyponca.Computation` (see \ref pyponca_new_compute to
+    add one). For the same reason, `compute` returns the status of each fit along with the results: once the fitted
+    objects are discarded, it is the only way to know which results are valid.
+
+    \subsection pyponca_mangling Name mangling
+
+    Ponca relies on templates to provide generic yet efficient code. Templates are resolved at compile time, which is
+    not directly compatible with Python: the binding must instantiate and expose every specialization that should be
+    available. This is especially challenging in Ponca because the point type is itself a template parameter: every
+    class templated on a point would need a different name for each scalar type and dimension, and users would have
+    to pick a different class depending on their data.
+
+    Instead, the binding relies on name mangling and on a dispatcher written in Python:
+     - in C++, every specialization is registered in `pyponca._pyponca` under a unique mangled name, built from the
+       name of the algorithm (e.g. `APSS`) and from its template parameters (e.g. a 3D `float` point gives `3f`),
+     - in `pyponca/__init__.py`, a Python class is created for every algorithm listed in `pyponca.ComputeObjectList`.
+       It records the calls to `setNeighborFilter` and `addComputation`. Once the type of the data is known, that is
+       when `compute` is called, it computes the mangled name of the matching C++ class, instantiates it, replays the
+       recorded calls and runs the computation. `pyponca.PointCloud` and `pyponca.KDTree` are dispatched the same way,
+       from the arrays they are built on.
+
+    The mangling rules below are implemented on both sides. To keep them consistent, use the functions of
+    `binding/Common/Mangling.h` (e.g. `MangleArray`) on the C++ side, and `pyponca._pyponca.internal._mangleArray` on
+    the Python side.
+
+    \subsubsection pyponca_mangling_arrays Arrays and points
+
+    The first dimension of an array is never encoded. The following dimensions are encoded as the list of their sizes,
+    separated by underscores: an array of shape `(12, 8, 4)` gives `8_4`. The scalar type is then appended, using the
+    first letter of the C++ type: `f` for `float`, `d` for `double`, and `unknown` for any other type. A `float` point
+    cloud of shape `(N, 3)` is therefore encoded as `3f`.
+
+    On the C++ side, the same name is computed from the point type by `ManglePoint` (dimension, then scalar type). It
+    is followed by a suffix describing the kind of point. Only one kind is bound for now, points with positions and
+    normals (`PointNormalBinding`), whose suffix is `PN`. The point cloud and KD-tree classes are named after it, e.g.
+    `PointCloud3fPN` and `KdTree3fPN`.
+
+    \subsubsection pyponca_mangling_filters Filters
+
+    Filter names are chosen by hand in `binding/Fitting/Filters.h`, using short names so that class names remain
+    readable: `SW` (smooth weight), `CW` (constant weight) and `NW` (no weight). They are the values of
+    `pyponca.Filters`.
+
+    \subsubsection pyponca_mangling_co Compute objects
+
+    The name of a compute object is the concatenation of the name of the method, of the array mangling, of the point
+    type mangling, then of the filter mangling. For instance, `MongePatchRestrictedQuadratic3fPNCW` is the
+    `MongePatchRestrictedQuadratic` method for 3D `float` point clouds with normals, using the constant weight filter.
+
+    Compute objects whose type does not depend on the neighbor filter, such as the CNC methods, are registered once,
+    without filter suffix (e.g. `CNCUniform3fPN`). The dispatcher falls back to this name when no class with the
+    filter suffix exists.
+
+    \subsection pyponca_new_compute Adding compute objects and computations
+
+    \subsubsection pyponca_new_compute_object Compute objects
+
+    Compute objects are not listed by hand: `RegisterComputeObjects` (`binding/Fitting/RegisterFitting.cpp`)
+    registers every entry of the Ponca::Factory for each scalar type (`float`, `double`), each dimension (2 and 3) and
+    each filter of `binding/Fitting/Filters.h`. 2D point clouds get the generic list of the factory, 3D point clouds
+    the 3D list with space derivatives (see `Ponca/src/Fitting/Factory/factorylist.h`). Adding an entry to these lists
+    is therefore enough to make a method available in Python. The binding expects a compute object to:
+     - be default constructible, and provide `init()`, `compute(begin, end)` and `computeWithIds(ids, points)`, the
+       last two returning a Ponca::FIT_RESULT,
+     - provide `setNeighborFilter(nf)` and `getNeighborFilter()`: when computing on a KD-tree, the binding collects
+       the neighbors using the center (`frame().center()`) and the radius (`evalScale()`) of the filter,
+     - define a `NeighborFilter` type, constructible either from a center and a radius, or from a center, a radius
+       and a normal. In the latter case, `setNeighborFilter` requires `normals`.
+
+    If the type of the new object does not depend on the neighbor filter, add its name to `nonTemplatedFilterTypes`
+    in `RegisterComputeObjects`, so that it is registered once, without filter suffix. The computations available for
+    an object are deduced from its capabilities (Ponca::ProvidesImplicitPrimitive, Ponca::ProvidesPrincipalCurvatures,
+    ...), so nothing else needs to change.
+
+    \subsubsection pyponca_new_computation Computations
+
+    Computations are defined in `binding/Fitting/FittingList.h`. Adding one takes four steps:
+     1. Add a value to the `Computation` enumeration, and register it under its Python name in `RegisterComputations`.
+     2. In `ComputeOutputDimension`, add a case returning the shape of the output array, which is allocated before the
+        fits run. Guard it with the capability it requires (`if constexpr (Ponca::ProvidesX<CO>)`): when the guard
+        fails, the function raises an error for this invalid combination. Check the input there too, e.g. throw a
+        `std::invalid_argument` (a `ValueError` in Python) when a required input is missing. Build the shape with
+        `ComputeVectorDim<Point, T>(input)` for an output of type `T` (a scalar or a fixed-size Eigen matrix), which
+        handles every input layout described in \ref pyponca_manual_computations, or with
+        `ComputeVectorDimGroup<Point, T1, T2, ...>(input)` to concatenate several outputs on the last dimension, as
+        `PRINCIPAL_CURVATURE` does. The first dimension is a placeholder, replaced by the number of filter centers.
+     3. In `ExtractComputation`, add a case with the same guard, writing the results of the `i`-th fit. Without input,
+        write at `out.data + i * out.stride[0]` (shifted by `k * out.stride[1]` for the `k`-th value of a group) with
+        `Write`, which accepts scalars and Eigen matrices. With an input, call
+        `RunMethod<Size, CO>(object, f, in, out, i)`, which handles the input layouts. `Size` is the size of one input,
+        and `f` is created with `MAKE_VECTOR_COMPUTE_FUNCTION(method)` for a vector input, or with
+        `MAKE_COMPUTE_FUNCTION_1(method)` and `MAKE_COMPUTE_FUNCTION_2(method)` for one or two scalar inputs.
+        `ExtractComputation` must stay compatible with every device the binding may run on.
+     4. Document the computation in \ref pyponca_manual_computations, and add it to the test generator
+        (see \ref pyponca_tests).
+
+    \subsection pyponca_tests Tests
+
+    The binding is tested by two Python test suites, located in `PyPonca/tests/`:
+     - `test_api.py` checks the API rather than the values it returns: mangling and dispatch of point clouds, KD-trees
+       and compute objects, construction errors, and calls to `compute` for every compute object, point cloud type and
+       filter,
+     - `test_accuracy.py` checks that the binding returns the same results as the C++ API. A C++ program
+       (`tests/cpp/test3d.cpp`, target `generate_pytests3d`) samples a noisy sphere and random analysis locations, runs
+       every method of the Ponca::Factory providing a tested capability through the C++ API, and writes the inputs,
+       the status of each fit and its results to `test_cases.json`. The Python test reads this file (its path is given
+       by the `TEST_CASES` environment variable), replays every case with %PyPonca on a point cloud, on a strided view
+       of it, and on dense and sparse KD-trees, then checks that the fit statuses are identical and that the results
+       of `STABLE` fits match (absolute tolerance \f$10^{-8}\f$).
+
+    CNC methods are skipped by `test_accuracy.py`, as their triangle sampling is random. Also note that the test data
+    are generated with `std::rand()`, whose sequence differs between platforms: each platform tests a different point
+    cloud.
+
+    The tests are registered in CTest with the `pyponca` label when Ponca is configured with
+    `PONCA_CONFIGURE_TESTS=ON`. They import the installed `pyponca` module, so the binding must be installed in the
+    Python environment found by CMake. From the root of the repository:
+
+    \code{.sh}
+        cd PyPonca
+        CMAKE_ARGS="-DPONCA_CONFIGURE_TESTS=ON" pip install . --config-settings=build-dir=build
+        cd build
+        ctest -L pyponca --output-on-failure
+    \endcode
+
+   */
+}
