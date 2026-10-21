@@ -78,15 +78,13 @@ inline std::vector<size_t> mergeShapes(const std::vector<std::vector<size_t>>& s
         throw std::invalid_argument("merge_shapes: no shapes given");
 
     size_t total = 0;
-    for (size_t i = 0; i < shapes.size(); ++i) 
+    for (size_t i = 0; i < shapes.size(); ++i)
     {
         const auto& s = shapes[i];
 
         if (s.size() != 1 && s.size() != 2)
-            throw std::invalid_argument(
-                "mergeShapes: argument " + std::to_string(i) +
-                " has rank " + std::to_string(s.size()) +
-                " (expected {N} or {N, D})");
+            throw std::invalid_argument("mergeShapes: argument " + std::to_string(i) + " has rank " +
+                                        std::to_string(s.size()) + " (expected {N} or {N, D})");
 
         total += (s.size() == 1) ? 1 : s[1];
     }
@@ -95,16 +93,16 @@ inline std::vector<size_t> mergeShapes(const std::vector<std::vector<size_t>>& s
 
 /**
  * \brief Compute the vector dim of combined outputs
- * 
- * The goal is to return the expected shape for a group of output that should be 
- * merged together. 
- * 
- * 
+ *
+ * The goal is to return the expected shape for a group of output that should be
+ * merged together.
+ *
+ *
  */
 template <typename Point, typename... _Results>
 inline std::vector<size_t> ComputeVectorDimGroup(const nb::ndarray<>& array)
 {
-   return mergeShapes(std::vector<std::vector<size_t>>{ ComputeVectorDim<Point, _Results>(array)... });
+    return mergeShapes(std::vector<std::vector<size_t>>{ComputeVectorDim<Point, _Results>(array)...});
 }
 
 /**
@@ -138,34 +136,29 @@ PONCA_MULTIARCH void Write(Scalar* out, const T& object, int64_t strideX = 1, in
  * \brief Alias to a lambda function whith an input vector
  */
 #define MAKE_VECTOR_COMPUTE_FUNCTION(name)                    \
-    [] PONCA_MULTIARCH (CO& object, typename CO::Scalar* in) { \
+    [] PONCA_MULTIARCH(CO& object, typename CO::Scalar* in) { \
         using Map = Eigen::Map<typename CO::VectorType>;      \
         return object.name(Map(in));                          \
     }
 
-/** 
- * Helper functions for split params. We could bridge them with 
- * macros tricks or variadic functions, but this is not worth 
+/**
+ * Helper functions for split params. We could bridge them with
+ * macros tricks or variadic functions, but this is not worth
  * for now !
  */
 
 /**
  * \brief Alias to a lambda function whith a single scalar param
  */
-#define MAKE_COMPUTE_FUNCTION_1(name)                         \
-    [] PONCA_MULTIARCH (CO& object, typename CO::Scalar* in) { \
-        return object.name(in[0]);                            \
-    }
+#define MAKE_COMPUTE_FUNCTION_1(name) \
+    [] PONCA_MULTIARCH(CO& object, typename CO::Scalar* in) { return object.name(in[0]); }
 
 /**
  * \brief Alias to a lambda function whith a single scalar param
  */
-#define MAKE_COMPUTE_FUNCTION_2(name)                         \
-    [] PONCA_MULTIARCH (CO& object, typename CO::Scalar* in) { \
-        return object.name(in[0], in[1]);                     \
-    }
+#define MAKE_COMPUTE_FUNCTION_2(name) \
+    [] PONCA_MULTIARCH(CO& object, typename CO::Scalar* in) { return object.name(in[0], in[1]); }
 
-    
 /**
  * \brief Helper function to run a function that takes an array of params as input
  *
@@ -176,8 +169,8 @@ PONCA_MULTIARCH void Write(Scalar* out, const T& object, int64_t strideX = 1, in
  * \param idx Current index of computation. Allows to shift out to the correct memory location.
  */
 template <size_t Expected, typename CO, typename Func, typename Scalar = typename CO::Scalar>
-PONCA_MULTIARCH void RunMethod(CO& object, Func&& f, const DeviceArrayView<Scalar>& in,
-                               DeviceArrayView<Scalar>& out, size_t idx)
+PONCA_MULTIARCH void RunMethod(CO& object, Func&& f, const DeviceArrayView<Scalar>& in, DeviceArrayView<Scalar>& out,
+                               size_t idx)
 {
     using Point = typename CO::DataPoint;
     // Note: there should be no warp divergence here as in is shared accross the same computation,
@@ -199,7 +192,7 @@ PONCA_MULTIARCH void RunMethod(CO& object, Func&& f, const DeviceArrayView<Scala
     {
         const int64_t matStrideY = (out.N > 1) ? out.stride[1] : 0;
         const int64_t matStrideX = (out.N > 2) ? out.stride[2] : 0;
-        
+
         in.Fill(data);
         Write(out.data + idx * out.stride[0], f(object, data), matStrideY, matStrideX);
     }
@@ -209,6 +202,15 @@ PONCA_MULTIARCH void RunMethod(CO& object, Func&& f, const DeviceArrayView<Scala
         const int64_t matStrideX = (out.N > 2) ? out.stride[2] : 0;
 
         in.Fill(data, idx);
+        Write(out.data + idx * out.stride[0], f(object, data), matStrideY, matStrideX);
+    }
+    else if (in.N == 3 && in.shape[0] > idx && in.shape[2] == Expected && in.shape[1] == 1)
+    {
+        // (N, 1, D) inputs: the second dimension is collapsed in the output (see ComputeVectorDim)
+        const int64_t matStrideY = (out.N > 1) ? out.stride[1] : 0;
+        const int64_t matStrideX = (out.N > 2) ? out.stride[2] : 0;
+
+        in.Fill(data, idx, 0);
         Write(out.data + idx * out.stride[0], f(object, data), matStrideY, matStrideX);
     }
     else if (in.N == 3 && in.shape[0] > idx && in.shape[2] == Expected && out.N > 1)

@@ -88,6 +88,17 @@ void WriteVector(std::ofstream& file, const std::array<Scalar, N>& v)
         file << "," << v[i];
 }
 
+void WriteArray(std::ofstream& file, const char* name, const std::vector<int>& values)
+{
+    if (values.empty())
+        return;
+
+    file << '"' << name << "\":{\"N\":" << values.size() << ",\"D\": 1,\"data\":[" << values[0];
+    for (unsigned int i = 1; i < values.size(); ++i)
+        file << ',' << values[i];
+    file << "]}";
+}
+
 template <typename Point>
 void WriteArray(std::ofstream& file, const char* name, const std::vector<typename Point::Scalar>& values)
 {
@@ -169,11 +180,15 @@ void WriteArray(std::ofstream& file, const char* name, const std::vector<Point>&
 
 template <typename Point, typename Input, typename Output>
 void WriteResult(std::ofstream& file, const char* method, const char* function, bool sign,
-                 const std::vector<Input>& inputs, const std::vector<Output>& outputs)
+                 const std::vector<int>& status, const std::vector<Input>& inputs, const std::vector<Output>& outputs)
 {
     file << "{\"method\":\"" << method << "\",";
     file << "\"function\":\"" << function << "\",";
     file << "\"signed\":" << sign << ",";
+    WriteArray(file, "status", status);
+    if (status.size())
+        file << ",";
+
     WriteArray<Point>(file, "input", inputs);
     if (inputs.size() != 0)
         file << ",";

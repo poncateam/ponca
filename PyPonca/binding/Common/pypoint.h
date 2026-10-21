@@ -124,7 +124,7 @@ struct PyPointCloud
         const Scalar* pos    = m_pos.data() + i * m_pos.stride(0);
         const Scalar* normal = m_normals.data() + i * m_normals.stride(0);
 
-        return Point(pos, m_pos.stride(1), normal, m_pos.stride(1));
+        return Point(pos, m_pos.stride(1), normal, m_normals.stride(1));
     }
 
     /**

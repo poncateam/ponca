@@ -46,8 +46,9 @@ using PyVectorVectorArray = nb::ndarray<typename Point::Scalar, nb::shape<-1, -1
 template <typename Point>
 inline typename Point::VectorType PyVectorToVector(const PyVector<Point>& vector)
 {
-    using Map = Eigen::Map<typename Point::VectorType>;
-    return Map(vector.data(), Point::Dim, 1);
+    using Stride = Eigen::InnerStride<Eigen::Dynamic>;
+    using Map    = Eigen::Map<const typename Point::VectorType, Eigen::Unaligned, Stride>;
+    return Map(vector.data(), Stride(vector.stride(0)));
 }
 
 /**
@@ -79,8 +80,9 @@ inline typename Point::Scalar PyScalarArrayIndex(const PyScalarArray<Point>& arr
 template <typename Point>
 inline auto PyVectorArrayIndex(const PyVectorArray<Point>& array, unsigned int idx)
 {
-    using Map = Eigen::Map<typename Point::VectorType>;
-    return Map(array.data() + idx * array.stride(0), Point::Dim, 1);
+    using Stride = Eigen::InnerStride<Eigen::Dynamic>;
+    using Map    = Eigen::Map<const typename Point::VectorType, Eigen::Unaligned, Stride>;
+    return Map(array.data() + idx * array.stride(0), Stride(array.stride(1)));
 }
 
 /**
@@ -97,8 +99,9 @@ inline auto PyVectorArrayIndex(const PyVectorArray<Point>& array, unsigned int i
 template <typename Point>
 inline auto PyVectorVectorArrayIndex(const PyVectorVectorArray<Point>& array, unsigned int i, unsigned int j)
 {
-    using Map = Eigen::Map<typename Point::VectorType>;
-    return Map(array.data() + i * array.stride(0) + j * array.stride(1), Point::Dim, 1);
+    using Stride = Eigen::InnerStride<Eigen::Dynamic>;
+    using Map    = Eigen::Map<const typename Point::VectorType, Eigen::Unaligned, Stride>;
+    return Map(array.data() + i * array.stride(0) + j * array.stride(1), Stride(array.stride(2)));
 }
 
 /**

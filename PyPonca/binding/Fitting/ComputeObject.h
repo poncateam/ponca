@@ -30,6 +30,7 @@ struct ComputationDescriptor
      */
     nb::ndarray<Scalar> inputData;
 };
+
 /**
  * \brief Describes the result of a computation
  *
@@ -37,10 +38,12 @@ struct ComputationDescriptor
  * Additionnal information can be infered by the user through
  * the order in which this will be returned.
  */
+
 template <typename Scalar>
-struct ComputationResult
+struct ComputationResults
 {
-    nb::ndarray<Scalar, nb::array_api> resultData;
+    nb::ndarray<int, nb::array_api> fitStatus;
+    std::vector<nb::ndarray<Scalar, nb::array_api>> results;
 };
 
 /**
@@ -68,19 +71,42 @@ public:
      * \param _pos The position array
      * \param _t The scalar (radius) array
      */
-    void setNeighborFilter(const PyVectorArray<Point>& _pos, const PyScalarArray<Point>& _t)
+    void setNeighborFilter(const PyVectorArray<Point>& _pos, const PyScalarArray<Point>& _t,
+                           const PyVectorArray<Point>& _normals)
     {
         if (_pos.device_type() != _t.device_type())
-            throw std::runtime_error("Incompatible devices between pos and t.");
+            throw std::invalid_argument("Incompatible devices between pos and radii.");
 
         if (_pos.ndim() != 2)
-            throw std::runtime_error("Only 2D array are supported for filter centers");
+            throw std::invalid_argument("Only 2D array are supported for filter centers");
 
         if (_t.ndim() != 1)
-            throw std::runtime_error("Only scalar array are supported for filter radii");
+            throw std::invalid_argument("Only scalar array are supported for filter radii");
+
+        if (_t.shape(0) != _pos.shape(0) && _t.shape(0) != 1)
+            throw std::invalid_argument("Incompatible shapes between filter pos and radii");
+
+        if constexpr (RequiresFilterNormals())
+        {
+            if (_normals.data() == nullptr)
+                throw std::invalid_argument("This compute object requires normals.");
+
+            if (_normals.device_type() != _pos.device_type())
+                throw std::invalid_argument("Incompatible devices between pos and normals.");
+
+            if (_normals.ndim() != 2)
+                throw std::invalid_argument("Only 2D array are supported for filter normals");
+
+            if (_normals.shape(0) != _pos.shape(0))
+                throw std::invalid_argument("Shape mismatch between pos and normals");
+
+            if (_normals.shape(1) != _pos.shape(1))
+                throw std::invalid_argument("Shape mismatch between pos and normals");
+        }
 
         m_filterCenters = _pos;
         m_filterRadius  = PyScalarArray<Point>(broadcastArrayTo<Scalar, 1>(_t, {_pos.shape(0)}));
+        m_filterNormals = _normals;
 
         m_hasFilter = true;
     }
@@ -116,7 +142,7 @@ public:
      * \param f Function to extract result
      */
     template <typename PointCloud, typename ComputeFunctor, typename ExtractFunc>
-    std::vector<ComputationResult<Scalar>> compute(const PointCloud& cloud, ComputeFunctor&& cf, ExtractFunc&& ef)
+    ComputationResults<Scalar> compute(const PointCloud& cloud, ComputeFunctor&& cf, ExtractFunc&& ef)
     {
         // Verify integrity of data
         if (m_descriptors.size() == 0)
@@ -154,7 +180,31 @@ public:
         return {};
     }
 
+    static constexpr bool RequiresFilterNormals()
+    {
+        using NF = typename ComputeObject::NeighborFilter;
+        return requires { NF(VectorType{}, Scalar{}, VectorType{}); };
+    }
+
 private:
+    /**
+     * \brief Creates a filter specialized for
+     */
+    auto MakeFilter(size_t i) const
+    {
+        using NF                 = typename ComputeObject::NeighborFilter;
+        const auto queryLocation = PyVectorArrayIndex<Point>(m_filterCenters, i);
+        const auto queryRadius   = PyScalarArrayIndex<Point>(m_filterRadius, i);
+
+        if constexpr (RequiresFilterNormals())
+        {
+            const auto queryNormal = PyVectorArrayIndex<Point>(m_filterNormals, i);
+            return NF(queryLocation, queryRadius, queryNormal);
+        }
+        else
+            return NF(queryLocation, queryRadius);
+    }
+
     /**
      * \brief Perform the computation on the CPU
      *
@@ -164,8 +214,7 @@ private:
      * - Co& co: the compute cobject. Do not forget the reference !!!
      * - const Cloud& cloud: The data representation of the point cloud
      * - unsigned int i: The index of the filter
-     * - Vector loc: The filter location
-     * - Scalar t: The filter radius
+     * - Co::Filter nf: The neighbor filter
      *
      * A function is given in order to extract results once the main compute is performed.
      * The expected signature is:
@@ -181,40 +230,39 @@ private:
      * \param ef Function to extract result
      */
     template <typename PointCloud, typename ComputeFunctor, typename ExtractFunc>
-    std::vector<ComputationResult<Scalar>> computeCPU(const PointCloud& cloud, ComputeFunctor&& cf, ExtractFunc&& ef)
+    ComputationResults<Scalar> computeCPU(const PointCloud& cloud, ComputeFunctor&& cf, ExtractFunc&& ef)
     {
-        std::vector<ComputationResult<Scalar>> result;
+        ComputationResults<Scalar> results;
+
+        DeviceArrayView<int> statusView;
         std::vector<DeviceArrayView<Scalar>> inputsView;
         std::vector<DeviceArrayView<Scalar>> resultView;
 
-        // Prepare array views for computation
+        results.fitStatus = CreateDeviceArray<int>({m_filterCenters.shape(0)}, cloud.device_type());
+        statusView        = nb::ndarray<int>(results.fitStatus);
         for (size_t i = 0; i < m_descriptors.size(); ++i)
         {
-            ComputationResult<Scalar> computationResult;
-            computationResult.resultData = CreateDeviceArray<Scalar>(m_descriptors[i].outputDims, cloud.device_type());
+            results.results.emplace_back(CreateDeviceArray<Scalar>(m_descriptors[i].outputDims, cloud.device_type()));
 
             inputsView.emplace_back(m_descriptors[i].inputData);
-            resultView.emplace_back(nb::ndarray<Scalar>(computationResult.resultData));
-
-            result.push_back(computationResult);
+            resultView.emplace_back(nb::ndarray<Scalar>(results.results.back()));
         }
 
         for (unsigned int i = 0; i < m_filterCenters.shape(0); ++i)
         {
             ComputeObject computeObject;
 
-            const auto queryLocation = PyVectorArrayIndex<Point>(m_filterCenters, i);
-            const auto queryRadius   = PyScalarArrayIndex<Point>(m_filterRadius, i);
-
             computeObject.init();
-            computeObject.setNeighborFilter({queryLocation, queryRadius});
-            cf(computeObject, cloud, i, queryLocation, queryRadius);
+            computeObject.setNeighborFilter(MakeFilter(i));
+            statusView.data[i] = static_cast<int>(cf(computeObject, cloud, i));
 
+            // We do not check for result. The cost of running this loop is low and avoid
+            // unnecessary if.
             for (size_t j = 0; j < m_descriptors.size(); ++j)
                 ef(m_descriptors[j].id, computeObject, i, inputsView[j], resultView[j]);
         }
 
-        return result;
+        return results;
     }
 
 private:
@@ -236,5 +284,9 @@ private:
      * Filers radiuses
      */
     PyScalarArray<Point> m_filterRadius;
+    /**
+     * Filters normals
+     */
+    PyVectorArray<Point> m_filterNormals;
 };
 

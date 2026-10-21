@@ -15,13 +15,32 @@ using Scalar     = typename Point::Scalar;
 using VectorType = typename Point::VectorType;
 
 void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& points,
-                             const std::vector<VectorType> analysisLocations, const std::vector<Scalar> analysisScale)
+                             const std::vector<VectorType> analysisLocations, const std::vector<Scalar> analysisScale,
+                             const std::vector<VectorType> analysisNormals)
 {
+    auto MakeFilter = [&](auto co, unsigned int i) {
+        using CO = decltype(co);
+        using NF = typename CO::NeighborFilter;
+
+        auto loc  = analysisLocations[i];
+        auto rad  = analysisScale[i];
+        auto norm = analysisNormals[i];
+
+        if constexpr (requires { NF(VectorType{}, Scalar{}, VectorType{}); })
+        {
+            return NF(loc, rad, norm);
+        }
+        return NF(loc, rad);
+    };
+
     // Write input
     WriteArray<Point, true>(file, "pointcloud", points);
     file << ",";
 
     WriteArray<Point>(file, "analysisLocation", analysisLocations);
+    file << ",";
+
+    WriteArray<Point>(file, "analysisNormals", analysisNormals);
     file << ",";
 
     WriteArray<Point>(file, "analysisScale", analysisScale);
@@ -35,13 +54,15 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
         Factory::Filter<Ponca::ImplicitPrimitiveProvider>().foreach ([&](auto& x) {
             std::vector<Scalar> potentials;
             std::vector<VectorType> gradients;
+            std::vector<int> status;
             for (unsigned int i = 0; i < analysisLocations.size(); ++i)
             {
                 // Copy to avoid sharing between invocations
                 auto fit = x.object;
                 fit.init();
-                fit.setNeighborFilter({analysisLocations[i], analysisScale[i]});
-                fit.compute(points);
+                fit.setNeighborFilter(MakeFilter(fit, i));
+                status.push_back(static_cast<int>(fit.compute(points)));
+                ;
 
                 potentials.push_back(fit.potential());
                 // With the cast to be consistent with pyponca
@@ -53,22 +74,23 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
             else
                 file << ",";
 
-            WriteResult<Point>(file, x.name, "POTENTIAL", x.object.isSigned(), none, potentials);
+            WriteResult<Point>(file, x.name, "POTENTIAL", x.object.isSigned(), status, none, potentials);
             file << ",";
-            WriteResult<Point>(file, x.name, "PRIMITIVE_GRADIENT", x.object.isSigned(), none, gradients);
+            WriteResult<Point>(file, x.name, "PRIMITIVE_GRADIENT", x.object.isSigned(), status, none, gradients);
         });
-
 
         Factory::Filter<Ponca::ProjectionOperatorProvider>().foreach ([&](auto& x) {
             std::vector<VectorType> results;
+            std::vector<int> status;
             for (unsigned int i = 0; i < analysisLocations.size(); ++i)
             {
                 // Copy to avoid sharing between invocations
                 auto fit = x.object;
                 fit.init();
-                fit.setNeighborFilter({analysisLocations[i], analysisScale[i]});
-                fit.compute(points);
-                
+                fit.setNeighborFilter(MakeFilter(fit, i));
+                status.push_back(static_cast<int>(fit.compute(points)));
+                ;
+
                 results.push_back(fit.project(analysisLocations[i]));
             }
 
@@ -77,24 +99,26 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
             else
                 file << ",";
 
-            WriteResult<Point>(file, x.name, "PROJECTION", false, analysisLocations, results);
+            WriteResult<Point>(file, x.name, "PROJECTION", false, status, analysisLocations, results);
         });
 
         Factory::Filter<Ponca::PrincipalCurvaturesProvider>().foreach ([&](auto& x) {
             std::vector<std::array<Scalar, 3 + 2 * Point::Dim>> data;
+            std::vector<int> status;
             for (unsigned int i = 0; i < analysisLocations.size(); ++i)
             {
                 // Copy to avoid sharing between invocations
                 auto fit = x.object;
                 fit.init();
-                fit.setNeighborFilter({analysisLocations[i], analysisScale[i]});
-                fit.compute(points);
-                
+                fit.setNeighborFilter(MakeFilter(fit, i));
+                status.push_back(static_cast<int>(fit.compute(points)));
+                ;
+
                 data.emplace_back();
                 data.back()[0] = fit.kmin();
                 data.back()[1] = fit.kmax();
                 data.back()[2] = fit.GaussianCurvature();
-                
+
                 auto mindir = fit.kminDirection();
                 auto maxdir = fit.kmaxDirection();
 
@@ -109,19 +133,21 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
             else
                 file << ",";
 
-            WriteResult<Point>(file, x.name, "PRINCIPAL_CURVATURE", false, none, data);
+            WriteResult<Point>(file, x.name, "PRINCIPAL_CURVATURE", false, status, none, data);
         });
 
         Factory::Filter<Ponca::AlgebraicSphereProvider>().foreach ([&](auto& x) {
             std::vector<std::array<Scalar, 2 + Point::Dim>> data;
+            std::vector<int> status;
             for (unsigned int i = 0; i < analysisLocations.size(); ++i)
             {
                 // Copy to avoid sharing between invocations
                 auto fit = x.object;
                 fit.init();
-                fit.setNeighborFilter({analysisLocations[i], analysisScale[i]});
-                fit.compute(points);
-                
+                fit.setNeighborFilter(MakeFilter(fit, i));
+                status.push_back(static_cast<int>(fit.compute(points)));
+                ;
+
                 data.emplace_back();
                 data.back()[0] = fit.radius();
                 data.back()[1] = fit.prattNorm();
@@ -136,34 +162,36 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
             else
                 file << ",";
 
-            WriteResult<Point>(file, x.name, "ALGEBRAIC_SPHERE", false, none, data);
+            WriteResult<Point>(file, x.name, "ALGEBRAIC_SPHERE", false, status, none, data);
         });
 
         Factory::Filter<Ponca::GLSParamProvider>().foreach ([&](auto& x) {
             std::vector<std::array<Scalar, 2 + Point::Dim>> data;
             std::vector<std::array<Scalar, 2 + Point::Dim>> data_normalized;
-            
+            std::vector<int> status;
+
             for (unsigned int i = 0; i < analysisLocations.size(); ++i)
             {
                 // Copy to avoid sharing between invocations
                 auto fit = x.object;
                 fit.init();
-                fit.setNeighborFilter({analysisLocations[i], analysisScale[i]});
-                fit.compute(points);
-                
+                fit.setNeighborFilter(MakeFilter(fit, i));
+                status.push_back(static_cast<int>(fit.compute(points)));
+                ;
+
                 data.emplace_back();
                 data.back()[0] = fit.tau();
                 data.back()[1] = fit.kappa();
-                
+
                 data_normalized.emplace_back();
                 data_normalized.back()[0] = fit.tau_normalized();
                 data_normalized.back()[1] = fit.kappa_normalized();
 
-                auto eta = fit.eta();
+                auto eta            = fit.eta();
                 auto eta_normalized = fit.eta_normalized();
                 for (size_t i = 0; i < Point::Dim; ++i)
                 {
-                    data.back()[2 + i] = eta(i);
+                    data.back()[2 + i]            = eta(i);
                     data_normalized.back()[2 + i] = eta_normalized(i);
                 }
             }
@@ -173,9 +201,9 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
             else
                 file << ",";
 
-            WriteResult<Point>(file, x.name, "GLS", false, none, data);
+            WriteResult<Point>(file, x.name, "GLS", false, status, none, data);
             file << ",";
-            WriteResult<Point>(file, x.name, "GLS_NORMALIZED", false, none, data_normalized);
+            WriteResult<Point>(file, x.name, "GLS_NORMALIZED", false, status, none, data_normalized);
         });
     }
     file << "]";
@@ -208,11 +236,15 @@ int main(int argc, char** argv)
 
         // Assumes cloud are in [-1, 1], so the vector is also within the boundary
         std::vector<VectorType> analysisLocations(L);
+        std::vector<VectorType> analysisNormals(L);
         std::vector<Scalar> analysisScalars(L, 4 * radius / 3); // Average distance of two points sampled on a sphere
         for (unsigned int i = 0; i < L; ++i)
+        {
             analysisLocations[i] = VectorType::Random();
+            analysisNormals[i]   = VectorType::Random().normalized();
+        }
 
-        GenerateComputeTestCase(file, cloud, analysisLocations, analysisScalars);
+        GenerateComputeTestCase(file, cloud, analysisLocations, analysisScalars, analysisNormals);
     }
     file << "}";
     return 0;

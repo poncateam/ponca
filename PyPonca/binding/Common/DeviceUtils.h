@@ -207,7 +207,6 @@ struct DeviceArrayView
             out[j] = *(data + i * stride[0] + j * stride[1]);
     }
 
-
     /**
      * \brief Convert the array into a Vector
      *
@@ -222,7 +221,7 @@ struct DeviceArrayView
     {
         typename Point::VectorType out;
         for (size_t k = 0; k < shape[2]; ++k)
-            out(k) = *(data + i * stride[0] + j * stride[1] + j * stride[2]);
+            out(k) = *(data + i * stride[0] + j * stride[1] + k * stride[2]);
         return out;
     }
 
@@ -242,7 +241,7 @@ struct DeviceArrayView
     PONCA_MULTIARCH void Fill(Scalar* out, size_t i, size_t j) const
     {
         for (size_t k = 0; k < shape[2]; ++k)
-            out[k] = *(data + i * stride[0] + j * stride[1] + j * stride[2]);
+            out[k] = *(data + i * stride[0] + j * stride[1] + k * stride[2]);
     }
 
     /**

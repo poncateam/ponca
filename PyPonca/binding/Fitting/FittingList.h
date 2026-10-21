@@ -14,15 +14,15 @@
 enum class Computation
 {
     NONE,
-    MEAN_POSITION, 
+    MEAN_POSITION,
     MEAN_NORMAL,
     POTENTIAL,
-    PRIMITIVE_GRADIENT, 
+    PRIMITIVE_GRADIENT,
     PROJECTION,
     PRINCIPAL_CURVATURE,
     ALGEBRAIC_SPHERE,
-    GLS, 
-    GLS_NORMALIZED,  
+    GLS,
+    GLS_NORMALIZED,
     QUADRATIC_HEIGHTFIELD_MAP
 };
 
@@ -127,9 +127,9 @@ inline std::vector<size_t> ComputeOutputDimension(Computation id, const nb::ndar
         {
             if (array.data() != nullptr)
                 throw std::invalid_argument("ALGEBRAIC_SPHERE does not take any data as input.");
-                
+
             // Radius, Pratt Norm, center
-            return ComputeVectorDimGroup<Point, Scalar, Scalar, VectorType>(array);     
+            return ComputeVectorDimGroup<Point, Scalar, Scalar, VectorType>(array);
         }
         break;
     case Computation::GLS:
@@ -138,20 +138,20 @@ inline std::vector<size_t> ComputeOutputDimension(Computation id, const nb::ndar
         {
             if (array.data() != nullptr)
                 throw std::invalid_argument("GLS(_NORMALIZED) does not take any data as input.");
-                
+
             // tau, kappa, eta
-            return ComputeVectorDimGroup<Point, Scalar, Scalar, VectorType>(array);            
+            return ComputeVectorDimGroup<Point, Scalar, Scalar, VectorType>(array);
         }
         break;
     case Computation::QUADRATIC_HEIGHTFIELD_MAP:
-        if constexpr(Ponca::ProvidesHeightField<CO>)
+        if constexpr (Ponca::ProvidesHeightField<CO>)
         {
             if (array.data() == nullptr)
                 throw std::invalid_argument("QUADRATIC_HEIGHTFIELD_MAP requires input data.");
-            
+
             if (array.shape(array.ndim() - 1) != 2)
                 throw std::invalid_argument("QUADRATIC_HEIGHTFIELD_MAP requires 2-dimensionnal");
-                
+
             return ComputeVectorDim<Point, Scalar>(array);
         }
         break;
@@ -186,12 +186,12 @@ PONCA_MULTIARCH inline void ExtractComputation(size_t id, CO& object, size_t i, 
     // if constexprs are just here to allow code to compile. The actual guard is useless and already perfomed
     // in the ComputeOutputDimension.
     Computation computation = static_cast<Computation>(id);
-    Scalar* base = out.data + i * out.stride[0];
+    Scalar* base            = out.data + i * out.stride[0];
 
     /**
      * We do not use the paradigm "object.cast().function()" most of the time because we want this to
-     * be as closely related as the user may imagine it to be. The two calls might be different in a 
-     * few cases and this avoid inconsistencies. 
+     * be as closely related as the user may imagine it to be. The two calls might be different in a
+     * few cases and this avoid inconsistencies.
      */
     switch (computation)
     {
@@ -221,10 +221,11 @@ PONCA_MULTIARCH inline void ExtractComputation(size_t id, CO& object, size_t i, 
     case Computation::PRIMITIVE_GRADIENT:
         if constexpr (Ponca::ProvidesImplicitPrimitive<CO>)
         {
-            // TODO: Here we use the cast paradigm here because mlsFitDer somehow does not have 
-            // a primitive gradient with parameter available ; yet it passes the implicitProvider test. 
+            // TODO: Here we use the cast paradigm here because mlsFitDer somehow does not have
+            // a primitive gradient with parameter available ; yet it passes the implicitProvider test.
             if (in.data != nullptr)
-                RunMethod<Point::Dim, CO>(object, MAKE_VECTOR_COMPUTE_FUNCTION(implicitPrimitive().primitiveGradient), in, out, i);
+                RunMethod<Point::Dim, CO>(object, MAKE_VECTOR_COMPUTE_FUNCTION(implicitPrimitive().primitiveGradient),
+                                          in, out, i);
             else
                 Write(base, object.implicitPrimitive().primitiveGradient());
         }
@@ -266,11 +267,11 @@ PONCA_MULTIARCH inline void ExtractComputation(size_t id, CO& object, size_t i, 
         {
             Write(base + 0 * out.stride[1], object.tau_normalized());
             Write(base + 1 * out.stride[1], object.kappa_normalized());
-            Write(base + 2 * out.stride[1], object.eta_normalized());           
+            Write(base + 2 * out.stride[1], object.eta_normalized());
         }
         break;
     case Computation::QUADRATIC_HEIGHTFIELD_MAP:
-        if constexpr(Ponca::ProvidesHeightField<CO>)
+        if constexpr (Ponca::ProvidesHeightField<CO>)
         {
             RunMethod<2, CO>(object, MAKE_COMPUTE_FUNCTION_2(height), in, out, i);
         }

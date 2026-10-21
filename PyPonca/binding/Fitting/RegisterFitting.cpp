@@ -47,14 +47,11 @@ void addComputation(PyCo& self, Computation id, nb::ndarray<typename PyCo::Scala
  *
  * \param co The compute object
  * \param i Index into the filter list
- * \param loc Filter center
- * \param rad Filter radius
  */
 template <typename Co, typename Cloud>
-void PerformRawCloudComputation(Co& co, const Cloud& cloud, unsigned int i, typename Cloud::Point::VectorType loc,
-                                typename Cloud::Point::Scalar rad)
+Ponca::FIT_RESULT PerformRawCloudComputation(Co& co, const Cloud& cloud, unsigned int i)
 {
-    co.compute(cloud.begin(), cloud.end());
+    return co.compute(cloud.begin(), cloud.end());
 }
 
 /**
@@ -65,20 +62,23 @@ void PerformRawCloudComputation(Co& co, const Cloud& cloud, unsigned int i, type
  *
  * \param co The compute object
  * \param i Index into the filter list
- * \param loc Filter center
- * \param rad Filter radius
  */
 template <typename Co, typename PyKDTree>
-void PerformKDTreeComputation(Co& co, const PyKDTree& kdtree, unsigned int i, typename PyKDTree::Point::VectorType loc,
-                              typename PyKDTree::Point::Scalar rad)
+Ponca::FIT_RESULT PerformKDTreeComputation(Co& co, const PyKDTree& kdtree, unsigned int i)
 {
+    const auto& nf = co.getNeighborFilter();
+    auto loc       = nf.frame().center();
+    auto rad       = nf.evalScale();
+
+    Ponca::FIT_RESULT result;
     kdtree.Run([&](const auto& tree) {
         auto neighbors = tree.rangeNeighbors(loc, rad);
 
         std::vector<int> indices;
         std::copy(neighbors.begin(), neighbors.end(), std::back_inserter(indices));
-        co.computeWithIds(indices, tree.points());
+        result = co.computeWithIds(indices, tree.points());
     });
+    return result;
 }
 
 /**
@@ -153,10 +153,11 @@ void RegisterComputeObjects(nb::module_& m, std::set<std::string>& list)
                 return; // Return early to avoid registering the new type again
         }
 
-        const std::string newname = basename + PointCloud::PointName + (found ?  "" : _NF::name);
+        const std::string newname = basename + PointCloud::PointName + (found ? "" : _NF::name);
         auto pyco                 = nb::class_<PyCo>(m, newname.c_str());
         pyco.def(nb::init<>());
-        pyco.def("setNeighborFilter", &PyCo::setNeighborFilter);
+        pyco.def("setNeighborFilter", &PyCo::setNeighborFilter, nb::arg("centers"), nb::arg("radius"),
+                 nb::arg("normal").none());
         pyco.def("addComputation", &addComputation<PyCo>, nb::arg("id"), nb::arg("data").none());
         pyco.def("compute", &computeRawPointCloud<PyCo, PointCloud>);
         pyco.def("compute", &computeKDTree<PyCo, PyKDTree<PointCloud>>);
@@ -186,10 +187,11 @@ void RegisterComputeObjects(nb::module_& m, std::set<std::string>& list)
 template <typename Scalar>
 void RegisterComputationResult(nb::module_& m)
 {
-    const std::string computationResultName = "ComputationResult" + MangleType<Scalar>();
+    const std::string computationResultName = "ComputationResults" + MangleType<Scalar>();
 
-    auto result = nb::class_<ComputationResult<Scalar>>(m, computationResultName.c_str());
-    result.def_rw("data", &ComputationResult<Scalar>::resultData, nb::rv_policy::reference);
+    auto result = nb::class_<ComputationResults<Scalar>>(m, computationResultName.c_str());
+    result.def_rw("fitStatus", &ComputationResults<Scalar>::fitStatus, nb::rv_policy::reference);
+    result.def_rw("results", &ComputationResults<Scalar>::results, nb::rv_policy::reference);
 }
 
 /**
@@ -212,4 +214,12 @@ void RegisterFitting(nb::module_& m, nb::module_& internal)
     RegisterComputations(m);
 
     m.attr("ComputeObjectList") = nb::cast(computeObjectList);
+
+    // We do not bind need_other_pass or conflict found as the user has no way
+    // to act on this...
+    nb::enum_<Ponca::FIT_RESULT>(m, "FitResult", nb::is_arithmetic())
+        .value("STABLE", Ponca::FIT_RESULT::STABLE)
+        .value("UNSTABLE", Ponca::FIT_RESULT::UNSTABLE)
+        .value("UNDEFINED", Ponca::FIT_RESULT::UNDEFINED)
+        .export_values();
 }

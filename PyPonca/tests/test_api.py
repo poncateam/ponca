@@ -72,7 +72,7 @@ class TestAPI(unittest.TestCase):
                         ts = self.randomtensor((self.N), pc.dtype)
 
                         object = pyponca.__dict__[co]()
-                        object.setNeighborFilter(pc, ts, flt)
+                        object.setNeighborFilter(pc, ts, flt, pc)
                         object.addComputation(pyponca.Computation.NONE)
                         result = object.compute(pc)
                     except NotImplementedError:
@@ -92,7 +92,7 @@ class TestAPI(unittest.TestCase):
                 # Helper function to try with different data
                 def test(data):
                     obj = cls()
-                    obj.setNeighborFilter(pc, ts)
+                    obj.setNeighborFilter(pc, ts, normals = pc)
                     obj.addComputation(pyponca.Computation.NONE)
                     obj.compute(data)
 

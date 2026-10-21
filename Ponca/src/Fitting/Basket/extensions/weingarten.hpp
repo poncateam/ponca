@@ -188,6 +188,21 @@ namespace Ponca
 
     namespace internal
     {
+        template <class DataPoint, class _NFilter, typename T>
+            requires WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS
+        void WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>::init()
+        {
+            Base::init();
+
+            // Resets the solver. In loops where the object is stack-alloced,
+            // the solver may get back some old data on a new iteration...
+            // (this really happened to me)
+            // When you have a combination of STABLE / NON STABLE fits, this
+            // causes problems because the solver now has some initliazed
+            // values.
+            m_solver.computeDirect(Matrix2::Zero());
+        }
+
         ///////// WeingartenCurvatureEstimator
         template <class DataPoint, class _NFilter, typename T>
             requires WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS

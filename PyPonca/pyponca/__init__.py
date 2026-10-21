@@ -126,10 +126,10 @@ def __dispatchCompute(self, data):
     for computation in self._computationList:
         self.object.addComputation(*computation)
 
-    self.object.setNeighborFilter(self._pos, self._radius)
+    self.object.setNeighborFilter(self._pos, self._radius, self._normal)
     return self.object.compute(data.object)
 
-def __dispatchSetNeighborFilter(self, pos, radius, nf = Filters.SMOOTH_WEIGHT):
+def __dispatchSetNeighborFilter(self, pos, radius, nf = Filters.SMOOTH_WEIGHT, normals = None):
     """
         Dispatch the setNeighborFilter call. Also accept the neighbor filter
         as input
@@ -142,6 +142,7 @@ def __dispatchSetNeighborFilter(self, pos, radius, nf = Filters.SMOOTH_WEIGHT):
 
     self._pos = pos
     self._radius = radius
+    self._normal = normals
 
 
 def __dispatchAddComputation(self, id, input = None):
@@ -153,6 +154,7 @@ def __dispatchAddComputation(self, id, input = None):
 # Forward types to global module 
 ComputeObjectList = _pyponca.ComputeObjectList
 Computation = _pyponca.Computation
+FitResult = _pyponca.FitResult
 
 # Dynamically create object based on what was exposed by the binding. 
 for co in ComputeObjectList:
