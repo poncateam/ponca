@@ -49,7 +49,7 @@ class KDTree:
         Ponca kdtree structure
     """
 
-    def __init__(self, pc, isSparse = True):
+    def __init__(self, pc, isDense = True):
         self.N = 0
         self.dim = 0
         self._mangledName = "unknown"
@@ -68,7 +68,7 @@ class KDTree:
             raise NotImplementedError(f"PointCloud does not have specialization for {self._mangledName} arrays")
 
         self._cls = _pyponca.__dict__[clsname]
-        self.object = self._cls(pc, isSparse)
+        self.object = self._cls(pc, isDense)
 
     def __getattr__(self, name):
         return getattr(self.object, name)
