@@ -10,6 +10,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #include <type_traits>
 #include <string>
 
+#include "DeviceUtils.h"
 #include "Mangling.h"
 #include "pytypes.h"
 
@@ -46,19 +47,207 @@ private:
 };
 
 /**
- * \brief Utility class to provide Ponca-compatible iterators over ndarray
+ * \brief Ponca-compatible container of points over raw arrays
+ *
+ * This is the representation of a point cloud used by computations, on every device:
+ * it only holds raw pointers and strides (and is trivially copyable), so it can be used
+ * in device code, given the arrays are stored on the device.
+ *
+ * It does not own any data, see PyPointCloud.
+ */
+template <typename _Scalar, unsigned int _Dim>
+struct PyPointCloudView
+{
+    using Point  = PointNormalBinding<_Scalar, _Dim>;
+    using Scalar = typename Point::Scalar;
+
+    // Necessary for compatibility with KDTree
+    using value_type = Point;
+
+    /**
+     * \brief Ctor
+     *
+     * Strides are given in elements, for each dimension of the (N, Dim) arrays.
+     *
+     * \param pos Pointer to the first position
+     * \param posStride Strides of the position array
+     * \param normal Pointer to the first normal
+     * \param normalStride Strides of the normal array
+     * \param size Number of points
+     */
+    PONCA_MULTIARCH PyPointCloudView(const Scalar* pos, const int64_t posStride[2], const Scalar* normal,
+                                     const int64_t normalStride[2], size_t size)
+        : m_pos(pos), m_normal(normal), m_posStride{posStride[0], posStride[1]},
+          m_normalStride{normalStride[0], normalStride[1]}, m_size(size)
+    {
+    }
+
+    /**
+     * \brief Returns the number of points
+     */
+    PONCA_MULTIARCH size_t size() const { return m_size; }
+
+    /**
+     * \brief Accessor
+     *
+     * No bound checking is performed.
+     *
+     * \param i Point index
+     */
+    PONCA_MULTIARCH Point operator[](size_t i) const
+    {
+        return Point(m_pos + i * m_posStride[0], m_posStride[1], m_normal + i * m_normalStride[0], m_normalStride[1]);
+    }
+
+    /**
+     * \brief Iterator for compatibility with Ponca and STL
+     */
+    struct iterator
+    {
+        using value_type        = Point;
+        using difference_type   = std::ptrdiff_t;
+        using pointer           = value_type;
+        using reference         = value_type;
+        using iterator_category = std::random_access_iterator_tag;
+        using iterator_concept  = std::random_access_iterator_tag;
+
+        PONCA_MULTIARCH iterator(const PyPointCloudView* _cloud, size_t _idx) : m_cloud(_cloud), m_index(_idx) {}
+
+        // We assume that checking for the cloud adress is useless
+
+        /**
+         * \brief Equality comparison
+         *
+         * \param other The other iterator to check equality with
+         */
+        PONCA_MULTIARCH bool operator==(const iterator& other) const { return m_index == other.m_index; }
+
+        /**
+         * \brief Difference comparison
+         *
+         * \param other The other iterator to check difference with
+         */
+        PONCA_MULTIARCH bool operator!=(const iterator& other) const { return m_index != other.m_index; }
+
+        /**
+         * \brief Prefix increment
+         */
+        PONCA_MULTIARCH iterator& operator++()
+        {
+            m_index++;
+            return *this;
+        }
+
+        /**
+         * \brief Prefix decrement
+         */
+        PONCA_MULTIARCH iterator& operator--()
+        {
+            m_index--;
+            return *this;
+        }
+
+        /**
+         * \brief Postfix increment
+         */
+        PONCA_MULTIARCH iterator operator++(int)
+        {
+            iterator tmp = *this;
+            ++m_index;
+            return tmp;
+        }
+
+        /**
+         * \brief Postfix decrement
+         */
+        PONCA_MULTIARCH iterator operator--(int)
+        {
+            iterator tmp = *this;
+            --m_index;
+            return tmp;
+        }
+
+        /**
+         * \brief General increment
+         *
+         * \param n Increment amount
+         */
+        PONCA_MULTIARCH iterator& operator+=(difference_type n)
+        {
+            m_index += n;
+            return *this;
+        }
+
+        /**
+         * \brief General decrement
+         *
+         * \param n Decrement amount
+         */
+        PONCA_MULTIARCH iterator& operator-=(difference_type n)
+        {
+            m_index -= n;
+            return *this;
+        }
+
+        PONCA_MULTIARCH difference_type operator-(const iterator& other) const { return m_index - other.m_index; }
+
+        /**
+         * \brief Point access
+         */
+        PONCA_MULTIARCH Point operator*() const { return (*m_cloud)[m_index]; }
+
+        /**
+         * \brief Point access
+         */
+        PONCA_MULTIARCH Point operator->() const { return (*m_cloud)[m_index]; }
+
+    private:
+        // TODO: Evaluate if storing two pointers + two strides is faster !
+        const PyPointCloudView* m_cloud;
+        size_t m_index;
+    };
+
+    /**
+     * \brief Begining iterator
+     */
+    PONCA_MULTIARCH iterator begin() const { return iterator{this, 0}; }
+
+    /**
+     * \brief Begining iterator
+     */
+    PONCA_MULTIARCH iterator cbegin() const { return iterator{this, 0}; }
+
+    /**
+     * \brief End iterator
+     */
+    PONCA_MULTIARCH iterator end() const { return iterator{this, m_size}; }
+
+    /**
+     * \brief End iterator
+     */
+    PONCA_MULTIARCH iterator cend() const { return iterator{this, m_size}; }
+
+private:
+    const Scalar* m_pos;
+    const Scalar* m_normal;
+    int64_t m_posStride[2];
+    int64_t m_normalStride[2];
+    size_t m_size;
+};
+
+/**
+ * \brief Point cloud given from python
+ *
+ * This class keeps the arrays alive and checks them. Points are accessed through
+ * the view returned by view().
  */
 template <typename _Scalar, unsigned int _Dim>
 struct PyPointCloud
 {
-    friend struct iterator;
-
     using Point      = PointNormalBinding<_Scalar, _Dim>;
     using Scalar     = typename Point::Scalar;
     using VectorType = typename Point::VectorType;
-
-    // Necessary for compatibility with KDTree
-    using value_type = Point;
+    using View       = PyPointCloudView<_Scalar, _Dim>;
 
     inline static const std::string PointName = ManglePoint<Point>() + MangledPointName;
     inline static const std::string ClassName = "PointCloud" + PointName;
@@ -66,10 +255,10 @@ struct PyPointCloud
 
     PyPointCloud()
     {
-        // We emulate data with an array of stride 0
+        // We emulate data with an array of stride 0 (strides are given in elements)
         void* data = reinterpret_cast<void*>(const_cast<Scalar*>(&NoData[0]));
-        m_pos      = PyVectorArray<Point>(data, {1, 1}, nb::handle(), {0, sizeof(Scalar)});
-        m_normals  = PyVectorArray<Point>(data, {1, 1}, nb::handle(), {0, sizeof(Scalar)});
+        m_pos      = PyVectorArray<Point>(data, {1, _Dim}, nb::handle(), {0, 1});
+        m_normals  = PyVectorArray<Point>(data, {1, _Dim}, nb::handle(), {0, 1});
     }
 
     /**
@@ -84,9 +273,25 @@ struct PyPointCloud
         if (m_pos.ndim() != 2)
             throw std::runtime_error("PointCloud only supports 2D arrays");
 
-        // We emulate normal data with an array of stride 0
+        // We emulate normal data with an array of stride 0 (strides are given in elements)
         void* data = reinterpret_cast<void*>(const_cast<Scalar*>(&NoData[0]));
-        m_normals  = PyVectorArray<Point>(data, {_pos.shape(0), 1}, nb::handle(), {0, sizeof(Scalar)});
+        nb::object owner;
+#ifdef __CUDACC__
+        // NoData lives on the host, device code needs its own zeros.
+        if (_pos.device_type() == nb::device::cuda::value)
+        {
+            CudaDeviceGuard guard(_pos.device_id());
+
+            Scalar* zeros = nullptr;
+            CheckCuda(cudaMalloc(&zeros, _Dim * sizeof(Scalar)), "Device allocation failed");
+            owner = nb::capsule(zeros, [](void* p) noexcept { cudaFree(p); });
+            CheckCuda(cudaMemset(zeros, 0, _Dim * sizeof(Scalar)), "Device memset failed");
+
+            data = zeros;
+        }
+#endif
+        m_normals = PyVectorArray<Point>(data, {_pos.shape(0), _Dim}, owner, {0, 1}, nb::dtype<Scalar>(),
+                                         _pos.device_type(), _pos.device_id());
     }
 
     /**
@@ -107,156 +312,29 @@ struct PyPointCloud
 
     auto device_type() const { return m_pos.device_type(); }
 
+    auto device_id() const { return m_pos.device_id(); }
+
     /**
      * \brief Returns the number of points within the array
      */
     size_t size() const { return m_pos.shape(0); }
 
     /**
-     * \brief Accessor
-     *
-     * No bound checking is performed.
-     *
-     * \param i Point index
+     * \brief Returns the position array
      */
-    Point operator[](size_t i) const
-    {
-        const Scalar* pos    = m_pos.data() + i * m_pos.stride(0);
-        const Scalar* normal = m_normals.data() + i * m_normals.stride(0);
+    const PyVectorArray<Point>& positions() const { return m_pos; }
 
-        return Point(pos, m_pos.stride(1), normal, m_normals.stride(1));
+    /**
+     * \brief Returns a view over the cloud, usable on the device the arrays are stored on
+     */
+    View view() const
+    {
+        const int64_t posStride[2]    = {m_pos.stride(0), m_pos.stride(1)};
+        const int64_t normalStride[2] = {m_normals.stride(0), m_normals.stride(1)};
+        return View(m_pos.data(), posStride, m_normals.data(), normalStride, size());
     }
-
-    /**
-     * \brief Iterator for compatibility with Ponca and STL
-     */
-    struct iterator
-    {
-        using value_type        = Point;
-        using difference_type   = std::ptrdiff_t;
-        using pointer           = value_type;
-        using reference         = value_type;
-        using iterator_category = std::random_access_iterator_tag;
-        using iterator_concept  = std::random_access_iterator_tag;
-
-        iterator(const PyPointCloud* _cloud, size_t _idx) : m_cloud(_cloud), m_index(_idx) {}
-
-        // We assume that checking for the cloud adress is useless
-
-        /**
-         * \brief Equality comparison
-         *
-         * \param other The other iterator to check equality with
-         */
-        bool operator==(const iterator& other) { return m_index == other.m_index; }
-
-        /**
-         * \brief Difference comparison
-         *
-         * \param other The other iterator to check difference with
-         */
-        bool operator!=(const iterator& other) { return m_index != other.m_index; }
-
-        /**
-         * \brief Prefix increment
-         */
-        iterator& operator++()
-        {
-            m_index++;
-            return *this;
-        }
-
-        /**
-         * \brief Prefix decrement
-         */
-        iterator& operator--()
-        {
-            m_index--;
-            return *this;
-        }
-
-        /**
-         * \brief Postfix increment
-         */
-        iterator operator++(int)
-        {
-            iterator tmp = *this;
-            ++m_index;
-            return *this;
-        }
-
-        /**
-         * \brief Postfix decrement
-         */
-        iterator operator--(int)
-        {
-            iterator tmp = *this;
-            --m_index;
-            return *this;
-        }
-
-        /**
-         * \brief General increment
-         *
-         * \param n Increment amount
-         */
-        iterator& operator+=(difference_type n)
-        {
-            m_index += n;
-            return *this;
-        }
-
-        /**
-         * \brief General decrement
-         *
-         * \param n Decrement amount
-         */
-        iterator& operator-=(difference_type n)
-        {
-            m_index -= n;
-            return *this;
-        }
-
-        difference_type operator-(const iterator& other) const { return m_index - other.m_index; }
-
-        /**
-         * \brief Point access
-         */
-        Point operator*() const { return m_cloud->operator[](m_index); }
-
-        /**
-         * \brief Point access
-         */
-        Point operator->() const { return m_cloud->operator[](m_index); }
-
-    private:
-        // TODO: Evaluate if storing two pointers + two strides is faster !
-        const PyPointCloud* m_cloud;
-        size_t m_index;
-    };
-
-    /**
-     * \brief Begining iterator
-     */
-    iterator begin() const { return iterator{this, 0}; }
-
-    /**
-     * \brief Begining iterator
-     */
-    iterator cbegin() const { return iterator{this, 0}; }
-
-    /**
-     * \brief End iterator
-     */
-    iterator end() const { return iterator{this, m_pos.shape(0)}; }
-
-    /**
-     * \brief Begining iterator
-     */
-    iterator cend() const { return iterator{this, m_pos.shape(0)}; }
 
 private:
     PyVectorArray<Point> m_pos;
     PyVectorArray<Point> m_normals;
 };
-

@@ -151,10 +151,22 @@ def __dispatchAddComputation(self, id, input = None):
     """
     self._computationList.append((id, input))
 
+def __isCudaAvailable(name: str):
+    """
+        Tells if a compute object can run on CUDA devices. This does not depend
+        on the specialization, so the first one found is used
+    """
+    for clsname, cls in _pyponca.__dict__.items():
+        # Specializations are named after the object
+        if clsname.startswith(name):
+            return cls.isCudaAvailable
+    return False
+
 # Forward types to global module 
 ComputeObjectList = _pyponca.ComputeObjectList
 Computation = _pyponca.Computation
 FitResult = _pyponca.FitResult
+WithCuda = _pyponca.internal._WithCUDA
 
 # Dynamically create object based on what was exposed by the binding. 
 for co in ComputeObjectList:
@@ -163,6 +175,7 @@ for co in ComputeObjectList:
         "compute": __dispatchCompute,
         "setNeighborFilter": __dispatchSetNeighborFilter,
         "addComputation": __dispatchAddComputation,
+        "isCudaAvailable": __isCudaAvailable(co),
         # Dynamically find the function within the subobject
         # "__getattr__": __dispatchgetattr
     })

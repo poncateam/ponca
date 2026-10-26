@@ -11,6 +11,12 @@ NB_MODULE(_pyponca, m)
 {
     auto internal = m.def_submodule("internal");
 
+#ifdef __CUDACC__
+    internal.attr("_WithCUDA") = true;
+#else
+    internal.attr("_WithCUDA") = false;
+#endif
+
     RegisterCommon(m, internal);
     RegisterFitting(m, internal);
     RegisterSpatialParitioning(m, internal);

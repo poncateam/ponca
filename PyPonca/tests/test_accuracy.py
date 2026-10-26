@@ -7,6 +7,11 @@ from pathlib import Path
 
 import pyponca
 
+try:
+    import torch
+except ImportError:
+    torch = None
+
 def stridearray(x):
     """
         Returns a new array such that seld.stridearray(x)[3*(N-1)::-3, ...] == x 
@@ -38,6 +43,29 @@ def readarray(testcase, name):
 
 
 class TestAccuracy(unittest.TestCase):
+    # Whether the tests run on the host, where every method is available
+    onHost = True
+
+    def todevice(self, x):
+        """
+            Sends an array to the device the tests run on
+        """
+        return x
+
+    def tohost(self, x):
+        """
+            Converts an array returned by pyponca to a numpy array
+        """
+        return np.from_dlpack(x)
+
+    def strided(self, x):
+        """
+            Sends an array to the device the tests run on, as a non contiguous view.
+            See stridearray for more information about the stride in question
+        """
+        N, D = x.shape
+        return self.todevice(stridearray(x))[3 * (N - 1)::-3, 2 * (D - 1)::-2]
+
     def setUp(self):
         with open(os.environ["TEST_CASES"], "rt") as file:
             content = file.read()
@@ -48,11 +76,18 @@ class TestAccuracy(unittest.TestCase):
         # Load main pointclouds
         self.pos     = readarray(self.expected["pointcloud"], "pos")
         self.normals = readarray(self.expected["pointcloud"], "normals")
-        self.points  = pyponca.PointCloud(self.pos, self.normals)
+        self.points  = pyponca.PointCloud(self.todevice(self.pos), self.todevice(self.normals))
 
         self.analysisLocation = readarray(self.expected, "analysisLocation")
         self.analysisScale    = readarray(self.expected, "analysisScale")
         self.analysisNormals  = readarray(self.expected, "analysisNormals")
+
+    def stridedpoints(self):
+        """
+            Returns the point cloud built from strided arrays. See stridearray
+            for more information about the stride in question
+        """
+        return pyponca.PointCloud(self.strided(self.pos), self.strided(self.normals))
 
     def runtestcase(self, pointcloud, method, function, input, status, signed, result):
         """
@@ -64,18 +99,23 @@ class TestAccuracy(unittest.TestCase):
             # We can hope that the results are correct (due to binding code being
             # a for loop over) if it passes for all other cases. 
             if "CNC" in method:
-                return 
-            
+                return
+
+            # Methods that can not run on the device
+            if not (self.onHost or pyponca.__dict__[method].isCudaAvailable):
+                return
+
             if function in pyponca.Computation.__members__: 
                 object = pyponca.__dict__[method]()
                 id = pyponca.Computation[function]
 
-                object.setNeighborFilter(self.analysisLocation, self.analysisScale, normals = self.analysisNormals)
-                object.addComputation(id, input)
+                object.setNeighborFilter(self.todevice(self.analysisLocation), self.todevice(self.analysisScale),
+                                         normals = self.todevice(self.analysisNormals))
+                object.addComputation(id, self.todevice(input) if input is not None else None)
 
                 pyresult = object.compute(pointcloud)
-                pystatus = np.from_dlpack(pyresult.fitStatus)
-                pyresult = np.from_dlpack(pyresult.results[0])
+                pystatus = self.tohost(pyresult.fitStatus)
+                pyresult = self.tohost(pyresult.results[0])
 
                 if not signed:
                     pyresult = np.abs(pyresult)
@@ -118,13 +158,7 @@ class TestAccuracy(unittest.TestCase):
             status   = readarray(run, "status")
             sign     = bool(run["signed"]) if "signed" in run else False
 
-            N = self.pos.shape[0]
-            D = self.pos.shape[1]
-            newpos     = stridearray(self.pos)[3*(N-1)::-3, 2 * (D - 1)::-2]
-            newnormals = stridearray(self.normals)[3*(N-1)::-3, 2 * (D - 1)::-2]
-            newpoints  = pyponca.PointCloud(newpos, newnormals)
-
-            self.runtestcase(newpoints, method, function, input, status, sign, result)
+            self.runtestcase(self.stridedpoints(), method, function, input, status, sign, result)
 
     def test_kdtree(self):
         """
@@ -154,15 +188,31 @@ class TestAccuracy(unittest.TestCase):
             status   = readarray(run, "status")
             sign     = bool(run["signed"]) if "signed" in run else False
 
-            N = self.pos.shape[0]
-            D = self.pos.shape[1]
-            newpos     = stridearray(self.pos)[3*(N-1)::-3, 2 * (D - 1)::-2]
-            newnormals = stridearray(self.normals)[3*(N-1)::-3, 2 * (D - 1)::-2]
-            newpoints  = pyponca.PointCloud(newpos, newnormals)
-    
+            newpoints = self.stridedpoints()
+
             # Dense then sparse
             self.runtestcase(pyponca.KDTree(newpoints, False), method, function, input, status, sign, result)
             self.runtestcase(pyponca.KDTree(newpoints, True) , method, function, input, status, sign, result)
+
+
+@unittest.skipUnless(torch is not None and torch.cuda.is_available() and pyponca.WithCuda,
+                     "Requires torch with a CUDA device and pyponca built with CUDA")
+class TestAccuracyCUDA(TestAccuracy):
+    """
+        Same tests, with every array sent to the GPU
+    """
+    onHost = False
+
+    def todevice(self, x):
+        return torch.as_tensor(x, device="cuda") if x is not None else None
+
+    def tohost(self, x):
+        # Convert to numpy as we use the np testing suite. 
+        return torch.from_dlpack(x).cpu().numpy()
+
+    def strided(self, x):
+        # Torch does not support negative strides: stridearray(x[::-1, ::-1])[::3, ::2] == x
+        return self.todevice(stridearray(x[::-1, ::-1]))[::3, ::2]
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@
  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 #include <algorithm>
+#include <span>
 #include <string>
 
 #include "FittingList.h"
@@ -12,9 +13,13 @@
 // This file is the main binding code for the Fitting module.
 //
 // The philosophy is to avoid lambdas as much as possible and rely
-// on plain function instead. Lambdas may or may not be supported by
+// on plain functors instead. Lambdas may or may not be supported by
 // some device code. In CUDA for instance, only one layer of lambda
-// is supported.
+// is supported. Function pointers can not be used either, as host
+// pointers can not be called from device code.
+//
+// Functors only see the views of the point clouds (see view()), which
+// are the same on every device.
 
 /**
  * \brief Adds a computation to the PyComputeObject
@@ -41,45 +46,70 @@ void addComputation(PyCo& self, Computation id, nb::ndarray<typename PyCo::Scala
 
 /**
  * \brief Perform the compute method on a point cloud
- *
- * \tparam Co The compute obejct to perform the compute method on
- * \tparam Cloud Pointcloud type
- *
- * \param co The compute object
- * \param i Index into the filter list
  */
-template <typename Co, typename Cloud>
-Ponca::FIT_RESULT PerformRawCloudComputation(Co& co, const Cloud& cloud, unsigned int i)
+struct PerformRawCloudComputation
 {
-    return co.compute(cloud.begin(), cloud.end());
-}
+    /**
+     * \tparam Co The compute obejct to perform the compute method on
+     *
+     * \param co The compute object
+     * \param cloud The view of the point cloud
+     * \param i Index into the filter list
+     */
+    template <typename Co, typename Cloud>
+    PONCA_MULTIARCH Ponca::FIT_RESULT operator()(Co& co, const Cloud& cloud, unsigned int i) const
+    {
+        return co.compute(cloud.begin(), cloud.end());
+    }
+};
 
 /**
  * \brief Perform the compute method on a KDTree
- *
- * \tparam Co The compute obejct to perform the compute method on
- * \tparam Cloud Pointcloud type
- *
- * \param co The compute object
- * \param i Index into the filter list
  */
-template <typename Co, typename PyKDTree>
-Ponca::FIT_RESULT PerformKDTreeComputation(Co& co, const PyKDTree& kdtree, unsigned int i)
+struct PerformKDTreeComputation
 {
-    const auto& nf = co.getNeighborFilter();
-    auto loc       = nf.frame().center();
-    auto rad       = nf.evalScale();
+    /**
+     * Neighbors are not gathered, as it would require dynamic allocations on the device:
+     * the query is run again on each pass instead.
+     *
+     * \tparam Co The compute obejct to perform the compute method on
+     *
+     * \param co The compute object
+     * \param tree The view of the kdtree
+     * \param i Index into the filter list
+     */
+    template <typename Co, typename Tree>
+    PONCA_MULTIARCH Ponca::FIT_RESULT operator()(Co& co, const Tree& tree, unsigned int i) const
+    {
+        const auto& nf = co.getNeighborFilter();
+        auto neighbors = tree.rangeNeighbors(nf.frame().center(), nf.evalScale());
 
-    Ponca::FIT_RESULT result;
-    kdtree.Run([&](const auto& tree) {
-        auto neighbors = tree.rangeNeighbors(loc, rad);
+        if constexpr (SupportsDevice<Co>)
+            return co.computeWithIds(neighbors, tree.points());
+        else
+        {
+            // Host-only objects (such as CNC) expect STL-like containers
+            std::vector<int> indices;
+            std::copy(neighbors.begin(), neighbors.end(), std::back_inserter(indices));
+            return co.computeWithIds(indices, std::span(tree.points(), tree.pointCount()));
+        }
+    }
+};
 
-        std::vector<int> indices;
-        std::copy(neighbors.begin(), neighbors.end(), std::back_inserter(indices));
-        result = co.computeWithIds(indices, tree.points());
-    });
-    return result;
-}
+/**
+ * \brief Functor calling ExtractComputation
+ *
+ * Unlike a pointer to ExtractComputation, it can be called from device code.
+ */
+struct ExtractComputationFunctor
+{
+    template <typename CO, typename Scalar>
+    PONCA_MULTIARCH void operator()(size_t id, CO& object, size_t i, const DeviceArrayView<Scalar>& in,
+                                    DeviceArrayView<Scalar>& out) const
+    {
+        ExtractComputation<CO>(id, object, i, in, out);
+    }
+};
 
 /**
  * \brief Performs the computation
@@ -90,8 +120,7 @@ Ponca::FIT_RESULT PerformKDTreeComputation(Co& co, const PyKDTree& kdtree, unsig
 template <typename PyCo, typename Cloud>
 auto computeRawPointCloud(PyCo& self, const Cloud& cloud)
 {
-    using CO = typename PyCo::ComputeObject;
-    return self.compute(cloud, &PerformRawCloudComputation<CO, Cloud>, &ExtractComputation<CO>);
+    return self.compute(cloud, PerformRawCloudComputation{}, ExtractComputationFunctor{});
 }
 
 /**
@@ -103,8 +132,7 @@ auto computeRawPointCloud(PyCo& self, const Cloud& cloud)
 template <typename PyCo, typename PyKDTree>
 auto computeKDTree(PyCo& self, const PyKDTree& cloud)
 {
-    using CO = typename PyCo::ComputeObject;
-    return self.compute(cloud, &PerformKDTreeComputation<CO, PyKDTree>, &ExtractComputation<CO>);
+    return self.compute(cloud, PerformKDTreeComputation{}, ExtractComputationFunctor{});
 }
 
 /**
@@ -125,10 +153,16 @@ void RegisterComputeObjects(nb::module_& m, std::set<std::string>& list)
     // List of types that are not directly templated on filters
     const std::vector<std::string> nonTemplatedFilterTypes = {"CNC"};
 
+#ifdef __CUDACC__
+    const bool cudaAvailable = true;
+#else
+    const bool cudaAvailable = false;
+#endif
+
     // General properties
     Factory::foreach ([&](const auto& x) {
         using T    = decltype(x.object);
-        using PyCo = PyComputeObject<T>;
+        using PyCo = PyComputeObject<T, SupportsDevice<T>>;
 
         std::string basename = x.name;
         basename.erase(std::remove(basename.begin(), basename.end(), ' '), basename.end());
@@ -161,6 +195,7 @@ void RegisterComputeObjects(nb::module_& m, std::set<std::string>& list)
         pyco.def("addComputation", &addComputation<PyCo>, nb::arg("id"), nb::arg("data").none());
         pyco.def("compute", &computeRawPointCloud<PyCo, PointCloud>);
         pyco.def("compute", &computeKDTree<PyCo, PyKDTree<PointCloud>>);
+        pyco.attr("isCudaAvailable") = SupportsDevice<T> && cudaAvailable;
 
         list.insert(basename);
     });

@@ -23,10 +23,17 @@ namespace Ponca
         pip install .
     \endcode
 
-    You may test afterward the installation using the command: 
+    You may test afterward the installation using the command:
 
     \code{.sh}
         python -c "import pyponca"
+    \endcode
+
+    When a CUDA compiler is found, the library is compiled with CUDA support (see \ref pyponca_manual_cuda). This
+    compilation is much longer (several minutes) and requires more memory (around 16 GB). It can be disabled with:
+
+    \code{.sh}
+        CMAKE_ARGS="-DPYPONCA_ENABLE_CUDA=OFF" pip install .
     \endcode
 
     \subsection pyponca_api API and first examples
@@ -98,7 +105,8 @@ namespace Ponca
     specialization is used. Arrays do not need to be contiguous: arbitrary strides (including negative ones) are
     supported on every dimension, and no copy is performed.
 
-    \note Only CPU arrays are currently supported. Computations on other devices raise a `RuntimeError`.
+    \note Arrays can be stored on the CPU, or on a CUDA device when %PyPonca is compiled with CUDA support, see
+    \ref pyponca_manual_cuda. Computations on other devices raise a `RuntimeError`.
 
     \subsubsection pyponca_manual_pointcloud Point clouds
 
@@ -166,7 +174,12 @@ namespace Ponca
      - `addComputation(id, input = None)`: appends a computation to perform after each fit, see
        \ref pyponca_manual_computations,
      - `compute(data)`: performs all fits on `data` (a `PointCloud`, a `KDTree` or a raw `(N, D)` array) and returns
-       the results along with the status of each fit, see \ref pyponca_manual_results.
+       the results along with the status of each fit, see \ref pyponca_manual_results. On the CPU, fits are
+       distributed between OpenMP threads when the library is compiled with OpenMP (their number is set by the
+       `OMP_NUM_THREADS` environment variable).
+
+    Compute object classes also have an `isCudaAvailable` attribute, which tells if the method can run on CUDA
+    devices (see \ref pyponca_manual_cuda).
 
     Settings are kept between calls to `compute`: the same object can be run on several point clouds, or with a new
     neighbor filter. Calls to `addComputation` accumulate.
@@ -204,7 +217,7 @@ namespace Ponca
 
     | Computation                 | Input      | Output shape     | Content                                                                  |
     |-----------------------------|------------|------------------|--------------------------------------------------------------------------|
-    | `NONE`                      | None       | `(M, 0)`         | Nothing, only performs the fits                                          |
+    | `NONE`                      | None       | `(M, 0)`         | Nothing, only performs the fits, mostly useful for testing               |
     | `MEAN_POSITION`             | None       | `(M, D)`         | Weighted barycenter of the neighborhood                                  |
     | `MEAN_NORMAL`               | None       | `(M, D)`         | Weighted mean normal of the neighborhood                                 |
     | `POTENTIAL`                 | Optional   | `(M,)`           | Value of the fitted scalar field                                         |
@@ -262,11 +275,44 @@ namespace Ponca
      - `NotImplementedError`: no specialization exists for the given data (unsupported dtype or dimension, or method
        not available in this dimension),
      - `TypeError`: an array does not match the expected dtype or shape of the selected specialization,
-     - `RuntimeError`: invalid computation for the method, missing call to `addComputation`, or device mismatch
-       between the point cloud and the other arrays,
+     - `RuntimeError`: invalid computation for the method, missing call to `addComputation`, device mismatch
+       between the point cloud and the other arrays, or operation not available on the device of the arrays (see
+       \ref pyponca_manual_cuda),
      - `ValueError`: invalid neighborhoods (mismatching shapes or devices between `centers`, `radii` and `normals`,
        or missing `normals` for a CNC method), or invalid input for a computation (missing input for `PROJECTION`,
        unexpected input for `MEAN_POSITION`, ...).
+
+    \subsubsection pyponca_manual_cuda CUDA devices
+
+    When %PyPonca is compiled with CUDA support (`pyponca.WithCUDA` is `True`), every array of a
+    computation can be stored on a CUDA device instead (CuPy, PyTorch, ... arrays). The API is the same: `compute`
+    runs one CUDA thread per filter center, and returns its results on the device of the point cloud. All arrays must
+    be stored on the same device, mixing CPU and CUDA arrays raises a `RuntimeError`.
+
+    \snippet pyponca_cuda.py cuda
+
+    Unlike NumPy, CuPy does not compare arrays with `pyponca.FitResult` values: convert them first, e.g.
+    `status == int(pyponca.FitResult.STABLE)`.
+
+    A `KDTree` built from CUDA arrays is built on the CPU, from a copy of the positions, then sent to the device. Only
+    the device copy is kept: `rangeNeighbors` is only available for trees built from CPU arrays, and only accepts CPU
+    arrays.
+
+    Some methods rely on code that can not run on CUDA devices, and raise a `RuntimeError` when given CUDA arrays.
+    The `isCudaAvailable` attribute of a compute object class tells if it can run on CUDA devices. It is always `False`
+    when %PyPonca is compiled without CUDA support:
+
+    \code{.py}
+        pyponca.APSS.isCudaAvailable       # True (when compiled with CUDA support)
+        pyponca.SphereFit.isCudaAvailable  # False
+    \endcode
+
+    For now, `SphereFit`, `MongePatchQuadratic`, `MongePatchRestrictedQuadratic` and the CNC methods can not run on
+    CUDA devices. `UnorientedAPSS` is not available at all in a library compiled with CUDA support, even for CPU
+    arrays.
+
+    Results of covariance-based methods (`CovariancePlaneFit`, `CovarianceLineFit`, ...) may slightly differ between the
+    CPU and CUDA devices, as the eigen decomposition of the covariance uses a closed-form solver on the device.
 
     \section pyponca_dev Development documentation
 
@@ -339,8 +385,9 @@ namespace Ponca
      - in `pyponca/__init__.py`, a Python class is created for every algorithm listed in `pyponca.ComputeObjectList`.
        It records the calls to `setNeighborFilter` and `addComputation`. Once the type of the data is known, that is
        when `compute` is called, it computes the mangled name of the matching C++ class, instantiates it, replays the
-       recorded calls and runs the computation. `pyponca.PointCloud` and `pyponca.KDTree` are dispatched the same way,
-       from the arrays they are built on.
+       recorded calls and runs the computation. The class also exposes `isCudaAvailable`, read from any of its C++
+       specializations, as it does not depend on the template parameters. `pyponca.PointCloud` and `pyponca.KDTree`
+       are dispatched the same way, from the arrays they are built on.
 
     The mangling rules below are implemented on both sides. To keep them consistent, use the functions of
     `binding/Common/Mangling.h` (e.g. `MangleArray`) on the C++ side, and `pyponca._pyponca.internal._mangleArray` on
@@ -386,7 +433,9 @@ namespace Ponca
      - be default constructible, and provide `init()`, `compute(begin, end)` and `computeWithIds(ids, points)`, the
        last two returning a Ponca::FIT_RESULT,
      - provide `setNeighborFilter(nf)` and `getNeighborFilter()`: when computing on a KD-tree, the binding collects
-       the neighbors using the center (`frame().center()`) and the radius (`evalScale()`) of the filter,
+       the neighbors using the center (`frame().center()`) and the radius (`evalScale()`) of the filter. The range
+       query is given as is to `computeWithIds`, along with a raw pointer to the points. Objects that can not run on
+       a device (see below) receive STL-like containers instead (`std::vector` and `std::span`),
      - define a `NeighborFilter` type, constructible either from a center and a radius, or from a center, a radius
        and a normal. In the latter case, `setNeighborFilter` requires `normals`.
 
@@ -394,6 +443,14 @@ namespace Ponca
     in `RegisterComputeObjects`, so that it is registered once, without filter suffix. The computations available for
     an object are deduced from its capabilities (Ponca::ProvidesImplicitPrimitive, Ponca::ProvidesPrincipalCurvatures,
     ...), so nothing else needs to change.
+
+    When compiled with CUDA, a kernel is instantiated for every compute object, unless `SupportsDevice`
+    (`binding/Fitting/FittingList.h`) is false for it. Its value is exposed to users through `isCudaAvailable`. If
+    the new object relies on host-only code (STL containers, Eigen decompositions without device support such as
+    `Eigen::EigenSolver` or the SVDs, ...), add an overload of `DeviceCompatibility` returning `std::false_type` for
+    the class implementing it. Be careful: nvcc does not report host-only functions called from device code here, as
+    Eigen disables these diagnostics. Such code compiles, but returns wrong results on the device. The CUDA variant
+    of `test_accuracy.py` catches these cases.
 
     \subsubsection pyponca_new_computation Computations
 
@@ -434,6 +491,14 @@ namespace Ponca
     CNC methods are skipped by `test_accuracy.py`, as their triangle sampling is random. Also note that the test data
     are generated with `std::rand()`, whose sequence differs between platforms: each platform tests a different point
     cloud.
+
+    When the binding is compiled with CUDA support and <a href="https://pytorch.org/" target="_blank">PyTorch</a> is
+    installed with a CUDA device available, both suites also run on the GPU (`TestAPICUDA` and `TestAccuracyCUDA`).
+    These classes run the same tests, and only redefine how arrays are sent to the device (`todevice`) and read back
+    (`tohost`): operations that are not available on the device (see `isCudaAvailable`) are expected to raise a
+    `RuntimeError` by `test_api.py`, and are skipped by `test_accuracy.py`. Since PyTorch does not support negative
+    strides, strided views use positive strides on the GPU. The CUDA tests are skipped when these requirements are
+    not met.
 
     The tests are registered in CTest with the `pyponca` label when Ponca is configured with
     `PONCA_CONFIGURE_TESTS=ON`. They import the installed `pyponca` module, so the binding must be installed in the

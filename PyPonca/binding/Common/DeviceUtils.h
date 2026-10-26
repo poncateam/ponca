@@ -9,7 +9,49 @@
 #include <nanobind/ndarray.h>
 #include <Ponca/Ponca>
 
+#include <algorithm>
+#include <cstring>
+#include <string>
+#include <vector>
+
 namespace nb = nanobind;
+
+#ifdef __CUDACC__
+/**
+ * \brief Throws an exception (visible from python) if a cuda call failed
+ *
+ * \param err The value returned by the cuda call
+ * \param what Description of the operation that was performed
+ */
+inline void CheckCuda(cudaError_t err, const char* what)
+{
+    if (err != cudaSuccess)
+        throw std::runtime_error(std::string(what) + " (" + cudaGetErrorString(err) + ")");
+}
+
+/**
+ * \brief Sets the current cuda device for the lifetime of the object
+ *
+ * Note: idea from pytorch source code https://github.com/pytorch/pytorch/blob/main/c10/cuda/CUDAGuard.h
+ */
+struct CudaDeviceGuard
+{
+    explicit CudaDeviceGuard(int device)
+    {
+        CheckCuda(cudaGetDevice(&m_previous), "Unable to query the current cuda device");
+        CheckCuda(cudaSetDevice(device), "Unable to set the cuda device");
+    }
+
+    ~CudaDeviceGuard() { cudaSetDevice(m_previous); }
+
+    CudaDeviceGuard(const CudaDeviceGuard&)            = delete;
+    CudaDeviceGuard& operator=(const CudaDeviceGuard&) = delete;
+
+private:
+    int m_previous = 0;
+};
+#endif
+
 /**
  * \brief Creates a nanobind array for return purposes
  *
@@ -22,9 +64,12 @@ namespace nb = nanobind;
  *
  * \param shape Shape of the vector. Also used to describe the number of dimensions
  * \param device Device id which must match nanobind.
+ * \param deviceId Index of the device (only meaningful for multi-gpu setups). Allocations
+ * are performed on the current device, which must match this index.
  */
 template <typename Scalar>
-inline nb::ndarray<Scalar, nb::array_api> CreateDeviceArray(const std::vector<size_t>& shape, int device)
+inline nb::ndarray<Scalar, nb::array_api> CreateDeviceArray(const std::vector<size_t>& shape, int device,
+                                                            int deviceId = 0)
 {
     if (shape.size() == 0)
         throw std::runtime_error("Array with shape of size 0 requested.");
@@ -44,18 +89,91 @@ inline nb::ndarray<Scalar, nb::array_api> CreateDeviceArray(const std::vector<si
     }
 #ifdef __CUDACC__
     case nb::device::cuda::value: {
+        // Unlike new[], cudaMalloc returns a nullptr for empty allocations, which would be
+        // seen as "no output" by DeviceArrayView. We always allocate at least one element.
         Scalar* data = nullptr;
-        cudaMalloc(&data, elementCount * sizeof(data));
+        CheckCuda(cudaMalloc(&data, std::max<size_t>(elementCount, 1) * sizeof(Scalar)), "Device allocation failed");
         auto deleter = nb::capsule(data, [](void* p) noexcept { cudaFree(p); });
 
         return nb::ndarray<Scalar, nb::array_api>(data, shape.size(), shape.data(), deleter, nullptr,
-                                                  nb::dtype<Scalar>(), device);
+                                                  nb::dtype<Scalar>(), device, deviceId);
     }
 #endif
     default:
         throw std::runtime_error("Unsupported device for allocation");
     }
 }
+
+/**
+ * \brief Creates an array on a device
+ *
+ * Note: this is a bitwise copy. As nanobind can only hold arithmetic types, the results
+ * is within bytes to be reinterpreted as T*.
+ *
+ * \param elements The host elements
+ * \param device Device id which must match nanobind.
+ * \param deviceId Index of the device (see CreateDeviceArray)
+ */
+template <typename T>
+inline nb::ndarray<uint8_t, nb::array_api> CopyToDevice(const std::vector<T>& elements, int device, int deviceId = 0)
+{
+    const size_t bytes = elements.size() * sizeof(T);
+    auto array         = CreateDeviceArray<uint8_t>({bytes}, device, deviceId);
+    if (bytes == 0)
+        return array;
+
+    switch (device)
+    {
+    case nb::device::cpu::value:
+        std::memcpy(array.data(), elements.data(), bytes);
+        break;
+#ifdef __CUDACC__
+    case nb::device::cuda::value:
+        CheckCuda(cudaMemcpy(array.data(), elements.data(), bytes, cudaMemcpyHostToDevice), "Copy to device failed");
+        break;
+#endif
+    }
+    return array;
+}
+
+#ifdef __CUDACC__
+/**
+ * \brief Copies a device array to the host
+ *
+ * \param array The device array
+ */
+template <typename Scalar, typename... Args>
+nb::ndarray<Scalar, Args...> CopyToHost(const nb::ndarray<Scalar, Args...>& array)
+{
+    const auto elementStride = [](int64_t stride) {
+        return static_cast<int64_t>(static_cast<uint64_t>(stride) * sizeof(Scalar)) /
+               static_cast<int64_t>(sizeof(Scalar));
+    };
+
+    int64_t first = 0, last = 0;
+    std::vector<size_t> shape(array.ndim());
+    std::vector<int64_t> strides(array.ndim());
+    for (size_t d = 0; d < array.ndim(); ++d)
+    {
+        shape[d]   = array.shape(d);
+        strides[d] = elementStride(array.stride(d));
+
+        const int64_t extent = (static_cast<int64_t>(array.shape(d)) - 1) * strides[d];
+        first += std::min<int64_t>(0, extent);
+        last += std::max<int64_t>(0, extent);
+    }
+
+    const size_t count = (array.size() == 0) ? 0 : static_cast<size_t>(last - first + 1);
+    Scalar* span       = new Scalar[std::max<size_t>(count, 1)];
+    auto deleter       = nb::capsule(span, [](void* p) noexcept { delete[] reinterpret_cast<Scalar*>(p); });
+
+    CheckCuda(cudaMemcpy(span, array.data() + first, count * sizeof(Scalar), cudaMemcpyDeviceToHost),
+              "Copy to host failed");
+
+    return nb::ndarray<Scalar, Args...>(span - first, shape.size(), shape.data(), deleter, strides.data(),
+                                        nb::dtype<Scalar>(), nb::device::cpu::value);
+}
+#endif
 
 /**
  * \brief Array view over a nanobind array accessible on device
@@ -69,8 +187,6 @@ inline nb::ndarray<Scalar, nb::array_api> CreateDeviceArray(const std::vector<si
  *
  * This class is not meant as a replacement of nb::ndarray, especially since
  * shape and strides may not be accessible in host code.
- *
- * TODO: Group allocations (at least of shape / stride) into a single ptr?
  */
 template <typename Scalar>
 struct DeviceArrayView
@@ -353,7 +469,7 @@ private:
                 cpyMode = cudaMemcpyHostToDevice;
                 break;
             case nb::device::cuda::value:
-                cpyMode = cudaMemcpyHostToHost;
+                cpyMode = cudaMemcpyDeviceToDevice;
                 break;
             default:
                 Free();

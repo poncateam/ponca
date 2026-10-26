@@ -8,6 +8,33 @@
 #include <nanobind/nanobind.h>
 #include "FittingUtils.h"
 
+// List classes that does not supports cuda. No need for body, only return type is used.
+// In the future we may want to also template by the actual device.
+
+template <class P, Ponca::TriangleGenerationMethod M>
+std::false_type DeviceCompatibility(const Ponca::CNC<P, M>*);
+
+template <class P, class NF, typename T>
+std::false_type DeviceCompatibility(const Ponca::SphereFitImpl<P, NF, T>*);
+#ifndef __CUDACC__ // Not available at all when compiling with nvcc
+template <class P, class NF, typename T>
+std::false_type DeviceCompatibility(const Ponca::UnorientedSphereFitImpl<P, NF, T>*);
+#endif
+
+template <class P, class NF, typename T>
+std::false_type DeviceCompatibility(const Ponca::MongePatchQuadraticFitImpl<P, NF, T>*);
+template <class P, class NF, typename T>
+std::false_type DeviceCompatibility(const Ponca::MongePatchRestrictedQuadraticFitImpl<P, NF, T>*);
+
+// General case
+std::true_type DeviceCompatibility(const void*);
+
+/**
+ * \brief Tells if a compute object can be used within device code
+ */
+template <typename CO>
+inline constexpr bool SupportsDevice = decltype(DeviceCompatibility(static_cast<const CO*>(nullptr)))::value;
+
 /**
  * \brief List of computation allowed
  */
