@@ -83,3 +83,90 @@ typename DistWeightFilter<DataPoint, WeightKernel>::VectorType DistWeightFilter<
     return result;
 }
 
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::WeightReturnType DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::operator()(const DataPoint& _q) const
+{
+    const auto lq = NeighborhoodFrame::convertToLocalBasis(_q.pos());
+    Scalar d      = lq.norm();
+    if (isCompact) // compile-time branching
+        return {(d <= m_t) ? m_wk.f(d / m_t) : Scalar(0.), lq};
+    else
+        return {m_wk.f(d / m_t), lq};
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::VectorType
+DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::spacedw(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesFirstOrderDerivative<WeightKernel>
+{
+    VectorType result = VectorType::Zero();
+    const auto q      = NeighborhoodFrame::convertToLocalBasis(_q);
+    Scalar d          = q.norm();
+    // isCompact is tested at compile-time
+    // Same derivative DistWeightFilter but scaled by A^(-T)
+    if ((!isCompact) || (d <= m_t && d != Scalar(0.)))
+        result = NeighborhoodFrame::inverseAxes().transpose() * ((q / (d * m_t)) * m_wk.df(d / m_t));
+    return result;
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::MatrixType
+DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::spaced2w(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
+{
+    MatrixType result = MatrixType::Zero();
+    const auto q      = NeighborhoodFrame::convertToLocalBasis(_q);
+    Scalar d          = q.norm();
+    if ((!isCompact) || (d <= m_t && d != Scalar(0.)))
+    {
+        // Same derivative as DistWeightFilter here
+        Scalar der = m_wk.df(d / m_t);
+        result     = q * q.transpose() / d * (m_wk.ddf(d / m_t) / m_t - der / d);
+        result.diagonal().array() += der;
+        result *= Scalar(1.) / (m_t * d);
+
+        // Hessian = A^(-T) * H_f(A^-1(q - p)) * A^-1, with H_f = result
+        const MatrixType& invAxes = NeighborhoodFrame::inverseAxes();
+        result                    = invAxes.transpose() * result * invAxes;
+    }
+    return result;
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::Scalar DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::scaledw(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesFirstOrderDerivative<WeightKernel>
+{
+    // Same thing as DistWeightFilter
+    Scalar d = NeighborhoodFrame::convertToLocalBasis(_q).norm();
+    return ((!isCompact) || (d <= m_t)) ? Scalar(-d * m_wk.df(d / m_t) / (m_t * m_t)) : Scalar(0.);
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::Scalar DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::scaled2w(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
+{
+    // Same thing as DistWeightFilter
+    Scalar d = NeighborhoodFrame::convertToLocalBasis(_q).norm();
+    return ((!isCompact) || (d <= m_t)) ? Scalar(Scalar(2.) * d / (m_t * m_t * m_t) * m_wk.df(d / m_t) +
+                                                 d * d / (m_t * m_t * m_t * m_t) * m_wk.ddf(d / m_t))
+                                        : Scalar(0.);
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::VectorType
+DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::scaleSpaced2w(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
+{
+    // Same derivative DistWeightFilter but scaled by A^(-T)
+    VectorType result = VectorType::Zero();
+    const auto q      = NeighborhoodFrame::convertToLocalBasis(_q);
+    Scalar d          = q.norm();
+    if ((!isCompact) || (d <= m_t && d != Scalar(0.)))
+        result = NeighborhoodFrame::inverseAxes().transpose() *
+                 (-q / (m_t * m_t) * (m_wk.df(d / m_t) / d + m_wk.ddf(d / m_t) / m_t));
+    return result;
+}

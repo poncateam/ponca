@@ -16,6 +16,7 @@
 
 #include <utility>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -58,6 +59,46 @@ void testFrame()
     VERIFY((identityFrame.convertToLocalBasis(q) - centeredFrame.convertToLocalBasis(q)).norm() < epsilon);
 }
 
+template <typename DataPoint, typename WeightKernel>
+void testDistWeightFilter()
+{
+    using Scalar         = typename DataPoint::Scalar;
+    using VectorType     = typename DataPoint::VectorType;
+    using MatrixType     = typename DataPoint::MatrixType;
+    using Filter         = Ponca::DistWeightEllipsoidalFilter<DataPoint, WeightKernel>;
+    using CenteredFilter = Ponca::DistWeightFilter<DataPoint, WeightKernel>;
+    static_assert(Ponca::IsNeighborhoodFilter<Filter>);
+    static_assert(Ponca::IsNeighborhoodFrame<Filter>);
+
+    const Scalar epsilon     = testEpsilon<Scalar>();
+    const Scalar centerScale = Eigen::internal::random<Scalar>(1, 5);
+    const VectorType center  = centerScale * VectorType::Random();
+    const Scalar t           = Eigen::internal::random<Scalar>(Scalar(0.5), Scalar(3));
+
+
+    // Verify identity matrix corresponds to centered frame
+    {
+        const Filter identityFilter(center, t);
+        const CenteredFilter centeredFilter(center, t);
+
+        const VectorType q = identityFilter.convertToGlobalBasis(VectorType::Random().normalized() * t);
+        const DataPoint dq(q);
+
+        // operator()
+        VERIFY(std::abs(identityFilter(dq).first - centeredFilter(dq).first) < epsilon);
+        VERIFY((identityFilter(dq).second - centeredFilter(dq).second).norm() < epsilon);
+
+        // Space derivatives
+        VERIFY((identityFilter.spacedw(q, dq) - centeredFilter.spacedw(q, dq)).norm() < epsilon);
+        VERIFY((identityFilter.spaced2w(q, dq) - centeredFilter.spaced2w(q, dq)).norm() < epsilon);
+        // Scale derivatives
+        VERIFY(std::abs(identityFilter.scaledw(q, dq) - centeredFilter.scaledw(q, dq)) < epsilon);
+        VERIFY(std::abs(identityFilter.scaled2w(q, dq) - centeredFilter.scaled2w(q, dq)) < epsilon);
+        // Cross derivatives
+        VERIFY((identityFilter.scaleSpaced2w(q, dq) - centeredFilter.scaleSpaced2w(q, dq)).norm() < epsilon);
+    }
+}
+
 template <typename Scalar, int Dim>
 void callSubTests()
 {
@@ -66,6 +107,8 @@ void callSubTests()
     for (int i = 0; i < g_repeat; ++i)
     {
         CALL_SUBTEST((testFrame<Point>()));
+        CALL_SUBTEST((testDistWeightFilter<Point, Ponca::SmoothWeightKernel<Scalar>>()));
+        CALL_SUBTEST((testDistWeightFilter<Point, Ponca::GaussianWeightKernel<Scalar>>()));
     }
 }
 
