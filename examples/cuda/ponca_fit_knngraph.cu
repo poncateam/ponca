@@ -10,15 +10,7 @@
  * \authors Auberval Florian, Nicolas Mellado
  */
 
-#include <Ponca/src/Fitting/basket.h>
-#include <Ponca/src/Fitting/meanPlaneFit.h>
-#include <Ponca/src/Fitting/weightFunc.h>
-#include <Ponca/src/Fitting/weightKernel.h>
-#include <Ponca/src/Common/pointTypes.h>
-#include <Ponca/src/Common/pointGeneration.h>
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTree.h>
-#include <Ponca/src/SpatialPartitioning/KdTree/kdTreeTraits.h>
-#include <Ponca/src/SpatialPartitioning/NeighborGraph/knnGraph.h>
+#include <Ponca/Ponca>
 #include <iostream>
 
 #include "cuda_utils.cu"
@@ -37,7 +29,7 @@ __host__ void testPlaneCuda(const bool _bUnoriented = false, const bool _bAddPos
                             const bool _bAddNormalNoise = false)
 {
     using DataPoint        = Ponca::PointPositionNormal<Scalar, Dim>;
-    using WeightSmoothFunc = Ponca::DistWeightFunc<DataPoint, Ponca::SmoothWeightKernel<Scalar>>;
+    using WeightSmoothFunc = Ponca::DistWeightFilter<DataPoint, Ponca::SmoothWeightKernel<Scalar>>;
     using MeanFitSmooth    = Ponca::Basket<DataPoint, WeightSmoothFunc, Ponca::MeanPlaneFit>;
     using VectorType       = typename DataPoint::VectorType;
 
