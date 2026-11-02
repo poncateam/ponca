@@ -50,10 +50,11 @@ namespace Ponca
     Unlike the C++ API, a compute object is not fitted once and then queried. Instead, the user describes, ahead of
     time, <b>all</b> the neighborhoods to process and <b>all</b> the quantities to extract. A single call to
     `compute` then performs every fit and returns the requested results as arrays, along with the status of each fit.
-    This keeps loops on the C++ side (see \ref pyponca_why for the rationale). The typical workflow is:
+    This keeps loops on the C++ side (see \ref pyponca_why for the rationale). The typical workflow is (all parameters
+    are detailed hereafter):
 
     \code{.py}
-        fit = pyponca.<Method>()                         # 1. Choose a fitting method
+        fit = pyponca.<MethodName>()                     # 1. Choose a fitting method
         fit.setNeighborFilter(centers, radii)            # 2. Describe the neighborhoods (one fit per center)
         fit.addComputation(pyponca.Computation.<ID>)     # 3. Describe what to extract (as many times as needed)
         fit.addComputation(pyponca.Computation.<ID>, input)
@@ -138,8 +139,8 @@ namespace Ponca
        is padded with `-1`.
 
     When given to `compute`, a `KDTree` restricts each fit to the points returned by `rangeNeighbors(center, radius)`.
-    With a plain `PointCloud`, every point of the cloud is visited for every fit and the neighbor filter alone decides
-    which points contribute. The `KDTree` is therefore much faster for large point clouds.
+    When using a plain `PointCloud` without `KDTree`, every point of the cloud needs to be visited for every fit and the
+    neighbor filter alone decides which points contribute. The `KDTree` is therefore much faster for large point clouds.
 
     \subsubsection pyponca_manual_methods Compute objects
 
@@ -181,9 +182,6 @@ namespace Ponca
     Compute object classes also have an `isCudaAvailable` attribute, which tells if the method can run on CUDA
     devices (see \ref pyponca_manual_cuda).
 
-    Settings are kept between calls to `compute`: the same object can be run on several point clouds, or with a new
-    neighbor filter. Calls to `addComputation` accumulate.
-
     \subsubsection pyponca_manual_filters Neighbor filters
 
     `setNeighborFilter(centers, radii, nf, normals)` describes the set of neighborhoods to process: one independent
@@ -220,8 +218,8 @@ namespace Ponca
     | `NONE`                      | None       | `(M, 0)`         | Nothing, only performs the fits, mostly useful for testing               |
     | `MEAN_POSITION`             | None       | `(M, D)`         | Weighted barycenter of the neighborhood                                  |
     | `MEAN_NORMAL`               | None       | `(M, D)`         | Weighted mean normal of the neighborhood                                 |
-    | `POTENTIAL`                 | Optional   | `(M,)`           | Value of the fitted scalar field                                         |
-    | `PRIMITIVE_GRADIENT`        | Optional   | `(M, D)`         | Gradient of the fitted scalar field (i.e. non normalized normal)         |
+    | `POTENTIAL`                 | Optional   | `(M,)`           | Value of the fitted scalar field for all the centers, or for the set of coordinates given as argument (if any) |
+    | `PRIMITIVE_GRADIENT`        | Optional   | `(M, D)`         | Gradient of the fitted scalar field (i.e. non normalized normal), for all the centers, or for the set of coordinates given as argument (if any) |
     | `PROJECTION`                | Required   | `(M, D)`         | Projection of the input point onto the fitted primitive                  |
     | `ALGEBRAIC_SPHERE`          | None       | `(M, 2 + D)`     | Radius, Pratt norm, then center of the fitted sphere                     |
     | `GLS`                       | None       | `(M, 2 + D)`     | GLS parameters \f$\tau\f$, \f$\kappa\f$, then \f$\eta\f$                  |
@@ -289,10 +287,8 @@ namespace Ponca
     runs one CUDA thread per filter center, and returns its results on the device of the point cloud. All arrays must
     be stored on the same device, mixing CPU and CUDA arrays raises a `RuntimeError`.
 
-    \snippet pyponca_cuda.py cuda
-
-    Unlike NumPy, CuPy does not compare arrays with `pyponca.FitResult` values: convert them first, e.g.
-    `status == int(pyponca.FitResult.STABLE)`.
+    Unlike NumPy, some libraries (e.g., CuPy) cannot compare arrays containing `pyponca.FitResult` values. It might be
+    needed to convert them first, e.g. `status == int(pyponca.FitResult.STABLE)`.
 
     A `KDTree` built from CUDA arrays is built on the CPU, from a copy of the positions, then sent to the device. Only
     the device copy is kept: `rangeNeighbors` is only available for trees built from CPU arrays, and only accepts CPU
