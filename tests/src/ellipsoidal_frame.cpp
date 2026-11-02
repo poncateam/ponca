@@ -20,45 +20,6 @@
 
 using namespace std;
 
-template <typename DataPoint>
-void testFrame()
-{
-    using Scalar     = typename DataPoint::Scalar;
-    using VectorType = typename DataPoint::VectorType;
-    using MatrixType = typename DataPoint::MatrixType;
-    using Frame      = Ponca::EllipsoidalNeighborhoodFrame<DataPoint>;
-    static_assert(Ponca::IsNeighborhoodFrame<Frame>);
-
-    const Scalar epsilon     = testEpsilon<Scalar>();
-    const Scalar centerScale = Eigen::internal::random<Scalar>(1, 5);
-    const VectorType center  = centerScale * VectorType::Random();
-
-    // Random orthonormal basis (extract Q from QR factorization of random matrix)
-    const MatrixType rotation = MatrixType(MatrixType::Random().householderQr().householderQ());
-    
-    // Scale column for "distorded" ellipses
-    VectorType axes[DataPoint::Dim];
-    for (int i = 0; i < DataPoint::Dim; ++i)
-        axes[i] = rotation.col(i) * Eigen::internal::random<Scalar>(Scalar(0.5), Scalar(5));
-
-    // Verify the change of basis matrix (i.e. projection of axes to unit vectors)
-    const Frame frame(center, axes);
-    for (int i = 0; i < DataPoint::Dim; ++i)
-    {
-        VERIFY((frame.convertToLocalBasis(center + axes[i]) - VectorType::Unit(i)).norm() < epsilon);
-    }
-
-    // Verify that covertToGlobal(convertToLocal) = identity
-    const VectorType q = VectorType::Random() * Eigen::internal::random<Scalar>(0, 10);
-    VERIFY((frame.convertToGlobalBasis(frame.convertToLocalBasis(q)) - q).norm() < epsilon);
-    VERIFY((frame.convertToGlobalBasis(frame.convertToLocalBasis(q, false), false) - q).norm() < epsilon);
-
-    // Verify identity matrix corresponds to centered frame
-    const Frame identityFrame(center); // Default axes is identity
-    const Ponca::CenteredNeighborhoodFrame<DataPoint> centeredFrame(center);
-    VERIFY((identityFrame.convertToLocalBasis(q) - centeredFrame.convertToLocalBasis(q)).norm() < epsilon);
-}
-
 template <typename DataPoint, typename WeightKernel>
 void testDistWeightFilter()
 {
@@ -74,7 +35,6 @@ void testDistWeightFilter()
     const Scalar centerScale = Eigen::internal::random<Scalar>(1, 5);
     const VectorType center  = centerScale * VectorType::Random();
     const Scalar t           = Eigen::internal::random<Scalar>(Scalar(0.5), Scalar(3));
-
 
     // Verify identity matrix corresponds to centered frame
     {
@@ -97,6 +57,35 @@ void testDistWeightFilter()
         // Cross derivatives
         VERIFY((identityFilter.scaleSpaced2w(q, dq) - centeredFilter.scaleSpaced2w(q, dq)).norm() < epsilon);
     }
+
+    // Verify that the distances for points on a sphere with centered filter is the same as point on a ellipse
+    // with an ellipsoidal filter
+    {
+        // Rotation: Q part of QR decomposition
+        const MatrixType rotation = MatrixType::Random().householderQr().householderQ();
+        VectorType scales;
+        for (int i = 0; i < DataPoint::Dim; ++i)
+            scales(i) = Eigen::internal::random<Scalar>(Scalar(0.5), Scalar(2));
+        const MatrixType axes = rotation * scales.asDiagonal();
+
+        const Filter ellipsoidFilter(center, t, axes);
+        const CenteredFilter sphereFilter(center, t);
+
+        const VectorType v          = VectorType::Random();
+        const VectorType pSphere    = center + v;
+        const VectorType pEllipsoid = center + axes * v;
+        const DataPoint dSphere(pSphere);
+        const DataPoint dEllipsoid(pEllipsoid);
+
+        // Weights
+        VERIFY(std::abs(ellipsoidFilter(dEllipsoid).first - sphereFilter(dSphere).first) < epsilon);
+
+        // Scale derivatives should also match as it depends only on distances, space depends on position
+        VERIFY(std::abs(ellipsoidFilter.scaledw(pEllipsoid, dEllipsoid) - sphereFilter.scaledw(pSphere, dSphere)) <
+               epsilon);
+        VERIFY(std::abs(ellipsoidFilter.scaled2w(pEllipsoid, dEllipsoid) - sphereFilter.scaled2w(pSphere, dSphere)) <
+               epsilon);
+    }
 }
 
 template <typename Scalar, int Dim>
@@ -106,7 +95,6 @@ void callSubTests()
 
     for (int i = 0; i < g_repeat; ++i)
     {
-        CALL_SUBTEST((testFrame<Point>()));
         CALL_SUBTEST((testDistWeightFilter<Point, Ponca::SmoothWeightKernel<Scalar>>()));
         CALL_SUBTEST((testDistWeightFilter<Point, Ponca::GaussianWeightKernel<Scalar>>()));
     }
