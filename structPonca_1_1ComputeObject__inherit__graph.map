@@ -1,25 +1,25 @@
 <map id="Ponca::ComputeObject&lt; Derived &gt;" name="Ponca::ComputeObject&lt; Derived &gt;">
-<area shape="rect" id="Node000001" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="446,5,609,145"/>
-<area shape="rect" id="Node000002" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="35,966,250,1095"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="433,80,346,91,299,101,251,115,204,133,161,157,121,187,89,224,61,268,40,315,25,364,15,415,9,467,8,520,17,625,36,726,62,819,90,900,116,965,111,967,85,902,57,821,31,727,12,625,3,520,4,467,9,414,20,363,35,313,56,266,84,221,118,183,158,153,202,128,249,109,297,95,345,85,432,75"/>
-<area shape="rect" id="Node000004" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="320,959,570,1103"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="623,110,658,135,685,168,702,215,710,276,711,347,707,423,692,573,678,688,676,761,677,819,675,847,668,875,655,904,634,936,606,966,572,988,569,984,602,962,630,933,650,902,663,873,669,846,672,819,671,761,673,688,687,572,702,423,706,347,704,277,696,216,680,171,654,139,620,114"/>
-<area shape="rect" id="Node000006" href="$classPonca_1_1CNC.html" title="Corrected Normal Current Fit type." alt="" coords="285,223,477,688"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="499,159,474,224,469,222,494,157"/>
-<area shape="rect" id="Node000007" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="501,378,664,533"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="529,159,532,198,546,291,565,377,560,378,541,292,526,199,524,160"/>
-<area shape="rect" id="Node000008" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="98,385,261,525"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="435,115,394,135,351,160,311,190,275,224,248,262,226,304,197,386,192,384,221,301,243,259,271,221,307,186,348,156,391,130,433,110"/>
-<area shape="rect" id="Node000010" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="738,378,928,533"/>
-<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="623,103,675,130,700,147,722,168,758,216,786,271,807,326,821,377,816,378,802,328,781,273,754,219,718,171,697,152,673,135,621,108"/>
-<area shape="rect" id="Node000011" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="952,385,1194,525"/>
-<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="623,74,695,81,775,97,855,124,893,144,928,167,953,190,975,215,1012,272,1039,330,1058,384,1053,386,1034,332,1007,274,971,218,949,193,925,171,891,148,853,129,774,102,695,86,623,80"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="63,1159,222,1319"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="145,1109,145,1159,140,1159,140,1109"/>
-<area shape="rect" id="Node000005" href="$classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="360,1152,530,1327"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="448,1116,448,1152,442,1152,442,1116"/>
-<area shape="rect" id="Node000009" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="99,737,306,837"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="188,539,202,737,196,737,183,539"/>
-<area shape="poly" id="edge9_Node000009_Node000002" title=" " alt="" coords="190,851,161,966,156,965,184,850"/>
-<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="320,826,344,841,366,859,385,881,401,906,426,957,421,959,397,909,381,885,362,863,341,846,317,831"/>
+<area shape="rect" id="Node000001" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="370,5,529,162"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="42,415,202,566"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="354,102,315,115,273,133,233,157,199,187,180,213,165,240,142,300,130,361,124,416,119,415,125,360,137,299,160,238,176,210,195,184,230,153,270,128,313,110,358,98"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="282,257,441,391"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="374,177,372,187,363,222,360,258,355,257,358,221,367,185,376,172"/>
+<area shape="rect" id="Node000009" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="454,415,640,566"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="472,173,532,415,527,415,471,179"/>
+<area shape="rect" id="Node000010" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="609,257,848,391"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="542,103,581,116,619,134,654,156,685,184,708,218,721,257,716,257,703,221,681,187,651,160,616,139,579,121,544,108"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="5,1280,217,1426"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,580,115,1280,109,1280,118,581"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP." alt="" coords="34,1492,188,1670"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="112,1438,114,1493,109,1492,110,1443"/>
+<area shape="rect" id="Node000006" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="250,794,452,905"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="361,403,355,794,350,793,359,408"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="291,919,220,1016,184,1074,154,1134,131,1208,119,1281,114,1280,126,1207,149,1132,180,1071,216,1013,294,914"/>
+<area shape="rect" id="Node000007" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="247,1271,493,1434"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="349,917,348,1070,355,1247,358,1272,353,1271,350,1248,343,1070,347,922"/>
+<area shape="rect" id="Node000008" href="$classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="286,1483,454,1679"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="371,1446,372,1485,367,1482,368,1451"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="564,578,591,743,611,939,615,1035,613,1122,603,1195,594,1225,583,1249,565,1272,543,1291,494,1320,491,1316,540,1287,561,1268,578,1246,589,1223,598,1194,608,1122,610,1035,606,939,585,744,563,583"/>
+<area shape="rect" id="Node000011" href="$classPonca_1_1CNC.html" title="Corrected Normal Current Fit type." alt="" coords="637,590,826,1109"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="730,403,732,591,727,590,728,408"/>
 </map>

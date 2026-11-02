@@ -1,17 +1,13 @@
 <map id="Ponca::KdTreeKNearestIterator&lt; Index, DataPoint, MAX_KNN_SIZE &gt;" name="Ponca::KdTreeKNearestIterator&lt; Index, DataPoint, MAX_KNN_SIZE &gt;">
-<area shape="rect" id="Node000001" title="Input iterator to read the KdTreeKNearestQueryBase object." alt="" coords="5,1333,268,1573"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1LimitedPriorityQueue.html" title=" " alt="" coords="15,916,258,1271"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,1271,139,1317,134,1317,134,1271"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="23,365,203,460"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="117,460,133,899,127,900,112,460"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="226,133,341,199"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="214,177,165,193,143,206,125,224,109,257,101,294,101,331,105,365,99,365,95,331,96,293,104,255,121,221,140,202,163,188,212,171"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="241,276,373,341"/>
-<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="294,212,305,275,299,276,288,213"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="324,5,347,71"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="326,52,309,72,295,96,289,118,284,116,290,94,305,68,322,49"/>
-<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="349,51,362,71,372,93,378,101,388,101,400,99,412,100,417,111,413,137,397,182,367,253,361,264,356,262,362,251,392,180,408,136,412,112,408,104,400,104,389,106,376,106,368,96,357,73,345,54"/>
-<area shape="rect" id="Node000006" href="$classPonca_1_1LimitedPriorityQueue.html" title="The LimitedPriorityQueue class is similar to std::priority_queue but has a limited capacity and handl..." alt="" coords="207,484,405,824"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="238,838,208,917,203,915,233,836"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="310,342,309,467,304,467,305,342"/>
+<area shape="rect" id="Node000001" title="Input iterator to read the KdTreeKNearestQueryBase object." alt="" coords="5,1431,264,1699"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1LimitedPriorityQueue.html" title=" " alt="" coords="15,939,254,1358"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,1355,137,1414,132,1413,134,1360"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1LimitedPriorityQueue.html" title="The LimitedPriorityQueue class is similar to std::priority_queue but has a limited capacity and handl..." alt="" coords="37,441,232,821"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="135,833,137,939,132,939,134,838"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="70,296,199,368"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="135,365,137,425,132,425,135,371"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="79,151,190,223"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="135,235,137,296,132,296,135,240"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="125,5,144,78"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="135,75,137,134,132,134,135,80"/>
 </map>

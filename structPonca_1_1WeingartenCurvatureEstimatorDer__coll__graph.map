@@ -1,7 +1,7 @@
 <map id="Ponca::WeingartenCurvatureEstimatorDer&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::WeingartenCurvatureEstimatorDer&lt; DataPoint, _NFilter, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="5,381,204,536"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="8,119,201,333"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,347,107,381,102,381,102,347"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="93,5,116,71"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,84,107,118,102,118,102,84"/>
+<area shape="rect" id="Node000001" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="5,414,201,587"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="8,126,198,366"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,379,106,415,101,414,102,384"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="94,5,112,78"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,90,106,126,101,126,103,95"/>
 </map>

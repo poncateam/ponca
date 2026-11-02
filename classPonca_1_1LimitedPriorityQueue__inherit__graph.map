@@ -1,5 +1,7 @@
 <map id="Ponca::LimitedPriorityQueue&lt; T, N, CompareT &gt;" name="Ponca::LimitedPriorityQueue&lt; T, N, CompareT &gt;">
-<area shape="rect" id="Node000001" title="The LimitedPriorityQueue class is similar to std::priority_queue but has a limited capacity and handl..." alt="" coords="27,5,226,365"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1LimitedPriorityQueue.html" title=" " alt="" coords="5,457,248,832"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,379,129,457,124,457,124,379"/>
+<area shape="rect" id="Node000001" title="The LimitedPriorityQueue class is similar to std::priority_queue but has a limited capacity and handl..." alt="" coords="27,5,222,407"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="236,187,246,196,249,207,242,222,224,230,220,227,238,218,244,206,242,198,237,192"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="236,157,291,155,339,163,374,179,384,192,388,206,384,222,372,235,355,244,333,251,280,258,224,253,221,249,280,252,332,246,353,240,369,231,379,219,383,206,380,194,371,184,338,168,291,161,239,162"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1LimitedPriorityQueue.html" title=" " alt="" coords="5,525,244,944"/>
+<area shape="poly" id="edge3_Node000001_Node000002" title=" " alt="" coords="125,419,127,525,122,525,124,425"/>
 </map>

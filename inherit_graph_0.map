@@ -1,7 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="60,5,121,31"/>
-<area shape="rect" id="Node000001" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="224,27,439,67"/>
-<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="135,21,224,32,223,37,135,26"/>
-<area shape="rect" id="Node000002" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="5,55,176,95"/>
-<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="189,61,223,57,224,62,190,66"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="60,5,120,33"/>
+<area shape="rect" id="Node000001" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="223,28,436,72"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="136,22,225,35,220,37,136,28"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="5,57,175,102"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="189,64,225,63,219,63,190,70"/>
 </map>

@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classPonca_1_1PointPositionNormalLazyBinding.html" title="Variant of the PointPositionNormal data type that uses external raw data." alt="" coords="5,5,225,45"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="5,5,187,50"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1KdTreeBase.html" title="Constructor that allows the use of prebuilt KdTree containers." alt="" coords="235,5,390,50"/>
+<area shape="poly" id="edge167_Node000000_Node000001" title=" " alt="" coords="202,25,237,27,232,28,203,30"/>
 </map>

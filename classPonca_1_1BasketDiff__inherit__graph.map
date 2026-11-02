@@ -1,17 +1,18 @@
 <map id="Ponca::BasketDiff&lt; BasketType, Type, Ext0, Exts &gt;" name="Ponca::BasketDiff&lt; BasketType, Type, Ext0, Exts &gt;">
-<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="211,852,381,1027"/>
-<area shape="rect" id="Node000002" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="171,659,421,803"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="299,816,299,852,293,852,293,816"/>
-<area shape="rect" id="Node000003" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="5,397,168,537"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="153,547,241,657,237,660,148,550"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="193,420,399,515"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="299,528,299,658,293,658,293,528"/>
-<area shape="rect" id="Node000005" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="423,417,630,517"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="476,530,361,660,357,657,472,526"/>
-<area shape="rect" id="Node000006" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="355,208,517,348"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="478,360,505,416,501,418,473,362"/>
-<area shape="rect" id="Node000007" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="355,5,517,145"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="439,159,439,208,433,208,433,159"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="541,245,595,311"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="561,325,540,418,535,417,555,324"/>
+<area shape="rect" id="Node000001" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="189,1076,357,1272"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="150,864,396,1027"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,1039,275,1077,270,1075,272,1044"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="5,415,191,566"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="127,577,173,701,240,864,235,865,168,703,127,582"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="107,5,266,162"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="96,154,78,187,68,215,62,244,59,304,65,362,76,415,71,416,60,363,53,304,56,243,63,213,73,184,98,149"/>
+<area shape="rect" id="Node000007" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="204,257,363,391"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="258,172,266,185,277,220,283,257,278,257,272,222,261,187,258,177"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="420,593,622,699"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="531,711,533,745,529,779,520,812,504,842,482,867,456,887,397,917,394,913,453,883,479,863,500,838,515,810,524,778,528,745,529,716"/>
+<area shape="rect" id="Node000006" href="$structPonca_1_1BasketComputeObject.html" title="Base ComputeObject for the Basket classes." alt="" coords="182,590,385,702"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="276,714,277,726,274,865,269,864,272,726,274,719"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="284,403,286,591,281,590,283,408"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="387,288,436,360"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="393,372,308,591,303,589,391,376"/>
 </map>

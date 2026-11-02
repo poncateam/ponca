@@ -1,7 +1,9 @@
 <map id="Ponca::CovarianceLineFitImpl&lt; DataPoint, _NFilter, T &gt;" name="Ponca::CovarianceLineFitImpl&lt; DataPoint, _NFilter, T &gt;">
-<area shape="rect" id="Node000001" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="53,133,264,273"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,187,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,97,133,132,128,134,114,99"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="211,13,234,78"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,88,190,134,185,132,204,86"/>
+<area shape="rect" id="Node000001" title="Line fitting procedure that minimize the orthogonal distance between the samples and the fitted primi..." alt="" coords="52,144,259,300"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1CovarianceLineFitImpl.html" title=" " alt="" coords="34,463,277,687"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="157,313,158,463,153,463,154,318"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,183,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,106,130,144,125,144,115,112"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="208,14,226,86"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,94,186,145,181,143,203,89"/>
 </map>

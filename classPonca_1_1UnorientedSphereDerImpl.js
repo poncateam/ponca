@@ -16,6 +16,7 @@ var classPonca_1_1UnorientedSphereDerImpl =
     [ "dprattNorm2", "classPonca_1_1UnorientedSphereDerImpl.html#a5de23a6e050c596352b3bb12db53084f", null ],
     [ "implicitPrimitiveDer", "classPonca_1_1UnorientedSphereDerImpl.html#a1d5e9aa13d3703ee3c0359f2bed7bb18", null ],
     [ "implicitPrimitiveDer", "classPonca_1_1UnorientedSphereDerImpl.html#a5dd46b08a820af9c3e1fca16b55c2bf9", null ],
+    [ "init", "classPonca_1_1UnorientedSphereDerImpl.html#ad16c1c18a9161a5b31157285ee2b98db", null ],
     [ "unorientedSphereDer", "classPonca_1_1UnorientedSphereDerImpl.html#af6baf88b466fbc9fb682ef0f2ea899ed", null ],
     [ "unorientedSphereDer", "classPonca_1_1UnorientedSphereDerImpl.html#abef48ce206f55e36bedca5e1300385dd", null ]
 ];

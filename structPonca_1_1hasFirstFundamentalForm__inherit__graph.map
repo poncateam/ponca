@@ -1,5 +1,7 @@
 <map id="Ponca::hasFirstFundamentalForm&lt; T, typename &gt;" name="Ponca::hasFirstFundamentalForm&lt; T, typename &gt;">
-<area shape="rect" id="Node000001" title="\FIXME create a macro to automatically generate the testing functions" alt="" coords="5,119,203,199"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="49,5,159,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,85,107,118,101,118,101,85"/>
+<area shape="rect" id="Node000001" title="\FIXME create a macro to automatically generate the testing functions" alt="" coords="35,127,228,216"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1hasFirstFundamentalForm_3_01T_00_01std_1_1void__t_3_01decltype_07std_1_1declval_3c934b077c941f2ac88d2ec4e8e15ad41.html" title=" " alt="" coords="5,334,258,457"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,230,134,335,129,334,130,234"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="78,5,185,78"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,90,134,128,129,127,131,95"/>
 </map>

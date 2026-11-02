@@ -1,0 +1,7 @@
+<map id="Ponca::GlobalNeighborhoodFrame&lt; DataPoint &gt;" name="Ponca::GlobalNeighborhoodFrame&lt; DataPoint &gt;">
+<area shape="rect" id="Node000001" title="NeighborhoodFrame that keep points in the global frame without applying any transformation This class..." alt="" coords="5,5,221,206"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title=" " alt="" coords="12,254,215,539"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,219,116,255,111,254,113,224"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1NoWeightFilterGlobal.html" title="Weighting function that set uniform weight to all samples and keep neighbors coordinates in global fr..." alt="" coords="16,587,211,677"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,552,116,588,111,587,112,556"/>
+</map>

@@ -1,7 +1,7 @@
 <map id="Ponca::Line&lt; DataPoint, _NFilter, T &gt;" name="Ponca::Line&lt; DataPoint, _NFilter, T &gt;">
-<area shape="rect" id="Node000001" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="5,148,193,468"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="17,20,40,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="44,98,57,147,52,148,39,99"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="65,5,278,100"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,114,147,148,142,147,152,113"/>
+<area shape="rect" id="Node000001" title="A parametrized line is defined by an origin point &#160;and a unit direction vector &#160;such that the line co..." alt="" coords="5,160,191,517"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="20,22,38,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="41,106,57,160,51,160,41,112"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="63,5,272,112"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="152,123,145,161,140,159,150,128"/>
 </map>

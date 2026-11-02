@@ -1,11 +1,11 @@
 <map id="Ponca::NoWeightFilter&lt; DataPoint &gt;" name="Ponca::NoWeightFilter&lt; DataPoint &gt;">
-<area shape="rect" id="Node000001" title="Weighting function that set uniform weight to all samples, but transform neighbors coordinates to loc..." alt="" coords="51,851,208,931"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title=" " alt="" coords="17,507,241,801"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,815,132,851,127,851,127,815"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,242,211,322"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,336,124,506,118,507,108,336"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title="Weighting function that set uniform weight to all samples." alt="" coords="235,135,418,429"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="244,443,210,508,205,505,240,440"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="250,5,403,85"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="329,99,329,134,324,134,324,99"/>
+<area shape="rect" id="Node000001" title="Weighting function that set uniform weight to all samples, but transform neighbors coordinates to loc..." alt="" coords="64,903,218,993"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title=" " alt="" coords="30,569,251,854"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,867,143,904,138,903,139,871"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1CenteredNeighborhoodFrame.html" title="NeighborhoodFrame that express 3d points relatively to a prescribed center." alt="" coords="5,197,233,420"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="126,432,136,569,130,569,125,437"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title="Weighting function that set uniform weight to all samples." alt="" coords="258,144,437,474"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="255,489,216,570,211,568,257,485"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="272,5,422,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="348,107,350,145,345,144,347,112"/>
 </map>

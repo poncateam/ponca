@@ -1,9 +1,9 @@
 <map id="Ponca::BitSet&lt; N, T &gt;" name="Ponca::BitSet&lt; N, T &gt;">
-<area shape="rect" id="Node000001" title="A simple BitSet implementation that mimics a set of indices." alt="" coords="5,404,161,609"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="8,261,159,341"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,342,86,387,81,387,81,342"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="26,133,141,199"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="86,212,86,261,81,261,81,212"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="72,5,95,71"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="86,71,86,117,81,117,81,71"/>
+<area shape="rect" id="Node000001" title="A simple BitSet implementation that mimics a set of indices." alt="" coords="5,458,158,687"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="8,296,155,385"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,383,84,442,79,441,81,388"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="26,151,137,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,235,84,296,79,296,81,241"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="72,5,91,78"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="82,75,84,134,79,133,81,80"/>
 </map>

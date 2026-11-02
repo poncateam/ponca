@@ -1,4 +1,25 @@
 var searchData=
 [
-  ['getting_20started_0',['Getting started',['../ponca_getting_started_page.html',1,'']]]
+  ['faqs_0',['Basic FAQs',['../index.html#ponca_instructions_sec',1,'']]],
+  ['file_20_3a_1',['Original file :',['../cncFormulaEigen_8h.html#autotoc_md5',1,'']]],
+  ['filter_2',['Defining a new neighbor filter',['../fitting.html#fitting_newfilter',1,'']]],
+  ['filter_20api_3',['Filter API',['../fitting.html#fitting_newfilterapi',1,'']]],
+  ['filters_4',['Available filters',['../fittingreference.html#fitting_filters',1,'']]],
+  ['first_20steps_5',['First Steps',['../fitting.html#fitting_firstSteps',1,'']]],
+  ['first_20steps_6',['First steps',['../ponca_getting_started_page.html#getting_started_first_step_sec',1,'']]],
+  ['fit_7',['fit',['../example_cxx_fit_line_page.html',1,'Ponca basic line fit'],['../example_cxx_fit_plane_page.html',1,'Ponca basic plane fit']]],
+  ['fitting_20data_20structure_8',['fitting data structure',['../example_cu_ssc_page.html#cu_ssgl_cuda_mypoint_sec',1,'Define fitting data structure'],['../example_python_ssc_page.html#pyssgl_cuda_mypoint_sec',1,'Define fitting data structure']]],
+  ['fitting_20in_20sycl_20kernels_9',['Fitting in SYCL kernels',['../example_sycl_basic_page.html',1,'example_page']]],
+  ['fitting_20module_3a_20reference_20manual_10',['Fitting Module: Reference Manual',['../fittingreference.html',1,'user_manual_page']]],
+  ['fitting_20module_3a_20user_20manual_11',['Fitting Module: User Manual',['../fitting.html',1,'user_manual_page']]],
+  ['fitting_20object_12',['Definition of the Fitting object',['../fitting.html#fitting_Define',1,'']]],
+  ['fitting_20primitive_13',['fitting primitive',['../example_cu_ssc_page.html#cu_ssgl_cuda_fit_sec',1,'Define fitting primitive'],['../example_python_ssc_page.html#pyssgl_cuda_fit_sec',1,'Define fitting primitive']]],
+  ['fitting_20process_14',['Fitting Process',['../fitting.html#fitting_Fitting',1,'']]],
+  ['fitting_20process_15',['Changing fitting process',['../fitting.html#fitting_custom',1,'']]],
+  ['fitting_20status_16',['Check fitting status',['../fitting.html#fitting_Checkstatus',1,'']]],
+  ['fitting_20techniques_20overview_17',['Fitting techniques Overview',['../fittingreference.html#fittingreference_primitiveoverview',1,'']]],
+  ['fitting_20tools_18',['Capabilities of Fitting tools',['../fittingreference.html#fittingreference_outputandcapabilities',1,'']]],
+  ['fitting_20with_20multiple_20primitives_19',['Fitting with multiple primitives',['../fitting.html#fitting_multiprimitive',1,'']]],
+  ['from_20the_20barycenter_20definition_20',['from the barycenter definition',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md1',1,'Step-by-step derivation from the barycenter definition'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md2',1,'Step-by-step derivation from the barycenter definition']]],
+  ['functions_21',['functions',['../example_cu_ssc_page.html#cu_ssgl_cuda_weight_sec',1,'Define weighting functions'],['../example_python_ssc_page.html#pyssgl_cuda_weight_sec',1,'Define weighting functions'],['../ponca_points.html#points_utility',1,'Utility classes and functions']]]
 ];

@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classPonca_1_1BitSet.html" title="A simple BitSet implementation that mimics a set of indices." alt="" coords="5,5,169,31"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1CenteredNeighborhoodFrame.html" title=" " alt="" coords="5,39,224,84"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1DistWeightFilter.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position." alt="" coords="272,39,488,84"/>
+<area shape="poly" id="edge94_Node000000_Node000001" title=" " alt="" coords="239,59,274,61,269,62,239,64"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1FilterWithAttributes.html" title=" " alt="" coords="536,5,830,118"/>
+<area shape="poly" id="edge95_Node000001_Node000002" title=" " alt="" coords="504,59,538,62,533,62,504,64"/>
 </map>

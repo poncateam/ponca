@@ -14,7 +14,7 @@ var classPonca_1_1KdTreeBase =
     [ "Traits", "classPonca_1_1KdTreeBase.html#a51c73f456116208a313ff5c2e2002b35", null ],
     [ "VectorType", "classPonca_1_1KdTreeBase.html#a65e8802e1206ff6e443f7665e19f1c83", null ],
     [ "build", "classPonca_1_1KdTreeBase.html#accc48693b346d94c4f80f696b423b199", null ],
-    [ "build", "classPonca_1_1KdTreeBase.html#ab75129b3862ad1249d3f116ec0dc090b", null ],
+    [ "build", "classPonca_1_1KdTreeBase.html#ae6a4e2faa68b4cae6b8fb1aee732f725", null ],
     [ "buildWithSampling", "classPonca_1_1KdTreeBase.html#a57f51bf5a976a8ac0a86b7ea0e92e78c", null ],
-    [ "buildWithSampling", "classPonca_1_1KdTreeBase.html#a8370d42aaad80cd00022b6e0222fe435", null ]
+    [ "buildWithSampling", "classPonca_1_1KdTreeBase.html#aaaac40bde81d4ee66788c7841cac1c9c", null ]
 ];

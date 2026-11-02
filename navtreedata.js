@@ -33,64 +33,7 @@ var NAVTREE =
       [ "Citation", "index.html#ponca_credits_subsection_citation", null ],
       [ "Users", "index.html#ponca_credits_subsection_users", null ]
     ] ],
-    [ "Examples", "example_page.html", [
-      [ "Ponca basic CPU", "example_cxx_basic_page.html", null ],
-      [ "Ponca basic plane fit", "example_cxx_fit_plane_page.html", null ],
-      [ "Ponca basic line fit", "example_cxx_fit_line_page.html", null ],
-      [ "Ponca data-structure binding", "example_cxx_binding_page.html", null ],
-      [ "Using Ponca to compute surface curvature in PCL", "example_cxx_pcl_page.html", [
-        [ "Introduction", "example_cxx_pcl_page.html#pcl_intro_sec", [
-          [ "Usage", "example_cxx_pcl_page.html#pcl_usage_sec", null ]
-        ] ],
-        [ "PCL wrapper", "example_cxx_pcl_page.html#pcl_wrapper_sec", [
-          [ "Datastructures declaration", "example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_h", null ],
-          [ "Datastructures implementation", "example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_hpp", null ],
-          [ "Datastructures instanciation", "example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_cpp", null ],
-          [ "Main program", "example_cxx_pcl_page.html#pcl_main_sec", null ]
-        ] ]
-      ] ],
-      [ "Screen Space Curvature using Cuda/C++", "example_cu_ssc_page.html", [
-        [ "Introduction", "example_cu_ssc_page.html#cu_ssgl_intro_sec", [
-          [ "Installation and usage", "example_cu_ssc_page.html#cu_ssgl_sec_dep_subsec", null ]
-        ] ],
-        [ "Cuda programming", "example_cu_ssc_page.html#cu_ssgl_cuda_sec", [
-          [ "Define fitting data structure", "example_cu_ssc_page.html#cu_ssgl_cuda_mypoint_sec", null ],
-          [ "Define weighting functions", "example_cu_ssc_page.html#cu_ssgl_cuda_weight_sec", null ],
-          [ "Define fitting primitive", "example_cu_ssc_page.html#cu_ssgl_cuda_fit_sec", null ],
-          [ "Kernel", "example_cu_ssc_page.html#cu_ssgl_cuda_kernel_sec", null ],
-          [ "Memory access", "example_cu_ssc_page.html#cu_ssgl_cuda_access_sec", null ]
-        ] ],
-        [ "The whole code", "example_cu_ssc_page.html#cu_ssgl_sec", null ]
-      ] ],
-      [ "Screen Space Curvature using Cuda and Python", "example_python_ssc_page.html", [
-        [ "Introduction", "example_python_ssc_page.html#pyssgl_intro_sec", [
-          [ "Installation and usage", "example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec", null ]
-        ] ],
-        [ "Cuda programming", "example_python_ssc_page.html#pyssgl_cuda_sec", [
-          [ "Define fitting data structure", "example_python_ssc_page.html#pyssgl_cuda_mypoint_sec", null ],
-          [ "Define weighting functions", "example_python_ssc_page.html#pyssgl_cuda_weight_sec", null ],
-          [ "Define fitting primitive", "example_python_ssc_page.html#pyssgl_cuda_fit_sec", null ],
-          [ "Kernel", "example_python_ssc_page.html#pyssgl_cuda_kernel_sec", null ],
-          [ "Memory access", "example_python_ssc_page.html#pyssgl_cuda_access_sec", null ]
-        ] ],
-        [ "Python script", "example_python_ssc_page.html#pyssgl_python_sec", null ]
-      ] ],
-      [ "Fitting in SYCL kernels", "example_sycl_basic_page.html", null ],
-      [ "Ponca::KdTree neighbor searches", "example_cxx_neighbor_search.html", null ],
-      [ "Comparison between Nanoflann and Ponca KdTree APIs", "example_cxx_nanoflann_page.html", [
-        [ "Introduction", "example_cxx_nanoflann_page.html#nanoflann_intro_sec", [
-          [ "Compilation", "example_cxx_nanoflann_page.html#nanoflann_compilation_sec", null ]
-        ] ],
-        [ "API comparisons", "example_cxx_nanoflann_page.html#nanoflann_comparison_sec", null ],
-        [ "Timings", "example_cxx_nanoflann_page.html#nanoflann_timings_sec", null ],
-        [ "Example source code", "example_cxx_nanoflann_page.html#nanoflann_sourcecode_sec", null ]
-      ] ],
-      [ "Object-space Curvature using Cuda/C++ and KdTree queries", "example_cu_kdtree_page.html", [
-        [ "Introduction", "example_cu_kdtree_page.html#cu_kdtree_intro_sec", null ],
-        [ "Source code", "example_cu_kdtree_page.html#cu_kdtree_code", null ]
-      ] ],
-      [ "Using KdTree in SYCL kernels", "example_sycl_kdtree_page.html", null ]
-    ] ],
+    [ "Examples", "example_page.html", "example_page" ],
     [ "Releases overview", "ponca_changelog.html", [
       [ "Complete Changelog", "ponca_changelog.html#ponca_changelog_sec", null ]
     ] ],
@@ -109,76 +52,7 @@ var NAVTREE =
       ] ],
       [ "First steps", "ponca_getting_started_page.html#getting_started_first_step_sec", null ]
     ] ],
-    [ "User Manual", "user_manual_page.html", [
-      [ "Defining Points in Ponca", "ponca_points.html", [
-        [ "Points", "ponca_points.html#ponca_points_intro", null ],
-        [ "Utility classes and functions", "ponca_points.html#points_utility", null ]
-      ] ],
-      [ "Fitting Module: User Manual", "fitting.html", [
-        [ "Introduction", "fitting.html#fitting_intro", null ],
-        [ "First Steps", "fitting.html#fitting_firstSteps", [
-          [ "Include directives", "fitting.html#fitting_codeStructure", null ],
-          [ "Definition of the Fitting object", "fitting.html#fitting_Define", null ],
-          [ "Fitting Process", "fitting.html#fitting_Fitting", null ],
-          [ "Check fitting status", "fitting.html#fitting_Checkstatus", null ],
-          [ "Basic Outputs", "fitting.html#fitting_outputs", null ]
-        ] ],
-        [ "Evaluation schemes and projection", "fitting.html#evaluation_schemes", null ],
-        [ "Computing derivatives", "fitting.html#fitting_derivatives", null ],
-        [ "Changing fitting process", "fitting.html#fitting_custom", null ],
-        [ "Defining a new neighbor filter", "fitting.html#fitting_newfilter", [
-          [ "Defining a new distance kernel", "fitting.html#fitting_newkernel", null ],
-          [ "Filter API", "fitting.html#fitting_newfilterapi", null ]
-        ] ],
-        [ "Defining a new Estimator", "fitting.html#fitting_newestimator", [
-          [ "Understanding CRTP in Ponca", "fitting.html#crtpestimator", null ],
-          [ "Estimator API", "fitting.html#fitting_newestim", [
-            [ "Minimal requirements", "fitting.html#fitting_newestimbase", null ],
-            [ "Computational objets capabilities and requirements", "fitting.html#fitting_newcapabilities", null ],
-            [ "Providing cast operations", "fitting.html#fitting_cast", null ],
-            [ "New primitive differentiation (BasketDiff API)", "fitting.html#fitting_newdiff", null ]
-          ] ]
-        ] ],
-        [ "Advanced usage", "fitting.html#fitting_advanced", [
-          [ "Iterating over common Baskets", "fitting.html#fitting_factory", null ],
-          [ "Fitting with multiple primitives", "fitting.html#fitting_multiprimitive", null ]
-        ] ],
-        [ "Cuda and SYCL", "fitting.html#fitting_cuda", null ]
-      ] ],
-      [ "Fitting Module: Reference Manual", "fittingreference.html", [
-        [ "Fitting techniques Overview", "fittingreference.html#fittingreference_primitiveoverview", null ],
-        [ "Capabilities of Fitting tools", "fittingreference.html#fittingreference_outputandcapabilities", null ],
-        [ "Computing Curvatures", "fittingreference.html#fitting_curvature", null ],
-        [ "Available filters", "fittingreference.html#fitting_filters", null ],
-        [ "Available Weighting kernel", "fittingreference.html#fitting_kernel", null ]
-      ] ],
-      [ "Spatial Partitioning: User Manual", "spatialpartitioning.html", [
-        [ "Introduction", "spatialpartitioning.html#spatialpartitioning_intro", [
-          [ "Datastructures", "spatialpartitioning.html#spatialpartitioning_intro_structures", null ],
-          [ "Queries", "spatialpartitioning.html#spatialpartitioning_intro_queries", null ]
-        ] ],
-        [ "KdTree", "spatialpartitioning.html#spatialpartitioning_kdtree", [
-          [ "Specifications", "spatialpartitioning.html#spatialpartitioning_kdtree_implementation", null ],
-          [ "Basic usage", "spatialpartitioning.html#spatialpartitioning_kdtree_usage", [
-            [ "Construction", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_construction", null ],
-            [ "Queries", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_queries", null ],
-            [ "Samples and indexing", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_samples_and_indexing", null ]
-          ] ],
-          [ "Usage in Cuda kernels", "spatialpartitioning.html#spatialpartitioning_kdtree_cuda", null ],
-          [ "Customizing the KdTree using <tt>Traits</tt>", "spatialpartitioning.html#spatialpartitioning_kdtree_extending", null ],
-          [ "Usage of the convenience classes KdTree and KdTreeBase", "spatialpartitioning.html#spatialpartitioning_kdtree_usage_which_class", null ]
-        ] ],
-        [ "KnnGraph", "spatialpartitioning.html#spatialpartitioning_knngraph", [
-          [ "Basic usage", "spatialpartitioning.html#spatialpartitioning_knngraph_usage", [
-            [ "Construction", "spatialpartitioning.html#spatialpartitioning_knngraph_usage_construction", null ],
-            [ "Queries", "spatialpartitioning.html#spatialpartitioning_knngraph_usage_queries", null ]
-          ] ]
-        ] ]
-      ] ],
-      [ "Common module: User Manual", "common.html", [
-        [ "Overview of the proposed tools", "common.html#common_intro", null ]
-      ] ]
-    ] ],
+    [ "User Manual", "user_manual_page.html", "user_manual_page" ],
     [ "Bibliography", "citelist.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -199,12 +73,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"classPonca_1_1CovariancePlaneFitImpl.html#aa5ecf1c4b5d330163cdfaf8e6cc292f3",
-"classPonca_1_1MeanPlaneFitImpl.html#ae5a754ca08646e19445852a0621631b4",
-"classPonca_1_1RestrictedQuadraticHeightField.html#a5c0ce9a3ee00d7880da301eaa111c6f2",
-"fitting.html#fitting_newkernel",
-"structPonca_1_1SingleEvaluationScheme.html#a1f513309c8cb40a93cacd1a182c416f6"
+"classPonca_1_1CovariancePlaneFitImpl.html#a18635760d587df7b3958acc01a4abb15",
+"classPonca_1_1Line.html#aec54c6433366eff8756c27b77ecf84b5",
+"classPonca_1_1QuadraticHeightField.html#aa8170554d221efe1383a244ee184bb6b",
+"fitting.html#fitting_advanced",
+"structPonca_1_1NotHeightFieldProvider.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

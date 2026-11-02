@@ -1,14 +1,17 @@
 <map id="Ponca::KdTree&lt; DataPoint &gt;" name="Ponca::KdTree&lt; DataPoint &gt;">
-<area shape="rect" id="Node000001" title="Abstract KdTree type with KdTreeDefaultTraits." alt="" coords="27,1537,226,1603"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="46,1333,207,1488"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,1501,129,1537,124,1537,124,1501"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="5,692,205,1092"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="117,1105,126,1333,121,1333,111,1106"/>
-<area shape="rect" id="Node000004" href="$structPonca_1_1StaticKdTreeBase_1_1Buffers.html" title="Internal structure storing all the buffers used by the KdTree." alt="" coords="57,5,231,205"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,206,108,230,95,343,89,459,88,572,92,676,86,676,83,572,84,459,90,343,103,229,107,205"/>
-<area shape="rect" id="Node000006" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="135,268,335,668"/>
-<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="171,205,183,252,178,253,166,206"/>
-<area shape="rect" id="Node000005" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="146,1116,307,1256"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="193,1270,163,1334,159,1332,188,1267"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="235,682,230,1116,225,1116,230,682"/>
+<area shape="rect" id="Node000001" title="Abstract KdTree type with KdTreeDefaultTraits." alt="" coords="232,1581,428,1653"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="250,1403,410,1531"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="332,1544,332,1582,328,1579,328,1548"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1StaticKdTreeBase.html" title=" " alt="" coords="131,844,329,1307"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="294,1319,317,1403,311,1403,292,1324"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1StaticKdTreeBase_1_1Buffers.html" title="Internal structure storing all the buffers used by the KdTree." alt="" coords="145,5,315,229"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="144,183,95,237,72,269,55,303,32,367,17,423,9,473,9,522,14,571,24,623,55,748,85,833,125,914,120,915,80,835,50,749,19,624,9,571,3,522,4,473,12,421,27,365,50,301,68,266,91,234,146,178"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="131,302,329,748"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="230,226,233,285,227,285,230,231"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1StaticKdTreeBase.html" title="Customizable static base class for KdTree datastructure implementations." alt="" coords="354,302,552,748"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="298,226,343,300,348,310,343,311,338,303,299,231"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="231,761,233,844,227,844,230,766"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1KdTreeBase.html" title="Constructor that allows the use of prebuilt KdTree containers." alt="" coords="358,975,518,1176"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="409,1189,350,1404,345,1402,405,1192"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="447,761,443,976,438,975,445,766"/>
 </map>

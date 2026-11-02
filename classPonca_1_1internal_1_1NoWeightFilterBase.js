@@ -4,7 +4,7 @@ var classPonca_1_1internal_1_1NoWeightFilterBase =
     [ "MatrixType", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a24f3f26167fbaf2238607f630ff1fcca", null ],
     [ "Scalar", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a047034d5ce0c0594e743810151ea22fc", null ],
     [ "VectorType", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a1e559ea028dba70a38fc115a91ee87c0", null ],
-    [ "WeightReturnType", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a09970934bfd0e2be58e6d1cada54121f", null ],
+    [ "WeightReturnType", "classPonca_1_1internal_1_1NoWeightFilterBase.html#acbf56d317a0f0487e6c2827ad0e5d2d3", null ],
     [ "NoWeightFilterBase", "classPonca_1_1internal_1_1NoWeightFilterBase.html#ae1e0d20adb278b99d0c0209fe7821aab", null ],
     [ "NoWeightFilterBase", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a43caa02f1fe9ffa1fa8fbed5abd94c84", null ],
     [ "evalScale", "classPonca_1_1internal_1_1NoWeightFilterBase.html#a754b12523cf2e6a3de6e7d23094f79dd", null ],

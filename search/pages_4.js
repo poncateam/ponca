@@ -1,5 +1,28 @@
 var searchData=
 [
-  ['ecosystem_0',['The ponca ecosystem',['../poncaecosysrem.html',1,'']]],
-  ['examples_1',['Examples',['../example_page.html',1,'']]]
+  ['data_20structure_0',['data structure',['../example_cu_ssc_page.html#cu_ssgl_cuda_mypoint_sec',1,'Define fitting data structure'],['../example_python_ssc_page.html#pyssgl_cuda_mypoint_sec',1,'Define fitting data structure']]],
+  ['data_20structure_20binding_1',['Ponca data-structure binding',['../example_cxx_binding_page.html',1,'example_page']]],
+  ['datastructures_2',['Datastructures',['../spatialpartitioning.html#spatialpartitioning_intro_structures',1,'']]],
+  ['datastructures_20declaration_3',['Datastructures declaration',['../example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_h',1,'']]],
+  ['datastructures_20implementation_4',['Datastructures implementation',['../example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_hpp',1,'']]],
+  ['datastructures_20instanciation_5',['Datastructures instanciation',['../example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_cpp',1,'']]],
+  ['declaration_6',['Datastructures declaration',['../example_cxx_pcl_page.html#pcl_wrapper_sec_pcl_wrapper_sec_h',1,'']]],
+  ['define_20fitting_20data_20structure_7',['Define fitting data structure',['../example_cu_ssc_page.html#cu_ssgl_cuda_mypoint_sec',1,'Define fitting data structure'],['../example_python_ssc_page.html#pyssgl_cuda_mypoint_sec',1,'Define fitting data structure']]],
+  ['define_20fitting_20primitive_8',['Define fitting primitive',['../example_cu_ssc_page.html#cu_ssgl_cuda_fit_sec',1,'Define fitting primitive'],['../example_python_ssc_page.html#pyssgl_cuda_fit_sec',1,'Define fitting primitive']]],
+  ['define_20weighting_20functions_9',['Define weighting functions',['../example_cu_ssc_page.html#cu_ssgl_cuda_weight_sec',1,'Define weighting functions'],['../example_python_ssc_page.html#pyssgl_cuda_weight_sec',1,'Define weighting functions']]],
+  ['defining_20a_20new_20distance_20kernel_10',['Defining a new distance kernel',['../fitting.html#fitting_newkernel',1,'']]],
+  ['defining_20a_20new_20estimator_11',['Defining a new Estimator',['../fitting.html#fitting_newestimator',1,'']]],
+  ['defining_20a_20new_20neighbor_20filter_12',['Defining a new neighbor filter',['../fitting.html#fitting_newfilter',1,'']]],
+  ['defining_20points_20in_20ponca_13',['Defining Points in Ponca',['../ponca_points.html',1,'user_manual_page']]],
+  ['definition_14',['definition',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md1',1,'Step-by-step derivation from the barycenter definition'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md2',1,'Step-by-step derivation from the barycenter definition']]],
+  ['definition_20of_20the_20fitting_20object_15',['Definition of the Fitting object',['../fitting.html#fitting_Define',1,'']]],
+  ['derivation_20from_20the_20barycenter_20definition_16',['derivation from the barycenter definition',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md1',1,'Step-by-step derivation from the barycenter definition'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md2',1,'Step-by-step derivation from the barycenter definition']]],
+  ['derivation_20of_20the_20mean_20normal_20_3a_17',['derivation of the mean normal :',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md3',1,'Step-by-step derivation of the mean normal :'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md4',1,'Step-by-step derivation of the mean normal :']]],
+  ['derivatives_18',['Computing derivatives',['../fitting.html#fitting_derivatives',1,'']]],
+  ['details_19',['Computation details',['../classPonca_1_1CovarianceBase.html#autotoc_md0',1,'']]],
+  ['developers_20and_20contributors_20',['Developers and contributors',['../index.html#ponca_credits_subsection_crew',1,'']]],
+  ['differentiation_20basketdiff_20api_21',['New primitive differentiation (BasketDiff API)',['../fitting.html#fitting_newdiff',1,'']]],
+  ['directives_22',['Include directives',['../fitting.html#fitting_codeStructure',1,'']]],
+  ['distance_20kernel_23',['Defining a new distance kernel',['../fitting.html#fitting_newkernel',1,'']]],
+  ['download_24',['Download',['../ponca_getting_started_page.html#getting_started_download_sec',1,'']]]
 ];

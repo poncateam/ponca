@@ -5,7 +5,7 @@ var classPonca_1_1DistWeightFilter =
     [ "NeighborhoodFrame", "classPonca_1_1DistWeightFilter.html#a68be446d5257a8e4498a373835840ec1", null ],
     [ "Scalar", "classPonca_1_1DistWeightFilter.html#a80cf4bf2539d88ecc69feb211611526c", null ],
     [ "VectorType", "classPonca_1_1DistWeightFilter.html#a7e57e46fae60d32194eed7d8b222691c", null ],
-    [ "WeightReturnType", "classPonca_1_1DistWeightFilter.html#a5cd218f02ac287f46229d6e692411a4a", null ],
+    [ "WeightReturnType", "classPonca_1_1DistWeightFilter.html#af4b32decbf39be17c3e32166c38922c8", null ],
     [ "DistWeightFilter", "classPonca_1_1DistWeightFilter.html#a8e18951309a5bf75698ec722484d0f95", null ],
     [ "DistWeightFilter", "classPonca_1_1DistWeightFilter.html#ac4d236519d3326540a326a6b9e4e6452", null ],
     [ "evalScale", "classPonca_1_1DistWeightFilter.html#afce8b627f9e70c3710933c27f85787a2", null ],

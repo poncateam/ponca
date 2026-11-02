@@ -1,9 +1,14 @@
 <map id="Ponca::StaticNeighborGraphBase&lt; _Traits &gt;" name="Ponca::StaticNeighborGraphBase&lt; _Traits &gt;">
-<area shape="rect" id="Node000001" title="Static generic neighbor graph (does not include build functions)" alt="" coords="73,809,279,949"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1NeighborGraphBase.html" title=" " alt="" coords="81,999,271,1079"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="179,963,179,998,173,998,173,963"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1AbstractNeighborGraph.html" title=" " alt="" coords="5,421,347,760"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,774,179,809,173,809,173,774"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1AbstractNeighborGraph.html" title="Base class for neighbor graphs." alt="" coords="47,5,305,300"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="179,314,179,421,173,421,173,314"/>
+<area shape="rect" id="Node000001" title="Static generic neighbor graph (does not include build functions)." alt="" coords="116,905,320,1061"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1NeighborGraphBase.html" title=" " alt="" coords="5,1386,212,1492"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,1076,128,1104,115,1135,101,1201,96,1269,98,1333,103,1387,98,1386,92,1333,91,1269,95,1201,110,1134,123,1102,144,1071"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1NeighborGraphBase.html" title=" " alt="" coords="124,1168,312,1257"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="219,1074,221,1169,215,1168,217,1079"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1StaticNeighborGraphBase.html" title=" " alt="" coords="336,1134,540,1291"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="303,1069,366,1134,361,1135,303,1075"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1AbstractNeighborGraph.html" title=" " alt="" coords="49,497,387,856"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,868,221,906,215,905,218,873"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1AbstractNeighborGraph.html" title="Base class for neighbor graphs." alt="" coords="91,5,345,335"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="218,347,221,498,215,497,218,352"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="193,1269,136,1387,132,1385,188,1272"/>
 </map>

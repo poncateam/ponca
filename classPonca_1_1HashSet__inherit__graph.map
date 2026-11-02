@@ -1,0 +1,7 @@
+<map id="Ponca::HashSet&lt; N, T, _HashFunctor, OFFSET &gt;" name="Ponca::HashSet&lt; N, T, _HashFunctor, OFFSET &gt;">
+<area shape="rect" id="Node000001" title="Stores unique signed integer values in a contiguous array." alt="" coords="17,5,208,273"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="222,126,231,132,235,140,227,151,209,156,206,152,224,146,229,139,227,135,223,131"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="222,107,279,105,331,110,368,120,379,129,384,139,379,151,366,159,324,170,268,174,209,171,207,166,268,169,324,165,364,154,375,147,378,139,375,132,366,125,330,115,279,110,224,111"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1HashSet.html" title=" " alt="" coords="5,346,220,597"/>
+<area shape="poly" id="edge3_Node000001_Node000002" title=" " alt="" coords="113,285,115,347,110,346,112,290"/>
+</map>

@@ -1,7 +1,11 @@
 <map id="Ponca::WeingartenCurvatureEstimator&lt; DataPoint, _NFilter, T &gt;" name="Ponca::WeingartenCurvatureEstimator&lt; DataPoint, _NFilter, T &gt;">
-<area shape="rect" id="Node000001" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="5,381,204,536"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="8,119,201,333"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,347,107,381,102,381,102,347"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="93,5,116,71"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,84,107,118,102,118,102,84"/>
+<area shape="rect" id="Node000001" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="274,417,469,590"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1WeingartenCurvatureEstimator.html" title=" " alt="" coords="5,828,364,1103"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="259,548,220,577,203,595,188,615,167,666,156,720,154,775,157,828,152,828,149,775,151,719,162,664,184,613,199,592,217,573,262,544"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1WeingartenCurvatureEstimator.html" title=" " alt="" coords="388,819,731,1112"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="481,558,510,583,532,613,554,662,568,714,575,768,577,821,572,818,570,768,563,715,549,663,528,615,506,587,481,564"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html" title="Compute principal curvatures from a base class providing fundamental forms." alt="" coords="276,127,466,367"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="372,380,374,417,369,416,371,385"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="362,5,381,78"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="372,90,374,128,369,127,371,95"/>
 </map>

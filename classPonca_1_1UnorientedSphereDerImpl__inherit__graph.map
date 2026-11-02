@@ -1,5 +1,7 @@
 <map id="Ponca::UnorientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::UnorientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,119,207,493"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="95,5,117,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,84,109,118,103,118,103,84"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="34,127,232,546"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1UnorientedSphereDerImpl.html" title=" " alt="" coords="5,664,260,1100"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,558,135,664,130,664,132,563"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="123,5,142,78"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,90,135,128,130,127,132,95"/>
 </map>

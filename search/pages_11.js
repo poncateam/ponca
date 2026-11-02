@@ -1,5 +1,30 @@
 var searchData=
 [
-  ['the_20ponca_20ecosystem_0',['The ponca ecosystem',['../poncaecosysrem.html',1,'']]],
-  ['to_20compute_20surface_20curvature_20in_20pcl_1',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]]
+  ['samples_20and_20indexing_0',['Samples and indexing',['../spatialpartitioning.html#spatialpartitioning_kdtree_usage_samples_and_indexing',1,'']]],
+  ['schemes_20and_20projection_1',['Evaluation schemes and projection',['../fitting.html#evaluation_schemes',1,'']]],
+  ['screen_20space_20curvature_20using_20cuda_20and_20python_2',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
+  ['screen_20space_20curvature_20using_20cuda_20c_3',['Screen Space Curvature using Cuda/C++',['../example_cu_ssc_page.html',1,'example_page']]],
+  ['script_4',['Python script',['../example_python_ssc_page.html#pyssgl_python_sec',1,'']]],
+  ['searches_5',['Ponca::KdTree neighbor searches',['../example_cxx_neighbor_search.html',1,'example_page']]],
+  ['source_20code_6',['Source code',['../example_cu_kdtree_page.html#cu_kdtree_code',1,'']]],
+  ['source_20code_7',['Example source code',['../example_cxx_nanoflann_page.html#nanoflann_sourcecode_sec',1,'']]],
+  ['space_20curvature_20using_20cuda_20and_20python_8',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
+  ['space_20curvature_20using_20cuda_20c_9',['Screen Space Curvature using Cuda/C++',['../example_cu_ssc_page.html',1,'example_page']]],
+  ['space_20curvature_20using_20cuda_20c_20and_20kdtree_20queries_10',['Object-space Curvature using Cuda/C++ and KdTree queries',['../example_cu_kdtree_page.html',1,'example_page']]],
+  ['spatial_20partitioning_3a_20user_20manual_11',['Spatial Partitioning: User Manual',['../spatialpartitioning.html',1,'user_manual_page']]],
+  ['specifications_12',['Specifications',['../spatialpartitioning.html#spatialpartitioning_kdtree_implementation',1,'']]],
+  ['started_13',['Getting started',['../ponca_getting_started_page.html',1,'']]],
+  ['status_14',['Check fitting status',['../fitting.html#fitting_Checkstatus',1,'']]],
+  ['step_20by_20step_20derivation_20from_20the_20barycenter_20definition_15',['Step by step derivation from the barycenter definition',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md1',1,'Step-by-step derivation from the barycenter definition'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md2',1,'Step-by-step derivation from the barycenter definition']]],
+  ['step_20by_20step_20derivation_20of_20the_20mean_20normal_20_3a_16',['Step by step derivation of the mean normal :',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md3',1,'Step-by-step derivation of the mean normal :'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md4',1,'Step-by-step derivation of the mean normal :']]],
+  ['step_20derivation_20from_20the_20barycenter_20definition_17',['step derivation from the barycenter definition',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md1',1,'Step-by-step derivation from the barycenter definition'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md2',1,'Step-by-step derivation from the barycenter definition']]],
+  ['step_20derivation_20of_20the_20mean_20normal_20_3a_18',['step derivation of the mean normal :',['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md3',1,'Step-by-step derivation of the mean normal :'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md4',1,'Step-by-step derivation of the mean normal :']]],
+  ['steps_19',['First Steps',['../fitting.html#fitting_firstSteps',1,'']]],
+  ['steps_20',['First steps',['../ponca_getting_started_page.html#getting_started_first_step_sec',1,'']]],
+  ['structure_21',['structure',['../example_cu_ssc_page.html#cu_ssgl_cuda_mypoint_sec',1,'Define fitting data structure'],['../example_python_ssc_page.html#pyssgl_cuda_mypoint_sec',1,'Define fitting data structure']]],
+  ['structure_20binding_22',['Ponca data-structure binding',['../example_cxx_binding_page.html',1,'example_page']]],
+  ['subdirectory_23',['Use as cmake subdirectory',['../ponca_getting_started_page.html#getting_started_installation_cmakesubdirectory_subsec',1,'']]],
+  ['surface_20curvature_20in_20pcl_24',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]],
+  ['sycl_25',['Cuda and SYCL',['../fitting.html#fitting_cuda',1,'']]],
+  ['sycl_20kernels_26',['SYCL kernels',['../example_sycl_basic_page.html',1,'Fitting in SYCL kernels'],['../example_sycl_kdtree_page.html',1,'Using KdTree in SYCL kernels']]]
 ];

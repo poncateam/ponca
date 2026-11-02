@@ -11,12 +11,15 @@ var searchData=
   ['computeobject_3c_20basketdiff_3c_20baskettype_2c_20type_2c_20ext0_2c_20exts_2e_2e_2e_20_3e_20_3e_8',['ComputeObject&lt; BasketDiff&lt; BasketType, Type, Ext0, Exts... &gt; &gt;',['../structPonca_1_1ComputeObject.html',1,'Ponca']]],
   ['computeobject_3c_20cnc_3c_20p_2c_20uniformgeneration_20_3e_20_3e_9',['ComputeObject&lt; CNC&lt; P, UniformGeneration &gt; &gt;',['../structPonca_1_1ComputeObject.html',1,'Ponca']]],
   ['computeobjectlist_10',['ComputeObjectList',['../structPonca_1_1internal_1_1ComputeObjectList.html',1,'Ponca::internal']]],
-  ['conjunction_11',['conjunction',['../structPonca_1_1internal_1_1Factory_1_1conjunction.html',1,'Ponca::internal::Factory']]],
-  ['constantweightkernel_12',['ConstantWeightKernel',['../classPonca_1_1ConstantWeightKernel.html',1,'Ponca']]],
-  ['constantweightkernel_3c_20scalar_20_3e_13',['ConstantWeightKernel&lt; Scalar &gt;',['../classPonca_1_1ConstantWeightKernel.html',1,'Ponca']]],
+  ['computeobjectlist_3c_20factoryentries_20_3e_11',['ComputeObjectList&lt; FactoryEntries &gt;',['../structPonca_1_1internal_1_1ComputeObjectList.html',1,'Ponca::internal']]],
+  ['conjunction_12',['conjunction',['../structPonca_1_1internal_1_1Factory_1_1conjunction.html',1,'Ponca::internal::Factory']]],
+  ['constantweightkernel_13',['ConstantWeightKernel',['../classPonca_1_1ConstantWeightKernel.html',1,'Ponca']]],
   ['covariancebase_14',['CovarianceBase',['../classPonca_1_1CovarianceBase.html',1,'Ponca']]],
   ['covarianceder_15',['CovarianceDer',['../classPonca_1_1CovarianceDer.html',1,'Ponca']]],
   ['covariancelinefitimpl_16',['CovarianceLineFitImpl',['../classPonca_1_1CovarianceLineFitImpl.html',1,'Ponca']]],
-  ['covarianceplanederimpl_17',['CovariancePlaneDerImpl',['../classPonca_1_1CovariancePlaneDerImpl.html',1,'Ponca']]],
-  ['covarianceplanefitimpl_18',['CovariancePlaneFitImpl',['../classPonca_1_1CovariancePlaneFitImpl.html',1,'Ponca']]]
+  ['covariancelinefitimpl_3c_20datapoint_2c_20_5fnfilter_2c_20covariancebase_3c_20datapoint_2c_20_5fnfilter_2c_20meanposition_3c_20datapoint_2c_20_5fnfilter_2c_20line_3c_20datapoint_2c_20_5fnfilter_2c_20t_20_3e_20_3e_20_3e_20_3e_17',['CovarianceLineFitImpl&lt; DataPoint, _NFilter, CovarianceBase&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, Line&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt;',['../classPonca_1_1CovarianceLineFitImpl.html',1,'Ponca']]],
+  ['covarianceplanederimpl_18',['CovariancePlaneDerImpl',['../classPonca_1_1CovariancePlaneDerImpl.html',1,'Ponca']]],
+  ['covarianceplanederimpl_3c_20datapoint_2c_20_5fnfilter_2c_20difftype_2c_20covarianceder_3c_20datapoint_2c_20_5fnfilter_2c_20difftype_2c_20meanpositionder_3c_20datapoint_2c_20_5fnfilter_2c_20difftype_2c_20t_20_3e_20_3e_20_3e_19',['CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, CovarianceDer&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; &gt;',['../classPonca_1_1CovariancePlaneDerImpl.html',1,'Ponca']]],
+  ['covarianceplanefitimpl_20',['CovariancePlaneFitImpl',['../classPonca_1_1CovariancePlaneFitImpl.html',1,'Ponca']]],
+  ['covarianceplanefitimpl_3c_20datapoint_2c_20_5fnfilter_2c_20covariancebase_3c_20datapoint_2c_20_5fnfilter_2c_20meanposition_3c_20datapoint_2c_20_5fnfilter_2c_20plane_3c_20datapoint_2c_20_5fnfilter_2c_20t_20_3e_20_3e_20_3e_20_3e_21',['CovariancePlaneFitImpl&lt; DataPoint, _NFilter, CovarianceBase&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, Plane&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt;',['../classPonca_1_1CovariancePlaneFitImpl.html',1,'Ponca']]]
 ];

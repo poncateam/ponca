@@ -1,9 +1,27 @@
 <map id="Ponca::KdTreeQuery&lt; Traits &gt;" name="Ponca::KdTreeQuery&lt; Traits &gt;">
-<area shape="rect" id="Node000001" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho..." alt="" coords="273,5,417,145"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kd..." alt="" coords="5,193,219,388"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,154,219,195,216,191,261,150"/>
-<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre..." alt="" coords="243,213,448,368"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="348,159,348,213,343,213,343,159"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree..." alt="" coords="473,193,690,388"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="430,149,476,191,473,195,426,153"/>
+<area shape="rect" id="Node000001" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho..." alt="" coords="883,5,1024,162"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeKNearestQueryBase.html" title=" " alt="" coords="5,591,275,843"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="866,96,735,115,577,141,431,174,373,193,331,213,260,263,235,287,213,313,179,373,148,454,139,487,133,522,130,592,124,591,128,521,134,486,143,452,174,370,209,310,231,284,257,259,328,209,371,188,430,169,576,136,734,110,871,93"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1KdTreeKNearestQueryBase.html" title=" " alt="" coords="311,591,585,843"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="868,121,808,160,779,184,754,213,728,260,716,306,714,350,716,393,717,436,713,479,698,524,666,569,650,581,635,585,619,587,601,594,586,603,583,598,599,589,618,582,634,580,648,576,662,565,693,521,708,478,712,436,710,393,708,350,711,305,723,258,750,209,775,180,805,155,872,117"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeNearestQueryBase.html" title=" " alt="" coords="612,614,882,821"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="875,163,842,212,807,276,784,328,769,382,755,453,745,535,743,615,739,613,740,535,750,453,764,381,779,326,802,273,838,210,872,167"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1KdTreeNearestQueryBase.html" title=" " alt="" coords="908,622,1207,812"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1035,148,1098,207,1162,279,1220,362,1244,406,1263,452,1273,484,1279,511,1276,538,1262,569,1254,579,1244,584,1221,594,1178,625,1176,620,1219,589,1242,579,1250,575,1258,566,1271,537,1273,512,1268,486,1258,454,1239,408,1215,364,1157,282,1094,211,1035,154"/>
+<area shape="rect" id="Node000006" href="$classPonca_1_1KdTreeRangeQueryBase.html" title=" " alt="" coords="1232,591,1502,843"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1037,109,1079,127,1120,149,1160,177,1195,209,1229,252,1258,299,1283,348,1304,399,1335,500,1354,593,1349,590,1330,501,1299,401,1278,350,1253,301,1225,255,1192,213,1157,181,1118,154,1077,132,1038,114"/>
+<area shape="rect" id="Node000007" href="$classPonca_1_1KdTreeRangeQueryBase.html" title=" " alt="" coords="1616,600,1915,835"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1038,84,1154,92,1295,112,1371,128,1447,149,1521,176,1592,209,1679,257,1714,280,1744,304,1770,332,1794,364,1817,404,1839,452,1848,489,1849,527,1843,564,1831,602,1828,598,1838,563,1844,526,1843,489,1834,454,1812,406,1790,367,1766,335,1740,308,1711,284,1677,261,1590,213,1519,181,1445,154,1370,134,1294,118,1153,97,1039,89"/>
+<area shape="rect" id="Node000008" href="$classPonca_1_1KdTreeKNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a k&#45;nearest neighbors search on the Kd..." alt="" coords="342,211,554,429"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="867,110,770,145,665,188,609,217,555,249,552,245,607,213,663,183,769,140,871,108"/>
+<area shape="rect" id="Node000009" href="$classPonca_1_1KdTreeNearestQueryBase.html" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre..." alt="" coords="852,233,1055,407"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="955,174,956,235,951,232,952,179"/>
+<area shape="rect" id="Node000010" href="$classPonca_1_1KdTreeRangeQueryBase.html" title="Extension of the Query class that allows to read the result of a range neighbors search on the KdTree..." alt="" coords="1365,211,1579,429"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="1038,90,1109,101,1189,119,1271,146,1348,183,1384,211,1379,211,1345,188,1269,151,1187,125,1108,107,1039,95"/>
+<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="326,360,293,378,258,399,226,425,198,455,179,486,164,520,147,592,142,591,159,518,174,483,194,451,222,421,255,395,291,373,330,357"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="450,442,451,592,446,591,447,446"/>
+<area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="842,380,805,416,776,454,766,482,759,521,751,615,746,613,753,520,761,480,771,452,801,412,838,383"/>
+<area shape="poly" id="edge12_Node000009_Node000005" title=" " alt="" coords="996,418,1008,452,1030,539,1046,624,1041,621,1025,540,1003,454,994,423"/>
+<area shape="poly" id="edge14_Node000010_Node000006" title=" " alt="" coords="1380,440,1376,454,1361,522,1357,593,1353,590,1356,521,1371,452,1376,444"/>
+<area shape="poly" id="edge15_Node000010_Node000007" title=" " alt="" coords="1585,439,1593,452,1605,483,1609,510,1612,536,1625,566,1646,601,1642,599,1620,569,1607,537,1604,511,1600,485,1588,454,1583,444"/>
 </map>

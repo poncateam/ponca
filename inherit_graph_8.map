@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classPonca_1_1AbstractNeighborGraph.html" title="Base class for neighbor graphs." alt="" coords="5,5,272,60"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1AbstractNeighborGraph.html" title=" " alt="" coords="5,18,354,131"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1StaticNeighborGraphBase.html" title="Static generic neighbor graph (does not include build functions)." alt="" coords="402,52,605,97"/>
+<area shape="poly" id="edge90_Node000000_Node000001" title=" " alt="" coords="369,72,404,75,399,75,369,77"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1NeighborGraphBase.html" title=" " alt="" coords="653,5,870,67"/>
+<area shape="poly" id="edge91_Node000001_Node000002" title=" " alt="" coords="620,55,650,53,655,52,621,60"/>
+<area shape="rect" id="Node000003" href="$classPonca_1_1NeighborGraphBase.html" title=" " alt="" coords="662,91,861,136"/>
+<area shape="poly" id="edge92_Node000001_Node000003" title=" " alt="" coords="620,90,665,99,659,99,620,95"/>
 </map>

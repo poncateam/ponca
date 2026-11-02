@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['fit_0',['fit',['../example_cxx_fit_line_page.html',1,'Ponca basic line fit'],['../example_cxx_fit_plane_page.html',1,'Ponca basic plane fit']]],
-  ['fitting_20in_20sycl_20kernels_1',['Fitting in SYCL kernels',['../example_sycl_basic_page.html',1,'example_page']]],
-  ['fitting_20module_3a_20reference_20manual_2',['Fitting Module: Reference Manual',['../fittingreference.html',1,'user_manual_page']]],
-  ['fitting_20module_3a_20user_20manual_3',['Fitting Module: User Manual',['../fitting.html',1,'user_manual_page']]]
+  ['ecosystem_0',['The ponca ecosystem',['../poncaecosysrem.html',1,'']]],
+  ['estimator_1',['Defining a new Estimator',['../fitting.html#fitting_newestimator',1,'']]],
+  ['estimator_20api_2',['Estimator API',['../fitting.html#fitting_newestim',1,'']]],
+  ['evaluation_20schemes_20and_20projection_3',['Evaluation schemes and projection',['../fitting.html#evaluation_schemes',1,'']]],
+  ['example_20source_20code_4',['Example source code',['../example_cxx_nanoflann_page.html#nanoflann_sourcecode_sec',1,'']]],
+  ['examples_5',['Examples',['../example_page.html',1,'']]]
 ];

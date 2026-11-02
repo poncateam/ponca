@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structPonca_1_1internal_1_1FactoryBase.html" title="Base class for factory." alt="" coords="5,5,188,45"/>
+<area shape="rect" id="Node000000" href="$structPonca_1_1internal_1_1HexagramBase.html" title=" " alt="" coords="5,40,200,85"/>
+<area shape="rect" id="Node000001" href="$structPonca_1_1internal_1_1TriangleGenerator_3_01AvgHexagramGeneration_00_01P_01_4.html" title=" " alt="" coords="248,5,544,50"/>
+<area shape="poly" id="edge111_Node000000_Node000001" title=" " alt="" coords="215,46,250,45,245,46,216,52"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1internal_1_1TriangleGenerator_3_01HexagramGeneration_00_01P_01_4.html" title=" " alt="" coords="260,75,532,119"/>
+<area shape="poly" id="edge112_Node000000_Node000002" title=" " alt="" coords="215,73,262,81,257,81,215,78"/>
 </map>

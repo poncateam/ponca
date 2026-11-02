@@ -1,9 +1,26 @@
 var searchData=
 [
-  ['basic_20cpu_0',['Ponca basic CPU',['../example_cxx_basic_page.html',1,'example_page']]],
-  ['basic_20line_20fit_1',['Ponca basic line fit',['../example_cxx_fit_line_page.html',1,'example_page']]],
-  ['basic_20plane_20fit_2',['Ponca basic plane fit',['../example_cxx_fit_plane_page.html',1,'example_page']]],
-  ['between_20nanoflann_20and_20ponca_20kdtree_20apis_3',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]],
-  ['bibliography_4',['Bibliography',['../citelist.html',1,'']]],
-  ['binding_5',['Ponca data-structure binding',['../example_cxx_binding_page.html',1,'example_page']]]
+  ['a_20new_20distance_20kernel_0',['Defining a new distance kernel',['../fitting.html#fitting_newkernel',1,'']]],
+  ['a_20new_20estimator_1',['Defining a new Estimator',['../fitting.html#fitting_newestimator',1,'']]],
+  ['a_20new_20neighbor_20filter_2',['Defining a new neighbor filter',['../fitting.html#fitting_newfilter',1,'']]],
+  ['about_20ponca_3',['About Ponca',['../index.html#ponca_about_sec',1,'']]],
+  ['access_4',['access',['../example_cu_ssc_page.html#cu_ssgl_cuda_access_sec',1,'Memory access'],['../example_python_ssc_page.html#pyssgl_cuda_access_sec',1,'Memory access']]],
+  ['advanced_20usage_5',['Advanced usage',['../fitting.html#fitting_advanced',1,'']]],
+  ['and_20contributors_6',['and contributors',['../index.html#ponca_credits_subsection_crew',1,'Developers and contributors'],['../index.html#ponca_credits_subsection_grenaille',1,'Patate/Grenaille crew and contributors']]],
+  ['and_20functions_7',['Utility classes and functions',['../ponca_points.html#points_utility',1,'']]],
+  ['and_20indexing_8',['Samples and indexing',['../spatialpartitioning.html#spatialpartitioning_kdtree_usage_samples_and_indexing',1,'']]],
+  ['and_20kdtree_20queries_9',['Object-space Curvature using Cuda/C++ and KdTree queries',['../example_cu_kdtree_page.html',1,'example_page']]],
+  ['and_20kdtreebase_10',['Usage of the convenience classes KdTree and KdTreeBase',['../spatialpartitioning.html#spatialpartitioning_kdtree_usage_which_class',1,'']]],
+  ['and_20ponca_20kdtree_20apis_11',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]],
+  ['and_20projection_12',['Evaluation schemes and projection',['../fitting.html#evaluation_schemes',1,'']]],
+  ['and_20python_13',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
+  ['and_20requirements_14',['Computational objets capabilities and requirements',['../fitting.html#fitting_newcapabilities',1,'']]],
+  ['and_20sycl_15',['Cuda and SYCL',['../fitting.html#fitting_cuda',1,'']]],
+  ['and_20usage_16',['and usage',['../example_cu_ssc_page.html#cu_ssgl_sec_dep_subsec',1,'Installation and usage'],['../example_python_ssc_page.html#pyssgl_intro_sec_dep_subsec',1,'Installation and usage']]],
+  ['api_17',['API',['../fitting.html#fitting_newestim',1,'Estimator API'],['../fitting.html#fitting_newfilterapi',1,'Filter API'],['../fitting.html#fitting_newdiff',1,'New primitive differentiation (BasketDiff API)']]],
+  ['api_20comparisons_18',['API comparisons',['../example_cxx_nanoflann_page.html#nanoflann_comparison_sec',1,'']]],
+  ['apis_19',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]],
+  ['as_20cmake_20subdirectory_20',['Use as cmake subdirectory',['../ponca_getting_started_page.html#getting_started_installation_cmakesubdirectory_subsec',1,'']]],
+  ['available_20filters_21',['Available filters',['../fittingreference.html#fitting_filters',1,'']]],
+  ['available_20weighting_20kernel_22',['Available Weighting kernel',['../fittingreference.html#fitting_kernel',1,'']]]
 ];

@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['and_20kdtree_20queries_0',['Object-space Curvature using Cuda/C++ and KdTree queries',['../example_cu_kdtree_page.html',1,'example_page']]],
-  ['and_20ponca_20kdtree_20apis_1',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]],
-  ['and_20python_2',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
-  ['apis_3',['Comparison between Nanoflann and Ponca KdTree APIs',['../example_cxx_nanoflann_page.html',1,'example_page']]]
+  ['_3a_0',[':',['../cncFormulaEigen_8h.html#autotoc_md6',1,'Modifications made :'],['../cncFormulaEigen_8h.html#autotoc_md5',1,'Original file :'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md3',1,'Step-by-step derivation of the mean normal :'],['..//home/runner/work/ponca/ponca/src/Ponca/src/Fitting/Basket/tools/mean.h#autotoc_md4',1,'Step-by-step derivation of the mean normal :']]]
 ];

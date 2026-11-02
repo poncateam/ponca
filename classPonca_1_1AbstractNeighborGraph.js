@@ -5,7 +5,7 @@ var classPonca_1_1AbstractNeighborGraph =
     [ "IndexContainerRef", "classPonca_1_1AbstractNeighborGraph.html#ad8b247e33f785d06d9f611e89542a216", null ],
     [ "IndexType", "classPonca_1_1AbstractNeighborGraph.html#a9d7797b9ae90161743aa91c638b01b15", null ],
     [ "PointContainer", "classPonca_1_1AbstractNeighborGraph.html#a359e951d08354ca3135f5c269a1306fe", null ],
-    [ "PointContainerConstRef", "classPonca_1_1AbstractNeighborGraph.html#af5578b6f35f2fb57a90a35d30fae455d", null ],
+    [ "PointContainerConstRef", "classPonca_1_1AbstractNeighborGraph.html#a46c361e3503f235f91b542bb0b126a55", null ],
     [ "Scalar", "classPonca_1_1AbstractNeighborGraph.html#a2e03aaa85ee54c7521c5bcbef312ab07", null ],
     [ "Traits", "classPonca_1_1AbstractNeighborGraph.html#af61b0c97d64a965377da9e5b1058d7da", null ],
     [ "VectorType", "classPonca_1_1AbstractNeighborGraph.html#a06ac23bf54f4b213396af6ccc44ceb70", null ],

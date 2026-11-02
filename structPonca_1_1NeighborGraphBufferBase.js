@@ -5,7 +5,7 @@ var structPonca_1_1NeighborGraphBufferBase =
     [ "IndexContainerRef", "structPonca_1_1NeighborGraphBufferBase.html#aba2d1f407ee3d8024b413ca65a3b02c4", null ],
     [ "IndexType", "structPonca_1_1NeighborGraphBufferBase.html#ab251ebe73afbe6dc6e893751ad66e7d4", null ],
     [ "PointContainer", "structPonca_1_1NeighborGraphBufferBase.html#a0768ce8e3362e4c1d766afe2ade8f056", null ],
-    [ "PointContainerConstRef", "structPonca_1_1NeighborGraphBufferBase.html#a4f322da03e8331d0b89f949b4713f20a", null ],
+    [ "PointContainerConstRef", "structPonca_1_1NeighborGraphBufferBase.html#a06c81953bb7314dda4989acaca0ef059", null ],
     [ "Scalar", "structPonca_1_1NeighborGraphBufferBase.html#a725bb3b5a630f3a5200ec87760cd2eaf", null ],
     [ "Traits", "structPonca_1_1NeighborGraphBufferBase.html#a0184933dc08e62919c6b673b3f9e4d88", null ],
     [ "VectorType", "structPonca_1_1NeighborGraphBufferBase.html#af06a27465ab4911e909e94322456ae1f", null ],

@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="5,5,176,60"/>
+<area shape="rect" id="Node000000" href="$structPonca_1_1ComputeObject.html" title=" " alt="" coords="14,5,210,67"/>
+<area shape="rect" id="Node000001" href="$structPonca_1_1BasketComputeObject.html" title=" " alt="" coords="267,27,523,123"/>
+<area shape="poly" id="edge101_Node000000_Node000001" title=" " alt="" coords="225,49,269,57,264,58,226,54"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,..." alt="" coords="571,44,749,106"/>
+<area shape="poly" id="edge102_Node000001_Node000002" title=" " alt="" coords="539,72,573,75,568,75,539,77"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,91,219,136"/>
+<area shape="poly" id="edge103_Node000003_Node000001" title=" " alt="" coords="234,94,269,92,264,93,235,99"/>
 </map>

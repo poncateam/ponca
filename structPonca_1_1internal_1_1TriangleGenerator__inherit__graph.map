@@ -1,0 +1,11 @@
+<map id="Ponca::internal::TriangleGenerator&lt; Method, P &gt;" name="Ponca::internal::TriangleGenerator&lt; Method, P &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="506,5,676,117"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1internal_1_1TriangleGenerator_3_01AvgHexagramGeneration_00_01P_01_4.html" title=" " alt="" coords="5,190,291,302"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="488,76,384,102,328,120,274,143,238,166,204,192,201,188,235,161,272,139,326,115,383,97,493,74"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1internal_1_1TriangleGenerator_3_01HexagramGeneration_00_01P_01_4.html" title=" " alt="" coords="315,190,576,302"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="527,127,516,143,480,193,477,188,512,139,523,129"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1internal_1_1TriangleGenerator_3_01IndependentGeneration_00_01P_01_4.html" title=" " alt="" coords="600,190,875,302"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="688,116,710,139,724,164,732,192,727,189,719,166,706,143,687,121"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1internal_1_1TriangleGenerator_3_01UniformGeneration_00_01P_01_4.html" title=" " alt="" coords="900,190,1146,302"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="691,66,749,75,812,89,875,110,935,139,964,161,989,191,984,189,961,165,932,143,873,115,811,94,748,80,691,72"/>
+</map>

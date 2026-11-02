@@ -1,5 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classPonca_1_1CenteredNeighborhoodFrame.html" title=" " alt="" coords="5,5,224,45"/>
-<area shape="rect" id="Node000001" href="$classPonca_1_1DistWeightFilter.html" title="Weight neighbors according to the Euclidean distance between a query and a reference position." alt="" coords="272,5,489,45"/>
-<area shape="poly" id="edge78_Node000000_Node000001" title=" " alt="" coords="238,23,272,23,272,28,238,28"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1CenteredNeighborhoodFrame.html" title="NeighborhoodFrame that express 3d points relatively to a prescribed center." alt="" coords="5,14,224,58"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1internal_1_1NoWeightFilterBase.html" title=" " alt="" coords="272,5,503,67"/>
+<area shape="poly" id="edge96_Node000000_Node000001" title=" " alt="" coords="239,34,274,36,268,36,240,39"/>
+<area shape="rect" id="Node000002" href="$structPonca_1_1NoWeightFilter.html" title="Weighting function that set uniform weight to all samples, but transform neighbors coordinates to loc..." alt="" coords="551,14,715,58"/>
+<area shape="poly" id="edge97_Node000001_Node000002" title=" " alt="" coords="519,34,553,36,548,36,519,39"/>
 </map>

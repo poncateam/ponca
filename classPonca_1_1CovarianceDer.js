@@ -7,8 +7,9 @@ var classPonca_1_1CovarianceDer =
     [ "ScalarArray", "classPonca_1_1CovarianceDer.html#ab682b012db6c81ce86a96f7a920c07a4", null ],
     [ "VectorArray", "classPonca_1_1CovarianceDer.html#a9501731ab95b766a4fda6a49e7fedd78", null ],
     [ "VectorType", "classPonca_1_1CovarianceDer.html#ad333016dcd46edd6af94efc6bf293928", null ],
-    [ "addLocalNeighbor", "classPonca_1_1CovarianceDer.html#a2eacb1df5fa54acaf13386730154e057", null ],
+    [ "addLocalNeighbor", "classPonca_1_1CovarianceDer.html#a3cdf03a87b83b7ed93e1257a3ccb4f2f", null ],
     [ "covarianceDer", "classPonca_1_1CovarianceDer.html#a3d2a83172435ee8a56294a3165f44a28", null ],
     [ "covarianceDer", "classPonca_1_1CovarianceDer.html#ab6e9b2815428cb9fb16cd405425f2170", null ],
+    [ "init", "classPonca_1_1CovarianceDer.html#a2b0aab86105e3ba90f376f4e597a9eab", null ],
     [ "m_dCov", "classPonca_1_1CovarianceDer.html#a5a5a4bf795d76463ddd89efc33b6cc9b", null ]
 ];

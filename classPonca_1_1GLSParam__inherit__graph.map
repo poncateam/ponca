@@ -1,7 +1,7 @@
 <map id="Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt;" name="Ponca::GLSParam&lt; DataPoint, _NFilter, T &gt;">
-<area shape="rect" id="Node000001" title="Growing Least Squares reparametrization of the OrientedSphereFit." alt="" coords="53,133,263,413"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,185,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,98,122,132,117,134,107,99"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="209,13,232,78"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,92,199,134,194,132,206,91"/>
+<area shape="rect" id="Node000001" title="Growing Least Squares reparametrization of the OrientedSphereFit." alt="" coords="50,143,257,455"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,182,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,106,119,143,113,143,107,112"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="206,14,224,86"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,98,195,144,190,142,202,103"/>
 </map>

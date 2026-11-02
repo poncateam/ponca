@@ -1,7 +1,7 @@
 <map id="Ponca::CovarianceDer&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::CovarianceDer&lt; DataPoint, _NFilter, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title="Internal generic class computing the derivatives of covariance matrix computed by covarianceBase." alt="" coords="79,133,237,308"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,185,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,97,129,132,124,134,111,99"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="209,13,232,78"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,92,192,134,187,132,202,90"/>
+<area shape="rect" id="Node000001" title="Internal generic class computing the derivatives of covariance matrix computed by covarianceBase." alt="" coords="77,143,231,338"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,182,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,106,126,143,120,143,112,112"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="206,14,224,86"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,92,187,144,183,142,200,96"/>
 </map>

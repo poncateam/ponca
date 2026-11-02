@@ -1,7 +1,11 @@
 <map id="Ponca::KdTreeNearestQueryBase&lt; Traits, IteratorType, QueryType &gt;" name="Ponca::KdTreeNearestQueryBase&lt; Traits, IteratorType, QueryType &gt;">
-<area shape="rect" id="Node000001" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre..." alt="" coords="43,193,248,348"/>
-<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho..." alt="" coords="5,5,149,145"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,158,121,192,116,194,104,159"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="173,43,256,108"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,122,175,194,170,192,196,120"/>
+<area shape="rect" id="Node000001" title="Extension of the Query class that allows to read the result of a nearest neighbor search on the KdTre..." alt="" coords="193,211,396,384"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeNearestQueryBase.html" title=" " alt="" coords="5,524,275,732"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="199,399,196,410,172,466,156,525,151,523,167,465,191,407,201,395"/>
+<area shape="rect" id="Node000005" href="$classPonca_1_1KdTreeNearestQueryBase.html" title=" " alt="" coords="300,533,599,723"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="406,384,423,407,436,437,445,469,454,534,449,532,440,470,431,439,418,410,405,389"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeQuery.html" title="Query object that provides a method to search neighbors on the KdTree depending on a distance thresho..." alt="" coords="158,5,298,162"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,173,271,211,265,211,256,178"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="323,47,403,120"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="348,131,325,212,320,210,346,136"/>
 </map>

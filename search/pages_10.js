@@ -1,14 +1,8 @@
 var searchData=
 [
-  ['screen_20space_20curvature_20using_20cuda_20and_20python_0',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
-  ['screen_20space_20curvature_20using_20cuda_20c_1',['Screen Space Curvature using Cuda/C++',['../example_cu_ssc_page.html',1,'example_page']]],
-  ['searches_2',['Ponca::KdTree neighbor searches',['../example_cxx_neighbor_search.html',1,'example_page']]],
-  ['space_20curvature_20using_20cuda_20and_20python_3',['Screen Space Curvature using Cuda and Python',['../example_python_ssc_page.html',1,'example_page']]],
-  ['space_20curvature_20using_20cuda_20c_4',['Screen Space Curvature using Cuda/C++',['../example_cu_ssc_page.html',1,'example_page']]],
-  ['space_20curvature_20using_20cuda_20c_20and_20kdtree_20queries_5',['Object-space Curvature using Cuda/C++ and KdTree queries',['../example_cu_kdtree_page.html',1,'example_page']]],
-  ['spatial_20partitioning_3a_20user_20manual_6',['Spatial Partitioning: User Manual',['../spatialpartitioning.html',1,'user_manual_page']]],
-  ['started_7',['Getting started',['../ponca_getting_started_page.html',1,'']]],
-  ['structure_20binding_8',['Ponca data-structure binding',['../example_cxx_binding_page.html',1,'example_page']]],
-  ['surface_20curvature_20in_20pcl_9',['Using Ponca to compute surface curvature in PCL',['../example_cxx_pcl_page.html',1,'example_page']]],
-  ['sycl_20kernels_10',['sycl kernels',['../example_sycl_basic_page.html',1,'Fitting in SYCL kernels'],['../example_sycl_kdtree_page.html',1,'Using KdTree in SYCL kernels']]]
+  ['reducing_20compile_20time_0',['Reducing compile time',['../ponca_getting_started_page.html#getting_started_installation_compilation_instantiate',1,'']]],
+  ['reference_20manual_1',['Fitting Module: Reference Manual',['../fittingreference.html',1,'user_manual_page']]],
+  ['releases_20overview_2',['Releases overview',['../ponca_changelog.html',1,'']]],
+  ['requirements_3',['Requirements',['../ponca_getting_started_page.html#getting_started_requirements_sec',1,'']]],
+  ['requirements_4',['requirements',['../fitting.html#fitting_newcapabilities',1,'Computational objets capabilities and requirements'],['../fitting.html#fitting_newestimbase',1,'Minimal requirements']]]
 ];

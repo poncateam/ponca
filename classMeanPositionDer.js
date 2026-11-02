@@ -6,7 +6,8 @@ var classMeanPositionDer =
     [ "ScalarArray", "classMeanPositionDer.html#aec06423fb08bcd03aadea3cc19fadf5f", null ],
     [ "VectorArray", "classMeanPositionDer.html#af5189dcd70027e2a98232f5e2e3318c0", null ],
     [ "VectorType", "classMeanPositionDer.html#a18e7c3a2f86ed87807401aa31eaf8795", null ],
-    [ "addLocalNeighbor", "classMeanPositionDer.html#af6fd5b78d68a3273fe087a7918dc624a", null ],
+    [ "addLocalNeighbor", "classMeanPositionDer.html#a850438c26bb7131a9991721e4f234f7a", null ],
+    [ "init", "classMeanPositionDer.html#a00ba264a0521f07cee79be27dc007921", null ],
     [ "meanPositionDer", "classMeanPositionDer.html#a67a6c7105910946272f56a2ecfd8daec", null ],
     [ "meanPositionDer", "classMeanPositionDer.html#a5e9a4c02b23274e9e664b8e0dc61cf38", null ],
     [ "m_dSumP", "classMeanPositionDer.html#aca4aab8099319f55470a13929e85847a", null ]

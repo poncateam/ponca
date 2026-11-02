@@ -5,7 +5,7 @@ var classPonca_1_1StaticKnnGraphBase =
     [ "IndexContainerRef", "classPonca_1_1StaticKnnGraphBase.html#a4ed39d497430375d0384ee60e1256a39", null ],
     [ "IndexType", "classPonca_1_1StaticKnnGraphBase.html#a6390b240b602f076aab18ef011ded625", null ],
     [ "PointContainer", "classPonca_1_1StaticKnnGraphBase.html#a546c0ec022296464ffd123d9ad9f9c54", null ],
-    [ "PointContainerConstRef", "classPonca_1_1StaticKnnGraphBase.html#a26cc6bf38895fba06c3fb136734b40d8", null ],
+    [ "PointContainerConstRef", "classPonca_1_1StaticKnnGraphBase.html#a7a68b12a273023730003798450ad95a2", null ],
     [ "Scalar", "classPonca_1_1StaticKnnGraphBase.html#a8076541fb546c4805a2dc283b8a348d8", null ],
     [ "Traits", "classPonca_1_1StaticKnnGraphBase.html#a8261e5480823d4232e5a20e8a199ff8b", null ],
     [ "VectorType", "classPonca_1_1StaticKnnGraphBase.html#a025cfa9646f7ea1b0efbbe80a3f0deaa", null ],

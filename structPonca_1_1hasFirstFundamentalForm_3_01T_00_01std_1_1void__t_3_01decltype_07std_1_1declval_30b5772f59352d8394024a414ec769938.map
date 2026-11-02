@@ -1,5 +1,10 @@
 <map id="Ponca::hasFirstFundamentalForm&lt; T, std::void_t&lt; decltype(std::declval&lt; T &gt;().firstFundamentalForm())&gt; &gt;" name="Ponca::hasFirstFundamentalForm&lt; T, std::void_t&lt; decltype(std::declval&lt; T &gt;().firstFundamentalForm())&gt; &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,119,261,228"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="81,5,185,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,84,136,118,131,118,131,84"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="6,334,258,457"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,112,78"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,90,62,152,71,216,87,277,108,334,103,334,82,279,65,217,57,152,57,95"/>
+<area shape="rect" id="Node000004" href="$structPonca_1_1hasFirstFundamentalForm.html" title="\FIXME create a macro to automatically generate the testing functions" alt="" coords="80,127,274,216"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="101,86,140,126,135,128,102,91"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="360,136,461,208"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="418,220,414,269,407,291,394,312,366,338,332,359,296,374,259,385,258,379,294,369,330,354,362,334,390,308,402,289,409,267,414,225"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="139,227,137,241,128,288,128,335,123,334,123,287,131,240,137,232"/>
 </map>

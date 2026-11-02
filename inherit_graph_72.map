@@ -1,3 +1,17 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter" title=" " alt="" coords="5,5,199,45"/>
+<area shape="rect" id="Node000000" href="$classPonca_1_1StaticKdTreeBase.html" title=" " alt="" coords="5,129,187,191"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1KdTreeBase.html" title=" " alt="" coords="235,91,390,152"/>
+<area shape="poly" id="edge168_Node000000_Node000001" title=" " alt="" coords="202,139,237,135,232,136,203,144"/>
+<area shape="rect" id="Node000007" href="$structPonca_1_1StaticKdTree.html" title="A KdTree type with KdTreeDefaultTraits that doesn&#39;t define the build function." alt="" coords="238,176,387,221"/>
+<area shape="poly" id="edge174_Node000000_Node000007" title=" " alt="" coords="202,176,240,185,235,186,202,182"/>
+<area shape="rect" id="Node000002" href="$classPonca_1_1KdTreeDenseBase.html" title=" " alt="" coords="448,5,634,67"/>
+<area shape="poly" id="edge169_Node000001_Node000002" title=" " alt="" coords="404,85,454,69,459,67,405,90"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1KdTreeSparseBase.html" title=" " alt="" coords="447,91,635,152"/>
+<area shape="poly" id="edge171_Node000001_Node000004" title=" " alt="" coords="405,119,449,121,444,122,406,124"/>
+<area shape="rect" id="Node000006" href="$structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits." alt="" coords="438,177,644,205"/>
+<area shape="poly" id="edge173_Node000001_Node000006" title=" " alt="" coords="405,151,439,162,484,176,479,176,437,167,405,156"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1KdTreeDense.html" title="Public interface for dense KdTree datastructure." alt="" coords="694,14,847,58"/>
+<area shape="poly" id="edge170_Node000002_Node000003" title=" " alt="" coords="649,34,696,36,691,37,650,39"/>
+<area shape="rect" id="Node000005" href="$structPonca_1_1KdTreeSparse.html" title="Public interface for sparse KdTree datastructure." alt="" coords="692,99,849,144"/>
+<area shape="poly" id="edge172_Node000004_Node000005" title=" " alt="" coords="650,119,695,121,689,122,651,124"/>
 </map>

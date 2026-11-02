@@ -1,10 +1,9 @@
 <map id="Ponca::Stack&lt; T, N &gt;" name="Ponca::Stack&lt; T, N &gt;">
-<area shape="rect" id="Node000001" title="Stack with fixed&#45;size storage." alt="" coords="5,389,159,615"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="16,261,148,327"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,327,85,373,79,373,79,327"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="71,5,93,71"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="81,71,75,133,75,199,79,245,74,245,70,199,70,133,75,71"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="162,133,277,199"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="96,48,175,120,171,124,92,52"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="176,210,118,263,115,259,173,206"/>
+<area shape="rect" id="Node000001" title="Stack with fixed&#45;size storage." alt="" coords="5,441,155,692"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="16,296,144,368"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,366,83,425,78,424,80,371"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="25,151,136,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="80,235,83,296,78,296,80,240"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="71,5,90,78"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="80,75,83,134,78,133,80,80"/>
 </map>
