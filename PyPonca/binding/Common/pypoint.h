@@ -275,23 +275,11 @@ struct PyPointCloud
 
         // We emulate normal data with an array of stride 0 (strides are given in elements)
         void* data = reinterpret_cast<void*>(const_cast<Scalar*>(&NoData[0]));
-        nb::object owner;
-#ifdef __CUDACC__
-        // NoData lives on the host, device code needs its own zeros.
-        if (_pos.device_type() == nb::device::cuda::value)
-        {
-            CudaDeviceGuard guard(_pos.device_id());
+        m_normals  = PyVectorArray<Point>(data, {_pos.shape(0), _Dim}, nb::handle(), {0, 1});
 
-            Scalar* zeros = nullptr;
-            CheckCuda(cudaMalloc(&zeros, _Dim * sizeof(Scalar)), "Device allocation failed");
-            owner = nb::capsule(zeros, [](void* p) noexcept { cudaFree(p); });
-            CheckCuda(cudaMemset(zeros, 0, _Dim * sizeof(Scalar)), "Device memset failed");
-
-            data = zeros;
-        }
-#endif
-        m_normals = PyVectorArray<Point>(data, {_pos.shape(0), _Dim}, owner, {0, 1}, nb::dtype<Scalar>(),
-                                         _pos.device_type(), _pos.device_id());
+        // NoData lives on the host, other devices need their own zeros
+        if (_pos.device_type() != nb::device::cpu::value)
+            m_normals = CopyArray(m_normals, _pos.device_type(), _pos.device_id());
     }
 
     /**
@@ -323,6 +311,17 @@ struct PyPointCloud
      * \brief Returns the position array
      */
     const PyVectorArray<Point>& positions() const { return m_pos; }
+
+    /**
+     * \brief Returns a copy of the cloud (positions and normals, with their strides), stored on a device
+     *
+     * \param device Device type, which must match nanobind.
+     * \param deviceId Index of the device
+     */
+    PyPointCloud toDevice(int device, int deviceId = 0) const
+    {
+        return PyPointCloud(CopyArray(m_pos, device, deviceId), CopyArray(m_normals, device, deviceId));
+    }
 
     /**
      * \brief Returns a view over the cloud, usable on the device the arrays are stored on

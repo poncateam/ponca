@@ -49,6 +49,11 @@ void RegisterPyPointCloud(nb::module_& m)
     cls.def(nb::init<const PyVectorArray<Point>&>(), nb::arg("pos").noconvert());
     cls.def(nb::init<const PyVectorArray<Point>&, const PyVectorArray<Point>&>(), nb::arg("pos").noconvert(),
             nb::arg("normal").noconvert());
+
+    // Copies positions and normals to a device
+    cls.def("toDevice", &PointCloud::toDevice, "device"_a, "device_id"_a = 0);
+    cls.def_prop_ro("device_type", [](const PointCloud& cloud) { return int(cloud.device_type()); });
+    cls.def_prop_ro("device_id", [](const PointCloud& cloud) { return int(cloud.device_id()); });
 }
 
 /**

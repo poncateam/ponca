@@ -8,8 +8,6 @@
 #include "../Common/pypoint.h"
 #include "../Common/DeviceUtils.h"
 
-#include <optional>
-
 #ifdef PYPONCA_WITH_OMP
 #    include <omp.h>
 #endif
@@ -277,12 +275,8 @@ public:
             if (m_descriptors[i].outputDims.size() > 0)
                 m_descriptors[i].outputDims[0] = filterCount;
 
-#ifdef __CUDACC__
-        // Allocations are performed on the current device
-        std::optional<CudaDeviceGuard> guard;
-        if (device == nb::device::cuda::value)
-            guard.emplace(deviceId);
-#endif
+        // Kernels are launched on the current device
+        const DeviceGuard guard(device, deviceId);
 
         ComputationResults<Scalar> results;
         results.fitStatus = CreateDeviceArray<int>({filterCount}, device, deviceId);
@@ -308,10 +302,9 @@ public:
             views.emplace_back(nb::ndarray<Scalar>(results.results[i]));
 
         // Computations access bytewise copies of the views and ids, stored on their device
-        const auto viewsArray = CopyToDevice(views, device, deviceId);
-        const auto idsArray   = CopyToDevice(ids, device, deviceId);
-        const ComputationViews<Scalar> computation(reinterpret_cast<DeviceArrayView<Scalar>*>(viewsArray.data()),
-                                                   reinterpret_cast<const size_t*>(idsArray.data()), ids.size(),
+        const DeviceBuffer<DeviceArrayView<Scalar>> viewsBuffer(views, device, deviceId);
+        const DeviceBuffer<size_t> idsBuffer(ids, device, deviceId);
+        const ComputationViews<Scalar> computation(viewsBuffer.data(), idsBuffer.data(), idsBuffer.size(),
                                                    results.fitStatus.data());
 
         // Only the distribution of the filters depends on the device

@@ -41,6 +41,12 @@ class TestAPI(unittest.TestCase):
         """
         return contextlib.nullcontext() if supported else self.assertRaises(RuntimeError)
 
+    def kdtree(self, pc, dense = True):
+        """
+            Builds a kdtree on the host from pc, then sends it to the device pc is stored on
+        """
+        return pyponca.KDTree(self.tohost(pc), dense).toDevice(pc)
+
     def setUp(self):
         self.randomtensor = lambda shape, dtype: self.todevice(np.random.uniform(0, 1, shape).astype(dtype))
 
@@ -75,15 +81,72 @@ class TestAPI(unittest.TestCase):
                         cls = pyponca.PointCloud(self.pcs[i], self.pcs[j])
                         print(cls._cls)
 
+    def test_pointcloud_todevice(self):
+        """
+            Test that point clouds can be sent to a device, and back to the host
+        """
+        for pc in self.pcs:
+            hostpc = self.tohost(pc)
+            devicetype, deviceid = (int(v) for v in pc.__dlpack_device__())
+
+            # Without, then with normals
+            for cloud in [pyponca.PointCloud(hostpc), pyponca.PointCloud(hostpc, hostpc)]:
+                self.assertEqual((cloud.device_type, cloud.device_id), (1, 0)) # kDLCPU
+
+                # With a device type or an array
+                for devicecloud in [cloud.toDevice(pc), cloud.toDevice(devicetype, deviceid)]:
+                    self.assertIsInstance(devicecloud, pyponca.PointCloud)
+                    self.assertIsInstance(devicecloud.object, cloud._cls)
+                    self.assertEqual((devicecloud.device_type, devicecloud.device_id), (devicetype, deviceid))
+
+                    # From the device: to the same device, then back to the host
+                    self.assertEqual(devicecloud.toDevice(pc).device_type, devicetype)
+                    self.assertEqual(devicecloud.toDevice(1).device_type, 1)
+
+                # The original point cloud is left on the host
+                self.assertEqual(cloud.device_type, 1)
+
     def test_kdtree(self):
         """
             Test that we can build a KDtree and that mangling works properly
         """
-        # Test we can build a kdtree
-        self.assertIsInstance(pyponca.KDTree(self.pc2d).object, _pyponca.KdTree2dPN)
-        self.assertIsInstance(pyponca.KDTree(self.pc3d).object, _pyponca.KdTree3dPN)
-        self.assertIsInstance(pyponca.KDTree(self.pc2f).object, _pyponca.KdTree2fPN)
-        self.assertIsInstance(pyponca.KDTree(self.pc3f).object, _pyponca.KdTree3fPN)
+        classes = [_pyponca.KdTree2dPN, _pyponca.KdTree3dPN, _pyponca.KdTree2fPN, _pyponca.KdTree3fPN]
+        for pc, cls in zip(self.pcs, classes):
+            # Trees can only be built on the host
+            with self.assertRaisesUnless(self.onHost):
+                pyponca.KDTree(pc)
+
+            # Test we can build a kdtree
+            hosttree = pyponca.KDTree(self.tohost(pc))
+            self.assertIsInstance(hosttree.object, cls)
+            self.assertEqual((hosttree.device_type, hosttree.device_id), (1, 0)) # kDLCPU
+
+            # Then send it to the device, with a device type or an array
+            devicetype, deviceid = (int(v) for v in pc.__dlpack_device__())
+            for tree in [hosttree.toDevice(pc), hosttree.toDevice(devicetype, deviceid)]:
+                self.assertIsInstance(tree, pyponca.KDTree)
+                self.assertIsInstance(tree.object, cls)
+                self.assertEqual((tree.device_type, tree.device_id), (devicetype, deviceid))
+
+                # From the device: to the same device, then back to the host
+                self.assertEqual(tree.toDevice(pc).device_type, devicetype)
+                self.assertEqual(tree.toDevice(1).device_type, 1)
+
+            # The original tree is left on the host
+            self.assertEqual(hosttree.device_type, 1)
+
+    def test_kdtree_roundtrip(self):
+        """
+            Test that a tree sent to the device and back to the host returns the same neighbors
+        """
+        for pc in self.pcs:
+            hostpc   = self.tohost(pc)
+            hosttree = pyponca.KDTree(hostpc)
+            backtree = hosttree.toDevice(pc).toDevice(1)
+
+            radii = np.full((self.N,), 0.5, dtype=hostpc.dtype)
+            np.testing.assert_array_equal(np.from_dlpack(backtree.rangeNeighbors(hostpc, radii)),
+                                          np.from_dlpack(hosttree.rangeNeighbors(hostpc, radii)))
 
     def test_kdtree_query(self):
         """
@@ -93,7 +156,7 @@ class TestAPI(unittest.TestCase):
             radii = self.randomtensor((self.N,), self.tohost(pc).dtype)
 
             # Tree stored on the device the tests run on, then on the host
-            for kdtree in [pyponca.KDTree(pc), pyponca.KDTree(self.tohost(pc))]:
+            for kdtree in [self.kdtree(pc), pyponca.KDTree(self.tohost(pc))]:
                 with self.assertRaisesUnless(self.onHost):
                     kdtree.rangeNeighbors(pc[0], 1)
                 with self.assertRaisesUnless(self.onHost):
@@ -118,7 +181,7 @@ class TestAPI(unittest.TestCase):
                 for flt in pyponca.Filters:
                     ts = self.randomtensor((self.N,), self.tohost(pc).dtype)
 
-                    for data in [pc, pyponca.PointCloud(pc, pc), pyponca.KDTree(pc), pyponca.KDTree(pc, False)]:
+                    for data in [pc, pyponca.PointCloud(pc, pc), self.kdtree(pc), self.kdtree(pc, False)]:
                         object = pyponca.__dict__[co]()
                         object.setNeighborFilter(pc, ts, flt, pc)
                         object.addComputation(pyponca.Computation.NONE)
@@ -156,7 +219,7 @@ class TestAPI(unittest.TestCase):
 
                 test(pc)
                 test(pyponca.PointCloud(pc))
-                test(pyponca.KDTree(pc))
+                test(self.kdtree(pc))
 
     def test_device_mismatch(self):
         """

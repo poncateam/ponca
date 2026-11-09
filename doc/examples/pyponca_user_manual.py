@@ -14,11 +14,13 @@ normals = pos / np.linalg.norm(pos, axis=1, keepdims=True)
 # [pointcloud]
 cloud = pyponca.PointCloud(pos)           # Positions only
 cloud = pyponca.PointCloud(pos, normals)  # Positions and normals
+devicecloud = cloud.toDevice(pos)         # Copy of the point cloud on the device of pos, see below
 # [pointcloud]
 
 # [kdtree]
 tree = pyponca.KDTree(cloud)         # From a PointCloud (or a raw (N, D) array)
 tree = pyponca.KDTree(cloud, False)  # Second argument selects the storage, see below
+tree = tree.toDevice(pos)            # Copy of the tree and of its points on the device of pos, see below
 # [kdtree]
 
 fit = pyponca.APSS()

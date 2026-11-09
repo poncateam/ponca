@@ -9,11 +9,8 @@ using namespace nb::literals;
 template <typename KdTree>
 void CheckHostQuery(const KdTree& pytree, int queryDevice)
 {
-    if (pytree.device_type() != nb::device::cpu::value)
-        throw std::runtime_error("rangeNeighbors is only supported for KdTree built on the CPU.");
-
-    if (queryDevice != nb::device::cpu::value)
-        throw std::runtime_error("rangeNeighbors only supports CPU arrays");
+    RequireHost(pytree.device_type(), "rangeNeighbors is only supported for KdTree stored on the CPU");
+    RequireHost(queryDevice, "rangeNeighbors only supports CPU arrays");
 }
 
 template <typename Scalar, unsigned int Dim>
@@ -29,6 +26,9 @@ void RegisterKDTree(nb::module_& m)
     nb::class_<KdTree>(m, treeName.c_str())
         .def(nb::init<const PointCloud&, bool>(), "pc"_a, "dense"_a = true)
         .def(nb::init<const PyVectorArray<Point>&, bool>(), "pos"_a, "dense"_a = true)
+        .def("toDevice", &KdTree::toDevice, "device"_a, "device_id"_a = 0)
+        .def_prop_ro("device_type", [](const KdTree& pytree) { return int(pytree.device_type()); })
+        .def_prop_ro("device_id", [](const KdTree& pytree) { return int(pytree.device_id()); })
         .def("rangeNeighbors",
              [](const KdTree& pytree, const PyVector<Point>& pos, Scalar radius) {
                  CheckHostQuery(pytree, pos.device_type());

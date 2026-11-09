@@ -27,6 +27,13 @@ def stridearray(x):
     np.testing.assert_allclose(x, y[3 * (N-1)::-3, 2 * (D - 1)::-2])
     return y
 
+def stridedview(x):
+    """
+        Returns a non contiguous (host) view equal to x, with negative strides. See stridearray
+    """
+    N, D = x.shape
+    return stridearray(x)[3 * (N - 1)::-3, 2 * (D - 1)::-2]
+
 def readarray(testcase, name):
     """
         Reads an array from the test cases
@@ -76,7 +83,8 @@ class TestAccuracy(unittest.TestCase):
         # Load main pointclouds
         self.pos     = readarray(self.expected["pointcloud"], "pos")
         self.normals = readarray(self.expected["pointcloud"], "normals")
-        self.points  = pyponca.PointCloud(self.todevice(self.pos), self.todevice(self.normals))
+        self.devicepos = self.todevice(self.pos) # Also tells the device the tests run on
+        self.points    = pyponca.PointCloud(self.devicepos, self.todevice(self.normals))
 
         self.analysisLocation = readarray(self.expected, "analysisLocation")
         self.analysisScale    = readarray(self.expected, "analysisScale")
@@ -88,6 +96,13 @@ class TestAccuracy(unittest.TestCase):
             for more information about the stride in question
         """
         return pyponca.PointCloud(self.strided(self.pos), self.strided(self.normals))
+
+    def kdtree(self, hostpoints, dense):
+        """
+            Builds a kdtree from a point cloud stored on the host, then sends it
+            (with the point cloud) to the device the tests run on
+        """
+        return pyponca.KDTree(hostpoints, dense).toDevice(self.devicepos)
 
     def runtestcase(self, pointcloud, method, function, input, status, signed, result):
         """
@@ -160,6 +175,23 @@ class TestAccuracy(unittest.TestCase):
 
             self.runtestcase(self.stridedpoints(), method, function, input, status, sign, result)
 
+    def test_pointcloud_todevice(self):
+        """
+            Test that the binding returns the correct results with a point cloud built from
+            strided host arrays, then sent to the device. Strides are kept by the copy.
+        """
+        for run in self.expected["runs"]:
+            method   = run["method"]
+            function = run["function"]
+            input    = readarray(run, "input")
+            result   = readarray(run, "result")
+            status   = readarray(run, "status")
+            sign     = bool(run["signed"]) if "signed" in run else False
+
+            hostpoints   = pyponca.PointCloud(stridedview(self.pos), stridedview(self.normals))
+            devicepoints = hostpoints.toDevice(self.devicepos)
+            self.runtestcase(devicepoints, method, function, input, status, sign, result)
+
     def test_kdtree(self):
         """
             Test that the binding returns the correct results with a kdtree
@@ -172,13 +204,16 @@ class TestAccuracy(unittest.TestCase):
             status   = readarray(run, "status")
             sign     = bool(run["signed"]) if "signed" in run else False
 
-            # Dense then sparse
-            self.runtestcase(pyponca.KDTree(self.points, False), method, function, input, status, sign, result)
-            self.runtestcase(pyponca.KDTree(self.points, True) , method, function, input, status, sign, result)
+            hostpoints = pyponca.PointCloud(self.pos, self.normals)
+
+            # Sparse then dense
+            self.runtestcase(self.kdtree(hostpoints, False), method, function, input, status, sign, result)
+            self.runtestcase(self.kdtree(hostpoints, True) , method, function, input, status, sign, result)
 
     def test_kdtree_strided(self):
         """
-            Test that the binding returns the correct results with a kdtree
+            Test that the binding returns the correct results with a kdtree built from
+            strided arrays. Strides are kept when the point cloud is sent to the device.
         """
         for run in self.expected["runs"]:
             method   = run["method"]
@@ -188,11 +223,24 @@ class TestAccuracy(unittest.TestCase):
             status   = readarray(run, "status")
             sign     = bool(run["signed"]) if "signed" in run else False
 
-            newpoints = self.stridedpoints()
+            hostpoints = pyponca.PointCloud(stridedview(self.pos), stridedview(self.normals))
 
-            # Dense then sparse
-            self.runtestcase(pyponca.KDTree(newpoints, False), method, function, input, status, sign, result)
-            self.runtestcase(pyponca.KDTree(newpoints, True) , method, function, input, status, sign, result)
+            # Sparse then dense
+            self.runtestcase(self.kdtree(hostpoints, False), method, function, input, status, sign, result)
+            self.runtestcase(self.kdtree(hostpoints, True) , method, function, input, status, sign, result)
+
+    def test_kdtree_no_normals(self):
+        """
+            Test that a kdtree built without normals gives zero normals, on every device
+        """
+        tree = self.kdtree(pyponca.PointCloud(self.pos), True)
+
+        object = pyponca.MeanNormal()
+        # The radius covers the whole cloud, so that every fit has neighbors
+        object.setNeighborFilter(self.devicepos, self.todevice(np.full((1,), 1e6, dtype=np.float64)))
+        object.addComputation(pyponca.Computation.MEAN_NORMAL)
+        result = self.tohost(object.compute(tree).results[0])
+        np.testing.assert_array_equal(result, np.zeros(self.pos.shape))
 
 
 @unittest.skipUnless(torch is not None and torch.cuda.is_available() and pyponca.WithCuda,

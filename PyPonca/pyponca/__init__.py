@@ -6,6 +6,16 @@
 from . import _pyponca
 from enum import StrEnum
 
+def _parseDevice(device, device_id):
+    """
+        Returns the (device type, device id) pair given to toDevice functions: device is either a DLPack
+        device type (e.g. 2 for CUDA), or an object exposing __dlpack_device__ (e.g. a numpy array or a
+        torch tensor), whose device is used
+    """
+    if hasattr(device, "__dlpack_device__"):
+        device, device_id = device.__dlpack_device__()
+    return int(device), int(device_id)
+
 # Dispatcher for point cloud
 class PointCloud:
     """
@@ -42,6 +52,29 @@ class PointCloud:
         self._mangledName = mangledArray + _pyponca.internal._PointName
         return self._cls(*args)
 
+    def toDevice(self, device, device_id = 0):
+        """
+            Returns a copy of the point cloud (positions and normals, with their strides) stored on a device.
+            The point cloud may be stored on any device. The new point cloud owns its arrays.
+
+            see _parseDevice
+        """
+        # Not built with __init__, which expects arrays
+        cloud = PointCloud.__new__(PointCloud)
+        cloud.__dict__.update(self.__dict__)
+        cloud.object = self.object.toDevice(*_parseDevice(device, device_id))
+        return cloud
+
+    @property
+    def device_type(self):
+        """ DLPack device type of the arrays of the point cloud """
+        return self.object.device_type
+
+    @property
+    def device_id(self):
+        """ Index of the device the arrays of the point cloud are stored on """
+        return self.object.device_id
+
 class KDTree:
     """
         Main kdtree object that serves as a dispatch
@@ -69,6 +102,20 @@ class KDTree:
 
         self._cls = _pyponca.__dict__[clsname]
         self.object = self._cls(pc, isDense)
+
+    def toDevice(self, device, device_id = 0):
+        """
+            Returns a copy of the tree, and of the point cloud it was built from, stored on a device.
+            The tree may be stored on any device (trees are always built on the CPU). When it is already
+            stored on that device, the returned tree shares its buffers.
+
+            see _parseDevice
+        """
+        # We do not want to
+        tree = KDTree.__new__(KDTree)
+        tree.__dict__.update(self.__dict__)
+        tree.object = self.object.toDevice(*_parseDevice(device, device_id))
+        return tree
 
     def __getattr__(self, name):
         return getattr(self.object, name)

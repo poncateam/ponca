@@ -115,7 +115,14 @@ namespace Ponca
 
     `pos` and `normals` must be 2D arrays of shape `(N, D)` with the same shape and dtype; no implicit conversion is
     performed, mismatching inputs raise a `RuntimeError` or `TypeError`. A `PointCloud` does not own its data: the
-    arrays must be kept alive as long as the point cloud (or a `KDTree` built on it) is in use.
+    arrays must be kept alive as long as the point cloud (or a `KDTree` built on it) is in use. The only exceptions
+    are point clouds and trees returned by `toDevice`, which own a copy of the points.
+
+    `toDevice(device, device_id = 0)` returns a copy of a point cloud on a device, in any direction (CPU to GPU, GPU to
+    CPU, ...). `device` is either a DLPack device type (`1` for the CPU, `2` for CUDA), or any array exposing
+    `__dlpack_device__`, whose device is then used. Positions and normals are copied with their strides (missing
+    normals are not expanded), and the original point cloud is left unchanged. The `device_type` and `device_id` attributes tell where a point cloud
+    is stored.
 
     When no normals are given, they are set to the null vector. Methods that rely on normals (such as `APSS`,
     `MeanNormal`, ...) will then return meaningless values.
@@ -141,6 +148,20 @@ namespace Ponca
     When given to `compute`, a `KDTree` restricts each fit to the points returned by `rangeNeighbors(center, radius)`.
     When using a plain `PointCloud` without `KDTree`, every point of the cloud needs to be visited for every fit and the
     neighbor filter alone decides which points contribute. The `KDTree` is therefore much faster for large point clouds.
+
+    Trees are always built on the CPU: building a `KDTree` from arrays stored on another device raises a `RuntimeError`.
+    To use a tree on another device, build it from CPU arrays and call `toDevice`:
+     - `toDevice(device, device_id = 0)` returns a new `KDTree` stored on the given device. `device` is either a
+       DLPack device type (`1` for the CPU, `2` for CUDA), or any array exposing `__dlpack_device__` (NumPy, CuPy,
+       PyTorch, ...), whose device is then used, and `device_id` is the index of the device,
+     - **the points are transferred along with the tree**: positions and normals of the point cloud the tree was built
+       from are copied to the device, with their strides, along with the nodes and indices of the tree. The new tree
+       owns these copies, so it does not need the original arrays, and later changes to these arrays are not seen by
+       the device tree. Missing normals are not expanded: the device only receives a single null vector,
+     - the original tree is left unchanged. Trees can be sent in any direction, e.g. back to the CPU to perform
+       queries, and sending a tree to the device it is already stored on returns a tree sharing its buffers.
+
+    The `device_type` and `device_id` attributes tell where a tree is stored (DLPack values).
 
     \subsubsection pyponca_manual_methods Compute objects
 
@@ -290,9 +311,18 @@ namespace Ponca
     Unlike NumPy, some libraries (e.g., CuPy) cannot compare arrays containing `pyponca.FitResult` values. It might be
     needed to convert them first, e.g. `status == int(pyponca.FitResult.STABLE)`.
 
-    A `KDTree` built from CUDA arrays is built on the CPU, from a copy of the positions, then sent to the device. Only
-    the device copy is kept: `rangeNeighbors` is only available for trees built from CPU arrays, and only accepts CPU
-    arrays.
+    A `KDTree` can not be built from CUDA arrays: build it from CPU arrays, then send it to the device with `toDevice`,
+    which transfers the points (positions and normals) to the GPU along with the tree (see
+    \ref pyponca_manual_kdtree). The other arrays of the computation must then be stored on the same device:
+
+    \code{.py}
+        tree    = pyponca.KDTree(pyponca.PointCloud(pos, normals))  # NumPy arrays, built on the CPU
+        gputree = tree.toDevice(centers)                            # Tree and points copied to the device of centers
+        output  = fit.compute(gputree)                              # centers and radii are CUDA arrays
+    \endcode
+
+    `rangeNeighbors` is only available for trees stored on the CPU, and only accepts CPU arrays: keep the original
+    tree to perform queries, or send the device tree back with `toDevice(1)`.
 
     Some methods rely on code that can not run on CUDA devices, and raise a `RuntimeError` when given CUDA arrays.
     The `isCudaAvailable` attribute of a compute object class tells if it can run on CUDA devices. It is always `False`
@@ -493,8 +523,9 @@ namespace Ponca
     These classes run the same tests, and only redefine how arrays are sent to the device (`todevice`) and read back
     (`tohost`): operations that are not available on the device (see `isCudaAvailable`) are expected to raise a
     `RuntimeError` by `test_api.py`, and are skipped by `test_accuracy.py`. Since PyTorch does not support negative
-    strides, strided views use positive strides on the GPU. The CUDA tests are skipped when these requirements are
-    not met.
+    strides, strided views use positive strides on the GPU. KD-trees are built from CPU arrays (including the
+    negatively strided view of `test_accuracy.py`), then sent to the device with `toDevice`, which also checks that
+    the points are correctly transferred. The CUDA tests are skipped when these requirements are not met.
 
     The tests are registered in CTest with the `pyponca` label when Ponca is configured with
     `PONCA_CONFIGURE_TESTS=ON`. They import the installed `pyponca` module, so the binding must be installed in the
