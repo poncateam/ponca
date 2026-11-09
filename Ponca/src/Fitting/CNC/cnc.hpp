@@ -487,12 +487,14 @@ namespace Ponca
         }
         else
         {
-            m_H = Scalar(0);
-            m_G = Scalar(0);
+
+            m_H             = Scalar(0);
+            m_G             = Scalar(0);
+            m_eCurrentState = UNDEFINED;
+            return UNDEFINED;
         }
 
         std::tie(m_k2, m_k1, m_v2, m_v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, m_nFilter.data());
-
         return STABLE;
     }
 } // namespace Ponca

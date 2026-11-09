@@ -173,6 +173,7 @@ namespace Ponca
             Eigen::SelfAdjointEigenSolver<Matrix2> m_solver;
 
         public:
+            PONCA_FITTING_DECLARE_INIT
             PONCA_FITTING_DECLARE_FINALIZE
 
             //! \brief Returns an estimate of the minimal principal curvature value

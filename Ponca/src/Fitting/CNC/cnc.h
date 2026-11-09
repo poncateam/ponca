@@ -208,6 +208,9 @@ namespace Ponca
             return true;
         }
 
+        PONCA_FITTING_APIDOC_SETWFUNC
+        PONCA_MULTIARCH inline const NeighborFilter& getNeighborFilter() const { return m_nFilter; }
+
         /*!
          * \brief Returns the triangles
          *
