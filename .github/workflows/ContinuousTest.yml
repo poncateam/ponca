@@ -28,7 +28,7 @@ jobs:
         uses: seanmiddleditch/gha-setup-vsdevenv@master
         if: runner.os == 'Windows'
       - uses: Jimver/cuda-toolkit@master
-        if: runner.os != 'macOS'
+        if: runner.os == 'Windiws'
       - name: Checkout remote head
         uses: actions/checkout@master
         with:
