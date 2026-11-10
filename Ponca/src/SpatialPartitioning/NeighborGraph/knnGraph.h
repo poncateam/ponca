@@ -29,7 +29,7 @@ namespace Ponca
         static constexpr int DefaultKInKnnGraph() { return 6; }
 
         /// \brief Number of neighbors used to build the graph
-        const int k{DefaultKInKnnGraph()};
+        int k{DefaultKInKnnGraph()};
 
         PONCA_MULTIARCH inline KnnGraphBuffers() = default;
         PONCA_MULTIARCH inline KnnGraphBuffers(PointContainerConstRef _points, const int _k = DefaultKInKnnGraph())
