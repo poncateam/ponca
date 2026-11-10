@@ -17,6 +17,7 @@
 #include "../concepts.h"
 #include "../compute.h"
 #include "../Filters/weightKernel.h"
+#include "../Filters/weightFilter.h"
 
 #include <Eigen/Dense>
 
@@ -26,31 +27,46 @@ namespace Ponca
 {
 
     /*!
-     * \brief Corrected Normal Current Fit type.
+     * \brief Hermite Radial Basis Function (HRBF) implicit surface interpolation.
      *
-     * This fitting method generates triangles from a set a points cloud and use a statistical formula to compute :
-     * - The principal curvatures values and directions
-     * - The mean and gaussian curvatures
+     * Builds a scalar field \f$ f \f$ that interpolates both the positions and the normals of a set of oriented
+     * points.
      *
-     * \see ProvidesPrincipalCurvatures
+     * \tparam P Point type, must provide normals (see ProvidesNormal)
+     * \tparam _WeightKernel Interpolation kernel. Defaults to Pow3WeightKernel.
      */
-    template <class P, typename _NeighborFilter = Pow3WeightKernel<typename P::Scalar>>
+    template <class P, typename _WeightKernel = Pow3WeightKernel<typename P::Scalar>>
         requires HRBF_REQUIREMENTS
-    class HRBF : ComputeObject<HRBF<P, _NeighborFilter>>
+    class HRBF : ComputeObject<HRBF<P, _WeightKernel>>
     {
     public:
         using DataPoint    = P;
         using Scalar       = typename DataPoint::Scalar;
         using MatrixType   = typename DataPoint::MatrixType;
-        using MatrixDX     = typename Eigen::Matrix<Scalar, DataPoint::Dim, Eigen::Dynamic>;
         using VectorType   = typename DataPoint::VectorType;
-        using DenseVector  = Eigen::Vector<Scalar,Eigen::Dynamic>;
-        using DenseMatrix  = Eigen::Matrix<Scalar,Eigen::Dynamic,Eigen::Dynamic>;
-        using WeightKernel = _NeighborFilter;
+        using MatrixDX     = typename Eigen::Matrix<Scalar, DataPoint::Dim, Eigen::Dynamic>;
+        using DenseVector  = Eigen::Vector<Scalar, Eigen::Dynamic>;
+        using DenseMatrix  = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+        using WeightKernel = _WeightKernel;
+
+        static constexpr Scalar eps = Scalar(0.00001f);
 
     protected:
-        // Interpolation kernel
-        WeightKernel m_wKernel;
+        /**
+         * Very small class that emulates what hrbf needs from points. This class is used as
+         * part as computeWithIds which requires acceptance of single pass iterator to work with 
+         * kdtree, yet needs to compute data for each pairs of points. 
+         */
+        struct PointAdapter
+        {
+            VectorType _pos;
+            VectorType _normal;
+
+            PointAdapter(const VectorType& _p, const VectorType& _n) : _pos(_p), _normal(_n) {}
+
+            const VectorType& pos() const { return _pos; }
+            const VectorType& normal() const { return _normal; }
+        };
 
         /// Each column represents p_i:  VectorX pi = _node_centers.col(i);
         MatrixDX m_node_centers;
@@ -63,12 +79,14 @@ namespace Ponca
 
     public:
         //! \brief Set the scalar field values to 0 and reset the isNormalized() status
-        PONCA_MULTIARCH inline void init()
+        inline void init()
         {
             m_eCurrentState = UNDEFINED;
-            // m_node_centers.clear();
-            // m_alphas.clear();
-            // m_betas.clear();
+
+            // Clear matrices to make sure they can't be reused
+            m_node_centers.resize(DataPoint::Dim, 0);
+            m_alphas.resize(0);
+            m_betas.resize(DataPoint::Dim, 0);
         }
 
         /*!
@@ -77,13 +95,15 @@ namespace Ponca
          * The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)
          */
         template <typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end)
+        inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end)
         {
-            constexpr int DIM       = DataPoint::Dim;
-            int nb_points           = std::distance(begin, end);
-            int nb_hrbf_constraints = (DIM + 1) * nb_points;
-            int nb_constraints      = nb_hrbf_constraints;
-            int nb_coeffs           = (DIM + 1) * nb_points;
+            constexpr int DIM = DataPoint::Dim;
+
+            const int nb_points           = std::distance(begin, end);
+            const int nb_hrbf_constraints = (DIM + 1) * nb_points;
+            const int nb_constraints      = nb_hrbf_constraints;
+            const int nb_coeffs           = (DIM + 1) * nb_points;
+            const WeightKernel wk;
 
             m_node_centers.resize(DIM, nb_points);
             m_betas.resize(DIM, nb_points);
@@ -92,9 +112,6 @@ namespace Ponca
             // Assemble the "design" and "value" matrix and vector
             DenseMatrix D(nb_constraints, nb_coeffs);
             DenseVector f(nb_constraints);
-            DenseVector x(nb_coeffs);
-
-            WeightKernel wk;
 
             // copy the node centers
             auto it = begin;
@@ -107,25 +124,27 @@ namespace Ponca
                 const auto& p = (*it).pos();
                 const auto& n = (*it).normal();
 
-                int io                          = (DIM + 1) * i;
+                const int io                    = (DIM + 1) * i;
                 f(io)                           = 0;
                 f.template segment<DIM>(io + 1) = n;
 
                 for (int j = 0; j < nb_points; ++j)
                 {
-                    int jo          = (DIM + 1) * j;
-                    VectorType diff = p - m_node_centers.col(j);
-                    Scalar l        = diff.norm();
-                    if (l == 0)
+                    const int jo          = (DIM + 1) * j;
+                    const VectorType diff = p - m_node_centers.col(j);
+                    const Scalar l        = diff.norm();
+
+                    if (l < eps)
                     {
                         D.template block<DIM + 1, DIM + 1>(io, jo).setZero();
                     }
                     else
                     {
-                        Scalar w                                   = wk.f(l);
-                        Scalar dw_l                                = wk.df(l) / l;
-                        Scalar ddw                                 = wk.ddf(l);
-                        VectorType g                               = diff * dw_l;
+                        const Scalar w     = wk.f(l);
+                        const Scalar dw_l  = wk.df(l) / l;
+                        const Scalar ddw   = wk.ddf(l);
+                        const VectorType g = diff * dw_l;
+
                         D(io, jo)                                  = w;
                         D.row(io).template segment<DIM>(jo + 1)    = g.transpose();
                         D.col(jo).template segment<DIM>(io + 1)    = g;
@@ -135,8 +154,8 @@ namespace Ponca
                 }
             }
 
-            x = D.lu().solve(f);
-            Eigen::Map<Eigen::Matrix<Scalar, DIM + 1, Eigen::Dynamic>> mx(x.data(), DIM + 1, nb_points);
+            const DenseVector x = D.lu().solve(f);
+            Eigen::Map<const Eigen::Matrix<Scalar, DIM + 1, Eigen::Dynamic>> mx(x.data(), DIM + 1, nb_points);
 
             m_alphas = mx.row(0);
             m_betas  = mx.template bottomRows<DIM>();
@@ -150,87 +169,32 @@ namespace Ponca
          * \tparam PointContainer An STL-like container storing the points
          */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(const IndexRange& ids, const PointContainer& points)
+        inline FIT_RESULT computeWithIds(const IndexRange& ids, const PointContainer& points)
         {
-            //// FIXME : completly ignore ids to compute on the whole point cloud
+            std::vector<PointAdapter> adapter;
 
-            constexpr int DIM       = DataPoint::Dim;
-            int nb_points           = points.size();
-            int nb_hrbf_constraints = (DIM + 1) * nb_points;
-            int nb_constraints      = nb_hrbf_constraints;
-            int nb_coeffs           = (DIM + 1) * nb_points;
-
-            m_node_centers.resize(DIM, nb_points);
-            m_betas.resize(DIM, nb_points);
-            m_alphas.resize(nb_points);
-
-            // Assemble the "design" and "value" matrix and vector
-            DenseMatrix D(nb_constraints, nb_coeffs);
-            DenseVector f(nb_constraints);
-            DenseVector x(nb_coeffs);
-
-            WeightKernel wk;
-
-            // copy the node centers
-            for (int i = 0; i < nb_points; ++i)
-                m_node_centers.col(i) = points[i].pos();
-
-            for (int i = 0; i < nb_points; ++i)
+            auto begin = points.begin();
+            for (const auto& idx : ids)
             {
-                const auto& pp = points[i];
-                const auto& p = pp.pos();
-                const auto& n = pp.normal();
-
-                int io                          = (DIM + 1) * i;
-                f(io)                           = 0;
-                f.template segment<DIM>(io + 1) = n;
-
-                for (int j = 0; j < nb_points; ++j)
-                {
-                    int jo          = (DIM + 1) * j;
-                    VectorType diff = p - m_node_centers.col(j);
-                    Scalar l        = diff.norm();
-                    if (l == 0)
-                    {
-                        D.template block<DIM + 1, DIM + 1>(io, jo).setZero();
-                    }
-                    else
-                    {
-                        Scalar w                                   = wk.f(l);
-                        Scalar dw_l                                = wk.df(l) / l;
-                        Scalar ddw                                 = wk.ddf(l);
-                        VectorType g                               = diff * dw_l;
-                        D(io, jo)                                  = w;
-                        D.row(io).template segment<DIM>(jo + 1)    = g.transpose();
-                        D.col(jo).template segment<DIM>(io + 1)    = g;
-                        D.template block<DIM, DIM>(io + 1, jo + 1) = (ddw - dw_l) / (l * l) * (diff * diff.transpose());
-                        D.template block<DIM, DIM>(io + 1, jo + 1).diagonal().array() += dw_l;
-                    }
-                }
+                auto current = std::next(begin, idx);
+                adapter.emplace_back(current->pos(), current->normal());
             }
 
-            x = D.lu().solve(f);
-            Eigen::Map<const Eigen::Matrix<Scalar, DIM + 1, Eigen::Dynamic>> mx(x.data(), DIM + 1, nb_points);
-
-            m_alphas = mx.row(0);
-            m_betas  = mx.template bottomRows<DIM>();
-
-            return m_eCurrentState = STABLE;
+            return compute(adapter.begin(), adapter.end());
         }
 
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar potential(const VectorType& x) const
+        [[nodiscard]] inline Scalar potential(const VectorType& x) const
         {
-            Scalar ret   = 0;
-            int nb_nodes = m_node_centers.cols();
+            const int nb_nodes = m_node_centers.cols();
+            const WeightKernel wk;
 
-            WeightKernel wk;
-
+            Scalar ret = 0;
             for (int i = 0; i < nb_nodes; ++i)
             {
-                VectorType diff = x - m_node_centers.col(i);
-                Scalar l        = diff.norm();
+                const VectorType diff = x - m_node_centers.col(i);
+                const Scalar l        = diff.norm();
 
-                if (l > 0)
+                if (l > eps)
                 {
                     ret += m_alphas(i) * wk.f(l);
                     ret += m_betas.col(i).dot(diff) * wk.df(l) / l;
@@ -239,33 +203,31 @@ namespace Ponca
             return ret;
         }
 
-        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient(const VectorType& x) const
+        [[nodiscard]] inline VectorType primitiveGradient(const VectorType& x) const
         {
+            const int nb_nodes = m_node_centers.cols();
+            const WeightKernel wk;
+
             VectorType grad = VectorType::Zero();
-            int nb_nodes    = m_node_centers.cols();
-
-            WeightKernel wk;
-
             for (int i = 0; i < nb_nodes; i++)
             {
-                VectorType node = m_node_centers.col(i);
-                VectorType beta = m_betas.col(i);
-                Scalar alpha    = m_alphas(i);
-                VectorType diff = x - node;
+                const VectorType node = m_node_centers.col(i);
+                const VectorType beta = m_betas.col(i);
+                const VectorType diff = x - node;
+                const Scalar alpha    = m_alphas(i);
+                const Scalar l        = diff.norm();
 
-                VectorType diffNormalized = diff;
-                Scalar l                  = diff.norm();
-
-                if (l > 0.00001f)
+                if (l > eps)
                 {
-                    diffNormalized.normalize();
-                    Scalar dphi  = wk.df(l);
-                    Scalar ddphi = wk.ddf(l);
+                    const VectorType diffNormalized = diff / l;
 
-                    Scalar alpha_dphi = alpha * dphi;
+                    const Scalar dphi  = wk.df(l);
+                    const Scalar ddphi = wk.ddf(l);
 
-                    Scalar bDotd_l   = beta.dot(diff) / l;
-                    Scalar squared_l = diff.squaredNorm();
+                    const Scalar alpha_dphi = alpha * dphi;
+
+                    const Scalar bDotd_l   = beta.dot(diff) / l;
+                    const Scalar squared_l = diff.squaredNorm();
 
                     grad += alpha_dphi * diffNormalized;
                     grad += bDotd_l * (ddphi * diffNormalized - diff * dphi / squared_l) + beta * dphi / l;
@@ -274,50 +236,19 @@ namespace Ponca
             return grad;
         }
 
-        //
-        // //! \brief Comparison operator
-        // PONCA_MULTIARCH [[nodiscard]] bool operator==(const CNC& other) const
-        // {
-        //     // We use the matrix to compare the fitting results
-        //     return (m_eCurrentState == other.m_eCurrentState) && ;
-        // }
-
-        // //! \brief Comparison operator, convenience function
-        // PONCA_MULTIARCH [[nodiscard]] bool operator!=(const CNC& other) const
-        // {
-        //     // We use the matrix to compare the fitting results
-        //     return !(this == &other);
-        // }
-
-        // //! \brief Approximate operator
-        // PONCA_MULTIARCH [[nodiscard]] bool isApprox(
-        //     const CNC& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const
-        // {
-        //     PONCA_MULTIARCH_STD_MATH(abs);
-        //
-        //     return (m_eCurrentState == other.m_eCurrentState) && (std::abs(kMean() - other.kMean()) < epsilon) &&
-        //            (std::abs(GaussianCurvature() - other.GaussianCurvature()) < epsilon) &&
-        //            (std::abs(kmin() - other.kmin()) < epsilon) && (std::abs(kmax() - other.kmax()) < epsilon);
-        // }
-
         //! \brief Is the fitted primitive ready to use (finalize has been called and the result is stable)
         PONCA_MULTIARCH [[nodiscard]] inline bool isStable() const { return m_eCurrentState == STABLE; }
 
         /// writing implementations of function that are required to use HRBF fitting alongside Basket)
-        ///
-        ///
-        using NeighborFilter = DistWeightFilter<DataPoint,ConstantWeightKernel<Scalar>>;
+        using NeighborFilter = DistWeightFilter<DataPoint, ConstantWeightKernel<Scalar>>;
 
         PONCA_FITTING_APIDOC_SETWFUNC
-        PONCA_MULTIARCH inline void setNeighborFilter(const NeighborFilter& ) { ; }
+        PONCA_MULTIARCH inline bool setNeighborFilter(const NeighborFilter&) { return false; }
 
         PONCA_MULTIARCH inline const VectorType& project(const VectorType& x) const { return x; }
 
         PONCA_FITTING_IS_SIGNED(true)
-
-
-        // TODO Add methods to respect concept ProvidesImplicitPrimitive
-    }; // class CNC
+    }; // class HRBF
 
 } // namespace Ponca
 

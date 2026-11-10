@@ -23,6 +23,7 @@
 
 // Compute objects
 #include "src/Fitting/CNC/cnc.h"
+#include "src/Fitting/Fit/hrbf.h"
 #include "src/Fitting/Basket/basket.h"
 #include "src/Fitting/Basket/basketUnit.h"
 

@@ -352,13 +352,13 @@ namespace Ponca
         static constexpr bool isCompact = false;
 
         /// \brief Defines the \f$x^3\f$ weighting function.
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar f(const Scalar& x) { return x * x * x; }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar f(const Scalar& x) const { return x * x * x; }
 
         /// \brief Defines the first order derivative \f$3x^2\f$.
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar df(const Scalar& x) { return Scalar(3) * x * x; }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar df(const Scalar& x) const { return Scalar(3) * x * x; }
 
         /// \brief Defines the second order derivative \f$6x\f$.
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar ddf(const Scalar& x) { return Scalar(6) * x; }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar ddf(const Scalar& x) const { return Scalar(6) * x; }
         //! \brief #df is defined and valid on the definition interval
         static constexpr bool isDValid = true;
         //! \brief #ddf is defined and valid on the definition interval
