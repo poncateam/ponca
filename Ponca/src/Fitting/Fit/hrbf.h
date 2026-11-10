@@ -52,22 +52,6 @@ namespace Ponca
         static constexpr Scalar eps = Scalar(0.00001f);
 
     protected:
-        /**
-         * Very small class that emulates what hrbf needs from points. This class is used as
-         * part as computeWithIds which requires acceptance of single pass iterator to work with 
-         * kdtree, yet needs to compute data for each pairs of points. 
-         */
-        struct PointAdapter
-        {
-            VectorType _pos;
-            VectorType _normal;
-
-            PointAdapter(const VectorType& _p, const VectorType& _n) : _pos(_p), _normal(_n) {}
-
-            const VectorType& pos() const { return _pos; }
-            const VectorType& normal() const { return _normal; }
-        };
-
         /// Each column represents p_i:  VectorX pi = _node_centers.col(i);
         MatrixDX m_node_centers;
         /// Vector of scalar values alpha
@@ -171,13 +155,13 @@ namespace Ponca
         template <typename IndexRange, typename PointContainer>
         inline FIT_RESULT computeWithIds(const IndexRange& ids, const PointContainer& points)
         {
-            std::vector<PointAdapter> adapter;
+            std::vector<DataPoint> adapter;
 
             auto begin = points.begin();
             for (const auto& idx : ids)
             {
                 auto current = std::next(begin, idx);
-                adapter.emplace_back(current->pos(), current->normal());
+                adapter.push_back(*current);
             }
 
             return compute(adapter.begin(), adapter.end());
