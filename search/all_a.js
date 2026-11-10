@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['k_0',['k',['../structPonca_1_1KnnGraphBuffers.html#ab8794c825e8a969f38cdf0b0bf77971e',1,'Ponca::KnnGraphBuffers::k'],['../classPonca_1_1StaticKnnGraphBase.html#ac00f9e2e700c67254824920c9818da45',1,'Ponca::StaticKnnGraphBase::k()'],['../classPonca_1_1StaticNeighborGraphBase.html#a91350a2e3f967ec269c865f8cb123748',1,'Ponca::StaticNeighborGraphBase::k()']]],
+  ['k_0',['k',['../structPonca_1_1KnnGraphBuffers.html#acaac6a5b82e0e4ea431925240c3c29c8',1,'Ponca::KnnGraphBuffers::k'],['../classPonca_1_1StaticKnnGraphBase.html#ac00f9e2e700c67254824920c9818da45',1,'Ponca::StaticKnnGraphBase::k()'],['../classPonca_1_1StaticNeighborGraphBase.html#a91350a2e3f967ec269c865f8cb123748',1,'Ponca::StaticNeighborGraphBase::k()']]],
   ['k_5fmax_5fnn_1',['K_MAX_NN',['../structPonca_1_1NeighborGraphPointerTraits.html#a6f808241cbdd324159b20913ee264aaaaecd0497e9f8ab02cca51e4b8a9d72e03',1,'Ponca::NeighborGraphPointerTraits']]],
   ['kappa_2',['kappa',['../classPonca_1_1GLSParam.html#a3967bba6e1b7cab5a9c7f7f8c0232ec8',1,'Ponca::GLSParam']]],
   ['kappa_5fnormalized_3',['kappa_normalized',['../classPonca_1_1GLSParam.html#a5bb1c9ad3d34f76a2d634abd4da428df',1,'Ponca::GLSParam']]],

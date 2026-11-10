@@ -44,7 +44,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2cfe00173bb12dda99e12b2b48a0e1f683bc5cdd</span>
+   &#160;<span id="projectnumber">eb7239a9c07e156fb1edc6faac7fe89e2b256bda</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -156,7 +156,7 @@ $(function(){initNavTree('linePrimitive_8h_source.html','',''); });
 <div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classPonca_1_1Line.html#aff2d28ccac91b77a32c5d6474a3e0a89">   61</a></span>        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classPonca_1_1Line.html#aff2d28ccac91b77a32c5d6474a3e0a89">isValid</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">        </span>{</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">typename</span> EigenBase::VectorType zeros = EigenBase::VectorType::Zero();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="keyword">const</span> <span class="keyword">typename</span> EigenBase::VectorType zeros = EigenBase::VectorType::Zero();</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keywordflow">return</span> !(EigenBase::origin().isApprox(zeros) &amp;&amp; EigenBase::direction().isApprox(zeros));</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
 </div>

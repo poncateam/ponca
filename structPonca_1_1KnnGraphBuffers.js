@@ -9,5 +9,5 @@ var structPonca_1_1KnnGraphBuffers =
     [ "Scalar", "structPonca_1_1KnnGraphBuffers.html#a3f3aab72c5e587ee1196f70e95dc585d", null ],
     [ "Traits", "structPonca_1_1KnnGraphBuffers.html#a252aec8c5dba2839d1115263b0452457", null ],
     [ "VectorType", "structPonca_1_1KnnGraphBuffers.html#ad7fbd0e2cb48a892d7629273840d937c", null ],
-    [ "k", "structPonca_1_1KnnGraphBuffers.html#ab8794c825e8a969f38cdf0b0bf77971e", null ]
+    [ "k", "structPonca_1_1KnnGraphBuffers.html#acaac6a5b82e0e4ea431925240c3c29c8", null ]
 ];

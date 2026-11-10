@@ -44,7 +44,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">2cfe00173bb12dda99e12b2b48a0e1f683bc5cdd</span>
+   &#160;<span id="projectnumber">eb7239a9c07e156fb1edc6faac7fe89e2b256bda</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -175,30 +175,26 @@ $(function(){initNavTree('sphereFit_8hpp_source.html','',''); });
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">//   C^{-1}A is not symmetric</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">//   calling Eigen::GeneralizedEigenSolver on (A,C) and Eigen::EigenSolver on C^{-1}A is equivalent</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">//   C is not positive definite so Eigen::GeneralizedSelfAdjointEigenSolver cannot be used</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#ifdef __CUDACC__</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    m_solver.computeDirect(invCpratt * m_matA);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    m_solver.compute(invCpratt * m_matA);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    VectorA eivals = m_solver.eigenvalues().real();</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">int</span> minId      = -1;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; DataPoint::Dim + 2; ++i)</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        Scalar ev = eivals(i);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">if</span> ((ev &gt; 0) &amp;&amp; (minId == -1 || ev &lt; eivals(minId)))</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            minId = i;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// mLambda = eivals(minId);</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    VectorA vecU = m_solver.eigenvectors().col(minId).real();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    Base::m_uq   = vecU[1 + DataPoint::Dim];</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    Base::m_ul   = vecU.template segment&lt;DataPoint::Dim&gt;(1);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    Base::m_uc   = vecU[0];</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    Base::m_isNormalized = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    m_solver.compute(invCpratt * m_matA);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    VectorA eivals = m_solver.eigenvalues().real();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">int</span> minId      = -1;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; DataPoint::Dim + 2; ++i)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        Scalar ev = eivals(i);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">if</span> ((ev &gt; 0) &amp;&amp; (minId == -1 || ev &lt; eivals(minId)))</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            minId = i;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// mLambda = eivals(minId);</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    VectorA vecU = m_solver.eigenvectors().col(minId).real();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    Base::m_uq   = vecU[1 + DataPoint::Dim];</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    Base::m_ul   = vecU.template segment&lt;DataPoint::Dim&gt;(1);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    Base::m_uc   = vecU[0];</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    Base::m_isNormalized = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns).</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can&#39;t use it for valid results.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00022">enums.h:22</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00027">enums.h:27</a></div></div>
