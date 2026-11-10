@@ -38,6 +38,8 @@ jobs:
       - name: make buildtests
         run: cd build && cmake --build . --target buildtests
       - name: make ContinuousTest
+        env:
+          CTEST_OUTPUT_ON_FAILURE: 1
         run: cd build && cmake --build . --target test
       - name: Display test failure logs
         if: ${{ failure() }}
