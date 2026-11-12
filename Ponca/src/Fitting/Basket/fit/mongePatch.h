@@ -113,13 +113,11 @@ namespace Ponca
             const VectorType fuu{Base::d2h_duu(), Scalar(0), Scalar(0)};
             const VectorType fuv{Base::d2h_duv(), Scalar(0), Scalar(0)};
             const VectorType fvv{Base::d2h_dvv(), Scalar(0), Scalar(0)};
-            const VectorType fn = primitiveGradientLocal();
+            const VectorType fn = primitiveGradientLocal().normalized();
 
             L = fuu.dot(fn);
             M = fuv.dot(fn);
-            ;
             N = fvv.dot(fn);
-            ;
         }
     }; // class MongePatchPrimitive
 
