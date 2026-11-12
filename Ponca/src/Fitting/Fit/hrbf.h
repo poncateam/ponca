@@ -49,7 +49,7 @@ namespace Ponca
         using DenseMatrix  = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
         using WeightKernel = _WeightKernel;
 
-        static constexpr Scalar eps = Scalar(0.00001f);
+        static constexpr Scalar eps = Eigen::NumTraits<Scalar>::epsilon();
 
     protected:
         /// Each column represents p_i:  VectorX pi = _node_centers.col(i);
@@ -143,6 +143,10 @@ namespace Ponca
 
             m_alphas = mx.row(0);
             m_betas  = mx.template bottomRows<DIM>();
+
+            // Catches cases where the system is ill-conditionned (duplicate / 'colinear' points)
+            if (!x.allFinite() || (D * x - f).norm() > std::sqrt(eps) * f.norm())
+                return m_eCurrentState = UNSTABLE;
 
             return m_eCurrentState = STABLE;
         }

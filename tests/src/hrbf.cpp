@@ -26,7 +26,9 @@ void testInterpolation()
 
     Fit fit;
     fit.init();
-    fit.compute(vectorPoints.begin(), vectorPoints.end());
+
+    // Probability of ill-conditionned system is very very very low
+    VERIFY(fit.compute(vectorPoints.begin(), vectorPoints.end()) == Ponca::FIT_RESULT::STABLE);
 
     for (size_t i = 0; i < vectorPoints.size(); ++i)
     {
@@ -40,8 +42,15 @@ template <typename Scalar, int Dim>
 void callSubTests()
 {
     using Point = Ponca::PointPositionNormal<Scalar, Dim>;
-    testInterpolation<Ponca::HRBF<Point>>();
+
+    for (int i = 0; i < g_repeat; ++i)
+    {
+        CALL_SUBTEST((testInterpolation<Ponca::HRBF<Point>>()));
+    }
 }
+
+using namespace std;
+using namespace Ponca;
 
 int main(const int argc, char** argv)
 {
@@ -49,7 +58,14 @@ int main(const int argc, char** argv)
         return EXIT_FAILURE;
 
     std::cout << "Test for the HRBF fit method" << std::endl;
+    CALL_SUBTEST_1((callSubTests<float, 3>()));
+    std::cout << " (ok), float" << std::flush;
+    CALL_SUBTEST_2((callSubTests<double, 3>()));
+    std::cout << " (ok), double" << std::flush;
+    CALL_SUBTEST_3((callSubTests<long double, 3>()));
+    std::cout << " (ok), long double" << std::flush;
+    CALL_SUBTEST_4((callSubTests<double, 2>()));
+    std::cout << " (ok), double 2D" << std::flush;
 
-    callSubTests<float, 3>();
-    callSubTests<double, 3>();
+    return 0;
 }
