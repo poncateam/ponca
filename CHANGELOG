@@ -23,6 +23,7 @@ Current head (v.2.0.alpha4 RC)
     - [spatialPartitioning] Fix access violation in KdTree construction (#360)
     - [fitting] Fix polynomial weight kernel that had wrong derivatives (#359)
     - [fitting] Fix unorientedShpereFit finalize derivative computation (#359)
+    - [fitting] Fix CompactExpWeightKernel second order derivative (#359)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)

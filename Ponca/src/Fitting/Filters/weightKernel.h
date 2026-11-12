@@ -239,9 +239,6 @@ namespace Ponca
 
         Continuity is \f$C^\infty\f$ for \f$x=1\f$.
 
-        \warning \f$\nabla^2 w(x)\f$ is not defined for all values in \f$\left[0 : 1\right]\f$. Do not use for
-       second-order differentiation.
-
         \inherit Concept::WeightKernelConcept
     */
     template <typename _Scalar>
@@ -262,6 +259,10 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline Scalar f(const Scalar& _x) const
         {
             PONCA_MULTIARCH_STD_MATH(exp);
+            // Avoid divide by 0
+            if (_x >= Scalar(1))
+                return Scalar(0);
+
             Scalar v = _x * _x;
             return exp(-v / (Scalar(1) - v));
         }
@@ -273,34 +274,33 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline Scalar df(const Scalar& _x) const
         {
             PONCA_MULTIARCH_STD_MATH(exp);
+            // Avoid divide by 0
+            if (_x >= Scalar(1))
+                return Scalar(0);
+
             Scalar v  = _x * _x;
             Scalar mv = v - Scalar(1);
             return -(Scalar(2) * exp(v / mv) * _x) / (mv * mv);
         }
         /*! \brief Defines the smooth second order weighting function
-         * \f$ \nabla^2 w(x) = \frac{2 e^\frac{x^2}{x^2 - 1} \left(4 x^{\frac{2}{x^2 - 1} + 2} log(x) - (x^2 - 1)
-         * \left(-3 x^2 + 2 x^\frac{2}{x^2 - 1} - 1\right)\right)}{(x^2 - 1)^4} \f$
-         * \see \see
-         * https://www.wolframalpha.com/input?i2d=true&i=+-Divide%5B%5C%2840%292+Power%5Be%2C%5C%2840%29Power%5Bx%2CDivide%5B2%2C%5C%2840%29Power%5Bx%2C2%5D+-+1%5C%2841%29%5D%5D%5C%2841%29%5D+x%5C%2841%29%2CPower%5B%5C%2840%291+-+Power%5Bx%2C2%5D%5C%2841%29%2C2%5D%5D
+         * \f$ \nabla^2 w(x) = \frac{2 e^{\frac{x^2}{x^2 - 1}} \left(3 x^4 - 1\right)}{(x^2 - 1)^4} \f$
          */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar ddf(const Scalar& _x) const
         {
             PONCA_MULTIARCH_STD_MATH(exp);
-            PONCA_MULTIARCH_STD_MATH(pow);
-            Scalar v      = _x * _x;        // x^2
-            Scalar mv     = v - Scalar(1);  // x^2-1
-            Scalar mvpow  = Scalar(2) / mv; // 2/(x^2-1)
-            Scalar cmvpow = pow(_x, mvpow); // x^{2/(x^2-1)}
-            return Scalar(2) * exp(cmvpow) *
-                   ((Scalar(4) * pow(_x, mvpow + Scalar(2)) * log(_x) -
-                     mv * (-Scalar(3) * v + Scalar(2) * cmvpow - Scalar(1)))) /
-                   (mv * mv * mv * mv);
+            // Avoid divide by 0
+            if (_x >= Scalar(1))
+                return Scalar(0);
+
+            Scalar v  = _x * _x;
+            Scalar mv = v - Scalar(1);
+            return Scalar(2) * exp(v / mv) * (Scalar(3) * v * v - Scalar(1)) / (mv * mv * mv * mv);
         }
 
         //! \brief #df is defined and valid on the definition interval
         static constexpr bool isDValid = true;
-        //! \brief #ddf is not defined and valid on the definition interval
-        static constexpr bool isDDValid = false;
+        //! \brief #ddf is defined and valid on the definition interval
+        static constexpr bool isDDValid = true;
     }; // class CompactExpWeightKernel
 
     /*!
