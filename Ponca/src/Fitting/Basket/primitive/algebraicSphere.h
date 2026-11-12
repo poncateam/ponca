@@ -206,7 +206,12 @@ namespace Ponca
             return Scalar(sqrt(((Scalar(-0.5) * b) * m_ul).squaredNorm() - m_uc * b));
         }
 
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return isPlane() ? Scalar(0) : Scalar(2) * m_uq; }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const
+        {
+            if (isPlane())
+                return Scalar(0);
+            return Scalar(2) * (isNormalized() ? m_uq : m_uq / prattNorm());
+        }
 
         /*!
             \brief return the estimated center of the sphere
