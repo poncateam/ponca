@@ -21,6 +21,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] Fix fit inconsistent fit status (#362)
     - [common] Add default instantiation mode to reduce default compile time (#355)
     - [spatialPartitioning] Fix access violation in KdTree construction (#360)
+    - [fitting] Fix polynomial weight kernel that had wrong derivatives (#359)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
