@@ -14,3 +14,5 @@
 #include "src/Common/pointGeneration.h"
 #include "src/Common/pointTypes.h"
 
+#include "src/Common/Solver/Eigen2x2Solver.h"
+

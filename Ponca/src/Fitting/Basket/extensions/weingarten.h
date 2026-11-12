@@ -9,6 +9,8 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #include "../../defines.h"
 #include "../concepts.h"
 
+#include "../../../Common/Solver/Eigen2x2Solver.h"
+
 #define FUNDAMENTAL_FORM_WEINGARTEN_ESTIMATOR_REQUIREMENTS \
     ProvidesFirstFondamentalFormComponents<T>&& ProvidesSecondFondamentalFormComponents<T>&& Is3D<DataPoint>
 #define NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS Is3D<DataPoint>&& ProvidesSpaceDerivative<T>
@@ -145,6 +147,7 @@ namespace Ponca
 
     namespace internal
     {
+
         /*!
             \brief Compute principal curvatures from a base class providing fundamental forms
 
@@ -170,7 +173,7 @@ namespace Ponca
             using Matrix2 = Eigen::Matrix<Scalar, 2, 2>;
 
         private:
-            Eigen::SelfAdjointEigenSolver<Matrix2> m_solver;
+            Eigen2x2Solver<Scalar> m_solver; // W is not necessarily symmetric, see Eigen2x2Solver
 
         public:
             PONCA_FITTING_DECLARE_FINALIZE

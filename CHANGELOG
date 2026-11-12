@@ -26,6 +26,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] Fix CompactExpWeightKernel second order derivative (#359)
     - [fitting] Fix algebraicSphere::kMean not normalizing sphere if necessary (#359)
     - [fitting] Fix sphereFit not working for perfect spheres (#359)
+    - [fitting] Fix weingarten solve for symetric matrices when the matrix isn't symmetric (#359)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
