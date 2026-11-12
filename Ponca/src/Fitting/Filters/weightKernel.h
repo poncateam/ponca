@@ -330,7 +330,7 @@ namespace Ponca
         /*!
          * \brief Defines the Gaussian weighting function \f$e^{\frac{-x^2}{2\sigma^2}}\f$.
          *
-         * As \f$x\f$ is normalized wrt scale such that \f$ x \in [0:1]\f$, \f$\sigma=0\f$ and the gaussian kernel boils
+         * As \f$x\f$ is normalized wrt scale such that \f$ x \in [0:1]\f$, \f$\sigma=1\f$ and the gaussian kernel boils
          * down to \f$e^{\frac{-x^2}{2}}\f$.
          */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar f(const Scalar& _x) const
@@ -342,7 +342,7 @@ namespace Ponca
         /// \brief Defines the Gaussian weighting function first order derivative \f$-e^{\frac{-x^2}{2\sigma^2}}x\f$.
         PONCA_MULTIARCH [[nodiscard]] inline Scalar df(const Scalar& _x) const { return -f(_x) * _x; }
         /// \brief Defines the Gaussian weighting function second order derivative
-        /// \f$e^{\frac{-x^2}{2\sigma^2}}(x^2-1)\f$.
+        /// \f$e^{\frac{-x^2}{2}}(x^2-1)\f$.
         PONCA_MULTIARCH [[nodiscard]] inline Scalar ddf(const Scalar& _x) const
         {
             return f(_x) * (_x * _x - Scalar(1));
