@@ -97,7 +97,7 @@ namespace Ponca
 
         \inherit Concept::WeightKernelConcept
     */
-    template <typename _Scalar, int m, int n>
+    template <typename _Scalar, unsigned int m, unsigned int n>
     class PolynomialSmoothWeightKernel
     {
     public:
@@ -119,13 +119,33 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline Scalar df(const Scalar& _x) const
         {
             PONCA_MULTIARCH_STD_MATH(pow);
-            return pow(Scalar(m * n) * _x, Scalar(n - 1)) * pow(pow(_x, Scalar(n)) - 1, Scalar(m - 1));
+
+            // Check special values that could cause problems at x=0 or x=1
+            if constexpr (m == 0 || n == 0)
+                return Scalar(0);
+
+            return Scalar(m * n) * pow(_x, Scalar(n - 1)) * pow(pow(_x, Scalar(n)) - Scalar(1), Scalar(m - 1));
         }
         /*! \brief Defines the smooth second order weighting function \f$ \nabla^2 w(x) = (m-1) m n^2 x^{2 n-2}
          * \left(x^n-1\right)^{m-2}+m (n-1) n x^{n-2} \left(x^n-1\right)^{m-1} \f$ */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar ddf(const Scalar& _x) const
         {
             PONCA_MULTIARCH_STD_MATH(pow);
+            
+            // Check special values that could cause problems at x=0 or x=1
+            if constexpr (m == 0 || n == 0)
+                return Scalar(0);
+
+            if constexpr (m == 1)
+            {
+                if constexpr (n == 1)
+                    return Scalar(0);
+                else 
+                    return n * (n - 1) * pow(_x, Scalar(n - 2));
+            }
+            else if constexpr (n == 1)
+                return m * (m - 1) * pow(_x - Scalar(1), Scalar(m - 2));
+
             return Scalar((m - 1) * m * n * n) * pow(_x, Scalar(2 * n - 2)) *
                        pow(pow(_x, Scalar(n)) - Scalar(1), Scalar(m - 2)) +
                    Scalar(m * (n - 1) * n) * pow(_x, Scalar(n - 2)) *

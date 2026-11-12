@@ -158,6 +158,13 @@ void callAutoDiffSubTests()
     cout << "ok" << endl;
 }
 
+template <typename Scalar>
+using PolySmooth34 = PolynomialSmoothWeightKernel<Scalar, 3, 4>;
+template <typename Scalar>
+using PolySmooth23 = PolynomialSmoothWeightKernel<Scalar, 2, 3>;
+template <typename Scalar>
+using PolySmooth42 = PolynomialSmoothWeightKernel<Scalar, 4, 2>;
+
 int main(int argc, char** argv)
 {
     if (!init_testing(argc, argv))
@@ -193,4 +200,9 @@ int main(int argc, char** argv)
     testKernelDiff<PolynomialSmoothWeightKernel<double, 2, 2>, SmoothWeightKernel<double>>();
     testKernelDiff<PolynomialSmoothWeightKernel<float, 2, 2>, SmoothWeightKernel<float>>();
     testKernelDiff<PolynomialSmoothWeightKernel<long double, 2, 2>, SmoothWeightKernel<long double>>();
+
+    cout << "Verify generalised smooth weight kernel (other degrees)" << endl;
+    callSubTests<long double, PolySmooth34>();
+    callSubTests<long double, PolySmooth23>();
+    callSubTests<long double, PolySmooth42>();
 }
