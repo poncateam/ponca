@@ -130,7 +130,8 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     using FitSmoothOriented     = Basket<Point, WeightSmoothFunc, OrientedSphereFit, GLSParam>;   \
     using FitConstantOriented   = Basket<Point, WeightConstantFunc, OrientedSphereFit, GLSParam>; \
     using FitSmoothUnoriented   = Basket<Point, WeightSmoothFunc, UnorientedSphereFit, GLSParam>; \
-    using FitConstantUnoriented = Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam>;
+    using FitConstantUnoriented = Basket<Point, WeightConstantFunc, UnorientedSphereFit, GLSParam>; \
+    using FitSmoothSphere       = Basket<Point, WeightSmoothFunc, SphereFit, GLSParam>;
 
 template <typename Scalar, int Dim>
 void callSubTests()
@@ -145,6 +146,7 @@ void callSubTests()
         CALL_SUBTEST((testFunction<Point, FitConstantOriented, false>()));
         CALL_SUBTEST((testFunction<Point, FitSmoothUnoriented, false>(true)));
         CALL_SUBTEST((testFunction<Point, FitConstantUnoriented, false>(true)));
+        CALL_SUBTEST((testFunction<Point, FitSmoothSphere, false>(true)));
     }
     cout << "Ok!" << endl;
 
@@ -155,6 +157,7 @@ void callSubTests()
         CALL_SUBTEST((testFunction<Point, FitConstantOriented, false>(false, true, true)));
         CALL_SUBTEST((testFunction<Point, FitSmoothUnoriented, false>(true, true, true)));
         CALL_SUBTEST((testFunction<Point, FitConstantUnoriented, false>(true, true, true)));
+        CALL_SUBTEST((testFunction<Point, FitSmoothSphere, false>(true, true, true)));
     }
     cout << "Ok!" << endl;
 }
