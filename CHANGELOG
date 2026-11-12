@@ -19,6 +19,7 @@ Current head (v.2.0.alpha4 RC)
     - [common] Add default instantiation mode to reduce default compile time (#355)
     - [fitting] Fix polynomial weight kernel that had wrong derivatives (#358)
     - [fitting] Fix unorientedShpereFit finalize derivative computation (#358)
+    - [fitting] Fix CompactExpWeightKernel second order derivative (#358)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
