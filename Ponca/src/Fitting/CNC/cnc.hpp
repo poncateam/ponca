@@ -32,7 +32,7 @@ namespace Ponca::internal
         using VectorType = typename P::VectorType;
 
         template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& /*ids*/, const IteratorBegin& /*begin*/,
+        static FIT_RESULT generate(IndexRange&& /*ids*/, const IteratorBegin& /*begin*/,
                                    const IteratorEnd& /*end*/, const NeighborFilter& /*w*/,
                                    std::vector<Triangle<P>>& /*triangles*/
         )
@@ -41,7 +41,7 @@ namespace Ponca::internal
         }
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& /*ids*/, const PointContainer& /*points*/,
+        static FIT_RESULT generate(IndexRange&& /*ids*/, const PointContainer& /*points*/,
                                    const NeighborFilter& /*w*/, std::vector<Triangle<P>>& /*triangles*/
         )
         {
@@ -64,7 +64,7 @@ namespace Ponca::internal
         using Scalar     = typename P::Scalar;
 
         template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
+        static FIT_RESULT generate(IndexRange&& ids, const IteratorBegin& begin, const IteratorEnd& end,
                                    const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             // Makes a new array
@@ -96,7 +96,7 @@ namespace Ponca::internal
         }
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
+        static FIT_RESULT generate(IndexRange&& ids, const PointContainer& points, const NeighborFilter& w,
                                    std::vector<Triangle<P>>& triangles)
         {
             return generate(ids, std::begin(points), std::end(points), w, triangles);
@@ -118,7 +118,7 @@ namespace Ponca::internal
         using Scalar     = typename P::Scalar;
 
         template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
+        static FIT_RESULT generate(IndexRange&& ids, const IteratorBegin& begin, const IteratorEnd& end,
                                    const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             // Makes a new array to shuffle
@@ -153,7 +153,7 @@ namespace Ponca::internal
         }
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
+        static FIT_RESULT generate(IndexRange&& ids, const PointContainer& points, const NeighborFilter& w,
                                    std::vector<Triangle<P>>& triangles)
         {
             return generate(ids, std::begin(points), std::end(points), w, triangles);
@@ -178,7 +178,7 @@ namespace Ponca::internal
         using Scalar     = typename P::Scalar;
 
         template <typename IndexRange, typename IteratorBegin, typename IteratorEnd, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const IteratorBegin& begin, const IteratorEnd& end,
+        static FIT_RESULT generate(IndexRange&& ids, const IteratorBegin& begin, const IteratorEnd& end,
                                    const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             PONCA_MULTIARCH_STD_MATH(abs);
@@ -267,7 +267,7 @@ namespace Ponca::internal
         }
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
+        static FIT_RESULT generate(IndexRange&& ids, const PointContainer& points, const NeighborFilter& w,
                                    std::vector<Triangle<P>>& triangles)
         {
             return generate(ids, std::begin(points), std::end(points), w, triangles);
@@ -284,7 +284,7 @@ namespace Ponca::internal
         using VectorType = typename P::VectorType;
         using Scalar     = typename P::Scalar;
         template <typename IndexRange, typename PointIterator, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointIterator& begin, const PointIterator& end,
+        static FIT_RESULT generate(IndexRange&& ids, const PointIterator& begin, const PointIterator& end,
                                    const NeighborFilter& w, std::vector<Triangle<P>>& triangles)
         {
             // Compute normal and maximum distance.
@@ -384,7 +384,7 @@ namespace Ponca::internal
         }
 
         template <typename IndexRange, typename PointContainer, typename NeighborFilter>
-        static FIT_RESULT generate(const IndexRange& ids, const PointContainer& points, const NeighborFilter& w,
+        static FIT_RESULT generate(IndexRange&& ids, const PointContainer& points, const NeighborFilter& w,
                                    std::vector<Triangle<P>>& triangles)
         {
             return generate(ids, std::begin(points), std::end(points), w, triangles);
@@ -430,7 +430,7 @@ namespace Ponca
     template <class P, TriangleGenerationMethod M>
         requires CNC_REQUIREMENTS
     template <typename IndexRange, typename PointContainer>
-    FIT_RESULT CNC<P, M>::computeWithIds(const IndexRange& ids, const PointContainer& points)
+    FIT_RESULT CNC<P, M>::computeWithIds(IndexRange&& ids, const PointContainer& points)
     {
         init();
         m_eCurrentState = internal::TriangleGenerator<M, P>::generate(ids, points, m_nFilter, m_triangles);

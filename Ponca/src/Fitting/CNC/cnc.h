@@ -192,7 +192,7 @@ namespace Ponca
          * \tparam PointContainer An STL-like container storing the points
          */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(const IndexRange& ids, const PointContainer& points);
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange&& ids, const PointContainer& points);
 
         /*!
          * \brief Get the number of triangles that were generated with the compute method.
