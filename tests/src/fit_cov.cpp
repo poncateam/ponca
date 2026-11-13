@@ -162,6 +162,39 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     }
 }
 
+template <typename DataPoint, typename PlaneFit, typename CurvatureFit>
+void testCovariancePlaneDer()
+{
+    // Test covariance plane derivative on a sphere (non 0 curvalture unlike plane)
+    using Scalar     = typename DataPoint::Scalar;
+    using VectorType = typename DataPoint::VectorType;
+
+    const Scalar radius        = Eigen::internal::random<Scalar>(1, 10);
+    const VectorType center    = VectorType::Random() * Eigen::internal::random<Scalar>(1, 10000);
+    const Scalar analysisScale = Eigen::internal::random<Scalar>(Scalar(0.3), Scalar(0.5)) * radius;
+    const Scalar h             = std::cbrt(Eigen::NumTraits<Scalar>::epsilon()) * radius; // finite difference step
+    const Scalar epsilon       = Scalar(10) * testEpsilon<Scalar>();
+
+    vector<DataPoint> vectorPoints(5000);
+    for (auto& p : vectorPoints)
+        p = getPointOnSphere<DataPoint>(radius, center, false, false);
+
+    const int size = QUICK_TESTS ? 1 : 20;
+    for (int i = 0; i < size; ++i)
+    {
+        const VectorType x = vectorPoints[i].pos();
+
+        CurvatureFit fit;
+        fit.setNeighborFilter({x, analysisScale});
+        fit.compute(vectorPoints);
+        if (!fit.isStable())
+            continue;
+
+        // Test only the magnitude as we don't expect an exact match
+        VERIFY(std::abs(std::abs(fit.kMean()) * radius - 1) < 1);
+    }
+}
+
 template <typename Scalar, int Dim>
 void callSubTests()
 {
@@ -190,6 +223,16 @@ void callSubTests()
     {
         CALL_SUBTEST((testFunction<Point, CovFitSmooth, RefFitSmooth>(false, true, true)));
         CALL_SUBTEST((testFunction<Point, CovFitConstant, RefFitConstant>(false, true, true)));
+    }
+    cout << "Ok!" << endl;
+
+    using PlaneFitSmooth = Basket<Point, WeightSmoothFunc, CovariancePlaneFit>;
+    using CurvatureFitSmooth = BasketDiff<PlaneFitSmooth, FitScaleSpaceDer, CovariancePlaneDer,
+                                          NormalDerivativeWeingartenEstimator, WeingartenCurvatureEstimatorDer>;
+    cout << "Testing covariance plane normal derivatives on a sphere..." << endl;
+    for (int i = 0; i < g_repeat; ++i)
+    {
+        CALL_SUBTEST((testCovariancePlaneDer<Point, PlaneFitSmooth, CurvatureFitSmooth>()));
     }
     cout << "Ok!" << endl;
 }
