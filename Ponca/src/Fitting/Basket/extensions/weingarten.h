@@ -123,6 +123,14 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(NormalDerivativeWeingartenEstimator, tangentPlaneBasis)
         PONCA_FITTING_DECLARE_FINALIZE
 
+        PONCA_MULTIARCH inline void init()
+        {
+            Base::init();
+                    
+            // Reset basis to avoid dirty sharing
+            m_tangentBasis.setZero();
+        }
+
         //! \brief Returns the Weingarten Map
         ///
         /// \return Weingarten Map
@@ -242,6 +250,14 @@ namespace Ponca
 
         public:
             PONCA_FITTING_DECLARE_FINALIZE
+
+            PONCA_MULTIARCH inline void init()
+            {
+                Base::init();
+
+                // Reset solver to avoid dirty sharing
+                m_solver.computeDirect(Matrix2::Zero());
+            }
 
             //! \brief Returns an estimate of the minimal principal curvature value
             PONCA_MULTIARCH [[nodiscard]] inline Scalar kmin() const { return m_solver.eigenvalues().x(); }

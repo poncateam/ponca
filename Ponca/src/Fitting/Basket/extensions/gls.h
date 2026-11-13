@@ -57,6 +57,12 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(GLSParam, glsParam)
         PONCA_FITTING_DECLARE_FINALIZE
 
+        PONCA_MULTIARCH inline void init()
+        {
+            Base::init();
+            m_fitness = Scalar(0);
+        }
+
         /**************************************************************************/
         /* Use results                                                            */
         /**************************************************************************/

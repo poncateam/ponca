@@ -28,6 +28,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] CNC now warns for incorrect (or missing) normal (#358)
     - [fitting] Fix CovariancePlaneFitDer derivative formula (#358)
     - [fitting] Fix weingarten curvature direction not being normalized (#358)
+    - [fitting] Fit uninitialized read and potential reuse (#358)
     - [tests] Fix monge patch tests where plane were still too steep (#358)
     - [tests] Fix paraboloid normal utilities using wrong coefficient (#358)
 
