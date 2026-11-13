@@ -24,6 +24,8 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] Fix sphereFit not working for perfect spheres (#358)
     - [fitting] Fix weingarten solve for symetric matrices when the matrix isn't symmetric (#358)
     - [fitting] Fix monge patch second fundamental form only on unit normal (#358) 
+    - [tests] Fix monge patch tests where plane were still too steep (#358)
+    - [tests] Fix paraboloid normal utilities using wrong coefficient (#358)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
