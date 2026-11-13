@@ -186,7 +186,7 @@ void testCovariancePlaneDer()
 
         CurvatureFit fit;
         fit.setNeighborFilter({x, analysisScale});
-        fit.compute(vectorPoints);
+        (void)fit.compute(vectorPoints);
         if (!fit.isStable())
             continue;
 

@@ -106,6 +106,12 @@ namespace Ponca
         ScalarArray m_dUq{ScalarArray::Zero()};
 
     public:
+        PONCA_MULTIARCH UnorientedSphereDerImpl()
+        {
+            for (int dim = 0; dim < Base::NbDerivatives; ++dim)
+                m_dmatA[dim].setZero();
+        }
+
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, unorientedSphereDer)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, algebraicSphereDer)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, implicitPrimitiveDer)

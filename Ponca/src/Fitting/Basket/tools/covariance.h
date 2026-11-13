@@ -153,6 +153,12 @@ namespace Ponca
         MatrixType m_dCov[Base::NbDerivatives];
 
     public:
+        PONCA_MULTIARCH CovarianceDer()
+        {
+            for (int k = 0; k < Base::NbDerivatives; ++k)
+                m_dCov[k].setZero();
+        }
+
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovarianceDer, covarianceDer)
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
     }; // class CovarianceDer
