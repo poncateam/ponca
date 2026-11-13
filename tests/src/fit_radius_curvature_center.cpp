@@ -42,6 +42,11 @@ void subTestSpatial<true, 3>::eval(const Fit& _fit, Scalar _radiusMin, Scalar _r
 
     // Test value
     VERIFY((radius > _radiusMin - _radiusEpsilon) && (radius < _radiusMax + _radiusEpsilon));
+
+    Scalar epsilon = testEpsilon<Scalar>();
+    VERIFY(std::abs(_fit.kminDirection().norm() - Scalar(1)) < epsilon);
+    VERIFY(std::abs(_fit.kmaxDirection().norm() - Scalar(1)) < epsilon);
+    VERIFY(std::abs(_fit.kminDirection().dot(_fit.kmaxDirection())) < epsilon);
 }
 
 template <typename DataPoint, typename Fit, bool isSpaceDer>
