@@ -25,6 +25,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] Fix weingarten solve for symetric matrices when the matrix isn't symmetric (#358)
     - [fitting] Fix monge patch second fundamental form only on unit normal (#358)
     - [fitting] Fix CNC accepting only const range indices when kdtree can not produce them (#358) 
+    - [fitting] CNC now warns for incorrect (or missing) normal (#358)
     - [tests] Fix monge patch tests where plane were still too steep (#358)
     - [tests] Fix paraboloid normal utilities using wrong coefficient (#358)
 
