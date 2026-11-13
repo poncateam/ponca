@@ -103,6 +103,15 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovariancePlaneDerImpl, covariancePlaneDer)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovariancePlaneDerImpl, implicitPrimitiveDer)
 
+        PONCA_MULTIARCH inline void init()
+        {
+            Base::init();
+
+            // Reset vectors to avoid dirty sharing
+            m_dNormal.setZero();
+            m_dDist.setZero();
+        }
+
         /*! \see Concept::FittingProcedureConcept::finalize() */
         PONCA_MULTIARCH FIT_RESULT finalize();
 

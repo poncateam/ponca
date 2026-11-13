@@ -41,9 +41,6 @@ typename DataPoint::Scalar generateData(KdTree<DataPoint>& tree)
 
     vector<DataPoint> vectorPoints(nbPoints);
 
-#ifdef NDEBUG
-#    pragma omp parallel for
-#endif
     for (int i = 0; i < int(vectorPoints.size()); ++i)
     {
         vectorPoints[i] = getPointOnSphere<DataPoint>(radius, center, false, false, false);
@@ -63,9 +60,6 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
     int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
-#ifdef NDEBUG
-#    pragma omp parallel for
-#endif
     for (int i = 0; i < size; ++i)
     {
         const auto& fitInitPos = vectorPoints[i].pos();
@@ -127,9 +121,6 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1::Sca
     int size = QUICK_TESTS ? 1 : int(vectorPoints.size());
 
     // Test for each point if the fitted sphere correspond to the theoretical sphere
-#ifdef NDEBUG
-#    pragma omp parallel for
-#endif
     for (int i = 0; i < size; ++i)
     {
         using Fit = Fit1; // create an alias to ease doc snippet generation

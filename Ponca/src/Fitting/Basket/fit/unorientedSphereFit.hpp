@@ -134,22 +134,25 @@ namespace Ponca
             //
             // which simplified to
             //
-            //     (Q vj) . dvi = 1/(li - lj) vj . dQ vi
+            //     (Q vj) . dvi = 1/(li - lj) vj . ((dA - li dQ) vi)
             //
-            // therefore
+            // The eigenvectors are Q-orthogonal (vj . Q vk = 0 for j != k), so dvi decomposes as
             //
-            //     dvi = sum_j (1/(li - lj) vj . dQ vi) Q vj
-            //         = Q sum_j (1/(li - lj) vj . ((dA - li dQ) vi)) vj
+            //     dvi = sum_j ((Q vj) . dvi) / (vj . Q vj) vj
+            //         = sum_j (1/(li - lj) vj . ((dA - li dQ) vi)) / (vj . Q vj) vj
+            //
+            // The j == i term only changes the scale of vi, which is arbitrary (fixed later by the Pratt
+            // normalization), so it is omitted.
             //
             for (int dim = 0; dim < Base::NbDerivatives; ++dim)
             {
-                MatrixBB dQ;
-                dQ.template topLeftCorner<Dim, Dim>().setZero();
+                MatrixBB dQ = MatrixBB::Zero();
                 dQ.col(Dim).template head<Dim>() = Base::m_dSumP.col(dim);
                 dQ.row(Dim).template head<Dim>() = Base::m_dSumP.col(dim);
                 dQ(Dim, Dim)                     = m_dSumDotPP[dim];
                 dQ -= Base::m_dSumW[dim] * Base::m_matQ;
                 dQ *= invSumW;
+                dQ.template topLeftCorner<Dim, Dim>().setZero();
 
                 const VectorB vec = (m_dmatA[dim] - eigenval_i * dQ) * eigenvec_i;
 
@@ -165,14 +168,13 @@ namespace Ponca
                         if (eigengap > epsilon)
                         {
                             const VectorB eigenvec_j = Base::m_solver.eigenvectors().real().col(j);
-                            deigvec += Scalar(1) / eigengap * eigenvec_j.dot(vec) * eigenvec_j;
+                            deigvec += eigenvec_j.dot(vec) /
+                                       (eigengap * eigenvec_j.dot(Base::m_matQ * eigenvec_j)) * eigenvec_j;
                         }
                     }
                 }
 
-                deigvec = Base::m_matQ * deigvec;
-
-                m_dUq[dim]     = Scalar(.5) * deigvec[dim];
+                m_dUq[dim]     = Scalar(.5) * deigvec[Dim];
                 m_dUl.col(dim) = deigvec.template head<Dim>();
             }
 

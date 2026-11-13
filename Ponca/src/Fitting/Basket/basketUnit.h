@@ -161,7 +161,7 @@ namespace Ponca
 
     protected:
         // computation data
-        ScalarArray m_dSumW; /*!< \brief Sum of weight derivatives */
+        ScalarArray m_dSumW{ScalarArray::Zero()}; /*!< \brief Sum of weight derivatives */
 
     public:
         /************************************************************************/

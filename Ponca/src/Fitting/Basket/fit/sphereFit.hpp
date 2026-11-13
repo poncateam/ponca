@@ -65,13 +65,20 @@ FIT_RESULT SphereFitImpl<DataPoint, _NFilter, T>::finalize()
     //   C is not positive definite so Eigen::GeneralizedSelfAdjointEigenSolver cannot be used
     m_solver.compute(invCpratt * m_matA);
     VectorA eivals = m_solver.eigenvalues().real();
-    int minId      = -1;
+
+    // For data lying exactly on a sphere, the solution has a zero eigenvalue, which may come out slightly negative
+    const Scalar tol = Scalar(100) * Eigen::NumTraits<Scalar>::dummy_precision() * eivals.cwiseAbs().maxCoeff();
+    int minId        = -1;
+
     for (int i = 0; i < DataPoint::Dim + 2; ++i)
     {
         Scalar ev = eivals(i);
-        if ((ev > 0) && (minId == -1 || ev < eivals(minId)))
+        if ((ev > -tol) && (minId == -1 || ev < eivals(minId)))
             minId = i;
     }
+    
+    if (minId == -1) // no admissible eigenvalue
+        return Base::m_eCurrentState = UNDEFINED;
 
     // mLambda = eivals(minId);
     VectorA vecU = m_solver.eigenvectors().col(minId).real();

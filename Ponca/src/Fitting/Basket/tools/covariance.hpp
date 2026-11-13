@@ -145,14 +145,19 @@ FIT_RESULT CovarianceDer<DataPoint, _NFilter, DiffType, T>::finalize()
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
-        VectorType cog   = Base::barycenterLocal();
-        MatrixType cogSq = cog * cog.transpose();
+        VectorType cog       = Base::barycenterLocal();
+        MatrixType cogSq     = cog * cog.transpose();
+        const Scalar invSumW = Scalar(1) / Base::getWeightSum();
         // \fixme Better use eigen here
         for (int k = 0; k < Base::NbDerivatives; ++k)
         {
-            // Finalize the computation of dCov.
-            m_dCov[k] = m_dCov[k] - cog * Base::m_dSumP.col(k).transpose() - Base::m_dSumP.col(k) * cog.transpose() +
-                        Base::m_dSumW[k] * cogSq;
+            // Finalize the computation of dCov:
+            //     C = M / W - c c^T
+            // => dC = (dM - cdS^T - dS c^T + dW cc^T - dW C) / W 
+            // With: dM = m_dCov, dW = m_dSumW, dS = m_dSumP, C = m_cov, c = cog
+            m_dCov[k] = (m_dCov[k] - cog * Base::m_dSumP.col(k).transpose() - Base::m_dSumP.col(k) * cog.transpose() +
+                         Base::m_dSumW[k] * cogSq - Base::m_dSumW[k] * Base::m_cov) *
+                        invSumW;
         }
     }
 

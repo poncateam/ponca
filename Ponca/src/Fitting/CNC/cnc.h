@@ -143,8 +143,8 @@ namespace Ponca
         Scalar m_k1{0};
         Scalar m_k2{0};
 
-        VectorType m_v1;
-        VectorType m_v2;
+        VectorType m_v1{VectorType::Zero()};
+        VectorType m_v2{VectorType::Zero()};
 
         /*! \brief Represent the current state of the fit
          * (finalize function update the state)
@@ -161,12 +161,16 @@ namespace Ponca
         PONCA_MULTIARCH inline void init()
         {
             m_eCurrentState = UNDEFINED;
+            m_nb_vt         = 0;
             m_A             = Scalar(0);
             m_H             = Scalar(0);
             m_G             = Scalar(0);
+            m_T11 = m_T12 = m_T13 = m_T22 = m_T23 = m_T33 = Scalar(0);
 
             m_k1 = Scalar(0);
             m_k2 = Scalar(0);
+            m_v1 = VectorType::Zero();
+            m_v2 = VectorType::Zero();
 
             m_triangles.clear();
         }
@@ -192,7 +196,7 @@ namespace Ponca
          * \tparam PointContainer An STL-like container storing the points
          */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(const IndexRange& ids, const PointContainer& points);
+        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange&& ids, const PointContainer& points);
 
         /*!
          * \brief Get the number of triangles that were generated with the compute method.
@@ -202,10 +206,10 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline size_t getNumTriangles() const { return static_cast<size_t>(m_nb_vt); }
 
         PONCA_FITTING_APIDOC_SETWFUNC
-        PONCA_MULTIARCH inline bool setNeighborFilter(const NeighborFilter& _nFilter)
+        PONCA_MULTIARCH [[nodiscard]] inline bool setNeighborFilter(const NeighborFilter& _nFilter)
         {
             m_nFilter = _nFilter;
-            return true;
+            return Eigen::internal::isApprox(m_nFilter.data().squaredNorm(), Scalar(1.0));
         }
 
         /*!
