@@ -50,9 +50,9 @@ void FundamentalFormTester<true>::test(const Fit& fit, typename Fit::Scalar epsi
     VERIFY(fit.kmin() < epsilon); // we know that curvatures should be 0
 
     // Check that principal curvature directions are well-formed
-    VERIFY(fit.kminDirection().norm() - Scalar(1) < epsilon);
-    VERIFY(fit.kmaxDirection().norm() - Scalar(1) < epsilon);
-    VERIFY(fit.kminDirection().dot(fit.kmaxDirection()) < epsilon);
+    VERIFY(std::abs(fit.kminDirection().norm() - Scalar(1)) < epsilon);
+    VERIFY(std::abs(fit.kmaxDirection().norm() - Scalar(1)) < epsilon);
+    VERIFY(std::abs(fit.kminDirection().dot(fit.kmaxDirection())) < epsilon);
 }
 
 template <typename DataPoint, typename Fit, typename RefFit>
