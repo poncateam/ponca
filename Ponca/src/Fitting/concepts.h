@@ -113,7 +113,7 @@ namespace Ponca
     concept ProvidesGeomVar = requires(const T ct, typename T::Scalar s) {
         ct.geomVar();
 
-        { ct.geomVar().geomVar(s, s, s) } -> std::same_as<typename T::Scalar>;
+        { ct.geomVar().geometric_variation(s, s, s) } -> std::same_as<typename T::Scalar>;
     };
 
     template <typename T>

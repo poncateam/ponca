@@ -160,8 +160,8 @@ namespace Ponca
            \param wkappa Weight applied to \f$ \kappa \f$
            \return
          */
-        PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau = Scalar(1), Scalar weta = Scalar(1),
-                                              Scalar wkappa = Scalar(1)) const
+        PONCA_MULTIARCH inline Scalar geometric_variation(Scalar wtau = Scalar(1), Scalar weta = Scalar(1),
+                                                          Scalar wkappa = Scalar(1)) const
             requires ProvidesScaleDerivative<T>;
     }; // class GLSScaleDer
 

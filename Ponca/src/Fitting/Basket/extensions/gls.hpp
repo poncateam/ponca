@@ -82,7 +82,7 @@ typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint,
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>
     requires GLS_DER_REQUIREMENTS
-typename GLSDer<DataPoint, _NFilter, DiffType, T>::Scalar GLSDer<DataPoint, _NFilter, DiffType, T>::geomVar(
+typename GLSDer<DataPoint, _NFilter, DiffType, T>::Scalar GLSDer<DataPoint, _NFilter, DiffType, T>::geometric_variation(
     Scalar wtau, Scalar weta, Scalar wkappa) const
     requires Ponca::ProvidesScaleDerivative<T>
 {
