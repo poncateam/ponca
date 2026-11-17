@@ -118,7 +118,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const QuadraticHeightField<DataPoint, _NFilter, T>& other) const
         {
-            return m_coeffs.isApprox(other.m_coeffs);
+            return Base::operator==(other) && m_coeffs.isApprox(other.m_coeffs);
         }
 
         /*! \brief Comparison operator, convenience function */
@@ -238,7 +238,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const RestrictedQuadraticHeightField<DataPoint, _NFilter, T>& other) const
         {
-            return m_coeffs.isApprox(other.m_coeffs);
+            return Base::operator==(other) && m_coeffs.isApprox(other.m_coeffs);
         }
 
         /*! \brief Comparison operator, convenience function */

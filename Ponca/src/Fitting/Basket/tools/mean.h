@@ -66,6 +66,10 @@ namespace Ponca
         /// \f$\mathbf{x}\f$'s neighborhood
         PONCA_MULTIARCH inline VectorType barycenterLocal() const { return (m_sumP / Base::getWeightSum()); }
 
+        PONCA_MULTIARCH inline bool operator==(const MeanPosition<DataPoint, NeighborFilter, T>& other) const
+        {
+            return Base::operator==(other) && m_sumP.isApprox(other.m_sumP);
+        }
     }; // class MeanPosition
 
     /*!
@@ -103,6 +107,10 @@ namespace Ponca
             return (m_sumN / Base::getWeightSum());
         }
 
+        PONCA_MULTIARCH inline bool operator==(const MeanNormal<DataPoint, NeighborFilter, T>& other) const
+        {
+            return Base::operator==(other) && m_sumN.isApprox(other.m_sumN);
+        }
     }; // class MeanNormal
 
     /*!
@@ -164,6 +172,11 @@ namespace Ponca
             return (m_dSumP - Base::barycenterLocal() * Base::m_dSumW) / Base::getWeightSum();
         }
 
+        PONCA_MULTIARCH inline bool operator==(
+            const MeanPositionDer<DataPoint, NeighborFilter, DiffType, T>& other) const
+        {
+            return Base::operator==(other) && m_dSumP.isApprox(other.m_dSumP);
+        }
     }; // class MeanPositionDer
 
     /*!
@@ -225,6 +238,11 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] VectorArray dMeanNormal() const
         {
             return (m_dSumN - Base::meanNormalVector() * Base::m_dSumW) / Base::getWeightSum();
+        }
+
+        PONCA_MULTIARCH inline bool operator==(const MeanNormalDer<DataPoint, NeighborFilter, DiffType, T>& other) const
+        {
+            return Base::operator==(other) && m_dSumN.isApprox(other.m_dSumN);
         }
 
     }; // class MeanNormalDer

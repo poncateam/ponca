@@ -151,6 +151,12 @@ namespace Ponca
         /// \copydoc CovariancePlaneFitImpl::tangentPlaneToWorld
         PONCA_MULTIARCH inline VectorType tangentPlaneToWorld(const VectorType& _q,
                                                               bool _isPositionVector = true) const;
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>& _other) const
+        {
+            return Base::operator==(_other) && m_tangentBasis.isApprox(_other.m_tangentBasis);
+        }
     };
 
     namespace internal
@@ -225,6 +231,12 @@ namespace Ponca
 
             //! \brief Returns an estimate of the Gaussian curvature
             PONCA_MULTIARCH [[nodiscard]] inline Scalar GaussianCurvature() const { return kmin() * kmax(); }
+
+            PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+                const WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>& _other) const
+            {
+                return Base::operator==(_other) && m_solver.isApprox(_other.m_solver);
+            }
         };
     } // namespace internal
 

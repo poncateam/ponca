@@ -146,6 +146,12 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatchQuadraticFitImpl, mongePatchQuadraticFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>& _other) const
+        {
+            return Base::operator==(_other) && m_A.isApprox(_other.m_A) && m_b.isApprox(_other.m_b);
+        }
     }; // MongePatchQuadraticFitImpl
     /*!
      * \brief Extension to compute the best fit restricted quadric on 3d points expressed as \f$f(u,v)=h\f$
@@ -171,6 +177,12 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatchRestrictedQuadraticFitImpl, mongePatchQuadraticFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>& _other) const
+        {
+            return Base::operator==(_other) && m_A.isApprox(_other.m_A) && m_b.isApprox(_other.m_b);
+        }
     }; // MongePatchRestrictedQuadraticFitImpl
 
     template <class DataPoint, class _NFilter, typename T>

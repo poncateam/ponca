@@ -63,6 +63,14 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         const FIT_RESULT res2 = fit2.compute(sphere1);
         const FIT_RESULT res3 = fit3.compute(sphere2);
 
+        // This should be true no matter stableness
+        VERIFY(fit1 == fit1);
+        VERIFY(fit2 == fit2);
+        VERIFY(fit3 == fit3);
+        VERIFY(fit1 != fit2);
+        VERIFY(fit1 != fit3);
+        VERIFY(fit2 != fit3);
+
         if (res1 == STABLE && res2 == STABLE && res3 == STABLE)
         {
             Scalar value1 = fit1.compareTo(fit2);

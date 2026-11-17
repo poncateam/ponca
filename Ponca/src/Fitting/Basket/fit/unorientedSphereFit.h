@@ -155,6 +155,14 @@ namespace Ponca
         */
         PONCA_MULTIARCH [[nodiscard]] inline bool applyPrattNorm();
 
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>& _other)
+        {
+            return Base::operator==(_other) && m_dSumDotPP.isApprox(_other.m_dSumDotPP) &&
+                   m_dmatA.isApprox(_other.m_dmatA) && m_dUq.isApprox(_other.m_dUq) && m_dUl.isApprox(_other.m_dUl) &&
+                   m_dUc.isApprox(_other.m_dUc);
+        }
+
     }; // class UnorientedSphereDerImpl
 
     template <class DataPoint, class _NFilter, int DiffType, typename T>

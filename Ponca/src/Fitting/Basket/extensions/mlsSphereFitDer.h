@@ -87,7 +87,6 @@ namespace Ponca
         Matrix m_d2Uc{Matrix::Zero()},           /*!< \brief Second derivative of the hyper-sphere constant term  */
             m_d2Uq{Matrix::Zero()};              /*!< \brief Second derivative of the hyper-sphere quadratic term */
         MatrixArray m_d2Ul{MatrixArray::Zero()}; /*!< \brief Second derivative of the hyper-sphere linear term    */
-
     public:
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(MlsSphereFitDer, mlsSphereFitDer)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(MlsSphereFitDer, implicitPrimitiveDer)
@@ -106,6 +105,15 @@ namespace Ponca
 
         /*! \brief Returns the second derivatives of the scalar field at the evaluation point */
         PONCA_MULTIARCH [[nodiscard]] inline VectorArray dNormal() const;
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>& _other) const
+        {
+            return Base::operator==(_other) && m_d2SumDotPN.isApprox(_other.m_d2SumDotPN) &&
+                   m_d2SumDotPP.isApprox(_other.m_d2SumDotPP) && m_d2SumW.isApprox(_other.m_d2SumW) &&
+                   m_d2SumP.isApprox(_other.m_d2SumP) && m_d2SumN.isApprox(_other.m_d2SumN) &&
+                   m_d2Uc.isApprox(_other.m_d2Uc) && m_d2Ul.isApprox(_other.m_d2Ul) && m_d2Uq.isApprox(_other.m_d2Uq);
+        }
 
     }; // class MlsSphereFitDer
 

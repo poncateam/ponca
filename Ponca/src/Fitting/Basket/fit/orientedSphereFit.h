@@ -45,6 +45,14 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(OrientedSphereFitImpl, orientedSphereFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
         PONCA_FITTING_IS_SIGNED(true)
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const OrientedSphereFitImpl<DataPoint, _NFilter, T>& _other) const
+        {
+            return Base::operator==(_other) && Eigen::internal::isApprox(m_sumDotPN, _other.m_sumDotPN) &&
+                   Eigen::internal::isApprox(m_sumDotPP, _other.m_sumDotPP) &&
+                   Eigen::internal::isApprox(m_nume, _other.m_nume) && Eigen::internal::isApprox(m_deno, _other.m_deno);
+        }
     }; // class OrientedSphereFitImpl
 
     /// \brief Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereFitImpl
@@ -127,6 +135,14 @@ namespace Ponca
             \return false when the original sphere has already been normalized.
         */
         PONCA_MULTIARCH [[nodiscard]] inline bool applyPrattNorm();
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>& _other) const
+        {
+            return Base::operator==(_other) && m_dSumDotPP.isApprox(_other.m_dSumDotPP) &&
+                   m_dNume.isApprox(_other.m_dNume) && m_dDeno.isApprox(_other.m_dDeno) &&
+                   m_dUq.isApprox(_other.m_dUq) && m_dUl.isApprox(_other.m_dUl) && m_dUc.isApprox(_other.m_dUc);
+        }
 
     }; // class OrientedSphereDerImpl
 

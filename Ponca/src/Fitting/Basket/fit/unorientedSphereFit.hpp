@@ -149,7 +149,7 @@ namespace Ponca
             //
             for (int dim = 0; dim < Base::NbDerivatives; ++dim)
             {
-                MatrixBB dQ = MatrixBB::Zero();
+                MatrixBB dQ                      = MatrixBB::Zero();
                 dQ.col(Dim).template head<Dim>() = Base::m_dSumP.col(dim);
                 dQ.row(Dim).template head<Dim>() = Base::m_dSumP.col(dim);
                 dQ(Dim, Dim)                     = m_dSumDotPP[dim];
@@ -171,8 +171,8 @@ namespace Ponca
                         if (eigengap > epsilon)
                         {
                             const VectorB eigenvec_j = Base::m_solver.eigenvectors().real().col(j);
-                            deigvec += eigenvec_j.dot(vec) /
-                                       (eigengap * eigenvec_j.dot(Base::m_matQ * eigenvec_j)) * eigenvec_j;
+                            deigvec += eigenvec_j.dot(vec) / (eigengap * eigenvec_j.dot(Base::m_matQ * eigenvec_j)) *
+                                       eigenvec_j;
                         }
                     }
                 }

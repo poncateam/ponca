@@ -90,11 +90,7 @@ namespace Ponca
         /// \brief Comparison operator \warning Assume that other shares the same basis \see changeBasis()
         PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, NeighborFilter, T>& other) const
         {
-            PONCA_MULTIARCH_STD_MATH(pow);
-            const Scalar epsilon        = Eigen::NumTraits<Scalar>::dummy_precision();
-            const Scalar squaredEpsilon = epsilon * epsilon;
-            return pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
-                   pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon && m_ul.isApprox(other.m_ul);
+            return Base::operator==(other) && isApprox(other);
         }
 
         /// \brief Approximate operator \warning Assume that other shares the same basis \see changeBasis()

@@ -61,6 +61,11 @@ namespace Ponca
             //! \brief Normalized eigenvectors (columns), in the order of eigenvalues()
             PONCA_MULTIARCH [[nodiscard]] inline const Matrix2& eigenvectors() const { return m_eivecs; }
 
+            PONCA_MULTIARCH [[nodiscard]] inline bool operator==(const Eigen2x2Solver<Scalar>& _other) const
+            {
+                return m_eivals.isApprox(_other.m_eivals) && m_eivecs.isApprox(_other.m_eivecs);
+            }
+
         private:
             Vector2 m_eivals{Vector2::Zero()};
             Matrix2 m_eivecs{Matrix2::Identity()};

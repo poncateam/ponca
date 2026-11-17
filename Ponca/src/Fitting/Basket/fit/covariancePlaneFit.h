@@ -126,6 +126,12 @@ namespace Ponca
         /*! \brief Returns the derivatives of the primitive normal */
         PONCA_MULTIARCH [[nodiscard]] inline VectorArray dNormal() const { return m_dNormal; }
 
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>& _other) const
+        {
+            return Base::operator==(_other) && m_dNormal.isApprox(_other.m_dNormal) && m_dDist.isApprox(_other.m_dDist);
+        }
+
     }; // class CovariancePlaneDer
 
     /// \brief Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl
