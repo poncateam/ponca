@@ -166,10 +166,10 @@ PONCA_MULTIARCH_HOST inline void KdTreeBase<Traits>::buildRec(NodeIndexType node
         const NodeIndexType first_child_id = Base::m_bufs.nodes.size();
         node.configure_inner(aabb.center()[split_dim], static_cast<IndexType>(first_child_id), split_dim);
         Base::m_bufs.nodes.emplace_back();
-        Base::m_bufs.nodes.emplace_back();
+        Base::m_bufs.nodes.emplace_back(); // these calls invalidate the reference `node`
 
         const Scalar split_value = Base::m_bufs.nodes[node_id].inner_split_value();
-        IndexType mid_id = this->partition(start, end, split_dim, split_value);
+        IndexType mid_id         = this->partition(start, end, split_dim, split_value);
         buildRec(first_child_id, start, mid_id, level + 1);
         buildRec(first_child_id + 1, mid_id, end, level + 1);
     }
