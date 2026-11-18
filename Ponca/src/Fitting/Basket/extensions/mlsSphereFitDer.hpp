@@ -163,7 +163,6 @@ typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::ScalarArray MlsSpher
 
     return result;
 }
-
 template <class DataPoint, class _NFilter, int DiffType, typename T>
     requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorType MlsSphereFitDer<DataPoint, _NFilter, DiffType,
@@ -172,6 +171,18 @@ typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorType MlsSphere
     // Compute the 1st order derivative of the scalar field and normalize it
     VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
     return grad.normalized();
+}
+
+template <class DataPoint, class _NFilter, int DiffType, typename T>
+    requires MLS_SPHERE_FIT_DER_REQUIREMENTS
+typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorType MlsSphereFitDer<
+    DataPoint, _NFilter, DiffType, T>::primitiveGradient(const VectorType& pos) const
+{
+    const Scalar centerDist = (Base::getNeighborFilter().center() - pos).squaredNorm();
+    if (!Eigen::internal::isMuchSmallerThan(centerDist, Scalar(1.)))
+        return VectorType::Zero();
+
+    return primitiveGradient();
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>

@@ -111,7 +111,7 @@ namespace Ponca
 
             MatrixType dN = Base::dNormal().template middleCols<DataPoint::Dim>(Base::isScaleDer() ? 1 : 0);
 
-            VectorType n = Base::primitiveGradient();
+            VectorType n = Base::primitiveGradient(Base::getNeighborFilter().center());
             n.array().abs().minCoeff(&i0); // i0: dimension where n extends the least
             i1 = (i0 + 1) % 3;
             i2 = (i0 + 2) % 3;

@@ -67,7 +67,7 @@ FIT_RESULT CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
 
         for (int k = 0; k < Base::NbDerivatives; ++k)
         {
-            VectorType normal = Base::primitiveGradient();
+            VectorType normal = Base::primitiveGradient(Base::getNeighborFilter().center());
             // The derivative of 'normal' is the derivative of the smallest eigenvector.
             // Since the covariance matrix is real and symmetric, it is equal to:
             //    n' = - (C - lambda_0 I)^+ C' n

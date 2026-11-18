@@ -18,13 +18,8 @@ namespace Ponca
             t.implicitPrimitive();
             ct.implicitPrimitive();
 
-            { ct.implicitPrimitive().potential() } -> std::same_as<typename T::Scalar>;
             { ct.implicitPrimitive().potential(v) } -> std::same_as<typename T::Scalar>;
-
-            { ct.implicitPrimitive().primitiveGradient() } -> std::convertible_to<typename T::VectorType>;
             { ct.implicitPrimitive().primitiveGradient(v) } -> std::same_as<typename T::VectorType>;
-
-            t.implicitPrimitive().changeBasis(v);
         };
 
     template <typename T>
