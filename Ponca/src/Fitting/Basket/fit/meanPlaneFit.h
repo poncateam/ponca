@@ -38,7 +38,7 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MeanPlaneFitImpl, meanPlaneFit)
 
         PONCA_FITTING_APIDOC_FINALIZE
-        PONCA_MULTIARCH inline FIT_RESULT finalize()
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize()
         {
             // handle specific configurations
             if (Base::finalize() == STABLE)

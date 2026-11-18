@@ -252,7 +252,7 @@ namespace Ponca
         PONCA_MULTIARCH void startNewPass();
 
         /// \brief Finalize the fitting procedure
-        PONCA_MULTIARCH void finalize();
+        PONCA_MULTIARCH [[nodiscard]] FIT_RESULT finalize();
 
         /// \brief Add a neighbor to perform the fit
         ///
@@ -317,7 +317,7 @@ namespace Ponca
         PONCA_MULTIARCH void startNewPass();
 
         /// \brief Finalize the fitting procedure
-        PONCA_MULTIARCH FIT_RESULT finalize();
+        PONCA_MULTIARCH [[nodiscard]] FIT_RESULT finalize();
 
         /// \brief Add a neighbor to perform the fit
         ///

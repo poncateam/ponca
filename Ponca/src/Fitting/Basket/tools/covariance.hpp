@@ -141,7 +141,9 @@ FIT_RESULT CovarianceDer<DataPoint, _NFilter, DiffType, T>::finalize()
 {
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
-    Base::finalize();
+    // Checked below
+    (void)Base::finalize();
+    
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {

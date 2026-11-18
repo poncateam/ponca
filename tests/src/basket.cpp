@@ -77,15 +77,18 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         fit.init();
         for (auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
             fit.addNeighbor(*it);
-        fit.finalize();
+        FIT_RESULT res = fit.finalize();
         //! [Fit Manual Traversal]
 
         // use compute function
         //! [Fit Compute]
         Fit fit1;
         fit1.setNeighborFilter({fitInitPos, analysisScale});
-        fit1.compute(vectorPoints);
+        FIT_RESULT res1 = fit1.compute(vectorPoints);
         //! [Fit Compute]
+
+        // both approaches must end in the same state
+        VERIFY(res == res1);
 
         // also test comparison operators
         VERIFY(fit == fit);

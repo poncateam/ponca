@@ -24,9 +24,7 @@ typename DataPoint::Scalar test_fit(const DataPoint* points, unsigned int N, con
     for (unsigned int i = 0; i < N; ++i)
         fit.addNeighbor(points[i].pos());
 
-    fit.finalize();
-
-    if (!fit.isStable())
+    if (fit.finalize() != Ponca::STABLE)
         return NAN;
     return fit.potential(pos);
 }

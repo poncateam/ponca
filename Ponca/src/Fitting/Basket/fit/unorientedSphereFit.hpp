@@ -112,7 +112,8 @@ namespace Ponca
         constexpr int Dim        = DataPoint::Dim;
         constexpr Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
-        Base::finalize();
+        // Checked below
+        (void)Base::finalize(); 
         if (this->isReady())
         {
             int i = 0;

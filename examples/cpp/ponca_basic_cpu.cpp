@@ -47,11 +47,8 @@ void test_fit(Fit& _fit, const KdTree<MyPoint>& tree, const VectorType& _p)
         _fit.addNeighbor(tree.points()[i]);
     }
 
-    // finalize fitting
-    _fit.finalize();
-
-    // Test if the fitting ended without errors
-    if (_fit.isStable())
+    // Finalize fitting and test if it ended without errors
+    if (_fit.finalize() == STABLE)
     {
         cout << "Center: [" << _fit.center().transpose() << "] ;  radius: " << _fit.radius() << endl;
 

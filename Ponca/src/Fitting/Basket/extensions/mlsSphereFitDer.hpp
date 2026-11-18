@@ -57,7 +57,8 @@ template <class DataPoint, class _NFilter, int DiffType, typename T>
     requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 FIT_RESULT MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
 {
-    Base::finalize();
+    // Checked below
+    (void)Base::finalize();
 
     if (this->isReady())
     {

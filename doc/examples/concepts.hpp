@@ -71,7 +71,7 @@ namespace Ponca
             PONCA_MULTIARCH inline bool addLocalNeighbor(Scalar w, const VectorType& lQ, const DataPoint& pt);
             // \return State of fitting
             // \warning Must be called be for any use of the fitting output
-            PONCA_MULTIARCH inline FIT_RESULT finalize();
+            PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize();
         }; // class ComputationalObjectConcept
         //! [ComputationalObjectConcept]
 
@@ -120,7 +120,7 @@ namespace Ponca
             // Finalize the fitting procedure. This function is called after all neighbors have been processed.
             // \return State of fitting
             // \warning Must be called be for any use of the fitting output
-            PONCA_MULTIARCH inline FIT_RESULT finalize();
+            PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize();
         }; // class ComputationalDerivativesConcept
 
         //! [ComputationalDerivativesConcept]

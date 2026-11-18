@@ -25,9 +25,9 @@ namespace Ponca
 
     template <typename BasketType, int Type, template <class, class, int, typename> class Ext0,
               template <class, class, int, typename> class... Exts>
-    PONCA_MULTIARCH void BasketDiff<BasketType, Type, Ext0, Exts...>::finalize()
+    PONCA_MULTIARCH FIT_RESULT BasketDiff<BasketType, Type, Ext0, Exts...>::finalize()
     {
-        Base::finalize();
+        return Base::finalize();
     }
 
     template <typename BasketType, int Type, template <class, class, int, typename> class Ext0,

@@ -183,7 +183,7 @@ extern "C"
                     }
                 }
                 // closed form minimization
-                gls.finalize();
+                (void)gls.finalize();
                 _result[getId(x, y, width, height, 0, 1)] = gls.kappa();
             }
         }

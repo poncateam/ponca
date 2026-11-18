@@ -44,7 +44,7 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(CovarianceLineFitImpl, covarianceLineFit)
 
         PONCA_FITTING_APIDOC_FINALIZE
-        PONCA_MULTIARCH inline FIT_RESULT finalize()
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize()
         {
             static const int smallestEigenValue = DataPoint::Dim - 1;
             if (Base::finalize() == STABLE)

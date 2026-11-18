@@ -37,7 +37,7 @@ namespace Ponca
             m_ready = false;
         }
 
-        PONCA_MULTIARCH inline FIT_RESULT finalize()
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize()
         {
             FIT_RESULT res = Base::finalize();
             m_ready        = (res == STABLE);
