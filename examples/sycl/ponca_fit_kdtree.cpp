@@ -23,9 +23,7 @@ typename DataPoint::Scalar test_fit(GPUBuffers buffers, int i, typename DataPoin
 
     Fit fit;
     fit.setNeighborFilter({pos, scale});
-    fit.computeWithIds(kdtree.rangeNeighbors(i, scale), kdtree.points());
-
-    if (!fit.isStable())
+    if (fit.computeWithIds(kdtree.rangeNeighbors(i, scale), kdtree.points()) != Ponca::STABLE)
         return NAN;
     return fit.potential(pos);
 }

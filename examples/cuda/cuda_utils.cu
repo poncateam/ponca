@@ -253,10 +253,8 @@ __global__ void spatialPartitioningFitPotentialAndGradientKernel(
     // Compute using the Spatial Partitioning data structure
     SpatialPartitioning spatialPartitioning(*buffers);
     auto rangNeighbors = SpatialPartitioningQueryFunctor::query(spatialPartitioning, i, analysisScale);
-    fit.computeWithIds(rangNeighbors, buffers->points);
-
     // Returns NaN if not stable
-    if (!fit.isStable())
+    if (fit.computeWithIds(rangNeighbors, buffers->points) != Ponca::STABLE)
     {
         potentialResults[i] = NAN;
         for (int d = 0; d < DataPoint::Dim; ++d)

@@ -477,7 +477,7 @@ namespace Ponca
         m_T23 = Scalar(0.5) * (localT(1, 2) + localT(2, 1));
         m_T33 = localT(2, 2);
 
-        MatrixType T;
+        MatrixType T = MatrixType::Zero();
         if (m_A != Scalar(0))
         {
             T << m_T11, m_T12, m_T13, m_T12, m_T22, m_T23, m_T13, m_T23, m_T33;
@@ -493,6 +493,6 @@ namespace Ponca
 
         std::tie(m_k2, m_k1, m_v2, m_v1) = internal::CNCEigen<P>::curvaturesFromTensor(T, 1.0, m_nFilter.data());
 
-        return STABLE;
+        return m_eCurrentState = STABLE;
     }
 } // namespace Ponca

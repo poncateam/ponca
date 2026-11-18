@@ -60,6 +60,7 @@ FIT_RESULT MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
     // Checked below
     (void)Base::finalize();
 
+    // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
         Matrix sumdSumPdSumN  = Matrix::Zero();
