@@ -67,7 +67,10 @@ namespace Ponca
         }
 
         /*! \brief Compute and return \f$ \eta \f$ */
-        PONCA_MULTIARCH [[nodiscard]] inline VectorType eta() const { return Base::primitiveGradient(); }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType eta() const
+        {
+            return Base::primitiveGradient(Base::getNeighborFilter().center());
+        }
 
         /*! \brief Compute and return \f$ \kappa \f$ */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar kappa() const
