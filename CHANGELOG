@@ -14,7 +14,7 @@ Current head (v.2.0.alpha4 RC)
     - [spatialPartitioning] Make API reflects the constness of the point container access in NeighborGraph (#352)
     - [fitting] Made setNeighborFilter return a boolean to indicates filter validity (#350)
     - [fitting] Remove parameterless requirements for implicit primitive (#360)
-    - [fitting] Finalize is now marked as [[nodiscard]] (#362)
+    - [fitting] Finalize and compute are now marked as [[nodiscard]] (#362)
 
 - Bug-fixes and code improvements
     - [fitting] Fix out-of-bound SegFault in CNC (#344)

@@ -42,13 +42,10 @@ int main(int /*argc*/, char** /*argv*/)
     std::cout << "====================\nLeastSquareLineFit:\n";
     cout << "Direction of the generated line: " << dir.transpose() << endl;
 
-    // Fit line on data
     Fit _fit;
     _fit.setNeighborFilter({p, 1});
-    _fit.compute(points.cbegin(), points.cend());
-
-    // Check Fit output
-    if (_fit.isStable())
+    // Fit line on data and check Fit output
+    if (_fit.compute(points.cbegin(), points.cend()) == STABLE)
     {
         cout << "Direction of the fitted 3D line: " << _fit.direction().transpose() << endl;
         cout << "Origin of the fitted line: " << _fit.origin().transpose() << endl;

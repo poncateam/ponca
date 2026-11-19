@@ -37,9 +37,7 @@ void test_fit(Fit& _fit, vector<MyPoint>& _vecs, const VectorType& _p)
     _fit.setNeighborFilter({_p, tmax});
 
     // Fit plane (method compute handles multipass fitting
-    _fit.compute(_vecs.begin(), _vecs.end());
-
-    if (_fit.isStable())
+    if (_fit.compute(_vecs.begin(), _vecs.end()) == STABLE)
     {
         cout << "Value of the scalar field at the initial point: " << _p.transpose() << " is equal to "
              << _fit.potential(_p) << endl;

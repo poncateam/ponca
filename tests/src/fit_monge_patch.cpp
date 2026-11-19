@@ -68,9 +68,7 @@ void testFunction(bool _bAddPositionNoise = false)
 
     Fit fit;
     fit.setNeighborFilter({queryPos, analysisScale});
-    fit.compute(vectorPoints);
-
-    VERIFY(fit.isStable());
+    VERIFY(fit.compute(vectorPoints) == STABLE);
     {
         // compute RMSE
         Scalar error{0};

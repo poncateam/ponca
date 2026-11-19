@@ -83,9 +83,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
     {
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit.compute(vectorPoints);
-
-        if (fit.isStable())
+        if (fit.compute(vectorPoints) == STABLE)
         {
             Scalar fitRadiusKappa     = Scalar(std::abs(Scalar(1.) / fit.kappa()));
             Scalar fitRadiusAlgebraic = fit.radius();

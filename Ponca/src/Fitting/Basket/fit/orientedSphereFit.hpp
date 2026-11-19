@@ -115,7 +115,7 @@ FIT_RESULT OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>::finalize()
     PONCA_MULTIARCH_STD_MATH(sqrt);
 
     // Checked below
-    (void)Base::finalize(); 
+    (void)Base::finalize();
 
     // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())

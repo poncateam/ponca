@@ -44,8 +44,8 @@ void compareFit(const bool _bAddPositionNoise = false, const bool _bAddNormalNoi
     EvaluationScheme scheme;
     fitA.setNeighborFilter({center, fittingScale}); // center will be ignored for global basis
     fitB.setNeighborFilter({center, fittingScale});
-    scheme.compute(fitA, vectorPoints);
-    scheme.compute(fitB, vectorPoints);
+    VERIFY(scheme.compute(fitA, vectorPoints) == Ponca::STABLE);
+    VERIFY(scheme.compute(fitB, vectorPoints) == Ponca::STABLE);
 
     // Barycenter should also be somewhat close to the center
     auto epsilon = Scalar(0.01); // Greater tolerance

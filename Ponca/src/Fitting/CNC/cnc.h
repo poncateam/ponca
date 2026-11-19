@@ -177,14 +177,14 @@ namespace Ponca
          * The fit is evaluated multiple time if needed (see #NEED_OTHER_PASS)
          */
         template <typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end);
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end);
 
         /*!
          * \brief Compute function that iterates over a subset of sampled points from an STL-Like container.
          * \tparam PointContainer An STL-like container storing the points
          */
         template <typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const PointContainer& points);
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute(const PointContainer& points);
 
         /*!
          * \brief Compute function that iterates over a subset of sampled points from an STL-Like container.
@@ -192,7 +192,8 @@ namespace Ponca
          * \tparam PointContainer An STL-like container storing the points
          */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(const IndexRange& ids, const PointContainer& points);
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeWithIds(const IndexRange& ids,
+                                                                       const PointContainer& points);
 
         /*!
          * \brief Get the number of triangles that were generated with the compute method.

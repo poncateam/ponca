@@ -48,11 +48,8 @@ __global__ void fitPotentialAndGradientKernel(DataPoint* points, const unsigned 
     Fit fit;
     fit.setNeighborFilter({pos, analysisScale});
 
-    // Computes the fit
-    fit.compute(points, points + nbPoints);
-
-    // Returns NaN if not stable
-    if (!fit.isStable())
+    // Computes the fit, and returns NaN if not stable
+    if (fit.compute(points, points + nbPoints) != Ponca::STABLE)
     {
         potentialResults[i] = NAN;
         for (int d = 0; d < DataPoint::Dim; ++d)

@@ -134,7 +134,7 @@ void testFunction()
             else
                 p(k - 1) += h;
             f.setNeighborFilter({p, scale});
-            f.compute(refVectorPoints);
+            VERIFY(f.compute(refVectorPoints) == STABLE);
 
             RefScalar flip_f =
                 (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0))

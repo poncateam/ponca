@@ -56,17 +56,18 @@ void testFunction()
         VectorType pos = vectorPoints[i].pos();
         Fit fit;
         fit.setNeighborFilter({pos, analysisScale});
-        fit.compute(vectorPoints);
+        const FIT_RESULT res = fit.compute(vectorPoints);
 
         Fit fitMLS;
         fitMLS.setNeighborFilter({pos, analysisScale});
 
         //! [MLS Fit]
-        mls.compute(fitMLS, vectorPoints);
+        FIT_RESULT resMLS = mls.compute(fitMLS, vectorPoints);
         //! [MLS Fit]
 
-        if (fit.isStable())
+        if (res == STABLE)
         {
+            VERIFY(resMLS == STABLE);
             // Tests the primitiveGradient
             const VectorType& estimated    = fit.primitiveGradient(pos).normalized();
             const VectorType& estimatedMLS = fitMLS.primitiveGradient(pos).normalized();

@@ -28,7 +28,7 @@ namespace Ponca
          * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
          */
         template <typename ComputeObject, typename Container>
-        FIT_RESULT compute(ComputeObject& co, const Container& c) const
+        [[nodiscard]] FIT_RESULT compute(ComputeObject& co, const Container& c) const
         {
             return co.compute(std::begin(c), std::end(c));
         }
@@ -41,8 +41,8 @@ namespace Ponca
         */
         //! [SingleEvaluationScheme Compute Definition]
         template <typename ComputeObject, typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(ComputeObject& co, const IteratorBegin& begin,
-                                                  const IteratorEnd& end) const
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute(ComputeObject& co, const IteratorBegin& begin,
+                                                                const IteratorEnd& end) const
         {
             return co.compute(begin, end);
         };
@@ -55,8 +55,8 @@ namespace Ponca
             \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
         */
         template <typename ComputeObject, typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(ComputeObject& co, IndexRange ids,
-                                                         const PointContainer& points) const
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeWithIds(ComputeObject& co, IndexRange ids,
+                                                                       const PointContainer& points) const
         {
             return co.computeWithIds(ids, points);
         };
