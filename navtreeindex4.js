@@ -1,5 +1,6 @@
 var NAVTREEINDEX4 =
 {
+"fitting.html#fitting_Fitting":[7,1,1,2],
 "fitting.html#fitting_advanced":[7,1,7],
 "fitting.html#fitting_cast":[7,1,6,1,2],
 "fitting.html#fitting_codeStructure":[7,1,1,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX4 =
 "structPonca_1_1NoWeightFilterGlobal.html":[9,0,0,95],
 "structPonca_1_1NotAlgebraicSphereProvider.html":[9,0,0,64],
 "structPonca_1_1NotDerivativesProvider.html":[9,0,0,58],
-"structPonca_1_1NotGLSParamProvider.html":[9,0,0,70],
-"structPonca_1_1NotGeomVarProvider.html":[9,0,0,72]
+"structPonca_1_1NotGLSParamProvider.html":[9,0,0,70]
 };

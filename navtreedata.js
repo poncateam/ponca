@@ -75,9 +75,9 @@ var NAVTREEINDEX =
 "annotated.html",
 "classPonca_1_1CovariancePlaneFitImpl.html#a18635760d587df7b3958acc01a4abb15",
 "classPonca_1_1Line.html#aec54c6433366eff8756c27b77ecf84b5",
-"classPonca_1_1QuadraticHeightField.html#aa8170554d221efe1383a244ee184bb6b",
-"fitting.html#fitting_advanced",
-"structPonca_1_1NotHeightFieldProvider.html"
+"classPonca_1_1QuadraticHeightField.html#aa2eb67fdb497f55a5d13a31e5cb4a8d1",
+"fitting.html#fitting_Fitting",
+"structPonca_1_1NotGeomVarProvider.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

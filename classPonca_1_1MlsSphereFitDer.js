@@ -17,6 +17,7 @@ var classPonca_1_1MlsSphereFitDer =
     [ "mlsSphereFitDer", "classPonca_1_1MlsSphereFitDer.html#aee738b105ef0eec3166cc93ea13ff404", null ],
     [ "mlsSphereFitDer", "classPonca_1_1MlsSphereFitDer.html#a9466f12ac76809b2cc9cc6922fe7d2a2", null ],
     [ "primitiveGradient", "classPonca_1_1MlsSphereFitDer.html#a3c3529fa3ae863171ac3c566cc6dfb3e", null ],
+    [ "primitiveGradient", "classPonca_1_1MlsSphereFitDer.html#ae12260093037b16c27fc66e02f170753", null ],
     [ "m_d2SumDotPN", "classPonca_1_1MlsSphereFitDer.html#a169e86f7db8e49a5fa2310e15d79eecc", null ],
     [ "m_d2SumDotPP", "classPonca_1_1MlsSphereFitDer.html#a9e223ca9d75bfead2d9417d44db1cc6d", null ],
     [ "m_d2SumN", "classPonca_1_1MlsSphereFitDer.html#a679bdcd1e4c4a76ce7c8cb20837e4f0f", null ],

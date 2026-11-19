@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">eb7239a9c07e156fb1edc6faac7fe89e2b256bda</span>
+   &#160;<span id="projectnumber">7e96fc3b9b841b34c7fcb442cb6405cff9fbb631</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -171,6 +171,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abe91a0face621b902b50f1b82f71e2ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the derivatives of the scalar field at the evaluation point.  <br /></td></tr>
 <tr class="memitem:a3c3529fa3ae863171ac3c566cc6dfb3e" id="r_a3c3529fa3ae863171ac3c566cc6dfb3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ae97f47e67bb3650bce00170926066670">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c3529fa3ae863171ac3c566cc6dfb3e">primitiveGradient</a> () const</td></tr>
 <tr class="memdesc:a3c3529fa3ae863171ac3c566cc6dfb3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the normal of the primitive at the evaluation point.  <br /></td></tr>
+<tr class="memitem:ae12260093037b16c27fc66e02f170753" id="r_ae12260093037b16c27fc66e02f170753"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ae97f47e67bb3650bce00170926066670">VectorType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae12260093037b16c27fc66e02f170753">primitiveGradient</a> (const <a class="el" href="#ae97f47e67bb3650bce00170926066670">VectorType</a> &amp;pos) const</td></tr>
+<tr class="memdesc:ae12260093037b16c27fc66e02f170753"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value of the normal of the primitive at any point (returns 0 when not the evaluation point).  <br /></td></tr>
 <tr class="memitem:ab35d5b279bfe0677fce199ceedc1f4dd" id="r_ab35d5b279bfe0677fce199ceedc1f4dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a0f5df155d1bb3ab05e966d9cebcc4324">VectorArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab35d5b279bfe0677fce199ceedc1f4dd">dNormal</a> () const</td></tr>
 <tr class="memdesc:ab35d5b279bfe0677fce199ceedc1f4dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the second derivatives of the scalar field at the evaluation point.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -497,7 +499,7 @@ requires ProvidesAlgebraicSphere&lt;T&gt;&amp;&amp; ProvidesImplicitPrimitiveDer
 
 <p>Returns the second derivatives of the scalar field at the evaluation point. </p>
 
-<p class="definition">Definition at line <a class="el" href="mlsSphereFitDer_8h_source.html#l00181">181</a> of file <a class="el" href="mlsSphereFitDer_8h_source.html">mlsSphereFitDer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsSphereFitDer_8h_source.html#l00192">192</a> of file <a class="el" href="mlsSphereFitDer_8h_source.html">mlsSphereFitDer.h</a>.</p>
 
 </div>
 </div>
@@ -722,7 +724,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 </div>
 </div>
 <a id="a3c3529fa3ae863171ac3c566cc6dfb3e" name="a3c3529fa3ae863171ac3c566cc6dfb3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c3529fa3ae863171ac3c566cc6dfb3e">&#9670;&#160;</a></span>primitiveGradient()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c3529fa3ae863171ac3c566cc6dfb3e">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -749,7 +751,39 @@ requires ProvidesAlgebraicSphere&lt;T&gt;&amp;&amp; ProvidesImplicitPrimitiveDer
 
 <p>Value of the normal of the primitive at the evaluation point. </p>
 
-<p class="definition">Definition at line <a class="el" href="mlsSphereFitDer_8h_source.html#l00171">171</a> of file <a class="el" href="mlsSphereFitDer_8h_source.html">mlsSphereFitDer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mlsSphereFitDer_8h_source.html#l00170">170</a> of file <a class="el" href="mlsSphereFitDer_8h_source.html">mlsSphereFitDer.h</a>.</p>
+
+</div>
+</div>
+<a id="ae12260093037b16c27fc66e02f170753" name="ae12260093037b16c27fc66e02f170753"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae12260093037b16c27fc66e02f170753">&#9670;&#160;</a></span>primitiveGradient() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; <br />
+requires ProvidesAlgebraicSphere&lt;T&gt;&amp;&amp; ProvidesImplicitPrimitiveDerivative&lt;T&gt;&amp;&amp; ProvidesNormal&lt;DataPoint&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1MlsSphereFitDer.html">MlsSphereFitDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;<a class="el" href="#ae97f47e67bb3650bce00170926066670">::VectorType</a> MlsSphereFitDer::primitiveGradient </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ae97f47e67bb3650bce00170926066670">VectorType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Value of the normal of the primitive at any point (returns 0 when not the evaluation point). </p>
+
+<p class="definition">Definition at line <a class="el" href="mlsSphereFitDer_8h_source.html#l00180">180</a> of file <a class="el" href="mlsSphereFitDer_8h_source.html">mlsSphereFitDer.h</a>.</p>
 
 </div>
 </div>

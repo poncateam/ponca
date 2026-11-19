@@ -44,7 +44,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">eb7239a9c07e156fb1edc6faac7fe89e2b256bda</span>
+   &#160;<span id="projectnumber">7e96fc3b9b841b34c7fcb442cb6405cff9fbb631</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -275,47 +275,58 @@ $(function(){initNavTree('mlsSphereFitDer_8hpp_source.html','',''); });
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordflow">return</span> result;</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keyword">requires</span> MLS_SPHERE_FIT_DER_REQUIREMENTS</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keyword">typename</span> MlsSphereFitDer&lt;DataPoint, _NFilter, DiffType, T&gt;::VectorType MlsSphereFitDer&lt;DataPoint, _NFilter, <a class="code hl_enumeration" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>,</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                                                                                       T&gt;::primitiveGradient()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// Compute the 1st order derivative of the scalar field and normalize it</span></div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    VectorType grad = Base::m_dUc.template tail&lt;Dim&gt;().transpose() + Base::m_ul;</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordflow">return</span> grad.normalized();</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keyword">requires</span> MLS_SPHERE_FIT_DER_REQUIREMENTS</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">typename</span> MlsSphereFitDer&lt;DataPoint, _NFilter, DiffType, T&gt;::VectorArray MlsSphereFitDer&lt;DataPoint, _NFilter, <a class="code hl_enumeration" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>,</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                                                                                        T&gt;::dNormal()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="comment">// Compute the 1st order derivative of the normal, which is the normalized gradient N = d_x(s) / |d_x(s)|</span></div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    <span class="comment">// We obtain:</span></div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    <span class="comment">//   the scale derivative:   d_t(N) = (I-N N^T) / |d_x(s)| d2_tx(s)</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="comment">//   the spatial derivative: d_x(N) = (I-N N^T) / |d_x(s)| d2_x2(s)</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="comment">// Where in a centered basis (x=0), we have:</span></div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">//   d2_tx(s) = d2_tx(uc) + d_t(ul)</span></div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="comment">//   d2_x2(s) = d2_x2(uc) + d_x(ul) + d_x(ul)^T + 2 uq I</span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    VectorArray result = VectorArray::Zero();</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    VectorType grad = Base::m_dUc.template tail&lt;Dim&gt;().transpose() + Base::m_ul;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    Scalar gradNorm = grad.norm();</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="keywordflow">if</span> (Base::isScaleDer())</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        result.col(0) = m_d2Uc.template topRightCorner&lt;1, Dim&gt;().transpose() + Base::m_dUl.col(0);</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">if</span> (Base::isSpaceDer())</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    {</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        result.template rightCols&lt;Dim&gt;() = m_d2Uc.template bottomRightCorner&lt;Dim, Dim&gt;().transpose() +</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                                           Base::m_dUl.template rightCols&lt;Dim&gt;().transpose() +</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                                           Base::m_dUl.template rightCols&lt;Dim&gt;();</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        result.template rightCols&lt;Dim&gt;().diagonal().array() += Scalar(2.) * Base::m_uq;</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    }</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keyword">requires</span> MLS_SPHERE_FIT_DER_REQUIREMENTS</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="keyword">typename</span> MlsSphereFitDer&lt;DataPoint, _NFilter, DiffType, T&gt;::VectorType MlsSphereFitDer&lt;DataPoint, _NFilter, <a class="code hl_enumeration" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>,</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>                                                                                       T&gt;::primitiveGradient()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// Compute the 1st order derivative of the scalar field and normalize it</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    VectorType grad = Base::m_dUc.template tail&lt;Dim&gt;().transpose() + Base::m_ul;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">return</span> grad.normalized();</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>}</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keyword">requires</span> MLS_SPHERE_FIT_DER_REQUIREMENTS</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="keyword">typename</span> MlsSphereFitDer&lt;DataPoint, _NFilter, DiffType, T&gt;::VectorType MlsSphereFitDer&lt;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    DataPoint, _NFilter, <a class="code hl_enumeration" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T&gt;::primitiveGradient(<span class="keyword">const</span> VectorType&amp; pos)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <span class="keyword">const</span> Scalar centerDist = (Base::getNeighborFilter().center() - pos).squaredNorm();</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordflow">if</span> (!Eigen::internal::isMuchSmallerThan(centerDist, Scalar(1.)))</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keywordflow">return</span> VectorType::Zero();</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordflow">return</span> primitiveGradient();</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <span class="keyword">requires</span> MLS_SPHERE_FIT_DER_REQUIREMENTS</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="keyword">typename</span> MlsSphereFitDer&lt;DataPoint, _NFilter, DiffType, T&gt;::VectorArray MlsSphereFitDer&lt;DataPoint, _NFilter, <a class="code hl_enumeration" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>,</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                                                                                        T&gt;::dNormal()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">// Compute the 1st order derivative of the normal, which is the normalized gradient N = d_x(s) / |d_x(s)|</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <span class="comment">// We obtain:</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">//   the scale derivative:   d_t(N) = (I-N N^T) / |d_x(s)| d2_tx(s)</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="comment">//   the spatial derivative: d_x(N) = (I-N N^T) / |d_x(s)| d2_x2(s)</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="comment">// Where in a centered basis (x=0), we have:</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="comment">//   d2_tx(s) = d2_tx(uc) + d_t(ul)</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="comment">//   d2_x2(s) = d2_x2(uc) + d_x(ul) + d_x(ul)^T + 2 uq I</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    VectorArray result = VectorArray::Zero();</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    VectorType grad = Base::m_dUc.template tail&lt;Dim&gt;().transpose() + Base::m_ul;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    Scalar gradNorm = grad.norm();</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordflow">return</span> result / gradNorm - grad * grad.transpose() / (gradNorm * gradNorm) * result;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>}</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordflow">if</span> (Base::isScaleDer())</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        result.col(0) = m_d2Uc.template topRightCorner&lt;1, Dim&gt;().transpose() + Base::m_dUl.col(0);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">if</span> (Base::isSpaceDer())</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        result.template rightCols&lt;Dim&gt;() = m_d2Uc.template bottomRightCorner&lt;Dim, Dim&gt;().transpose() +</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                                           Base::m_dUl.template rightCols&lt;Dim&gt;().transpose() +</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                                           Base::m_dUl.template rightCols&lt;Dim&gt;();</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        result.template rightCols&lt;Dim&gt;().diagonal().array() += Scalar(2.) * Base::m_uq;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    }</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">return</span> result / gradNorm - grad * grad.transpose() / (gradNorm * gradNorm) * result;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>}</div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535a"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">Ponca::DiffType</a></div><div class="ttdeci">DiffType</div><div class="ttdoc">Flags defining which derivatives need to be computed.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00033">enums.h:34</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns).</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classPonca_1_1QuadraticHeightField.html#aa2eb67fdb497f55a5d13a31e5cb4a8d1":[9,0,0,19,9],
 "classPonca_1_1QuadraticHeightField.html#aa8170554d221efe1383a244ee184bb6b":[9,0,0,19,15],
 "classPonca_1_1QuadraticHeightField.html#aad9c16c343d89880595083af0a302e5f":[9,0,0,19,5],
 "classPonca_1_1QuadraticHeightField.html#ab3a88a57a9ede537f7675679f62662d0":[9,0,0,19,11],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "fitting.html#crtpestimator":[7,1,6,0],
 "fitting.html#evaluation_schemes":[7,1,2],
 "fitting.html#fitting_Checkstatus":[7,1,1,3],
-"fitting.html#fitting_Define":[7,1,1,1],
-"fitting.html#fitting_Fitting":[7,1,1,2]
+"fitting.html#fitting_Define":[7,1,1,1]
 };

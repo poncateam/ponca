@@ -44,7 +44,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">eb7239a9c07e156fb1edc6faac7fe89e2b256bda</span>
+   &#160;<span id="projectnumber">7e96fc3b9b841b34c7fcb442cb6405cff9fbb631</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -179,7 +179,7 @@ $(function(){initNavTree('covariancePlaneFit_8hpp_source.html','',''); });
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; Base::NbDerivatives; ++k)</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            VectorType normal = Base::primitiveGradient();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            VectorType normal = Base::primitiveGradient(Base::getNeighborFilter().center());</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <span class="comment">// The derivative of &#39;normal&#39; is the derivative of the smallest eigenvector.</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="comment">// Since the covariance matrix is real and symmetric, it is equal to:</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="comment">//    n&#39; = - (C - lambda_0 I)^+ C&#39; n</span></div>
