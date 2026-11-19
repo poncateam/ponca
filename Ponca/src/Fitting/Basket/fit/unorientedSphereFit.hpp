@@ -112,7 +112,10 @@ namespace Ponca
         constexpr int Dim        = DataPoint::Dim;
         constexpr Scalar epsilon = Eigen::NumTraits<Scalar>::dummy_precision();
 
-        Base::finalize();
+        // Checked below
+        (void)Base::finalize();
+
+        // Test if base finalize end on a viable case (stable / unstable)
         if (this->isReady())
         {
             int i = 0;
@@ -180,8 +183,6 @@ namespace Ponca
             m_dUc = -invSumW *
                     (Base::m_sumP.transpose() * m_dUl + Base::m_sumDotPP * m_dUq +
                      Base::m_ul.transpose() * Base::m_dSumP + Base::m_uq * m_dSumDotPP + Base::m_dSumW * Base::m_uc);
-
-            return FIT_RESULT::STABLE;
         }
         return Base::m_eCurrentState;
     }

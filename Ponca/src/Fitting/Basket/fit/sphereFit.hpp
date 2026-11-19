@@ -73,6 +73,10 @@ FIT_RESULT SphereFitImpl<DataPoint, _NFilter, T>::finalize()
             minId = i;
     }
 
+    // No positive eigenvalue: the fit is undefined
+    if (minId == -1)
+        return Base::m_eCurrentState = UNDEFINED;
+
     // mLambda = eivals(minId);
     VectorA vecU = m_solver.eigenvectors().col(minId).real();
     Base::m_uq   = vecU[1 + DataPoint::Dim];

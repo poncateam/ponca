@@ -68,9 +68,7 @@ void testFunction(
 
         fit.addNeighbor(p);
     }
-    fit.finalize();
-
-    if (fit.isStable())
+    if (fit.finalize() == STABLE)
     {
         GradientDescentProjectionOperator projection(1000);
         DirectProjectionOperator directProjection;

@@ -66,15 +66,15 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
         Fit fit, fitReverse100, fitReverseRandom;
 
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit.compute(vectorPoints);
+        const FIT_RESULT res = fit.compute(vectorPoints);
 
         fitReverse100.setNeighborFilter({vectorReversedNormals100[i].pos(), analysisScale});
-        fitReverse100.compute(vectorPoints);
+        const FIT_RESULT resReverse100 = fitReverse100.compute(vectorPoints);
 
         fitReverseRandom.setNeighborFilter({vectorReversedNormalsRandom[i].pos(), analysisScale});
-        fitReverseRandom.compute(vectorPoints);
+        const FIT_RESULT resReverseRandom = fitReverseRandom.compute(vectorPoints);
 
-        if (fit.isStable() && fitReverse100.isStable() && fitReverseRandom.isStable())
+        if (res == STABLE && resReverse100 == STABLE && resReverseRandom == STABLE)
         {
             Scalar kappa1 = std::abs(fit.kappa());
             Scalar kappa2 = std::abs(fitReverse100.kappa());

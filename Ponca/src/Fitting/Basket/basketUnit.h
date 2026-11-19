@@ -111,7 +111,7 @@ namespace Ponca
         }
 
         PONCA_FITTING_APIDOC_FINALIZE
-        PONCA_MULTIARCH inline FIT_RESULT finalize()
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize()
         {
             // handle specific configurations
             if (m_sumW == Scalar(0.) || m_nbNeighbors < 1)

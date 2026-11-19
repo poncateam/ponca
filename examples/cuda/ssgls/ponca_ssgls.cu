@@ -369,7 +369,7 @@ __global__ void doGLS_kernel(int _imgw, int _imgh, int _scale, float _maxDepthDi
     }
 
     // closed form minimization
-    fit.finalize();
+    (void)fit.finalize();
     _result[idx] = fit.kappa();
 }
 //! [kernel]

@@ -81,10 +81,8 @@ void pcl::GlsCurvature<PointInT, PointOutT>::computeCurvature(const pcl::PointCl
     }
 
     // Finalize fitting
-    fit.finalize();
-
     // Test if the fitting ended without errors. Set curvature to qNan otherwise.
-    if (fit.isStable())
+    if (fit.finalize() == Ponca::STABLE)
     {
         curvature = fit.kMean();
     }

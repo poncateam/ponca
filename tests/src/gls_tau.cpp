@@ -62,9 +62,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
         Fit fit;
         fit.setNeighborFilter({vEvaluationPoint, analysisScale});
-        fit.compute(vectorPoints);
-
-        if (fit.isStable())
+        if (fit.compute(vectorPoints) == STABLE)
         {
             Scalar fitTau   = fit.tau();
             fitTau          = std::abs(fitTau);

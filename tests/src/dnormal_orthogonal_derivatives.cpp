@@ -90,9 +90,7 @@ void test_orthoDerivatives(Functor f, bool skipCov = false)
     for (int k = 0; k < size; ++k)
     {
         fit.setNeighborFilter({vecs[k * slice].pos(), analysisScale});
-        fit.compute(vecs);
-
-        if (fit.isStable())
+        if (fit.compute(vecs) == STABLE)
         {
             auto res                          = f(fit);
             typename Point::VectorType normal = res.first; // fit.primitiveGradient();

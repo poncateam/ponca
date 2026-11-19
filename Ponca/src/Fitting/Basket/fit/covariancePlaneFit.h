@@ -104,7 +104,7 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovariancePlaneDerImpl, implicitPrimitiveDer)
 
         /*! \see Concept::FittingProcedureConcept::finalize() */
-        PONCA_MULTIARCH FIT_RESULT finalize();
+        PONCA_MULTIARCH [[nodiscard]] FIT_RESULT finalize();
 
         /**************************************************************************/
         /* Use results                                                            */

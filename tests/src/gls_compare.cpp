@@ -59,11 +59,11 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
         fit2.setNeighborFilter({sphere1[i + 1].pos(), analysisScale});
         fit3.setNeighborFilter({sphere2[i].pos(), analysisScale});
 
-        fit1.compute(sphere1);
-        fit2.compute(sphere1);
-        fit3.compute(sphere2);
+        const FIT_RESULT res1 = fit1.compute(sphere1);
+        const FIT_RESULT res2 = fit2.compute(sphere1);
+        const FIT_RESULT res3 = fit3.compute(sphere2);
 
-        if (fit1.isStable() && fit2.isStable() && fit3.isStable())
+        if (res1 == STABLE && res2 == STABLE && res3 == STABLE)
         {
             Scalar value1 = fit1.compareTo(fit2);
             Scalar value2 = fit1.compareTo(fit3);

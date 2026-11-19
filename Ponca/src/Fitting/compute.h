@@ -36,7 +36,7 @@ namespace Ponca
          * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
          */
         template <typename Container>
-        FIT_RESULT compute(const Container& c)
+        [[nodiscard]] FIT_RESULT compute(const Container& c)
         {
             return derived().compute(std::begin(c), std::end(c));
         }
@@ -47,7 +47,8 @@ namespace Ponca
             \tparam IteratorEnd   The end of the iterator (std::end(iterator)
         */
         template <typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& /*begin*/, const IteratorEnd& /*end*/)
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute(const IteratorBegin& /*begin*/,
+                                                                const IteratorEnd& /*end*/)
         {
             return UNDEFINED;
         };
@@ -58,7 +59,8 @@ namespace Ponca
             \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
         */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange /*ids*/, const PointContainer& /*points*/)
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeWithIds(IndexRange /*ids*/,
+                                                                       const PointContainer& /*points*/)
         {
             return UNDEFINED;
         };

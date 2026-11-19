@@ -154,7 +154,7 @@ namespace Ponca
          * \see addNeighbor()
          */
         template <typename IteratorBegin, typename IteratorEnd>
-        PONCA_MULTIARCH inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end)
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute(const IteratorBegin& begin, const IteratorEnd& end)
         {
             Base::init();
             FIT_RESULT res = UNDEFINED;
@@ -180,7 +180,7 @@ namespace Ponca
          * \see #compute(const IteratorBegin& begin, const IteratorEnd& end)
          */
         template <typename IndexRange, typename PointContainer>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points)
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeWithIds(IndexRange ids, const PointContainer& points)
         {
             Base::init();
             FIT_RESULT res = UNDEFINED;
@@ -252,7 +252,7 @@ namespace Ponca
         PONCA_MULTIARCH void startNewPass();
 
         /// \brief Finalize the fitting procedure
-        PONCA_MULTIARCH void finalize();
+        PONCA_MULTIARCH [[nodiscard]] FIT_RESULT finalize();
 
         /// \brief Add a neighbor to perform the fit
         ///
@@ -317,7 +317,7 @@ namespace Ponca
         PONCA_MULTIARCH void startNewPass();
 
         /// \brief Finalize the fitting procedure
-        PONCA_MULTIARCH FIT_RESULT finalize();
+        PONCA_MULTIARCH [[nodiscard]] FIT_RESULT finalize();
 
         /// \brief Add a neighbor to perform the fit
         ///

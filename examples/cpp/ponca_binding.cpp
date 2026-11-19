@@ -44,11 +44,8 @@ void test_fit(Fit& _fit, Scalar* const _interlacedArray, const int _n, const Vec
         _fit.addNeighbor(MyPoint(_interlacedArray, i));
     }
 
-    // Finalize fitting
-    _fit.finalize();
-
-    // Test if the fitting ended without errors
-    if (_fit.isStable())
+    // Finalize fitting and test if it ended without errors
+    if (_fit.finalize() == STABLE)
     {
         cout << "Center: [" << _fit.center().transpose() << "] ;  radius: " << _fit.radius() << endl;
 

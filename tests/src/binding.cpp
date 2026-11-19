@@ -128,14 +128,14 @@ void compareFitOverPointTypes(SpatialStruct1& spatialStruct1, SpatialStruct2& sp
         Fit<DataPoint1> f1;
         f1.setNeighborFilter({points1[i].pos(), analysisScale});
         const auto neighborhoodRange1 = spatialStruct1.rangeNeighbors(points1[i].pos(), analysisScale);
-        f1.computeWithIds(neighborhoodRange1, points1);
+        const FIT_RESULT res1         = f1.computeWithIds(neighborhoodRange1, points1);
 
         Fit<DataPoint2> f2;
         f2.setNeighborFilter({points2[i].pos(), analysisScale});
         const auto neighborhoodRange2 = spatialStruct2.rangeNeighbors(points2[i].pos(), analysisScale);
-        f2.computeWithIds(neighborhoodRange2, points2);
+        const FIT_RESULT res2         = f2.computeWithIds(neighborhoodRange2, points2);
 
-        VERIFY((f1.isStable() == f2.isStable()));
+        VERIFY((res1 == res2));
         if (f1.isStable() && f2.isStable())
         {
             VERIFY(f1.isApprox(f2));

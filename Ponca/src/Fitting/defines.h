@@ -103,7 +103,7 @@ public:                                                                         
 /// Declare Concept::ComputationalObjectConcept::finalize
 #define PONCA_FITTING_DECLARE_FINALIZE \
     PONCA_FITTING_APIDOC_FINALIZE      \
-    PONCA_MULTIARCH inline FIT_RESULT finalize();
+    PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT finalize();
 
 #define PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE \
     PONCA_FITTING_DECLARE_INIT                  \

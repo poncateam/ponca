@@ -78,7 +78,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, const
         //! [Fit compute]
         Fit fit1;
         fit1.setNeighborFilter({evalPoint, analysisScale});
-        fit1.compute(vectorPoints);
+        FIT_RESULT res1 = fit1.compute(vectorPoints);
         //! [Fit compute]
         VERIFY(fit1 == fit1);
         VERIFY(!(fit1 != fit1));
@@ -97,11 +97,11 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, const
         //! [Fit computeWithIds]
         Fit fit2;
         fit2.setNeighborFilter({evalPoint, analysisScale});
-        fit2.computeWithIds(pointsIndex, vectorPoints);
+        FIT_RESULT res2 = fit2.computeWithIds(pointsIndex, vectorPoints);
         //! [Fit computeWithIds]
 
-        VERIFY((fit1.isStable()));
-        VERIFY((fit2.isStable()));
+        VERIFY((res1 == STABLE));
+        VERIFY((res2 == STABLE));
 
         // Equal to self test
         VERIFY((fit2 == fit2));
@@ -162,14 +162,11 @@ void testCompareFit(const KdTree<typename Fit1::DataPoint>& tree, const Scalar a
 
         Fit1 fit1;
         fit1.setNeighborFilter({vectorPoints[i], analysisScale});
-        fit1.compute(vectorPoints);
+        VERIFY((fit1.compute(vectorPoints) == STABLE));
 
         Fit2 fit2;
         fit2.setNeighborFilter({vectorPoints[i], analysisScale});
-        fit2.computeWithIds(pointsIndex, vectorPoints);
-
-        VERIFY((fit1.isStable()));
-        VERIFY((fit2.isStable()));
+        VERIFY((fit2.computeWithIds(pointsIndex, vectorPoints) == STABLE));
 
         // Compare Fit1 with Fit2
         VERIFY((std::abs(fit1.kMean() - fit2.kMean()) < epsilon));

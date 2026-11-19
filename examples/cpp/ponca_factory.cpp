@@ -31,7 +31,8 @@ int main(int argc, char** argv)
         std::cout << x.name << std::endl;
         x.object.setNeighborFilter({_p, tmax});
         x.object.init();
-        x.object.compute(vecs.begin(), vecs.end());
+        if (x.object.compute(vecs.begin(), vecs.end()) != Ponca::STABLE)
+            std::cout << "  -> fit is not stable" << std::endl;
     });
     //! [FactoryBasicForeach]
 
@@ -45,9 +46,10 @@ int main(int argc, char** argv)
     list.foreach ([&](auto& x) {
         x.object.setNeighborFilter({_p, tmax});
         x.object.init();
-        x.object.compute(vecs.begin(), vecs.end());
-
-        std::cout << "Potential for method '" << x.name << "' is: " << x.object.potential() << std::endl;
+        if (x.object.compute(vecs.begin(), vecs.end()) == Ponca::STABLE)
+            std::cout << "Potential for method '" << x.name << "' is: " << x.object.potential() << std::endl;
+        else
+            std::cout << "Method '" << x.name << "' is not stable" << std::endl;
     });
 
     // For filtered list, state are persistent if *PASSED BY REFERENCE*
@@ -62,6 +64,7 @@ int main(int argc, char** argv)
     auto apss = MyFactory::GetMethod<"APSS">();
     apss.setNeighborFilter({_p, tmax});
     apss.init();
-    apss.compute(vecs.begin(), vecs.end());
+    if (apss.compute(vecs.begin(), vecs.end()) == Ponca::STABLE)
+        std::cout << "APSS potential is: " << apss.potential() << std::endl;
     //! [FactoryClassicalMethods]
 }

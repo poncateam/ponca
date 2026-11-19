@@ -99,9 +99,7 @@ void testFunction(bool _bUnoriented = false, bool _bAddPositionNoise = false, bo
 
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit.computeWithIds(tree.rangeNeighbors(vectorPoints[i].pos(), analysisScale), vectorPoints);
-
-        auto ret = fit.getCurrentState();
+        auto ret = fit.computeWithIds(tree.rangeNeighbors(vectorPoints[i].pos(), analysisScale), vectorPoints);
 
         switch (ret)
         {

@@ -46,8 +46,8 @@ namespace Ponca
          * \return The result of the fit
          */
         template <typename ComputeObject, typename ItB, typename ItE, typename Project = DirectProjectionOperator>
-        PONCA_MULTIARCH inline FIT_RESULT compute(ComputeObject& _co, const ItB& _itb, const ItE& _ite,
-                                                  const Project& _p = Project{}) const
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute(ComputeObject& _co, const ItB& _itb, const ItE& _ite,
+                                                                const Project& _p = Project{}) const
         {
             return computeMLSImpl(_co, [&]() { return _co.compute(_itb, _ite); }, _p);
         }
@@ -66,8 +66,8 @@ namespace Ponca
          * \return The result of the fit
          */
         template <typename ComputeObject, typename PointContainer, typename Project = DirectProjectionOperator>
-        PONCA_MULTIARCH inline FIT_RESULT compute(ComputeObject& _co, const PointContainer& container,
-                                                  const Project& _p = Project{})
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT compute(ComputeObject& _co, const PointContainer& container,
+                                                                const Project& _p = Project{})
         {
             return compute(_co, std::begin(container), std::end(container), _p);
         }
@@ -89,9 +89,9 @@ namespace Ponca
          */
         template <typename ComputeObject, typename IdxRange, typename PointContainer,
                   typename Project = DirectProjectionOperator>
-        PONCA_MULTIARCH inline FIT_RESULT computeWithIds(ComputeObject& _co, const IdxRange& _range,
-                                                         const PointContainer& _container,
-                                                         const Project& _p = Project{}) const
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeWithIds(ComputeObject& _co, const IdxRange& _range,
+                                                                       const PointContainer& _container,
+                                                                       const Project& _p = Project{}) const
         {
             return computeMLSImpl(_co, [&]() { return _co.computeWithIds(_range, _container); }, _p);
         }
@@ -124,8 +124,8 @@ namespace Ponca
         template <typename ComputeObject, typename Func, typename Project = DirectProjectionOperator>
             requires ProvidesNeighborhoodFilter<ComputeObject> && ProvidesBasketUnitBase<ComputeObject> &&
                      ProvidesImplicitPrimitive<ComputeObject>
-        PONCA_MULTIARCH inline FIT_RESULT computeMLSImpl(ComputeObject& _co, Func&& _compute,
-                                                         const Project& _p = Project{}) const
+        PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT computeMLSImpl(ComputeObject& _co, Func&& _compute,
+                                                                       const Project& _p = Project{}) const
         {
             FIT_RESULT res = UNDEFINED;
             auto& frame    = _co.getNeighborFrame();

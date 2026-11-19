@@ -109,11 +109,11 @@ void testFunction(bool _bAddPositionNoise = false, bool _bAddNormalNoise = false
 
         Fit fit;
         fit.setNeighborFilter(nf);
-        fit.computeWithIds(tree.rangeNeighbors(queryPos, analysisScale), vectorPoints);
+        VERIFY(fit.computeWithIds(tree.rangeNeighbors(queryPos, analysisScale), vectorPoints) == STABLE);
 
         RefFit refFit;
         refFit.setNeighborFilter(nf);
-        refFit.computeWithIds(tree.rangeNeighbors(queryPos, analysisScale), vectorPoints);
+        VERIFY(refFit.computeWithIds(tree.rangeNeighbors(queryPos, analysisScale), vectorPoints) == STABLE);
 
         // use temporaries to help debugging
         VectorType res    = fit.primitiveGradient(queryPos).normalized();

@@ -57,8 +57,10 @@ template <class DataPoint, class _NFilter, int DiffType, typename T>
     requires MLS_SPHERE_FIT_DER_REQUIREMENTS
 FIT_RESULT MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
 {
-    Base::finalize();
+    // Checked below
+    (void)Base::finalize();
 
+    // Test if base finalize end on a viable case (stable / unstable)
     if (this->isReady())
     {
         Matrix sumdSumPdSumN  = Matrix::Zero();

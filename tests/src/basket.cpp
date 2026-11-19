@@ -77,15 +77,18 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
         fit.init();
         for (auto it = vectorPoints.begin(); it != vectorPoints.end(); ++it)
             fit.addNeighbor(*it);
-        fit.finalize();
+        FIT_RESULT res = fit.finalize();
         //! [Fit Manual Traversal]
 
         // use compute function
         //! [Fit Compute]
         Fit fit1;
         fit1.setNeighborFilter({fitInitPos, analysisScale});
-        fit1.compute(vectorPoints);
+        FIT_RESULT res1 = fit1.compute(vectorPoints);
         //! [Fit Compute]
+
+        // both approaches must end in the same state
+        VERIFY(res == res1);
 
         // also test comparison operators
         VERIFY(fit == fit);
@@ -104,7 +107,7 @@ void testBasicFunctionalities(const KdTree<typename Fit::DataPoint>& tree, typen
             neighbors2.push_back(iNeighbor);
         neighbors2.sort();
         // Compute the neighbors
-        fit2.computeWithIds(neighbors2, vectorPoints);
+        VERIFY(fit2.computeWithIds(neighbors2, vectorPoints) == res);
 
         VERIFY(fit2 == fit2);
         VERIFY(fit == fit2);
@@ -137,12 +140,12 @@ void testIsSame(const KdTree<typename Fit1::DataPoint>& tree, typename Fit1::Sca
         Fit fit3;
         fit3.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
         auto neighborhoodRange = tree.rangeNeighbors(vectorPoints[i].pos(), analysisScale);
-        fit3.computeWithIds(neighborhoodRange, vectorPoints);
+        FIT_RESULT res3        = fit3.computeWithIds(neighborhoodRange, vectorPoints);
         //! [Fit computeWithIds]
 
         Fit2 fit2;
         fit2.setNeighborFilter({vectorPoints[i].pos(), analysisScale});
-        fit2.computeWithIds(neighborhoodRange, vectorPoints);
+        VERIFY(fit2.computeWithIds(neighborhoodRange, vectorPoints) == res3);
 
         f(fit3, fit2);
     }

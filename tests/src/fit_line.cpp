@@ -53,9 +53,7 @@ void testFunction(bool _bAddPositionNoise = false)
     {
         Fit fit;
         fit.setNeighborFilter({vectorPoints[i].pos(), 10});
-        fit.compute(vectorPoints);
-
-        VERIFY(fit.isStable());
+        VERIFY(fit.compute(vectorPoints) == STABLE);
 
         if (_bAddPositionNoise)
             VERIFY((fit.distance(vectorPoints[i].pos())) <= Scalar(4) * noiseMagnitude);

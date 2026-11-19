@@ -56,9 +56,7 @@ void testFunction()
 
         Fit fit;
         fit.setNeighborFilter({fitInitPos, analysisScale});
-        fit.compute(vecs);
-
-        if (fit.isStable())
+        if (fit.compute(vecs) == STABLE)
         {
             Fit f2 = fit;
             // do two iterations to test successive calls

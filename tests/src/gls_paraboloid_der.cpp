@@ -82,7 +82,7 @@ void testFunction()
     {
         fit.addNeighbor(*it);
     }
-    fit.finalize();
+    VERIFY(fit.finalize() == STABLE);
 
     Scalar flip_fit = (fit.isSigned() || (fit.primitiveGradient().template cast<Scalar>().dot(theoricNormal) > 0))
                           ? Scalar(1)
@@ -108,7 +108,7 @@ void testFunction()
         {
             ref_fit.addNeighbor(*it);
         }
-        ref_fit.finalize();
+        VERIFY(ref_fit.finalize() == STABLE);
         RefScalar flip_ref =
             (ref_fit.isSigned() || (ref_fit.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0))
                 ? RefScalar(1)
@@ -134,7 +134,7 @@ void testFunction()
             else
                 p(k - 1) += h;
             f.setNeighborFilter({p, scale});
-            f.compute(refVectorPoints);
+            VERIFY(f.compute(refVectorPoints) == STABLE);
 
             RefScalar flip_f =
                 (f.isSigned() || (f.primitiveGradient().dot(theoricNormal.template cast<RefScalar>()) > 0))
