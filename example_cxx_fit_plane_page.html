@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -152,9 +152,7 @@ $(function(){initNavTree('example_cxx_fit_plane_page.html','',''); });
 <div class="line">    _fit.setNeighborFilter({_p, tmax});</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Fit plane (method compute handles multipass fitting</span></div>
-<div class="line">    _fit.<a class="code hl_function" href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">compute</a>(_vecs.begin(), _vecs.end());</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (_fit.isStable())</div>
+<div class="line">    <span class="keywordflow">if</span> (_fit.compute(_vecs.begin(), _vecs.end()) == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
 <div class="line">    {</div>
 <div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Value of the scalar field at the initial point: &quot;</span> &lt;&lt; _p.transpose() &lt;&lt; <span class="stringliteral">&quot; is equal to &quot;</span></div>
 <div class="line">             &lt;&lt; _fit.potential(_p) &lt;&lt; endl;</div>
@@ -184,7 +182,7 @@ $(function(){initNavTree('example_cxx_fit_plane_page.html','',''); });
 <div class="ttc" id="aclassPonca_1_1PointPositionNormal_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html">Ponca::PointPositionNormal</a></div><div class="ttdoc">Point data type containing the position and normal vectors.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00022">pointTypes.h:23</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a38f8222beed8f0761b9902b74b997a06"><div class="ttname"><a href="namespacePonca.html#a38f8222beed8f0761b9902b74b997a06">Ponca::getRandomPoint</a></div><div class="ttdeci">DataPoint getRandomPoint()</div><div class="ttdoc">Generate a random points.</div><div class="ttdef"><b>Definition</b> <a href="pointGeneration_8h_source.html#l00271">pointGeneration.h:271</a></div></div>
-<div class="ttc" id="astructPonca_1_1BasketComputeObject_html_ab740adc434a6d1ecb4cf4943c1ff2a84"><div class="ttname"><a href="structPonca_1_1BasketComputeObject.html#ab740adc434a6d1ecb4cf4943c1ff2a84">Ponca::BasketComputeObject::compute</a></div><div class="ttdeci">FIT_RESULT compute(const IteratorBegin &amp;begin, const IteratorEnd &amp;end)</div><div class="ttdoc">Convenience function for STL-like iterators Add neighbors stored in a container using STL-like iterat...</div><div class="ttdef"><b>Definition</b> <a href="basket_8h_source.html#l00157">basket.h:157</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

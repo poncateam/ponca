@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -153,7 +153,7 @@ Definition of the Fitting object</h2>
 Fitting Process</h2>
 <p>At this point, most of the hard job has already been performed. All we have to do now is to provide an instance of the weight function, where \(t\) refers to the neighborhood size, and initiate the fit at an arbitrary position \(\mathbf{p}\). In this example we traverse a simple array, and samples outside of the neighborhood are automatically ignored by the weighting function. Once all neighbors have been incorporated, the fit is performed and results stored in the specialized <a class="el" href="classPonca_1_1Basket.html" title="Aggregator class used to declare specialized structures using CRTP.">Basket</a> object. </p><div class="fragment"><div class="line">        Fit fit1;</div>
 <div class="line">        fit1.setNeighborFilter({fitInitPos, analysisScale});</div>
-<div class="line">        fit1.compute(vectorPoints);</div>
+<div class="line">        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res1 = fit1.compute(vectorPoints);</div>
 </div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="fitting_Checkstatus"></a>
 Check fitting status</h2>
 <p>After calling <span class="tt">finalize</span> or <span class="tt">compute</span>, it is recommended to test the return state of the <span class="tt">Fit</span> object before using it:</p>
@@ -184,11 +184,11 @@ Figure 2. (a) Fitting a 2D point cloud of positions and normals at a point p (in
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="fittingreference.html#fittingreference_outputandcapabilities">Capabilities of Fitting tools</a> for information about outputs of Fitting objects.</dd></dl>
 <h1 class="doxsection"><a class="anchor" id="evaluation_schemes"></a>
 Evaluation schemes and projection</h1>
-<p>Some <a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a> provide projection operators, which allows to define Moving Least Squares (MLS) surfaces (see <a class="el" href="citelist.html#CITEREF_levin:1998">[13]</a> and <a class="el" href="citelist.html#CITEREF_cheng:2008">[7]</a>). MLS surfaces are not defined explicitly, but rather implicitly by projection operators. Under the hood, projecting on a MLS surface require to iterate between successive local fits (handled by the <a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a>) and projection step (handled by a projection operator, as detailed below). <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provide <a class="el" href="structPonca_1_1MLSEvaluationScheme.html" title="Computes the fit using the Moving Least Squares approach.">MLSEvaluationScheme</a> to perform this evaluation. To evaluate a MLS surface, you only need a <a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a> and a set of points: </p><div class="fragment"><div class="line">        mls.compute(fitMLS, vectorPoints);</div>
+<p>Some <a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a> provide projection operators, which allows to define Moving Least Squares (MLS) surfaces (see <a class="el" href="citelist.html#CITEREF_levin:1998">[13]</a> and <a class="el" href="citelist.html#CITEREF_cheng:2008">[7]</a>). MLS surfaces are not defined explicitly, but rather implicitly by projection operators. Under the hood, projecting on a MLS surface require to iterate between successive local fits (handled by the <a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a>) and projection step (handled by a projection operator, as detailed below). <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provide <a class="el" href="structPonca_1_1MLSEvaluationScheme.html" title="Computes the fit using the Moving Least Squares approach.">MLSEvaluationScheme</a> to perform this evaluation. To evaluate a MLS surface, you only need a <a class="el" href="structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun...">ComputeObject</a> and a set of points: </p><div class="fragment"><div class="line">        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> resMLS = mls.compute(fitMLS, vectorPoints);</div>
 </div><!-- fragment --><p> The method <a class="el" href="structPonca_1_1MLSEvaluationScheme.html#ab23136030952d3ded183d86b33c88d2d">MLSEvaluationScheme::compute</a> can be customized by changing the projection operator (<a class="el" href="structPonca_1_1DirectProjectionOperator.html" title="Project a point using the primitive projection operator.">DirectProjectionOperator</a> and <a class="el" href="structPonca_1_1GradientDescentProjectionOperator.html" title="Project a point using the gradinet of the sdf.">GradientDescentProjectionOperator</a> are currently available). The class also provide control over the iteration stopping criteria (convergence and maximum number of iteration).</p>
 <p>For convenience, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> also provide <a class="el" href="structPonca_1_1SingleEvaluationScheme.html" title="SingleEvaluationScheme.">SingleEvaluationScheme</a>, which has the same API than <a class="el" href="structPonca_1_1MLSEvaluationScheme.html" title="Computes the fit using the Moving Least Squares approach.">MLSEvaluationScheme</a>, but simply does a single fit without projection. It is literally defined as </p><div class="fragment"><div class="line">        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ComputeObject, <span class="keyword">typename</span> IteratorBegin, <span class="keyword">typename</span> IteratorEnd&gt;</div>
-<div class="line">        PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="structPonca_1_1SingleEvaluationScheme.html#a1f513309c8cb40a93cacd1a182c416f6">compute</a>(ComputeObject&amp; co, <span class="keyword">const</span> IteratorBegin&amp; begin,</div>
-<div class="line">                                                  <span class="keyword">const</span> IteratorEnd&amp; end)<span class="keyword"> const</span></div>
+<div class="line">        PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="code hl_function" href="structPonca_1_1SingleEvaluationScheme.html#a1f513309c8cb40a93cacd1a182c416f6">compute</a>(ComputeObject&amp; co, <span class="keyword">const</span> IteratorBegin&amp; begin,</div>
+<div class="line">                                                                <span class="keyword">const</span> IteratorEnd&amp; end)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">        </span>{</div>
 <div class="line">            <span class="keywordflow">return</span> co.compute(begin, end);</div>
 <div class="line">        };</div>
@@ -208,13 +208,13 @@ Changing fitting process</h1>
 <div class="line">        fit.init();</div>
 <div class="line">        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = vectorPoints.begin(); it != vectorPoints.end(); ++it)</div>
 <div class="line">            fit.addNeighbor(*it);</div>
-<div class="line">        fit.finalize();</div>
+<div class="line">        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res = fit.finalize();</div>
 </div><!-- fragment --><p>More complex computational scheme are included within <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> (e.g BasketComputeObject::computeMLS for Moving Least Square). Still this simplicity can be used to change how this function behave and tailor it to your needs.</p>
 <dl class="section note"><dt>Note</dt><dd>Some methods require multiple fitting passes, e.g. <a class="el" href="classPonca_1_1MongePatch.html">MongePatch</a>. This is directly handled by the <span class="tt">compute</span> method. If you don't use it, you need to check if <span class="tt">eResults == NEED_ANOTHER_PASS</span> and repeat the <span class="tt">addNeighbor()</span>/<span class="tt">finalize()</span> steps. Don't forget to call <span class="tt">startNewPass()</span> at each iteration.</dd></dl>
 <p>This also allows to use custom data structures in order to speedup computation. You may, for example exclude points you know won't be within the prescribed radius. For this reason, <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> provide spatial structures that can be used to accelerate spatial queries. Consider for instance using the <a class="el" href="structPonca_1_1KdTree.html" title="Abstract KdTree type with KdTreeDefaultTraits.">KdTree</a> class with range queries: </p><div class="fragment"><div class="line">        Fit fit3;</div>
 <div class="line">        fit3.setNeighborFilter({vectorPoints[i].pos(), analysisScale});</div>
 <div class="line">        <span class="keyword">auto</span> neighborhoodRange = tree.<a class="code hl_function" href="classPonca_1_1StaticKdTreeBase.html#aa8fbc7a559eea12b4f9875154d4aead2">rangeNeighbors</a>(vectorPoints[i].pos(), analysisScale);</div>
-<div class="line">        fit3.computeWithIds(neighborhoodRange, vectorPoints);</div>
+<div class="line">        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> res3        = fit3.computeWithIds(neighborhoodRange, vectorPoints);</div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Currently, users need to ensure consistency between the query and the fit location/scale. This is expected to be fixed in the upcoming releases. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__spatialpartitioning.html" title="This modules includes classes and methods for Spatial Partitioning and queries.">Spatial Partitioning module</a></dd></dl>
 <h1 class="doxsection"><a class="anchor" id="fitting_newfilter"></a>
@@ -343,7 +343,7 @@ Minimal requirements</h3>
 <div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <span class="keywordtype">bool</span> addLocalNeighbor(Scalar w, <span class="keyword">const</span> VectorType&amp; lQ, <span class="keyword">const</span> DataPoint&amp; pt);</div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
+<div class="line">            PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
 <div class="line">        }; <span class="comment">// class ComputationalObjectConcept</span></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The macro PONCA_FITTING_DECLARE_DEFAULT_TYPES defines the <span class="tt">Base</span> type (alias for T) as well as <span class="tt">Scalar</span>, <span class="tt">VectorType</span> and <span class="tt">NeighborFilter</span> for manipulation of related data. This macro is defined within &lt;<a class="el" href="Fitting_2defines_8h_source.html">Fitting/defines.h</a>&gt; </dd>
 <dd>
@@ -423,7 +423,7 @@ New primitive differentiation (BasketDiff API)</h3>
 <div class="line">            <span class="comment">// Finalize the fitting procedure. This function is called after all neighbors have been processed.</span></div>
 <div class="line">            <span class="comment">// \return State of fitting</span></div>
 <div class="line">            <span class="comment">// \warning Must be called be for any use of the fitting output</span></div>
-<div class="line">            PONCA_MULTIARCH <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
+<div class="line">            PONCA_MULTIARCH [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> finalize();</div>
 <div class="line">        }; <span class="comment">// class ComputationalDerivativesConcept</span></div>
 <div class="line"> </div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>PrimitiveDer is the default entry point to most classes used in <a class="el" href="classPonca_1_1BasketDiff.html" title="Aggregator class used to declare specialized structures with derivatives computations,...">BasketDiff</a></dd></dl>
@@ -456,7 +456,8 @@ Iterating over common Baskets</h2>
 <div class="line">        std::cout &lt;&lt; x.name &lt;&lt; std::endl;</div>
 <div class="line">        x.object.setNeighborFilter({_p, tmax});</div>
 <div class="line">        x.object.init();</div>
-<div class="line">        x.object.compute(vecs.begin(), vecs.end());</div>
+<div class="line">        <span class="keywordflow">if</span> (x.object.compute(vecs.begin(), vecs.end()) != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a>)</div>
+<div class="line">            std::cout &lt;&lt; <span class="stringliteral">&quot;  -&gt; fit is not stable&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">    });</div>
 </div><!-- fragment --><p>The <a class="el" href="structPonca_1_1Factory.html" title="Default factory templated on Point, Filter and Derivative.">Factory</a> module also provides the ability to filter by concept. Most <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> fitting concepts have a corresponding filter. For a concept named "ProvidesXXX", <a class="el" href="namespacePonca.html" title="This Source Code Form is subject to the terms of the Mozilla Public License, v.">Ponca</a> creates two filters: "XXXProvider" and "NotXXXProvider", which can be used for filtering.</p>
 <div class="fragment"><div class="line">    <span class="comment">// We can also filter (this is a conjunction)</span></div>
@@ -468,9 +469,10 @@ Iterating over common Baskets</h2>
 <div class="line">    list.foreach ([&amp;](<span class="keyword">auto</span>&amp; x) {</div>
 <div class="line">        x.object.setNeighborFilter({_p, tmax});</div>
 <div class="line">        x.object.init();</div>
-<div class="line">        x.object.compute(vecs.begin(), vecs.end());</div>
-<div class="line"> </div>
-<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;Potential for method &#39;&quot;</span> &lt;&lt; x.name &lt;&lt; <span class="stringliteral">&quot;&#39; is: &quot;</span> &lt;&lt; x.object.potential() &lt;&lt; std::endl;</div>
+<div class="line">        <span class="keywordflow">if</span> (x.object.compute(vecs.begin(), vecs.end()) == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a>)</div>
+<div class="line">            std::cout &lt;&lt; <span class="stringliteral">&quot;Potential for method &#39;&quot;</span> &lt;&lt; x.name &lt;&lt; <span class="stringliteral">&quot;&#39; is: &quot;</span> &lt;&lt; x.object.potential() &lt;&lt; std::endl;</div>
+<div class="line">        <span class="keywordflow">else</span></div>
+<div class="line">            std::cout &lt;&lt; <span class="stringliteral">&quot;Method &#39;&quot;</span> &lt;&lt; x.name &lt;&lt; <span class="stringliteral">&quot;&#39; is not stable&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">    });</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// For filtered list, state are persistent if *PASSED BY REFERENCE*</span></div>
@@ -483,7 +485,8 @@ Iterating over common Baskets</h2>
 <div class="line">    <span class="keyword">auto</span> apss = MyFactory::GetMethod&lt;<span class="stringliteral">&quot;APSS&quot;</span>&gt;();</div>
 <div class="line">    apss.setNeighborFilter({_p, tmax});</div>
 <div class="line">    apss.init();</div>
-<div class="line">    apss.compute(vecs.begin(), vecs.end());</div>
+<div class="line">    <span class="keywordflow">if</span> (apss.compute(vecs.begin(), vecs.end()) == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a>)</div>
+<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;APSS potential is: &quot;</span> &lt;&lt; apss.potential() &lt;&lt; std::endl;</div>
 </div><!-- fragment --><dl class="section warning"><dt>Warning</dt><dd>Factories may contain different compute objects depending on the given point, filter, or derivative types. For example, Monge Patch fitting is currently only available in 3D; therefore, the <a class="el" href="structPonca_1_1Factory.html" title="Default factory templated on Point, Filter and Derivative.">Factory</a> will include the corresponding classes only when provided with 3D points.</dd></dl>
 <h2 class="doxsection"><a class="anchor" id="fitting_multiprimitive"></a>
 Fitting with multiple primitives</h2>

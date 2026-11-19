@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -162,11 +162,8 @@ $(function(){initNavTree('example_cxx_basic_page.html','',''); });
 <div class="line">        _fit.addNeighbor(tree.<a class="code hl_function" href="classPonca_1_1StaticKdTreeBase.html#aab5179d3a888948f98da6883c50f196d">points</a>()[i]);</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// finalize fitting</span></div>
-<div class="line">    _fit.finalize();</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// Test if the fitting ended without errors</span></div>
-<div class="line">    <span class="keywordflow">if</span> (_fit.isStable())</div>
+<div class="line">    <span class="comment">// Finalize fitting and test if it ended without errors</span></div>
+<div class="line">    <span class="keywordflow">if</span> (_fit.finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
 <div class="line">    {</div>
 <div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Center: [&quot;</span> &lt;&lt; _fit.center().transpose() &lt;&lt; <span class="stringliteral">&quot;] ;  radius: &quot;</span> &lt;&lt; _fit.radius() &lt;&lt; endl;</div>
 <div class="line"> </div>
@@ -242,6 +239,7 @@ $(function(){initNavTree('example_cxx_basic_page.html','',''); });
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a38f8222beed8f0761b9902b74b997a06"><div class="ttname"><a href="namespacePonca.html#a38f8222beed8f0761b9902b74b997a06">Ponca::getRandomPoint</a></div><div class="ttdeci">DataPoint getRandomPoint()</div><div class="ttdoc">Generate a random points.</div><div class="ttdef"><b>Definition</b> <a href="pointGeneration_8h_source.html#l00271">pointGeneration.h:271</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa531be147d843adfef25ce7fd7d5032ff">Ponca::FitSpaceDer</a></div><div class="ttdeci">@ FitSpaceDer</div><div class="ttdoc">Flag indicating a space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00036">enums.h:36</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 <div class="ttc" id="anamespacePonca_html_ae7734ac1251476bdf46f177de308a67b"><div class="ttname"><a href="namespacePonca.html#ae7734ac1251476bdf46f177de308a67b">Ponca::OrientedSphereDer</a></div><div class="ttdeci">OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; OrientedSphereDer</div><div class="ttdoc">Helper alias for Oriented Sphere fitting on 3D points using OrientedSphereDerImpl.</div><div class="ttdef"><b>Definition</b> <a href="orientedSphereFit_8h_source.html#l00135">orientedSphereFit.h:135</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">Public interface for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00093">kdTree.h:94</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTree_html"><div class="ttname"><a href="structPonca_1_1KdTree.html">Ponca::KdTree</a></div><div class="ttdoc">Abstract KdTree type with KdTreeDefaultTraits.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00052">kdTree.h:53</a></div></div>

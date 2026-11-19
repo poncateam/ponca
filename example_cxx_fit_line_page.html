@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -157,13 +157,10 @@ $(function(){initNavTree('example_cxx_fit_line_page.html','',''); });
 <div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;====================\nLeastSquareLineFit:\n&quot;</span>;</div>
 <div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Direction of the generated line: &quot;</span> &lt;&lt; dir.transpose() &lt;&lt; endl;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Fit line on data</span></div>
 <div class="line">    Fit _fit;</div>
 <div class="line">    _fit.setNeighborFilter({p, 1});</div>
-<div class="line">    _fit.compute(points.cbegin(), points.cend());</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// Check Fit output</span></div>
-<div class="line">    <span class="keywordflow">if</span> (_fit.isStable())</div>
+<div class="line">    <span class="comment">// Fit line on data and check Fit output</span></div>
+<div class="line">    <span class="keywordflow">if</span> (_fit.compute(points.cbegin(), points.cend()) == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
 <div class="line">    {</div>
 <div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Direction of the fitted 3D line: &quot;</span> &lt;&lt; _fit.direction().transpose() &lt;&lt; endl;</div>
 <div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Origin of the fitted line: &quot;</span> &lt;&lt; _fit.origin().transpose() &lt;&lt; endl;</div>
@@ -182,6 +179,7 @@ $(function(){initNavTree('example_cxx_fit_line_page.html','',''); });
 <div class="ttc" id="aclassPonca_1_1DistWeightFilter_html"><div class="ttname"><a href="classPonca_1_1DistWeightFilter.html">Ponca::DistWeightFilter</a></div><div class="ttdoc">Weight neighbors according to the Euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFilter_8h_source.html#l00033">weightFilter.h:34</a></div></div>
 <div class="ttc" id="aclassPonca_1_1PointPosition_html"><div class="ttname"><a href="classPonca_1_1PointPosition.html">Ponca::PointPosition</a></div><div class="ttdoc">Point data type containing only containing the position vector.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00056">pointTypes.h:57</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

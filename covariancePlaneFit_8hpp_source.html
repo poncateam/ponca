@@ -44,7 +44,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -157,54 +157,56 @@ $(function(){initNavTree('covariancePlaneFit_8hpp_source.html','',''); });
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>{</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    PONCA_MULTIARCH_CU_STD_FUNC(numeric_limits);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    Base::finalize();</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// Test if base finalize end on a viable case (stable / unstable)</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        VectorType <a class="code hl_function" href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee">barycenter</a>   = Base::barycenterLocal();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        VectorArray dBarycenter = Base::barycenterDerivatives();</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="comment">// pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        Scalar epsilon          = Scalar(2) * Eigen::NumTraits&lt;Scalar&gt;::epsilon();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        Scalar consider_as_zero = Scalar(2) * numeric_limits&lt;Scalar&gt;::denorm_min();</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="comment">// This is where the limitation to 3d comes from.</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment">// \fixme Replace shift in 2d subspace by any subspace with co-dimension 1</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        Eigen::Matrix&lt;Scalar, 2, 1&gt; shifted_eivals =</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            Base::m_solver.eigenvalues().template tail&lt;2&gt;().array() - Base::m_solver.eigenvalues()(0);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (shifted_eivals(0) &lt; consider_as_zero || shifted_eivals(0) &lt; epsilon * shifted_eivals(1))</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            shifted_eivals(0) = 0;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">if</span> (shifted_eivals(1) &lt; consider_as_zero)</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            shifted_eivals(1) = 0;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; Base::NbDerivatives; ++k)</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            VectorType normal = Base::primitiveGradient(Base::getNeighborFilter().center());</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <span class="comment">// The derivative of &#39;normal&#39; is the derivative of the smallest eigenvector.</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="comment">// Since the covariance matrix is real and symmetric, it is equal to:</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="comment">//    n&#39; = - (C - lambda_0 I)^+ C&#39; n</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="comment">// Where ^+ denotes the pseudo-inverse.</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="comment">// Since we already performed the eigenvalue decomposition of the matrix C,</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="comment">// we can directly apply the pseudo inverse by observing that:</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="comment">//    (C - lambda_0 I) = V (L - lambda_0 I) V^T</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="comment">// where V is the eigenvector matrix, and L the eigenvalue diagonal matrix.</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            Eigen::Matrix&lt;Scalar, 2, 1&gt; z =</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                -Base::m_solver.eigenvectors().template rightCols&lt;2&gt;().transpose() * (Base::m_dCov[k] * normal);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordflow">if</span> (shifted_eivals(0) &gt; 0)</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                z(0) /= shifted_eivals(0);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">if</span> (shifted_eivals(1) &gt; 0)</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                z(1) /= shifted_eivals(1);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            m_dNormal.col(k) = Base::m_solver.eigenvectors().template rightCols&lt;2&gt;() * z;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            VectorType dDiff = dBarycenter.col(k);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="keywordflow">if</span> (k &gt; 0 || !Base::isScaleDer())</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                dDiff(Base::isScaleDer() ? k - 1 : k) += 1;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            m_dDist(k) = m_dNormal.col(k).dot(barycenter) + normal.dot(dDiff);</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// Checked below</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    (void)Base::finalize();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// Test if base finalize end on a viable case (stable / unstable)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    {</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        VectorType <a class="code hl_function" href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee">barycenter</a>   = Base::barycenterLocal();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        VectorArray dBarycenter = Base::barycenterDerivatives();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="comment">// pre-compute shifted eigenvalues to apply the pseudo inverse of C - lambda_0 I</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        Scalar epsilon          = Scalar(2) * Eigen::NumTraits&lt;Scalar&gt;::epsilon();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        Scalar consider_as_zero = Scalar(2) * numeric_limits&lt;Scalar&gt;::denorm_min();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="comment">// This is where the limitation to 3d comes from.</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="comment">// \fixme Replace shift in 2d subspace by any subspace with co-dimension 1</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        Eigen::Matrix&lt;Scalar, 2, 1&gt; shifted_eivals =</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            Base::m_solver.eigenvalues().template tail&lt;2&gt;().array() - Base::m_solver.eigenvalues()(0);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">if</span> (shifted_eivals(0) &lt; consider_as_zero || shifted_eivals(0) &lt; epsilon * shifted_eivals(1))</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            shifted_eivals(0) = 0;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keywordflow">if</span> (shifted_eivals(1) &lt; consider_as_zero)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            shifted_eivals(1) = 0;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; Base::NbDerivatives; ++k)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            VectorType normal = Base::primitiveGradient(Base::getNeighborFilter().center());</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="comment">// The derivative of &#39;normal&#39; is the derivative of the smallest eigenvector.</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="comment">// Since the covariance matrix is real and symmetric, it is equal to:</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="comment">//    n&#39; = - (C - lambda_0 I)^+ C&#39; n</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="comment">// Where ^+ denotes the pseudo-inverse.</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="comment">// Since we already performed the eigenvalue decomposition of the matrix C,</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="comment">// we can directly apply the pseudo inverse by observing that:</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="comment">//    (C - lambda_0 I) = V (L - lambda_0 I) V^T</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="comment">// where V is the eigenvector matrix, and L the eigenvalue diagonal matrix.</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            Eigen::Matrix&lt;Scalar, 2, 1&gt; z =</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                -Base::m_solver.eigenvectors().template rightCols&lt;2&gt;().transpose() * (Base::m_dCov[k] * normal);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">if</span> (shifted_eivals(0) &gt; 0)</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                z(0) /= shifted_eivals(0);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="keywordflow">if</span> (shifted_eivals(1) &gt; 0)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                z(1) /= shifted_eivals(1);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            m_dNormal.col(k) = Base::m_solver.eigenvectors().template rightCols&lt;2&gt;() * z;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            VectorType dDiff = dBarycenter.col(k);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keywordflow">if</span> (k &gt; 0 || !Base::isScaleDer())</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                dDiff(Base::isScaleDer() ? k - 1 : k) += 1;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            m_dDist(k) = m_dNormal.col(k).dot(barycenter) + normal.dot(dDiff);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
 <div class="ttc" id="anamespacePonca_html_a1202518f3aeb69a7152076faf6215fee"><div class="ttname"><a href="namespacePonca.html#a1202518f3aeb69a7152076faf6215fee">Ponca::barycenter</a></div><div class="ttdeci">Ponca::MeanPosition T barycenter() const</div><div class="ttdoc">where  are all the point samples in &#39;s neighborhood</div><div class="ttdef"><b>Definition</b> <a href="mean_8h_source.html#l00070">mean.h:46</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns).</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a23aa2882b31e320fa4130218dd98c1a6">Ponca::CONFLICT_ERROR_FOUND</a></div><div class="ttdeci">@ CONFLICT_ERROR_FOUND</div><div class="ttdoc">Multiple classes of the fitting procedure initialize the primitive.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00027">enums.h:27</a></div></div>

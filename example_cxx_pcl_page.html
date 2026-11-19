@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -267,10 +267,8 @@ Datastructures implementation</h2>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Finalize fitting</span></div>
-<div class="line">    fit.finalize();</div>
-<div class="line"> </div>
 <div class="line">    <span class="comment">// Test if the fitting ended without errors. Set curvature to qNan otherwise.</span></div>
-<div class="line">    <span class="keywordflow">if</span> (fit.isStable())</div>
+<div class="line">    <span class="keywordflow">if</span> (fit.finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a>)</div>
 <div class="line">    {</div>
 <div class="line">        curvature = fit.kMean();</div>
 <div class="line">    }</div>
@@ -287,6 +285,7 @@ Datastructures implementation</h2>
 <div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html">Ponca::NormalDerivativeWeingartenEstimator</a></div><div class="ttdoc">Compute a Weingarten map from the spatial derivatives of the normal field .</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00110">weingarten.h:111</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2"><div class="ttname"><a href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535aa6b41d9746b3479bc8230bc6ba02c2bb2">Ponca::FitScaleSpaceDer</a></div><div class="ttdeci">@ FitScaleSpaceDer</div><div class="ttdoc">Flag indicating a scale-space differentiation.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00037">enums.h:37</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a8cfef1ea1f7bd5db5b90ded077c3924b"><div class="ttname"><a href="namespacePonca.html#a8cfef1ea1f7bd5db5b90ded077c3924b">Ponca::CovariancePlaneDer</a></div><div class="ttdeci">CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, CovarianceDer&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt; &gt; CovariancePlaneDer</div><div class="ttdoc">Helper alias for Plane fitting on 3D points using CovariancePlaneFitImpl.</div><div class="ttdef"><b>Definition</b> <a href="covariancePlaneFit_8h_source.html#l00124">covariancePlaneFit.h:124</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 <div class="ttc" id="astructPonca_1_1WeingartenCurvatureEstimatorDer_html"><div class="ttname"><a href="structPonca_1_1WeingartenCurvatureEstimatorDer.html">Ponca::WeingartenCurvatureEstimatorDer</a></div><div class="ttdoc">Compute principal curvatures from a base class providing fundamental forms.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00223">weingarten.h:224</a></div></div>
 </div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="pcl_wrapper_sec_pcl_wrapper_sec_cpp"></a>
 Datastructures instanciation</h2>

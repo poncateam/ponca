@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -160,11 +160,8 @@ $(function(){initNavTree('example_cxx_binding_page.html','',''); });
 <div class="line">        _fit.addNeighbor(MyPoint(_interlacedArray, i));</div>
 <div class="line">    }</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Finalize fitting</span></div>
-<div class="line">    _fit.finalize();</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// Test if the fitting ended without errors</span></div>
-<div class="line">    <span class="keywordflow">if</span> (_fit.isStable())</div>
+<div class="line">    <span class="comment">// Finalize fitting and test if it ended without errors</span></div>
+<div class="line">    <span class="keywordflow">if</span> (_fit.finalize() == <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
 <div class="line">    {</div>
 <div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Center: [&quot;</span> &lt;&lt; _fit.center().transpose() &lt;&lt; <span class="stringliteral">&quot;] ;  radius: &quot;</span> &lt;&lt; _fit.radius() &lt;&lt; endl;</div>
 <div class="line"> </div>
@@ -230,6 +227,7 @@ $(function(){initNavTree('example_cxx_binding_page.html','',''); });
 <div class="ttc" id="aclassPonca_1_1DistWeightFilter_html"><div class="ttname"><a href="classPonca_1_1DistWeightFilter.html">Ponca::DistWeightFilter</a></div><div class="ttdoc">Weight neighbors according to the Euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFilter_8h_source.html#l00033">weightFilter.h:34</a></div></div>
 <div class="ttc" id="aclassPonca_1_1PointPositionNormalBinding_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormalBinding.html">Ponca::PointPositionNormalBinding</a></div><div class="ttdoc">Variant of the PointPositionNormal data type that uses external raw data.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00090">pointTypes.h:91</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

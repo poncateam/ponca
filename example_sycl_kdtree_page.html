@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -138,9 +138,7 @@ $(function(){initNavTree('example_sycl_kdtree_page.html','',''); });
 <div class="line"> </div>
 <div class="line">    Fit fit;</div>
 <div class="line">    fit.setNeighborFilter({pos, scale});</div>
-<div class="line">    fit.computeWithIds(kdtree.rangeNeighbors(i, scale), kdtree.points());</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (!fit.isStable())</div>
+<div class="line">    <span class="keywordflow">if</span> (fit.computeWithIds(kdtree.rangeNeighbors(i, scale), kdtree.points()) != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a>)</div>
 <div class="line">        <span class="keywordflow">return</span> NAN;</div>
 <div class="line">    <span class="keywordflow">return</span> fit.potential(pos);</div>
 <div class="line">}</div>
@@ -218,6 +216,7 @@ $(function(){initNavTree('example_sycl_kdtree_page.html','',''); });
 <div class="ttc" id="aclassPonca_1_1DistWeightFilter_html"><div class="ttname"><a href="classPonca_1_1DistWeightFilter.html">Ponca::DistWeightFilter</a></div><div class="ttdoc">Weight neighbors according to the Euclidean distance between a query and a reference position.</div><div class="ttdef"><b>Definition</b> <a href="weightFilter_8h_source.html#l00033">weightFilter.h:34</a></div></div>
 <div class="ttc" id="aclassPonca_1_1PointPositionNormal_html"><div class="ttname"><a href="classPonca_1_1PointPositionNormal.html">Ponca::PointPositionNormal</a></div><div class="ttdoc">Point data type containing the position and normal vectors.</div><div class="ttdef"><b>Definition</b> <a href="pointTypes_8h_source.html#l00022">pointTypes.h:23</a></div></div>
 <div class="ttc" id="anamespacePonca_html_a23d99c2f69ed95982a3e2b74d3304160"><div class="ttname"><a href="namespacePonca.html#a23d99c2f69ed95982a3e2b74d3304160">Ponca::getPointOnPlane</a></div><div class="ttdeci">DataPoint getPointOnPlane(const typename DataPoint::VectorType _vPosition, const typename DataPoint::VectorType _vNormal, const typename DataPoint::Scalar _radius, const bool _bAddPositionNoise=true, const bool _bAddNormalNoise=true, const bool _bReverseNormals=false)</div><div class="ttdoc">Generate points on a plane.</div><div class="ttdef"><b>Definition</b> <a href="pointGeneration_8h_source.html#l00107">pointGeneration.h:107</a></div></div>
+<div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">Ponca::STABLE</a></div><div class="ttdeci">@ STABLE</div><div class="ttdoc">The fitting is stable and ready to use.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00017">enums.h:17</a></div></div>
 <div class="ttc" id="astructPonca_1_1KdTreeDense_html"><div class="ttname"><a href="structPonca_1_1KdTreeDense.html">Ponca::KdTreeDense</a></div><div class="ttdoc">Public interface for dense KdTree datastructure.</div><div class="ttdef"><b>Definition</b> <a href="kdTree_8h_source.html#l00093">kdTree.h:94</a></div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->

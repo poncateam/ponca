@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5c0b89608f48665d429ef276397412b189c59de5</span>
+   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -159,8 +159,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a11d6607b84ec8742adf0d81e2e7269b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the fit.  <br /></td></tr>
 <tr class="memitem:ae77dfed233b27d8fe647c5841da37d47" id="r_ae77dfed233b27d8fe647c5841da37d47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae77dfed233b27d8fe647c5841da37d47">startNewPass</a> ()</td></tr>
 <tr class="memdesc:ae77dfed233b27d8fe647c5841da37d47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start a new iteration over neighbor.  <br /></td></tr>
-<tr class="memitem:af6291f01cf3695cbdb802fb77e75fd5c" id="r_af6291f01cf3695cbdb802fb77e75fd5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6291f01cf3695cbdb802fb77e75fd5c">finalize</a> ()</td></tr>
-<tr class="memdesc:af6291f01cf3695cbdb802fb77e75fd5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the fitting procedure.  <br /></td></tr>
+<tr class="memitem:a521d141eb642ee9bca3f60ef46e6969a" id="r_a521d141eb642ee9bca3f60ef46e6969a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a521d141eb642ee9bca3f60ef46e6969a">finalize</a> ()</td></tr>
+<tr class="memdesc:a521d141eb642ee9bca3f60ef46e6969a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize the fitting procedure.  <br /></td></tr>
 <tr class="memitem:a5ea7daddae9d7bd58b3da8fc99ff31b4" id="r_a5ea7daddae9d7bd58b3da8fc99ff31b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ea7daddae9d7bd58b3da8fc99ff31b4">addNeighbor</a> (const <a class="el" href="#a24cafc02fc3353e9e0a165250de23609">DataPoint</a> &amp;_nei)</td></tr>
 <tr class="memdesc:a5ea7daddae9d7bd58b3da8fc99ff31b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a neighbor to perform the fit.  <br /></td></tr>
 <tr class="memitem:ae247a56cb8a88ec7a4766d0ac77b233e" id="r_ae247a56cb8a88ec7a4766d0ac77b233e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae247a56cb8a88ec7a4766d0ac77b233e">addLocalNeighbor</a> (<a class="el" href="#ad71dbb99d45a869c675cb487f7857a53">Scalar</a> _w, const <a class="el" href="#a9815bc242a76ca1b839d2b7562692fe4">VectorType</a> &amp;_localQ, const <a class="el" href="#a24cafc02fc3353e9e0a165250de23609">DataPoint</a> &amp;_nei, typename Base::ScalarArray &amp;_dw)</td></tr>
@@ -388,21 +388,29 @@ template&lt;typename BasketType, int Type, template&lt; class, class, int, typen
 
 </div>
 </div>
-<a id="af6291f01cf3695cbdb802fb77e75fd5c" name="af6291f01cf3695cbdb802fb77e75fd5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6291f01cf3695cbdb802fb77e75fd5c">&#9670;&#160;</a></span>finalize()</h2>
+<a id="a521d141eb642ee9bca3f60ef46e6969a" name="a521d141eb642ee9bca3f60ef46e6969a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a521d141eb642ee9bca3f60ef46e6969a">&#9670;&#160;</a></span>finalize()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename BasketType, int Type, template&lt; class, class, int, typename &gt; class Ext0, template&lt; class, class, int, typename &gt; class... Exts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a>&lt; BasketType, Type, Ext0, Exts &gt;::finalize </td>
+          <td class="memname"><a class="el" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> <a class="el" href="classPonca_1_1BasketDiff.html">Ponca::BasketDiff</a>&lt; BasketType, Type, Ext0, Exts &gt;::finalize </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Finalize the fitting procedure. </p>
