@@ -204,4 +204,8 @@ if (PONCA_CONFIGURE_PYPONCA)
 
     add_subdirectory(${NANOBIND_SUBMODULE_ROOT_PATH})
     add_subdirectory(PyPonca)
+
+    if (PONCA_CONFIGURE_TESTS)
+        add_subdirectory(PyPonca/tests)
+    endif()
 endif()
