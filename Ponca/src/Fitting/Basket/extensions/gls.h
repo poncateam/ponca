@@ -119,7 +119,7 @@ namespace Ponca
 
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(const GLSParam<DataPoint, _NFilter, T>& _other) const
         {
-            return Base::operator==(_other) && Eigen::internal::isApprox(compareTo(_other), Scalar(0.));
+            return Base::operator==(_other) && internal::isApprox(compareTo(_other), Scalar(0.));
         }
     }; // class GLSParam
 

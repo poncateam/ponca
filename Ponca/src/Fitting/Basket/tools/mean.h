@@ -68,7 +68,7 @@ namespace Ponca
 
         PONCA_MULTIARCH inline bool operator==(const MeanPosition<DataPoint, NeighborFilter, T>& other) const
         {
-            return Base::operator==(other) && m_sumP.isApprox(other.m_sumP);
+            return Base::operator==(other) && internal::isApprox(m_sumP, other.m_sumP);
         }
     }; // class MeanPosition
 
@@ -109,7 +109,7 @@ namespace Ponca
 
         PONCA_MULTIARCH inline bool operator==(const MeanNormal<DataPoint, NeighborFilter, T>& other) const
         {
-            return Base::operator==(other) && m_sumN.isApprox(other.m_sumN);
+            return Base::operator==(other) && internal::isApprox(m_sumN, other.m_sumN);
         }
     }; // class MeanNormal
 
@@ -175,7 +175,7 @@ namespace Ponca
         PONCA_MULTIARCH inline bool operator==(
             const MeanPositionDer<DataPoint, NeighborFilter, DiffType, T>& other) const
         {
-            return Base::operator==(other) && m_dSumP.isApprox(other.m_dSumP);
+            return Base::operator==(other) && internal::isApprox(m_dSumP, other.m_dSumP);
         }
     }; // class MeanPositionDer
 
@@ -242,7 +242,7 @@ namespace Ponca
 
         PONCA_MULTIARCH inline bool operator==(const MeanNormalDer<DataPoint, NeighborFilter, DiffType, T>& other) const
         {
-            return Base::operator==(other) && m_dSumN.isApprox(other.m_dSumN);
+            return Base::operator==(other) && internal::isApprox(m_dSumN, other.m_dSumN);
         }
 
     }; // class MeanNormalDer

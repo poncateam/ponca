@@ -10,6 +10,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 #include <Eigen/Core>
 
 #include "../defines.h"
+#include "../floatutils.h"
 
 namespace Ponca
 {
@@ -63,7 +64,7 @@ namespace Ponca
 
             PONCA_MULTIARCH [[nodiscard]] inline bool operator==(const Eigen2x2Solver<Scalar>& _other) const
             {
-                return m_eivals.isApprox(_other.m_eivals) && m_eivecs.isApprox(_other.m_eivecs);
+                return internal::isApprox(m_eivals, _other.m_eivals) && internal::isApprox(m_eivecs, _other.m_eivecs);
             }
 
         private:

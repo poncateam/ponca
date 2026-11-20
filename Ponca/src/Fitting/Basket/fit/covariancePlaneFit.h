@@ -129,7 +129,8 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>& _other) const
         {
-            return Base::operator==(_other) && m_dNormal.isApprox(_other.m_dNormal) && m_dDist.isApprox(_other.m_dDist);
+            return Base::operator==(_other) && internal::isApprox(m_dNormal, _other.m_dNormal) &&
+                   internal::isApprox(m_dDist, _other.m_dDist);
         }
 
     }; // class CovariancePlaneDer

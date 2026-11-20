@@ -49,9 +49,9 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const OrientedSphereFitImpl<DataPoint, _NFilter, T>& _other) const
         {
-            return Base::operator==(_other) && Eigen::internal::isApprox(m_sumDotPN, _other.m_sumDotPN) &&
-                   Eigen::internal::isApprox(m_sumDotPP, _other.m_sumDotPP) &&
-                   Eigen::internal::isApprox(m_nume, _other.m_nume) && Eigen::internal::isApprox(m_deno, _other.m_deno);
+            return Base::operator==(_other) && internal::isApprox(m_sumDotPN, _other.m_sumDotPN) &&
+                   internal::isApprox(m_sumDotPP, _other.m_sumDotPP) && internal::isApprox(m_nume, _other.m_nume) &&
+                   internal::isApprox(m_deno, _other.m_deno);
         }
     }; // class OrientedSphereFitImpl
 
@@ -139,9 +139,10 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const OrientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>& _other) const
         {
-            return Base::operator==(_other) && m_dSumDotPP.isApprox(_other.m_dSumDotPP) &&
-                   m_dNume.isApprox(_other.m_dNume) && m_dDeno.isApprox(_other.m_dDeno) &&
-                   m_dUq.isApprox(_other.m_dUq) && m_dUl.isApprox(_other.m_dUl) && m_dUc.isApprox(_other.m_dUc);
+            return Base::operator==(_other) && internal::isApprox(m_dSumDotPP, _other.m_dSumDotPP) &&
+                   internal::isApprox(m_dNume, _other.m_dNume) && internal::isApprox(m_dDeno, _other.m_dDeno) &&
+                   internal::isApprox(m_dUq, _other.m_dUq) && internal::isApprox(m_dUl, _other.m_dUl) &&
+                   internal::isApprox(m_dUc, _other.m_dUc);
         }
 
     }; // class OrientedSphereDerImpl

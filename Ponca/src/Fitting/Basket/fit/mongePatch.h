@@ -150,7 +150,8 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>& _other) const
         {
-            return Base::operator==(_other) && m_A.isApprox(_other.m_A) && m_b.isApprox(_other.m_b);
+            return Base::operator==(_other) && internal::isApprox(m_A, _other.m_A) &&
+                   internal::isApprox(m_b, _other.m_b);
         }
     }; // MongePatchQuadraticFitImpl
     /*!
@@ -181,7 +182,8 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>& _other) const
         {
-            return Base::operator==(_other) && m_A.isApprox(_other.m_A) && m_b.isApprox(_other.m_b);
+            return Base::operator==(_other) && internal::isApprox(m_A, _other.m_A) &&
+                   internal::isApprox(m_b, _other.m_b);
         }
     }; // MongePatchRestrictedQuadraticFitImpl
 

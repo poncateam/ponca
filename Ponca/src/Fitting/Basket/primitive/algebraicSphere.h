@@ -101,7 +101,7 @@ namespace Ponca
             PONCA_MULTIARCH_STD_MATH(pow);
             const Scalar squaredEpsilon = epsilon * epsilon;
             return pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
-                   pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon && m_ul.isApprox(other.m_ul);
+                   pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon && internal::isApprox(m_ul, other.m_ul, Scalar(1), epsilon);
         }
 
         /*! \brief Comparison operator, convenience function */

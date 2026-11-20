@@ -158,9 +158,9 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>& _other)
         {
-            return Base::operator==(_other) && m_dSumDotPP.isApprox(_other.m_dSumDotPP) &&
-                   m_dmatA.isApprox(_other.m_dmatA) && m_dUq.isApprox(_other.m_dUq) && m_dUl.isApprox(_other.m_dUl) &&
-                   m_dUc.isApprox(_other.m_dUc);
+            return Base::operator==(_other) && internal::isApprox(m_dSumDotPP, _other.m_dSumDotPP) &&
+                   internal::isApprox(m_dmatA, _other.m_dmatA) && internal::isApprox(m_dUq, _other.m_dUq) &&
+                   internal::isApprox(m_dUl, _other.m_dUl) && internal::isApprox(m_dUc, _other.m_dUc);
         }
 
     }; // class UnorientedSphereDerImpl

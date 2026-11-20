@@ -16,3 +16,5 @@
 
 #include "src/Common/Solver/Eigen2x2Solver.h"
 
+#include "src/Common/typeutils.h"
+#include "src/Common/floatutils.h"

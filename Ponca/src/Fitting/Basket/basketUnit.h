@@ -105,7 +105,7 @@ namespace Ponca
 
             // Not checking filter here, we don't have an api for this, are often parameterless, and
             // the sum of weight is already a good approx once the fit is complete.
-            return m_nbNeighbors == other.m_nbNeighbors && Eigen::internal::isApprox(m_sumW, other.m_sumW) &&
+            return m_nbNeighbors == other.m_nbNeighbors && internal::isApprox(m_sumW, other.m_sumW) &&
                    m_eCurrentState == other.m_eCurrentState;
         }
 
@@ -218,7 +218,7 @@ namespace Ponca
 
         PONCA_MULTIARCH inline bool operator==(const BasketDiffUnitBase<DataPoint, _NFilter, Type, T>& other) const
         {
-            return Base::operator==(other) && m_dSumW.isApprox(other.m_dSumW);
+            return Base::operator==(other) && internal::isApprox(m_dSumW, other.m_dSumW);
         }
     };
 

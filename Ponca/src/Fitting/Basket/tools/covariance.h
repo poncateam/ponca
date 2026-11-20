@@ -137,7 +137,7 @@ namespace Ponca
 
         PONCA_MULTIARCH inline bool operator==(const CovarianceBase<DataPoint, NeighborFilter, T>& other) const
         {
-            return Base::operator==(other) && m_cov.isApprox(other.m_cov);
+            return Base::operator==(other) && internal::isApprox(m_cov, other.m_cov);
         }
     };
 
@@ -171,7 +171,7 @@ namespace Ponca
         {
             bool equal = Base::operator==(other);
             for (size_t i = 0; equal && (i < Base::NbDerivatives); ++i)
-                equal = equal && m_dCov[i].isApprox(other.m_dCov[i]);
+                equal = equal && internal::isApprox(m_dCov[i], other.m_dCov[i]);
             return equal;
         }
     }; // class CovarianceDer

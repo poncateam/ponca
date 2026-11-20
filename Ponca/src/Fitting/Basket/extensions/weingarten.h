@@ -155,7 +155,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const NormalDerivativeWeingartenEstimator<DataPoint, _NFilter, DiffType, T>& _other) const
         {
-            return Base::operator==(_other) && m_tangentBasis.isApprox(_other.m_tangentBasis);
+            return Base::operator==(_other) && internal::isApprox(m_tangentBasis, _other.m_tangentBasis);
         }
     };
 
@@ -235,7 +235,7 @@ namespace Ponca
             PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
                 const WeingartenCurvatureEstimatorBase<DataPoint, _NFilter, T>& _other) const
             {
-                return Base::operator==(_other) && m_solver.isApprox(_other.m_solver);
+                return Base::operator==(_other) && m_solver == _other.m_solver;
             }
         };
     } // namespace internal
