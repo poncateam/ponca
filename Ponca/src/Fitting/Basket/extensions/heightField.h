@@ -212,7 +212,7 @@ namespace Ponca
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline RestrictedQuadraticHeightField() : Base() { init(); }
 
-        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(QuadraticHeightField, heightField)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(RestrictedQuadraticHeightField, heightField)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(RestrictedQuadraticHeightField, quadraticHeightField)
 
         /// \brief Set the scalar field values
