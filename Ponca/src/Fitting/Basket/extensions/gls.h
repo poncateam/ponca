@@ -69,7 +69,7 @@ namespace Ponca
         /*! \brief Compute and return \f$ \tau \f$ */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar tau() const
         {
-            return Base::isNormalized() ? Base::m_uc : Base::m_uc / Base::prattNorm();
+            return Base::isNormalized() ? Base::uc() : Base::uc() / Base::prattNorm();
         }
 
         /*! \brief Compute and return \f$ \eta \f$ */

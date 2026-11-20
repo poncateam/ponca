@@ -33,7 +33,7 @@ typename GLSDer<DataPoint, _NFilter, DiffType, T>::ScalarArray GLSDer<DataPoint,
     if (Base::isSpaceDer())
         dfield.template tail<DataPoint::Dim>() += Base::m_ul;
 
-    return (dfield * prattNorm - Base::m_uc * cfactor * Base::dprattNorm2()) / prattNorm2;
+    return (dfield * prattNorm - Base::uc() * cfactor * Base::dprattNorm2()) / prattNorm2;
 }
 
 template <class DataPoint, class _NFilter, int DiffType, typename T>

@@ -120,9 +120,9 @@ FIT_RESULT MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
             m_d2Ul.template block<DerDim, DerDim>(0, i * DerDim) =
                 invSumW * (m_d2SumN.template block<DerDim, DerDim>(0, i * DerDim) -
                            Scalar(2.) * (m_d2Uq * Base::m_sumP[i] + Base::m_dSumP.row(i).transpose() * Base::m_dUq +
-                                         Base::m_uq * m_d2SumP.template block<DerDim, DerDim>(0, i * DerDim) +
+                                         Base::uq() * m_d2SumP.template block<DerDim, DerDim>(0, i * DerDim) +
                                          Base::m_dUq.transpose() * Base::m_dSumP.row(i)) -
-                           Base::m_ul[i] * m_d2SumW - Base::m_dUl.row(i).transpose() * Base::m_dSumW -
+                           Base::ul()[i] * m_d2SumW - Base::m_dUl.row(i).transpose() * Base::m_dSumW -
                            Base::m_dSumW.transpose() * Base::m_dUl.row(i));
         }
 
@@ -134,7 +134,7 @@ FIT_RESULT MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
         for (int i = 0; i < Dim; ++i)
         {
             sumdUldSumP += Base::m_dUl.row(i).transpose() * Base::m_dSumP.row(i);
-            sumUld2SumP += Base::m_ul[i] * m_d2SumP.template block<DerDim, DerDim>(0, i * DerDim);
+            sumUld2SumP += Base::ul()[i] * m_d2SumP.template block<DerDim, DerDim>(0, i * DerDim);
             sumd2UlsumP += m_d2Ul.template block<DerDim, DerDim>(0, i * DerDim) * Base::m_sumP[i];
             sumdSumPdUl += Base::m_dSumP.row(i).transpose() * Base::m_dUl.row(i);
         }
@@ -142,8 +142,8 @@ FIT_RESULT MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::finalize()
         m_d2Uc =
             -invSumW *
             (sumdUldSumP + sumUld2SumP + sumd2UlsumP + sumdSumPdUl + Base::m_dUq.transpose() * Base::m_dSumDotPP +
-             Base::m_uq * m_d2SumDotPP + Base::m_dSumDotPP.transpose() * Base::m_dUq + m_d2Uq * Base::m_sumDotPP +
-             Base::m_uc * m_d2SumW + Base::m_dUc.transpose() * Base::m_dSumW + Base::m_dSumW.transpose() * Base::m_dUc);
+             Base::uq() * m_d2SumDotPP + Base::m_dSumDotPP.transpose() * Base::m_dUq + m_d2Uq * Base::m_sumDotPP +
+             Base::uc() * m_d2SumW + Base::m_dUc.transpose() * Base::m_dSumW + Base::m_dSumW.transpose() * Base::m_dUc);
     }
 
     return Base::m_eCurrentState;
@@ -161,7 +161,7 @@ typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::ScalarArray MlsSpher
     ScalarArray result = Base::m_dUc;
 
     if (Base::isSpaceDer())
-        result.template tail<Dim>() += Base::m_ul;
+        result.template tail<Dim>() += Base::ul();
 
     return result;
 }
@@ -171,7 +171,7 @@ typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorType MlsSphere
                                                                                        T>::primitiveGradient() const
 {
     // Compute the 1st order derivative of the scalar field and normalize it
-    VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
+    VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::ul();
     return grad.normalized();
 }
 
@@ -201,7 +201,7 @@ typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorArray MlsSpher
     //   d2_x2(s) = d2_x2(uc) + d_x(ul) + d_x(ul)^T + 2 uq I
     VectorArray result = VectorArray::Zero();
 
-    VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::m_ul;
+    VectorType grad = Base::m_dUc.template tail<Dim>().transpose() + Base::ul();
     Scalar gradNorm = grad.norm();
 
     if (Base::isScaleDer())
@@ -212,7 +212,7 @@ typename MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>::VectorArray MlsSpher
         result.template rightCols<Dim>() = m_d2Uc.template bottomRightCorner<Dim, Dim>().transpose() +
                                            Base::m_dUl.template rightCols<Dim>().transpose() +
                                            Base::m_dUl.template rightCols<Dim>();
-        result.template rightCols<Dim>().diagonal().array() += Scalar(2.) * Base::m_uq;
+        result.template rightCols<Dim>().diagonal().array() += Scalar(2.) * Base::uq();
     }
 
     return result / gradNorm - grad * grad.transpose() / (gradNorm * gradNorm) * result;
