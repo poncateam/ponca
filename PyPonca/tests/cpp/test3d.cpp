@@ -63,7 +63,6 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
                 // Ignore result, could serve as a test
                 (void)fit.setNeighborFilter(MakeFilter(fit, i));
                 status.push_back(static_cast<int>(fit.compute(points)));
-                ;
 
                 potentials.push_back(fit.potential());
                 // With the cast to be consistent with pyponca
@@ -91,7 +90,6 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
                 // Ignore result, could serve as a test
                 (void)fit.setNeighborFilter(MakeFilter(fit, i));
                 status.push_back(static_cast<int>(fit.compute(points)));
-                ;
 
                 results.push_back(fit.project(analysisLocations[i]));
             }
@@ -105,7 +103,7 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
         });
 
         Factory::Filter<Ponca::PrincipalCurvaturesProvider>().foreach ([&](auto& x) {
-            std::vector<std::array<Scalar, 3 + 2 * Point::Dim>> data;
+            std::vector<std::array<Scalar, 2 + 2 * Point::Dim>> data;
             std::vector<int> status;
             for (unsigned int i = 0; i < analysisLocations.size(); ++i)
             {
@@ -115,20 +113,18 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
                 // Ignore result, could serve as a test
                 (void)fit.setNeighborFilter(MakeFilter(fit, i));
                 status.push_back(static_cast<int>(fit.compute(points)));
-                ;
 
                 data.emplace_back();
                 data.back()[0] = fit.kmin();
                 data.back()[1] = fit.kmax();
-                data.back()[2] = fit.GaussianCurvature();
 
                 auto mindir = fit.kminDirection();
                 auto maxdir = fit.kmaxDirection();
 
                 for (size_t i = 0; i < Point::Dim; ++i)
-                    data.back()[3 + i] = mindir[i];
+                    data.back()[2 + i] = mindir[i];
                 for (size_t i = 0; i < Point::Dim; ++i)
-                    data.back()[3 + Point::Dim + i] = maxdir[i];
+                    data.back()[2 + Point::Dim + i] = maxdir[i];
             }
 
             if (first)
@@ -140,7 +136,7 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
         });
 
         Factory::Filter<Ponca::AlgebraicSphereProvider>().foreach ([&](auto& x) {
-            std::vector<std::array<Scalar, 2 + Point::Dim>> data;
+            std::vector<std::array<Scalar, 4 + 2 * Point::Dim>> data;
             std::vector<int> status;
             for (unsigned int i = 0; i < analysisLocations.size(); ++i)
             {
@@ -150,7 +146,6 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
                 // Ignore result, could serve as a test
                 (void)fit.setNeighborFilter(MakeFilter(fit, i));
                 status.push_back(static_cast<int>(fit.compute(points)));
-                ;
 
                 data.emplace_back();
                 data.back()[0] = fit.radius();
@@ -159,6 +154,12 @@ void GenerateComputeTestCase(std::ofstream& file, const std::vector<Point>& poin
                 auto center = fit.center();
                 for (size_t i = 0; i < Point::Dim; ++i)
                     data.back()[2 + i] = center[i];
+
+                data.back()[2 + Point::Dim] = fit.uc();
+                auto ul                     = fit.ul();
+                for (size_t i = 0; i < Point::Dim; ++i)
+                    data.back()[2 + Point::Dim + 1 + i] = ul(i);
+                data.back()[2 + 2 * Point::Dim + 1] = fit.uq();
             }
 
             if (first)
