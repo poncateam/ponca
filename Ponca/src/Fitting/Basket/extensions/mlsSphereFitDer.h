@@ -109,10 +109,11 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>& _other) const
         {
-            return Base::operator==(_other) && m_d2SumDotPN.isApprox(_other.m_d2SumDotPN) &&
-                   m_d2SumDotPP.isApprox(_other.m_d2SumDotPP) && m_d2SumW.isApprox(_other.m_d2SumW) &&
-                   m_d2SumP.isApprox(_other.m_d2SumP) && m_d2SumN.isApprox(_other.m_d2SumN) &&
-                   m_d2Uc.isApprox(_other.m_d2Uc) && m_d2Ul.isApprox(_other.m_d2Ul) && m_d2Uq.isApprox(_other.m_d2Uq);
+            return Base::operator==(_other) && internal::isApprox(m_d2SumDotPN, _other.m_d2SumDotPN) &&
+                   internal::isApprox(m_d2SumDotPP, _other.m_d2SumDotPP) &&
+                   internal::isApprox(m_d2SumW, _other.m_d2SumW) && internal::isApprox(m_d2SumP, _other.m_d2SumP) &&
+                   internal::isApprox(m_d2SumN, _other.m_d2SumN) && internal::isApprox(m_d2Uc, _other.m_d2Uc) &&
+                   internal::isApprox(m_d2Ul, _other.m_d2Ul) && internal::isApprox(m_d2Uq, _other.m_d2Uq);
         }
 
     }; // class MlsSphereFitDer

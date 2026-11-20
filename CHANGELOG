@@ -16,6 +16,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] Remove parameterless requirements for implicit primitive (#360)
     - [fitting] Finalize and compute are now marked as [[nodiscard]] (#362)
     - [fitting] AlgebraicSphere parameters are now protected but expose a function instead (#359)
+    - [common] Add relaxed isApprox checks (#359)
 
 - Bug-fixes and code improvements
     - [fitting] Fix out-of-bound SegFault in CNC (#344)
