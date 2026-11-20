@@ -32,7 +32,6 @@ namespace Ponca
 
             const Scalar eps2 = rel * rel;
             const Scalar diff = (X - Y).cwiseAbs2().sum();
-
             // Add an absolute test here to avoid instabilities near 0
             if (diff <= eps2 * abs * abs)
                 return true;
