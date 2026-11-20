@@ -39,7 +39,7 @@ FIT_RESULT CovarianceBase<DataPoint, _NFilter, T>::finalize()
     auto centroid = Base::barycenterLocal();
     m_cov         = m_cov / Base::getWeightSum() - centroid * centroid.transpose();
 
-#ifdef __CUDACC__
+#ifdef __CUDA_ARCH__
     m_solver.computeDirect(m_cov);
 #else
     m_solver.compute(m_cov);
