@@ -24,6 +24,7 @@ endif()
 
 set(PYPONCA_SRC
     binding/Common/RegisterCommon.cpp
+    binding/Fitting/RegisterFitting.cpp
     binding/SpatialPartitioning/RegisterSpatialPartitioning.cpp
     binding/pyponca.cpp
 )
