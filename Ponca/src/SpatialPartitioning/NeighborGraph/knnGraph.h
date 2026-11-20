@@ -72,7 +72,7 @@ namespace Ponca
                                   NeighborGraphRangeQuery<StaticKnnGraphBase<_Traits>>>;
         using Buffers = typename Base::Buffers;
 
-        PONCA_MULTIARCH inline StaticKnnGraphBase<Traits>(Buffers& _bufs) : Base(_bufs) {}
+        PONCA_MULTIARCH inline StaticKnnGraphBase(Buffers& _bufs) : Base(_bufs) {}
 
     protected:
         PONCA_MULTIARCH inline StaticKnnGraphBase(PointContainerConstRef _points, const int _k)

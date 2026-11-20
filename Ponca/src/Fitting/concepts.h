@@ -46,6 +46,10 @@ namespace Ponca
 
             { ct.algebraicSphere().radius() } -> std::convertible_to<typename T::Scalar>;
             { ct.algebraicSphere().center() } -> std::convertible_to<typename T::VectorType>;
+
+            { ct.algebraicSphere().uc() } -> std::convertible_to<typename T::Scalar>;
+            { ct.algebraicSphere().ul() } -> std::convertible_to<typename T::VectorType>;
+            { ct.algebraicSphere().uq() } -> std::convertible_to<typename T::Scalar>;
         };
 
     template <typename T>
@@ -113,7 +117,7 @@ namespace Ponca
     concept ProvidesGeomVar = requires(const T ct, typename T::Scalar s) {
         ct.geomVar();
 
-        { ct.geomVar().geomVar(s, s, s) } -> std::same_as<typename T::Scalar>;
+        { ct.geomVar().geometric_variation(s, s, s) } -> std::same_as<typename T::Scalar>;
     };
 
     template <typename T>

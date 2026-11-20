@@ -30,6 +30,7 @@ if(DOXYGEN_FOUND)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_module_spatialpartitioning.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_points.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_getting_started.mdoc
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/ponca_pyponca.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_basic.mdoc
       ${CMAKE_CURRENT_SOURCE_DIR}/src/example_cxx_binding.mdoc

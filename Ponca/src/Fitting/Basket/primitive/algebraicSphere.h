@@ -90,11 +90,7 @@ namespace Ponca
         /// \brief Comparison operator \warning Assume that other shares the same basis \see changeBasis()
         PONCA_MULTIARCH inline bool operator==(const AlgebraicSphere<DataPoint, NeighborFilter, T>& other) const
         {
-            PONCA_MULTIARCH_STD_MATH(pow);
-            const Scalar epsilon        = Eigen::NumTraits<Scalar>::dummy_precision();
-            const Scalar squaredEpsilon = epsilon * epsilon;
-            return pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
-                   pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon && m_ul.isApprox(other.m_ul);
+            return Base::operator==(other) && isApprox(other);
         }
 
         /// \brief Approximate operator \warning Assume that other shares the same basis \see changeBasis()
@@ -105,7 +101,7 @@ namespace Ponca
             PONCA_MULTIARCH_STD_MATH(pow);
             const Scalar squaredEpsilon = epsilon * epsilon;
             return pow(m_uc - other.m_uc, Scalar(2)) < squaredEpsilon &&
-                   pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon && m_ul.isApprox(other.m_ul);
+                   pow(m_uq - other.m_uq, Scalar(2)) < squaredEpsilon && internal::isApprox(m_ul, other.m_ul, Scalar(1), epsilon);
         }
 
         /*! \brief Comparison operator, convenience function */
@@ -160,6 +156,15 @@ namespace Ponca
             applyPrattNorm();
         }
 
+        /*! \brief Constant parameter of the Algebraic hyper-sphere */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar uc() const { return m_uc; }
+
+        /*! \brief Linear parameter of the Algebraic hyper-sphere */
+        PONCA_MULTIARCH [[nodiscard]] inline const VectorType& ul() const { return m_ul; }
+
+        /*! \brief Quadratic parameter of the Algebraic hyper-sphere */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar uq() const { return m_uq; }
+
         /*! \brief compute the Pratt norm of the implicit scalar field. */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar prattNorm() const
         {
@@ -206,7 +211,12 @@ namespace Ponca
             return Scalar(sqrt(((Scalar(-0.5) * b) * m_ul).squaredNorm() - m_uc * b));
         }
 
-        PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const { return isPlane() ? Scalar(0) : Scalar(2) * m_uq; }
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar kMean() const
+        {
+            if (isPlane())
+                return Scalar(0);
+            return Scalar(2) * (isNormalized() ? m_uq : m_uq / prattNorm());
+        }
 
         /*!
             \brief return the estimated center of the sphere
