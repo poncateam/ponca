@@ -17,6 +17,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] Finalize and compute are now marked as [[nodiscard]] (#362)
     - [common] Add relaxed isApprox checks (#359)
     - [fitting] Add algebraicsphere parameters to concept (#359)
+    - [pyponca] New python binding of Ponca, with OpenMP and CUDA support (#XXX)
 
 - Bug-fixes and code improvements
     - [fitting] Fix out-of-bound SegFault in CNC (#344)
@@ -49,6 +50,7 @@ Current head (v.2.0.alpha4 RC)
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
     - [ci] CI to check cuda *compilation* (#354)
+    - [ci] Build and test PyPonca (#XXX)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha3
