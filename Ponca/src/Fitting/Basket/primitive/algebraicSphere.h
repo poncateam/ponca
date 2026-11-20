@@ -156,6 +156,15 @@ namespace Ponca
             applyPrattNorm();
         }
 
+        /*! \brief Constant parameter of the Algebraic hyper-sphere */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar uc() const { return m_uc; }
+
+        /*! \brief Linear parameter of the Algebraic hyper-sphere */
+        PONCA_MULTIARCH [[nodiscard]] inline const VectorType& ul() const { return m_ul; }
+
+        /*! \brief Quadratic parameter of the Algebraic hyper-sphere */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar uq() const { return m_uq; }
+
         /*! \brief compute the Pratt norm of the implicit scalar field. */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar prattNorm() const
         {
