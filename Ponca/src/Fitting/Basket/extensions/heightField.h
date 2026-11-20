@@ -118,7 +118,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const QuadraticHeightField<DataPoint, _NFilter, T>& other) const
         {
-            return m_coeffs.isApprox(other.m_coeffs);
+            return Base::operator==(other) && internal::isApprox(m_coeffs, other.m_coeffs);
         }
 
         /*! \brief Comparison operator, convenience function */
@@ -212,7 +212,7 @@ namespace Ponca
         /*! \brief Default constructor */
         PONCA_MULTIARCH inline RestrictedQuadraticHeightField() : Base() { init(); }
 
-        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(QuadraticHeightField, heightField)
+        PONCA_EXPLICIT_BASKET_CAST_OPERATORS(RestrictedQuadraticHeightField, heightField)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(RestrictedQuadraticHeightField, quadraticHeightField)
 
         /// \brief Set the scalar field values
@@ -238,7 +238,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
             const RestrictedQuadraticHeightField<DataPoint, _NFilter, T>& other) const
         {
-            return m_coeffs.isApprox(other.m_coeffs);
+            return Base::operator==(other) && internal::isApprox(m_coeffs, other.m_coeffs);
         }
 
         /*! \brief Comparison operator, convenience function */
@@ -253,7 +253,7 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] inline bool isApprox(
             const Other& other, const Scalar& epsilon = Eigen::NumTraits<Scalar>::dummy_precision()) const
         {
-            return m_coeffs.isApprox(other.m_params, epsilon);
+            return internal::isApprox(m_coeffs, other.m_params, Scalar(1), epsilon);
         }
 
         //! \brief Height value at local uv

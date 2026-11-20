@@ -103,6 +103,15 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovariancePlaneDerImpl, covariancePlaneDer)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovariancePlaneDerImpl, implicitPrimitiveDer)
 
+        PONCA_MULTIARCH inline void init()
+        {
+            Base::init();
+
+            // Reset vectors to avoid dirty sharing
+            m_dNormal.setZero();
+            m_dDist.setZero();
+        }
+
         /*! \see Concept::FittingProcedureConcept::finalize() */
         PONCA_MULTIARCH [[nodiscard]] FIT_RESULT finalize();
 
@@ -116,6 +125,13 @@ namespace Ponca
 
         /*! \brief Returns the derivatives of the primitive normal */
         PONCA_MULTIARCH [[nodiscard]] inline VectorArray dNormal() const { return m_dNormal; }
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const CovariancePlaneDerImpl<DataPoint, _NFilter, DiffType, T>& _other) const
+        {
+            return Base::operator==(_other) && internal::isApprox(m_dNormal, _other.m_dNormal) &&
+                   internal::isApprox(m_dDist, _other.m_dDist);
+        }
 
     }; // class CovariancePlaneDer
 

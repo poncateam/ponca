@@ -134,6 +134,11 @@ namespace Ponca
 
         /*! \brief Reading access to the Solver used to analyze the covariance matrix */
         PONCA_MULTIARCH [[nodiscard]] inline const Solver& solver() const { return m_solver; }
+
+        PONCA_MULTIARCH inline bool operator==(const CovarianceBase<DataPoint, NeighborFilter, T>& other) const
+        {
+            return Base::operator==(other) && internal::isApprox(m_cov, other.m_cov);
+        }
     };
 
     /*!
@@ -153,8 +158,22 @@ namespace Ponca
         MatrixType m_dCov[Base::NbDerivatives];
 
     public:
+        PONCA_MULTIARCH CovarianceDer()
+        {
+            for (int k = 0; k < Base::NbDerivatives; ++k)
+                m_dCov[k].setZero();
+        }
+
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(CovarianceDer, covarianceDer)
         PONCA_FITTING_DECLARE_INIT_ADDDER_FINALIZE
+
+        PONCA_MULTIARCH inline bool operator==(const CovarianceDer<DataPoint, NeighborFilter, DiffType, T>& other) const
+        {
+            bool equal = Base::operator==(other);
+            for (size_t i = 0; equal && (i < Base::NbDerivatives); ++i)
+                equal = equal && internal::isApprox(m_dCov[i], other.m_dCov[i]);
+            return equal;
+        }
     }; // class CovarianceDer
 
 #include "covariance.hpp"

@@ -26,7 +26,6 @@ set(ponca_Fitting_INCLUDE
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/gls.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/gls.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/heightField.h"
-    "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/heightField.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/mlsSphereFitDer.h"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/mlsSphereFitDer.hpp"
     "${PONCA_src_ROOT}/Ponca/src/Fitting/Basket/extensions/weingarten.h"

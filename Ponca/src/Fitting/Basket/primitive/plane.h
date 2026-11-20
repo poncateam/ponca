@@ -68,7 +68,7 @@ namespace Ponca
 
         PONCA_MULTIARCH inline bool operator==(const Plane<DataPoint, NeighborFilter, T>& other) const
         {
-            return EigenBase::isApprox(other);
+            return Base::operator==(other) && internal::isApprox(EigenBase::coeffs(), other.coeffs());
         }
 
         /*! \brief Comparison operator, convenience function */

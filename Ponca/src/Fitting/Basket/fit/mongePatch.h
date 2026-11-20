@@ -113,13 +113,11 @@ namespace Ponca
             const VectorType fuu{Base::d2h_duu(), Scalar(0), Scalar(0)};
             const VectorType fuv{Base::d2h_duv(), Scalar(0), Scalar(0)};
             const VectorType fvv{Base::d2h_dvv(), Scalar(0), Scalar(0)};
-            const VectorType fn = primitiveGradientLocal();
+            const VectorType fn = primitiveGradientLocal().normalized();
 
             L = fuu.dot(fn);
             M = fuv.dot(fn);
-            ;
             N = fvv.dot(fn);
-            ;
         }
     }; // class MongePatchPrimitive
 
@@ -148,6 +146,13 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatchQuadraticFitImpl, mongePatchQuadraticFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>& _other) const
+        {
+            return Base::operator==(_other) && internal::isApprox(m_A, _other.m_A) &&
+                   internal::isApprox(m_b, _other.m_b);
+        }
     }; // MongePatchQuadraticFitImpl
     /*!
      * \brief Extension to compute the best fit restricted quadric on 3d points expressed as \f$f(u,v)=h\f$
@@ -173,6 +178,13 @@ namespace Ponca
     public:
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(MongePatchRestrictedQuadraticFitImpl, mongePatchQuadraticFit)
         PONCA_FITTING_DECLARE_INIT_ADD_FINALIZE
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const MongePatchQuadraticFitImpl<DataPoint, _NFilter, T>& _other) const
+        {
+            return Base::operator==(_other) && internal::isApprox(m_A, _other.m_A) &&
+                   internal::isApprox(m_b, _other.m_b);
+        }
     }; // MongePatchRestrictedQuadraticFitImpl
 
     template <class DataPoint, class _NFilter, typename T>
