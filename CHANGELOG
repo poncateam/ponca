@@ -41,6 +41,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] Fix factory returning wrong object for MeanNormal (#359)
     - [fitting] Fix left over comma for cuda compilation (#359)
     - [fitting] Fix covariance using wrong solver for cpu computation when cuda is enabled (#359)
+    - [fitting] Add getNeighborFilter function to CNC (#359)
     - [tests] Fix monge patch tests where plane were still too steep (#359)
     - [tests] Fix paraboloid normal utilities using wrong coefficient (#359)
 

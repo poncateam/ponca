@@ -211,6 +211,9 @@ namespace Ponca
             m_nFilter = _nFilter;
             return Eigen::internal::isApprox(m_nFilter.data().squaredNorm(), Scalar(1.0));
         }
+        
+        /*! \brief Read access to the NeighborFilter \see setNeighborFilter */
+        PONCA_MULTIARCH inline const NeighborFilter& getNeighborFilter() const { return m_nFilter; }
 
         /*!
          * \brief Returns the triangles
