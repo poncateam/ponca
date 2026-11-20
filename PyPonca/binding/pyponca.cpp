@@ -9,6 +9,7 @@ This Source Code Form is subject to the terms of the Mozilla Public
 
 namespace nb = nanobind;
 #include "Common/RegisterCommon.h"
+#include "SpatialPartitioning/RegisterSpatialPartitioning.h"
 
 NB_MODULE(_pyponca, m)
 {
@@ -21,5 +22,6 @@ NB_MODULE(_pyponca, m)
 #endif
 
     RegisterCommon(m, internal);
+    RegisterSpatialPartitioning(m, internal);
 }
 

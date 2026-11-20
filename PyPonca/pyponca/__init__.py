@@ -74,4 +74,49 @@ class PointCloud:
         """ Index of the device the arrays of the point cloud are stored on """
         return self.object.device_id
 
+class KDTree:
+    """
+        Main kdtree object that serves as a dispatch
+        class magnles the array and retrieve the corresponding
+        Ponca kdtree structure
+    """
+
+    def __init__(self, pc, isDense = True):
+        self.N = 0
+        self.dim = 0
+        self._mangledName = "unknown"
+        self._cls = object
+
+        if not isinstance(pc, PointCloud):
+            mangledArray = _pyponca.internal._mangleArray(pc)
+            clsname = "KdTree" + mangledArray + _pyponca.internal._PointName
+            self._mangledName = mangledArray + _pyponca.internal._PointName
+        else:
+            clsname = "KdTree" + pc._mangledName
+            self._mangledName = pc._mangledName
+            pc = pc.object
+
+        if clsname not in _pyponca.__dict__:
+            raise NotImplementedError(f"PointCloud does not have specialization for {self._mangledName} arrays")
+
+        self._cls = _pyponca.__dict__[clsname]
+        self.object = self._cls(pc, isDense)
+
+    def toDevice(self, device, device_id = 0):
+        """
+            Returns a copy of the tree, and of the point cloud it was built from, stored on a device.
+            The tree may be stored on any device (trees are always built on the CPU). When it is already
+            stored on that device, the returned tree shares its buffers.
+
+            see _parseDevice
+        """
+        # Not built with __init__, which builds a new tree
+        tree = KDTree.__new__(KDTree)
+        tree.__dict__.update(self.__dict__)
+        tree.object = self.object.toDevice(*_parseDevice(device, device_id))
+        return tree
+
+    def __getattr__(self, name):
+        return getattr(self.object, name)
+
 WithCuda = _pyponca.internal._WithCUDA
