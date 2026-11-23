@@ -50,6 +50,7 @@ Current head (v.2.0.alpha4 RC)
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
     - [ci] CI to check cuda *compilation* (#354)
     - [ci] Disable instantiation in debug compilation (#359)
+    - [ci] Split ctest coverage and codecov (#359) 
 
 --------------------------------------------------------------------------------
 v.2.0.alpha3
