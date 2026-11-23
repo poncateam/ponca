@@ -23,11 +23,14 @@ jobs:
         with:
           path: src
       - name: cmake
-        run: mkdir build && cd build && cmake ../src  -GNinja -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../install -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_DOC=OFF -DPONCA_CONFIGURE_TESTS=ON -DPONCA_COVERAGE_TESTING=ON -DPONCA_INSTANTIATE_ALL=OFF
+        run: mkdir build && cd build && cmake ../src  -GNinja -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc -DCMAKE_BUILD_TYPE=Debug   -DCMAKE_INSTALL_PREFIX=../install -DPONCA_CONFIGURE_EXAMPLES=OFF -DPONCA_CONFIGURE_DOC=OFF -DPONCA_CONFIGURE_TESTS=ON -DPONCA_COVERAGE_TESTING=ON -DPONCA_INSTANTIATE_ALL=OFF -DPONCA_INSTANTIATE_DEFAULT=OFF
       - name: make buildtests
         run: cd build && cmake --build . --target buildtests 
       - name: generate coverage report
-        run: cd build &&  ctest -T Test -T Coverage
+        run: cd build && ctest -T Test
+      - name: CTest coverage summary
+        continue-on-error: true
+        run: cd build && ctest -T Coverage
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
         with:

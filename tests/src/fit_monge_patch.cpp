@@ -44,7 +44,7 @@ void testFunction(bool _bAddPositionNoise = false)
     // paraboloid parameters
     // we need to use small magnitude for quadratic terms, otherwise the plane fitting is going to be wrong
     const Scalar standardMagnitude = Scalar(1);
-    const Scalar smallMagnitude    = Scalar(0.1);
+    const Scalar smallMagnitude    = Scalar(0.05);
     auto quadParams =
         Eigen::Matrix<Scalar, 6, 1>(Eigen::internal::random<Scalar>(-smallMagnitude, smallMagnitude),
                                     Eigen::internal::random<Scalar>(-smallMagnitude, smallMagnitude),

@@ -72,20 +72,21 @@ namespace Ponca
 
     protected:
         // computation data
-        Matrix m_d2SumDotPN, /*!< \brief Sum of the dot product between relative positions and normals with second-order
-                                weight derivatives */
-            m_d2SumDotPP,    /*!< \brief Sum of the squared relative positions with second-order weight derivatives */
-            m_d2SumW;        /*!< \brief Sum of queries weight with second-order weight derivatives */
+        Matrix m_d2SumDotPN{Matrix::Zero()}, /*!< \brief Sum of the dot product between relative positions and normals
+                                                with second-order weight derivatives */
+            m_d2SumDotPP{Matrix::Zero()},    /*!< \brief Sum of the squared relative positions with second-order weight
+                                                derivatives */
+            m_d2SumW{Matrix::Zero()};        /*!< \brief Sum of queries weight with second-order weight derivatives */
 
-        MatrixArray m_d2SumP, /*!< \brief Sum of relative positions with second-order weight derivatives */
-            m_d2SumN;         /*!< \brief Sum of normal vectors with second-order weight derivatives */
+        MatrixArray m_d2SumP{MatrixArray::Zero()}, /*!< \brief Sum of relative positions with second-order weight
+                                                      derivatives */
+            m_d2SumN{MatrixArray::Zero()}; /*!< \brief Sum of normal vectors with second-order weight derivatives */
 
     public:
         // results
-        Matrix m_d2Uc,      /*!< \brief Second derivative of the hyper-sphere constant term  */
-            m_d2Uq;         /*!< \brief Second derivative of the hyper-sphere quadratic term */
-        MatrixArray m_d2Ul; /*!< \brief Second derivative of the hyper-sphere linear term    */
-
+        Matrix m_d2Uc{Matrix::Zero()},           /*!< \brief Second derivative of the hyper-sphere constant term  */
+            m_d2Uq{Matrix::Zero()};              /*!< \brief Second derivative of the hyper-sphere quadratic term */
+        MatrixArray m_d2Ul{MatrixArray::Zero()}; /*!< \brief Second derivative of the hyper-sphere linear term    */
     public:
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(MlsSphereFitDer, mlsSphereFitDer)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(MlsSphereFitDer, implicitPrimitiveDer)
@@ -104,6 +105,16 @@ namespace Ponca
 
         /*! \brief Returns the second derivatives of the scalar field at the evaluation point */
         PONCA_MULTIARCH [[nodiscard]] inline VectorArray dNormal() const;
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const MlsSphereFitDer<DataPoint, _NFilter, DiffType, T>& _other) const
+        {
+            return Base::operator==(_other) && internal::isApprox(m_d2SumDotPN, _other.m_d2SumDotPN) &&
+                   internal::isApprox(m_d2SumDotPP, _other.m_d2SumDotPP) &&
+                   internal::isApprox(m_d2SumW, _other.m_d2SumW) && internal::isApprox(m_d2SumP, _other.m_d2SumP) &&
+                   internal::isApprox(m_d2SumN, _other.m_d2SumN) && internal::isApprox(m_d2Uc, _other.m_d2Uc) &&
+                   internal::isApprox(m_d2Ul, _other.m_d2Ul) && internal::isApprox(m_d2Uq, _other.m_d2Uq);
+        }
 
     }; // class MlsSphereFitDer
 

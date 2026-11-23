@@ -99,6 +99,16 @@ namespace Ponca
         PONCA_MULTIARCH inline NeighborFrame& getNeighborFrame() { return m_nFilter.frame(); }
         PONCA_MULTIARCH inline const NeighborFrame& getNeighborFrame() const { return m_nFilter.frame(); }
 
+        PONCA_MULTIARCH inline bool operator==(const BasketUnitBase<DataPoint, NeighborFilter>& other) const
+        {
+            // End of equality recursion.
+
+            // Not checking filter here, we don't have an api for this, are often parameterless, and
+            // the sum of weight is already a good approx once the fit is complete.
+            return m_nbNeighbors == other.m_nbNeighbors && internal::isApprox(m_sumW, other.m_sumW) &&
+                   m_eCurrentState == other.m_eCurrentState;
+        }
+
     public:
         /*! \return the current test of the fit */
         PONCA_MULTIARCH [[nodiscard]] inline FIT_RESULT getCurrentState() const { return m_eCurrentState; }
@@ -161,7 +171,7 @@ namespace Ponca
 
     protected:
         // computation data
-        ScalarArray m_dSumW; /*!< \brief Sum of weight derivatives */
+        ScalarArray m_dSumW{ScalarArray::Zero()}; /*!< \brief Sum of weight derivatives */
 
     public:
         /************************************************************************/
@@ -205,6 +215,11 @@ namespace Ponca
         PONCA_MULTIARCH [[nodiscard]] static inline constexpr bool isSpaceDer() { return bool(Type & FitSpaceDer); }
         /*! \brief Number of dimensions used for the differentiation */
         PONCA_MULTIARCH [[nodiscard]] static inline constexpr unsigned int derDimension() { return NbDerivatives; }
+
+        PONCA_MULTIARCH inline bool operator==(const BasketDiffUnitBase<DataPoint, _NFilter, Type, T>& other) const
+        {
+            return Base::operator==(other) && internal::isApprox(m_dSumW, other.m_dSumW);
+        }
     };
 
 } // namespace Ponca

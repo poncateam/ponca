@@ -57,13 +57,19 @@ namespace Ponca
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS(GLSParam, glsParam)
         PONCA_FITTING_DECLARE_FINALIZE
 
+        PONCA_MULTIARCH inline void init()
+        {
+            Base::init();
+            m_fitness = Scalar(0);
+        }
+
         /**************************************************************************/
         /* Use results                                                            */
         /**************************************************************************/
         /*! \brief Compute and return \f$ \tau \f$ */
         PONCA_MULTIARCH [[nodiscard]] inline Scalar tau() const
         {
-            return Base::isNormalized() ? Base::m_uc : Base::m_uc / Base::prattNorm();
+            return Base::isNormalized() ? Base::uc() : Base::uc() / Base::prattNorm();
         }
 
         /*! \brief Compute and return \f$ \eta \f$ */
@@ -111,6 +117,10 @@ namespace Ponca
             return nTau * nTau + nKappa * nKappa + nFitness * nFitness;
         }
 
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(const GLSParam<DataPoint, _NFilter, T>& _other) const
+        {
+            return Base::operator==(_other) && internal::isApprox(compareTo(_other), Scalar(0.));
+        }
     }; // class GLSParam
 
     /*!
@@ -154,8 +164,8 @@ namespace Ponca
            \param wkappa Weight applied to \f$ \kappa \f$
            \return
          */
-        PONCA_MULTIARCH inline Scalar geomVar(Scalar wtau = Scalar(1), Scalar weta = Scalar(1),
-                                              Scalar wkappa = Scalar(1)) const
+        PONCA_MULTIARCH inline Scalar geometric_variation(Scalar wtau = Scalar(1), Scalar weta = Scalar(1),
+                                                          Scalar wkappa = Scalar(1)) const
             requires ProvidesScaleDerivative<T>;
     }; // class GLSScaleDer
 

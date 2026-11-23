@@ -82,6 +82,10 @@ namespace Ponca
 
         PONCA_MULTIARCH inline const Solver& solver() const { return m_solver; }
 
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(const SphereFitImpl<DataPoint, _NFilter, T>& _other)
+        {
+            return Base::operator==(_other) && m_matA.isApprox(_other.m_matA) && m_solver.isApprox(_other.m_solver);
+        }
     }; // class SphereFit
 
     /// \brief Helper alias for Sphere fitting on 3D points using SphereFitImpl

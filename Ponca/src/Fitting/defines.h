@@ -17,6 +17,7 @@
  *
  */
 #include "../Common/defines.h"
+#include "../Common/floatutils.h"
 
 #define PONCA_EXPLICIT_CAST_OPERATOR(CONVERTER, ...)                                                 \
     /*! \brief Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage */ \

@@ -106,6 +106,12 @@ namespace Ponca
         ScalarArray m_dUq{ScalarArray::Zero()};
 
     public:
+        PONCA_MULTIARCH UnorientedSphereDerImpl()
+        {
+            for (int dim = 0; dim < Base::NbDerivatives; ++dim)
+                m_dmatA[dim].setZero();
+        }
+
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, unorientedSphereDer)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, algebraicSphereDer)
         PONCA_EXPLICIT_BASKET_CAST_OPERATORS_DER(UnorientedSphereDerImpl, implicitPrimitiveDer)
@@ -148,6 +154,14 @@ namespace Ponca
             \return false when the original sphere has already been normalized.
         */
         PONCA_MULTIARCH [[nodiscard]] inline bool applyPrattNorm();
+
+        PONCA_MULTIARCH [[nodiscard]] inline bool operator==(
+            const UnorientedSphereDerImpl<DataPoint, _NFilter, DiffType, T>& _other)
+        {
+            return Base::operator==(_other) && internal::isApprox(m_dSumDotPP, _other.m_dSumDotPP) &&
+                   internal::isApprox(m_dmatA, _other.m_dmatA) && internal::isApprox(m_dUq, _other.m_dUq) &&
+                   internal::isApprox(m_dUl, _other.m_dUl) && internal::isApprox(m_dUc, _other.m_dUc);
+        }
 
     }; // class UnorientedSphereDerImpl
 

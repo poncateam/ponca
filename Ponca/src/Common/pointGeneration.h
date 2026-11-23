@@ -196,7 +196,7 @@ namespace Ponca
             static constexpr typename DataPoint::Scalar two{2};
             auto& pos   = in.pos();
             in.normal() = typename DataPoint::VectorType(two * _a * pos.x() + _c * pos.y() + _d,
-                                                         two * _b * pos.y() + _c * pos.x() + _d, -1.)
+                                                         two * _b * pos.y() + _c * pos.x() + _e, -1.)
                               .normalized();
         }
     } // namespace internal

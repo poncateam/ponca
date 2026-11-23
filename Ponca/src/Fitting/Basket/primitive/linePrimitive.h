@@ -67,7 +67,8 @@ namespace Ponca
         /*! \brief Comparison operator */
         PONCA_MULTIARCH inline bool operator==(const Line<DataPoint, NeighborFilter, T>& other) const
         {
-            return EigenBase::isApprox(other);
+            return Base::operator==(other) && internal::isApprox(EigenBase::origin(), other.origin()) &&
+                   internal::isApprox(EigenBase::direction(), other.direction());
         }
 
         /*! \brief Comparison operator, convenience function */
@@ -135,7 +136,7 @@ namespace Ponca
         }
 
         /*! \brief Gradient of the scalar field at the line location. As it is undefined, we set it to 0.  */
-        PONCA_MULTIARCH [[nodiscard]] inline const VectorType& primitiveGradient() const { return VectorType::Zero(); }
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType primitiveGradient() const { return VectorType::Zero(); }
 
     protected:
         /// \copydoc Line::potential
