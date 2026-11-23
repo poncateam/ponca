@@ -1,9 +1,9 @@
 <map id="Ponca::OrientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;" name="Ponca::OrientedSphereFitImpl&lt; DataPoint, _NFilter, T &gt;">
-<area shape="rect" id="Node000001" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="52,144,259,412"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1OrientedSphereFitImpl.html" title=" " alt="" coords="25,574,286,910"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="156,424,158,575,153,574,155,429"/>
+<area shape="rect" id="Node000001" title="Algebraic Sphere fitting procedure on oriented point sets." alt="" coords="52,144,259,434"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1OrientedSphereFitImpl.html" title=" " alt="" coords="25,597,286,955"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="156,446,158,597,153,597,155,451"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,183,95"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,106,122,144,117,144,110,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,106,121,144,116,144,109,112"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="208,14,226,86"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,103,194,145,189,144,204,98"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,103,195,145,190,144,205,98"/>
 </map>

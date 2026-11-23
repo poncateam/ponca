@@ -11,11 +11,11 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structPonca_1_1internal_1_1Factory_1_1FactoryEntryTypeExtractor_3_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="structPonca_1_1internal_1_1Factory_1_1FactoryEntryTypeExtractor.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="149.5,-46.25 0,-46.25 0,0 149.5,0 149.5,-46.25"/>
 <text xml:space="preserve" text-anchor="start" x="8" y="-32.75" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::internal::Factory</text>
 <text xml:space="preserve" text-anchor="start" x="8" y="-20" font-family="Helvetica,sans-Serif" font-size="10.00">::FactoryEntryTypeExtractor</text>
-<text xml:space="preserve" text-anchor="middle" x="74.75" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; std::tuple&lt; Ts... &gt; &gt;</text>
+<text xml:space="preserve" text-anchor="middle" x="74.75" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; EntryList &gt;</text>
 </a>
 </g>
 </g>

@@ -111,7 +111,7 @@ var sectionId = 'dynsection-1';
 <text xml:space="preserve" text-anchor="start" x="273" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">computeWithIds()</text>
 <text xml:space="preserve" text-anchor="start" x="252.94" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text xml:space="preserve" text-anchor="start" x="273" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">getNumTriangles()</text>
-<text xml:space="preserve" text-anchor="start" x="273" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">and 12 more...</text>
+<text xml:space="preserve" text-anchor="start" x="273" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">and 13 more...</text>
 <polygon fill="#666666" stroke="#666666" points="241.12,-437.5 241.12,-437.5 382.62,-437.5 382.62,-437.5 241.12,-437.5"/>
 <polygon fill="#666666" stroke="#666666" points="241.12,-186.25 241.12,-186.25 271,-186.25 271,-186.25 241.12,-186.25"/>
 <polygon fill="#666666" stroke="#666666" points="271,-186.25 271,-186.25 382.62,-186.25 382.62,-186.25 271,-186.25"/>

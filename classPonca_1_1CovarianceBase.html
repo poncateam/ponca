@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
+   &#160;<span id="projectnumber">cb266528645085a12930c827fbb8336cd937ecbb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -126,13 +126,13 @@ $(function(){initNavTree('classPonca_1_1CovarianceBase.html','','classPonca_1_1C
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classPonca_1_1CovarianceBase__inherit__graph.svg" width="251" height="572"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classPonca_1_1CovarianceBase__inherit__graph.svg" width="251" height="483"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return dynsection.toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;"><span class="dynarrow"><span class="arrowhead closed"></span></span>Collaboration diagram for Ponca::CovarianceBase&lt; DataPoint, _NFilter, T &gt;:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classPonca_1_1CovarianceBase__coll__graph.svg" width="251" height="572"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classPonca_1_1CovarianceBase__coll__graph.svg" width="251" height="483"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -179,6 +179,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae275c953240975ceef062b2a9dadbd5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum eigenvalue \( \lambda_2 \).  <br /></td></tr>
 <tr class="memitem:ac4a6a5a6cee0d84fc66f0472c69e89be" id="r_ac4a6a5a6cee0d84fc66f0472c69e89be"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="#a29d766636244c9a696ceed2cce8c0771">Solver</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4a6a5a6cee0d84fc66f0472c69e89be">solver</a> () const</td></tr>
 <tr class="memdesc:ac4a6a5a6cee0d84fc66f0472c69e89be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reading access to the <a class="el" href="#a29d766636244c9a696ceed2cce8c0771" title="Solver used to analyse the covariance matrix.">Solver</a> used to analyze the covariance matrix.  <br /></td></tr>
+<tr class="memitem:a46a73ff946d38fd093b95df859e95a17" id="r_a46a73ff946d38fd093b95df859e95a17"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46a73ff946d38fd093b95df859e95a17">operator==</a> (const <a class="el" href="classPonca_1_1CovarianceBase.html">CovarianceBase</a>&lt; DataPoint, <a class="el" href="#a7ce9f45f50e8f0a97fb03fa3c10851fa">NeighborFilter</a>, T &gt; &amp;other) const</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-types" class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -719,6 +720,35 @@ requires ProvidesMeanPosition&lt;T&gt;</div>
  <dl class="section warning"><dt>Warning</dt><dd>Valid only in 3d </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="covariance_8h_source.html#l00070">70</a> of file <a class="el" href="covariance_8h_source.html">covariance.h</a>.</p>
+
+</div>
+</div>
+<a id="a46a73ff946d38fd093b95df859e95a17" name="a46a73ff946d38fd093b95df859e95a17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46a73ff946d38fd093b95df859e95a17">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint, class _NFilter, typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classPonca_1_1CovarianceBase.html">Ponca::CovarianceBase</a>&lt; DataPoint, _NFilter, T &gt;::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classPonca_1_1CovarianceBase.html">CovarianceBase</a>&lt; DataPoint, <a class="el" href="#a7ce9f45f50e8f0a97fb03fa3c10851fa">NeighborFilter</a>, T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="covariance_8h_source.html#l00138">138</a> of file <a class="el" href="covariance_8h_source.html">covariance.h</a>.</p>
 
 </div>
 </div>

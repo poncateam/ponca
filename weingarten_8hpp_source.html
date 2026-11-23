@@ -44,7 +44,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
+   &#160;<span id="projectnumber">cb266528645085a12930c827fbb8336cd937ecbb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -241,72 +241,72 @@ $(function(){initNavTree('weingarten_8hpp_source.html','',''); });
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>            MatrixType dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1 : 0);</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            VectorType n = Base::primitiveGradient(Base::getNeighborFilter().center());</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            n.array().abs().minCoeff(&amp;i0); <span class="comment">// i0: dimension where n extends the least</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            i1 = (i0 + 1) % 3;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            i2 = (i0 + 2) % 3;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            m_tangentBasis.col(0) = n;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            m_tangentBasis.col(1)[i0] = 0;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            m_tangentBasis.col(1)[i1] = n[i2];</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            m_tangentBasis.col(1)[i2] = -n[i1];</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            m_tangentBasis.col(1).normalize();</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            m_tangentBasis.col(2) = m_tangentBasis.col(1).cross(n);</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        }</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    }</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keyword">requires</span> NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Matrix2Derived&gt;</div>
-<div class="foldopen" id="foldopen00136" data-start="{" data-end="}">
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a3d8f2616f44ec2a2d9dafea32c1dd327">  136</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#af88be3e393e486b800941fd114d5485f">NormalDerivativeWeingartenEstimator&lt;DataPoint, _NFilter, DiffType, T&gt;::weingartenMap</a>(Matrix2Derived&amp; W)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        PONCA_MULTIARCH_STD_MATH(abs);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        PONCA_MULTIARCH_STD_MATH(sqrt);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="keyword">using </span>Index    = <span class="keyword">typename</span> VectorType::Index;</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keyword">using </span>Matrix32 = Eigen::Matrix&lt;Scalar, 3, 2&gt;;</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="comment">// Get the object space Weingarten map dN</span></div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aac7598125f5b9a2c85b61c0ca3da3338">MatrixType</a> dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1 : 0);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="comment">// Compute tangent-space change of basis function</span></div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keyword">auto</span> B = m_tangentBasis.template rightCols&lt;2&gt;();</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="comment">// Compute the 2x2 matrix representing the shape operator by transforming dN to the basis B.</span></div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="comment">// Recall that dN is a bilinear form, it thus transforms as follows:</span></div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        W = B.transpose() * dN * B;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="comment">// Recall that at this stage, the shape operator represented by W describes the normal curvature K_n(u) in the</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="comment">// direction u \in R^2 as follows:</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="comment">//   K_n(u) = u^T W u</span></div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="comment">// The principal curvatures are fully defined by the values and the directions of the extrema of K_n.</span></div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="comment">//</span></div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="comment">// If the normal field N(x) comes from the gradient of a scalar field, then N(x) is curl-free, and dN and W are</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="comment">// symmetric matrices. In this case, the extrema of the previous quadratic form are directly obtained by the</span></div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="comment">// eigenvalue decomposition of W. However, if N(x) is only an approximation of the normal field of a surface,</span></div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="comment">// then N(x) is not necessarily curl-free, and in this case W is not symmetric. In this case, we first have to</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="comment">// find an equivalent symmetric matrix W&#39; such that:</span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="comment">//   K_n(u) = u^T W&#39; u,</span></div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="comment">// for any u \in R^2.</span></div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="comment">// It is easy to see that such a W&#39; is simply obtained as:</span></div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <span class="comment">//   W&#39; = (W + W^T)/2</span></div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        W(0, 1) = W(1, 0) = (W(0, 1) + W(1, 0)) / <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#ae660ef640a524fd4641668390998acba">Scalar</a>(2);</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            <span class="comment">// Make sure m_tangentBasis is orthonormal</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            VectorType n = Base::primitiveGradient(Base::getNeighborFilter().center()).normalized();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            n.array().abs().minCoeff(&amp;i0); <span class="comment">// i0: dimension where n extends the least</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            i1 = (i0 + 1) % 3;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            i2 = (i0 + 2) % 3;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            m_tangentBasis.col(0) = n;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            m_tangentBasis.col(1)[i0] = 0;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            m_tangentBasis.col(1)[i1] = n[i2];</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            m_tangentBasis.col(1)[i2] = -n[i1];</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            m_tangentBasis.col(1).normalize();</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            m_tangentBasis.col(2) = m_tangentBasis.col(1).cross(n);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    }</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keyword">requires</span> NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Matrix2Derived&gt;</div>
+<div class="foldopen" id="foldopen00137" data-start="{" data-end="}">
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a3d8f2616f44ec2a2d9dafea32c1dd327">  137</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#af88be3e393e486b800941fd114d5485f">NormalDerivativeWeingartenEstimator&lt;DataPoint, _NFilter, DiffType, T&gt;::weingartenMap</a>(Matrix2Derived&amp; W)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        PONCA_MULTIARCH_STD_MATH(abs);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        PONCA_MULTIARCH_STD_MATH(sqrt);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keyword">using </span>Index    = <span class="keyword">typename</span> VectorType::Index;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keyword">using </span>Matrix32 = Eigen::Matrix&lt;Scalar, 3, 2&gt;;</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="comment">// Get the object space Weingarten map dN</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aac7598125f5b9a2c85b61c0ca3da3338">MatrixType</a> dN = Base::dNormal().template middleCols&lt;DataPoint::Dim&gt;(Base::isScaleDer() ? 1 : 0);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="comment">// Compute tangent-space change of basis function</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keyword">auto</span> B = m_tangentBasis.template rightCols&lt;2&gt;();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="comment">// Compute the 2x2 matrix representing the shape operator by transforming dN to the basis B.</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="comment">// Recall that dN is a bilinear form, it thus transforms as follows:</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        W = B.transpose() * dN * B;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="comment">// Recall that at this stage, the shape operator represented by W describes the normal curvature K_n(u) in the</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="comment">// direction u \in R^2 as follows:</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="comment">//   K_n(u) = u^T W u</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="comment">// The principal curvatures are fully defined by the values and the directions of the extrema of K_n.</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <span class="comment">//</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="comment">// If the normal field N(x) comes from the gradient of a scalar field, then N(x) is curl-free, and dN and W are</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="comment">// symmetric matrices. In this case, the extrema of the previous quadratic form are directly obtained by the</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="comment">// eigenvalue decomposition of W. However, if N(x) is only an approximation of the normal field of a surface,</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <span class="comment">// then N(x) is not necessarily curl-free, and in this case W is not symmetric. In this case, we first have to</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="comment">// find an equivalent symmetric matrix W&#39; such that:</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="comment">//   K_n(u) = u^T W&#39; u,</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="comment">// for any u \in R^2.</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <span class="comment">// It is easy to see that such a W&#39; is simply obtained as:</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="comment">//   W&#39; = (W + W^T)/2</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        W(0, 1) = W(1, 0) = (W(0, 1) + W(1, 0)) / <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#ae660ef640a524fd4641668390998acba">Scalar</a>(2);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    }</div>
 </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keyword">requires</span> NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a07c861be96a2d48d5299e3c55e9eb4ed">NormalDerivativeWeingartenEstimator&lt;DataPoint, _NFilter, DiffType, T&gt;::VectorType</a></div>
-<div class="foldopen" id="foldopen00174" data-start="{" data-end="}">
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aa84c6cf0d26e9146ddd8ad40e4339f81">  174</a></span>    <a class="code hl_function" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aa84c6cf0d26e9146ddd8ad40e4339f81">NormalDerivativeWeingartenEstimator&lt;DataPoint, _NFilter, DiffType, T&gt;::worldToTangentPlane</a>(</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a07c861be96a2d48d5299e3c55e9eb4ed">VectorType</a>&amp; _q, <span class="keywordtype">bool</span> _isPositionVector)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordflow">return</span> m_tangentBasis.normalized().transpose() *</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>               Base::getNeighborFrame().convertToLocalBasis(_q, _isPositionVector);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keywordtype">int</span> DiffType, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keyword">requires</span> NORMAL_DERIVATIVE_WEINGARTEN_ESTIMATOR_REQUIREMENTS</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keyword">typename</span> <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a07c861be96a2d48d5299e3c55e9eb4ed">NormalDerivativeWeingartenEstimator&lt;DataPoint, _NFilter, DiffType, T&gt;::VectorType</a></div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="}">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aa84c6cf0d26e9146ddd8ad40e4339f81">  175</a></span>    <a class="code hl_function" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aa84c6cf0d26e9146ddd8ad40e4339f81">NormalDerivativeWeingartenEstimator&lt;DataPoint, _NFilter, DiffType, T&gt;::worldToTangentPlane</a>(</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a07c861be96a2d48d5299e3c55e9eb4ed">VectorType</a>&amp; _q, <span class="keywordtype">bool</span> _isPositionVector)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordflow">return</span> m_tangentBasis.transpose() * Base::getNeighborFrame().convertToLocalBasis(_q, _isPositionVector);</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    }</div>
 </div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
@@ -317,41 +317,40 @@ $(function(){initNavTree('weingarten_8hpp_source.html','',''); });
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a9eaa9d5f8bb98fcaf0085d8a04a92312">  184</a></span>    <a class="code hl_function" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a9eaa9d5f8bb98fcaf0085d8a04a92312">NormalDerivativeWeingartenEstimator&lt;DataPoint, _NFilter, DiffType, T&gt;::tangentPlaneToWorld</a>(</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a07c861be96a2d48d5299e3c55e9eb4ed">VectorType</a>&amp; _lq, <span class="keywordtype">bool</span> _isPositionVector)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keywordflow">return</span> Base::getNeighborFrame().convertToGlobalBasis(m_tangentBasis.normalized().transpose().inverse() * _lq,</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                                                             _isPositionVector);</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keywordflow">return</span> Base::getNeighborFrame().convertToGlobalBasis(m_tangentBasis * _lq, _isPositionVector);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    }</div>
 </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca_1_1internal.html">internal</a></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    {</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>            <span class="keyword">requires</span> WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> WeingartenCurvatureEstimatorBase&lt;DataPoint, _NFilter, T&gt;::finalize()</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        {</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <span class="keywordflow">if</span> (Base::finalize() != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            Matrix2 w;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            Base::weingartenMap(w);</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            m_solver.computeDirect(w);</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        }</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    } <span class="comment">// namespace internal</span></div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>} <span class="comment">// namespace Ponca</span></div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
-<div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html">Ponca::FundamentalFormWeingartenEstimator</a></div><div class="ttdoc">Compute a Weingarten map from fundamental forms.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00041">weingarten.h:42</a></div></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keyword">namespace </span><a class="code hl_namespace" href="namespacePonca_1_1internal.html">internal</a></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    {</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keyword">template</span> &lt;<span class="keyword">class</span> DataPo<span class="keywordtype">int</span>, <span class="keyword">class</span> _NFilter, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            <span class="keyword">requires</span> WIENGARTEN_CURVATURE_ESTIMATOR_REQUIREMENTS</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <a class="code hl_enumeration" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">FIT_RESULT</a> WeingartenCurvatureEstimatorBase&lt;DataPoint, _NFilter, T&gt;::finalize()</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>            <span class="keywordflow">if</span> (Base::finalize() != <a class="code hl_enumvalue" href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a86d1e5381a39092fbe5560583c23d64c">STABLE</a>)</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>            Matrix2 w;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            Base::weingartenMap(w);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            m_solver.computeDirect(w);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        }</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    } <span class="comment">// namespace internal</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>} <span class="comment">// namespace Ponca</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html">Ponca::FundamentalFormWeingartenEstimator</a></div><div class="ttdoc">Compute a Weingarten map from fundamental forms.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00043">weingarten.h:44</a></div></div>
 <div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html_a0fe3e5edd1eedf864247ffb3be16e014"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html#a0fe3e5edd1eedf864247ffb3be16e014">Ponca::FundamentalFormWeingartenEstimator::GaussianCurvature</a></div><div class="ttdeci">Scalar GaussianCurvature() const</div><div class="ttdoc">Returns an estimate of the Gaussian curvature directly from the fundamental forms.</div><div class="ttdef"><b>Definition</b> <a href="#l00077">weingarten.hpp:77</a></div></div>
 <div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html_a764e49c1002d6dbb1420659813a27267"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html#a764e49c1002d6dbb1420659813a27267">Ponca::FundamentalFormWeingartenEstimator::kMean</a></div><div class="ttdeci">Scalar kMean() const</div><div class="ttdoc">Returns an estimate of the mean curvature directly from the fundamental forms.</div><div class="ttdef"><b>Definition</b> <a href="#l00066">weingarten.hpp:66</a></div></div>
 <div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html_a79556d50004d07e28f182933ea0effa8"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html#a79556d50004d07e28f182933ea0effa8">Ponca::FundamentalFormWeingartenEstimator::weingartenMap</a></div><div class="ttdeci">Matrix2 weingartenMap() const</div><div class="ttdoc">Returns the Weingarten Map.</div><div class="ttdef"><b>Definition</b> <a href="#l00048">weingarten.hpp:48</a></div></div>
-<div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html_a7f92d4621d13b47b334bf49d8c7b949c"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html#a7f92d4621d13b47b334bf49d8c7b949c">Ponca::FundamentalFormWeingartenEstimator::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00043">weingarten.h:43</a></div></div>
+<div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html_a7f92d4621d13b47b334bf49d8c7b949c"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html#a7f92d4621d13b47b334bf49d8c7b949c">Ponca::FundamentalFormWeingartenEstimator::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00045">weingarten.h:45</a></div></div>
 <div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html_aac9788dcb44c865c86b008f17d562ad7"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html#aac9788dcb44c865c86b008f17d562ad7">Ponca::FundamentalFormWeingartenEstimator::secondFundamentalForm</a></div><div class="ttdeci">Matrix2 secondFundamentalForm() const</div><div class="ttdoc">Assembles and returns the second fundamental form from the base class.</div><div class="ttdef"><b>Definition</b> <a href="#l00029">weingarten.hpp:29</a></div></div>
 <div class="ttc" id="aclassPonca_1_1FundamentalFormWeingartenEstimator_html_aafbaeafa592fb99c52bdc3a691ee90e5"><div class="ttname"><a href="classPonca_1_1FundamentalFormWeingartenEstimator.html#aafbaeafa592fb99c52bdc3a691ee90e5">Ponca::FundamentalFormWeingartenEstimator::firstFundamentalForm</a></div><div class="ttdeci">Matrix2 firstFundamentalForm() const</div><div class="ttdoc">Assembles and returns the first fundamental form from the base class.</div><div class="ttdef"><b>Definition</b> <a href="#l00010">weingarten.hpp:10</a></div></div>
-<div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_a07c861be96a2d48d5299e3c55e9eb4ed"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a07c861be96a2d48d5299e3c55e9eb4ed">Ponca::NormalDerivativeWeingartenEstimator::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00112">weingarten.h:112</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_a07c861be96a2d48d5299e3c55e9eb4ed"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a07c861be96a2d48d5299e3c55e9eb4ed">Ponca::NormalDerivativeWeingartenEstimator::VectorType</a></div><div class="ttdeci">typename Base::VectorType VectorType</div><div class="ttdoc">Alias to vector type.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00114">weingarten.h:114</a></div></div>
 <div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_a9eaa9d5f8bb98fcaf0085d8a04a92312"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#a9eaa9d5f8bb98fcaf0085d8a04a92312">Ponca::NormalDerivativeWeingartenEstimator::tangentPlaneToWorld</a></div><div class="ttdeci">VectorType tangentPlaneToWorld(const VectorType &amp;_q, bool _isPositionVector=true) const</div><div class="ttdoc">Transform a point from the tangent plane [h, u, v]^T to ambient space.</div><div class="ttdef"><b>Definition</b> <a href="#l00184">weingarten.hpp:184</a></div></div>
-<div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_aa84c6cf0d26e9146ddd8ad40e4339f81"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aa84c6cf0d26e9146ddd8ad40e4339f81">Ponca::NormalDerivativeWeingartenEstimator::worldToTangentPlane</a></div><div class="ttdeci">VectorType worldToTangentPlane(const VectorType &amp;_q, bool _isPositionVector=true) const</div><div class="ttdoc">Express a point in ambient space relatively to the tangent plane.</div><div class="ttdef"><b>Definition</b> <a href="#l00174">weingarten.hpp:174</a></div></div>
-<div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_aac7598125f5b9a2c85b61c0ca3da3338"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aac7598125f5b9a2c85b61c0ca3da3338">Ponca::NormalDerivativeWeingartenEstimator::MatrixType</a></div><div class="ttdeci">typename DataPoint::MatrixType MatrixType</div><div class="ttdoc">Alias to matrix type.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00113">weingarten.h:113</a></div></div>
-<div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_ae660ef640a524fd4641668390998acba"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#ae660ef640a524fd4641668390998acba">Ponca::NormalDerivativeWeingartenEstimator::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00112">weingarten.h:112</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_aa84c6cf0d26e9146ddd8ad40e4339f81"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aa84c6cf0d26e9146ddd8ad40e4339f81">Ponca::NormalDerivativeWeingartenEstimator::worldToTangentPlane</a></div><div class="ttdeci">VectorType worldToTangentPlane(const VectorType &amp;_q, bool _isPositionVector=true) const</div><div class="ttdoc">Express a point in ambient space relatively to the tangent plane.</div><div class="ttdef"><b>Definition</b> <a href="#l00175">weingarten.hpp:175</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_aac7598125f5b9a2c85b61c0ca3da3338"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#aac7598125f5b9a2c85b61c0ca3da3338">Ponca::NormalDerivativeWeingartenEstimator::MatrixType</a></div><div class="ttdeci">typename DataPoint::MatrixType MatrixType</div><div class="ttdoc">Alias to matrix type.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00115">weingarten.h:115</a></div></div>
+<div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_ae660ef640a524fd4641668390998acba"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#ae660ef640a524fd4641668390998acba">Ponca::NormalDerivativeWeingartenEstimator::Scalar</a></div><div class="ttdeci">typename DataPoint::Scalar Scalar</div><div class="ttdoc">Alias to scalar type.</div><div class="ttdef"><b>Definition</b> <a href="weingarten_8h_source.html#l00114">weingarten.h:114</a></div></div>
 <div class="ttc" id="aclassPonca_1_1NormalDerivativeWeingartenEstimator_html_af88be3e393e486b800941fd114d5485f"><div class="ttname"><a href="classPonca_1_1NormalDerivativeWeingartenEstimator.html#af88be3e393e486b800941fd114d5485f">Ponca::NormalDerivativeWeingartenEstimator::weingartenMap</a></div><div class="ttdeci">Matrix2 weingartenMap() const</div><div class="ttdoc">Returns the Weingarten Map.</div><div class="ttdef"><b>Definition</b> <a href="#l00089">weingarten.hpp:89</a></div></div>
 <div class="ttc" id="anamespacePonca_1_1internal_html"><div class="ttname"><a href="namespacePonca_1_1internal.html">Ponca::internal</a></div><div class="ttdoc">Copyright (c) 2022 Jacques-Olivier Lachaud (jacques-olivier.lachaud@univ-savoie.fr) Laboratory of Mat...</div><div class="ttdef"><b>Definition</b> <a href="iteratorUtils_8h_source.html#l00016">iteratorUtils.h:17</a></div></div>
 <div class="ttc" id="anamespacePonca_html"><div class="ttname"><a href="namespacePonca.html">Ponca</a></div><div class="ttdoc">This Source Code Form is subject to the terms of the Mozilla Public License, v.</div><div class="ttdef"><b>Definition</b> <a href="Common_2concepts_8h_source.html#l00010">concepts.h:11</a></div></div>

@@ -1,9 +1,9 @@
 <map id="Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::CovariancePlaneDerImpl&lt; DataPoint, _NFilter, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title="[CovariancePlaneFit Definition]" alt="" coords="59,144,248,384"/>
-<area shape="rect" id="Node000004" href="$classPonca_1_1CovariancePlaneDerImpl.html" title=" " alt="" coords="47,547,260,838"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,397,156,547,151,547,153,402"/>
+<area shape="rect" id="Node000001" title="[CovariancePlaneFit Definition]" alt="" coords="59,144,248,429"/>
+<area shape="rect" id="Node000004" href="$classPonca_1_1CovariancePlaneDerImpl.html" title=" " alt="" coords="47,591,260,927"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,442,156,592,151,591,153,447"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,182,95"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,106,123,144,117,145,110,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,106,120,144,115,144,109,112"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="206,14,224,86"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,100,191,145,185,144,202,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,103,193,145,188,144,203,98"/>
 </map>

@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['implicitprimitiveprovider_0',['ImplicitPrimitiveProvider',['../structPonca_1_1ImplicitPrimitiveProvider.html',1,'Ponca']]],
-  ['indexsquareddistance_1',['IndexSquaredDistance',['../structPonca_1_1IndexSquaredDistance.html',1,'Ponca']]],
-  ['indexsquareddistance_3c_20indextype_2c_20scalar_20_3e_2',['IndexSquaredDistance&lt; IndexType, Scalar &gt;',['../structPonca_1_1IndexSquaredDistance.html',1,'Ponca']]]
+  ['hasfirstfundamentalform_0',['hasFirstFundamentalForm',['../structPonca_1_1hasFirstFundamentalForm.html',1,'Ponca']]],
+  ['hasfirstfundamentalform_3c_20t_2c_20std_3a_3avoid_5ft_3c_20decltype_28std_3a_3adeclval_3c_20t_20_3e_28_29_2efirstfundamentalform_28_29_29_3e_20_3e_1',['hasFirstFundamentalForm&lt; T, std::void_t&lt; decltype(std::declval&lt; T &gt;().firstFundamentalForm())&gt; &gt;',['../structPonca_1_1hasFirstFundamentalForm_3_01T_00_01std_1_1void__t_3_01decltype_07std_1_1declval_3c934b077c941f2ac88d2ec4e8e15ad41.html',1,'Ponca']]],
+  ['hashdefaultfunctor_2',['HashDefaultFunctor',['../structPonca_1_1HashDefaultFunctor.html',1,'Ponca']]],
+  ['hashset_3',['HashSet',['../classPonca_1_1HashSet.html',1,'Ponca']]],
+  ['hashset_3c_20k_5fmax_5fnn_20_3e_4',['HashSet&lt; K_MAX_NN &gt;',['../classPonca_1_1HashSet.html',1,'Ponca']]],
+  ['hashset_3c_20n_2c_20t_2c_20_5fhashfunctor_2c_20offset_20_3e_5',['HashSet&lt; N, T, _HashFunctor, OFFSET &gt;',['../classPonca_1_1HashSet.html',1,'Ponca']]],
+  ['heightfield_6',['HeightField',['../classPonca_1_1HeightField.html',1,'Ponca']]],
+  ['heightfieldprovider_7',['HeightFieldProvider',['../structPonca_1_1HeightFieldProvider.html',1,'Ponca']]],
+  ['hexagrambase_8',['HexagramBase',['../structPonca_1_1internal_1_1HexagramBase.html',1,'Ponca::internal']]]
 ];

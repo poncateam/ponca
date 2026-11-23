@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,99,123,126"/>
+<area shape="rect" id="Node000001" href="$structPonca_1_1hasFirstFundamentalForm_3_01T_00_01std_1_1void__t_3_01decltype_07std_1_1declval_3c934b077c941f2ac88d2ec4e8e15ad41.html" title=" " alt="" coords="171,5,434,84"/>
+<area shape="poly" id="edge211_Node000000_Node000001" title=" " alt="" coords="129,92,173,81,168,83,131,97"/>
+<area shape="rect" id="Node000003" href="$structPonca_1_1hasFirstFundamentalForm.html" title="\FIXME create a macro to automatically generate the testing functions" alt="" coords="200,108,404,152"/>
+<area shape="poly" id="edge212_Node000000_Node000003" title=" " alt="" coords="138,115,202,122,197,123,138,121"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="8,31,120,58"/>
+<area shape="poly" id="edge213_Node000002_Node000001" title=" " alt="" coords="135,42,173,44,168,46,136,47"/>
+</map>

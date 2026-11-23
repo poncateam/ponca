@@ -46,8 +46,8 @@
 <text xml:space="preserve" text-anchor="start" x="4" y="-74.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text xml:space="preserve" text-anchor="start" x="16.25" y="-74.25" font-family="Helvetica,sans-Serif" font-size="10.00">isValid()</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="16.25" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator==()</text>
-<text xml:space="preserve" text-anchor="start" x="16.25" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">and 8 more...</text>
+<text xml:space="preserve" text-anchor="start" x="16.25" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">isApprox()</text>
+<text xml:space="preserve" text-anchor="start" x="16.25" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">and 9 more...</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text xml:space="preserve" text-anchor="start" x="16.25" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">potentialLocal()</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>

@@ -1,14 +1,7 @@
 var searchData=
 [
-  ['plane_0',['Plane',['../classPonca_1_1Plane.html',1,'Ponca']]],
-  ['planeprovider_1',['PlaneProvider',['../structPonca_1_1PlaneProvider.html',1,'Ponca']]],
-  ['pointposition_2',['PointPosition',['../classPonca_1_1PointPosition.html',1,'Ponca']]],
-  ['pointpositionnormal_3',['PointPositionNormal',['../classPonca_1_1PointPositionNormal.html',1,'Ponca']]],
-  ['pointpositionnormalbinding_4',['PointPositionNormalBinding',['../classPonca_1_1PointPositionNormalBinding.html',1,'Ponca']]],
-  ['pointpositionnormallazybinding_5',['PointPositionNormalLazyBinding',['../classPonca_1_1PointPositionNormalLazyBinding.html',1,'Ponca']]],
-  ['polynomialsmoothweightkernel_6',['PolynomialSmoothWeightKernel',['../classPonca_1_1PolynomialSmoothWeightKernel.html',1,'Ponca']]],
-  ['positioncovarianceprovider_7',['PositionCovarianceProvider',['../structPonca_1_1PositionCovarianceProvider.html',1,'Ponca']]],
-  ['pred_8',['pred',['../structPonca_1_1MethodProvider_1_1pred.html',1,'Ponca::MethodProvider']]],
-  ['principalcurvaturesprovider_9',['PrincipalCurvaturesProvider',['../structPonca_1_1PrincipalCurvaturesProvider.html',1,'Ponca']]],
-  ['projectionoperatorprovider_10',['ProjectionOperatorProvider',['../structPonca_1_1ProjectionOperatorProvider.html',1,'Ponca']]]
+  ['orientedspherederimpl_0',['OrientedSphereDerImpl',['../classPonca_1_1OrientedSphereDerImpl.html',1,'Ponca']]],
+  ['orientedspherederimpl_3c_20datapoint_2c_20_5fnfilter_2c_20difftype_2c_20meanpositionder_3c_20datapoint_2c_20_5fnfilter_2c_20difftype_2c_20t_20_3e_20_3e_1',['OrientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt;',['../classPonca_1_1OrientedSphereDerImpl.html',1,'Ponca']]],
+  ['orientedspherefitimpl_2',['OrientedSphereFitImpl',['../classPonca_1_1OrientedSphereFitImpl.html',1,'Ponca']]],
+  ['orientedspherefitimpl_3c_20datapoint_2c_20_5fnfilter_2c_20meanposition_3c_20datapoint_2c_20_5fnfilter_2c_20meannormal_3c_20datapoint_2c_20_5fnfilter_2c_20algebraicsphere_3c_20datapoint_2c_20_5fnfilter_2c_20t_20_3e_20_3e_20_3e_20_3e_3',['OrientedSphereFitImpl&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, MeanNormal&lt; DataPoint, _NFilter, AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; &gt; &gt; &gt;',['../classPonca_1_1OrientedSphereFitImpl.html',1,'Ponca']]]
 ];

@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
+   &#160;<span id="projectnumber">cb266528645085a12930c827fbb8336cd937ecbb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -137,16 +137,42 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] Made setNeighborFilter return a boolean to indicates filter validity (#350)
     - [fitting] Remove parameterless requirements for implicit primitive (#360)
     - [fitting] Finalize and compute are now marked as [[nodiscard]] (#362)
+    - [fitting] AlgebraicSphere parameters are now protected but expose a function instead (#359)
+    - [common] Add relaxed isApprox checks (#359)
 
 - Bug-fixes and code improvements
     - [fitting] Fix out-of-bound SegFault in CNC (#344)
     - [fitting] Fix fit inconsistent fit status (#362)
     - [common] Add default instantiation mode to reduce default compile time (#355)
     - [spatialPartitioning] Fix access violation in KdTree construction (#360)
+    - [fitting] Fix polynomial weight kernel that had wrong derivatives (#359)
+    - [fitting] Fix unorientedShpereFit finalize derivative computation (#359)
+    - [fitting] Fix CompactExpWeightKernel second order derivative (#359)
+    - [fitting] Fix algebraicSphere::kMean not normalizing sphere if necessary (#359)
+    - [fitting] Fix sphereFit not working for perfect spheres (#359)
+    - [fitting] Fix weingarten solve for symetric matrices when the matrix isn't symmetric (#359)
+    - [fitting] Fix monge patch second fundamental form only on unit normal (#359) 
+    - [fitting] Fix CNC accepting only const range indices when kdtree can not produce them (#359) 
+    - [fitting] CNC now warns for incorrect (or missing) normal (#359)
+    - [fitting] Fix CovariancePlaneFitDer derivative formula (#359)
+    - [fitting] Fix weingarten curvature direction not being normalized (#359)
+    - [fitting] Fit uninitialized read and potential reuse (#359)
+    - [fitting] Change GeomVar concept to reduce conflict between cast and results (#359)
+    - [fitting] Add equality operator to fit (#359)
+    - [fitting] Fix RestrictedQuadraticHeightField cast operator not returning the correct reference (#359)
+    - [fitting] Fix Line::primitiveGradient returning dangling reference (#359)
+    - [fitting] Fix factory returning wrong object for MeanNormal (#359)
+    - [fitting] Fix left over comma for cuda compilation (#359)
+    - [fitting] Fix covariance using wrong solver for cpu computation when cuda is enabled (#359)
+    - [fitting] Add getNeighborFilter function to CNC (#359)
+    - [tests] Fix monge patch tests where plane were still too steep (#359)
+    - [tests] Fix paraboloid normal utilities using wrong coefficient (#359)
 
 - CI/Actions
     - [ci] Fail PR tests if CHANGELOG has not been modified (#345)
     - [ci] CI to check cuda *compilation* (#354)
+    - [ci] Disable instantiation in debug compilation (#359)
+    - [ci] Split ctest coverage and codecov (#359) 
 
 --------------------------------------------------------------------------------
 v.2.0.alpha3

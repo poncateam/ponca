@@ -27,28 +27,28 @@
 <text xml:space="preserve" text-anchor="start" x="44.5" y="-221" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::GLSDer&lt; DataPoint,</text>
 <text xml:space="preserve" text-anchor="start" x="56.5" y="-208.25" font-family="Helvetica,sans-Serif" font-size="10.00"> _NFilter, DiffType, T &gt;</text>
 <text xml:space="preserve" text-anchor="start" x="109.75" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-174.75" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-174.75" font-family="Helvetica,sans-Serif" font-size="10.00">glsDer()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-158" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-158" font-family="Helvetica,sans-Serif" font-size="10.00">glsDer()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-141.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-141.25" font-family="Helvetica,sans-Serif" font-size="10.00">geomVar()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-124.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-124.5" font-family="Helvetica,sans-Serif" font-size="10.00">geomVar()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-107.75" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-107.75" font-family="Helvetica,sans-Serif" font-size="10.00">dtau()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-91" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-91" font-family="Helvetica,sans-Serif" font-size="10.00">deta()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-74.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-74.25" font-family="Helvetica,sans-Serif" font-size="10.00">dkappa()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">dtau_normalized()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">deta_normalized()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">dkappa_normalized()</text>
-<text xml:space="preserve" text-anchor="start" x="49.12" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="66" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">geomVar()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-174.75" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-174.75" font-family="Helvetica,sans-Serif" font-size="10.00">glsDer()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-158" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-158" font-family="Helvetica,sans-Serif" font-size="10.00">glsDer()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-141.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-141.25" font-family="Helvetica,sans-Serif" font-size="10.00">geomVar()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-124.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-124.5" font-family="Helvetica,sans-Serif" font-size="10.00">geomVar()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-107.75" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-107.75" font-family="Helvetica,sans-Serif" font-size="10.00">dtau()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-91" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-91" font-family="Helvetica,sans-Serif" font-size="10.00">deta()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-74.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-74.25" font-family="Helvetica,sans-Serif" font-size="10.00">dkappa()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">dtau_normalized()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">deta_normalized()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">dkappa_normalized()</text>
+<text xml:space="preserve" text-anchor="start" x="48.38" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text xml:space="preserve" text-anchor="start" x="64.5" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">geometric_variation()</text>
 <polygon fill="#666666" stroke="#666666" points="40.5,-203 40.5,-203 182,-203 182,-203 40.5,-203"/>
 <polygon fill="#666666" stroke="#666666" points="40.5,-186.25 40.5,-186.25 182,-186.25 182,-186.25 40.5,-186.25"/>
 <polygon fill="none" stroke="#666666" points="40.5,0 40.5,-234.5 182,-234.5 182,0 40.5,0"/>

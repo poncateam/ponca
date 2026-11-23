@@ -1,5 +1,12 @@
 var NAVTREEINDEX4 =
 {
+"example_sycl_basic_page.html":[3,7],
+"example_sycl_kdtree_page.html":[3,11],
+"fitting.html":[7,1],
+"fitting.html#crtpestimator":[7,1,6,0],
+"fitting.html#evaluation_schemes":[7,1,2],
+"fitting.html#fitting_Checkstatus":[7,1,1,3],
+"fitting.html#fitting_Define":[7,1,1,1],
 "fitting.html#fitting_Fitting":[7,1,1,2],
 "fitting.html#fitting_advanced":[7,1,7],
 "fitting.html#fitting_cast":[7,1,6,1,2],
@@ -242,12 +249,5 @@ var NAVTREEINDEX4 =
 "structPonca_1_1NeighborGraphPointerTraits.html#a58e2d6058a1af548a73e3ea8740e73e4":[9,0,0,137,0],
 "structPonca_1_1NeighborGraphPointerTraits.html#a5dd04523bbb1e1f2d071de5ffad36bac":[9,0,0,137,4],
 "structPonca_1_1NeighborGraphPointerTraits.html#a5ec9517d765a3f1af4d3840fd9ead3bb":[9,0,0,137,6],
-"structPonca_1_1NeighborGraphPointerTraits.html#a9ff913c8b63153acabd86c5ab64ddbae":[9,0,0,137,2],
-"structPonca_1_1NeighborGraphPointerTraits.html#ac146fa5801c9366c08048f0b3a92ecc5":[9,0,0,137,3],
-"structPonca_1_1NeighborGraphQueryOutputType.html":[9,0,0,138],
-"structPonca_1_1NoWeightFilter.html":[9,0,0,94],
-"structPonca_1_1NoWeightFilterGlobal.html":[9,0,0,95],
-"structPonca_1_1NotAlgebraicSphereProvider.html":[9,0,0,64],
-"structPonca_1_1NotDerivativesProvider.html":[9,0,0,58],
-"structPonca_1_1NotGLSParamProvider.html":[9,0,0,70]
+"structPonca_1_1NeighborGraphPointerTraits.html#a9ff913c8b63153acabd86c5ab64ddbae":[9,0,0,137,2]
 };

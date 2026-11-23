@@ -17,7 +17,7 @@ var classPonca_1_1Line =
     [ "potential", "classPonca_1_1Line.html#a364d22dedcab53da0c833d107cfae1e5", null ],
     [ "potential", "classPonca_1_1Line.html#ac88245e122ea4618a10298b9d6881268", null ],
     [ "potentialLocal", "classPonca_1_1Line.html#a32f2e9a3ebbda61074e537d80058aa8b", null ],
-    [ "primitiveGradient", "classPonca_1_1Line.html#a02520da58d8a05513222eab24653f09d", null ],
+    [ "primitiveGradient", "classPonca_1_1Line.html#af386e27bf27f6af53954779670b43bcf", null ],
     [ "primitiveGradient", "classPonca_1_1Line.html#a767e80cb44c1362e17553f2ab4d420ee", null ],
     [ "project", "classPonca_1_1Line.html#ab5c66daf09bbd8d142952872a4c3c59e", null ],
     [ "projectionOperator", "classPonca_1_1Line.html#a32dc2d30f0f8aada7fb4826b66ec9217", null ],

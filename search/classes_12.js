@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['unorientedspherederimpl_0',['UnorientedSphereDerImpl',['../classPonca_1_1UnorientedSphereDerImpl.html',1,'Ponca']]],
-  ['unorientedspherederimpl_3c_20datapoint_2c_20_5fnfilter_2c_20difftype_2c_20meanpositionder_3c_20datapoint_2c_20_5fnfilter_2c_20difftype_2c_20t_20_3e_20_3e_1',['UnorientedSphereDerImpl&lt; DataPoint, _NFilter, DiffType, MeanPositionDer&lt; DataPoint, _NFilter, DiffType, T &gt; &gt;',['../classPonca_1_1UnorientedSphereDerImpl.html',1,'Ponca']]],
-  ['unorientedspherefitimpl_2',['UnorientedSphereFitImpl',['../classPonca_1_1UnorientedSphereFitImpl.html',1,'Ponca']]],
-  ['unorientedspherefitimpl_3c_20datapoint_2c_20_5fnfilter_2c_20meanposition_3c_20datapoint_2c_20_5fnfilter_2c_20algebraicsphere_3c_20datapoint_2c_20_5fnfilter_2c_20t_20_3e_20_3e_20_3e_3',['UnorientedSphereFitImpl&lt; DataPoint, _NFilter, MeanPosition&lt; DataPoint, _NFilter, AlgebraicSphere&lt; DataPoint, _NFilter, T &gt; &gt; &gt;',['../classPonca_1_1UnorientedSphereFitImpl.html',1,'Ponca']]]
+  ['tangentplanebasisprovider_0',['TangentPlaneBasisProvider',['../structPonca_1_1TangentPlaneBasisProvider.html',1,'Ponca']]],
+  ['triangle_1',['Triangle',['../structPonca_1_1internal_1_1Triangle.html',1,'Ponca::internal']]],
+  ['trianglegenerator_2',['TriangleGenerator',['../structPonca_1_1internal_1_1TriangleGenerator.html',1,'Ponca::internal']]],
+  ['trianglegenerator_3c_20avghexagramgeneration_2c_20p_20_3e_3',['TriangleGenerator&lt; AvgHexagramGeneration, P &gt;',['../structPonca_1_1internal_1_1TriangleGenerator_3_01AvgHexagramGeneration_00_01P_01_4.html',1,'Ponca::internal']]],
+  ['trianglegenerator_3c_20hexagramgeneration_2c_20p_20_3e_4',['TriangleGenerator&lt; HexagramGeneration, P &gt;',['../structPonca_1_1internal_1_1TriangleGenerator_3_01HexagramGeneration_00_01P_01_4.html',1,'Ponca::internal']]],
+  ['trianglegenerator_3c_20independentgeneration_2c_20p_20_3e_5',['TriangleGenerator&lt; IndependentGeneration, P &gt;',['../structPonca_1_1internal_1_1TriangleGenerator_3_01IndependentGeneration_00_01P_01_4.html',1,'Ponca::internal']]],
+  ['trianglegenerator_3c_20uniformgeneration_2c_20p_20_3e_6',['TriangleGenerator&lt; UniformGeneration, P &gt;',['../structPonca_1_1internal_1_1TriangleGenerator_3_01UniformGeneration_00_01P_01_4.html',1,'Ponca::internal']]]
 ];

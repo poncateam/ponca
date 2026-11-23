@@ -11,10 +11,10 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="classPonca_1_1PointPositionNormalBinding.html" target="_top" xlink:title="Variant of the PointPositionNormal data type that uses external raw data.">
+<g id="a_Node000000"><a xlink:href="classPonca_1_1PointPositionNormal.html" target="_top" xlink:title="Point data type containing the position and normal vectors.">
 <polygon fill="white" stroke="#666666" points="151,-33.5 0,-33.5 0,0 151,0 151,-33.5"/>
 <text xml:space="preserve" text-anchor="start" x="8" y="-20" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::PointPositionNormal</text>
-<text xml:space="preserve" text-anchor="middle" x="75.5" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">Binding&lt; _Scalar, _Dim &gt;</text>
+<text xml:space="preserve" text-anchor="middle" x="75.5" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; _Scalar, _Dim &gt;</text>
 </a>
 </g>
 </g>

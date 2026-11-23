@@ -1,6 +1,10 @@
 var NAVTREEINDEX2 =
 {
+"classPonca_1_1Line.html#ae1b49c4778d74c964e70b5a8dd24102e":[9,0,0,39,0],
+"classPonca_1_1Line.html#ae7179e684e87f56f4070a6d74672ccd4":[9,0,0,39,12],
+"classPonca_1_1Line.html#aeab6841b8a07a4ffed25f4cd65de18f6":[9,0,0,39,21],
 "classPonca_1_1Line.html#aec54c6433366eff8756c27b77ecf84b5":[9,0,0,39,4],
+"classPonca_1_1Line.html#af386e27bf27f6af53954779670b43bcf":[9,0,0,39,17],
 "classPonca_1_1Line.html#aff2d28ccac91b77a32c5d6474a3e0a89":[9,0,0,39,9],
 "classPonca_1_1MeanPlaneFitImpl.html":[9,0,0,29],
 "classPonca_1_1MeanPlaneFitImpl.html#a193b478b3a7e96e9f9ee1335c2813878":[9,0,0,29,1],
@@ -245,9 +249,5 @@ var NAVTREEINDEX2 =
 "classPonca_1_1QuadraticHeightField.html#a6e2233e52bf83f84a2b6c3db13f9d8fd":[9,0,0,19,18],
 "classPonca_1_1QuadraticHeightField.html#a768ecf29239d53ac4fe03f4a7eebc1c1":[9,0,0,19,4],
 "classPonca_1_1QuadraticHeightField.html#a83751aeceb7c1779aa672b6f66915fec":[9,0,0,19,7],
-"classPonca_1_1QuadraticHeightField.html#a83a31e9520f28471565b154b3ebe0e88":[9,0,0,19,0],
-"classPonca_1_1QuadraticHeightField.html#a854f10adda141979e8569913727a0412":[9,0,0,19,8],
-"classPonca_1_1QuadraticHeightField.html#a949ff978e770c223b0940158ccf8121f":[9,0,0,19,6],
-"classPonca_1_1QuadraticHeightField.html#a9547a07f49c2739c823ad8613d76af09":[9,0,0,19,16],
-"classPonca_1_1QuadraticHeightField.html#a9f663a56cbf0a701c1860ce95aa610f7":[9,0,0,19,14]
+"classPonca_1_1QuadraticHeightField.html#a83a31e9520f28471565b154b3ebe0e88":[9,0,0,19,0]
 };

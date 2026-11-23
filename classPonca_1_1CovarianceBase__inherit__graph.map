@@ -1,7 +1,7 @@
 <map id="Ponca::CovarianceBase&lt; DataPoint, _NFilter, T &gt;" name="Ponca::CovarianceBase&lt; DataPoint, _NFilter, T &gt;">
-<area shape="rect" id="Node000001" title="Procedure that compute and decompose the covariance matrix of the neighbors positions." alt="" coords="66,143,245,567"/>
+<area shape="rect" id="Node000001" title="Procedure that compute and decompose the covariance matrix of the neighbors positions." alt="" coords="66,143,245,478"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,183,95"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,107,115,143,110,143,106,112"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,106,119,143,113,143,108,112"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="208,14,226,86"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,98,201,144,196,142,206,103"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="206,98,197,144,192,142,204,103"/>
 </map>

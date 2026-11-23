@@ -44,7 +44,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
+   &#160;<span id="projectnumber">cb266528645085a12930c827fbb8336cd937ecbb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -151,7 +151,7 @@ $(function(){initNavTree('covariance_8hpp_source.html','',''); });
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">auto</span> centroid = Base::barycenterLocal();</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    m_cov         = m_cov / Base::getWeightSum() - centroid * centroid.transpose();</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#ifdef __CUDACC__</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#ifdef __CUDA_ARCH__</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    m_solver.computeDirect(m_cov);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    m_solver.compute(m_cov);</div>
@@ -259,20 +259,25 @@ $(function(){initNavTree('covariance_8hpp_source.html','',''); });
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="comment">// Test if base finalize end on a viable case (stable / unstable)</span></div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="keywordflow">if</span> (this-&gt;isReady())</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    {</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        VectorType cog   = Base::barycenterLocal();</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        MatrixType cogSq = cog * cog.transpose();</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="comment">// \fixme Better use eigen here</span></div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; Base::NbDerivatives; ++k)</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        {</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            <span class="comment">// Finalize the computation of dCov.</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            m_dCov[k] = m_dCov[k] - cog * Base::m_dSumP.col(k).transpose() - Base::m_dSumP.col(k) * cog.transpose() +</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                        Base::m_dSumW[k] * cogSq;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        }</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    }</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        VectorType cog       = Base::barycenterLocal();</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        MatrixType cogSq     = cog * cog.transpose();</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keyword">const</span> Scalar invSumW = Scalar(1) / Base::getWeightSum();</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="comment">// \fixme Better use eigen here</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 0; k &lt; Base::NbDerivatives; ++k)</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>            <span class="comment">// Finalize the computation of dCov:</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            <span class="comment">//     C = M / W - c c^T</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            <span class="comment">// =&gt; dC = (dM - cdS^T - dS c^T + dW cc^T - dW C) / W</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            <span class="comment">// With: dM = m_dCov, dW = m_dSumW, dS = m_dSumP, C = m_cov, c = cog</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>            m_dCov[k] = (m_dCov[k] - cog * Base::m_dSumP.col(k).transpose() - Base::m_dSumP.col(k) * cog.transpose() +</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>                         Base::m_dSumW[k] * cogSq - Base::m_dSumW[k] * Base::m_cov) *</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                        invSumW;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        }</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">return</span> Base::m_eCurrentState;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84">Ponca::FIT_RESULT</a></div><div class="ttdeci">FIT_RESULT</div><div class="ttdoc">Enum corresponding to the state of a fitting method (and what the finalize function returns).</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00014">enums.h:15</a></div></div>
 <div class="ttc" id="anamespacePonca_html_abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41"><div class="ttname"><a href="namespacePonca.html#abfd697aebf07c1b5c8be5ee401e2dc84a08d57dd200082f67128b5274049dda41">Ponca::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdoc">The fitting is undefined, you can&#39;t use it for valid results.</div><div class="ttdef"><b>Definition</b> <a href="enums_8h_source.html#l00022">enums.h:22</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

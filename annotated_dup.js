@@ -12,6 +12,7 @@ var annotated_dup =
           [ "filterList&lt; Pred, std::tuple&lt; Ts... &gt; &gt;", "structPonca_1_1internal_1_1Factory_1_1filterList_3_01Pred_00_01std_1_1tuple_3_01Ts_8_8_8_01_4_01_4.html", null ],
           [ "conjunction", "structPonca_1_1internal_1_1Factory_1_1conjunction.html", null ]
         ] ],
+        [ "Eigen2x2Solver", "classPonca_1_1internal_1_1Eigen2x2Solver.html", "classPonca_1_1internal_1_1Eigen2x2Solver" ],
         [ "WeingartenCurvatureEstimatorBase", "classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html", "classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase" ],
         [ "Triangle", "structPonca_1_1internal_1_1Triangle.html", "structPonca_1_1internal_1_1Triangle" ],
         [ "TriangleGenerator", "structPonca_1_1internal_1_1TriangleGenerator.html", null ],

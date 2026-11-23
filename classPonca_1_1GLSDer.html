@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
+   &#160;<span id="projectnumber">cb266528645085a12930c827fbb8336cd937ecbb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -170,8 +170,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6a004ba5d4e4c95867841b63b8181678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( t * d\eta \).  <br /></td></tr>
 <tr class="memitem:a8cff3aaef7bcc6f1704a6a4c0eb7e43c" id="r_a8cff3aaef7bcc6f1704a6a4c0eb7e43c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a4afbbe2d31fe2dc6543d9d3010f69f7d">ScalarArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cff3aaef7bcc6f1704a6a4c0eb7e43c">dkappa_normalized</a> () const</td></tr>
 <tr class="memdesc:a8cff3aaef7bcc6f1704a6a4c0eb7e43c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute and return \( d\kappa * t^{2} \).  <br /></td></tr>
-<tr class="memitem:a001478f62bfe379eef866b85a0cd787c" id="r_a001478f62bfe379eef866b85a0cd787c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a001478f62bfe379eef866b85a0cd787c">geomVar</a> (<a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a> wtau=<a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>(1), <a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a> weta=<a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>(1), <a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a> wkappa=<a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>(1)) const</td></tr>
-<tr class="memdesc:a001478f62bfe379eef866b85a0cd787c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Geometric Variation is computed as the weighted sum of the GLS scale-invariant partial derivatives.  <br /></td></tr>
+<tr class="memitem:ae6466ea27fc2820b701ee60fc7cb09b0" id="r_ae6466ea27fc2820b701ee60fc7cb09b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6466ea27fc2820b701ee60fc7cb09b0">geometric_variation</a> (<a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a> wtau=<a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>(1), <a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a> weta=<a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>(1), <a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a> wkappa=<a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>(1)) const</td></tr>
+<tr class="memdesc:ae6466ea27fc2820b701ee60fc7cb09b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Geometric Variation is computed as the weighted sum of the GLS scale-invariant partial derivatives.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-types" class="groupheader"><a id="pro-types" name="pro-types"></a>
 Protected Types</h2></td></tr>
@@ -184,7 +184,7 @@ requires ProvidesAlgebraicSphere&lt;T&gt;&amp;&amp; ProvidesImplicitPrimitiveDer
 class Ponca::GLSDer&lt; DataPoint, _NFilter, DiffType, T &gt;</div><p>Differentiation of <a class="el" href="classPonca_1_1GLSParam.html" title="Growing Least Squares reparametrization of the OrientedSphereFit.">GLSParam</a>. </p>
 <p>Method published in <a class="el" href="citelist.html#CITEREF_mellado:2012:gls">[14]</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00124">124</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00134">134</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
 <a id="a05d59d58a5d7ed4caee1956aedec0346" name="a05d59d58a5d7ed4caee1956aedec0346"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a05d59d58a5d7ed4caee1956aedec0346">&#9670;&#160;</a></span>Base</h2>
@@ -210,7 +210,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 <p><a class="el" href="#a05d59d58a5d7ed4caee1956aedec0346" title="Base class of the procedure.">Base</a> class of the procedure. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00126">126</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00136">136</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -230,7 +230,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 <p>Alias to the filter applied on the neighbors. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00126">126</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00136">136</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -250,7 +250,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 <p>Alias to scalar type. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00126">126</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00136">136</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -270,7 +270,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 <p>Alias to scalar derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00127">127</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00137">137</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -290,7 +290,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 <p>Alias to vector derivatives array. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00127">127</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00137">137</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -310,7 +310,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 <p>Alias to vector type. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00126">126</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00136">136</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -507,8 +507,8 @@ requires ProvidesAlgebraicSphere&lt;T&gt;&amp;&amp; ProvidesImplicitPrimitiveDer
 
 </div>
 </div>
-<a id="a25832ee792d91f0f64284cecd2cb8b44" name="a25832ee792d91f0f64284cecd2cb8b44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a25832ee792d91f0f64284cecd2cb8b44">&#9670;&#160;</a></span>geomVar() <span class="overload">[1/3]</span></h2>
+<a id="ae6466ea27fc2820b701ee60fc7cb09b0" name="ae6466ea27fc2820b701ee60fc7cb09b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6466ea27fc2820b701ee60fc7cb09b0">&#9670;&#160;</a></span>geometric_variation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -519,69 +519,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classPonca_1_1GLSDer.html">GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1GLSDer.html">Ponca::GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::geomVar </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage. </p>
-
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00130">130</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
-
-</div>
-</div>
-<a id="a68c64adfa73b92615ef61d7f7d877024" name="a68c64adfa73b92615ef61d7f7d877024"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68c64adfa73b92615ef61d7f7d877024">&#9670;&#160;</a></span>geomVar() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="classPonca_1_1GLSDer.html">GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1GLSDer.html">Ponca::GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::geomVar </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage. </p>
-
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00130">130</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
-
-</div>
-</div>
-<a id="a001478f62bfe379eef866b85a0cd787c" name="a001478f62bfe379eef866b85a0cd787c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a001478f62bfe379eef866b85a0cd787c">&#9670;&#160;</a></span>geomVar() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a> <a class="el" href="classPonca_1_1GLSDer.html">Ponca::GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::geomVar </td>
+          <td class="memname"><a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a> <a class="el" href="classPonca_1_1GLSDer.html">Ponca::GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::geometric_variation </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a></td>          <td class="paramname"><span class="paramname"><em>wtau</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#aa9b96170bdfc7ceccc6a4f9c4d4964bf">Scalar</a>(1)</span>, </td>
         </tr>
@@ -623,6 +561,68 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 </div>
 </div>
+<a id="a25832ee792d91f0f64284cecd2cb8b44" name="a25832ee792d91f0f64284cecd2cb8b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25832ee792d91f0f64284cecd2cb8b44">&#9670;&#160;</a></span>geomVar() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPonca_1_1GLSDer.html">GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1GLSDer.html">Ponca::GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::geomVar </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage. </p>
+
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00140">140</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+
+</div>
+</div>
+<a id="a68c64adfa73b92615ef61d7f7d877024" name="a68c64adfa73b92615ef61d7f7d877024"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68c64adfa73b92615ef61d7f7d877024">&#9670;&#160;</a></span>geomVar() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classPonca_1_1GLSDer.html">GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt; &amp; <a class="el" href="classPonca_1_1GLSDer.html">Ponca::GLSDer</a>&lt; DataPoint, _NFilter, <a class="el" href="namespacePonca.html#a7beaddc698523e7f9c041ea8bc4c535a">DiffType</a>, T &gt;::geomVar </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage. </p>
+
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00140">140</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+
+</div>
+</div>
 <a id="a3b34ab307240c9e3dbc8f2a2306c083e" name="a3b34ab307240c9e3dbc8f2a2306c083e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b34ab307240c9e3dbc8f2a2306c083e">&#9670;&#160;</a></span>glsDer() <span class="overload">[1/2]</span></h2>
 
@@ -650,7 +650,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 <p>Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00129">129</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00139">139</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>
@@ -681,7 +681,7 @@ template&lt;class DataPoint, class _NFilter, int DiffType, typename T&gt; </div>
 
 <p>Explicit conversion to CLASSNAME, to access methods potentially hidden by heritage. </p>
 
-<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00129">129</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gls_8h_source.html#l00139">139</a> of file <a class="el" href="gls_8h_source.html">gls.h</a>.</p>
 
 </div>
 </div>

@@ -15,14 +15,14 @@
 <polygon fill="#999999" stroke="none" points="139.5,-318.25 0,-318.25 0,0 139.5,0 139.5,-318.25"/>
 <text xml:space="preserve" text-anchor="start" x="6.75" y="-304.75" font-family="Helvetica,sans-Serif" font-size="10.00">Ponca::AlgebraicSphere</text>
 <text xml:space="preserve" text-anchor="start" x="6.75" y="-292" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; DataPoint, _NFilter, T &gt;</text>
-<text xml:space="preserve" text-anchor="start" x="4" y="-275.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="16.25" y="-275.25" font-family="Helvetica,sans-Serif" font-size="10.00">m_uc</text>
-<text xml:space="preserve" text-anchor="start" x="4" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="16.25" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_uq</text>
-<text xml:space="preserve" text-anchor="start" x="4" y="-241.75" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text xml:space="preserve" text-anchor="start" x="16.25" y="-241.75" font-family="Helvetica,sans-Serif" font-size="10.00">m_ul</text>
+<text xml:space="preserve" text-anchor="start" x="4" y="-275.25" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text xml:space="preserve" text-anchor="start" x="16.25" y="-275.25" font-family="Helvetica,sans-Serif" font-size="10.00">m_isNormalized</text>
+<text xml:space="preserve" text-anchor="start" x="4" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text xml:space="preserve" text-anchor="start" x="16.25" y="-258.5" font-family="Helvetica,sans-Serif" font-size="10.00">m_uc</text>
+<text xml:space="preserve" text-anchor="start" x="4" y="-241.75" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text xml:space="preserve" text-anchor="start" x="16.25" y="-241.75" font-family="Helvetica,sans-Serif" font-size="10.00">m_uq</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-225" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
-<text xml:space="preserve" text-anchor="start" x="16.25" y="-225" font-family="Helvetica,sans-Serif" font-size="10.00">m_isNormalized</text>
+<text xml:space="preserve" text-anchor="start" x="16.25" y="-225" font-family="Helvetica,sans-Serif" font-size="10.00">m_ul</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-208.25" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text xml:space="preserve" text-anchor="start" x="16.25" y="-208.25" font-family="Helvetica,sans-Serif" font-size="10.00">algebraicSphere()</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -43,7 +43,7 @@
 <text xml:space="preserve" text-anchor="start" x="16.25" y="-74.25" font-family="Helvetica,sans-Serif" font-size="10.00">init()</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text xml:space="preserve" text-anchor="start" x="16.25" y="-57.5" font-family="Helvetica,sans-Serif" font-size="10.00">isValid()</text>
-<text xml:space="preserve" text-anchor="start" x="16.25" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">and 17 more...</text>
+<text xml:space="preserve" text-anchor="start" x="16.25" y="-40.75" font-family="Helvetica,sans-Serif" font-size="10.00">and 20 more...</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text xml:space="preserve" text-anchor="start" x="16.25" y="-24" font-family="Helvetica,sans-Serif" font-size="10.00">potentialLocal()</text>
 <text xml:space="preserve" text-anchor="start" x="4" y="-7.25" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>

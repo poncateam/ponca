@@ -51,7 +51,7 @@ MathJax.Hub.Config({
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Ponca
-   &#160;<span id="projectnumber">5ef81a5bae7cbeafceb292d2bb705b7d3410f2d5</span>
+   &#160;<span id="projectnumber">cb266528645085a12930c827fbb8336cd937ecbb</span>
    </div>
    <div id="projectbrief">Point Cloud Analysis library</div>
   </td>
@@ -123,6 +123,8 @@ $(function(){initNavTree('namespacePonca_1_1internal.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:Eigen2x2Solver" id="r_Eigen2x2Solver"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1Eigen2x2Solver.html">Eigen2x2Solver</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closed-form eigen decomposition of a 2x2 matrix with real eigenvalues, not necessarily symmetric.  <a href="classPonca_1_1internal_1_1Eigen2x2Solver.html#details">More...</a><br /></td></tr>
 <tr class="memitem:WeingartenCurvatureEstimatorBase" id="r_WeingartenCurvatureEstimatorBase"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html">WeingartenCurvatureEstimatorBase</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute principal curvatures from a base class providing fundamental forms.  <a href="classPonca_1_1internal_1_1WeingartenCurvatureEstimatorBase.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Triangle" id="r_Triangle"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structPonca_1_1internal_1_1Triangle.html">Triangle</a></td></tr>
@@ -153,6 +155,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a92c153e91fc2d16e5679ee716b757a1a" id="r_a92c153e91fc2d16e5679ee716b757a1a"><td class="memTemplParams" colspan="2">template&lt;class BidirIt1, class BidirIt2&gt; </td></tr>
 <tr class="memitem:a92c153e91fc2d16e5679ee716b757a1a template"><td class="memItemLeft" align="right" valign="top">BidirIt2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a92c153e91fc2d16e5679ee716b757a1a">copyBackward</a> (BidirIt1 first, BidirIt1 last, BidirIt2 d_last)</td></tr>
 <tr class="memdesc:a92c153e91fc2d16e5679ee716b757a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the elements from the range [first, last) to another range ending at d_last.  <br /></td></tr>
+<tr class="memitem:ad8405a569763384a4fa27da4ae4cfb81" id="r_ad8405a569763384a4fa27da4ae4cfb81"><td class="memTemplParams" colspan="2">template&lt;typename Derived, typename OtherDerived, typename Scalar = typename Derived::RealScalar&gt; </td></tr>
+<tr class="memitem:ad8405a569763384a4fa27da4ae4cfb81 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8405a569763384a4fa27da4ae4cfb81">isApprox</a> (const Eigen::DenseBase&lt; Derived &gt; &amp;x, const Eigen::DenseBase&lt; OtherDerived &gt; &amp;y, Scalar abs=Scalar(1), Scalar rel=Eigen::NumTraits&lt; Scalar &gt;::dummy_precision())</td></tr>
+<tr class="memitem:adf85e9535b784482fc7c503ae5ecd1da" id="r_adf85e9535b784482fc7c503ae5ecd1da"><td class="memTemplParams" colspan="2">template&lt;std::floating_point Scalar&gt; </td></tr>
+<tr class="memitem:adf85e9535b784482fc7c503ae5ecd1da template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf85e9535b784482fc7c503ae5ecd1da">isApprox</a> (Scalar x, Scalar y, Scalar abs=Scalar(1), Scalar rel=Eigen::NumTraits&lt; Scalar &gt;::dummy_precision())</td></tr>
+<tr class="memitem:a07127930a5bf03fe99157cb4d53df4bc" id="r_a07127930a5bf03fe99157cb4d53df4bc"><td class="memTemplParams" colspan="2">template&lt;std::integral Scalar&gt; </td></tr>
+<tr class="memitem:a07127930a5bf03fe99157cb4d53df4bc template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07127930a5bf03fe99157cb4d53df4bc">isApprox</a> (Scalar x, Scalar y, Scalar abs=Scalar(0), Scalar rel=Scalar(0))</td></tr>
 <tr class="memitem:a9c727a12b8b2ee91d4506c6a66165490" id="r_a9c727a12b8b2ee91d4506c6a66165490"><td class="memTemplParams" colspan="2">template&lt;typename Scalar&gt; </td></tr>
 <tr class="memitem:a9c727a12b8b2ee91d4506c6a66165490 template"><td class="memItemLeft" align="right" valign="top">Scalar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c727a12b8b2ee91d4506c6a66165490">getParaboloidZ</a> (const Scalar _x, const Scalar _y, const Scalar _a, const Scalar _b)</td></tr>
 <tr class="memdesc:a9c727a12b8b2ee91d4506c6a66165490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate z value using the equation z = ax^2 + by^2.  <br /></td></tr>
@@ -504,6 +512,135 @@ template&lt;typename Scalar&gt; </div>
 <p>Generate z value using the equation z = ax^2 + by^2 + cxy + dx + ey + f. </p>
 
 <p class="definition">Definition at line <a class="el" href="pointGeneration_8h_source.html#l00177">177</a> of file <a class="el" href="pointGeneration_8h_source.html">pointGeneration.h</a>.</p>
+
+</div>
+</div>
+<a id="ad8405a569763384a4fa27da4ae4cfb81" name="ad8405a569763384a4fa27da4ae4cfb81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8405a569763384a4fa27da4ae4cfb81">&#9670;&#160;</a></span>isApprox() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Derived, typename OtherDerived, typename Scalar = typename Derived::RealScalar&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Ponca::internal::isApprox </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::DenseBase&lt; Derived &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::DenseBase&lt; OtherDerived &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>abs</em></span><span class="paramdefsep"> = </span><span class="paramdefval">Scalar(1)</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>rel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">Eigen::NumTraits&lt;Scalar&gt;::dummy_precision()</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="floatutils_8h_source.html#l00025">25</a> of file <a class="el" href="floatutils_8h_source.html">floatutils.h</a>.</p>
+
+</div>
+</div>
+<a id="a07127930a5bf03fe99157cb4d53df4bc" name="a07127930a5bf03fe99157cb4d53df4bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07127930a5bf03fe99157cb4d53df4bc">&#9670;&#160;</a></span>isApprox() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::integral Scalar&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Ponca::internal::isApprox </td>
+          <td>(</td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>abs</em></span><span class="paramdefsep"> = </span><span class="paramdefval">Scalar(0)</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>rel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">Scalar(0)</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="floatutils_8h_source.html#l00056">56</a> of file <a class="el" href="floatutils_8h_source.html">floatutils.h</a>.</p>
+
+</div>
+</div>
+<a id="adf85e9535b784482fc7c503ae5ecd1da" name="adf85e9535b784482fc7c503ae5ecd1da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf85e9535b784482fc7c503ae5ecd1da">&#9670;&#160;</a></span>isApprox() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::floating_point Scalar&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Ponca::internal::isApprox </td>
+          <td>(</td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>abs</em></span><span class="paramdefsep"> = </span><span class="paramdefval">Scalar(1)</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Scalar</td>          <td class="paramname"><span class="paramname"><em>rel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">Eigen::NumTraits&lt;Scalar&gt;::dummy_precision()</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="floatutils_8h_source.html#l00044">44</a> of file <a class="el" href="floatutils_8h_source.html">floatutils.h</a>.</p>
 
 </div>
 </div>

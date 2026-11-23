@@ -95,6 +95,7 @@ var hierarchy =
     [ "Ponca::KdTreeBase&lt; _Traits &gt;::DefaultConverter", "structPonca_1_1KdTreeBase_1_1DefaultConverter.html", null ],
     [ "Ponca::DirectProjectionOperator", "structPonca_1_1DirectProjectionOperator.html", null ],
     [ "Ponca::QueryOutputBase::DummyOutputParameter", "group__spatialpartitioning.html#structPonca_1_1QueryOutputBase_1_1DummyOutputParameter", null ],
+    [ "Ponca::internal::Eigen2x2Solver&lt; Scalar &gt;", "classPonca_1_1internal_1_1Eigen2x2Solver.html", null ],
     [ "Ponca::internal::FactoryBase&lt; _FactoryEntries &gt;", "structPonca_1_1internal_1_1FactoryBase.html", null ],
     [ "Ponca::internal::FactoryBase&lt; Factory3DList&lt; P, NF, DerType &gt; &gt;", "structPonca_1_1internal_1_1FactoryBase.html", [
       [ "Ponca::Factory< P, NF, DerType >", "structPonca_1_1Factory_3_01P_00_01NF_00_01DerType_01_4.html", null ]

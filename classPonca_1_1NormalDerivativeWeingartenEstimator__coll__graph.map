@@ -1,5 +1,5 @@
 <map id="Ponca::NormalDerivativeWeingartenEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;" name="Ponca::NormalDerivativeWeingartenEstimator&lt; DataPoint, _NFilter, DiffType, T &gt;">
-<area shape="rect" id="Node000001" title="Compute a Weingarten map from the spatial derivatives of the normal field ." alt="" coords="5,126,253,445"/>
+<area shape="rect" id="Node000001" title="Compute a Weingarten map from the spatial derivatives of the normal field ." alt="" coords="5,126,253,489"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="120,5,138,78"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,90,132,126,127,125,129,95"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,90,132,126,127,126,129,95"/>
 </map>
