@@ -18,6 +18,7 @@ Current head (v.2.0.alpha4 RC)
     - [fitting] AlgebraicSphere parameters are now protected but expose a function instead (#359)
     - [common] Add relaxed isApprox checks (#359)
     - [fitting] Add HRBF fits (#348)
+    - [pyponca] New python binding of Ponca, with OpenMP and CUDA support (#347)
 
 - Bug-fixes and code improvements
     - [fitting] Fix out-of-bound SegFault in CNC (#344)
@@ -52,6 +53,7 @@ Current head (v.2.0.alpha4 RC)
     - [ci] CI to check cuda *compilation* (#354)
     - [ci] Disable instantiation in debug compilation (#359)
     - [ci] Split ctest coverage and codecov (#359) 
+    - [ci] Build and test PyPonca (#347)
 
 --------------------------------------------------------------------------------
 v.2.0.alpha3
