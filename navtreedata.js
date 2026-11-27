@@ -74,10 +74,10 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classPonca_1_1CovariancePlaneDerImpl.html#ad54c0b9712e0e02270b503eae53db28a",
-"classPonca_1_1Line.html#ae1b49c4778d74c964e70b5a8dd24102e",
-"classPonca_1_1QuadraticHeightField.html#a854f10adda141979e8569913727a0412",
-"example_sycl_basic_page.html",
-"structPonca_1_1NeighborGraphPointerTraits.html#ac146fa5801c9366c08048f0b3a92ecc5"
+"classPonca_1_1Line.html#a6c1f4bf4caac324031c9b36b18ebe66c",
+"classPonca_1_1Pow3WeightKernel.html#a2a6d5d18dddf10ca3fcc2c3cff0dfe92",
+"example_cxx_pcl_page.html#pcl_wrapper_sec",
+"structPonca_1_1NeighborGraphDefaultTraits.html#a12b4deb5acaf34c6f925a5c8f1113168"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

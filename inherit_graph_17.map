@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="Node000000" href="$structPonca_1_1ComputeObject.html" title="ComputeObject is a virtual object that represents an algorithm which can be used with the compute fun..." alt="" coords="5,5,175,50"/>
+<area shape="rect" id="Node000001" href="$classPonca_1_1HRBF.html" title="Hermite Radial Basis Function (HRBF) implicit surface interpolation." alt="" coords="223,14,466,42"/>
+<area shape="poly" id="edge107_Node000000_Node000001" title=" " alt="" coords="190,25,225,27,220,28,190,30"/>
 </map>

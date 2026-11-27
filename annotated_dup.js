@@ -128,6 +128,8 @@ var annotated_dup =
       [ "SingularWeightKernel", "classPonca_1_1SingularWeightKernel.html", "classPonca_1_1SingularWeightKernel" ],
       [ "CompactExpWeightKernel", "classPonca_1_1CompactExpWeightKernel.html", "classPonca_1_1CompactExpWeightKernel" ],
       [ "GaussianWeightKernel", "classPonca_1_1GaussianWeightKernel.html", "classPonca_1_1GaussianWeightKernel" ],
+      [ "Pow3WeightKernel", "classPonca_1_1Pow3WeightKernel.html", "classPonca_1_1Pow3WeightKernel" ],
+      [ "HRBF", "classPonca_1_1HRBF.html", "classPonca_1_1HRBF" ],
       [ "IndexSquaredDistance", "structPonca_1_1IndexSquaredDistance.html", "structPonca_1_1IndexSquaredDistance" ],
       [ "KdTreeKNearestIterator", "classPonca_1_1KdTreeKNearestIterator.html", "classPonca_1_1KdTreeKNearestIterator" ],
       [ "KdTreeNearestIterator", "classPonca_1_1KdTreeNearestIterator.html", "classPonca_1_1KdTreeNearestIterator" ],

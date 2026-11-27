@@ -8,5 +8,6 @@ var searchData=
   ['hashset_3c_20n_2c_20t_2c_20_5fhashfunctor_2c_20offset_20_3e_5',['HashSet&lt; N, T, _HashFunctor, OFFSET &gt;',['../classPonca_1_1HashSet.html',1,'Ponca']]],
   ['heightfield_6',['HeightField',['../classPonca_1_1HeightField.html',1,'Ponca']]],
   ['heightfieldprovider_7',['HeightFieldProvider',['../structPonca_1_1HeightFieldProvider.html',1,'Ponca']]],
-  ['hexagrambase_8',['HexagramBase',['../structPonca_1_1internal_1_1HexagramBase.html',1,'Ponca::internal']]]
+  ['hexagrambase_8',['HexagramBase',['../structPonca_1_1internal_1_1HexagramBase.html',1,'Ponca::internal']]],
+  ['hrbf_9',['HRBF',['../classPonca_1_1HRBF.html',1,'Ponca']]]
 ];

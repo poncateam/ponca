@@ -63,17 +63,20 @@ var hierarchy =
     ] ],
     [ "Ponca::StaticKdTreeBase&lt; _Traits &gt;::Buffers", "structPonca_1_1StaticKdTreeBase_1_1Buffers.html", null ],
     [ "Ponca::CenteredNeighborhoodFrame&lt; DataPoint &gt;", "classPonca_1_1CenteredNeighborhoodFrame.html", [
+      [ "Ponca::DistWeightFilter< DataPoint, ConstantWeightKernel< Scalar > >", "classPonca_1_1DistWeightFilter.html", [
+        [ "Ponca::FilterWithAttributes< DataPoint, VectorType, DistWeightFilter< DataPoint, ConstantWeightKernel< Scalar > >, internal::ConvertDataPointToNormal< DataPoint > >", "classPonca_1_1FilterWithAttributes.html", null ]
+      ] ],
       [ "Ponca::internal::NoWeightFilterBase< DataPoint, CenteredNeighborhoodFrame >", "classPonca_1_1internal_1_1NoWeightFilterBase.html", [
         [ "Ponca::NoWeightFilter< DataPoint >", "structPonca_1_1NoWeightFilter.html", null ]
       ] ]
     ] ],
     [ "Ponca::CenteredNeighborhoodFrame&lt; _DataPoint &gt;", "classPonca_1_1CenteredNeighborhoodFrame.html", [
-      [ "Ponca::DistWeightFilter< _DataPoint, WeightKernel >", "classPonca_1_1DistWeightFilter.html", [
-        [ "Ponca::FilterWithAttributes< DataPoint, VectorType, DistWeightFilter< DataPoint, ConstantWeightKernel< Scalar > >, internal::ConvertDataPointToNormal< DataPoint > >", "classPonca_1_1FilterWithAttributes.html", null ]
-      ] ]
+      [ "Ponca::DistWeightFilter< _DataPoint, WeightKernel >", "classPonca_1_1DistWeightFilter.html", null ]
     ] ],
     [ "Ponca::internal::CNCEigen&lt; DataPoint &gt;", "structPonca_1_1internal_1_1CNCEigen.html", null ],
-    [ "Ponca::ComputeObject&lt; Derived &gt;", "structPonca_1_1ComputeObject.html", null ],
+    [ "Ponca::ComputeObject&lt; Derived &gt;", "structPonca_1_1ComputeObject.html", [
+      [ "Ponca::HRBF< P, _WeightKernel >", "classPonca_1_1HRBF.html", null ]
+    ] ],
     [ "Ponca::ComputeObject&lt; _Derived &gt;", "structPonca_1_1ComputeObject.html", [
       [ "Ponca::BasketComputeObject< _Derived, _Base >", "structPonca_1_1BasketComputeObject.html", null ]
     ] ],
@@ -373,6 +376,7 @@ var hierarchy =
       [ "Ponca::ConstantWeightKernel< _Scalar >", "classPonca_1_1ConstantWeightKernel.html", null ],
       [ "Ponca::GaussianWeightKernel< _Scalar >", "classPonca_1_1GaussianWeightKernel.html", null ],
       [ "Ponca::PolynomialSmoothWeightKernel< _Scalar, m, n >", "classPonca_1_1PolynomialSmoothWeightKernel.html", null ],
+      [ "Ponca::Pow3WeightKernel< _Scalar >", "classPonca_1_1Pow3WeightKernel.html", null ],
       [ "Ponca::SingularWeightKernel< _Scalar >", "classPonca_1_1SingularWeightKernel.html", null ],
       [ "Ponca::SmoothWeightKernel< _Scalar >", "classPonca_1_1SmoothWeightKernel.html", null ],
       [ "Ponca::WendlandWeightKernel< _Scalar >", "classPonca_1_1WendlandWeightKernel.html", null ]

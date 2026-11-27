@@ -14,5 +14,6 @@ var searchData=
   ['heightfield_11',['heightField',['../classPonca_1_1QuadraticHeightField.html#a0a5c13aebbb0a2dd690e8e760c8d9e0c',1,'Ponca::QuadraticHeightField::heightField()'],['../classPonca_1_1QuadraticHeightField.html#ab3a88a57a9ede537f7675679f62662d0',1,'Ponca::QuadraticHeightField::heightField() const'],['../classPonca_1_1RestrictedQuadraticHeightField.html#ab19668cdcba6b8bb7198499a43393a65',1,'Ponca::RestrictedQuadraticHeightField::heightField()'],['../classPonca_1_1RestrictedQuadraticHeightField.html#ae8975914eb652bc34a5cc9eb3d2ce38a',1,'Ponca::RestrictedQuadraticHeightField::heightField() const']]],
   ['heightfieldbase_12',['heightFieldBase',['../classPonca_1_1HeightField.html#a1445d79b668f66c4cf13b1116286888a',1,'Ponca::HeightField::heightFieldBase()'],['../classPonca_1_1HeightField.html#aaba18bfb72e9d2e9fb447b80bbd41dd1',1,'Ponca::HeightField::heightFieldBase() const']]],
   ['heightfieldprovider_13',['HeightFieldProvider',['../structPonca_1_1HeightFieldProvider.html',1,'Ponca']]],
-  ['hexagrambase_14',['HexagramBase',['../structPonca_1_1internal_1_1HexagramBase.html',1,'Ponca::internal']]]
+  ['hexagrambase_14',['HexagramBase',['../structPonca_1_1internal_1_1HexagramBase.html',1,'Ponca::internal']]],
+  ['hrbf_15',['HRBF',['../classPonca_1_1HRBF.html',1,'Ponca']]]
 ];
