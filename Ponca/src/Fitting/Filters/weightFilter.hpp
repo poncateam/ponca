@@ -83,3 +83,108 @@ typename DistWeightFilter<DataPoint, WeightKernel>::VectorType DistWeightFilter<
     return result;
 }
 
+template <class DataPoint, class WeightKernel>
+void DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::setAxes(const MatrixType& _axes)
+{
+    m_axes    = _axes;
+    m_invAxes = _axes.inverse();
+}
+
+template <class DataPoint, class WeightKernel>
+void DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::setAxes(const VectorType* _axes)
+{
+    MatrixType axes;
+    for (int i = 0; i < DataPoint::Dim; ++i)
+        axes.col(i) = _axes[i];
+    setAxes(axes);
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::WeightReturnType DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::operator()(const DataPoint& _q) const
+{
+    const auto lf = NeighborhoodFrame::convertToLocalBasis(_q.pos());
+    const auto lq = m_invAxes * lf;
+
+    Scalar d = lq.norm();
+    if (isCompact) // compile-time branching
+        return {(d <= m_t) ? m_wk.f(d / m_t) : Scalar(0.), lf};
+    else
+        return {m_wk.f(d / m_t), lf};
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::VectorType DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::spacedw(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesFirstOrderDerivative<WeightKernel>
+{
+    VectorType result = VectorType::Zero();
+    const auto f      = NeighborhoodFrame::convertToLocalBasis(_q);
+    const auto q      = m_invAxes * f;
+    Scalar d          = q.norm();
+    // isCompact is tested at compile-time
+    // Same derivative DistWeightFilter but scaled by A^(-T)
+    if ((!isCompact) || (d <= m_t && d != Scalar(0.)))
+        result = m_invAxes.transpose() * ((f / (d * m_t)) * m_wk.df(d / m_t));
+    return result;
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::MatrixType DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::spaced2w(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
+{
+    MatrixType result = MatrixType::Zero();
+    const auto f      = NeighborhoodFrame::convertToLocalBasis(_q);
+    const auto q      = m_invAxes * f;
+    Scalar d          = q.norm();
+    if ((!isCompact) || (d <= m_t && d != Scalar(0.)))
+    {
+        // Same derivative as DistWeightFilter here
+        Scalar der = m_wk.df(d / m_t);
+        result     = f * f.transpose() / d * (m_wk.ddf(d / m_t) / m_t - der / d);
+        result.diagonal().array() += der;
+        result *= Scalar(1.) / (m_t * d);
+
+        // Hessian = A^(-T) * H_f(A^-1(q - p)) * A^-1, with H_f = result
+        result = m_invAxes.transpose() * result * m_invAxes;
+    }
+    return result;
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::Scalar DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::scaledw(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesFirstOrderDerivative<WeightKernel>
+{
+    // Same thing as DistWeightFilter
+    Scalar d = (m_invAxes * NeighborhoodFrame::convertToLocalBasis(_q)).norm();
+    return ((!isCompact) || (d <= m_t)) ? Scalar(-d * m_wk.df(d / m_t) / (m_t * m_t)) : Scalar(0.);
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::Scalar DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::scaled2w(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
+{
+    // Same thing as DistWeightFilter
+    Scalar d = (m_invAxes * NeighborhoodFrame::convertToLocalBasis(_q)).norm();
+    return ((!isCompact) || (d <= m_t)) ? Scalar(Scalar(2.) * d / (m_t * m_t * m_t) * m_wk.df(d / m_t) +
+                                                 d * d / (m_t * m_t * m_t * m_t) * m_wk.ddf(d / m_t))
+                                        : Scalar(0.);
+}
+
+template <class DataPoint, class WeightKernel>
+typename DistWeightEllipsoidalFilter<DataPoint, WeightKernel>::VectorType DistWeightEllipsoidalFilter<
+    DataPoint, WeightKernel>::scaleSpaced2w(const VectorType& _q, const DataPoint&) const
+    requires Ponca::KernelProvidesSecondOrderDerivative<WeightKernel>
+{
+    // Same derivative DistWeightFilter but scaled by A^(-T)
+    VectorType result = VectorType::Zero();
+    const auto f      = NeighborhoodFrame::convertToLocalBasis(_q);
+    const auto q      = m_invAxes * f;
+    Scalar d          = q.norm();
+    if ((!isCompact) || (d <= m_t && d != Scalar(0.)))
+        result = m_invAxes * (-f / (m_t * m_t) * (m_wk.df(d / m_t) / d + m_wk.ddf(d / m_t) / m_t));
+    return result;
+}

@@ -199,6 +199,163 @@ namespace Ponca
 
     }; // class DistWeightFunc
 
+    /*!
+        \brief Weight neighbors according to their distance to a reference position, measured in an ellipsoidal frame
+
+        \note With identity axes, this class is equivalent to DistWeightFilter.
+
+        \tparam DataPoint Type of input points.
+        \tparam WeightKernel 1d function used to compute the weight depending on the distance between query point and
+        the basis center, measured in the ellipsoidal frame. If `WeightKernel::isCompact == true`, the distance to the
+        basis center is checked against the scale parameter, and any point whose distance is larger than the scale will
+        be assigned with a weight of \f$0\f$. For non-compact (ie. global) kernels, the weights are computed for all
+        points.
+
+        \see DistWeightFilter
+
+        \warning DistWeightEllipsoidalFilter assumes that the evaluation scale t is strictly positive, but the valus
+        is not checked
+        \warning DistWeightEllipsoidalFilter assumes that the axes are linearly independant, but this is not checked
+    */
+    template <class _DataPoint, class WeightKernel>
+    class DistWeightEllipsoidalFilter : public CenteredNeighborhoodFrame<_DataPoint>
+    {
+    public:
+        /*! \brief Alias to _DataPoint template parameter */
+        using DataPoint = _DataPoint;
+        /*! \brief Scalar type from DataPoint */
+        using Scalar = typename DataPoint::Scalar;
+        /*! \brief Vector type from DataPoint */
+        using VectorType = typename DataPoint::VectorType;
+        /*! \brief Matrix type from DataPoint */
+        using MatrixType = typename DataPoint::MatrixType;
+        /*! \brief Return type of the method #w() */
+        using WeightReturnType = PONCA_MULTIARCH_CU_STD_NAMESPACE(pair)<Scalar, VectorType>;
+        /// \brief Frame used to express the neighbors locally
+        using NeighborhoodFrame = CenteredNeighborhoodFrame<DataPoint>;
+        /// \brief Flag indicating if the weighting kernel is compact of not
+        static constexpr bool isCompact = WeightKernel::isCompact;
+
+        /*!
+            \brief Constructor that defines the evaluation position, scale and ellipsoid axes (stored as columns)
+            \warning t > 0
+        */
+        PONCA_MULTIARCH inline DistWeightEllipsoidalFilter(const VectorType& _evalPos = VectorType::Zero(),
+                                                           const Scalar& _t           = Scalar(1.),
+                                                           const MatrixType& _axes    = MatrixType::Identity())
+            : NeighborhoodFrame(_evalPos), m_t(_t)
+        {
+            // PONCA_ASSERT(_t > Scalar(0));
+            setAxes(_axes);
+        }
+
+        /*!
+            \brief Constructor that defines the evaluation position, scale and a pointer to `DataPoint::Dim`
+            contiguous ellipsoid axes
+            \warning t > 0
+            \warning `_axes` must point to at least `DataPoint::Dim` vectors, this is not checked
+        */
+        PONCA_MULTIARCH inline DistWeightEllipsoidalFilter(const VectorType& _evalPos, const Scalar& _t,
+                                                           const VectorType* _axes)
+            : NeighborhoodFrame(_evalPos), m_t(_t)
+        {
+            // PONCA_ASSERT(_t > Scalar(0));
+            setAxes(_axes);
+        }
+
+        ///! \copydoc DistWeightEllipsoidalFilter(const VectorType&, const Scalar&, const MatrixType&)
+        PONCA_MULTIARCH inline DistWeightEllipsoidalFilter(const DataPoint& _evalPoint, const Scalar& _t = Scalar(1.),
+                                                           const MatrixType& _axes = MatrixType::Identity())
+            : DistWeightEllipsoidalFilter(_evalPoint.pos(), _t)
+        {
+            // PONCA_ASSERT(_t > Scalar(0));
+            setAxes(_axes);
+        }
+
+        ///! \copydoc DistWeightEllipsoidalFilter(const VectorType&, const Scalar&, const VectorType*)
+        PONCA_MULTIARCH inline DistWeightEllipsoidalFilter(const DataPoint& _evalPoint, const Scalar& _t,
+                                                           const VectorType* _axes)
+            : DistWeightEllipsoidalFilter(_evalPoint.pos(), _t)
+        {
+            // PONCA_ASSERT(_t > Scalar(0));
+            setAxes(_axes);
+        }
+
+        /// \brief Set the ellipsoid axes from a matrix whose columns are the axes
+        PONCA_MULTIARCH inline void setAxes(const MatrixType& _axes);
+
+        /// \brief Set the ellipsoid axes from a pointer to `DataPoint::Dim` contiguous vectors
+        PONCA_MULTIARCH inline void setAxes(const VectorType* _axes);
+
+        /*!
+            \brief Compute the weight of the given query with respect to its coordinates in the ellipsoidal frame
+            \param q Query in global coordinate system
+            \return The computed weight + the point expressed in local basis
+            \see DistWeightFilter::operator()
+        */
+        PONCA_MULTIARCH inline WeightReturnType operator()(const DataPoint& q) const;
+        /*!
+            \brief First order derivative in space, expressed in global coordinates:
+            \f$ \mathbf{A}^{-T} \frac{\mathbf{q}'}{t\left|\mathbf{q}'\right|}
+            \nabla{w(\frac{\left|\mathbf{q}'\right|}{t})} \f$
+            \param _q Query in global coordinate system
+            \see DistWeightFilter::spacedw
+        */
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType spacedw(const VectorType& _q,
+                                                                const DataPoint& /*attributes*/) const
+            requires KernelProvidesFirstOrderDerivative<WeightKernel>;
+
+        /*!
+            \brief Second order derivative in space, expressed in global coordinates:
+            \f$ \mathbf{A}^{-T} \mathbf{H}' \mathbf{A}^{-1} \f$, where \f$\mathbf{H}'\f$ is the Hessian computed by
+            DistWeightFilter::spaced2w in the ellipsoidal frame
+            \param _q Query in global coordinate system
+        */
+        PONCA_MULTIARCH [[nodiscard]] inline MatrixType spaced2w(const VectorType& _q,
+                                                                 const DataPoint& /*attributes*/) const
+            requires KernelProvidesSecondOrderDerivative<WeightKernel>;
+
+        /*!
+            \brief First order derivative in scale \f$t\f$
+            \param _q Query in global coordinate system
+            \see DistWeightFilter::scaledw
+        */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar scaledw(const VectorType& _q, const DataPoint& /*attributes*/) const
+            requires KernelProvidesFirstOrderDerivative<WeightKernel>;
+
+        /*!
+            \brief Second order derivative in scale \f$t\f$
+            \param _q Query in global coordinate system
+            \see DistWeightFilter::scaled2w
+        */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar scaled2w(const VectorType& _q,
+                                                             const DataPoint& /*attributes*/) const
+            requires KernelProvidesSecondOrderDerivative<WeightKernel>;
+
+        /*!
+            \brief Cross derivative in scale \f$t\f$ and in space, expressed in global coordinates
+            \param _q Query in global coordinate system
+            \see DistWeightFilter::scaleSpaced2w
+        */
+        PONCA_MULTIARCH [[nodiscard]] inline VectorType scaleSpaced2w(const VectorType& _q,
+                                                                      const DataPoint& /*attributes*/) const
+            requires KernelProvidesSecondOrderDerivative<WeightKernel>;
+
+        /*! \brief Access to the evaluation scale set during the initialization */
+        PONCA_MULTIARCH [[nodiscard]] inline Scalar evalScale() const { return m_t; }
+
+        PONCA_MULTIARCH [[nodiscard]] inline NeighborhoodFrame& frame() { return *this; }
+        PONCA_MULTIARCH [[nodiscard]] inline const NeighborhoodFrame& frame() const { return *this; }
+
+    protected:
+        Scalar m_t;        /*!< \brief Evaluation scale */
+        WeightKernel m_wk; /*!< \brief 1D function applied to weight queries */
+
+        MatrixType m_axes;    /*!< \brief ellipsoid axes, stored as columns */
+        MatrixType m_invAxes; /*!< \brief inverse of m_axes, cached */
+
+    }; // class DistWeightEllipsoidalFilter
+
     namespace internal
     {
         /*!
